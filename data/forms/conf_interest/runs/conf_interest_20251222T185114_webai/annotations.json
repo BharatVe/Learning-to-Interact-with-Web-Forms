@@ -1,0 +1,135 @@
+{
+  "run_identifier": "conf_interest_20251222T185114_webai",
+  "run_id": "20251222T185114_webai",
+  "form_name": "Conference Interest",
+  "form_id": "conf_interest",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScdiEfCs_Ld5bCIuVilB_hDhlSQCaRCwcJJHihThWaYherK3g/viewform?usp=publish-editor",
+  "run_directory": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/conf_interest_20251222T185114_webai",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/conf_interest_20251222T185114_webai/conf_interest_20251222T185114_webai.webm",
+  "answers_source_path": "/home/bharat/Projects/thesis/src/conf_intrest/answers_conference.json",
+  "answers_instance_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/conf_interest_20251222T185114_webai/answers_instance.json",
+  "run_params": {
+    "slow_mo": 250,
+    "type_delay_ms": 150,
+    "action_delay_ms": 300,
+    "pause_seconds": 0.0
+  },
+  "actions": [
+    {
+      "step": 0,
+      "label": "Full name",
+      "widget_type": "short_text",
+      "value": "Avery Chen",
+      "success": true,
+      "t_start_s": 5.8642712510009005,
+      "t_end_s": 9.889273899001637,
+      "bbox": {
+        "x": 312.5,
+        "y": 195.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 1,
+      "label": "Preferred contact email",
+      "widget_type": "short_text",
+      "value": "avery.chen@streamforge.io",
+      "success": true,
+      "t_start_s": 9.889278929000284,
+      "t_end_s": 16.24896573300066,
+      "bbox": {
+        "x": 312.5,
+        "y": 345.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 2,
+      "label": "Brief bio",
+      "widget_type": "paragraph_text",
+      "value": "Staff engineer leading applied ML initiatives for a realtime collaboration product.",
+      "success": true,
+      "t_start_s": 16.24897204700028,
+      "t_end_s": 31.82878927100137,
+      "bbox": {
+        "x": 312.5,
+        "y": 495.1875,
+        "width": 640,
+        "height": 136
+      }
+    },
+    {
+      "step": 3,
+      "label": "Primary role",
+      "widget_type": "single_choice",
+      "value": "Industry practitioner",
+      "success": false,
+      "t_start_s": 31.828794170000037,
+      "t_end_s": 31.867822644000626,
+      "bbox": {
+        "x": 312.5,
+        "y": 643.1875,
+        "width": 640,
+        "height": 250
+      }
+    },
+    {
+      "step": 4,
+      "label": "Topics you\u2019re interested in",
+      "widget_type": "multi_choice",
+      "value": [
+        "AI/ML",
+        "Product",
+        "Community"
+      ],
+      "success": false,
+      "t_start_s": 31.867824568000287,
+      "t_end_s": 33.76169398900129,
+      "bbox": {
+        "x": 312.5,
+        "y": 905.1875,
+        "width": 640,
+        "height": 250
+      }
+    },
+    {
+      "step": 5,
+      "label": "Preferred meeting date",
+      "widget_type": "date",
+      "value": "2025-06-17",
+      "success": true,
+      "t_start_s": 33.761699454000336,
+      "t_end_s": 35.88892780900096,
+      "bbox": {
+        "x": 312.5,
+        "y": 573.1875,
+        "width": 640,
+        "height": 153
+      }
+    },
+    {
+      "step": 6,
+      "label": "Preferred meeting time",
+      "widget_type": "time",
+      "value": "14:00",
+      "success": true,
+      "t_start_s": 35.888933047001046,
+      "t_end_s": 40.77881151800102,
+      "bbox": {
+        "x": 312.5,
+        "y": 738.1875,
+        "width": 640,
+        "height": 164
+      }
+    }
+  ],
+  "submit": {
+    "success": true,
+    "t_start_s": 40.77881784700003,
+    "t_end_s": 89.7643676960015,
+    "bbox": null
+  },
+  "submitted": true
+}

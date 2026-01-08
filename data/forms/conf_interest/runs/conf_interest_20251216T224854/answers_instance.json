@@ -1,0 +1,40 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Jordan Rivera"
+  },
+  {
+    "label": "Preferred contact email",
+    "widget_type": "short_text",
+    "value": "jordan.rivera@example.com"
+  },
+  {
+    "label": "Brief bio",
+    "widget_type": "paragraph_text",
+    "value": "Graduate researcher focusing on distributed ML."
+  },
+  {
+    "label": "Primary role",
+    "widget_type": "single_choice",
+    "value": "PhD student"
+  },
+  {
+    "label": "Topics you\u2019re interested in",
+    "widget_type": "multi_choice",
+    "value": [
+      "AI/ML",
+      "Systems"
+    ]
+  },
+  {
+    "label": "Preferred meeting date",
+    "widget_type": "date",
+    "value": "2025-06-15"
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "10:30"
+  }
+]

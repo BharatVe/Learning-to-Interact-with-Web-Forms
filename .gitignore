@@ -135,3 +135,7 @@ dmypy.json
 # OS
 .DS_Store
 Thumbs.db
+
+# Playwright run videos
+videos/
+data/forms/**/runs/**/*.webm

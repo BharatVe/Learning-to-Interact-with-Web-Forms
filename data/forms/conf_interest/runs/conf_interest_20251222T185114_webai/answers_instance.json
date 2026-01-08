@@ -1,0 +1,65 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Avery Chen",
+    "tags": [
+      "profile",
+      "identity"
+    ]
+  },
+  {
+    "label": "Preferred contact email",
+    "widget_type": "short_text",
+    "value": "avery.chen@streamforge.io",
+    "tags": [
+      "profile",
+      "contact"
+    ]
+  },
+  {
+    "label": "Brief bio",
+    "widget_type": "paragraph_text",
+    "value": "Staff engineer leading applied ML initiatives for a realtime collaboration product.",
+    "tags": [
+      "summary"
+    ]
+  },
+  {
+    "label": "Primary role",
+    "widget_type": "single_choice",
+    "value": "Industry practitioner",
+    "tags": [
+      "role"
+    ]
+  },
+  {
+    "label": "Topics you\u2019re interested in",
+    "widget_type": "multi_choice",
+    "value": [
+      "AI/ML",
+      "Product",
+      "Community"
+    ],
+    "tags": [
+      "topics",
+      "interests"
+    ]
+  },
+  {
+    "label": "Preferred meeting date",
+    "widget_type": "date",
+    "value": "2025-06-17",
+    "tags": [
+      "scheduling"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "14:00",
+    "tags": [
+      "scheduling"
+    ]
+  }
+]

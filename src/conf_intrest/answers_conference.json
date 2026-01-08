@@ -1,0 +1,151 @@
+{
+  "form_id": "conf_interest",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScdiEfCs_Ld5bCIuVilB_hDhlSQCaRCwcJJHihThWaYherK3g/viewform?usp=publish-editor",
+  "description": "Answer variations for the Conference Interest form. Each run tweaks the profile, interests, and scheduling preferences so multiple submissions can be captured with unique recordings.",
+  "runs": [
+    {
+      "suffix": "mlsys",
+      "notes": "Graduate researcher focused on ML systems.",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Jordan Rivera",
+          "tags": ["profile", "identity"]
+        },
+        {
+          "label": "Preferred contact email",
+          "widget_type": "short_text",
+          "value": "jordan.rivera@example.com",
+          "tags": ["profile", "contact"]
+        },
+        {
+          "label": "Brief bio",
+          "widget_type": "paragraph_text",
+          "value": "Graduate researcher focusing on distributed ML training pipelines and inference at the edge.",
+          "tags": ["summary"]
+        },
+        {
+          "label": "Primary role",
+          "widget_type": "single_choice",
+          "value": "PhD student",
+          "tags": ["role"]
+        },
+        {
+          "label": "Topics you’re interested in",
+          "widget_type": "multi_choice",
+          "value": ["AI/ML", "Systems"],
+          "tags": ["topics", "interests"]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-06-15",
+          "tags": ["scheduling"]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "10:30",
+          "tags": ["scheduling"]
+        }
+      ]
+    },
+    {
+      "suffix": "webai",
+      "notes": "Industry engineer with applied ML interests.",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Chen",
+          "tags": ["profile", "identity"]
+        },
+        {
+          "label": "Preferred contact email",
+          "widget_type": "short_text",
+          "value": "avery.chen@streamforge.io",
+          "tags": ["profile", "contact"]
+        },
+        {
+          "label": "Brief bio",
+          "widget_type": "paragraph_text",
+          "value": "Staff engineer leading applied ML initiatives for a realtime collaboration product.",
+          "tags": ["summary"]
+        },
+        {
+          "label": "Primary role",
+          "widget_type": "single_choice",
+          "value": "Industry practitioner",
+          "tags": ["role"]
+        },
+        {
+          "label": "Topics you’re interested in",
+          "widget_type": "multi_choice",
+          "value": ["AI/ML", "Product", "Community"],
+          "tags": ["topics", "interests"]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-06-17",
+          "tags": ["scheduling"]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "14:00",
+          "tags": ["scheduling"]
+        }
+      ]
+    },
+    {
+      "suffix": "hardware",
+      "notes": "Researcher exploring AI accelerators and hardware/software co-design.",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Whitaker",
+          "tags": ["profile", "identity"]
+        },
+        {
+          "label": "Preferred contact email",
+          "widget_type": "short_text",
+          "value": "noah.whitaker@chipfoundry.ai",
+          "tags": ["profile", "contact"]
+        },
+        {
+          "label": "Brief bio",
+          "widget_type": "paragraph_text",
+          "value": "Research scientist exploring specialized accelerators for privacy-preserving AI workloads.",
+          "tags": ["summary"]
+        },
+        {
+          "label": "Primary role",
+          "widget_type": "single_choice",
+          "value": "Research scientist",
+          "tags": ["role"]
+        },
+        {
+          "label": "Topics you’re interested in",
+          "widget_type": "multi_choice",
+          "value": ["Systems", "Hardware", "Security"],
+          "tags": ["topics", "interests"]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-06-20",
+          "tags": ["scheduling"]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": ["scheduling"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Noah Whitaker",
+    "tags": [
+      "profile",
+      "identity"
+    ]
+  },
+  {
+    "label": "Preferred contact email",
+    "widget_type": "short_text",
+    "value": "noah.whitaker@chipfoundry.ai",
+    "tags": [
+      "profile",
+      "contact"
+    ]
+  },
+  {
+    "label": "Brief bio",
+    "widget_type": "paragraph_text",
+    "value": "Research scientist exploring specialized accelerators for privacy-preserving AI workloads.",
+    "tags": [
+      "summary"
+    ]
+  },
+  {
+    "label": "Primary role",
+    "widget_type": "single_choice",
+    "value": "Research scientist",
+    "tags": [
+      "role"
+    ]
+  },
+  {
+    "label": "Topics you\u2019re interested in",
+    "widget_type": "multi_choice",
+    "value": [
+      "Systems",
+      "Hardware",
+      "Security"
+    ],
+    "tags": [
+      "topics",
+      "interests"
+    ]
+  },
+  {
+    "label": "Preferred meeting date",
+    "widget_type": "date",
+    "value": "2025-06-20",
+    "tags": [
+      "scheduling"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "09:00",
+    "tags": [
+      "scheduling"
+    ]
+  }
+]

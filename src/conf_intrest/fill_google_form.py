@@ -1,27 +1,33 @@
+"""
+Automation helper for the Conference Interest (conf_interest) Google Form.
+"""
+
 import argparse
 import json
 import re
 import sys
 import time
 import unicodedata
-import shutil
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
-from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import Playwright, TimeoutError as PlaywrightTimeoutError, sync_playwright
 
-TYPE_DELAY_MS = 150
-ACTION_DELAY_MS = 200
+FORM_NAME = "Conference Interest"
+FORM_IDENTIFIER = "conf_interest"
+FORM_DEFAULT_URL = "https://docs.google.com/forms/d/e/1FAIpQLScdiEfCs_Ld5bCIuVilB_hDhlSQCaRCwcJJHihThWaYherK3g/viewform?usp=publish-editor"
 SCRIPT_DIR = Path(__file__).resolve().parent
-DEFAULT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScdiEfCs_Ld5bCIuVilB_hDhlSQCaRCwcJJHihThWaYherK3g/viewform?usp=publish-editor"
 DEFAULT_ANSWERS_JSON = SCRIPT_DIR / "answers_conference.json"
-DEFAULT_FORM_ID = "conf_interest"
+DEFAULT_DATASET_ROOT = "data/forms"
+DEFAULT_VIDEO_DIR = "videos"
 DEFAULT_RUN_ID = None
 DEFAULT_TYPE_DELAY = 150
 DEFAULT_ACTION_DELAY = 300
 DEFAULT_SLOW_MO = 250
+
+TYPE_DELAY_MS = DEFAULT_TYPE_DELAY
+ACTION_DELAY_MS = DEFAULT_ACTION_DELAY
 
 CURSOR_OVERLAY_SCRIPT = """
 (() => {
@@ -68,23 +74,77 @@ CURSOR_OVERLAY_SCRIPT = """
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Fill a Google Form via Playwright")
-    parser.add_argument("--form-url", default=DEFAULT_FORM_URL)
+    parser.add_argument("--form-url", default=FORM_DEFAULT_URL)
     parser.add_argument("--answers-json", default=DEFAULT_ANSWERS_JSON)
-    parser.add_argument("--video-dir", default="videos")
+    parser.add_argument("--video-dir", default=DEFAULT_VIDEO_DIR)
+    parser.add_argument("--dataset-root", default=DEFAULT_DATASET_ROOT)
     parser.add_argument("--slow-mo", type=int, default=DEFAULT_SLOW_MO)
     parser.add_argument("--pause-seconds", type=float, default=0.0)
     parser.add_argument("--type-delay", type=int, default=DEFAULT_TYPE_DELAY)
     parser.add_argument("--action-delay", type=int, default=DEFAULT_ACTION_DELAY)
-    parser.add_argument("--form-id", default=DEFAULT_FORM_ID)
+    parser.add_argument("--form-id", default=FORM_IDENTIFIER)
     parser.add_argument("--run-id", default=DEFAULT_RUN_ID)
     return parser.parse_args()
 
 
-def load_answers(path: str) -> List[Dict[str, Any]]:
+def load_run_specifications(path: Path) -> List[Dict[str, Any]]:
+    """
+    Return run specifications loaded from the provided answers JSON file.
+    Each specification contains a `run_suffix` (optional) and an `answers` list.
+    """
     data = json.loads(Path(path).read_text())
-    if not isinstance(data, list):
-        raise ValueError("answers-json must contain a list")
-    return data
+    if isinstance(data, list):
+        return [{"run_suffix": None, "answers": data}]
+    if not isinstance(data, dict):
+        raise ValueError("answers-json must be a list or a dict describing runs")
+    runs = data.get("runs")
+    if runs is None:
+        runs = data.get("multi_runs")
+    if not isinstance(runs, list):
+        raise ValueError("answers-json dict must contain a 'runs' list")
+    specs: List[Dict[str, Any]] = []
+    for idx, run in enumerate(runs):
+        if not isinstance(run, dict):
+            raise ValueError(f"run entry at index {idx} must be an object")
+        answers = run.get("answers")
+        if not isinstance(answers, list):
+            raise ValueError(f"run entry at index {idx} must contain an answers list")
+        suffix = run.get("suffix") or run.get("run_suffix")
+        specs.append({"run_suffix": suffix, "answers": answers})
+    return specs
+
+
+def resolve_dataset_root(args: argparse.Namespace) -> Path:
+    dataset_root_value = args.dataset_root
+    dataset_root = Path(dataset_root_value)
+    # Maintain backward compatibility with --video-dir if dataset-root not overridden.
+    if dataset_root_value == DEFAULT_DATASET_ROOT and args.video_dir != DEFAULT_VIDEO_DIR:
+        dataset_root = Path(args.video_dir)
+    return dataset_root.resolve()
+
+
+def build_run_id(
+    base_run_id: Optional[str], run_suffix: Optional[str], run_index: int, total_runs: int
+) -> str:
+    if base_run_id:
+        run_id = base_run_id
+        if total_runs > 1 and not run_suffix:
+            run_id = f"{run_id}_{run_index + 1:02d}"
+    else:
+        timestamp = datetime.now().strftime("%Y%m%dT%H%M%S")
+        run_id = timestamp
+        if total_runs > 1 and not run_suffix:
+            run_id = f"{run_id}_{run_index + 1:02d}"
+    if run_suffix:
+        run_id = f"{run_id}_{run_suffix}"
+    return run_id
+
+
+def create_run_directory(dataset_root: Path, form_id: str, run_id: str) -> Path:
+    run_dir_name = f"{form_id}_{run_id}"
+    run_dir = dataset_root / form_id / "runs" / run_dir_name
+    run_dir.mkdir(parents=True, exist_ok=True)
+    return run_dir
 
 
 def set_type_delay(ms: int) -> None:
@@ -489,95 +549,198 @@ def submit_form(page, start_time: float) -> Dict[str, Any]:
             continue
         except Exception:
             break
+    try:
+        page.wait_for_url(re.compile(r"formResponse", re.IGNORECASE), timeout=8000)
+        t1 = time.perf_counter() - start_time
+        return {"success": True, "t_start_s": t0, "t_end_s": t1, "bbox": used_bbox}
+    except PlaywrightTimeoutError:
+        pass
+    except Exception:
+        pass
     t1 = time.perf_counter() - start_time
     return {"success": False, "t_start_s": t0, "t_end_s": t1, "bbox": used_bbox}
 
 
-def main():
-    args = parse_args()
-    form_id = args.form_id
-    if args.run_id is None:
-        run_id = datetime.now().strftime("%Y%m%dT%H%M%S")
-    else:
-        run_id = args.run_id
-    answers_path = Path(args.answers_json).resolve()
-    answers = load_answers(answers_path)
+def run_single_form(
+    playwright: Playwright,
+    form_id: str,
+    form_url: str,
+    answers: List[Dict[str, Any]],
+    run_dir: Path,
+    run_id: str,
+    args: argparse.Namespace,
+    answers_source_path: Path,
+) -> bool:
+    run_dir = Path(run_dir)
+    run_identifier = f"{form_id}_{run_id}"
     start_time = time.perf_counter()
-    set_type_delay(args.type_delay)
-    set_action_delay(args.action_delay)
     actions: List[Dict[str, Any]] = []
-    submitted = False
-    captured_exception = None
     submit_info: Dict[str, Any] = {"success": False, "t_start_s": None, "t_end_s": None, "bbox": None}
-    video_path = None
-    base_dir = Path(args.video_dir)
-    run_dir = base_dir / form_id / run_id
-    run_dir.mkdir(parents=True, exist_ok=True)
-    copied_answers_path = run_dir / answers_path.name
+    submitted = False
+    video_path: Optional[Path] = None
+    answers_instance_path = run_dir / "answers_instance.json"
+    answers_instance_path.write_text(json.dumps(answers, indent=2))
+    captured_exception: Optional[Exception] = None
+    raw_video_path: Optional[Path] = None
+    page_video = None
+    browser = None
+    context = None
+    page = None
+
     try:
-        shutil.copyfile(answers_path, copied_answers_path)
-    except Exception:
-        copied_answers_path = None
-    try:
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=False, slow_mo=args.slow_mo)
-            context = browser.new_context(
-                viewport={"width": 1280, "height": 720},
-                record_video_dir=str(run_dir),
-            )
-            context.add_init_script(CURSOR_OVERLAY_SCRIPT)
-            try:
-                page = context.new_page()
-                page.set_default_timeout(15000)
-                page.goto(args.form_url, wait_until="domcontentloaded")
-                page.wait_for_load_state("networkidle")
-                page.mouse.move(10, 10)
-                for i, entry in enumerate(answers):
-                    actions.append(process_entry(page, entry, start_time, i))
-                    if args.pause_seconds > 0:
-                        page.wait_for_timeout(int(args.pause_seconds * 1000))
-                submit_info = submit_form(page, start_time)
-                submitted = submit_info["success"]
-                if args.pause_seconds > 0:
-                    page.wait_for_timeout(int(args.pause_seconds * 1000))
-                if page.video:
-                    try:
-                        raw_path = Path(page.video.path())
-                    except Exception:
-                        raw_path = None
-                    if raw_path and raw_path.exists():
-                        target = run_dir / f"{form_id}_{run_id}.webm"
-                        raw_path.rename(target)
-                        video_path = target
-            finally:
-                context.close()
-                browser.close()
+        browser = playwright.chromium.launch(headless=False, slow_mo=args.slow_mo)
+        context = browser.new_context(
+            viewport={"width": 1280, "height": 720},
+            record_video_dir=str(run_dir),
+        )
+        context.add_init_script(CURSOR_OVERLAY_SCRIPT)
+        page = context.new_page()
+        page_video = page.video
+        page.set_default_timeout(15000)
+        page.goto(form_url, wait_until="domcontentloaded")
+        page.wait_for_load_state("networkidle")
+        page.mouse.move(10, 10)
+        for i, entry in enumerate(answers):
+            actions.append(process_entry(page, entry, start_time, i))
+            if args.pause_seconds > 0:
+                page.wait_for_timeout(int(args.pause_seconds * 1000))
+        submit_info = submit_form(page, start_time)
+        submitted = submit_info["success"]
+        if args.pause_seconds > 0:
+            page.wait_for_timeout(int(args.pause_seconds * 1000))
     except Exception as exc:
         captured_exception = exc
+        if submit_info.get("t_start_s") is None:
+            now = time.perf_counter() - start_time
+            submit_info["t_start_s"] = now
+            submit_info["t_end_s"] = now
+            submit_info["error"] = str(exc)
     finally:
-        log = {
-            "run_id": run_id,
-            "form_id": form_id,
-            "form_url": args.form_url,
-            "video_path": str(video_path) if video_path else None,
-            "answers_json_path": str(answers_path),
-            "answers_json_copied_path": str(copied_answers_path) if copied_answers_path else None,
-            "run_params": {
-                "slow_mo": args.slow_mo,
-                "type_delay_ms": TYPE_DELAY_MS,
-                "action_delay_ms": ACTION_DELAY_MS,
-                "pause_seconds": args.pause_seconds,
-            },
-            "actions": actions,
-            "submit": submit_info,
-            "submitted": submitted,
-        }
-        log_path = run_dir / "annotations.json"
-        log_path.write_text(json.dumps(log, indent=2))
+        if page:
+            try:
+                page.close()
+            except Exception:
+                pass
+        if context:
+            try:
+                context.close()
+            except Exception:
+                pass
+        if browser:
+            try:
+                browser.close()
+            except Exception:
+                pass
+
+    if raw_video_path is None and page_video is not None:
+        try:
+            raw_video_path = Path(page_video.path())
+        except Exception:
+            raw_video_path = None
+
+    if raw_video_path is None:
+        try:
+            candidate_videos = sorted(
+                run_dir.glob("*.webm"), key=lambda p: p.stat().st_mtime, reverse=True
+            )
+            raw_video_path = candidate_videos[0] if candidate_videos else None
+        except Exception:
+            raw_video_path = None
+
+    if raw_video_path and raw_video_path.exists():
+        final_video_path = run_dir / f"{run_identifier}.webm"
+        if raw_video_path != final_video_path:
+            try:
+                if final_video_path.exists():
+                    final_video_path.unlink()
+            except Exception:
+                pass
+            try:
+                raw_video_path.rename(final_video_path)
+            except Exception:
+                pass
+            else:
+                video_path = final_video_path
+        if video_path is None and raw_video_path.exists():
+            video_path = raw_video_path
+    elif raw_video_path:
+        video_path = raw_video_path
+
+    log = {
+        "run_identifier": run_identifier,
+        "run_id": run_id,
+        "form_name": FORM_NAME,
+        "form_id": form_id,
+        "form_url": form_url,
+        "run_directory": str(run_dir),
+        "video_path": str(video_path) if video_path else None,
+        "answers_source_path": str(answers_source_path),
+        "answers_instance_path": str(answers_instance_path),
+        "run_params": {
+            "slow_mo": args.slow_mo,
+            "type_delay_ms": TYPE_DELAY_MS,
+            "action_delay_ms": ACTION_DELAY_MS,
+            "pause_seconds": args.pause_seconds,
+        },
+        "actions": actions,
+        "submit": submit_info,
+        "submitted": submitted,
+    }
+    annotations_path = run_dir / "annotations.json"
+    annotations_path.write_text(json.dumps(log, indent=2))
+
     if captured_exception:
         raise captured_exception
-    if not submitted:
+    return submitted
+
+
+def main():
+    args = parse_args()
+    set_type_delay(args.type_delay)
+    set_action_delay(args.action_delay)
+
+    answers_path = Path(args.answers_json).resolve()
+    run_specs = load_run_specifications(answers_path)
+    dataset_root = resolve_dataset_root(args)
+    form_id = args.form_id or FORM_IDENTIFIER
+    form_url = args.form_url or FORM_DEFAULT_URL
+    total_runs = len(run_specs)
+
+    failed_runs: List[str] = []
+    unconfirmed_runs: List[str] = []
+
+    with sync_playwright() as playwright:
+        for idx, spec in enumerate(run_specs):
+            answers = spec.get("answers", [])
+            if not isinstance(answers, list):
+                raise ValueError("Each run specification must include an answers list")
+            run_suffix = spec.get("run_suffix")
+            run_id = build_run_id(args.run_id, run_suffix, idx, total_runs)
+            run_dir = create_run_directory(dataset_root, form_id, run_id)
+            try:
+                submitted = run_single_form(
+                    playwright=playwright,
+                    form_id=form_id,
+                    form_url=form_url,
+                    answers=answers,
+                    run_dir=run_dir,
+                    run_id=run_id,
+                    args=args,
+                    answers_source_path=answers_path,
+                )
+            except Exception as exc:
+                failed_runs.append(f"{run_id}: {exc}")
+                continue
+            if not submitted:
+                unconfirmed_runs.append(run_id)
+
+    if failed_runs:
+        for message in failed_runs:
+            print(f"[ERROR] Run failed: {message}", file=sys.stderr)
         sys.exit(1)
+    if unconfirmed_runs:
+        joined = ", ".join(unconfirmed_runs)
+        print(f"[WARN] Submission not confirmed for runs: {joined}", file=sys.stderr)
 
 
 if __name__ == "__main__":
