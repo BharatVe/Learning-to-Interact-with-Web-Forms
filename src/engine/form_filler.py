@@ -6,8 +6,8 @@ from typing import Any, Dict, List
 
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 
-TYPE_DELAY_MS = 150
-ACTION_DELAY_MS = 200
+TYPE_DELAY_MS = 120
+ACTION_DELAY_MS = 180
 
 CURSOR_OVERLAY_SCRIPT = """
 (() => {
@@ -417,6 +417,16 @@ def submit_form(page, start_time: float) -> Dict[str, Any]:
     t0 = time.perf_counter() - start_time
     submit_clicked = False
     used_bbox = None
+    info: Dict[str, Any] = {
+        "success": False,
+        "t_start_s": t0,
+        "t_end_s": t0,
+        "bbox": None,
+        "submit_clicked": False,
+        "confirmation_method": None,
+        "confirmation_text": None,
+        "final_url": None,
+    }
     for pattern in [re.compile("submit", re.I)]:
         try:
             button = page.get_by_role("button", name=pattern)
@@ -447,7 +457,12 @@ def submit_form(page, start_time: float) -> Dict[str, Any]:
                 pause_after_action(page)
             except PlaywrightTimeoutError:
                 t1 = time.perf_counter() - start_time
-                return {"success": False, "t_start_s": t0, "t_end_s": t1, "bbox": used_bbox}
+                info["t_end_s"] = t1
+                info["bbox"] = used_bbox
+                info["submit_clicked"] = submit_clicked
+                info["final_url"] = page.url
+                info["error"] = "submit_button_not_found"
+                return info
     confirmation_texts = [
         "Response recorded",
         "Response has been recorded",
@@ -458,7 +473,14 @@ def submit_form(page, start_time: float) -> Dict[str, Any]:
         try:
             page.get_by_text(text, exact=False).wait_for(state="visible", timeout=8000)
             t1 = time.perf_counter() - start_time
-            return {"success": True, "t_start_s": t0, "t_end_s": t1, "bbox": used_bbox}
+            info["success"] = True
+            info["t_end_s"] = t1
+            info["bbox"] = used_bbox
+            info["submit_clicked"] = submit_clicked
+            info["confirmation_method"] = "text"
+            info["confirmation_text"] = text
+            info["final_url"] = page.url
+            return info
         except PlaywrightTimeoutError:
             continue
         except Exception:
@@ -466,10 +488,20 @@ def submit_form(page, start_time: float) -> Dict[str, Any]:
     try:
         page.wait_for_url(re.compile(r"formResponse", re.IGNORECASE), timeout=8000)
         t1 = time.perf_counter() - start_time
-        return {"success": True, "t_start_s": t0, "t_end_s": t1, "bbox": used_bbox}
+        info["success"] = True
+        info["t_end_s"] = t1
+        info["bbox"] = used_bbox
+        info["submit_clicked"] = submit_clicked
+        info["confirmation_method"] = "url"
+        info["final_url"] = page.url
+        return info
     except PlaywrightTimeoutError:
         pass
     except Exception:
         pass
     t1 = time.perf_counter() - start_time
-    return {"success": False, "t_start_s": t0, "t_end_s": t1, "bbox": used_bbox}
+    info["t_end_s"] = t1
+    info["bbox"] = used_bbox
+    info["submit_clicked"] = submit_clicked
+    info["final_url"] = page.url
+    return info

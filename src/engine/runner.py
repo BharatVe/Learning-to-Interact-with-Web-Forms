@@ -16,9 +16,9 @@ if str(SRC_DIR) not in sys.path:
 from engine import form_filler  # noqa: E402
 
 DEFAULT_DATASET_ROOT = "data/forms"
-DEFAULT_TYPE_DELAY = 150
-DEFAULT_ACTION_DELAY = 300
-DEFAULT_SLOW_MO = 250
+DEFAULT_TYPE_DELAY = 120
+DEFAULT_ACTION_DELAY = 200
+DEFAULT_SLOW_MO = 200
 DEFAULT_TIMEOUT_MS = 15000
 
 RUN_DIR_PATTERN = re.compile(r"run_(\d{4})$")
@@ -238,6 +238,15 @@ def run_single(
 
     video_path = finalize_video(run_dir, form_id, run_name, page_video)
 
+    failure_reason = None
+    if not submitted:
+        failure_reason = submit_info.get("error")
+        if not failure_reason:
+            if submit_info.get("submit_clicked") is False:
+                failure_reason = "submit_not_clicked"
+            else:
+                failure_reason = "confirmation_not_detected"
+
     annotations = {
         "form_id": form_id,
         "run_name": run_name,
@@ -251,6 +260,7 @@ def run_single(
             "pause_seconds": args.pause_seconds,
         },
         "submitted": submitted,
+        "failure_reason": failure_reason,
         "submit": submit_info,
         "actions": actions,
     }
