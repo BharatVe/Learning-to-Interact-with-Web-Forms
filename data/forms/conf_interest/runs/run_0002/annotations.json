@@ -1,28 +1,31 @@
 {
-  "run_identifier": "conf_interest_20251222T185250_hardware",
-  "run_id": "20251222T185250_hardware",
-  "form_name": "Conference Interest",
   "form_id": "conf_interest",
+  "run_name": "run_0002",
+  "run_label": "conf_interest_run_0002",
   "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScdiEfCs_Ld5bCIuVilB_hDhlSQCaRCwcJJHihThWaYherK3g/viewform?usp=publish-editor",
-  "run_directory": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/conf_interest_20251222T185250_hardware",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/conf_interest_20251222T185250_hardware/conf_interest_20251222T185250_hardware.webm",
-  "answers_source_path": "/home/bharat/Projects/thesis/src/conf_intrest/answers_conference.json",
-  "answers_instance_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/conf_interest_20251222T185250_hardware/answers_instance.json",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/conf_interest_run_0002.webm",
   "run_params": {
     "slow_mo": 250,
     "type_delay_ms": 150,
     "action_delay_ms": 300,
     "pause_seconds": 0.0
   },
+  "submitted": true,
+  "submit": {
+    "success": true,
+    "t_start_s": 38.76185488400006,
+    "t_end_s": 87.81071373000032,
+    "bbox": null
+  },
   "actions": [
     {
       "step": 0,
       "label": "Full name",
       "widget_type": "short_text",
-      "value": "Noah Whitaker",
+      "value": "Avery Chen",
       "success": true,
-      "t_start_s": 6.022599607000302,
-      "t_end_s": 10.534655457000554,
+      "t_start_s": 2.9743108840002606,
+      "t_end_s": 7.141905229999793,
       "bbox": {
         "x": 312.5,
         "y": 195.1875,
@@ -34,10 +37,10 @@
       "step": 1,
       "label": "Preferred contact email",
       "widget_type": "short_text",
-      "value": "noah.whitaker@chipfoundry.ai",
+      "value": "avery.chen@streamforge.io",
       "success": true,
-      "t_start_s": 10.534658878999835,
-      "t_end_s": 17.39150870099911,
+      "t_start_s": 7.14191251200009,
+      "t_end_s": 13.624946994999846,
       "bbox": {
         "x": 312.5,
         "y": 345.1875,
@@ -49,10 +52,10 @@
       "step": 2,
       "label": "Brief bio",
       "widget_type": "paragraph_text",
-      "value": "Research scientist exploring specialized accelerators for privacy-preserving AI workloads.",
+      "value": "Staff engineer leading applied ML initiatives for a realtime collaboration product.",
       "success": true,
-      "t_start_s": 17.391513810000106,
-      "t_end_s": 33.982733957000164,
+      "t_start_s": 13.624953925999762,
+      "t_end_s": 29.50927425500049,
       "bbox": {
         "x": 312.5,
         "y": 495.1875,
@@ -64,10 +67,10 @@
       "step": 3,
       "label": "Primary role",
       "widget_type": "single_choice",
-      "value": "Research scientist",
+      "value": "Industry practitioner",
       "success": false,
-      "t_start_s": 33.98273856800006,
-      "t_end_s": 34.02105036499961,
+      "t_start_s": 29.5092802070003,
+      "t_end_s": 29.5759443980005,
       "bbox": {
         "x": 312.5,
         "y": 643.1875,
@@ -80,13 +83,13 @@
       "label": "Topics you\u2019re interested in",
       "widget_type": "multi_choice",
       "value": [
-        "Systems",
-        "Hardware",
-        "Security"
+        "AI/ML",
+        "Product",
+        "Community"
       ],
       "success": false,
-      "t_start_s": 34.02105219999976,
-      "t_end_s": 35.84766477700032,
+      "t_start_s": 29.575952539000355,
+      "t_end_s": 31.526859214999604,
       "bbox": {
         "x": 312.5,
         "y": 905.1875,
@@ -98,13 +101,13 @@
       "step": 5,
       "label": "Preferred meeting date",
       "widget_type": "date",
-      "value": "2025-06-20",
+      "value": "2025-06-17",
       "success": true,
-      "t_start_s": 35.84766833299909,
-      "t_end_s": 37.96153423999931,
+      "t_start_s": 31.52686402800009,
+      "t_end_s": 33.74842448799973,
       "bbox": {
         "x": 312.5,
-        "y": 493.1875,
+        "y": 573.1875,
         "width": 640,
         "height": 153
       }
@@ -113,23 +116,20 @@
       "step": 6,
       "label": "Preferred meeting time",
       "widget_type": "time",
-      "value": "09:00",
+      "value": "14:00",
       "success": true,
-      "t_start_s": 37.96153761700043,
-      "t_end_s": 42.661616759000026,
+      "t_start_s": 33.748434094000004,
+      "t_end_s": 38.7618436419998,
       "bbox": {
         "x": 312.5,
-        "y": 658.1875,
+        "y": 738.1875,
         "width": 640,
         "height": 164
       }
     }
   ],
-  "submit": {
-    "success": true,
-    "t_start_s": 42.66162232299939,
-    "t_end_s": 91.67408922600043,
-    "bbox": null
-  },
-  "submitted": true
+  "run_metadata": {
+    "suffix": "webai",
+    "notes": "Industry engineer with applied ML interests."
+  }
 }

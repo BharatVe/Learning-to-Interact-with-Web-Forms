@@ -1,18 +1,21 @@
 {
-  "run_identifier": "conf_interest_20251222T185010_mlsys",
-  "run_id": "20251222T185010_mlsys",
-  "form_name": "Conference Interest",
   "form_id": "conf_interest",
+  "run_name": "run_0001",
+  "run_label": "conf_interest_run_0001",
   "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScdiEfCs_Ld5bCIuVilB_hDhlSQCaRCwcJJHihThWaYherK3g/viewform?usp=publish-editor",
-  "run_directory": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/conf_interest_20251222T185010_mlsys",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/conf_interest_20251222T185010_mlsys/conf_interest_20251222T185010_mlsys.webm",
-  "answers_source_path": "/home/bharat/Projects/thesis/src/conf_intrest/answers_conference.json",
-  "answers_instance_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/conf_interest_20251222T185010_mlsys/answers_instance.json",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0001/conf_interest_run_0001.webm",
   "run_params": {
     "slow_mo": 250,
     "type_delay_ms": 150,
     "action_delay_ms": 300,
     "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "submit": {
+    "success": true,
+    "t_start_s": 45.12484221399973,
+    "t_end_s": 94.1061190649998,
+    "bbox": null
   },
   "actions": [
     {
@@ -21,8 +24,8 @@
       "widget_type": "short_text",
       "value": "Jordan Rivera",
       "success": true,
-      "t_start_s": 7.109876313001223,
-      "t_end_s": 11.61629247699966,
+      "t_start_s": 3.6308865339997283,
+      "t_end_s": 8.296975094000118,
       "bbox": {
         "x": 312.5,
         "y": 195.1875,
@@ -36,8 +39,8 @@
       "widget_type": "short_text",
       "value": "jordan.rivera@example.com",
       "success": true,
-      "t_start_s": 11.616304055,
-      "t_end_s": 17.995614962001127,
+      "t_start_s": 8.296984720999717,
+      "t_end_s": 14.766814988999613,
       "bbox": {
         "x": 312.5,
         "y": 345.1875,
@@ -51,8 +54,8 @@
       "widget_type": "paragraph_text",
       "value": "Graduate researcher focusing on distributed ML training pipelines and inference at the edge.",
       "success": true,
-      "t_start_s": 17.99562271800096,
-      "t_end_s": 35.05621977299961,
+      "t_start_s": 14.766822849999699,
+      "t_end_s": 32.06722123199961,
       "bbox": {
         "x": 312.5,
         "y": 495.1875,
@@ -66,8 +69,8 @@
       "widget_type": "single_choice",
       "value": "PhD student",
       "success": true,
-      "t_start_s": 35.056225427000754,
-      "t_end_s": 37.01147493899953,
+      "t_start_s": 32.06722993800031,
+      "t_end_s": 34.073698577999494,
       "bbox": {
         "x": 312.5,
         "y": 643.1875,
@@ -84,8 +87,8 @@
         "Systems"
       ],
       "success": true,
-      "t_start_s": 37.01148069900046,
-      "t_end_s": 40.76890239900058,
+      "t_start_s": 34.07370615199943,
+      "t_end_s": 37.92232012600016,
       "bbox": {
         "x": 312.5,
         "y": 493.1875,
@@ -99,8 +102,8 @@
       "widget_type": "date",
       "value": "2025-06-15",
       "success": true,
-      "t_start_s": 40.76890766100041,
-      "t_end_s": 42.89793264000036,
+      "t_start_s": 37.9223300650001,
+      "t_end_s": 40.12384475999988,
       "bbox": {
         "x": 312.5,
         "y": 791.1875,
@@ -114,8 +117,8 @@
       "widget_type": "time",
       "value": "10:30",
       "success": true,
-      "t_start_s": 42.89793794900106,
-      "t_end_s": 47.72554051100087,
+      "t_start_s": 40.12385518700012,
+      "t_end_s": 45.12473432099978,
       "bbox": {
         "x": 312.5,
         "y": 419.1875,
@@ -124,12 +127,8 @@
       }
     }
   ],
-  "submit": {
-    "success": false,
-    "t_start_s": 61.637810297001124,
-    "t_end_s": 61.637810297001124,
-    "bbox": null,
-    "error": "Page.wait_for_timeout: Target page, context or browser has been closed"
-  },
-  "submitted": false
+  "run_metadata": {
+    "suffix": "mlsys",
+    "notes": "Graduate researcher focused on ML systems."
+  }
 }
