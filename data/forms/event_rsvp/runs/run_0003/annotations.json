@@ -1,0 +1,123 @@
+{
+  "form_id": "event_rsvp",
+  "run_name": "run_0003",
+  "run_label": "event_rsvp_run_0003",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdykQqKi_FnFo9Tdc7ArF-LEB6-hhKx5-1GnA2HM7TDyp8yRA/viewform",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0003/event_rsvp_run_0003.webm",
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "failure_reason": null,
+  "submit": {
+    "success": true,
+    "t_start_s": 23.912232624999888,
+    "t_end_s": 72.48385764700015,
+    "bbox": null,
+    "submit_clicked": true,
+    "confirmation_method": "url",
+    "confirmation_text": null,
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSdykQqKi_FnFo9Tdc7ArF-LEB6-hhKx5-1GnA2HM7TDyp8yRA/formResponse"
+  },
+  "actions": [
+    {
+      "step": 0,
+      "label": "Name",
+      "widget_type": "short_text",
+      "value": "Harper Singh",
+      "success": true,
+      "t_start_s": 6.117217186999824,
+      "t_end_s": 9.660558869999932,
+      "bbox": {
+        "x": 312.5,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 1,
+      "label": "Will you attend?",
+      "widget_type": "single_choice",
+      "value": "No",
+      "success": true,
+      "t_start_s": 9.660567624000123,
+      "t_end_s": 11.212622524999915,
+      "bbox": {
+        "x": 312.5,
+        "y": 377.1875,
+        "width": 640,
+        "height": 210
+      }
+    },
+    {
+      "step": 2,
+      "label": "Number of guests (including yourself)",
+      "widget_type": "short_text",
+      "value": "0",
+      "success": true,
+      "t_start_s": 11.212626657999863,
+      "t_end_s": 13.27739147200009,
+      "bbox": {
+        "x": 312.5,
+        "y": 599.1875,
+        "width": 640,
+        "height": 162
+      }
+    },
+    {
+      "step": 3,
+      "label": "Preferred arrival time",
+      "widget_type": "time",
+      "value": "18:00",
+      "success": true,
+      "t_start_s": 13.277396629000123,
+      "t_end_s": 17.16924878000009,
+      "bbox": {
+        "x": 312.5,
+        "y": 732.1875,
+        "width": 640,
+        "height": 164
+      }
+    },
+    {
+      "step": 4,
+      "label": "Activities you're interested in",
+      "widget_type": "multi_choice",
+      "value": [
+        "Networking"
+      ],
+      "success": true,
+      "t_start_s": 17.1692534609997,
+      "t_end_s": 18.785531309999897,
+      "bbox": {
+        "x": 312.5,
+        "y": 421.1875,
+        "width": 640,
+        "height": 258
+      }
+    },
+    {
+      "step": 5,
+      "label": "Accessibility needs or comments",
+      "widget_type": "paragraph_text",
+      "value": "Cannot attend this time.",
+      "success": true,
+      "t_start_s": 18.785536258999855,
+      "t_end_s": 23.91222739700015,
+      "bbox": {
+        "x": 312.5,
+        "y": 691.1875,
+        "width": 640,
+        "height": 136
+      }
+    }
+  ],
+  "run_metadata": {
+    "suffix": "decline",
+    "notes": "Unable to attend this time."
+  }
+}

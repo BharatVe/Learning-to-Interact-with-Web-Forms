@@ -1,0 +1,138 @@
+{
+  "form_id": "workshop_signup",
+  "run_name": "run_0001",
+  "run_label": "workshop_signup_run_0001",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/workshop_signup_run_0001.webm",
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "failure_reason": null,
+  "submit": {
+    "success": true,
+    "t_start_s": 20.714939727,
+    "t_end_s": 69.40093142800015,
+    "bbox": null,
+    "submit_clicked": true,
+    "confirmation_method": "url",
+    "confirmation_text": null,
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/formResponse"
+  },
+  "actions": [
+    {
+      "step": 0,
+      "label": "Full name",
+      "widget_type": "short_text",
+      "value": "Lena Ortiz",
+      "success": true,
+      "t_start_s": 4.578048730000319,
+      "t_end_s": 7.96740066700022,
+      "bbox": {
+        "x": 312.5,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 1,
+      "label": "University or organization",
+      "widget_type": "short_text",
+      "value": "Stanford University",
+      "success": true,
+      "t_start_s": 7.967407448000358,
+      "t_end_s": 12.46081769400007,
+      "bbox": {
+        "x": 312.5,
+        "y": 377.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 2,
+      "label": "Which workshop track are you registering for?",
+      "widget_type": "single_choice",
+      "value": "Intro to Machine Learning",
+      "success": true,
+      "t_start_s": 12.460825275000389,
+      "t_end_s": 14.004745934000312,
+      "bbox": {
+        "x": 312.5,
+        "y": 527.1875,
+        "width": 640,
+        "height": 210
+      }
+    },
+    {
+      "step": 3,
+      "label": "Experience level",
+      "widget_type": "single_choice",
+      "value": "Beginner",
+      "success": true,
+      "t_start_s": 14.004754499000228,
+      "t_end_s": 15.583409087000291,
+      "bbox": {
+        "x": 312.5,
+        "y": 749.1875,
+        "width": 640,
+        "height": 210
+      }
+    },
+    {
+      "step": 4,
+      "label": "Dietary restrictions",
+      "widget_type": "multi_choice",
+      "value": [
+        "None"
+      ],
+      "success": true,
+      "t_start_s": 15.583417245000419,
+      "t_end_s": 17.222018063000178,
+      "bbox": {
+        "x": 312.5,
+        "y": 497.1875,
+        "width": 640,
+        "height": 294
+      }
+    },
+    {
+      "step": 5,
+      "label": "Preferred session date",
+      "widget_type": "date",
+      "value": "2025-07-05",
+      "success": true,
+      "t_start_s": 17.222026224000274,
+      "t_end_s": 19.065807043000405,
+      "bbox": {
+        "x": 312.5,
+        "y": 801.1875,
+        "width": 640,
+        "height": 153
+      }
+    },
+    {
+      "step": 6,
+      "label": "May we email you updates?",
+      "widget_type": "single_choice",
+      "value": "Yes",
+      "success": true,
+      "t_start_s": 19.065815015000226,
+      "t_end_s": 20.71493212200039,
+      "bbox": {
+        "x": 312.5,
+        "y": 419.1875,
+        "width": 640,
+        "height": 170
+      }
+    }
+  ],
+  "run_metadata": {
+    "suffix": "student_intro",
+    "notes": "Beginner student registering for the intro track."
+  }
+}

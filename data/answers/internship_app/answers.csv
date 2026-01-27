@@ -1,0 +1,37 @@
+form_id,run_id,q_title,q_type,answer
+internship_app,backend_ml,Full name,SHORT_TEXT,Priya Nair
+internship_app,backend_ml,Contact email,SHORT_TEXT,priya.nair@example.com
+internship_app,backend_ml,Current city,SHORT_TEXT,Bengaluru
+internship_app,backend_ml,Degree program,SINGLE_CHOICE,Master's
+internship_app,backend_ml,Primary area of interest,MULTI_CHOICE,Backend;Data and Machine Learning
+internship_app,backend_ml,Programming languages you use,MULTI_CHOICE,Python;SQL;JavaScript/TypeScript
+internship_app,backend_ml,Link to GitHub or portfolio,SHORT_TEXT,https://github.com/priyanair
+internship_app,backend_ml,Brief motivation statement,PARAGRAPH,I enjoy building reliable services that support ML teams. I want to learn how product systems scale in production. This internship matches my interests in backend tooling and data pipelines. I am eager to contribute and learn from the team.
+internship_app,backend_ml,Earliest start date,DATE,2025-06-10
+internship_app,backend_ml,Weekly availability (hours),SHORT_TEXT,20
+internship_app,backend_ml,Preferred meeting time for interview,TIME,13:30
+internship_app,backend_ml,Are you open to remote work?,SINGLE_CHOICE,Yes
+internship_app,uiux,Full name,SHORT_TEXT,Elliot Park
+internship_app,uiux,Contact email,SHORT_TEXT,elliot.park@example.com
+internship_app,uiux,Current city,SHORT_TEXT,Toronto
+internship_app,uiux,Degree program,SINGLE_CHOICE,Bachelor's
+internship_app,uiux,Primary area of interest,MULTI_CHOICE,UI/UX;Frontend
+internship_app,uiux,Programming languages you use,MULTI_CHOICE,JavaScript/TypeScript;Python
+internship_app,uiux,Link to GitHub or portfolio,SHORT_TEXT,https://portfolio.elliotpark.design
+internship_app,uiux,Brief motivation statement,PARAGRAPH,I focus on user workflows and interface clarity. I want to work with a team that ships iterative design. The role fits my interest in UI automation and prototyping. I am excited to collaborate across disciplines.
+internship_app,uiux,Earliest start date,DATE,2025-05-20
+internship_app,uiux,Weekly availability (hours),SHORT_TEXT,15
+internship_app,uiux,Preferred meeting time for interview,TIME,09:30
+internship_app,uiux,Are you open to remote work?,SINGLE_CHOICE,Hybrid
+internship_app,devops,Full name,SHORT_TEXT,Samira Ortiz
+internship_app,devops,Contact email,SHORT_TEXT,samira.ortiz@example.com
+internship_app,devops,Current city,SHORT_TEXT,Berlin
+internship_app,devops,Degree program,SINGLE_CHOICE,PhD
+internship_app,devops,Primary area of interest,MULTI_CHOICE,DevOps
+internship_app,devops,Programming languages you use,MULTI_CHOICE,Python;C/C++;SQL
+internship_app,devops,Link to GitHub or portfolio,SHORT_TEXT,https://github.com/samira-ortiz
+internship_app,devops,Brief motivation statement,PARAGRAPH,I work on automation for build and deployment systems. I want to apply my research on reliability to production pipelines. The internship offers hands on exposure to real infrastructure. I can contribute to tooling and monitoring.
+internship_app,devops,Earliest start date,DATE,2025-07-01
+internship_app,devops,Weekly availability (hours),SHORT_TEXT,25
+internship_app,devops,Preferred meeting time for interview,TIME,11:00
+internship_app,devops,Are you open to remote work?,SINGLE_CHOICE,No

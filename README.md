@@ -61,4 +61,34 @@ Useful flags:
 - `--start-index` force the starting run index.
 - `--resume` continue from the next missing run index.
 - `--skip-existing` skip runs whose output directory already exists.
+- `--skip-existing-video` skip runs whose output directory already contains a `.webm`.
+- `--overwrite-existing` delete an existing run directory and regenerate it.
 - `--form-url` override the URL from the spec file.
+
+Overwrite existing runs:
+
+```bash
+# Re-record the first run for a form (overwrites run_0001 if it exists)
+python3 src/engine/runner.py --form-id conf_interest --answers data/answers/conf_interest/runs.json --dataset-root data/forms --num-runs 1 --start-index 1 --overwrite-existing
+```
+
+## Batch runs across forms
+
+Use the batch runner to execute multiple forms sequentially. It determines the maximum
+number of runs per form by counting entries in the per-form answers file (JSON/JSONL).
+
+Examples:
+
+```bash
+# Run max available runs for every form under src/forms, skipping existing videos
+python3 src/engine/batch_runner.py --answers-root data/answers --dataset-root data/forms --skip-existing-video
+
+# Run only specific forms with a per-form limit
+python3 src/engine/batch_runner.py --form-ids conf_interest,workshop_signup --num-runs-per-form 2
+
+# Preview counts without running
+python3 src/engine/batch_runner.py --dry-run
+
+# Re-record existing runs for all forms (overwrites matching run directories)
+python3 src/engine/batch_runner.py --answers-root data/answers --dataset-root data/forms --overwrite-existing
+```

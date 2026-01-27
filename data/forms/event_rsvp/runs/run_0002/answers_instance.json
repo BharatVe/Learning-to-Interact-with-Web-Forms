@@ -1,0 +1,53 @@
+[
+  {
+    "label": "Name",
+    "widget_type": "short_text",
+    "value": "Kai Mendoza",
+    "tags": [
+      "identity"
+    ]
+  },
+  {
+    "label": "Will you attend?",
+    "widget_type": "single_choice",
+    "value": "Maybe",
+    "tags": [
+      "attendance"
+    ]
+  },
+  {
+    "label": "Number of guests (including yourself)",
+    "widget_type": "short_text",
+    "value": "2",
+    "tags": [
+      "attendance"
+    ]
+  },
+  {
+    "label": "Preferred arrival time",
+    "widget_type": "time",
+    "value": "19:00",
+    "tags": [
+      "scheduling"
+    ]
+  },
+  {
+    "label": "Activities you're interested in",
+    "widget_type": "multi_choice",
+    "value": [
+      "Poster session",
+      "Demo booths"
+    ],
+    "tags": [
+      "interests"
+    ]
+  },
+  {
+    "label": "Accessibility needs or comments",
+    "widget_type": "paragraph_text",
+    "value": "No accessibility needs.",
+    "tags": [
+      "notes"
+    ]
+  }
+]

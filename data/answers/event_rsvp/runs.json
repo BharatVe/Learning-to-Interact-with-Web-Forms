@@ -1,0 +1,132 @@
+{
+  "form_id": "event_rsvp",
+  "description": "Run variations for Event RSVP submissions.",
+  "runs": [
+    {
+      "suffix": "attending",
+      "notes": "Confirmed attendee with accessibility note.",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Olivia Brooks",
+          "tags": ["identity"]
+        },
+        {
+          "label": "Will you attend?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": ["attendance"]
+        },
+        {
+          "label": "Number of guests (including yourself)",
+          "widget_type": "short_text",
+          "value": "1",
+          "tags": ["attendance"]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "18:30",
+          "tags": ["scheduling"]
+        },
+        {
+          "label": "Activities you're interested in",
+          "widget_type": "multi_choice",
+          "value": ["Talks", "Networking"],
+          "tags": ["interests"]
+        },
+        {
+          "label": "Accessibility needs or comments",
+          "widget_type": "paragraph_text",
+          "value": "Need wheelchair accessible seating.",
+          "tags": ["notes"]
+        }
+      ]
+    },
+    {
+      "suffix": "maybe",
+      "notes": "Tentative attendee with demo interest.",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Kai Mendoza",
+          "tags": ["identity"]
+        },
+        {
+          "label": "Will you attend?",
+          "widget_type": "single_choice",
+          "value": "Maybe",
+          "tags": ["attendance"]
+        },
+        {
+          "label": "Number of guests (including yourself)",
+          "widget_type": "short_text",
+          "value": "2",
+          "tags": ["attendance"]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "19:00",
+          "tags": ["scheduling"]
+        },
+        {
+          "label": "Activities you're interested in",
+          "widget_type": "multi_choice",
+          "value": ["Poster session", "Demo booths"],
+          "tags": ["interests"]
+        },
+        {
+          "label": "Accessibility needs or comments",
+          "widget_type": "paragraph_text",
+          "value": "No accessibility needs.",
+          "tags": ["notes"]
+        }
+      ]
+    },
+    {
+      "suffix": "decline",
+      "notes": "Unable to attend this time.",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Harper Singh",
+          "tags": ["identity"]
+        },
+        {
+          "label": "Will you attend?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": ["attendance"]
+        },
+        {
+          "label": "Number of guests (including yourself)",
+          "widget_type": "short_text",
+          "value": "0",
+          "tags": ["attendance"]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "18:00",
+          "tags": ["scheduling"]
+        },
+        {
+          "label": "Activities you're interested in",
+          "widget_type": "multi_choice",
+          "value": ["Networking"],
+          "tags": ["interests"]
+        },
+        {
+          "label": "Accessibility needs or comments",
+          "widget_type": "paragraph_text",
+          "value": "Cannot attend this time.",
+          "tags": ["notes"]
+        }
+      ]
+    }
+  ]
+}

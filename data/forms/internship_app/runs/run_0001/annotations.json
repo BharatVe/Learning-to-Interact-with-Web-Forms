@@ -1,0 +1,179 @@
+{
+  "form_id": "internship_app",
+  "run_name": "run_0001",
+  "run_label": "internship_app_run_0001",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSenqUex1eG1k80vjfzNx0Rm9GqkAYTXr2x0XdzQjaJGCRvkDg/viewform",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0001/internship_app_run_0001.webm",
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": false,
+  "failure_reason": "submit_button_not_found",
+  "submit": {
+    "success": false,
+    "t_start_s": 18.37936986199975,
+    "t_end_s": 108.99932613599958,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": null,
+    "confirmation_text": null,
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSenqUex1eG1k80vjfzNx0Rm9GqkAYTXr2x0XdzQjaJGCRvkDg/viewform",
+    "error": "submit_button_not_found"
+  },
+  "actions": [
+    {
+      "step": 0,
+      "label": "Full name",
+      "widget_type": "short_text",
+      "value": "Priya Nair",
+      "success": true,
+      "t_start_s": 4.112816188999659,
+      "t_end_s": 7.4714928249995864,
+      "bbox": {
+        "x": 312.5,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 1,
+      "label": "Contact email",
+      "widget_type": "short_text",
+      "value": "priya.nair@example.com",
+      "success": true,
+      "t_start_s": 7.471497529999851,
+      "t_end_s": 12.52237598299962,
+      "bbox": {
+        "x": 312.5,
+        "y": 377.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 2,
+      "label": "Current city",
+      "widget_type": "short_text",
+      "value": "Bengaluru",
+      "success": true,
+      "t_start_s": 12.522386636999727,
+      "t_end_s": 16.458686766999563,
+      "bbox": {
+        "x": 312.5,
+        "y": 527.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 3,
+      "label": "Degree program",
+      "widget_type": "single_choice",
+      "value": "Master's",
+      "success": true,
+      "t_start_s": 16.458691427999838,
+      "t_end_s": 18.11989628099991,
+      "bbox": {
+        "x": 312.5,
+        "y": 677.1875,
+        "width": 640,
+        "height": 250
+      }
+    },
+    {
+      "step": 4,
+      "label": "Primary area of interest",
+      "widget_type": "multi_choice",
+      "value": [
+        "Backend",
+        "Data and Machine Learning"
+      ],
+      "success": false,
+      "t_start_s": 18.119901134999964,
+      "t_end_s": 18.147722036999767,
+      "bbox": null
+    },
+    {
+      "step": 5,
+      "label": "Programming languages you use",
+      "widget_type": "multi_choice",
+      "value": [
+        "Python",
+        "SQL",
+        "JavaScript/TypeScript"
+      ],
+      "success": false,
+      "t_start_s": 18.147727040999598,
+      "t_end_s": 18.174683570999605,
+      "bbox": null
+    },
+    {
+      "step": 6,
+      "label": "Link to GitHub or portfolio",
+      "widget_type": "short_text",
+      "value": "https://github.com/priyanair",
+      "success": false,
+      "t_start_s": 18.174688865999997,
+      "t_end_s": 18.20302763899963,
+      "bbox": null
+    },
+    {
+      "step": 7,
+      "label": "Brief motivation statement",
+      "widget_type": "paragraph_text",
+      "value": "I enjoy building reliable services that support ML teams. I want to learn how product systems scale in production. This internship matches my interests in backend tooling and data pipelines. I am eager to contribute and learn from the team.",
+      "success": false,
+      "t_start_s": 18.20303316699983,
+      "t_end_s": 18.232501401999798,
+      "bbox": null
+    },
+    {
+      "step": 8,
+      "label": "Earliest start date",
+      "widget_type": "date",
+      "value": "2025-06-10",
+      "success": false,
+      "t_start_s": 18.23250623199965,
+      "t_end_s": 18.268844302999696,
+      "bbox": null
+    },
+    {
+      "step": 9,
+      "label": "Weekly availability (hours)",
+      "widget_type": "short_text",
+      "value": "20",
+      "success": false,
+      "t_start_s": 18.268850093999845,
+      "t_end_s": 18.30554779999966,
+      "bbox": null
+    },
+    {
+      "step": 10,
+      "label": "Preferred meeting time for interview",
+      "widget_type": "time",
+      "value": "13:30",
+      "success": false,
+      "t_start_s": 18.305552500999966,
+      "t_end_s": 18.344064097999762,
+      "bbox": null
+    },
+    {
+      "step": 11,
+      "label": "Are you open to remote work?",
+      "widget_type": "single_choice",
+      "value": "Yes",
+      "success": false,
+      "t_start_s": 18.34407257599969,
+      "t_end_s": 18.379363963999822,
+      "bbox": null
+    }
+  ],
+  "run_metadata": {
+    "suffix": "backend_ml",
+    "notes": "Candidate focused on backend and ML tooling."
+  }
+}

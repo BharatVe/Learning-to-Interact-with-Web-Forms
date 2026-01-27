@@ -1,6 +1,6 @@
 [
   {
-    "label": "Full name",
+    "label": "Full Name",
     "widget_type": "short_text",
     "value": "Avery Chen",
     "tags": [
@@ -20,7 +20,7 @@
   {
     "label": "Brief bio",
     "widget_type": "paragraph_text",
-    "value": "Staff engineer leading applied ML initiatives for a realtime collaboration product.",
+    "value": "Industry professional leading applied ML work for collaboration tools.",
     "tags": [
       "summary"
     ]
@@ -28,18 +28,17 @@
   {
     "label": "Primary role",
     "widget_type": "single_choice",
-    "value": "Industry practitioner",
+    "value": "Industry Professional",
     "tags": [
       "role"
     ]
   },
   {
-    "label": "Topics you\u2019re interested in",
+    "label": "Topics you're interested in",
     "widget_type": "multi_choice",
     "value": [
       "AI/ML",
-      "Product",
-      "Community"
+      "Security"
     ],
     "tags": [
       "topics",

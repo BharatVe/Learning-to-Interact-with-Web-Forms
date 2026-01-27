@@ -1,0 +1,22 @@
+form_id,run_id,q_title,q_type,answer
+workshop_signup,student_intro,Full name,SHORT_TEXT,Lena Ortiz
+workshop_signup,student_intro,University or organization,SHORT_TEXT,Stanford University
+workshop_signup,student_intro,Which workshop track are you registering for?,SINGLE_CHOICE,Intro to Machine Learning
+workshop_signup,student_intro,Experience level,SINGLE_CHOICE,Beginner
+workshop_signup,student_intro,Dietary restrictions,MULTI_CHOICE,None
+workshop_signup,student_intro,Preferred session date,DATE,2025-07-05
+workshop_signup,student_intro,May we email you updates?,SINGLE_CHOICE,Yes
+workshop_signup,pro_data,Full name,SHORT_TEXT,Riley Patel
+workshop_signup,pro_data,University or organization,SHORT_TEXT,DataFlux Labs
+workshop_signup,pro_data,Which workshop track are you registering for?,SINGLE_CHOICE,Advanced Data Engineering
+workshop_signup,pro_data,Experience level,SINGLE_CHOICE,Advanced
+workshop_signup,pro_data,Dietary restrictions,MULTI_CHOICE,Vegan
+workshop_signup,pro_data,Preferred session date,DATE,2025-07-06
+workshop_signup,pro_data,May we email you updates?,SINGLE_CHOICE,Yes
+workshop_signup,ui_agents,Full name,SHORT_TEXT,Morgan Lee
+workshop_signup,ui_agents,University or organization,SHORT_TEXT,UX Collective
+workshop_signup,ui_agents,Which workshop track are you registering for?,SINGLE_CHOICE,UI Agents and Automation
+workshop_signup,ui_agents,Experience level,SINGLE_CHOICE,Intermediate
+workshop_signup,ui_agents,Dietary restrictions,MULTI_CHOICE,Vegetarian
+workshop_signup,ui_agents,Preferred session date,DATE,2025-07-07
+workshop_signup,ui_agents,May we email you updates?,SINGLE_CHOICE,No

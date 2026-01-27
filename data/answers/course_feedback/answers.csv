@@ -1,0 +1,28 @@
+form_id,run_id,q_title,q_type,answer
+course_feedback,ml_bootcamp,Course name,SHORT_TEXT,Machine Learning Bootcamp
+course_feedback,ml_bootcamp,Your program level,SINGLE_CHOICE,Master's
+course_feedback,ml_bootcamp,Did you attend most sessions?,SINGLE_CHOICE,Yes
+course_feedback,ml_bootcamp,Overall satisfaction,SINGLE_CHOICE,5 - Very satisfied
+course_feedback,ml_bootcamp,Workload felt,SINGLE_CHOICE,About right
+course_feedback,ml_bootcamp,What did you like most?,PARAGRAPH,Hands on labs and clear weekly goals.
+course_feedback,ml_bootcamp,What should be improved?,PARAGRAPH,More time for project demos.
+course_feedback,ml_bootcamp,Most useful aspects,MULTI_CHOICE,Practical labs;Project work
+course_feedback,ml_bootcamp,Would you recommend this course?,SINGLE_CHOICE,Yes
+course_feedback,distributed,Course name,SHORT_TEXT,Distributed Systems
+course_feedback,distributed,Your program level,SINGLE_CHOICE,Bachelor's
+course_feedback,distributed,Did you attend most sessions?,SINGLE_CHOICE,Partially
+course_feedback,distributed,Overall satisfaction,SINGLE_CHOICE,3
+course_feedback,distributed,Workload felt,SINGLE_CHOICE,Too high
+course_feedback,distributed,What did you like most?,PARAGRAPH,Case studies from real deployments.
+course_feedback,distributed,What should be improved?,PARAGRAPH,More guided review sessions.
+course_feedback,distributed,Most useful aspects,MULTI_CHOICE,Theory;Assignments
+course_feedback,distributed,Would you recommend this course?,SINGLE_CHOICE,Maybe
+course_feedback,ai_ethics,Course name,SHORT_TEXT,AI Ethics
+course_feedback,ai_ethics,Your program level,SINGLE_CHOICE,PhD
+course_feedback,ai_ethics,Did you attend most sessions?,SINGLE_CHOICE,Yes
+course_feedback,ai_ethics,Overall satisfaction,SINGLE_CHOICE,4
+course_feedback,ai_ethics,Workload felt,SINGLE_CHOICE,About right
+course_feedback,ai_ethics,What did you like most?,PARAGRAPH,Debates and applied policy examples.
+course_feedback,ai_ethics,What should be improved?,PARAGRAPH,Add more guest speakers.
+course_feedback,ai_ethics,Most useful aspects,MULTI_CHOICE,Theory;Practical labs
+course_feedback,ai_ethics,Would you recommend this course?,SINGLE_CHOICE,Yes

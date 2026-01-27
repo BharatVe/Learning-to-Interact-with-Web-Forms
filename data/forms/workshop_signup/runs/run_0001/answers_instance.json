@@ -1,0 +1,62 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Lena Ortiz",
+    "tags": [
+      "profile",
+      "identity"
+    ]
+  },
+  {
+    "label": "University or organization",
+    "widget_type": "short_text",
+    "value": "Stanford University",
+    "tags": [
+      "profile",
+      "organization"
+    ]
+  },
+  {
+    "label": "Which workshop track are you registering for?",
+    "widget_type": "single_choice",
+    "value": "Intro to Machine Learning",
+    "tags": [
+      "track"
+    ]
+  },
+  {
+    "label": "Experience level",
+    "widget_type": "single_choice",
+    "value": "Beginner",
+    "tags": [
+      "experience"
+    ]
+  },
+  {
+    "label": "Dietary restrictions",
+    "widget_type": "multi_choice",
+    "value": [
+      "None"
+    ],
+    "tags": [
+      "diet"
+    ]
+  },
+  {
+    "label": "Preferred session date",
+    "widget_type": "date",
+    "value": "2025-07-05",
+    "tags": [
+      "scheduling"
+    ]
+  },
+  {
+    "label": "May we email you updates?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "consent"
+    ]
+  }
+]

@@ -1,0 +1,140 @@
+{
+  "form_id": "course_feedback",
+  "run_name": "run_0002",
+  "run_label": "course_feedback_run_0002",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSczlT7s8tTQgmYpXnfzz4taF5pvj-qpzgksyBZImfHBGwMpBA/viewform",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/course_feedback_run_0002.webm",
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": false,
+  "failure_reason": "submit_button_not_found",
+  "submit": {
+    "success": false,
+    "t_start_s": 17.449898852999922,
+    "t_end_s": 108.07460275299991,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": null,
+    "confirmation_text": null,
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSczlT7s8tTQgmYpXnfzz4taF5pvj-qpzgksyBZImfHBGwMpBA/viewform",
+    "error": "submit_button_not_found"
+  },
+  "actions": [
+    {
+      "step": 0,
+      "label": "Course name",
+      "widget_type": "short_text",
+      "value": "Distributed Systems",
+      "success": true,
+      "t_start_s": 9.431562309000128,
+      "t_end_s": 14.003356389000146,
+      "bbox": {
+        "x": 312.5,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 1,
+      "label": "Your program level",
+      "widget_type": "single_choice",
+      "value": "Bachelor's",
+      "success": true,
+      "t_start_s": 14.003364257000158,
+      "t_end_s": 15.731934737999836,
+      "bbox": {
+        "x": 312.5,
+        "y": 377.1875,
+        "width": 640,
+        "height": 250
+      }
+    },
+    {
+      "step": 2,
+      "label": "Did you attend most sessions?",
+      "widget_type": "single_choice",
+      "value": "Partially",
+      "success": true,
+      "t_start_s": 15.731941972000186,
+      "t_end_s": 17.33161508100011,
+      "bbox": {
+        "x": 312.5,
+        "y": 639.1875,
+        "width": 640,
+        "height": 210
+      }
+    },
+    {
+      "step": 3,
+      "label": "Overall satisfaction",
+      "widget_type": "single_choice",
+      "value": "3",
+      "success": false,
+      "t_start_s": 17.331625367000015,
+      "t_end_s": 17.355868637000185,
+      "bbox": null
+    },
+    {
+      "step": 4,
+      "label": "Workload felt",
+      "widget_type": "single_choice",
+      "value": "Too high",
+      "success": false,
+      "t_start_s": 17.355874589999985,
+      "t_end_s": 17.376189877999877,
+      "bbox": null
+    },
+    {
+      "step": 5,
+      "label": "What did you like most?",
+      "widget_type": "paragraph_text",
+      "value": "Case studies from real deployments.",
+      "success": false,
+      "t_start_s": 17.376194918999772,
+      "t_end_s": 17.395023433000006,
+      "bbox": null
+    },
+    {
+      "step": 6,
+      "label": "What should be improved?",
+      "widget_type": "paragraph_text",
+      "value": "More guided review sessions.",
+      "success": false,
+      "t_start_s": 17.395028443999763,
+      "t_end_s": 17.413371455999823,
+      "bbox": null
+    },
+    {
+      "step": 7,
+      "label": "Most useful aspects",
+      "widget_type": "multi_choice",
+      "value": [
+        "Theory",
+        "Assignments"
+      ],
+      "success": false,
+      "t_start_s": 17.41337723000015,
+      "t_end_s": 17.43239692799989,
+      "bbox": null
+    },
+    {
+      "step": 8,
+      "label": "Would you recommend this course?",
+      "widget_type": "single_choice",
+      "value": "Maybe",
+      "success": false,
+      "t_start_s": 17.432402876000197,
+      "t_end_s": 17.449891218000175,
+      "bbox": null
+    }
+  ],
+  "run_metadata": {
+    "suffix": "distributed",
+    "notes": "Mixed feedback for a rigorous systems course."
+  }
+}

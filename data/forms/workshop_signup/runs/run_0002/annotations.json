@@ -1,0 +1,138 @@
+{
+  "form_id": "workshop_signup",
+  "run_name": "run_0002",
+  "run_label": "workshop_signup_run_0002",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/workshop_signup_run_0002.webm",
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "failure_reason": null,
+  "submit": {
+    "success": true,
+    "t_start_s": 21.123666713000148,
+    "t_end_s": 69.82373807800013,
+    "bbox": null,
+    "submit_clicked": true,
+    "confirmation_method": "url",
+    "confirmation_text": null,
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/formResponse"
+  },
+  "actions": [
+    {
+      "step": 0,
+      "label": "Full name",
+      "widget_type": "short_text",
+      "value": "Riley Patel",
+      "success": true,
+      "t_start_s": 5.6083239409999806,
+      "t_end_s": 9.13027831799991,
+      "bbox": {
+        "x": 312.5,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 1,
+      "label": "University or organization",
+      "widget_type": "short_text",
+      "value": "DataFlux Labs",
+      "success": true,
+      "t_start_s": 9.130285017999995,
+      "t_end_s": 12.838124164999954,
+      "bbox": {
+        "x": 312.5,
+        "y": 377.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 2,
+      "label": "Which workshop track are you registering for?",
+      "widget_type": "single_choice",
+      "value": "Advanced Data Engineering",
+      "success": true,
+      "t_start_s": 12.838130990000082,
+      "t_end_s": 14.459379071000058,
+      "bbox": {
+        "x": 312.5,
+        "y": 527.1875,
+        "width": 640,
+        "height": 210
+      }
+    },
+    {
+      "step": 3,
+      "label": "Experience level",
+      "widget_type": "single_choice",
+      "value": "Advanced",
+      "success": true,
+      "t_start_s": 14.459385938000196,
+      "t_end_s": 16.078192923000188,
+      "bbox": {
+        "x": 312.5,
+        "y": 749.1875,
+        "width": 640,
+        "height": 210
+      }
+    },
+    {
+      "step": 4,
+      "label": "Dietary restrictions",
+      "widget_type": "multi_choice",
+      "value": [
+        "Vegan"
+      ],
+      "success": true,
+      "t_start_s": 16.078200770999956,
+      "t_end_s": 17.66648053400013,
+      "bbox": {
+        "x": 312.5,
+        "y": 417.1875,
+        "width": 640,
+        "height": 294
+      }
+    },
+    {
+      "step": 5,
+      "label": "Preferred session date",
+      "widget_type": "date",
+      "value": "2025-07-06",
+      "success": true,
+      "t_start_s": 17.66648719700015,
+      "t_end_s": 19.502660486999957,
+      "bbox": {
+        "x": 312.5,
+        "y": 723.1875,
+        "width": 640,
+        "height": 153
+      }
+    },
+    {
+      "step": 6,
+      "label": "May we email you updates?",
+      "widget_type": "single_choice",
+      "value": "Yes",
+      "success": true,
+      "t_start_s": 19.50266875899979,
+      "t_end_s": 21.123660211999777,
+      "bbox": {
+        "x": 312.5,
+        "y": 419.1875,
+        "width": 640,
+        "height": 170
+      }
+    }
+  ],
+  "run_metadata": {
+    "suffix": "pro_data",
+    "notes": "Advanced attendee focused on data engineering."
+  }
+}

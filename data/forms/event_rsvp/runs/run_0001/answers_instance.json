@@ -1,0 +1,53 @@
+[
+  {
+    "label": "Name",
+    "widget_type": "short_text",
+    "value": "Olivia Brooks",
+    "tags": [
+      "identity"
+    ]
+  },
+  {
+    "label": "Will you attend?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "attendance"
+    ]
+  },
+  {
+    "label": "Number of guests (including yourself)",
+    "widget_type": "short_text",
+    "value": "1",
+    "tags": [
+      "attendance"
+    ]
+  },
+  {
+    "label": "Preferred arrival time",
+    "widget_type": "time",
+    "value": "18:30",
+    "tags": [
+      "scheduling"
+    ]
+  },
+  {
+    "label": "Activities you're interested in",
+    "widget_type": "multi_choice",
+    "value": [
+      "Talks",
+      "Networking"
+    ],
+    "tags": [
+      "interests"
+    ]
+  },
+  {
+    "label": "Accessibility needs or comments",
+    "widget_type": "paragraph_text",
+    "value": "Need wheelchair accessible seating.",
+    "tags": [
+      "notes"
+    ]
+  }
+]

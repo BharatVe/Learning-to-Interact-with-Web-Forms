@@ -1,0 +1,205 @@
+{
+  "form_id": "workshop_signup",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform",
+  "description": "Answer variations for the Workshop Signup form. Each run varies attendee details, track choice, and update preferences.",
+  "runs": [
+    {
+      "suffix": "student_intro",
+      "notes": "Beginner student registering for the intro track.",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Ortiz",
+          "tags": [
+            "profile",
+            "identity"
+          ]
+        },
+        {
+          "label": "University or organization",
+          "widget_type": "short_text",
+          "value": "Stanford University",
+          "tags": [
+            "profile",
+            "organization"
+          ]
+        },
+        {
+          "label": "Which workshop track are you registering for?",
+          "widget_type": "single_choice",
+          "value": "Intro to Machine Learning",
+          "tags": [
+            "track"
+          ]
+        },
+        {
+          "label": "Experience level",
+          "widget_type": "single_choice",
+          "value": "Beginner",
+          "tags": [
+            "experience"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "None"
+          ],
+          "tags": [
+            "diet"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-07-05",
+          "tags": [
+            "scheduling"
+          ]
+        },
+        {
+          "label": "May we email you updates?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "consent"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "pro_data",
+      "notes": "Advanced attendee focused on data engineering.",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Patel",
+          "tags": [
+            "profile",
+            "identity"
+          ]
+        },
+        {
+          "label": "University or organization",
+          "widget_type": "short_text",
+          "value": "DataFlux Labs",
+          "tags": [
+            "profile",
+            "organization"
+          ]
+        },
+        {
+          "label": "Which workshop track are you registering for?",
+          "widget_type": "single_choice",
+          "value": "Advanced Data Engineering",
+          "tags": [
+            "track"
+          ]
+        },
+        {
+          "label": "Experience level",
+          "widget_type": "single_choice",
+          "value": "Advanced",
+          "tags": [
+            "experience"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vegan"
+          ],
+          "tags": [
+            "diet"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-07-06",
+          "tags": [
+            "scheduling"
+          ]
+        },
+        {
+          "label": "May we email you updates?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "consent"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "ui_agents",
+      "notes": "Intermediate attendee interested in UI agents.",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Morgan Lee",
+          "tags": [
+            "profile",
+            "identity"
+          ]
+        },
+        {
+          "label": "University or organization",
+          "widget_type": "short_text",
+          "value": "UX Collective",
+          "tags": [
+            "profile",
+            "organization"
+          ]
+        },
+        {
+          "label": "Which workshop track are you registering for?",
+          "widget_type": "single_choice",
+          "value": "UI Agents and Automation",
+          "tags": [
+            "track"
+          ]
+        },
+        {
+          "label": "Experience level",
+          "widget_type": "single_choice",
+          "value": "Intermediate",
+          "tags": [
+            "experience"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vegetarian"
+          ],
+          "tags": [
+            "diet"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-07-07",
+          "tags": [
+            "scheduling"
+          ]
+        },
+        {
+          "label": "May we email you updates?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "consent"
+          ]
+        }
+      ]
+    }
+  ]
+}

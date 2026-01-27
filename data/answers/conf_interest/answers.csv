@@ -1,0 +1,22 @@
+form_id,run_id,q_title,q_type,answer
+conf_interest,mlsys,Full Name,SHORT_TEXT,Jordan Rivera
+conf_interest,mlsys,Preferred contact email,SHORT_TEXT,jordan.rivera@example.com
+conf_interest,mlsys,Brief bio,PARAGRAPH,Graduate researcher focused on distributed training and edge inference.
+conf_interest,mlsys,Primary role,SINGLE_CHOICE,PhD student
+conf_interest,mlsys,Topics you're interested in,MULTI_CHOICE,AI/ML;Systems
+conf_interest,mlsys,Preferred meeting date,DATE,2025-06-15
+conf_interest,mlsys,Preferred meeting time,TIME,10:30
+conf_interest,industry,Full Name,SHORT_TEXT,Avery Chen
+conf_interest,industry,Preferred contact email,SHORT_TEXT,avery.chen@streamforge.io
+conf_interest,industry,Brief bio,PARAGRAPH,Industry professional leading applied ML work for collaboration tools.
+conf_interest,industry,Primary role,SINGLE_CHOICE,Industry Professional
+conf_interest,industry,Topics you're interested in,MULTI_CHOICE,AI/ML;Security
+conf_interest,industry,Preferred meeting date,DATE,2025-06-17
+conf_interest,industry,Preferred meeting time,TIME,14:00
+conf_interest,hci,Full Name,SHORT_TEXT,Noah Whitaker
+conf_interest,hci,Preferred contact email,SHORT_TEXT,noah.whitaker@chipfoundry.ai
+conf_interest,hci,Brief bio,PARAGRAPH,Masters student studying human centered AI and interface design.
+conf_interest,hci,Primary role,SINGLE_CHOICE,Master's student
+conf_interest,hci,Topics you're interested in,MULTI_CHOICE,Human-Computer Interaction;AI/ML
+conf_interest,hci,Preferred meeting date,DATE,2025-06-20
+conf_interest,hci,Preferred meeting time,TIME,09:00

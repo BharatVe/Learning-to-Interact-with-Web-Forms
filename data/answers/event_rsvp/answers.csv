@@ -1,0 +1,19 @@
+form_id,run_id,q_title,q_type,answer
+event_rsvp,attending,Name,SHORT_TEXT,Olivia Brooks
+event_rsvp,attending,Will you attend?,SINGLE_CHOICE,Yes
+event_rsvp,attending,Number of guests (including yourself),SHORT_TEXT,1
+event_rsvp,attending,Preferred arrival time,TIME,18:30
+event_rsvp,attending,Activities you're interested in,MULTI_CHOICE,Talks;Networking
+event_rsvp,attending,Accessibility needs or comments,PARAGRAPH,Need wheelchair accessible seating.
+event_rsvp,maybe,Name,SHORT_TEXT,Kai Mendoza
+event_rsvp,maybe,Will you attend?,SINGLE_CHOICE,Maybe
+event_rsvp,maybe,Number of guests (including yourself),SHORT_TEXT,2
+event_rsvp,maybe,Preferred arrival time,TIME,19:00
+event_rsvp,maybe,Activities you're interested in,MULTI_CHOICE,Poster session;Demo booths
+event_rsvp,maybe,Accessibility needs or comments,PARAGRAPH,No accessibility needs.
+event_rsvp,decline,Name,SHORT_TEXT,Harper Singh
+event_rsvp,decline,Will you attend?,SINGLE_CHOICE,No
+event_rsvp,decline,Number of guests (including yourself),SHORT_TEXT,0
+event_rsvp,decline,Preferred arrival time,TIME,18:00
+event_rsvp,decline,Activities you're interested in,MULTI_CHOICE,Networking
+event_rsvp,decline,Accessibility needs or comments,PARAGRAPH,Cannot attend this time.

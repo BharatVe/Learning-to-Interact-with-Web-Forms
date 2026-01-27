@@ -1,0 +1,77 @@
+[
+  {
+    "label": "Course name",
+    "widget_type": "short_text",
+    "value": "AI Ethics",
+    "tags": [
+      "course"
+    ]
+  },
+  {
+    "label": "Your program level",
+    "widget_type": "single_choice",
+    "value": "PhD",
+    "tags": [
+      "program"
+    ]
+  },
+  {
+    "label": "Did you attend most sessions?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "attendance"
+    ]
+  },
+  {
+    "label": "Overall satisfaction",
+    "widget_type": "single_choice",
+    "value": "4",
+    "tags": [
+      "rating"
+    ]
+  },
+  {
+    "label": "Workload felt",
+    "widget_type": "single_choice",
+    "value": "About right",
+    "tags": [
+      "workload"
+    ]
+  },
+  {
+    "label": "What did you like most?",
+    "widget_type": "paragraph_text",
+    "value": "Debates and applied policy examples.",
+    "tags": [
+      "feedback"
+    ]
+  },
+  {
+    "label": "What should be improved?",
+    "widget_type": "paragraph_text",
+    "value": "Add more guest speakers.",
+    "tags": [
+      "feedback"
+    ]
+  },
+  {
+    "label": "Most useful aspects",
+    "widget_type": "multi_choice",
+    "value": [
+      "Theory",
+      "Practical labs"
+    ],
+    "tags": [
+      "highlights"
+    ]
+  },
+  {
+    "label": "Would you recommend this course?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "recommendation"
+    ]
+  }
+]

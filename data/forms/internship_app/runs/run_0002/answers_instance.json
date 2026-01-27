@@ -1,0 +1,107 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Elliot Park",
+    "tags": [
+      "profile",
+      "identity"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "elliot.park@example.com",
+    "tags": [
+      "profile",
+      "contact"
+    ]
+  },
+  {
+    "label": "Current city",
+    "widget_type": "short_text",
+    "value": "Toronto",
+    "tags": [
+      "profile",
+      "location"
+    ]
+  },
+  {
+    "label": "Degree program",
+    "widget_type": "single_choice",
+    "value": "Bachelor's",
+    "tags": [
+      "education"
+    ]
+  },
+  {
+    "label": "Primary area of interest",
+    "widget_type": "multi_choice",
+    "value": [
+      "UI/UX",
+      "Frontend"
+    ],
+    "tags": [
+      "interests"
+    ]
+  },
+  {
+    "label": "Programming languages you use",
+    "widget_type": "multi_choice",
+    "value": [
+      "JavaScript/TypeScript",
+      "Python"
+    ],
+    "tags": [
+      "skills"
+    ]
+  },
+  {
+    "label": "Link to GitHub or portfolio",
+    "widget_type": "short_text",
+    "value": "https://portfolio.elliotpark.design",
+    "tags": [
+      "portfolio"
+    ]
+  },
+  {
+    "label": "Brief motivation statement",
+    "widget_type": "paragraph_text",
+    "value": "I focus on user workflows and interface clarity. I want to work with a team that ships iterative design. The role fits my interest in UI automation and prototyping. I am excited to collaborate across disciplines.",
+    "tags": [
+      "statement"
+    ]
+  },
+  {
+    "label": "Earliest start date",
+    "widget_type": "date",
+    "value": "2025-05-20",
+    "tags": [
+      "availability"
+    ]
+  },
+  {
+    "label": "Weekly availability (hours)",
+    "widget_type": "short_text",
+    "value": "15",
+    "tags": [
+      "availability"
+    ]
+  },
+  {
+    "label": "Preferred meeting time for interview",
+    "widget_type": "time",
+    "value": "09:30",
+    "tags": [
+      "scheduling"
+    ]
+  },
+  {
+    "label": "Are you open to remote work?",
+    "widget_type": "single_choice",
+    "value": "Hybrid",
+    "tags": [
+      "preferences"
+    ]
+  }
+]

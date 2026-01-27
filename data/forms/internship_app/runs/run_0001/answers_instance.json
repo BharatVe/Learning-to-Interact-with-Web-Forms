@@ -1,0 +1,108 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Priya Nair",
+    "tags": [
+      "profile",
+      "identity"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "priya.nair@example.com",
+    "tags": [
+      "profile",
+      "contact"
+    ]
+  },
+  {
+    "label": "Current city",
+    "widget_type": "short_text",
+    "value": "Bengaluru",
+    "tags": [
+      "profile",
+      "location"
+    ]
+  },
+  {
+    "label": "Degree program",
+    "widget_type": "single_choice",
+    "value": "Master's",
+    "tags": [
+      "education"
+    ]
+  },
+  {
+    "label": "Primary area of interest",
+    "widget_type": "multi_choice",
+    "value": [
+      "Backend",
+      "Data and Machine Learning"
+    ],
+    "tags": [
+      "interests"
+    ]
+  },
+  {
+    "label": "Programming languages you use",
+    "widget_type": "multi_choice",
+    "value": [
+      "Python",
+      "SQL",
+      "JavaScript/TypeScript"
+    ],
+    "tags": [
+      "skills"
+    ]
+  },
+  {
+    "label": "Link to GitHub or portfolio",
+    "widget_type": "short_text",
+    "value": "https://github.com/priyanair",
+    "tags": [
+      "portfolio"
+    ]
+  },
+  {
+    "label": "Brief motivation statement",
+    "widget_type": "paragraph_text",
+    "value": "I enjoy building reliable services that support ML teams. I want to learn how product systems scale in production. This internship matches my interests in backend tooling and data pipelines. I am eager to contribute and learn from the team.",
+    "tags": [
+      "statement"
+    ]
+  },
+  {
+    "label": "Earliest start date",
+    "widget_type": "date",
+    "value": "2025-06-10",
+    "tags": [
+      "availability"
+    ]
+  },
+  {
+    "label": "Weekly availability (hours)",
+    "widget_type": "short_text",
+    "value": "20",
+    "tags": [
+      "availability"
+    ]
+  },
+  {
+    "label": "Preferred meeting time for interview",
+    "widget_type": "time",
+    "value": "13:30",
+    "tags": [
+      "scheduling"
+    ]
+  },
+  {
+    "label": "Are you open to remote work?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "preferences"
+    ]
+  }
+]

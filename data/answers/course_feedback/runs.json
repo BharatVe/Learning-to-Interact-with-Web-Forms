@@ -1,0 +1,186 @@
+{
+  "form_id": "course_feedback",
+  "description": "Run variations for Course Feedback submissions.",
+  "runs": [
+    {
+      "suffix": "ml_bootcamp",
+      "notes": "Strongly positive feedback for an applied ML course.",
+      "answers": [
+        {
+          "label": "Course name",
+          "widget_type": "short_text",
+          "value": "Machine Learning Bootcamp",
+          "tags": ["course"]
+        },
+        {
+          "label": "Your program level",
+          "widget_type": "single_choice",
+          "value": "Master's",
+          "tags": ["program"]
+        },
+        {
+          "label": "Did you attend most sessions?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": ["attendance"]
+        },
+        {
+          "label": "Overall satisfaction",
+          "widget_type": "single_choice",
+          "value": "5 - Very satisfied",
+          "tags": ["rating"]
+        },
+        {
+          "label": "Workload felt",
+          "widget_type": "single_choice",
+          "value": "About right",
+          "tags": ["workload"]
+        },
+        {
+          "label": "What did you like most?",
+          "widget_type": "paragraph_text",
+          "value": "Hands on labs and clear weekly goals.",
+          "tags": ["feedback"]
+        },
+        {
+          "label": "What should be improved?",
+          "widget_type": "paragraph_text",
+          "value": "More time for project demos.",
+          "tags": ["feedback"]
+        },
+        {
+          "label": "Most useful aspects",
+          "widget_type": "multi_choice",
+          "value": ["Practical labs", "Project work"],
+          "tags": ["highlights"]
+        },
+        {
+          "label": "Would you recommend this course?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": ["recommendation"]
+        }
+      ]
+    },
+    {
+      "suffix": "distributed",
+      "notes": "Mixed feedback for a rigorous systems course.",
+      "answers": [
+        {
+          "label": "Course name",
+          "widget_type": "short_text",
+          "value": "Distributed Systems",
+          "tags": ["course"]
+        },
+        {
+          "label": "Your program level",
+          "widget_type": "single_choice",
+          "value": "Bachelor's",
+          "tags": ["program"]
+        },
+        {
+          "label": "Did you attend most sessions?",
+          "widget_type": "single_choice",
+          "value": "Partially",
+          "tags": ["attendance"]
+        },
+        {
+          "label": "Overall satisfaction",
+          "widget_type": "single_choice",
+          "value": "3",
+          "tags": ["rating"]
+        },
+        {
+          "label": "Workload felt",
+          "widget_type": "single_choice",
+          "value": "Too high",
+          "tags": ["workload"]
+        },
+        {
+          "label": "What did you like most?",
+          "widget_type": "paragraph_text",
+          "value": "Case studies from real deployments.",
+          "tags": ["feedback"]
+        },
+        {
+          "label": "What should be improved?",
+          "widget_type": "paragraph_text",
+          "value": "More guided review sessions.",
+          "tags": ["feedback"]
+        },
+        {
+          "label": "Most useful aspects",
+          "widget_type": "multi_choice",
+          "value": ["Theory", "Assignments"],
+          "tags": ["highlights"]
+        },
+        {
+          "label": "Would you recommend this course?",
+          "widget_type": "single_choice",
+          "value": "Maybe",
+          "tags": ["recommendation"]
+        }
+      ]
+    },
+    {
+      "suffix": "ai_ethics",
+      "notes": "Positive feedback for an ethics seminar.",
+      "answers": [
+        {
+          "label": "Course name",
+          "widget_type": "short_text",
+          "value": "AI Ethics",
+          "tags": ["course"]
+        },
+        {
+          "label": "Your program level",
+          "widget_type": "single_choice",
+          "value": "PhD",
+          "tags": ["program"]
+        },
+        {
+          "label": "Did you attend most sessions?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": ["attendance"]
+        },
+        {
+          "label": "Overall satisfaction",
+          "widget_type": "single_choice",
+          "value": "4",
+          "tags": ["rating"]
+        },
+        {
+          "label": "Workload felt",
+          "widget_type": "single_choice",
+          "value": "About right",
+          "tags": ["workload"]
+        },
+        {
+          "label": "What did you like most?",
+          "widget_type": "paragraph_text",
+          "value": "Debates and applied policy examples.",
+          "tags": ["feedback"]
+        },
+        {
+          "label": "What should be improved?",
+          "widget_type": "paragraph_text",
+          "value": "Add more guest speakers.",
+          "tags": ["feedback"]
+        },
+        {
+          "label": "Most useful aspects",
+          "widget_type": "multi_choice",
+          "value": ["Theory", "Practical labs"],
+          "tags": ["highlights"]
+        },
+        {
+          "label": "Would you recommend this course?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": ["recommendation"]
+        }
+      ]
+    }
+  ]
+}

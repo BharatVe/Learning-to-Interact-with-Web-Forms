@@ -1,0 +1,124 @@
+form_id,run_id,q_title,q_type,answer
+conf_interest,mlsys,Full Name,SHORT_TEXT,Jordan Rivera
+conf_interest,mlsys,Preferred contact email,SHORT_TEXT,jordan.rivera@example.com
+conf_interest,mlsys,Brief bio,PARAGRAPH,Graduate researcher focused on distributed training and edge inference.
+conf_interest,mlsys,Primary role,SINGLE_CHOICE,PhD student
+conf_interest,mlsys,Topics you're interested in,MULTI_CHOICE,AI/ML;Systems
+conf_interest,mlsys,Preferred meeting date,DATE,2025-06-15
+conf_interest,mlsys,Preferred meeting time,TIME,10:30
+conf_interest,industry,Full Name,SHORT_TEXT,Avery Chen
+conf_interest,industry,Preferred contact email,SHORT_TEXT,avery.chen@streamforge.io
+conf_interest,industry,Brief bio,PARAGRAPH,Industry professional leading applied ML work for collaboration tools.
+conf_interest,industry,Primary role,SINGLE_CHOICE,Industry Professional
+conf_interest,industry,Topics you're interested in,MULTI_CHOICE,AI/ML;Security
+conf_interest,industry,Preferred meeting date,DATE,2025-06-17
+conf_interest,industry,Preferred meeting time,TIME,14:00
+conf_interest,hci,Full Name,SHORT_TEXT,Noah Whitaker
+conf_interest,hci,Preferred contact email,SHORT_TEXT,noah.whitaker@chipfoundry.ai
+conf_interest,hci,Brief bio,PARAGRAPH,Masters student studying human centered AI and interface design.
+conf_interest,hci,Primary role,SINGLE_CHOICE,Master's student
+conf_interest,hci,Topics you're interested in,MULTI_CHOICE,Human-Computer Interaction;AI/ML
+conf_interest,hci,Preferred meeting date,DATE,2025-06-20
+conf_interest,hci,Preferred meeting time,TIME,09:00
+workshop_signup,student_intro,Full name,SHORT_TEXT,Lena Ortiz
+workshop_signup,student_intro,University or organization,SHORT_TEXT,Stanford University
+workshop_signup,student_intro,Which workshop track are you registering for?,SINGLE_CHOICE,Intro to Machine Learning
+workshop_signup,student_intro,Experience level,SINGLE_CHOICE,Beginner
+workshop_signup,student_intro,Dietary restrictions,MULTI_CHOICE,None
+workshop_signup,student_intro,Preferred session date,DATE,2025-07-05
+workshop_signup,student_intro,May we email you updates?,SINGLE_CHOICE,Yes
+workshop_signup,pro_data,Full name,SHORT_TEXT,Riley Patel
+workshop_signup,pro_data,University or organization,SHORT_TEXT,DataFlux Labs
+workshop_signup,pro_data,Which workshop track are you registering for?,SINGLE_CHOICE,Advanced Data Engineering
+workshop_signup,pro_data,Experience level,SINGLE_CHOICE,Advanced
+workshop_signup,pro_data,Dietary restrictions,MULTI_CHOICE,Vegan
+workshop_signup,pro_data,Preferred session date,DATE,2025-07-06
+workshop_signup,pro_data,May we email you updates?,SINGLE_CHOICE,Yes
+workshop_signup,ui_agents,Full name,SHORT_TEXT,Morgan Lee
+workshop_signup,ui_agents,University or organization,SHORT_TEXT,UX Collective
+workshop_signup,ui_agents,Which workshop track are you registering for?,SINGLE_CHOICE,UI Agents and Automation
+workshop_signup,ui_agents,Experience level,SINGLE_CHOICE,Intermediate
+workshop_signup,ui_agents,Dietary restrictions,MULTI_CHOICE,Vegetarian
+workshop_signup,ui_agents,Preferred session date,DATE,2025-07-07
+workshop_signup,ui_agents,May we email you updates?,SINGLE_CHOICE,No
+course_feedback,ml_bootcamp,Course name,SHORT_TEXT,Machine Learning Bootcamp
+course_feedback,ml_bootcamp,Your program level,SINGLE_CHOICE,Master's
+course_feedback,ml_bootcamp,Did you attend most sessions?,SINGLE_CHOICE,Yes
+course_feedback,ml_bootcamp,Overall satisfaction,SINGLE_CHOICE,5 - Very satisfied
+course_feedback,ml_bootcamp,Workload felt,SINGLE_CHOICE,About right
+course_feedback,ml_bootcamp,What did you like most?,PARAGRAPH,Hands on labs and clear weekly goals.
+course_feedback,ml_bootcamp,What should be improved?,PARAGRAPH,More time for project demos.
+course_feedback,ml_bootcamp,Most useful aspects,MULTI_CHOICE,Practical labs;Project work
+course_feedback,ml_bootcamp,Would you recommend this course?,SINGLE_CHOICE,Yes
+course_feedback,distributed,Course name,SHORT_TEXT,Distributed Systems
+course_feedback,distributed,Your program level,SINGLE_CHOICE,Bachelor's
+course_feedback,distributed,Did you attend most sessions?,SINGLE_CHOICE,Partially
+course_feedback,distributed,Overall satisfaction,SINGLE_CHOICE,3
+course_feedback,distributed,Workload felt,SINGLE_CHOICE,Too high
+course_feedback,distributed,What did you like most?,PARAGRAPH,Case studies from real deployments.
+course_feedback,distributed,What should be improved?,PARAGRAPH,More guided review sessions.
+course_feedback,distributed,Most useful aspects,MULTI_CHOICE,Theory;Assignments
+course_feedback,distributed,Would you recommend this course?,SINGLE_CHOICE,Maybe
+course_feedback,ai_ethics,Course name,SHORT_TEXT,AI Ethics
+course_feedback,ai_ethics,Your program level,SINGLE_CHOICE,PhD
+course_feedback,ai_ethics,Did you attend most sessions?,SINGLE_CHOICE,Yes
+course_feedback,ai_ethics,Overall satisfaction,SINGLE_CHOICE,4
+course_feedback,ai_ethics,Workload felt,SINGLE_CHOICE,About right
+course_feedback,ai_ethics,What did you like most?,PARAGRAPH,Debates and applied policy examples.
+course_feedback,ai_ethics,What should be improved?,PARAGRAPH,Add more guest speakers.
+course_feedback,ai_ethics,Most useful aspects,MULTI_CHOICE,Theory;Practical labs
+course_feedback,ai_ethics,Would you recommend this course?,SINGLE_CHOICE,Yes
+internship_app,backend_ml,Full name,SHORT_TEXT,Priya Nair
+internship_app,backend_ml,Contact email,SHORT_TEXT,priya.nair@example.com
+internship_app,backend_ml,Current city,SHORT_TEXT,Bengaluru
+internship_app,backend_ml,Degree program,SINGLE_CHOICE,Master's
+internship_app,backend_ml,Primary area of interest,MULTI_CHOICE,Backend;Data and Machine Learning
+internship_app,backend_ml,Programming languages you use,MULTI_CHOICE,Python;SQL;JavaScript/TypeScript
+internship_app,backend_ml,Link to GitHub or portfolio,SHORT_TEXT,https://github.com/priyanair
+internship_app,backend_ml,Brief motivation statement,PARAGRAPH,I enjoy building reliable services that support ML teams. I want to learn how product systems scale in production. This internship matches my interests in backend tooling and data pipelines. I am eager to contribute and learn from the team.
+internship_app,backend_ml,Earliest start date,DATE,2025-06-10
+internship_app,backend_ml,Weekly availability (hours),SHORT_TEXT,20
+internship_app,backend_ml,Preferred meeting time for interview,TIME,13:30
+internship_app,backend_ml,Are you open to remote work?,SINGLE_CHOICE,Yes
+internship_app,uiux,Full name,SHORT_TEXT,Elliot Park
+internship_app,uiux,Contact email,SHORT_TEXT,elliot.park@example.com
+internship_app,uiux,Current city,SHORT_TEXT,Toronto
+internship_app,uiux,Degree program,SINGLE_CHOICE,Bachelor's
+internship_app,uiux,Primary area of interest,MULTI_CHOICE,UI/UX;Frontend
+internship_app,uiux,Programming languages you use,MULTI_CHOICE,JavaScript/TypeScript;Python
+internship_app,uiux,Link to GitHub or portfolio,SHORT_TEXT,https://portfolio.elliotpark.design
+internship_app,uiux,Brief motivation statement,PARAGRAPH,I focus on user workflows and interface clarity. I want to work with a team that ships iterative design. The role fits my interest in UI automation and prototyping. I am excited to collaborate across disciplines.
+internship_app,uiux,Earliest start date,DATE,2025-05-20
+internship_app,uiux,Weekly availability (hours),SHORT_TEXT,15
+internship_app,uiux,Preferred meeting time for interview,TIME,09:30
+internship_app,uiux,Are you open to remote work?,SINGLE_CHOICE,Hybrid
+internship_app,devops,Full name,SHORT_TEXT,Samira Ortiz
+internship_app,devops,Contact email,SHORT_TEXT,samira.ortiz@example.com
+internship_app,devops,Current city,SHORT_TEXT,Berlin
+internship_app,devops,Degree program,SINGLE_CHOICE,PhD
+internship_app,devops,Primary area of interest,MULTI_CHOICE,DevOps
+internship_app,devops,Programming languages you use,MULTI_CHOICE,Python;C/C++;SQL
+internship_app,devops,Link to GitHub or portfolio,SHORT_TEXT,https://github.com/samira-ortiz
+internship_app,devops,Brief motivation statement,PARAGRAPH,I work on automation for build and deployment systems. I want to apply my research on reliability to production pipelines. The internship offers hands on exposure to real infrastructure. I can contribute to tooling and monitoring.
+internship_app,devops,Earliest start date,DATE,2025-07-01
+internship_app,devops,Weekly availability (hours),SHORT_TEXT,25
+internship_app,devops,Preferred meeting time for interview,TIME,11:00
+internship_app,devops,Are you open to remote work?,SINGLE_CHOICE,No
+event_rsvp,attending,Name,SHORT_TEXT,Olivia Brooks
+event_rsvp,attending,Will you attend?,SINGLE_CHOICE,Yes
+event_rsvp,attending,Number of guests (including yourself),SHORT_TEXT,1
+event_rsvp,attending,Preferred arrival time,TIME,18:30
+event_rsvp,attending,Activities you're interested in,MULTI_CHOICE,Talks;Networking
+event_rsvp,attending,Accessibility needs or comments,PARAGRAPH,Need wheelchair accessible seating.
+event_rsvp,maybe,Name,SHORT_TEXT,Kai Mendoza
+event_rsvp,maybe,Will you attend?,SINGLE_CHOICE,Maybe
+event_rsvp,maybe,Number of guests (including yourself),SHORT_TEXT,2
+event_rsvp,maybe,Preferred arrival time,TIME,19:00
+event_rsvp,maybe,Activities you're interested in,MULTI_CHOICE,Poster session;Demo booths
+event_rsvp,maybe,Accessibility needs or comments,PARAGRAPH,No accessibility needs.
+event_rsvp,decline,Name,SHORT_TEXT,Harper Singh
+event_rsvp,decline,Will you attend?,SINGLE_CHOICE,No
+event_rsvp,decline,Number of guests (including yourself),SHORT_TEXT,0
+event_rsvp,decline,Preferred arrival time,TIME,18:00
+event_rsvp,decline,Activities you're interested in,MULTI_CHOICE,Networking
+event_rsvp,decline,Accessibility needs or comments,PARAGRAPH,Cannot attend this time.

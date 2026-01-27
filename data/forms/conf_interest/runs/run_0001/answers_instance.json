@@ -1,6 +1,6 @@
 [
   {
-    "label": "Full name",
+    "label": "Full Name",
     "widget_type": "short_text",
     "value": "Jordan Rivera",
     "tags": [
@@ -20,7 +20,7 @@
   {
     "label": "Brief bio",
     "widget_type": "paragraph_text",
-    "value": "Graduate researcher focusing on distributed ML training pipelines and inference at the edge.",
+    "value": "Graduate researcher focused on distributed training and edge inference.",
     "tags": [
       "summary"
     ]
@@ -34,7 +34,7 @@
     ]
   },
   {
-    "label": "Topics you\u2019re interested in",
+    "label": "Topics you're interested in",
     "widget_type": "multi_choice",
     "value": [
       "AI/ML",

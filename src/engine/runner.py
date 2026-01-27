@@ -1,6 +1,7 @@
 import argparse
 import json
 import re
+import shutil
 import sys
 import time
 from pathlib import Path
@@ -38,6 +39,15 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--start-index", type=int)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--skip-existing", action="store_true")
+    parser.add_argument("--skip-existing-video", action="store_true")
+    parser.add_argument("--overwrite-existing", action="store_true")
+    parser.add_argument(
+        "--events-layout",
+        choices=["flat", "per-action"],
+        default="flat",
+        help="Store events as a flat list or attach them to each action entry.",
+    )
+    parser.add_argument("--omit-hover-events", action="store_true")
     parser.add_argument("--slow-mo", type=int, default=DEFAULT_SLOW_MO)
     parser.add_argument("--pause-seconds", type=float, default=0.0)
     parser.add_argument("--type-delay", type=int, default=DEFAULT_TYPE_DELAY)
@@ -134,14 +144,32 @@ def next_available_index(existing: set, start_index: int) -> int:
 
 
 def ensure_run_dir(
-    runs_dir: Path, run_index: int, skip_existing: bool, existing_indices: set
-) -> Tuple[Path, str, int]:
+    runs_dir: Path,
+    run_index: int,
+    skip_existing: bool,
+    existing_indices: set,
+    skip_existing_video: bool,
+    overwrite_existing: bool,
+) -> Tuple[Optional[Path], str, int]:
     run_name = f"run_{run_index:04d}"
     run_dir = runs_dir / run_name
     if run_dir.exists():
         existing_indices.add(run_index)
+        if overwrite_existing:
+            shutil.rmtree(run_dir)
+            run_dir.mkdir(parents=True, exist_ok=False)
+            return run_dir, run_name, run_index
+        if skip_existing_video and any(run_dir.glob("*.webm")):
+            return None, run_name, run_index
         if skip_existing:
-            return ensure_run_dir(runs_dir, run_index + 1, skip_existing, existing_indices)
+            return ensure_run_dir(
+                runs_dir,
+                run_index + 1,
+                skip_existing,
+                existing_indices,
+                skip_existing_video,
+                overwrite_existing,
+            )
         raise FileExistsError(f"Run directory already exists: {run_dir}")
     run_dir.mkdir(parents=True, exist_ok=False)
     existing_indices.add(run_index)
@@ -190,12 +218,19 @@ def run_single(
 ) -> bool:
     start_time = time.perf_counter()
     actions: List[Dict[str, Any]] = []
+    events: List[Dict[str, Any]] = []
     submit_info: Dict[str, Any] = {"success": False, "t_start_s": None, "t_end_s": None}
     submitted = False
     page_video = None
     context = None
     page = None
     captured_exception: Optional[Exception] = None
+    viewport = {"width": 1280, "height": 720}
+    device_pixel_ratio = None
+    user_agent = None
+    timezone = None
+    locale = None
+    event_logger: Optional[form_filler.EventLogger] = None
 
     answers_path = run_dir / "answers_instance.json"
     answers_path.write_text(json.dumps(answers, indent=2))
@@ -209,11 +244,41 @@ def run_single(
         page = context.new_page()
         page_video = page.video
         page.set_default_timeout(DEFAULT_TIMEOUT_MS)
+        event_logger = form_filler.EventLogger(
+            page, start_time, record_hover=not args.omit_hover_events
+        )
         page.goto(form_url, wait_until="domcontentloaded")
         page.wait_for_load_state("networkidle")
+        if page.viewport_size:
+            viewport = {
+                "width": page.viewport_size.get("width"),
+                "height": page.viewport_size.get("height"),
+            }
+        try:
+            env_info = page.evaluate(
+                "() => ({devicePixelRatio: window.devicePixelRatio || null,"
+                "userAgent: navigator.userAgent || null,"
+                "locale: navigator.language || null,"
+                "timezone: (Intl.DateTimeFormat().resolvedOptions().timeZone || null)})"
+            )
+            device_pixel_ratio = env_info.get("devicePixelRatio")
+            user_agent = env_info.get("userAgent")
+            locale = env_info.get("locale")
+            timezone = env_info.get("timezone")
+        except Exception:
+            pass
+        if event_logger is not None:
+            event_logger.log_event(
+                "navigate",
+                args={"url": form_url},
+                intent="Open form URL",
+                outcome=True,
+            )
         page.mouse.move(10, 10)
-        actions = form_filler.fill_form(page, answers, start_time, args.pause_seconds)
-        submit_info = form_filler.submit_form(page, start_time)
+        actions = form_filler.fill_form(
+            page, answers, start_time, args.pause_seconds, event_logger=event_logger
+        )
+        submit_info = form_filler.submit_form(page, start_time, event_logger=event_logger)
         submitted = bool(submit_info.get("success"))
         if args.pause_seconds > 0:
             page.wait_for_timeout(int(args.pause_seconds * 1000))
@@ -237,6 +302,28 @@ def run_single(
                 pass
 
     video_path = finalize_video(run_dir, form_id, run_name, page_video)
+    if event_logger is not None:
+        events = event_logger.events
+    if args.events_layout == "per-action":
+        per_action_events: Dict[int, List[Dict[str, Any]]] = {}
+        for action in actions:
+            step = action.get("step")
+            if isinstance(step, int):
+                per_action_events[step] = []
+        non_step_events: List[Dict[str, Any]] = []
+        for event in events:
+            step_ref = event.get("step_ref")
+            if isinstance(step_ref, int) and step_ref in per_action_events:
+                event_copy = dict(event)
+                event_copy.pop("step_ref", None)
+                per_action_events[step_ref].append(event_copy)
+            else:
+                non_step_events.append(event)
+        for action in actions:
+            step = action.get("step")
+            if isinstance(step, int):
+                action["events"] = per_action_events.get(step, [])
+        events = non_step_events
 
     failure_reason = None
     if not submitted:
@@ -248,6 +335,13 @@ def run_single(
                 failure_reason = "confirmation_not_detected"
 
     annotations = {
+        "schema_version": "2.0",
+        "viewport": viewport,
+        "device_pixel_ratio": device_pixel_ratio,
+        "user_agent": user_agent,
+        "timezone": timezone,
+        "locale": locale,
+        "events_layout": args.events_layout,
         "form_id": form_id,
         "run_name": run_name,
         "run_label": run_label,
@@ -263,6 +357,7 @@ def run_single(
         "failure_reason": failure_reason,
         "submit": submit_info,
         "actions": actions,
+        "events": events,
     }
     if run_metadata:
         annotations["run_metadata"] = run_metadata
@@ -274,7 +369,7 @@ def run_single(
     return submitted
 
 
-def main(argv: Optional[List[str]] = None) -> None:
+def main(argv: Optional[List[str]] = None):
     args = parse_args(argv)
     specs_root = Path(args.specs_root) if args.specs_root else (SRC_DIR / "forms")
     form_spec = load_form_spec(args.form_id, specs_root)
@@ -306,6 +401,7 @@ def main(argv: Optional[List[str]] = None) -> None:
     current_index = start_index
     unconfirmed_runs: List[str] = []
 
+    interrupted = False
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=False, slow_mo=args.slow_mo)
         try:
@@ -315,8 +411,17 @@ def main(argv: Optional[List[str]] = None) -> None:
                 if skip_existing:
                     current_index = next_available_index(existing_indices, current_index)
                 run_dir, run_name, run_index = ensure_run_dir(
-                    runs_dir, current_index, skip_existing, existing_indices
+                    runs_dir,
+                    current_index,
+                    skip_existing,
+                    existing_indices,
+                    args.skip_existing_video,
+                    args.overwrite_existing,
                 )
+                if run_dir is None:
+                    print(f"[INFO] Skipping existing video for {run_name}.")
+                    current_index = run_index + 1
+                    continue
                 run_label = f"{args.form_id}_{run_name}"
                 answers = spec.get("answers", [])
                 if not isinstance(answers, list):
@@ -337,12 +442,24 @@ def main(argv: Optional[List[str]] = None) -> None:
                     unconfirmed_runs.append(run_name)
                 generated += 1
                 current_index = run_index + 1
+        except KeyboardInterrupt:
+            interrupted = True
         finally:
-            browser.close()
+            try:
+                browser.close()
+            except KeyboardInterrupt:
+                pass
+            except Exception:
+                pass
+
+    if interrupted:
+        print("[WARN] Run interrupted by user.", file=sys.stderr)
+        return False
 
     if unconfirmed_runs:
         joined = ", ".join(unconfirmed_runs)
         print(f"[WARN] Submission not confirmed for runs: {joined}", file=sys.stderr)
+    return True
 
 
 if __name__ == "__main__":

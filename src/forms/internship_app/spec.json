@@ -1,0 +1,341 @@
+{
+  "form_id": "internship_app",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSenqUex1eG1k80vjfzNx0Rm9GqkAYTXr2x0XdzQjaJGCRvkDg/viewform",
+  "description": "Answer variations for the Internship Application form. Each run varies candidate profiles, skills, and availability.",
+  "runs": [
+    {
+      "suffix": "backend_ml",
+      "notes": "Candidate focused on backend and ML tooling.",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Nair",
+          "tags": [
+            "profile",
+            "identity"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "priya.nair@example.com",
+          "tags": [
+            "profile",
+            "contact"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "Bengaluru",
+          "tags": [
+            "profile",
+            "location"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "Master's",
+          "tags": [
+            "education"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Backend",
+            "Data and Machine Learning"
+          ],
+          "tags": [
+            "interests"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "Python",
+            "SQL",
+            "JavaScript/TypeScript"
+          ],
+          "tags": [
+            "skills"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "https://github.com/priyanair",
+          "tags": [
+            "portfolio"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "I enjoy building reliable services that support ML teams. I want to learn how product systems scale in production. This internship matches my interests in backend tooling and data pipelines. I am eager to contribute and learn from the team.",
+          "tags": [
+            "statement"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-06-10",
+          "tags": [
+            "availability"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "20",
+          "tags": [
+            "availability"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "13:30",
+          "tags": [
+            "scheduling"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "preferences"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "uiux",
+      "notes": "Candidate focused on UX and frontend work.",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Elliot Park",
+          "tags": [
+            "profile",
+            "identity"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "elliot.park@example.com",
+          "tags": [
+            "profile",
+            "contact"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "Toronto",
+          "tags": [
+            "profile",
+            "location"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "Bachelor's",
+          "tags": [
+            "education"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "UI/UX",
+            "Frontend"
+          ],
+          "tags": [
+            "interests"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "JavaScript/TypeScript",
+            "Python"
+          ],
+          "tags": [
+            "skills"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "https://portfolio.elliotpark.design",
+          "tags": [
+            "portfolio"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "I focus on user workflows and interface clarity. I want to work with a team that ships iterative design. The role fits my interest in UI automation and prototyping. I am excited to collaborate across disciplines.",
+          "tags": [
+            "statement"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-05-20",
+          "tags": [
+            "availability"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "15",
+          "tags": [
+            "availability"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "09:30",
+          "tags": [
+            "scheduling"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "Hybrid",
+          "tags": [
+            "preferences"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "devops",
+      "notes": "Candidate focused on infrastructure and DevOps.",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Samira Ortiz",
+          "tags": [
+            "profile",
+            "identity"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "samira.ortiz@example.com",
+          "tags": [
+            "profile",
+            "contact"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "Berlin",
+          "tags": [
+            "profile",
+            "location"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "PhD",
+          "tags": [
+            "education"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "DevOps"
+          ],
+          "tags": [
+            "interests"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "Python",
+            "C/C++",
+            "SQL"
+          ],
+          "tags": [
+            "skills"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "https://github.com/samira-ortiz",
+          "tags": [
+            "portfolio"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "I work on automation for build and deployment systems. I want to apply my research on reliability to production pipelines. The internship offers hands on exposure to real infrastructure. I can contribute to tooling and monitoring.",
+          "tags": [
+            "statement"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-07-01",
+          "tags": [
+            "availability"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "25",
+          "tags": [
+            "availability"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "11:00",
+          "tags": [
+            "scheduling"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "preferences"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,6 @@
 {
   "form_id": "conf_interest",
-  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/viewform",
-  "description": "Answer variations for the Conference Interest form. Each run tweaks the profile, interests, and scheduling preferences so multiple submissions can be captured with unique recordings.",
+  "description": "Run variations for Conference Interest form submissions.",
   "runs": [
     {
       "suffix": "mlsys",
@@ -11,63 +10,43 @@
           "label": "Full Name",
           "widget_type": "short_text",
           "value": "Jordan Rivera",
-          "tags": [
-            "profile",
-            "identity"
-          ]
+          "tags": ["profile", "identity"]
         },
         {
           "label": "Preferred contact email",
           "widget_type": "short_text",
           "value": "jordan.rivera@example.com",
-          "tags": [
-            "profile",
-            "contact"
-          ]
+          "tags": ["profile", "contact"]
         },
         {
           "label": "Brief bio",
           "widget_type": "paragraph_text",
           "value": "Graduate researcher focused on distributed training and edge inference.",
-          "tags": [
-            "summary"
-          ]
+          "tags": ["summary"]
         },
         {
           "label": "Primary role",
           "widget_type": "single_choice",
           "value": "PhD student",
-          "tags": [
-            "role"
-          ]
+          "tags": ["role"]
         },
         {
           "label": "Topics you're interested in",
           "widget_type": "multi_choice",
-          "value": [
-            "AI/ML",
-            "Systems"
-          ],
-          "tags": [
-            "topics",
-            "interests"
-          ]
+          "value": ["AI/ML", "Systems"],
+          "tags": ["topics", "interests"]
         },
         {
           "label": "Preferred meeting date",
           "widget_type": "date",
           "value": "2025-06-15",
-          "tags": [
-            "scheduling"
-          ]
+          "tags": ["scheduling"]
         },
         {
           "label": "Preferred meeting time",
           "widget_type": "time",
           "value": "10:30",
-          "tags": [
-            "scheduling"
-          ]
+          "tags": ["scheduling"]
         }
       ]
     },
@@ -79,63 +58,43 @@
           "label": "Full Name",
           "widget_type": "short_text",
           "value": "Avery Chen",
-          "tags": [
-            "profile",
-            "identity"
-          ]
+          "tags": ["profile", "identity"]
         },
         {
           "label": "Preferred contact email",
           "widget_type": "short_text",
           "value": "avery.chen@streamforge.io",
-          "tags": [
-            "profile",
-            "contact"
-          ]
+          "tags": ["profile", "contact"]
         },
         {
           "label": "Brief bio",
           "widget_type": "paragraph_text",
           "value": "Industry professional leading applied ML work for collaboration tools.",
-          "tags": [
-            "summary"
-          ]
+          "tags": ["summary"]
         },
         {
           "label": "Primary role",
           "widget_type": "single_choice",
           "value": "Industry Professional",
-          "tags": [
-            "role"
-          ]
+          "tags": ["role"]
         },
         {
           "label": "Topics you're interested in",
           "widget_type": "multi_choice",
-          "value": [
-            "AI/ML",
-            "Security"
-          ],
-          "tags": [
-            "topics",
-            "interests"
-          ]
+          "value": ["AI/ML", "Security"],
+          "tags": ["topics", "interests"]
         },
         {
           "label": "Preferred meeting date",
           "widget_type": "date",
           "value": "2025-06-17",
-          "tags": [
-            "scheduling"
-          ]
+          "tags": ["scheduling"]
         },
         {
           "label": "Preferred meeting time",
           "widget_type": "time",
           "value": "14:00",
-          "tags": [
-            "scheduling"
-          ]
+          "tags": ["scheduling"]
         }
       ]
     },
@@ -147,63 +106,43 @@
           "label": "Full Name",
           "widget_type": "short_text",
           "value": "Noah Whitaker",
-          "tags": [
-            "profile",
-            "identity"
-          ]
+          "tags": ["profile", "identity"]
         },
         {
           "label": "Preferred contact email",
           "widget_type": "short_text",
           "value": "noah.whitaker@chipfoundry.ai",
-          "tags": [
-            "profile",
-            "contact"
-          ]
+          "tags": ["profile", "contact"]
         },
         {
           "label": "Brief bio",
           "widget_type": "paragraph_text",
           "value": "Masters student studying human centered AI and interface design.",
-          "tags": [
-            "summary"
-          ]
+          "tags": ["summary"]
         },
         {
           "label": "Primary role",
           "widget_type": "single_choice",
           "value": "Master's student",
-          "tags": [
-            "role"
-          ]
+          "tags": ["role"]
         },
         {
           "label": "Topics you're interested in",
           "widget_type": "multi_choice",
-          "value": [
-            "Human-Computer Interaction",
-            "AI/ML"
-          ],
-          "tags": [
-            "topics",
-            "interests"
-          ]
+          "value": ["Human-Computer Interaction", "AI/ML"],
+          "tags": ["topics", "interests"]
         },
         {
           "label": "Preferred meeting date",
           "widget_type": "date",
           "value": "2025-06-20",
-          "tags": [
-            "scheduling"
-          ]
+          "tags": ["scheduling"]
         },
         {
           "label": "Preferred meeting time",
           "widget_type": "time",
           "value": "09:00",
-          "tags": [
-            "scheduling"
-          ]
+          "tags": ["scheduling"]
         }
       ]
     }

@@ -1,0 +1,138 @@
+{
+  "form_id": "workshop_signup",
+  "run_name": "run_0003",
+  "run_label": "workshop_signup_run_0003",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/workshop_signup_run_0003.webm",
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "failure_reason": null,
+  "submit": {
+    "success": true,
+    "t_start_s": 22.113274424000338,
+    "t_end_s": 70.77231778700025,
+    "bbox": null,
+    "submit_clicked": true,
+    "confirmation_method": "url",
+    "confirmation_text": null,
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/formResponse"
+  },
+  "actions": [
+    {
+      "step": 0,
+      "label": "Full name",
+      "widget_type": "short_text",
+      "value": "Morgan Lee",
+      "success": true,
+      "t_start_s": 6.360782302000189,
+      "t_end_s": 10.001918687000398,
+      "bbox": {
+        "x": 312.5,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 1,
+      "label": "University or organization",
+      "widget_type": "short_text",
+      "value": "UX Collective",
+      "success": true,
+      "t_start_s": 10.001926431000356,
+      "t_end_s": 13.85312175900026,
+      "bbox": {
+        "x": 312.5,
+        "y": 377.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 2,
+      "label": "Which workshop track are you registering for?",
+      "widget_type": "single_choice",
+      "value": "UI Agents and Automation",
+      "success": true,
+      "t_start_s": 13.853135871000177,
+      "t_end_s": 15.551811771000303,
+      "bbox": {
+        "x": 312.5,
+        "y": 527.1875,
+        "width": 640,
+        "height": 210
+      }
+    },
+    {
+      "step": 3,
+      "label": "Experience level",
+      "widget_type": "single_choice",
+      "value": "Intermediate",
+      "success": true,
+      "t_start_s": 15.551818689000356,
+      "t_end_s": 17.1386688460002,
+      "bbox": {
+        "x": 312.5,
+        "y": 749.1875,
+        "width": 640,
+        "height": 210
+      }
+    },
+    {
+      "step": 4,
+      "label": "Dietary restrictions",
+      "widget_type": "multi_choice",
+      "value": [
+        "Vegetarian"
+      ],
+      "success": true,
+      "t_start_s": 17.138676424000096,
+      "t_end_s": 18.72335262100023,
+      "bbox": {
+        "x": 312.5,
+        "y": 457.1875,
+        "width": 640,
+        "height": 294
+      }
+    },
+    {
+      "step": 5,
+      "label": "Preferred session date",
+      "widget_type": "date",
+      "value": "2025-07-07",
+      "success": true,
+      "t_start_s": 18.72336116700035,
+      "t_end_s": 20.529237467000257,
+      "bbox": {
+        "x": 312.5,
+        "y": 763.1875,
+        "width": 640,
+        "height": 153
+      }
+    },
+    {
+      "step": 6,
+      "label": "May we email you updates?",
+      "widget_type": "single_choice",
+      "value": "No",
+      "success": true,
+      "t_start_s": 20.529242848000194,
+      "t_end_s": 22.113266746000136,
+      "bbox": {
+        "x": 312.5,
+        "y": 419.1875,
+        "width": 640,
+        "height": 170
+      }
+    }
+  ],
+  "run_metadata": {
+    "suffix": "ui_agents",
+    "notes": "Intermediate attendee interested in UI agents."
+  }
+}

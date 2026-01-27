@@ -1,0 +1,62 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Morgan Lee",
+    "tags": [
+      "profile",
+      "identity"
+    ]
+  },
+  {
+    "label": "University or organization",
+    "widget_type": "short_text",
+    "value": "UX Collective",
+    "tags": [
+      "profile",
+      "organization"
+    ]
+  },
+  {
+    "label": "Which workshop track are you registering for?",
+    "widget_type": "single_choice",
+    "value": "UI Agents and Automation",
+    "tags": [
+      "track"
+    ]
+  },
+  {
+    "label": "Experience level",
+    "widget_type": "single_choice",
+    "value": "Intermediate",
+    "tags": [
+      "experience"
+    ]
+  },
+  {
+    "label": "Dietary restrictions",
+    "widget_type": "multi_choice",
+    "value": [
+      "Vegetarian"
+    ],
+    "tags": [
+      "diet"
+    ]
+  },
+  {
+    "label": "Preferred session date",
+    "widget_type": "date",
+    "value": "2025-07-07",
+    "tags": [
+      "scheduling"
+    ]
+  },
+  {
+    "label": "May we email you updates?",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "consent"
+    ]
+  }
+]

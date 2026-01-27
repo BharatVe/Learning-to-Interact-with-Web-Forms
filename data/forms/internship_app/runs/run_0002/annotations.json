@@ -1,0 +1,178 @@
+{
+  "form_id": "internship_app",
+  "run_name": "run_0002",
+  "run_label": "internship_app_run_0002",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSenqUex1eG1k80vjfzNx0Rm9GqkAYTXr2x0XdzQjaJGCRvkDg/viewform",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0002/internship_app_run_0002.webm",
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": false,
+  "failure_reason": "submit_button_not_found",
+  "submit": {
+    "success": false,
+    "t_start_s": 18.670674827000312,
+    "t_end_s": 109.29338960199993,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": null,
+    "confirmation_text": null,
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSenqUex1eG1k80vjfzNx0Rm9GqkAYTXr2x0XdzQjaJGCRvkDg/viewform",
+    "error": "submit_button_not_found"
+  },
+  "actions": [
+    {
+      "step": 0,
+      "label": "Full name",
+      "widget_type": "short_text",
+      "value": "Elliot Park",
+      "success": true,
+      "t_start_s": 5.245697806999942,
+      "t_end_s": 8.701173762000053,
+      "bbox": {
+        "x": 312.5,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 1,
+      "label": "Contact email",
+      "widget_type": "short_text",
+      "value": "elliot.park@example.com",
+      "success": true,
+      "t_start_s": 8.701179766000223,
+      "t_end_s": 13.947647059000246,
+      "bbox": {
+        "x": 312.5,
+        "y": 377.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 2,
+      "label": "Current city",
+      "widget_type": "short_text",
+      "value": "Toronto",
+      "success": true,
+      "t_start_s": 13.947655367000152,
+      "t_end_s": 16.92106409600001,
+      "bbox": {
+        "x": 312.5,
+        "y": 527.1875,
+        "width": 640,
+        "height": 138
+      }
+    },
+    {
+      "step": 3,
+      "label": "Degree program",
+      "widget_type": "single_choice",
+      "value": "Bachelor's",
+      "success": true,
+      "t_start_s": 16.92108771700032,
+      "t_end_s": 18.51402758400036,
+      "bbox": {
+        "x": 312.5,
+        "y": 677.1875,
+        "width": 640,
+        "height": 250
+      }
+    },
+    {
+      "step": 4,
+      "label": "Primary area of interest",
+      "widget_type": "multi_choice",
+      "value": [
+        "UI/UX",
+        "Frontend"
+      ],
+      "success": false,
+      "t_start_s": 18.51403591899998,
+      "t_end_s": 18.571197307000148,
+      "bbox": null
+    },
+    {
+      "step": 5,
+      "label": "Programming languages you use",
+      "widget_type": "multi_choice",
+      "value": [
+        "JavaScript/TypeScript",
+        "Python"
+      ],
+      "success": false,
+      "t_start_s": 18.571204023000064,
+      "t_end_s": 18.592089106000003,
+      "bbox": null
+    },
+    {
+      "step": 6,
+      "label": "Link to GitHub or portfolio",
+      "widget_type": "short_text",
+      "value": "https://portfolio.elliotpark.design",
+      "success": false,
+      "t_start_s": 18.592094870999972,
+      "t_end_s": 18.61116673000015,
+      "bbox": null
+    },
+    {
+      "step": 7,
+      "label": "Brief motivation statement",
+      "widget_type": "paragraph_text",
+      "value": "I focus on user workflows and interface clarity. I want to work with a team that ships iterative design. The role fits my interest in UI automation and prototyping. I am excited to collaborate across disciplines.",
+      "success": false,
+      "t_start_s": 18.61117180500014,
+      "t_end_s": 18.62467668699992,
+      "bbox": null
+    },
+    {
+      "step": 8,
+      "label": "Earliest start date",
+      "widget_type": "date",
+      "value": "2025-05-20",
+      "success": false,
+      "t_start_s": 18.624680403000184,
+      "t_end_s": 18.63612745799992,
+      "bbox": null
+    },
+    {
+      "step": 9,
+      "label": "Weekly availability (hours)",
+      "widget_type": "short_text",
+      "value": "15",
+      "success": false,
+      "t_start_s": 18.63613298600012,
+      "t_end_s": 18.646985017000134,
+      "bbox": null
+    },
+    {
+      "step": 10,
+      "label": "Preferred meeting time for interview",
+      "widget_type": "time",
+      "value": "09:30",
+      "success": false,
+      "t_start_s": 18.647007103000306,
+      "t_end_s": 18.65680196400035,
+      "bbox": null
+    },
+    {
+      "step": 11,
+      "label": "Are you open to remote work?",
+      "widget_type": "single_choice",
+      "value": "Hybrid",
+      "success": false,
+      "t_start_s": 18.65680506200033,
+      "t_end_s": 18.670670711000184,
+      "bbox": null
+    }
+  ],
+  "run_metadata": {
+    "suffix": "uiux",
+    "notes": "Candidate focused on UX and frontend work."
+  }
+}

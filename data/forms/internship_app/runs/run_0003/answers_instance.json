@@ -1,0 +1,107 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Samira Ortiz",
+    "tags": [
+      "profile",
+      "identity"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "samira.ortiz@example.com",
+    "tags": [
+      "profile",
+      "contact"
+    ]
+  },
+  {
+    "label": "Current city",
+    "widget_type": "short_text",
+    "value": "Berlin",
+    "tags": [
+      "profile",
+      "location"
+    ]
+  },
+  {
+    "label": "Degree program",
+    "widget_type": "single_choice",
+    "value": "PhD",
+    "tags": [
+      "education"
+    ]
+  },
+  {
+    "label": "Primary area of interest",
+    "widget_type": "multi_choice",
+    "value": [
+      "DevOps"
+    ],
+    "tags": [
+      "interests"
+    ]
+  },
+  {
+    "label": "Programming languages you use",
+    "widget_type": "multi_choice",
+    "value": [
+      "Python",
+      "C/C++",
+      "SQL"
+    ],
+    "tags": [
+      "skills"
+    ]
+  },
+  {
+    "label": "Link to GitHub or portfolio",
+    "widget_type": "short_text",
+    "value": "https://github.com/samira-ortiz",
+    "tags": [
+      "portfolio"
+    ]
+  },
+  {
+    "label": "Brief motivation statement",
+    "widget_type": "paragraph_text",
+    "value": "I work on automation for build and deployment systems. I want to apply my research on reliability to production pipelines. The internship offers hands on exposure to real infrastructure. I can contribute to tooling and monitoring.",
+    "tags": [
+      "statement"
+    ]
+  },
+  {
+    "label": "Earliest start date",
+    "widget_type": "date",
+    "value": "2025-07-01",
+    "tags": [
+      "availability"
+    ]
+  },
+  {
+    "label": "Weekly availability (hours)",
+    "widget_type": "short_text",
+    "value": "25",
+    "tags": [
+      "availability"
+    ]
+  },
+  {
+    "label": "Preferred meeting time for interview",
+    "widget_type": "time",
+    "value": "11:00",
+    "tags": [
+      "scheduling"
+    ]
+  },
+  {
+    "label": "Are you open to remote work?",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "preferences"
+    ]
+  }
+]
