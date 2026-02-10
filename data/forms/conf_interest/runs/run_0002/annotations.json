@@ -15,10 +15,10 @@
   "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/conf_interest_run_0002.webm",
   "run_params": {
     "headless": false,
-    "slow_mo": 250,
-    "timeout_ms": 30000,
-    "type_delay_ms": 100,
-    "action_delay_ms": 200,
+    "slow_mo": 200,
+    "timeout_ms": 15000,
+    "type_delay_ms": 120,
+    "action_delay_ms": 220,
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
     "mouse_overlay": true
@@ -31,8 +31,8 @@
       "value": "Avery Chen",
       "intent": "Fill Full Name",
       "success": true,
-      "t_start_s": 2.739822133999951,
-      "t_end_s": 6.59089109200022,
+      "t_start_s": 2.3737990670006184,
+      "t_end_s": 6.567398535999928,
       "bbox": {
         "x": 312.5,
         "y": 227.1875,
@@ -51,6 +51,9 @@
       "target_name": null,
       "target_selector": null,
       "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -60,8 +63,8 @@
       "value": "avery.chen@streamforge.io",
       "intent": "Fill Preferred contact email",
       "success": true,
-      "t_start_s": 6.591015055000298,
-      "t_end_s": 11.858122708000337,
+      "t_start_s": 6.567485872000361,
+      "t_end_s": 12.232111366000026,
       "bbox": {
         "x": 312.5,
         "y": 377.1875,
@@ -80,6 +83,9 @@
       "target_name": null,
       "target_selector": null,
       "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -89,8 +95,8 @@
       "value": "Industry professional leading applied ML work for collaboration tools.",
       "intent": "Fill Brief bio",
       "success": true,
-      "t_start_s": 11.858293223000146,
-      "t_end_s": 22.12420084500036,
+      "t_start_s": 12.2321789610005,
+      "t_end_s": 23.823445281000204,
       "bbox": {
         "x": 312.5,
         "y": 527.1875,
@@ -109,6 +115,9 @@
       "target_name": "Meine Antwort",
       "target_selector": null,
       "scroll_y": 0,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -118,8 +127,8 @@
       "value": "Industry Professional",
       "intent": "Select Industry Professional for Primary role",
       "success": true,
-      "t_start_s": 22.124289847,
-      "t_end_s": 24.19282335800017,
+      "t_start_s": 23.82354467500045,
+      "t_end_s": 25.846142373000475,
       "bbox": {
         "x": 312.5,
         "y": 699.1875,
@@ -138,6 +147,9 @@
       "target_name": "Industry Professional",
       "target_selector": "#i30",
       "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -150,8 +162,8 @@
       ],
       "intent": "Select AI/ML, Security for Topics you're interested in",
       "success": true,
-      "t_start_s": 24.192921841000043,
-      "t_end_s": 27.99273524099999,
+      "t_start_s": 25.846216840000125,
+      "t_end_s": 29.45531549200041,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -170,6 +182,9 @@
       "target_name": "Security",
       "target_selector": "#i42",
       "scroll_y": 229,
+      "required": true,
+      "required_attr": false,
+      "required_marker": true,
       "error": null
     },
     {
@@ -179,8 +194,8 @@
       "value": "2025-06-17",
       "intent": "Fill Preferred meeting date",
       "success": true,
-      "t_start_s": 27.992880894000336,
-      "t_end_s": 30.60925220700028,
+      "t_start_s": 29.455382253000607,
+      "t_end_s": 31.837260156999946,
       "bbox": {
         "x": 312.5,
         "y": 501.1875,
@@ -199,6 +214,9 @@
       "target_name": null,
       "target_selector": null,
       "scroll_y": 730,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -208,8 +226,8 @@
       "value": "14:00",
       "intent": "Fill Preferred meeting time",
       "success": true,
-      "t_start_s": 30.6093269400003,
-      "t_end_s": 35.87695385999996,
+      "t_start_s": 31.837322387000313,
+      "t_end_s": 36.8540951140003,
       "bbox": {
         "x": 312.5,
         "y": 666.1875,
@@ -228,13 +246,16 @@
       "target_name": "Minute",
       "target_selector": null,
       "scroll_y": 730,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     }
   ],
   "submit": {
     "success": true,
-    "t_start_s": 35.877070280000225,
-    "t_end_s": 70.05934543100011,
+    "t_start_s": 36.854216030000316,
+    "t_end_s": 70.8284337619998,
     "bbox": {
       "x": 312.5,
       "y": 502.1875,

@@ -15,10 +15,10 @@
   "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/conf_interest_run_0003.webm",
   "run_params": {
     "headless": false,
-    "slow_mo": 250,
-    "timeout_ms": 30000,
-    "type_delay_ms": 100,
-    "action_delay_ms": 200,
+    "slow_mo": 200,
+    "timeout_ms": 15000,
+    "type_delay_ms": 120,
+    "action_delay_ms": 220,
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
     "mouse_overlay": true
@@ -31,8 +31,8 @@
       "value": "Noah Whitaker",
       "intent": "Fill Full Name",
       "success": true,
-      "t_start_s": 2.5380501249996996,
-      "t_end_s": 6.689963839000029,
+      "t_start_s": 2.350843619999978,
+      "t_end_s": 6.856929329000195,
       "bbox": {
         "x": 312.5,
         "y": 227.1875,
@@ -51,6 +51,9 @@
       "target_name": null,
       "target_selector": null,
       "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -60,8 +63,8 @@
       "value": "noah.whitaker@chipfoundry.ai",
       "intent": "Fill Preferred contact email",
       "success": true,
-      "t_start_s": 6.690098004999982,
-      "t_end_s": 12.316901360999964,
+      "t_start_s": 6.857029083999805,
+      "t_end_s": 12.86901579699952,
       "bbox": {
         "x": 312.5,
         "y": 377.1875,
@@ -80,6 +83,9 @@
       "target_name": null,
       "target_selector": null,
       "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -89,8 +95,8 @@
       "value": "Masters student studying human centered AI and interface design.",
       "intent": "Fill Brief bio",
       "success": true,
-      "t_start_s": 12.317093771000145,
-      "t_end_s": 21.98397771100008,
+      "t_start_s": 12.86910700199951,
+      "t_end_s": 23.689133976999983,
       "bbox": {
         "x": 312.5,
         "y": 527.1875,
@@ -109,6 +115,9 @@
       "target_name": "Meine Antwort",
       "target_selector": null,
       "scroll_y": 0,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -118,8 +127,8 @@
       "value": "Master's student",
       "intent": "Select Master's student for Primary role",
       "success": true,
-      "t_start_s": 21.984077252000134,
-      "t_end_s": 24.082724449000125,
+      "t_start_s": 23.6894908940003,
+      "t_end_s": 25.717905175999476,
       "bbox": {
         "x": 312.5,
         "y": 699.1875,
@@ -138,6 +147,9 @@
       "target_name": "Master\u2019s student",
       "target_selector": "#i24",
       "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -150,8 +162,8 @@
       ],
       "intent": "Select Human-Computer Interaction, AI/ML for Topics you're interested in",
       "success": true,
-      "t_start_s": 24.0845816799997,
-      "t_end_s": 27.875542948999737,
+      "t_start_s": 25.717980044999422,
+      "t_end_s": 29.305613356999856,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -170,6 +182,9 @@
       "target_name": "AI/ML",
       "target_selector": "#i39",
       "scroll_y": 229,
+      "required": true,
+      "required_attr": false,
+      "required_marker": true,
       "error": null
     },
     {
@@ -179,8 +194,8 @@
       "value": "2025-06-20",
       "intent": "Fill Preferred meeting date",
       "success": true,
-      "t_start_s": 27.87567819900005,
-      "t_end_s": 30.504990718000045,
+      "t_start_s": 29.305698598000163,
+      "t_end_s": 31.675140139999712,
       "bbox": {
         "x": 312.5,
         "y": 501.1875,
@@ -199,6 +214,9 @@
       "target_name": null,
       "target_selector": null,
       "scroll_y": 730,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -208,8 +226,8 @@
       "value": "09:00",
       "intent": "Fill Preferred meeting time",
       "success": true,
-      "t_start_s": 30.505102825999984,
-      "t_end_s": 35.6301701970001,
+      "t_start_s": 31.675230310999723,
+      "t_end_s": 36.72841443499965,
       "bbox": {
         "x": 312.5,
         "y": 666.1875,
@@ -228,13 +246,16 @@
       "target_name": "Minute",
       "target_selector": null,
       "scroll_y": 730,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     }
   ],
   "submit": {
     "success": true,
-    "t_start_s": 35.6303052559997,
-    "t_end_s": 69.68118242499986,
+    "t_start_s": 36.728490161999616,
+    "t_end_s": 70.70444803400005,
     "bbox": {
       "x": 312.5,
       "y": 502.1875,

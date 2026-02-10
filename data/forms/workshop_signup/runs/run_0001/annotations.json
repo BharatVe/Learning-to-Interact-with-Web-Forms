@@ -31,8 +31,8 @@
       "value": "Lena Ortiz",
       "intent": "Fill Full name",
       "success": true,
-      "t_start_s": 2.445248829000775,
-      "t_end_s": 6.365054488000169,
+      "t_start_s": 2.2635915640003077,
+      "t_end_s": 6.322374163000859,
       "bbox": {
         "x": 312.5,
         "y": 227.1875,
@@ -63,8 +63,8 @@
       "value": "Stanford University",
       "intent": "Fill University or organization",
       "success": true,
-      "t_start_s": 6.365159632000541,
-      "t_end_s": 11.243138020000515,
+      "t_start_s": 6.322478167001464,
+      "t_end_s": 11.202076894000129,
       "bbox": {
         "x": 312.5,
         "y": 377.1875,
@@ -95,8 +95,8 @@
       "value": "Intro to Machine Learning",
       "intent": "Select Intro to Machine Learning for Which workshop track are you registering for?",
       "success": true,
-      "t_start_s": 11.24321355200027,
-      "t_end_s": 13.210773082000742,
+      "t_start_s": 11.202211884001372,
+      "t_end_s": 13.202193443001306,
       "bbox": {
         "x": 312.5,
         "y": 527.1875,
@@ -127,8 +127,8 @@
       "value": "Beginner",
       "intent": "Select Beginner for Experience level",
       "success": true,
-      "t_start_s": 13.210865076000118,
-      "t_end_s": 15.17315619800047,
+      "t_start_s": 13.202278393000597,
+      "t_end_s": 15.140733576001367,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -161,8 +161,8 @@
       ],
       "intent": "Select None for Dietary restrictions",
       "success": true,
-      "t_start_s": 15.173244075000184,
-      "t_end_s": 17.166139244000078,
+      "t_start_s": 15.140828961000807,
+      "t_end_s": 17.199460796000494,
       "bbox": {
         "x": 312.5,
         "y": 477.1875,
@@ -193,8 +193,8 @@
       "value": "2025-07-05",
       "intent": "Fill Preferred session date",
       "success": true,
-      "t_start_s": 17.1662026110007,
-      "t_end_s": 19.561172342000646,
+      "t_start_s": 17.19952678900154,
+      "t_end_s": 19.56234384400159,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -225,8 +225,8 @@
       "value": "Yes",
       "intent": "Select Yes for May we email you updates?",
       "success": true,
-      "t_start_s": 19.561248871000316,
-      "t_end_s": 21.528526815000077,
+      "t_start_s": 19.562446149000607,
+      "t_end_s": 21.5707001640003,
       "bbox": {
         "x": 312.5,
         "y": 449.1875,
@@ -253,8 +253,8 @@
   ],
   "submit": {
     "success": true,
-    "t_start_s": 21.528586415000063,
-    "t_end_s": 55.990092600000025,
+    "t_start_s": 21.57077118900088,
+    "t_end_s": 55.54675824300102,
     "bbox": {
       "x": 312.5,
       "y": 631.1875,

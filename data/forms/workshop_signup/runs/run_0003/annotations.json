@@ -1,87 +1,156 @@
 {
-  "schema_version": "2.0",
+  "schema_version": "3.0",
+  "form_id": "workshop_signup",
+  "run_name": "run_0003",
+  "run_label": "workshop_signup_run_0003",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform",
   "viewport": {
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": null,
-  "user_agent": null,
-  "locale": null,
-  "timezone": null,
-  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform",
-  "run_label": "workshop_signup_run_0003",
+  "device_pixel_ratio": 1,
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+  "locale": "en-US",
+  "timezone": "Europe/Berlin",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/workshop_signup_run_0003.webm",
+  "run_params": {
+    "headless": false,
+    "slow_mo": 200,
+    "timeout_ms": 15000,
+    "type_delay_ms": 120,
+    "action_delay_ms": 220,
+    "post_submit_delay_seconds": 0.0,
+    "screenshots": false,
+    "mouse_overlay": true
+  },
   "actions": [
     {
       "step": 0,
       "label": "Full name",
       "widget_type": "short_text",
       "value": "Morgan Lee",
-      "success": false,
-      "t_start_s": 1.5825217660001272,
-      "t_end_s": 1.5963130289999299,
-      "bbox": null,
       "intent": "Fill Full name",
-      "scroll_y": null,
-      "target_bbox": null,
+      "success": true,
+      "t_start_s": 2.2688721790000272,
+      "t_end_s": 6.480072301999826,
+      "bbox": {
+        "x": 312.5,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 306.1875,
+        "width": 295,
+        "height": 24
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0000_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0000_post.png"
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "error": null
     },
     {
       "step": 1,
       "label": "University or organization",
       "widget_type": "short_text",
       "value": "UX Collective",
-      "success": false,
-      "t_start_s": 1.7980658149999726,
-      "t_end_s": 1.8361464229999456,
-      "bbox": null,
       "intent": "Fill University or organization",
-      "scroll_y": null,
-      "target_bbox": null,
+      "success": true,
+      "t_start_s": 6.480180579001171,
+      "t_end_s": 10.598821970001154,
+      "bbox": {
+        "x": 312.5,
+        "y": 377.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 456.1875,
+        "width": 295,
+        "height": 24
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0001_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0001_post.png"
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "error": null
     },
     {
       "step": 2,
       "label": "Which workshop track are you registering for?",
       "widget_type": "single_choice",
       "value": "UI Agents and Automation",
-      "success": false,
-      "t_start_s": 2.0376924320000853,
-      "t_end_s": 2.049135347999936,
-      "bbox": null,
       "intent": "Select UI Agents and Automation for Which workshop track are you registering for?",
-      "scroll_y": null,
-      "target_bbox": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0002_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0002_post.png"
+      "success": true,
+      "t_start_s": 10.598909704000107,
+      "t_end_s": 12.610369281999738,
+      "bbox": {
+        "x": 312.5,
+        "y": 527.1875,
+        "width": 640,
+        "height": 210
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 665.1875,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
+      "target_role": "radio",
+      "target_name": "UI Agents and Automation",
+      "target_selector": "#i22",
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "error": null
     },
     {
       "step": 3,
       "label": "Experience level",
       "widget_type": "single_choice",
       "value": "Intermediate",
-      "success": false,
-      "t_start_s": 2.2493438640001386,
-      "t_end_s": 2.2678401519999625,
-      "bbox": null,
       "intent": "Select Intermediate for Experience level",
-      "scroll_y": null,
-      "target_bbox": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0003_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0003_post.png"
+      "success": true,
+      "t_start_s": 12.610431770001014,
+      "t_end_s": 14.56600945900027,
+      "bbox": {
+        "x": 312.5,
+        "y": 732.1875,
+        "width": 640,
+        "height": 210
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 370.1875,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
+      "target_role": "radio",
+      "target_name": "Intermediate",
+      "target_selector": "#i33",
+      "scroll_y": 17,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "error": null
     },
     {
       "step": 4,
@@ -90,85 +159,122 @@
       "value": [
         "Vegetarian"
       ],
-      "success": false,
-      "t_start_s": 2.469871368999975,
-      "t_end_s": 2.485906223000029,
-      "bbox": null,
       "intent": "Select Vegetarian for Dietary restrictions",
-      "scroll_y": null,
-      "target_bbox": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0004_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0004_post.png"
+      "success": true,
+      "t_start_s": 14.566096951000873,
+      "t_end_s": 16.507452728001226,
+      "bbox": {
+        "x": 312.5,
+        "y": 477.1875,
+        "width": 640,
+        "height": 294
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 523.1875,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
+      "target_role": "checkbox",
+      "target_name": "Vegetarian",
+      "target_selector": "#i45",
+      "scroll_y": 494,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
+      "error": null
     },
     {
       "step": 5,
       "label": "Preferred session date",
       "widget_type": "date",
       "value": "2025-07-07",
-      "success": false,
-      "t_start_s": 2.687733327999922,
-      "t_end_s": 2.701504266000029,
-      "bbox": null,
       "intent": "Fill Preferred session date",
-      "scroll_y": null,
-      "target_bbox": null,
+      "success": true,
+      "t_start_s": 16.507512131000112,
+      "t_end_s": 18.84293946100115,
+      "bbox": {
+        "x": 312.5,
+        "y": 732.1875,
+        "width": 640,
+        "height": 153
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 378.1875,
+        "width": 127,
+        "height": 24
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0005_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0005_post.png"
+      "scroll_y": 545,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
+      "error": null
     },
     {
       "step": 6,
       "label": "May we email you updates?",
       "widget_type": "single_choice",
       "value": "No",
-      "success": false,
-      "t_start_s": 2.9023078719999376,
-      "t_end_s": 2.9245786900000894,
-      "bbox": null,
       "intent": "Select No for May we email you updates?",
-      "scroll_y": null,
-      "target_bbox": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0006_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/step_0006_post.png"
+      "success": true,
+      "t_start_s": 18.84301646899985,
+      "t_end_s": 20.824973261000196,
+      "bbox": {
+        "x": 312.5,
+        "y": 449.1875,
+        "width": 640,
+        "height": 170
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 564.1875,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
+      "target_role": "radio",
+      "target_name": "No",
+      "target_selector": "#i74",
+      "scroll_y": 993,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "error": null
     }
   ],
-  "trace": {
-    "tool_trace_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/tool_trace.jsonl",
-    "screenshot_dir": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations"
-  },
   "submit": {
     "success": true,
-    "t_start_s": 3.1353808129999834,
-    "t_end_s": 3.1425216170000567,
-    "bbox": null,
-    "submit_clicked": false,
+    "t_start_s": 20.825031407001006,
+    "t_end_s": 54.78555557100117,
+    "bbox": {
+      "x": 312.5,
+      "y": 631.1875,
+      "width": 98.453125,
+      "height": 36
+    },
+    "submit_clicked": true,
     "confirmation_method": "url",
-    "confirmation_text": null,
-    "final_url": null,
-    "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/submit_pre.png",
-    "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/observations/submit_post.png"
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/formResponse",
+    "pre_screenshot": null,
+    "post_screenshot": null
   },
+  "trace": {
+    "tool_trace_path": "tool_trace.jsonl",
+    "screenshot_dir": null
+  },
+  "submitted": true,
+  "failure_reason": null,
   "run_metadata": {
     "suffix": "ui_agents",
     "notes": "Intermediate attendee interested in UI agents."
-  },
-  "form_id": "workshop_signup",
-  "run_name": "run_0003",
-  "video_path": null,
-  "run_params": {
-    "slow_mo": 200,
-    "type_delay_ms": 120,
-    "action_delay_ms": 200,
-    "pause_seconds": 0.0
-  },
-  "submitted": true,
-  "failure_reason": null
+  }
 }

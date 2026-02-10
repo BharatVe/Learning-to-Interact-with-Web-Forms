@@ -31,8 +31,8 @@
       "value": "Jordan Rivera",
       "intent": "Fill Full Name",
       "success": true,
-      "t_start_s": 2.365273248000449,
-      "t_end_s": 6.661718607000694,
+      "t_start_s": 4.59839980400011,
+      "t_end_s": 9.27191047299948,
       "bbox": {
         "x": 312.5,
         "y": 227.1875,
@@ -63,8 +63,8 @@
       "value": "jordan.rivera@example.com",
       "intent": "Fill Preferred contact email",
       "success": true,
-      "t_start_s": 6.661783129000469,
-      "t_end_s": 12.308980597999835,
+      "t_start_s": 9.272029843999917,
+      "t_end_s": 14.920385272000203,
       "bbox": {
         "x": 312.5,
         "y": 377.1875,
@@ -95,8 +95,8 @@
       "value": "Graduate researcher focused on distributed training and edge inference.",
       "intent": "Fill Brief bio",
       "success": true,
-      "t_start_s": 12.309027139000136,
-      "t_end_s": 24.029678885000067,
+      "t_start_s": 14.920465852999769,
+      "t_end_s": 26.593452363000324,
       "bbox": {
         "x": 312.5,
         "y": 527.1875,
@@ -127,8 +127,8 @@
       "value": "PhD student",
       "intent": "Select PhD student for Primary role",
       "success": true,
-      "t_start_s": 24.029754442000012,
-      "t_end_s": 25.99320995100061,
+      "t_start_s": 26.593572136999683,
+      "t_end_s": 28.559590124999886,
       "bbox": {
         "x": 312.5,
         "y": 699.1875,
@@ -162,8 +162,8 @@
       ],
       "intent": "Select AI/ML, Systems for Topics you're interested in",
       "success": true,
-      "t_start_s": 25.9932968840003,
-      "t_end_s": 29.59534985099981,
+      "t_start_s": 28.559668451000107,
+      "t_end_s": 32.11673859700022,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -194,8 +194,8 @@
       "value": "2025-06-15",
       "intent": "Fill Preferred meeting date",
       "success": true,
-      "t_start_s": 29.595436188999884,
-      "t_end_s": 32.044422712000596,
+      "t_start_s": 32.116806254999574,
+      "t_end_s": 34.563219450999895,
       "bbox": {
         "x": 312.5,
         "y": 501.1875,
@@ -226,8 +226,8 @@
       "value": "10:30",
       "intent": "Fill Preferred meeting time",
       "success": true,
-      "t_start_s": 32.044562585000676,
-      "t_end_s": 37.081763475000116,
+      "t_start_s": 34.563318610999886,
+      "t_end_s": 39.58860010999979,
       "bbox": {
         "x": 312.5,
         "y": 666.1875,
@@ -254,8 +254,8 @@
   ],
   "submit": {
     "success": true,
-    "t_start_s": 37.0818861759999,
-    "t_end_s": 71.19394417700005,
+    "t_start_s": 39.588717419000204,
+    "t_end_s": 73.54205640100008,
     "bbox": {
       "x": 312.5,
       "y": 502.1875,
