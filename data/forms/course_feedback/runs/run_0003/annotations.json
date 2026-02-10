@@ -1,73 +1,69 @@
 {
-  "form_id": "course_feedback",
-  "run_name": "run_0003",
-  "run_label": "course_feedback_run_0003",
+  "schema_version": "2.0",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSczlT7s8tTQgmYpXnfzz4taF5pvj-qpzgksyBZImfHBGwMpBA/viewform",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/course_feedback_run_0003.webm",
-  "run_params": {
-    "slow_mo": 200,
-    "type_delay_ms": 120,
-    "action_delay_ms": 200,
-    "pause_seconds": 0.0
-  },
-  "submitted": false,
-  "failure_reason": "submit_button_not_found",
-  "submit": {
-    "success": false,
-    "t_start_s": 15.918525147999844,
-    "t_end_s": 106.54535306299977,
-    "bbox": null,
-    "submit_clicked": false,
-    "confirmation_method": null,
-    "confirmation_text": null,
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSczlT7s8tTQgmYpXnfzz4taF5pvj-qpzgksyBZImfHBGwMpBA/viewform",
-    "error": "submit_button_not_found"
-  },
+  "run_label": "course_feedback_run_0003",
   "actions": [
     {
       "step": 0,
       "label": "Course name",
       "widget_type": "short_text",
       "value": "AI Ethics",
-      "success": true,
-      "t_start_s": 9.304188146999877,
-      "t_end_s": 12.57659600099987,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.6073644230000355,
+      "t_end_s": 1.6178053890000683,
+      "bbox": null,
+      "intent": "Fill Course name",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0000_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0000_post.png"
     },
     {
       "step": 1,
       "label": "Your program level",
       "widget_type": "single_choice",
       "value": "PhD",
-      "success": true,
-      "t_start_s": 12.576603139999861,
-      "t_end_s": 14.207320745999823,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 250
-      }
+      "success": false,
+      "t_start_s": 1.8199792249999973,
+      "t_end_s": 1.8512935230000949,
+      "bbox": null,
+      "intent": "Select PhD for Your program level",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0001_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0001_post.png"
     },
     {
       "step": 2,
       "label": "Did you attend most sessions?",
       "widget_type": "single_choice",
       "value": "Yes",
-      "success": true,
-      "t_start_s": 14.207328340000004,
-      "t_end_s": 15.802875458000017,
-      "bbox": {
-        "x": 312.5,
-        "y": 639.1875,
-        "width": 640,
-        "height": 210
-      }
+      "success": false,
+      "t_start_s": 2.0534075660000326,
+      "t_end_s": 2.0666373999999905,
+      "bbox": null,
+      "intent": "Select Yes for Did you attend most sessions?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0002_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0002_post.png"
     },
     {
       "step": 3,
@@ -75,9 +71,17 @@
       "widget_type": "single_choice",
       "value": "4",
       "success": false,
-      "t_start_s": 15.802883547999954,
-      "t_end_s": 15.828765744000066,
-      "bbox": null
+      "t_start_s": 2.268828188000043,
+      "t_end_s": 2.282934354999952,
+      "bbox": null,
+      "intent": "Select 4 for Overall satisfaction",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0003_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0003_post.png"
     },
     {
       "step": 4,
@@ -85,9 +89,17 @@
       "widget_type": "single_choice",
       "value": "About right",
       "success": false,
-      "t_start_s": 15.828772182000193,
-      "t_end_s": 15.8489364510001,
-      "bbox": null
+      "t_start_s": 2.485147880000113,
+      "t_end_s": 2.498314722000032,
+      "bbox": null,
+      "intent": "Select About right for Workload felt",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0004_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0004_post.png"
     },
     {
       "step": 5,
@@ -95,9 +107,17 @@
       "widget_type": "paragraph_text",
       "value": "Debates and applied policy examples.",
       "success": false,
-      "t_start_s": 15.84894205799992,
-      "t_end_s": 15.86647926600017,
-      "bbox": null
+      "t_start_s": 2.7006192510000346,
+      "t_end_s": 2.715027235999969,
+      "bbox": null,
+      "intent": "Fill What did you like most?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0005_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0005_post.png"
     },
     {
       "step": 6,
@@ -105,9 +125,17 @@
       "widget_type": "paragraph_text",
       "value": "Add more guest speakers.",
       "success": false,
-      "t_start_s": 15.866483616000096,
-      "t_end_s": 15.883885944999747,
-      "bbox": null
+      "t_start_s": 2.9173131720001493,
+      "t_end_s": 2.935019936000117,
+      "bbox": null,
+      "intent": "Fill What should be improved?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0006_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0006_post.png"
     },
     {
       "step": 7,
@@ -118,9 +146,17 @@
         "Practical labs"
       ],
       "success": false,
-      "t_start_s": 15.88389049899979,
-      "t_end_s": 15.900867588999972,
-      "bbox": null
+      "t_start_s": 3.1372962160000952,
+      "t_end_s": 3.154595900000004,
+      "bbox": null,
+      "intent": "Select Theory, Practical labs for Most useful aspects",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0007_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0007_post.png"
     },
     {
       "step": 8,
@@ -128,13 +164,48 @@
       "widget_type": "single_choice",
       "value": "Yes",
       "success": false,
-      "t_start_s": 15.900872387000163,
-      "t_end_s": 15.91851951999979,
-      "bbox": null
+      "t_start_s": 3.356068450000066,
+      "t_end_s": 3.3697425320001457,
+      "bbox": null,
+      "intent": "Select Yes for Would you recommend this course?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0008_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/step_0008_post.png"
     }
   ],
+  "trace": {
+    "tool_trace_path": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/tool_trace.jsonl",
+    "screenshot_dir": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations"
+  },
+  "submit": {
+    "success": true,
+    "t_start_s": 3.5814255320001394,
+    "t_end_s": 3.5876011240000025,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": "url",
+    "confirmation_text": null,
+    "final_url": null,
+    "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/submit_pre.png",
+    "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/observations/submit_post.png"
+  },
   "run_metadata": {
     "suffix": "ai_ethics",
     "notes": "Positive feedback for an ethics seminar."
-  }
+  },
+  "form_id": "course_feedback",
+  "run_name": "run_0003",
+  "video_path": null,
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "failure_reason": null
 }

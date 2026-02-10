@@ -1,87 +1,87 @@
 {
-  "form_id": "event_rsvp",
-  "run_name": "run_0001",
-  "run_label": "event_rsvp_run_0001",
+  "schema_version": "2.0",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdykQqKi_FnFo9Tdc7ArF-LEB6-hhKx5-1GnA2HM7TDyp8yRA/viewform",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/event_rsvp_run_0001.webm",
-  "run_params": {
-    "slow_mo": 200,
-    "type_delay_ms": 120,
-    "action_delay_ms": 200,
-    "pause_seconds": 0.0
-  },
-  "submitted": true,
-  "failure_reason": null,
-  "submit": {
-    "success": true,
-    "t_start_s": 27.800939389999712,
-    "t_end_s": 76.43782753799996,
-    "bbox": null,
-    "submit_clicked": true,
-    "confirmation_method": "url",
-    "confirmation_text": null,
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSdykQqKi_FnFo9Tdc7ArF-LEB6-hhKx5-1GnA2HM7TDyp8yRA/formResponse"
-  },
+  "run_label": "event_rsvp_run_0001",
   "actions": [
     {
       "step": 0,
       "label": "Name",
       "widget_type": "short_text",
       "value": "Olivia Brooks",
-      "success": true,
-      "t_start_s": 7.091196036999918,
-      "t_end_s": 10.796443177000128,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.5800817529998312,
+      "t_end_s": 1.6037047590000384,
+      "bbox": null,
+      "intent": "Fill Name",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0000_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0000_post.png"
     },
     {
       "step": 1,
       "label": "Will you attend?",
       "widget_type": "single_choice",
       "value": "Yes",
-      "success": true,
-      "t_start_s": 10.796448082000097,
-      "t_end_s": 12.333977065,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 210
-      }
+      "success": false,
+      "t_start_s": 1.806159412999932,
+      "t_end_s": 1.821794182999838,
+      "bbox": null,
+      "intent": "Select Yes for Will you attend?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0001_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0001_post.png"
     },
     {
       "step": 2,
       "label": "Number of guests (including yourself)",
       "widget_type": "short_text",
       "value": "1",
-      "success": true,
-      "t_start_s": 12.33398241499981,
-      "t_end_s": 14.41452606499979,
-      "bbox": {
-        "x": 312.5,
-        "y": 599.1875,
-        "width": 640,
-        "height": 162
-      }
+      "success": false,
+      "t_start_s": 2.022177081999871,
+      "t_end_s": 2.039037566999923,
+      "bbox": null,
+      "intent": "Fill Number of guests (including yourself)",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0002_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0002_post.png"
     },
     {
       "step": 3,
       "label": "Preferred arrival time",
       "widget_type": "time",
       "value": "18:30",
-      "success": true,
-      "t_start_s": 14.414530466000087,
-      "t_end_s": 18.337075655999797,
-      "bbox": {
-        "x": 312.5,
-        "y": 732.1875,
-        "width": 640,
-        "height": 164
-      }
+      "success": false,
+      "t_start_s": 2.240961549999838,
+      "t_end_s": 2.2574142309999843,
+      "bbox": null,
+      "intent": "Fill Preferred arrival time",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0003_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0003_post.png"
     },
     {
       "step": 4,
@@ -91,34 +91,67 @@
         "Talks",
         "Networking"
       ],
-      "success": true,
-      "t_start_s": 18.33708089999982,
-      "t_end_s": 21.358309438000106,
-      "bbox": {
-        "x": 312.5,
-        "y": 421.1875,
-        "width": 640,
-        "height": 258
-      }
+      "success": false,
+      "t_start_s": 2.459078096999974,
+      "t_end_s": 2.473845535999999,
+      "bbox": null,
+      "intent": "Select Talks, Networking for Activities you're interested in",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0004_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0004_post.png"
     },
     {
       "step": 5,
       "label": "Accessibility needs or comments",
       "widget_type": "paragraph_text",
       "value": "Need wheelchair accessible seating.",
-      "success": true,
-      "t_start_s": 21.358314608,
-      "t_end_s": 27.800935382999796,
-      "bbox": {
-        "x": 312.5,
-        "y": 691.1875,
-        "width": 640,
-        "height": 136
-      }
+      "success": false,
+      "t_start_s": 2.6756747109998287,
+      "t_end_s": 2.694642581999915,
+      "bbox": null,
+      "intent": "Fill Accessibility needs or comments",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0005_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/step_0005_post.png"
     }
   ],
+  "trace": {
+    "tool_trace_path": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/tool_trace.jsonl",
+    "screenshot_dir": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations"
+  },
+  "submit": {
+    "success": true,
+    "t_start_s": 2.902926693999916,
+    "t_end_s": 2.9093072450000363,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": "url",
+    "confirmation_text": null,
+    "final_url": null,
+    "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/submit_pre.png",
+    "post_screenshot": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/observations/submit_post.png"
+  },
   "run_metadata": {
     "suffix": "attending",
     "notes": "Confirmed attendee with accessibility note."
-  }
+  },
+  "form_id": "event_rsvp",
+  "run_name": "run_0001",
+  "video_path": null,
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "failure_reason": null
 }

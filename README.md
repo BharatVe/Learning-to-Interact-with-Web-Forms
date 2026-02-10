@@ -2,29 +2,30 @@
 
 ## Overview
 
-This project automates Google Form submissions with Playwright to generate a dataset of
-videos and annotations. The engine runs multiple submissions per form, records each run,
-and writes a per-run `annotations.json` with timing metadata for each filled question.
+This project generates a dataset of Google Form interactions using **direct Playwright Python** (no MCP). Each run fills a form, records a video, saves step screenshots, and writes annotations + a tool trace.
 
-Key points:
-- Reusable engine in `src/engine/` handles run orchestration and output structure.
-- Form-specific configuration lives in `src/forms/<form_id>/spec.json`.
-- Form-specific entrypoints (e.g. `src/conf_intrest/fill_google_form.py`) are thin wrappers.
-- Outputs are stored under `data/forms/<form_id>/runs/run_XXXX/`.
-
-## Dataset generation
-
-Example command for the Conference Interest form:
+## Install
 
 ```bash
-python3 src/engine/runner.py --form-id conf_interest --answers src/conf_intrest/answers_conference.json --dataset-root data/forms --num-runs 3
+pip install -r requirements.txt
+python -m playwright install chromium
+# Linux only (if needed):
+python -m playwright install --with-deps chromium
 ```
 
-You can also run the form-specific entrypoint:
+If `PLAYWRIGHT_SKIP_FFMPEG_INSTALL` is set, video recording may fail.
+
+## Dataset Generation (Single Form)
 
 ```bash
-python3 src/conf_intrest/fill_google_form.py --num-runs 3
+python3 src/engine/runner.py \
+  --form-id conf_interest \
+  --answers data/answers/conf_interest/runs.json \
+  --dataset-root data/forms \
+  --num-runs 1
 ```
+
+By default the browser runs **headed** (visible). Use `--headless` to disable UI.
 
 ## Inputs
 
@@ -39,8 +40,7 @@ Each answer entry must contain:
 - `widget_type` (short_text, paragraph_text, single_choice, multi_choice, date, time)
 - `value` (string or list, depending on widget type)
 
-Optional run metadata (e.g. `run_name`, `seed`, `notes`) can be included and will be
-carried into the annotations.
+Optional run metadata can be included and is carried into `annotations.json`.
 
 ## Outputs
 
@@ -49,11 +49,16 @@ Each run generates:
 - `data/forms/<form_id>/runs/run_XXXX/<form_id>_run_XXXX.webm`
 - `data/forms/<form_id>/runs/run_XXXX/annotations.json`
 - `data/forms/<form_id>/runs/run_XXXX/answers_instance.json`
+- `data/forms/<form_id>/runs/run_XXXX/tool_trace.jsonl`
+- `data/forms/<form_id>/runs/run_XXXX/observations/step_XXXX_pre.png`
+- `data/forms/<form_id>/runs/run_XXXX/observations/step_XXXX_post.png`
+- `data/forms/<form_id>/runs/run_XXXX/observations/submit_pre.png`
+- `data/forms/<form_id>/runs/run_XXXX/observations/submit_post.png`
 
-`annotations.json` includes form/run identifiers, the final video path, run parameters,
-per-question action timing, and submit timing.
+`annotations.json` includes form/run identifiers, video path, run parameters, macro actions, submit timing, and trace pointers.
+`tool_trace.jsonl` is JSONL with Gemini-style micro-actions (click_at, hover_at, type_text_at, key_combination, scroll_document).
 
-## Run controls
+## Run Controls
 
 Useful flags:
 
@@ -64,31 +69,19 @@ Useful flags:
 - `--skip-existing-video` skip runs whose output directory already contains a `.webm`.
 - `--overwrite-existing` delete an existing run directory and regenerate it.
 - `--form-url` override the URL from the spec file.
+- `--headless` run without visible browser UI.
+- `--slow-mo` add a delay (ms) to Playwright actions.
+- `--viewport-width` / `--viewport-height` set the browser viewport.
+- `--timeout-ms` set Playwright timeout for waits.
 
-Overwrite existing runs:
-
-```bash
-# Re-record the first run for a form (overwrites run_0001 if it exists)
-python3 src/engine/runner.py --form-id conf_interest --answers data/answers/conf_interest/runs.json --dataset-root data/forms --num-runs 1 --start-index 1 --overwrite-existing
-```
-
-## Batch runs across forms
-
-Use the batch runner to execute multiple forms sequentially. It determines the maximum
-number of runs per form by counting entries in the per-form answers file (JSON/JSONL).
-
-Examples:
+Overwrite existing run:
 
 ```bash
-# Run max available runs for every form under src/forms, skipping existing videos
-python3 src/engine/batch_runner.py --answers-root data/answers --dataset-root data/forms --skip-existing-video
-
-# Run only specific forms with a per-form limit
-python3 src/engine/batch_runner.py --form-ids conf_interest,workshop_signup --num-runs-per-form 2
-
-# Preview counts without running
-python3 src/engine/batch_runner.py --dry-run
-
-# Re-record existing runs for all forms (overwrites matching run directories)
-python3 src/engine/batch_runner.py --answers-root data/answers --dataset-root data/forms --overwrite-existing
+python3 src/engine/runner.py \
+  --form-id conf_interest \
+  --answers data/answers/conf_interest/runs.json \
+  --dataset-root data/forms \
+  --num-runs 1 \
+  --start-index 1 \
+  --overwrite-existing
 ```

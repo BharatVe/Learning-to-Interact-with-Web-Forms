@@ -1,135 +1,175 @@
 {
-  "form_id": "conf_interest",
-  "run_name": "run_0003",
+  "schema_version": "2.0",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/viewform",
   "run_label": "conf_interest_run_0003",
-  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScdiEfCs_Ld5bCIuVilB_hDhlSQCaRCwcJJHihThWaYherK3g/viewform?usp=publish-editor",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/conf_interest_run_0003.webm",
-  "run_params": {
-    "slow_mo": 250,
-    "type_delay_ms": 150,
-    "action_delay_ms": 300,
-    "pause_seconds": 0.0
-  },
-  "submitted": true,
-  "submit": {
-    "success": true,
-    "t_start_s": 40.667445348,
-    "t_end_s": 89.70970031100023,
-    "bbox": null
-  },
   "actions": [
     {
       "step": 0,
-      "label": "Full name",
+      "label": "Full Name",
       "widget_type": "short_text",
       "value": "Noah Whitaker",
-      "success": true,
-      "t_start_s": 2.995448384000156,
-      "t_end_s": 7.586622807999447,
-      "bbox": {
-        "x": 312.5,
-        "y": 195.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.5183556750000662,
+      "t_end_s": 1.5311388929999339,
+      "bbox": null,
+      "intent": "Fill Full Name",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0000_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0000_post.png"
     },
     {
       "step": 1,
       "label": "Preferred contact email",
       "widget_type": "short_text",
       "value": "noah.whitaker@chipfoundry.ai",
-      "success": true,
-      "t_start_s": 7.586630419999892,
-      "t_end_s": 14.570276298999488,
-      "bbox": {
-        "x": 312.5,
-        "y": 345.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.7318456319999314,
+      "t_end_s": 1.7695061039999018,
+      "bbox": null,
+      "intent": "Fill Preferred contact email",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0001_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0001_post.png"
     },
     {
       "step": 2,
       "label": "Brief bio",
       "widget_type": "paragraph_text",
-      "value": "Research scientist exploring specialized accelerators for privacy-preserving AI workloads.",
-      "success": true,
-      "t_start_s": 14.570282570000018,
-      "t_end_s": 31.617457837000075,
-      "bbox": {
-        "x": 312.5,
-        "y": 495.1875,
-        "width": 640,
-        "height": 136
-      }
+      "value": "Masters student studying human centered AI and interface design.",
+      "success": false,
+      "t_start_s": 1.9701574809998874,
+      "t_end_s": 1.9867638589998933,
+      "bbox": null,
+      "intent": "Fill Brief bio",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0002_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0002_post.png"
     },
     {
       "step": 3,
       "label": "Primary role",
       "widget_type": "single_choice",
-      "value": "Research scientist",
+      "value": "Master's student",
       "success": false,
-      "t_start_s": 31.617465065999568,
-      "t_end_s": 31.685421111000323,
-      "bbox": {
-        "x": 312.5,
-        "y": 643.1875,
-        "width": 640,
-        "height": 250
-      }
+      "t_start_s": 2.1870505980000416,
+      "t_end_s": 2.2086210850000043,
+      "bbox": null,
+      "intent": "Select Master's student for Primary role",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0003_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0003_post.png"
     },
     {
       "step": 4,
-      "label": "Topics you\u2019re interested in",
+      "label": "Topics you're interested in",
       "widget_type": "multi_choice",
       "value": [
-        "Systems",
-        "Hardware",
-        "Security"
+        "Human-Computer Interaction",
+        "AI/ML"
       ],
       "success": false,
-      "t_start_s": 31.68542640800024,
-      "t_end_s": 33.64164748599978,
-      "bbox": {
-        "x": 312.5,
-        "y": 905.1875,
-        "width": 640,
-        "height": 250
-      }
+      "t_start_s": 2.4095173030000296,
+      "t_end_s": 2.4295279729999493,
+      "bbox": null,
+      "intent": "Select Human-Computer Interaction, AI/ML for Topics you're interested in",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0004_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0004_post.png"
     },
     {
       "step": 5,
       "label": "Preferred meeting date",
       "widget_type": "date",
       "value": "2025-06-20",
-      "success": true,
-      "t_start_s": 33.641652465000334,
-      "t_end_s": 35.83277304799958,
-      "bbox": {
-        "x": 312.5,
-        "y": 493.1875,
-        "width": 640,
-        "height": 153
-      }
+      "success": false,
+      "t_start_s": 2.6305683269999918,
+      "t_end_s": 2.6478333259999545,
+      "bbox": null,
+      "intent": "Fill Preferred meeting date",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0005_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0005_post.png"
     },
     {
       "step": 6,
       "label": "Preferred meeting time",
       "widget_type": "time",
       "value": "09:00",
-      "success": true,
-      "t_start_s": 35.83278375000009,
-      "t_end_s": 40.66743643100017,
-      "bbox": {
-        "x": 312.5,
-        "y": 658.1875,
-        "width": 640,
-        "height": 164
-      }
+      "success": false,
+      "t_start_s": 2.848272998000084,
+      "t_end_s": 2.8681891569999607,
+      "bbox": null,
+      "intent": "Fill Preferred meeting time",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0006_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/step_0006_post.png"
     }
   ],
+  "trace": {
+    "tool_trace_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/tool_trace.jsonl",
+    "screenshot_dir": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations"
+  },
+  "submit": {
+    "success": true,
+    "t_start_s": 3.0772067979999065,
+    "t_end_s": 3.084962538999889,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": "url",
+    "confirmation_text": null,
+    "final_url": null,
+    "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/submit_pre.png",
+    "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0003/observations/submit_post.png"
+  },
   "run_metadata": {
-    "suffix": "hardware",
-    "notes": "Researcher exploring AI accelerators and hardware/software co-design."
-  }
+    "suffix": "hci",
+    "notes": "Masters student focused on human-computer interaction."
+  },
+  "form_id": "conf_interest",
+  "run_name": "run_0003",
+  "video_path": null,
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "failure_reason": null
 }

@@ -1,87 +1,87 @@
 {
-  "form_id": "workshop_signup",
-  "run_name": "run_0001",
-  "run_label": "workshop_signup_run_0001",
+  "schema_version": "2.0",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/workshop_signup_run_0001.webm",
-  "run_params": {
-    "slow_mo": 200,
-    "type_delay_ms": 120,
-    "action_delay_ms": 200,
-    "pause_seconds": 0.0
-  },
-  "submitted": true,
-  "failure_reason": null,
-  "submit": {
-    "success": true,
-    "t_start_s": 20.714939727,
-    "t_end_s": 69.40093142800015,
-    "bbox": null,
-    "submit_clicked": true,
-    "confirmation_method": "url",
-    "confirmation_text": null,
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/formResponse"
-  },
+  "run_label": "workshop_signup_run_0001",
   "actions": [
     {
       "step": 0,
       "label": "Full name",
       "widget_type": "short_text",
       "value": "Lena Ortiz",
-      "success": true,
-      "t_start_s": 4.578048730000319,
-      "t_end_s": 7.96740066700022,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.5987184460000208,
+      "t_end_s": 1.6139182080000865,
+      "bbox": null,
+      "intent": "Fill Full name",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0000_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0000_post.png"
     },
     {
       "step": 1,
       "label": "University or organization",
       "widget_type": "short_text",
       "value": "Stanford University",
-      "success": true,
-      "t_start_s": 7.967407448000358,
-      "t_end_s": 12.46081769400007,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.8149779319999197,
+      "t_end_s": 1.8337607830001161,
+      "bbox": null,
+      "intent": "Fill University or organization",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0001_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0001_post.png"
     },
     {
       "step": 2,
       "label": "Which workshop track are you registering for?",
       "widget_type": "single_choice",
       "value": "Intro to Machine Learning",
-      "success": true,
-      "t_start_s": 12.460825275000389,
-      "t_end_s": 14.004745934000312,
-      "bbox": {
-        "x": 312.5,
-        "y": 527.1875,
-        "width": 640,
-        "height": 210
-      }
+      "success": false,
+      "t_start_s": 2.03525705800007,
+      "t_end_s": 2.0562506010001016,
+      "bbox": null,
+      "intent": "Select Intro to Machine Learning for Which workshop track are you registering for?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0002_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0002_post.png"
     },
     {
       "step": 3,
       "label": "Experience level",
       "widget_type": "single_choice",
       "value": "Beginner",
-      "success": true,
-      "t_start_s": 14.004754499000228,
-      "t_end_s": 15.583409087000291,
-      "bbox": {
-        "x": 312.5,
-        "y": 749.1875,
-        "width": 640,
-        "height": 210
-      }
+      "success": false,
+      "t_start_s": 2.257792223000024,
+      "t_end_s": 2.2762298009999995,
+      "bbox": null,
+      "intent": "Select Beginner for Experience level",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0003_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0003_post.png"
     },
     {
       "step": 4,
@@ -90,49 +90,85 @@
       "value": [
         "None"
       ],
-      "success": true,
-      "t_start_s": 15.583417245000419,
-      "t_end_s": 17.222018063000178,
-      "bbox": {
-        "x": 312.5,
-        "y": 497.1875,
-        "width": 640,
-        "height": 294
-      }
+      "success": false,
+      "t_start_s": 2.4778606750001018,
+      "t_end_s": 2.4957327609999993,
+      "bbox": null,
+      "intent": "Select None for Dietary restrictions",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0004_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0004_post.png"
     },
     {
       "step": 5,
       "label": "Preferred session date",
       "widget_type": "date",
       "value": "2025-07-05",
-      "success": true,
-      "t_start_s": 17.222026224000274,
-      "t_end_s": 19.065807043000405,
-      "bbox": {
-        "x": 312.5,
-        "y": 801.1875,
-        "width": 640,
-        "height": 153
-      }
+      "success": false,
+      "t_start_s": 2.6973277120000603,
+      "t_end_s": 2.720768646000124,
+      "bbox": null,
+      "intent": "Fill Preferred session date",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0005_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0005_post.png"
     },
     {
       "step": 6,
       "label": "May we email you updates?",
       "widget_type": "single_choice",
       "value": "Yes",
-      "success": true,
-      "t_start_s": 19.065815015000226,
-      "t_end_s": 20.71493212200039,
-      "bbox": {
-        "x": 312.5,
-        "y": 419.1875,
-        "width": 640,
-        "height": 170
-      }
+      "success": false,
+      "t_start_s": 2.9217345740000837,
+      "t_end_s": 2.933068867999964,
+      "bbox": null,
+      "intent": "Select Yes for May we email you updates?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0006_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/step_0006_post.png"
     }
   ],
+  "trace": {
+    "tool_trace_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/tool_trace.jsonl",
+    "screenshot_dir": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations"
+  },
+  "submit": {
+    "success": true,
+    "t_start_s": 3.143878719999975,
+    "t_end_s": 3.1505161679999674,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": "url",
+    "confirmation_text": null,
+    "final_url": null,
+    "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/submit_pre.png",
+    "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/observations/submit_post.png"
+  },
   "run_metadata": {
     "suffix": "student_intro",
     "notes": "Beginner student registering for the intro track."
-  }
+  },
+  "form_id": "workshop_signup",
+  "run_name": "run_0001",
+  "video_path": null,
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "failure_reason": null
 }

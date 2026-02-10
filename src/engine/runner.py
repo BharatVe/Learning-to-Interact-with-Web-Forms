@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 import re
 import shutil
 import sys
@@ -7,18 +8,15 @@ import time
 from pathlib import Path
 from typing import Any, Dict, Iterator, List, Optional, Tuple
 
-from playwright.sync_api import sync_playwright
-
 ROOT_DIR = Path(__file__).resolve().parents[2]
 SRC_DIR = ROOT_DIR / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from engine import form_filler  # noqa: E402
+from engine.form_engine import FormEngine  # noqa: E402
+from engine.trace_logger import TraceLogger  # noqa: E402
 
 DEFAULT_DATASET_ROOT = "data/forms"
-DEFAULT_TYPE_DELAY = 120
-DEFAULT_ACTION_DELAY = 200
 DEFAULT_SLOW_MO = 200
 DEFAULT_TIMEOUT_MS = 15000
 
@@ -32,7 +30,6 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--answers", dest="answers_source")
     parser.add_argument("--answers-source", dest="answers_source")
     parser.add_argument("--answers-json", dest="answers_source")
-    parser.add_argument("--video-dir")
     parser.add_argument("--dataset-root", default=DEFAULT_DATASET_ROOT)
     parser.add_argument("--specs-root")
     parser.add_argument("--num-runs", type=int)
@@ -41,22 +38,18 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--skip-existing", action="store_true")
     parser.add_argument("--skip-existing-video", action="store_true")
     parser.add_argument("--overwrite-existing", action="store_true")
-    parser.add_argument(
-        "--events-layout",
-        choices=["flat", "per-action"],
-        default="flat",
-        help="Store events as a flat list or attach them to each action entry.",
-    )
-    parser.add_argument("--omit-hover-events", action="store_true")
+    parser.add_argument("--headless", action="store_true", default=False)
     parser.add_argument("--slow-mo", type=int, default=DEFAULT_SLOW_MO)
-    parser.add_argument("--pause-seconds", type=float, default=0.0)
-    parser.add_argument("--type-delay", type=int, default=DEFAULT_TYPE_DELAY)
-    parser.add_argument("--action-delay", type=int, default=DEFAULT_ACTION_DELAY)
+    parser.add_argument("--viewport-width", type=int, default=1280)
+    parser.add_argument("--viewport-height", type=int, default=720)
+    parser.add_argument("--timeout-ms", type=int, default=DEFAULT_TIMEOUT_MS)
     args = parser.parse_args(argv)
     if not args.answers_source:
         parser.error("--answers is required")
     if args.num_runs is not None and args.num_runs < 1:
         parser.error("--num-runs must be >= 1")
+    if args.timeout_ms < 1000:
+        parser.error("--timeout-ms must be >= 1000")
     return args
 
 
@@ -159,7 +152,7 @@ def ensure_run_dir(
             shutil.rmtree(run_dir)
             run_dir.mkdir(parents=True, exist_ok=False)
             return run_dir, run_name, run_index
-        if skip_existing_video and any(run_dir.glob("*.webm")):
+        if skip_existing_video and any(run_dir.rglob("*.webm")):
             return None, run_name, run_index
         if skip_existing:
             return ensure_run_dir(
@@ -176,37 +169,78 @@ def ensure_run_dir(
     return run_dir, run_name, run_index
 
 
-def finalize_video(run_dir: Path, form_id: str, run_name: str, page_video) -> Optional[Path]:
-    raw_video_path = None
-    if page_video is not None:
-        try:
-            raw_video_path = Path(page_video.path())
-        except Exception:
-            raw_video_path = None
-    if raw_video_path is None:
-        try:
-            candidate_videos = sorted(
-                run_dir.glob("*.webm"), key=lambda p: p.stat().st_mtime, reverse=True
-            )
-            raw_video_path = candidate_videos[0] if candidate_videos else None
-        except Exception:
-            raw_video_path = None
-    if raw_video_path and raw_video_path.exists():
-        final_video_path = run_dir / f"{form_id}_{run_name}.webm"
-        if raw_video_path != final_video_path:
-            if final_video_path.exists():
-                final_video_path.unlink()
-            try:
-                raw_video_path.rename(final_video_path)
-                return final_video_path
-            except Exception:
-                return raw_video_path
+def finalize_video(run_dir: Path, form_id: str, run_name: str) -> Optional[Path]:
+    try:
+        candidate_videos = sorted(
+            run_dir.rglob("*.webm"), key=lambda p: p.stat().st_mtime, reverse=True
+        )
+    except Exception:
+        candidate_videos = []
+    if not candidate_videos:
+        return None
+    raw_video_path = candidate_videos[0]
+    final_video_path = run_dir / f"{form_id}_{run_name}.webm"
+    if raw_video_path == final_video_path:
         return raw_video_path
-    return None
+    if final_video_path.exists():
+        final_video_path.unlink()
+    try:
+        raw_video_path.rename(final_video_path)
+        return final_video_path
+    except Exception:
+        return raw_video_path
+
+
+def validate_run_artifacts(
+    run_dir: Path,
+    video_path: Optional[Path],
+    answers_path: Path,
+    annotations_path: Path,
+    trace_path: Path,
+    observations_dir: Path,
+) -> None:
+    missing: List[str] = []
+    if not answers_path.exists():
+        missing.append("answers_instance.json")
+    if not annotations_path.exists():
+        missing.append("annotations.json")
+    if not trace_path.exists() or trace_path.stat().st_size == 0:
+        missing.append("tool_trace.jsonl (missing or empty)")
+    if not observations_dir.exists():
+        missing.append("observations/")
+    else:
+        submit_pre = observations_dir / "submit_pre.png"
+        submit_post = observations_dir / "submit_post.png"
+        if not submit_pre.exists():
+            missing.append("observations/submit_pre.png")
+        if not submit_post.exists():
+            missing.append("observations/submit_post.png")
+    if video_path is None or not video_path.exists() or video_path.stat().st_size == 0:
+        missing.append("final video (.webm)")
+    if missing:
+        joined = ", ".join(missing)
+        raise RuntimeError(f"Missing required artifacts in {run_dir}: {joined}")
+
+
+def _playwright_import_error() -> RuntimeError:
+    return RuntimeError(
+        "Playwright is not installed. Run:\n"
+        "  python -m playwright install chromium\n"
+        "  python -m playwright install --with-deps chromium  # Linux"
+    )
+
+
+def _playwright_browser_error(exc: Exception) -> RuntimeError:
+    msg = str(exc)
+    return RuntimeError(
+        "Playwright browser install appears missing. Run:\n"
+        "  python -m playwright install chromium\n"
+        "  python -m playwright install --with-deps chromium  # Linux\n"
+        f"Original error: {msg}"
+    )
 
 
 def run_single(
-    browser,
     form_id: str,
     form_url: str,
     answers: List[Dict[str, Any]],
@@ -215,161 +249,185 @@ def run_single(
     run_label: str,
     args: argparse.Namespace,
     run_metadata: Dict[str, Any],
-) -> bool:
-    start_time = time.perf_counter()
-    actions: List[Dict[str, Any]] = []
-    events: List[Dict[str, Any]] = []
-    submit_info: Dict[str, Any] = {"success": False, "t_start_s": None, "t_end_s": None}
-    submitted = False
-    page_video = None
-    context = None
-    page = None
-    captured_exception: Optional[Exception] = None
-    viewport = {"width": 1280, "height": 720}
-    device_pixel_ratio = None
-    user_agent = None
-    timezone = None
-    locale = None
-    event_logger: Optional[form_filler.EventLogger] = None
-
+) -> None:
     answers_path = run_dir / "answers_instance.json"
     answers_path.write_text(json.dumps(answers, indent=2))
 
-    try:
-        context = browser.new_context(
-            viewport={"width": 1280, "height": 720},
-            record_video_dir=str(run_dir),
-        )
-        context.add_init_script(form_filler.CURSOR_OVERLAY_SCRIPT)
-        page = context.new_page()
-        page_video = page.video
-        page.set_default_timeout(DEFAULT_TIMEOUT_MS)
-        event_logger = form_filler.EventLogger(
-            page, start_time, record_hover=not args.omit_hover_events
-        )
-        page.goto(form_url, wait_until="domcontentloaded")
-        page.wait_for_load_state("networkidle")
-        if page.viewport_size:
-            viewport = {
-                "width": page.viewport_size.get("width"),
-                "height": page.viewport_size.get("height"),
-            }
-        try:
-            env_info = page.evaluate(
-                "() => ({devicePixelRatio: window.devicePixelRatio || null,"
-                "userAgent: navigator.userAgent || null,"
-                "locale: navigator.language || null,"
-                "timezone: (Intl.DateTimeFormat().resolvedOptions().timeZone || null)})"
-            )
-            device_pixel_ratio = env_info.get("devicePixelRatio")
-            user_agent = env_info.get("userAgent")
-            locale = env_info.get("locale")
-            timezone = env_info.get("timezone")
-        except Exception:
-            pass
-        if event_logger is not None:
-            event_logger.log_event(
-                "navigate",
-                args={"url": form_url},
-                intent="Open form URL",
-                outcome=True,
-            )
-        page.mouse.move(10, 10)
-        actions = form_filler.fill_form(
-            page, answers, start_time, args.pause_seconds, event_logger=event_logger
-        )
-        submit_info = form_filler.submit_form(page, start_time, event_logger=event_logger)
-        submitted = bool(submit_info.get("success"))
-        if args.pause_seconds > 0:
-            page.wait_for_timeout(int(args.pause_seconds * 1000))
-    except Exception as exc:
-        captured_exception = exc
-        if submit_info.get("t_start_s") is None:
-            now = time.perf_counter() - start_time
-            submit_info["t_start_s"] = now
-            submit_info["t_end_s"] = now
-            submit_info["error"] = str(exc)
-    finally:
-        if page:
-            try:
-                page.close()
-            except Exception:
-                pass
-        if context:
-            try:
-                context.close()
-            except Exception:
-                pass
+    observations_dir = run_dir / "observations"
+    observations_dir.mkdir(parents=True, exist_ok=True)
+    trace_path = run_dir / "tool_trace.jsonl"
 
-    video_path = finalize_video(run_dir, form_id, run_name, page_video)
-    if event_logger is not None:
-        events = event_logger.events
-    if args.events_layout == "per-action":
-        per_action_events: Dict[int, List[Dict[str, Any]]] = {}
-        for action in actions:
-            step = action.get("step")
-            if isinstance(step, int):
-                per_action_events[step] = []
-        non_step_events: List[Dict[str, Any]] = []
-        for event in events:
-            step_ref = event.get("step_ref")
-            if isinstance(step_ref, int) and step_ref in per_action_events:
-                event_copy = dict(event)
-                event_copy.pop("step_ref", None)
-                per_action_events[step_ref].append(event_copy)
-            else:
-                non_step_events.append(event)
-        for action in actions:
-            step = action.get("step")
-            if isinstance(step, int):
-                action["events"] = per_action_events.get(step, [])
-        events = non_step_events
+    start_time = time.perf_counter()
+    trace = TraceLogger(trace_path, start_time)
 
-    failure_reason = None
-    if not submitted:
-        failure_reason = submit_info.get("error")
-        if not failure_reason:
-            if submit_info.get("submit_clicked") is False:
-                failure_reason = "submit_not_clicked"
-            else:
-                failure_reason = "confirmation_not_detected"
-
-    annotations = {
-        "schema_version": "2.0",
-        "viewport": viewport,
-        "device_pixel_ratio": device_pixel_ratio,
-        "user_agent": user_agent,
-        "timezone": timezone,
-        "locale": locale,
-        "events_layout": args.events_layout,
+    annotations: Dict[str, Any] = {
+        "schema_version": "3.0",
         "form_id": form_id,
         "run_name": run_name,
         "run_label": run_label,
         "form_url": form_url,
-        "video_path": str(video_path) if video_path else None,
+        "viewport": {"width": args.viewport_width, "height": args.viewport_height},
+        "device_pixel_ratio": None,
+        "user_agent": None,
+        "locale": None,
+        "timezone": None,
+        "video_path": None,
         "run_params": {
+            "headless": bool(args.headless),
             "slow_mo": args.slow_mo,
-            "type_delay_ms": form_filler.TYPE_DELAY_MS,
-            "action_delay_ms": form_filler.ACTION_DELAY_MS,
-            "pause_seconds": args.pause_seconds,
+            "timeout_ms": args.timeout_ms,
         },
-        "submitted": submitted,
-        "failure_reason": failure_reason,
-        "submit": submit_info,
-        "actions": actions,
-        "events": events,
+        "actions": [],
+        "submit": {
+            "success": False,
+            "t_start_s": trace.now(),
+            "t_end_s": trace.now(),
+            "bbox": None,
+            "submit_clicked": False,
+            "confirmation_method": None,
+            "final_url": None,
+            "pre_screenshot": None,
+            "post_screenshot": None,
+        },
+        "trace": {
+            "tool_trace_path": "tool_trace.jsonl",
+            "screenshot_dir": "observations",
+        },
+        "submitted": False,
+        "failure_reason": None,
     }
+
+    errors: List[str] = []
+    run_error: Optional[Exception] = None
+
+    page = None
+    context = None
+    browser = None
+
+    try:
+        try:
+            from playwright.sync_api import Error as PlaywrightError
+            from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+            from playwright.sync_api import sync_playwright
+        except Exception as exc:
+            raise _playwright_import_error() from exc
+
+        with sync_playwright() as p:
+            try:
+                browser = p.chromium.launch(headless=args.headless, slow_mo=args.slow_mo)
+                context = browser.new_context(
+                    viewport={"width": args.viewport_width, "height": args.viewport_height},
+                    record_video_dir=str(run_dir),
+                    record_video_size={"width": args.viewport_width, "height": args.viewport_height},
+                )
+                page = context.new_page()
+                page.set_default_timeout(args.timeout_ms)
+                page.goto(form_url, wait_until="load", timeout=args.timeout_ms)
+                env = page.evaluate(
+                    "() => ({devicePixelRatio: window.devicePixelRatio || null, userAgent: navigator.userAgent || null, locale: navigator.language || null, timezone: (Intl.DateTimeFormat().resolvedOptions().timeZone || null)})"
+                )
+                if isinstance(env, dict):
+                    annotations["device_pixel_ratio"] = env.get("devicePixelRatio")
+                    annotations["user_agent"] = env.get("userAgent")
+                    annotations["locale"] = env.get("locale")
+                    annotations["timezone"] = env.get("timezone")
+
+                engine = FormEngine(
+                    page=page,
+                    viewport={"width": args.viewport_width, "height": args.viewport_height},
+                    observations_dir=observations_dir,
+                    trace=trace,
+                    timeout_ms=args.timeout_ms,
+                )
+
+                for idx, entry in enumerate(answers):
+                    label = entry.get("label") if isinstance(entry, dict) else None
+                    if label:
+                        print(f"[INFO] Filling step {idx}: {label}")
+                    else:
+                        print(f"[INFO] Filling step {idx}")
+                    action, err = engine.fill_step(entry, idx)
+                    annotations["actions"].append(action)
+                    if err:
+                        errors.append(f"step {idx}: {err}")
+
+                print("[INFO] Submitting form")
+                submit_info, submit_err = engine.submit()
+                annotations["submit"] = submit_info
+                if submit_err:
+                    errors.append(f"submit: {submit_err}")
+            except PlaywrightError as exc:
+                raise _playwright_browser_error(exc) from exc
+            except PlaywrightTimeoutError as exc:
+                run_error = exc
+                errors.append(f"timeout: {exc}")
+            except Exception as exc:
+                run_error = exc
+                errors.append(f"run_error: {exc}")
+            finally:
+                if page is not None:
+                    try:
+                        page.close()
+                    except Exception:
+                        pass
+                if context is not None:
+                    try:
+                        context.close()
+                    except Exception:
+                        pass
+                if browser is not None:
+                    try:
+                        browser.close()
+                    except Exception:
+                        pass
+    finally:
+        trace.close()
+
+    video_path = finalize_video(run_dir, form_id, run_name)
+    annotations["video_path"] = str(video_path) if video_path else None
+
+    submitted = bool(annotations.get("submit", {}).get("success"))
+    annotations["submitted"] = submitted
+    failure_reason = None
+    if not submitted:
+        if annotations.get("submit", {}).get("submit_clicked") is False:
+            failure_reason = "submit_not_clicked"
+        else:
+            failure_reason = "confirmation_not_detected"
+    if run_error is not None and not submitted:
+        failure_reason = "run_error"
+    annotations["failure_reason"] = failure_reason
+
     if run_metadata:
         annotations["run_metadata"] = run_metadata
+
     annotations_path = run_dir / "annotations.json"
     annotations_path.write_text(json.dumps(annotations, indent=2))
 
-    if captured_exception:
-        raise captured_exception
-    return submitted
+    validate_run_artifacts(
+        run_dir=run_dir,
+        video_path=video_path,
+        answers_path=answers_path,
+        annotations_path=annotations_path,
+        trace_path=trace_path,
+        observations_dir=observations_dir,
+    )
+
+    screenshot_count = len(list(observations_dir.glob("*.png")))
+    print("[INFO] Run complete")
+    print(f"[INFO] run_dir: {run_dir}")
+    print(f"[INFO] video: {video_path}")
+    print(f"[INFO] screenshots: {screenshot_count}")
+    print(f"[INFO] trace: {trace_path}")
+
+    if run_error is not None:
+        raise RuntimeError(f"Run failed: {run_error}")
+    if errors:
+        joined = "; ".join(errors)
+        raise RuntimeError(f"Run completed with errors: {joined}")
 
 
-def main(argv: Optional[List[str]] = None):
+def main(argv: Optional[List[str]] = None) -> bool:
     args = parse_args(argv)
     specs_root = Path(args.specs_root) if args.specs_root else (SRC_DIR / "forms")
     form_spec = load_form_spec(args.form_id, specs_root)
@@ -377,12 +435,16 @@ def main(argv: Optional[List[str]] = None):
     if not form_url:
         raise ValueError("Form URL not provided and not found in spec")
 
+    if os.environ.get("PLAYWRIGHT_SKIP_FFMPEG_INSTALL"):
+        print(
+            "[WARN] PLAYWRIGHT_SKIP_FFMPEG_INSTALL is set; video recording may fail.",
+            file=sys.stderr,
+        )
+
     answers_path = Path(args.answers_source).resolve()
     run_specs_iter = iter_run_specs(answers_path)
 
     dataset_root = Path(args.dataset_root).resolve()
-    if args.video_dir and args.dataset_root == DEFAULT_DATASET_ROOT:
-        dataset_root = Path(args.video_dir).resolve()
     runs_dir = dataset_root / args.form_id / "runs"
     runs_dir.mkdir(parents=True, exist_ok=True)
 
@@ -394,71 +456,46 @@ def main(argv: Optional[List[str]] = None):
     if args.resume and args.start_index is None:
         start_index = next_available_index(existing_indices, 1)
 
-    form_filler.set_type_delay(args.type_delay)
-    form_filler.set_action_delay(args.action_delay)
-
     generated = 0
     current_index = start_index
-    unconfirmed_runs: List[str] = []
 
-    interrupted = False
-    with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=False, slow_mo=args.slow_mo)
-        try:
-            for spec in run_specs_iter:
-                if args.num_runs is not None and generated >= args.num_runs:
-                    break
-                if skip_existing:
-                    current_index = next_available_index(existing_indices, current_index)
-                run_dir, run_name, run_index = ensure_run_dir(
-                    runs_dir,
-                    current_index,
-                    skip_existing,
-                    existing_indices,
-                    args.skip_existing_video,
-                    args.overwrite_existing,
-                )
-                if run_dir is None:
-                    print(f"[INFO] Skipping existing video for {run_name}.")
-                    current_index = run_index + 1
-                    continue
-                run_label = f"{args.form_id}_{run_name}"
-                answers = spec.get("answers", [])
-                if not isinstance(answers, list):
-                    raise ValueError("Run answers must be a list")
-                run_metadata = spec.get("metadata", {})
-                submitted = run_single(
-                    browser=browser,
-                    form_id=args.form_id,
-                    form_url=form_url,
-                    answers=answers,
-                    run_dir=run_dir,
-                    run_name=run_name,
-                    run_label=run_label,
-                    args=args,
-                    run_metadata=run_metadata,
-                )
-                if not submitted:
-                    unconfirmed_runs.append(run_name)
-                generated += 1
-                current_index = run_index + 1
-        except KeyboardInterrupt:
-            interrupted = True
-        finally:
-            try:
-                browser.close()
-            except KeyboardInterrupt:
-                pass
-            except Exception:
-                pass
+    for spec in run_specs_iter:
+        if args.num_runs is not None and generated >= args.num_runs:
+            break
+        if skip_existing:
+            current_index = next_available_index(existing_indices, current_index)
+        run_dir, run_name, run_index = ensure_run_dir(
+            runs_dir,
+            current_index,
+            skip_existing,
+            existing_indices,
+            args.skip_existing_video,
+            args.overwrite_existing,
+        )
+        if run_dir is None:
+            print(f"[INFO] Skipping existing video for {run_name}.")
+            current_index = run_index + 1
+            continue
+        run_label = f"{args.form_id}_{run_name}"
+        answers = spec.get("answers", [])
+        if not isinstance(answers, list):
+            raise ValueError("Run answers must be a list")
+        run_metadata = spec.get("metadata", {})
 
-    if interrupted:
-        print("[WARN] Run interrupted by user.", file=sys.stderr)
-        return False
+        run_single(
+            form_id=args.form_id,
+            form_url=form_url,
+            answers=answers,
+            run_dir=run_dir,
+            run_name=run_name,
+            run_label=run_label,
+            args=args,
+            run_metadata=run_metadata,
+        )
 
-    if unconfirmed_runs:
-        joined = ", ".join(unconfirmed_runs)
-        print(f"[WARN] Submission not confirmed for runs: {joined}", file=sys.stderr)
+        generated += 1
+        current_index = run_index + 1
+
     return True
 
 

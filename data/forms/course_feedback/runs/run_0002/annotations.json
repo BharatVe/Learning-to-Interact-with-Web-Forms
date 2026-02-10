@@ -1,73 +1,69 @@
 {
-  "form_id": "course_feedback",
-  "run_name": "run_0002",
-  "run_label": "course_feedback_run_0002",
+  "schema_version": "2.0",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSczlT7s8tTQgmYpXnfzz4taF5pvj-qpzgksyBZImfHBGwMpBA/viewform",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/course_feedback_run_0002.webm",
-  "run_params": {
-    "slow_mo": 200,
-    "type_delay_ms": 120,
-    "action_delay_ms": 200,
-    "pause_seconds": 0.0
-  },
-  "submitted": false,
-  "failure_reason": "submit_button_not_found",
-  "submit": {
-    "success": false,
-    "t_start_s": 17.449898852999922,
-    "t_end_s": 108.07460275299991,
-    "bbox": null,
-    "submit_clicked": false,
-    "confirmation_method": null,
-    "confirmation_text": null,
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSczlT7s8tTQgmYpXnfzz4taF5pvj-qpzgksyBZImfHBGwMpBA/viewform",
-    "error": "submit_button_not_found"
-  },
+  "run_label": "course_feedback_run_0002",
   "actions": [
     {
       "step": 0,
       "label": "Course name",
       "widget_type": "short_text",
       "value": "Distributed Systems",
-      "success": true,
-      "t_start_s": 9.431562309000128,
-      "t_end_s": 14.003356389000146,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.4984893079999893,
+      "t_end_s": 1.5108492640001714,
+      "bbox": null,
+      "intent": "Fill Course name",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0000_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0000_post.png"
     },
     {
       "step": 1,
       "label": "Your program level",
       "widget_type": "single_choice",
       "value": "Bachelor's",
-      "success": true,
-      "t_start_s": 14.003364257000158,
-      "t_end_s": 15.731934737999836,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 250
-      }
+      "success": false,
+      "t_start_s": 1.711905950000073,
+      "t_end_s": 1.7562629890001062,
+      "bbox": null,
+      "intent": "Select Bachelor's for Your program level",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0001_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0001_post.png"
     },
     {
       "step": 2,
       "label": "Did you attend most sessions?",
       "widget_type": "single_choice",
       "value": "Partially",
-      "success": true,
-      "t_start_s": 15.731941972000186,
-      "t_end_s": 17.33161508100011,
-      "bbox": {
-        "x": 312.5,
-        "y": 639.1875,
-        "width": 640,
-        "height": 210
-      }
+      "success": false,
+      "t_start_s": 1.9574851740001122,
+      "t_end_s": 1.9810669410001083,
+      "bbox": null,
+      "intent": "Select Partially for Did you attend most sessions?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0002_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0002_post.png"
     },
     {
       "step": 3,
@@ -75,9 +71,17 @@
       "widget_type": "single_choice",
       "value": "3",
       "success": false,
-      "t_start_s": 17.331625367000015,
-      "t_end_s": 17.355868637000185,
-      "bbox": null
+      "t_start_s": 2.1825391650002075,
+      "t_end_s": 2.1984303320000436,
+      "bbox": null,
+      "intent": "Select 3 for Overall satisfaction",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0003_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0003_post.png"
     },
     {
       "step": 4,
@@ -85,9 +89,17 @@
       "widget_type": "single_choice",
       "value": "Too high",
       "success": false,
-      "t_start_s": 17.355874589999985,
-      "t_end_s": 17.376189877999877,
-      "bbox": null
+      "t_start_s": 2.3997299790000852,
+      "t_end_s": 2.4149332090000826,
+      "bbox": null,
+      "intent": "Select Too high for Workload felt",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0004_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0004_post.png"
     },
     {
       "step": 5,
@@ -95,9 +107,17 @@
       "widget_type": "paragraph_text",
       "value": "Case studies from real deployments.",
       "success": false,
-      "t_start_s": 17.376194918999772,
-      "t_end_s": 17.395023433000006,
-      "bbox": null
+      "t_start_s": 2.6164630850000776,
+      "t_end_s": 2.6321650140000656,
+      "bbox": null,
+      "intent": "Fill What did you like most?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0005_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0005_post.png"
     },
     {
       "step": 6,
@@ -105,9 +125,17 @@
       "widget_type": "paragraph_text",
       "value": "More guided review sessions.",
       "success": false,
-      "t_start_s": 17.395028443999763,
-      "t_end_s": 17.413371455999823,
-      "bbox": null
+      "t_start_s": 2.8336046070000975,
+      "t_end_s": 2.848171187000162,
+      "bbox": null,
+      "intent": "Fill What should be improved?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0006_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0006_post.png"
     },
     {
       "step": 7,
@@ -118,9 +146,17 @@
         "Assignments"
       ],
       "success": false,
-      "t_start_s": 17.41337723000015,
-      "t_end_s": 17.43239692799989,
-      "bbox": null
+      "t_start_s": 3.0500638320002054,
+      "t_end_s": 3.063979910000171,
+      "bbox": null,
+      "intent": "Select Theory, Assignments for Most useful aspects",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0007_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0007_post.png"
     },
     {
       "step": 8,
@@ -128,13 +164,48 @@
       "widget_type": "single_choice",
       "value": "Maybe",
       "success": false,
-      "t_start_s": 17.432402876000197,
-      "t_end_s": 17.449891218000175,
-      "bbox": null
+      "t_start_s": 3.2653549840001688,
+      "t_end_s": 3.280230323000069,
+      "bbox": null,
+      "intent": "Select Maybe for Would you recommend this course?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0008_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/step_0008_post.png"
     }
   ],
+  "trace": {
+    "tool_trace_path": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/tool_trace.jsonl",
+    "screenshot_dir": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations"
+  },
+  "submit": {
+    "success": true,
+    "t_start_s": 3.491241720000062,
+    "t_end_s": 3.4983393490001617,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": "url",
+    "confirmation_text": null,
+    "final_url": null,
+    "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/submit_pre.png",
+    "post_screenshot": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0002/observations/submit_post.png"
+  },
   "run_metadata": {
     "suffix": "distributed",
     "notes": "Mixed feedback for a rigorous systems course."
-  }
+  },
+  "form_id": "course_feedback",
+  "run_name": "run_0002",
+  "video_path": null,
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "failure_reason": null
 }

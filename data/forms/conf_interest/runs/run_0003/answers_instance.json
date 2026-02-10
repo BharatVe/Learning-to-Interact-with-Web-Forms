@@ -1,6 +1,6 @@
 [
   {
-    "label": "Full name",
+    "label": "Full Name",
     "widget_type": "short_text",
     "value": "Noah Whitaker",
     "tags": [
@@ -20,7 +20,7 @@
   {
     "label": "Brief bio",
     "widget_type": "paragraph_text",
-    "value": "Research scientist exploring specialized accelerators for privacy-preserving AI workloads.",
+    "value": "Masters student studying human centered AI and interface design.",
     "tags": [
       "summary"
     ]
@@ -28,18 +28,17 @@
   {
     "label": "Primary role",
     "widget_type": "single_choice",
-    "value": "Research scientist",
+    "value": "Master's student",
     "tags": [
       "role"
     ]
   },
   {
-    "label": "Topics you\u2019re interested in",
+    "label": "Topics you're interested in",
     "widget_type": "multi_choice",
     "value": [
-      "Systems",
-      "Hardware",
-      "Security"
+      "Human-Computer Interaction",
+      "AI/ML"
     ],
     "tags": [
       "topics",

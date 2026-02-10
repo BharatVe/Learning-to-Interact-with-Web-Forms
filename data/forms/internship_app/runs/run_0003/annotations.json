@@ -1,88 +1,87 @@
 {
-  "form_id": "internship_app",
-  "run_name": "run_0003",
-  "run_label": "internship_app_run_0003",
+  "schema_version": "2.0",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSenqUex1eG1k80vjfzNx0Rm9GqkAYTXr2x0XdzQjaJGCRvkDg/viewform",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/internship_app_run_0003.webm",
-  "run_params": {
-    "slow_mo": 200,
-    "type_delay_ms": 120,
-    "action_delay_ms": 200,
-    "pause_seconds": 0.0
-  },
-  "submitted": false,
-  "failure_reason": "submit_button_not_found",
-  "submit": {
-    "success": false,
-    "t_start_s": 18.84547920199975,
-    "t_end_s": 109.4666128849999,
-    "bbox": null,
-    "submit_clicked": false,
-    "confirmation_method": null,
-    "confirmation_text": null,
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSenqUex1eG1k80vjfzNx0Rm9GqkAYTXr2x0XdzQjaJGCRvkDg/viewform",
-    "error": "submit_button_not_found"
-  },
+  "run_label": "internship_app_run_0003",
   "actions": [
     {
       "step": 0,
       "label": "Full name",
       "widget_type": "short_text",
       "value": "Samira Ortiz",
-      "success": true,
-      "t_start_s": 5.401662796999972,
-      "t_end_s": 8.978426383999704,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.5169347290000132,
+      "t_end_s": 1.5288103630000478,
+      "bbox": null,
+      "intent": "Fill Full name",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0000_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0000_post.png"
     },
     {
       "step": 1,
       "label": "Contact email",
       "widget_type": "short_text",
       "value": "samira.ortiz@example.com",
-      "success": true,
-      "t_start_s": 8.978436084999885,
-      "t_end_s": 14.226531414999954,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.7290105409999796,
+      "t_end_s": 1.7560937760001707,
+      "bbox": null,
+      "intent": "Fill Contact email",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0001_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0001_post.png"
     },
     {
       "step": 2,
       "label": "Current city",
       "widget_type": "short_text",
       "value": "Berlin",
-      "success": true,
-      "t_start_s": 14.22654084199985,
-      "t_end_s": 17.10841632399979,
-      "bbox": {
-        "x": 312.5,
-        "y": 527.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.9569623649999812,
+      "t_end_s": 1.9731514170000537,
+      "bbox": null,
+      "intent": "Fill Current city",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0002_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0002_post.png"
     },
     {
       "step": 3,
       "label": "Degree program",
       "widget_type": "single_choice",
       "value": "PhD",
-      "success": true,
-      "t_start_s": 17.10842569899978,
-      "t_end_s": 18.689180787999703,
-      "bbox": {
-        "x": 312.5,
-        "y": 677.1875,
-        "width": 640,
-        "height": 250
-      }
+      "success": false,
+      "t_start_s": 2.174380352000071,
+      "t_end_s": 2.1939976099999967,
+      "bbox": null,
+      "intent": "Select PhD for Degree program",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0003_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0003_post.png"
     },
     {
       "step": 4,
@@ -92,9 +91,17 @@
         "DevOps"
       ],
       "success": false,
-      "t_start_s": 18.68919223299963,
-      "t_end_s": 18.715308959999675,
-      "bbox": null
+      "t_start_s": 2.395057432000158,
+      "t_end_s": 2.4134002980001696,
+      "bbox": null,
+      "intent": "Select DevOps for Primary area of interest",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0004_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0004_post.png"
     },
     {
       "step": 5,
@@ -106,9 +113,17 @@
         "SQL"
       ],
       "success": false,
-      "t_start_s": 18.71531534199994,
-      "t_end_s": 18.73348283999985,
-      "bbox": null
+      "t_start_s": 2.6136534859999756,
+      "t_end_s": 2.6256775440001547,
+      "bbox": null,
+      "intent": "Select Python, C/C++, SQL for Programming languages you use",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0005_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0005_post.png"
     },
     {
       "step": 6,
@@ -116,9 +131,17 @@
       "widget_type": "short_text",
       "value": "https://github.com/samira-ortiz",
       "success": false,
-      "t_start_s": 18.733487954999873,
-      "t_end_s": 18.749409875999845,
-      "bbox": null
+      "t_start_s": 2.826158335000173,
+      "t_end_s": 2.841589057000192,
+      "bbox": null,
+      "intent": "Fill Link to GitHub or portfolio",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0006_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0006_post.png"
     },
     {
       "step": 7,
@@ -126,9 +149,17 @@
       "widget_type": "paragraph_text",
       "value": "I work on automation for build and deployment systems. I want to apply my research on reliability to production pipelines. The internship offers hands on exposure to real infrastructure. I can contribute to tooling and monitoring.",
       "success": false,
-      "t_start_s": 18.749415898999814,
-      "t_end_s": 18.76580652599978,
-      "bbox": null
+      "t_start_s": 3.0421161550000306,
+      "t_end_s": 3.0582416190000004,
+      "bbox": null,
+      "intent": "Fill Brief motivation statement",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0007_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0007_post.png"
     },
     {
       "step": 8,
@@ -136,9 +167,17 @@
       "widget_type": "date",
       "value": "2025-07-01",
       "success": false,
-      "t_start_s": 18.76581093599998,
-      "t_end_s": 18.78233261999958,
-      "bbox": null
+      "t_start_s": 3.2588471870001285,
+      "t_end_s": 3.2752985060001265,
+      "bbox": null,
+      "intent": "Fill Earliest start date",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0008_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0008_post.png"
     },
     {
       "step": 9,
@@ -146,9 +185,17 @@
       "widget_type": "short_text",
       "value": "25",
       "success": false,
-      "t_start_s": 18.78233903299997,
-      "t_end_s": 18.803483759999835,
-      "bbox": null
+      "t_start_s": 3.475952120000102,
+      "t_end_s": 3.504467244000125,
+      "bbox": null,
+      "intent": "Fill Weekly availability (hours)",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0009_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0009_post.png"
     },
     {
       "step": 10,
@@ -156,9 +203,17 @@
       "widget_type": "time",
       "value": "11:00",
       "success": false,
-      "t_start_s": 18.80348996299972,
-      "t_end_s": 18.824983295999573,
-      "bbox": null
+      "t_start_s": 3.704847996000126,
+      "t_end_s": 3.7221091620001516,
+      "bbox": null,
+      "intent": "Fill Preferred meeting time for interview",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0010_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0010_post.png"
     },
     {
       "step": 11,
@@ -166,13 +221,48 @@
       "widget_type": "single_choice",
       "value": "No",
       "success": false,
-      "t_start_s": 18.824989237999944,
-      "t_end_s": 18.84547399999974,
-      "bbox": null
+      "t_start_s": 3.922761143000116,
+      "t_end_s": 3.935066547000133,
+      "bbox": null,
+      "intent": "Select No for Are you open to remote work?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0011_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/step_0011_post.png"
     }
   ],
+  "trace": {
+    "tool_trace_path": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/tool_trace.jsonl",
+    "screenshot_dir": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations"
+  },
+  "submit": {
+    "success": true,
+    "t_start_s": 4.145018153000137,
+    "t_end_s": 4.1530414010001095,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": "url",
+    "confirmation_text": null,
+    "final_url": null,
+    "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/submit_pre.png",
+    "post_screenshot": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0003/observations/submit_post.png"
+  },
   "run_metadata": {
     "suffix": "devops",
     "notes": "Candidate focused on infrastructure and DevOps."
-  }
+  },
+  "form_id": "internship_app",
+  "run_name": "run_0003",
+  "video_path": null,
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "failure_reason": null
 }

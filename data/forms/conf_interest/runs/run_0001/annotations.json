@@ -1,41 +1,22 @@
 {
-  "schema_version": "2.0",
+  "schema_version": "3.0",
+  "form_id": "conf_interest",
+  "run_name": "run_0001",
+  "run_label": "conf_interest_run_0001",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/viewform",
   "viewport": {
     "width": 1280,
     "height": 720
   },
   "device_pixel_ratio": 1,
   "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-  "timezone": "Europe/Berlin",
   "locale": "en-US",
-  "events_layout": "flat",
-  "form_id": "conf_interest",
-  "run_name": "run_0001",
-  "run_label": "conf_interest_run_0001",
-  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/viewform",
+  "timezone": "Europe/Berlin",
   "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0001/conf_interest_run_0001.webm",
   "run_params": {
+    "headless": false,
     "slow_mo": 200,
-    "type_delay_ms": 120,
-    "action_delay_ms": 200,
-    "pause_seconds": 0.0
-  },
-  "submitted": true,
-  "failure_reason": null,
-  "submit": {
-    "success": true,
-    "t_start_s": 37.38474799599999,
-    "t_end_s": 71.40687191300003,
-    "bbox": {
-      "x": 312.5,
-      "y": 625.1875,
-      "width": 98.453125,
-      "height": 36
-    },
-    "submit_clicked": true,
-    "confirmation_method": "url",
-    "confirmation_text": null,
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/formResponse"
+    "timeout_ms": 15000
   },
   "actions": [
     {
@@ -43,96 +24,106 @@
       "label": "Full Name",
       "widget_type": "short_text",
       "value": "Jordan Rivera",
+      "intent": "Fill Full Name",
       "success": true,
-      "t_start_s": 4.772844159000215,
-      "t_end_s": 8.614485273000355,
+      "t_start_s": 3.8965367089999745,
+      "t_end_s": 7.054890317000172,
       "bbox": {
         "x": 312.5,
         "y": 227.1875,
         "width": 640,
         "height": 138
       },
-      "intent": "Fill Full Name",
-      "scroll_y": 0,
       "target_bbox": {
         "x": 337.5,
         "y": 306.1875,
         "width": 295,
         "height": 24
       },
-      "target_scroll_y": 0
+      "pre_screenshot": "observations/step_0000_pre.png",
+      "post_screenshot": "observations/step_0000_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": 0,
+      "error": null
     },
     {
       "step": 1,
       "label": "Preferred contact email",
       "widget_type": "short_text",
       "value": "jordan.rivera@example.com",
+      "intent": "Fill Preferred contact email",
       "success": true,
-      "t_start_s": 8.614491937000366,
-      "t_end_s": 13.920554750000065,
+      "t_start_s": 7.055491409000069,
+      "t_end_s": 10.35184945800006,
       "bbox": {
         "x": 312.5,
-        "y": 377.1875,
+        "y": 269.1875,
         "width": 640,
         "height": 138
       },
-      "intent": "Fill Preferred contact email",
-      "scroll_y": 0,
       "target_bbox": {
         "x": 337.5,
-        "y": 456.1875,
+        "y": 348.1875,
         "width": 295,
         "height": 24
       },
-      "target_scroll_y": 0
+      "pre_screenshot": "observations/step_0001_pre.png",
+      "post_screenshot": "observations/step_0001_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": 108,
+      "error": null
     },
     {
       "step": 2,
       "label": "Brief bio",
       "widget_type": "paragraph_text",
       "value": "Graduate researcher focused on distributed training and edge inference.",
+      "intent": "Fill Brief bio",
       "success": true,
-      "t_start_s": 13.920560255000055,
-      "t_end_s": 25.129481651000333,
+      "t_start_s": 10.351902435000056,
+      "t_end_s": 16.872743366000122,
       "bbox": {
         "x": 312.5,
-        "y": 527.1875,
+        "y": 245.1875,
         "width": 640,
         "height": 160
       },
-      "intent": "Fill Brief bio",
-      "scroll_y": 0,
       "target_bbox": {
         "x": 337.5,
-        "y": 630.1875,
+        "y": 348.1875,
         "width": 590,
         "height": 24
       },
-      "target_scroll_y": 0
+      "pre_screenshot": "observations/step_0002_pre.png",
+      "post_screenshot": "observations/step_0002_post.png",
+      "target_role": null,
+      "target_name": "Meine Antwort",
+      "target_selector": null,
+      "scroll_y": 282,
+      "error": null
     },
     {
       "step": 3,
       "label": "Primary role",
       "widget_type": "single_choice",
       "value": "PhD student",
-      "success": true,
-      "t_start_s": 25.12948871000026,
-      "t_end_s": 26.783248043000185,
-      "bbox": {
-        "x": 312.5,
-        "y": 699.1875,
-        "width": 640,
-        "height": 250
-      },
       "intent": "Select PhD student for Primary role",
-      "scroll_y": 504,
-      "target_bbox": {
-        "x": 337.5,
-        "y": 350.1875,
-        "width": 20,
-        "height": 20
-      },
-      "target_scroll_y": 504
+      "success": false,
+      "t_start_s": 16.872811357000046,
+      "t_end_s": 17.040164541999957,
+      "bbox": null,
+      "target_bbox": null,
+      "pre_screenshot": "observations/step_0003_pre.png",
+      "post_screenshot": "observations/step_0003_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "error": "TypeError: Page.evaluate() takes from 2 to 3 positional arguments but 5 were given"
     },
     {
       "step": 4,
@@ -142,1311 +133,96 @@
         "AI/ML",
         "Systems"
       ],
-      "success": true,
-      "t_start_s": 26.783253791000334,
-      "t_end_s": 29.997366101000353,
-      "bbox": {
-        "x": 312.5,
-        "y": 457.1875,
-        "width": 640,
-        "height": 258
-      },
       "intent": "Select AI/ML, Systems for Topics you're interested in",
-      "scroll_y": 504,
-      "target_bbox": {
-        "x": 337.5,
-        "y": 626.1875,
-        "width": 20,
-        "height": 20
-      },
-      "target_scroll_y": 504
+      "success": false,
+      "t_start_s": 17.04023518400004,
+      "t_end_s": 17.210344648000046,
+      "bbox": null,
+      "target_bbox": null,
+      "pre_screenshot": "observations/step_0004_pre.png",
+      "post_screenshot": "observations/step_0004_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "error": "TypeError: Page.evaluate() takes from 2 to 3 positional arguments but 5 were given"
     },
     {
       "step": 5,
       "label": "Preferred meeting date",
       "widget_type": "date",
       "value": "2025-06-15",
+      "intent": "Fill Preferred meeting date",
       "success": true,
-      "t_start_s": 29.997373616999994,
-      "t_end_s": 32.52204432999997,
+      "t_start_s": 17.210411456999964,
+      "t_end_s": 19.47031934300003,
       "bbox": {
         "x": 312.5,
-        "y": 727.1875,
+        "y": 284.1875,
         "width": 640,
         "height": 153
       },
-      "intent": "Fill Preferred meeting date",
-      "scroll_y": 947,
       "target_bbox": {
         "x": 337.5,
         "y": 378.1875,
         "width": 127,
         "height": 24
       },
-      "target_scroll_y": 947
+      "pre_screenshot": "observations/step_0005_pre.png",
+      "post_screenshot": "observations/step_0005_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": 947,
+      "error": null
     },
     {
       "step": 6,
       "label": "Preferred meeting time",
       "widget_type": "time",
       "value": "10:30",
+      "intent": "Fill Preferred meeting time",
       "success": true,
-      "t_start_s": 32.52205013599996,
-      "t_end_s": 37.3847391420004,
+      "t_start_s": 19.47037946399996,
+      "t_end_s": 23.025704267000037,
       "bbox": {
         "x": 312.5,
-        "y": 449.1875,
+        "y": 326.1875,
         "width": 640,
         "height": 164
       },
-      "intent": "Fill Preferred meeting time",
-      "scroll_y": 947,
       "target_bbox": {
         "x": 366.5,
-        "y": 552.1875,
+        "y": 429.1875,
         "width": 17,
         "height": 24
       },
-      "target_scroll_y": 947
+      "pre_screenshot": "observations/step_0006_pre.png",
+      "post_screenshot": "observations/step_0006_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": 1070,
+      "error": null
     }
   ],
-  "events": [
-    {
-      "t_s": 4.562702052000077,
-      "name": "navigate",
-      "args": {
-        "url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/viewform"
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": null,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "intent": "Open form URL"
-    },
-    {
-      "t_s": 5.747378103000301,
-      "name": "hover_at",
-      "args": {},
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": 0,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 485.0,
-        "y_px": 318.1875,
-        "x_norm": 379,
-        "y_norm": 441,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 306.1875,
-          "width": 295,
-          "height": 24
-        },
-        "target_desc": "Full Name\n*",
-        "role": null,
-        "name": null,
-        "aria_label": null,
-        "placeholder": null,
-        "label_text": "Full Name\n*",
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Full Name"
-    },
-    {
-      "t_s": 6.243777561000115,
-      "name": "click_at",
-      "args": {
-        "button": "left"
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": 0,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 485.0,
-        "y_px": 318.1875,
-        "x_norm": 379,
-        "y_norm": 441,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 306.1875,
-          "width": 295,
-          "height": 24
-        },
-        "target_desc": "Full Name\n*",
-        "role": null,
-        "name": null,
-        "aria_label": null,
-        "placeholder": null,
-        "label_text": "Full Name\n*",
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Full Name"
-    },
-    {
-      "t_s": 8.411406218000138,
-      "name": "type_text_at",
-      "args": {
-        "text": "Jordan Rivera",
-        "press_enter": false,
-        "clear_before_typing": true,
-        "input_method": "type"
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": 0,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 485.0,
-        "y_px": 318.1875,
-        "x_norm": 379,
-        "y_norm": 441,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 306.1875,
-          "width": 295,
-          "height": 24
-        },
-        "target_desc": "Full Name\n*",
-        "role": null,
-        "name": null,
-        "aria_label": null,
-        "placeholder": null,
-        "label_text": "Full Name\n*",
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Full Name"
-    },
-    {
-      "t_s": 9.539801685000384,
-      "name": "hover_at",
-      "args": {},
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": 1,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 485.0,
-        "y_px": 468.1875,
-        "x_norm": 379,
-        "y_norm": 650,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 456.1875,
-          "width": 295,
-          "height": 24
-        },
-        "target_desc": "Preferred contact email\n*",
-        "role": null,
-        "name": null,
-        "aria_label": null,
-        "placeholder": null,
-        "label_text": "Preferred contact email\n*",
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred contact email"
-    },
-    {
-      "t_s": 10.052906583000095,
-      "name": "click_at",
-      "args": {
-        "button": "left"
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": 1,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 485.0,
-        "y_px": 468.1875,
-        "x_norm": 379,
-        "y_norm": 650,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 456.1875,
-          "width": 295,
-          "height": 24
-        },
-        "target_desc": "Preferred contact email\n*",
-        "role": null,
-        "name": null,
-        "aria_label": null,
-        "placeholder": null,
-        "label_text": "Preferred contact email\n*",
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred contact email"
-    },
-    {
-      "t_s": 13.71567631500011,
-      "name": "type_text_at",
-      "args": {
-        "text": "jordan.rivera@example.com",
-        "press_enter": false,
-        "clear_before_typing": true,
-        "input_method": "type"
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": 1,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 485.0,
-        "y_px": 468.1875,
-        "x_norm": 379,
-        "y_norm": 650,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 456.1875,
-          "width": 295,
-          "height": 24
-        },
-        "target_desc": "Preferred contact email\n*",
-        "role": null,
-        "name": null,
-        "aria_label": null,
-        "placeholder": null,
-        "label_text": "Preferred contact email\n*",
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred contact email"
-    },
-    {
-      "t_s": 14.855206417000318,
-      "name": "hover_at",
-      "args": {},
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": 2,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 632.5,
-        "y_px": 642.1875,
-        "x_norm": 494,
-        "y_norm": 891,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 630.1875,
-          "width": 590,
-          "height": 24
-        },
-        "target_desc": "Meine Antwort",
-        "role": null,
-        "name": "Meine Antwort",
-        "aria_label": "Meine Antwort",
-        "placeholder": null,
-        "label_text": "Brief bio",
-        "selector": "textarea.KHxj8b",
-        "tag": "textarea",
-        "id": null
-      },
-      "intent": "Fill Brief bio"
-    },
-    {
-      "t_s": 15.344918561000213,
-      "name": "click_at",
-      "args": {
-        "button": "left"
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": 2,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 632.5,
-        "y_px": 642.1875,
-        "x_norm": 494,
-        "y_norm": 891,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 630.1875,
-          "width": 590,
-          "height": 24
-        },
-        "target_desc": "Meine Antwort",
-        "role": null,
-        "name": "Meine Antwort",
-        "aria_label": "Meine Antwort",
-        "placeholder": null,
-        "label_text": "Brief bio",
-        "selector": "textarea.KHxj8b",
-        "tag": "textarea",
-        "id": null
-      },
-      "intent": "Fill Brief bio"
-    },
-    {
-      "t_s": 24.925292319000164,
-      "name": "type_text_at",
-      "args": {
-        "text": "Graduate researcher focused on distributed training and edge inference.",
-        "press_enter": false,
-        "clear_before_typing": true,
-        "input_method": "type"
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": 2,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 632.5,
-        "y_px": 642.1875,
-        "x_norm": 494,
-        "y_norm": 891,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 630.1875,
-          "width": 590,
-          "height": 24
-        },
-        "target_desc": "Meine Antwort",
-        "role": null,
-        "name": "Meine Antwort",
-        "aria_label": "Meine Antwort",
-        "placeholder": null,
-        "label_text": "Brief bio",
-        "selector": "textarea.KHxj8b",
-        "tag": "textarea",
-        "id": null
-      },
-      "intent": "Fill Brief bio"
-    },
-    {
-      "t_s": 25.44994664800015,
-      "name": "scroll_document",
-      "args": {
-        "delta_x": 0,
-        "delta_y": 504
-      },
-      "scroll_x": 0,
-      "scroll_y": 504,
-      "step_ref": 3,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 347.5,
-        "y_px": 360.1875,
-        "x_norm": 271,
-        "y_norm": 500,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 350.1875,
-          "width": 20,
-          "height": 20
-        },
-        "target_desc": "PhD student",
-        "role": "radio",
-        "name": "PhD student",
-        "aria_label": "PhD student",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "#i27",
-        "tag": "div",
-        "id": "i27"
-      },
-      "intent": "Select PhD student for Primary role"
-    },
-    {
-      "t_s": 26.103763963000347,
-      "name": "hover_at",
-      "args": {},
-      "scroll_x": 0,
-      "scroll_y": 504,
-      "step_ref": 3,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 347.5,
-        "y_px": 360.1875,
-        "x_norm": 271,
-        "y_norm": 500,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 350.1875,
-          "width": 20,
-          "height": 20
-        },
-        "target_desc": "PhD student",
-        "role": "radio",
-        "name": "PhD student",
-        "aria_label": "PhD student",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "#i27",
-        "tag": "div",
-        "id": "i27"
-      },
-      "intent": "Select PhD student for Primary role"
-    },
-    {
-      "t_s": 26.581197632000112,
-      "name": "click_at",
-      "args": {
-        "button": "left"
-      },
-      "scroll_x": 0,
-      "scroll_y": 504,
-      "step_ref": 3,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 347.5,
-        "y_px": 360.1875,
-        "x_norm": 271,
-        "y_norm": 500,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 350.1875,
-          "width": 20,
-          "height": 20
-        },
-        "target_desc": "PhD student",
-        "role": "radio",
-        "name": "PhD student",
-        "aria_label": "PhD student",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "#i27",
-        "tag": "div",
-        "id": "i27"
-      },
-      "intent": "Select PhD student for Primary role"
-    },
-    {
-      "t_s": 27.7122105010003,
-      "name": "hover_at",
-      "args": {},
-      "scroll_x": 0,
-      "scroll_y": 504,
-      "step_ref": 4,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 347.5,
-        "y_px": 564.1875,
-        "x_norm": 271,
-        "y_norm": 783,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 554.1875,
-          "width": 20,
-          "height": 20
-        },
-        "target_desc": "AI/ML",
-        "role": "checkbox",
-        "name": "AI/ML",
-        "aria_label": "AI/ML",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "#i39",
-        "tag": "div",
-        "id": "i39"
-      },
-      "intent": "Select AI/ML, Systems for Topics you're interested in"
-    },
-    {
-      "t_s": 28.186636743000236,
-      "name": "click_at",
-      "args": {
-        "button": "left"
-      },
-      "scroll_x": 0,
-      "scroll_y": 504,
-      "step_ref": 4,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 347.5,
-        "y_px": 564.1875,
-        "x_norm": 271,
-        "y_norm": 783,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 554.1875,
-          "width": 20,
-          "height": 20
-        },
-        "target_desc": "AI/ML",
-        "role": "checkbox",
-        "name": "AI/ML",
-        "aria_label": "AI/ML",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "#i39",
-        "tag": "div",
-        "id": "i39"
-      },
-      "intent": "Select AI/ML, Systems for Topics you're interested in"
-    },
-    {
-      "t_s": 29.28649747999998,
-      "name": "hover_at",
-      "args": {},
-      "scroll_x": 0,
-      "scroll_y": 504,
-      "step_ref": 4,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 347.5,
-        "y_px": 636.1875,
-        "x_norm": 271,
-        "y_norm": 883,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 626.1875,
-          "width": 20,
-          "height": 20
-        },
-        "target_desc": "Systems",
-        "role": "checkbox",
-        "name": "Systems",
-        "aria_label": "Systems",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "#i45",
-        "tag": "div",
-        "id": "i45"
-      },
-      "intent": "Select AI/ML, Systems for Topics you're interested in"
-    },
-    {
-      "t_s": 29.794598969000162,
-      "name": "click_at",
-      "args": {
-        "button": "left"
-      },
-      "scroll_x": 0,
-      "scroll_y": 504,
-      "step_ref": 4,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 347.5,
-        "y_px": 636.1875,
-        "x_norm": 271,
-        "y_norm": 883,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 626.1875,
-          "width": 20,
-          "height": 20
-        },
-        "target_desc": "Systems",
-        "role": "checkbox",
-        "name": "Systems",
-        "aria_label": "Systems",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "#i45",
-        "tag": "div",
-        "id": "i45"
-      },
-      "intent": "Select AI/ML, Systems for Topics you're interested in"
-    },
-    {
-      "t_s": 30.382888040000125,
-      "name": "scroll_document",
-      "args": {
-        "delta_x": 0,
-        "delta_y": 443
-      },
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": 5,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 632.5,
-        "y_px": 360.6875,
-        "x_norm": 494,
-        "y_norm": 500,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 312.5,
-          "y": 284.1875,
-          "width": 640,
-          "height": 153
-        },
-        "target_desc": "Preferred meeting date\nDatum",
-        "role": "listitem",
-        "name": "Preferred meeting date\nDatum",
-        "aria_label": null,
-        "placeholder": null,
-        "label_text": null,
-        "selector": "div.Qr7Oae",
-        "tag": "div",
-        "id": null
-      },
-      "intent": "Fill Preferred meeting date"
-    },
-    {
-      "t_s": 31.103492017999997,
-      "name": "hover_at",
-      "args": {},
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": 5,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 401.0,
-        "y_px": 390.1875,
-        "x_norm": 313,
-        "y_norm": 541,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 378.1875,
-          "width": 127,
-          "height": 24
-        },
-        "target_desc": "Datum",
-        "role": null,
-        "name": null,
-        "aria_label": null,
-        "placeholder": null,
-        "label_text": "Datum",
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred meeting date"
-    },
-    {
-      "t_s": 31.690313791000335,
-      "name": "click_at",
-      "args": {
-        "button": "left"
-      },
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": 5,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 401.0,
-        "y_px": 390.1875,
-        "x_norm": 313,
-        "y_norm": 541,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 378.1875,
-          "width": 127,
-          "height": 24
-        },
-        "target_desc": "Datum",
-        "role": null,
-        "name": null,
-        "aria_label": null,
-        "placeholder": null,
-        "label_text": "Datum",
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred meeting date"
-    },
-    {
-      "t_s": 32.319251798000096,
-      "name": "type_text_at",
-      "args": {
-        "text": "2025-06-15",
-        "press_enter": false,
-        "clear_before_typing": true,
-        "input_method": "fill"
-      },
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": 5,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 401.0,
-        "y_px": 390.1875,
-        "x_norm": 313,
-        "y_norm": 541,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 378.1875,
-          "width": 127,
-          "height": 24
-        },
-        "target_desc": "Datum",
-        "role": null,
-        "name": null,
-        "aria_label": null,
-        "placeholder": null,
-        "label_text": "Datum",
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred meeting date"
-    },
-    {
-      "t_s": 33.61920263800039,
-      "name": "hover_at",
-      "args": {},
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": 6,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 346.0,
-        "y_px": 564.1875,
-        "x_norm": 270,
-        "y_norm": 783,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 552.1875,
-          "width": 17,
-          "height": 24
-        },
-        "target_desc": "Stunde",
-        "role": "combobox",
-        "name": "Stunde",
-        "aria_label": "Stunde",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred meeting time"
-    },
-    {
-      "t_s": 34.26180202000023,
-      "name": "click_at",
-      "args": {
-        "button": "left"
-      },
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": 6,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 346.0,
-        "y_px": 564.1875,
-        "x_norm": 270,
-        "y_norm": 783,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 552.1875,
-          "width": 17,
-          "height": 24
-        },
-        "target_desc": "Stunde",
-        "role": "combobox",
-        "name": "Stunde",
-        "aria_label": "Stunde",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred meeting time"
-    },
-    {
-      "t_s": 35.094021306000286,
-      "name": "type_text_at",
-      "args": {
-        "text": "10",
-        "press_enter": false,
-        "clear_before_typing": true,
-        "input_method": "type"
-      },
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": 6,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 346.0,
-        "y_px": 564.1875,
-        "x_norm": 270,
-        "y_norm": 783,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 337.5,
-          "y": 552.1875,
-          "width": 17,
-          "height": 24
-        },
-        "target_desc": "Stunde",
-        "role": "combobox",
-        "name": "Stunde",
-        "aria_label": "Stunde",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred meeting time"
-    },
-    {
-      "t_s": 35.93892321300018,
-      "name": "hover_at",
-      "args": {},
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": 6,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 375.0,
-        "y_px": 564.1875,
-        "x_norm": 293,
-        "y_norm": 783,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 366.5,
-          "y": 552.1875,
-          "width": 17,
-          "height": 24
-        },
-        "target_desc": "Minute",
-        "role": "combobox",
-        "name": "Minute",
-        "aria_label": "Minute",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred meeting time"
-    },
-    {
-      "t_s": 36.43467675800002,
-      "name": "click_at",
-      "args": {
-        "button": "left"
-      },
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": 6,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 375.0,
-        "y_px": 564.1875,
-        "x_norm": 293,
-        "y_norm": 783,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 366.5,
-          "y": 552.1875,
-          "width": 17,
-          "height": 24
-        },
-        "target_desc": "Minute",
-        "role": "combobox",
-        "name": "Minute",
-        "aria_label": "Minute",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred meeting time"
-    },
-    {
-      "t_s": 37.18012503099999,
-      "name": "type_text_at",
-      "args": {
-        "text": "30",
-        "press_enter": false,
-        "clear_before_typing": true,
-        "input_method": "type"
-      },
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": 6,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 375.0,
-        "y_px": 564.1875,
-        "x_norm": 293,
-        "y_norm": 783,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 366.5,
-          "y": 552.1875,
-          "width": 17,
-          "height": 24
-        },
-        "target_desc": "Minute",
-        "role": "combobox",
-        "name": "Minute",
-        "aria_label": "Minute",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "input.whsOnd",
-        "tag": "input",
-        "id": null
-      },
-      "intent": "Fill Preferred meeting time"
-    },
-    {
-      "t_s": 38.26434639700028,
-      "name": "hover_at",
-      "args": {},
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": null,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 361.7265625,
-        "y_px": 643.1875,
-        "x_norm": 282,
-        "y_norm": 892,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 312.5,
-          "y": 625.1875,
-          "width": 98.453125,
-          "height": 36
-        },
-        "target_desc": "Submit",
-        "role": "button",
-        "name": "Submit",
-        "aria_label": "Submit",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "div.uArJ5e",
-        "tag": "div",
-        "id": null
-      },
-      "intent": "Submit form"
-    },
-    {
-      "t_s": 39.158352726999965,
-      "name": "click_at",
-      "args": {
-        "button": "left"
-      },
-      "scroll_x": 0,
-      "scroll_y": 947,
-      "step_ref": null,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "coords": {
-        "x_px": 361.7265625,
-        "y_px": 643.1875,
-        "x_norm": 282,
-        "y_norm": 892,
-        "viewport_w": 1280,
-        "viewport_h": 720
-      },
-      "grounding": {
-        "target_bbox": {
-          "x": 312.5,
-          "y": 625.1875,
-          "width": 98.453125,
-          "height": 36
-        },
-        "target_desc": "Submit",
-        "role": "button",
-        "name": "Submit",
-        "aria_label": "Submit",
-        "placeholder": null,
-        "label_text": null,
-        "selector": "div.uArJ5e",
-        "tag": "div",
-        "id": null
-      },
-      "intent": "Submit form"
-    },
-    {
-      "t_s": 47.37671164200037,
-      "name": "wait_5_seconds",
-      "args": {
-        "method": "text",
-        "text": "Response recorded",
-        "timeout_ms": 8000
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": null,
-      "outcome": {
-        "success": false,
-        "error": "timeout"
-      },
-      "intent": "Wait for submission confirmation"
-    },
-    {
-      "t_s": 55.384148111000286,
-      "name": "wait_5_seconds",
-      "args": {
-        "method": "text",
-        "text": "Response has been recorded",
-        "timeout_ms": 8000
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": null,
-      "outcome": {
-        "success": false,
-        "error": "timeout"
-      },
-      "intent": "Wait for submission confirmation"
-    },
-    {
-      "t_s": 63.392959620000056,
-      "name": "wait_5_seconds",
-      "args": {
-        "method": "text",
-        "text": "Thanks for submitting",
-        "timeout_ms": 8000
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": null,
-      "outcome": {
-        "success": false,
-        "error": "timeout"
-      },
-      "intent": "Wait for submission confirmation"
-    },
-    {
-      "t_s": 71.39932942700034,
-      "name": "wait_5_seconds",
-      "args": {
-        "method": "text",
-        "text": "Your response has been recorded",
-        "timeout_ms": 8000
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": null,
-      "outcome": {
-        "success": false,
-        "error": "timeout"
-      },
-      "intent": "Wait for submission confirmation"
-    },
-    {
-      "t_s": 71.4038200330001,
-      "name": "wait_5_seconds",
-      "args": {
-        "method": "url",
-        "pattern": "formResponse",
-        "timeout_ms": 8000
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": null,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "intent": "Wait for submission confirmation"
-    },
-    {
-      "t_s": 71.40686680099998,
-      "name": "navigate",
-      "args": {
-        "url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/formResponse"
-      },
-      "scroll_x": 0,
-      "scroll_y": 0,
-      "step_ref": null,
-      "outcome": {
-        "success": true,
-        "error": null
-      },
-      "intent": "Confirm submission navigation"
-    }
-  ],
+  "submit": {
+    "success": false,
+    "t_start_s": 23.10386389900009,
+    "t_end_s": 23.185125355000082,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": null,
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/viewform",
+    "pre_screenshot": "observations/submit_pre.png",
+    "post_screenshot": "observations/submit_post.png"
+  },
+  "trace": {
+    "tool_trace_path": "tool_trace.jsonl",
+    "screenshot_dir": "observations"
+  },
+  "submitted": false,
+  "failure_reason": "submit_not_clicked",
   "run_metadata": {
     "suffix": "mlsys",
     "notes": "Graduate researcher focused on ML systems."

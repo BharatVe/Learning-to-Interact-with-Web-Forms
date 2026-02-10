@@ -1,87 +1,87 @@
 {
-  "form_id": "workshop_signup",
-  "run_name": "run_0002",
-  "run_label": "workshop_signup_run_0002",
+  "schema_version": "2.0",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/workshop_signup_run_0002.webm",
-  "run_params": {
-    "slow_mo": 200,
-    "type_delay_ms": 120,
-    "action_delay_ms": 200,
-    "pause_seconds": 0.0
-  },
-  "submitted": true,
-  "failure_reason": null,
-  "submit": {
-    "success": true,
-    "t_start_s": 21.123666713000148,
-    "t_end_s": 69.82373807800013,
-    "bbox": null,
-    "submit_clicked": true,
-    "confirmation_method": "url",
-    "confirmation_text": null,
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/formResponse"
-  },
+  "run_label": "workshop_signup_run_0002",
   "actions": [
     {
       "step": 0,
       "label": "Full name",
       "widget_type": "short_text",
       "value": "Riley Patel",
-      "success": true,
-      "t_start_s": 5.6083239409999806,
-      "t_end_s": 9.13027831799991,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.5740440580000268,
+      "t_end_s": 1.5853159650000634,
+      "bbox": null,
+      "intent": "Fill Full name",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0000_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0000_post.png"
     },
     {
       "step": 1,
       "label": "University or organization",
       "widget_type": "short_text",
       "value": "DataFlux Labs",
-      "success": true,
-      "t_start_s": 9.130285017999995,
-      "t_end_s": 12.838124164999954,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 138
-      }
+      "success": false,
+      "t_start_s": 1.78610470600006,
+      "t_end_s": 1.8225666569999248,
+      "bbox": null,
+      "intent": "Fill University or organization",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0001_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0001_post.png"
     },
     {
       "step": 2,
       "label": "Which workshop track are you registering for?",
       "widget_type": "single_choice",
       "value": "Advanced Data Engineering",
-      "success": true,
-      "t_start_s": 12.838130990000082,
-      "t_end_s": 14.459379071000058,
-      "bbox": {
-        "x": 312.5,
-        "y": 527.1875,
-        "width": 640,
-        "height": 210
-      }
+      "success": false,
+      "t_start_s": 2.024434976000066,
+      "t_end_s": 2.0414273149999644,
+      "bbox": null,
+      "intent": "Select Advanced Data Engineering for Which workshop track are you registering for?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0002_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0002_post.png"
     },
     {
       "step": 3,
       "label": "Experience level",
       "widget_type": "single_choice",
       "value": "Advanced",
-      "success": true,
-      "t_start_s": 14.459385938000196,
-      "t_end_s": 16.078192923000188,
-      "bbox": {
-        "x": 312.5,
-        "y": 749.1875,
-        "width": 640,
-        "height": 210
-      }
+      "success": false,
+      "t_start_s": 2.2427662999998574,
+      "t_end_s": 2.2705627170000753,
+      "bbox": null,
+      "intent": "Select Advanced for Experience level",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0003_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0003_post.png"
     },
     {
       "step": 4,
@@ -90,49 +90,85 @@
       "value": [
         "Vegan"
       ],
-      "success": true,
-      "t_start_s": 16.078200770999956,
-      "t_end_s": 17.66648053400013,
-      "bbox": {
-        "x": 312.5,
-        "y": 417.1875,
-        "width": 640,
-        "height": 294
-      }
+      "success": false,
+      "t_start_s": 2.471961350999891,
+      "t_end_s": 2.4843662339999355,
+      "bbox": null,
+      "intent": "Select Vegan for Dietary restrictions",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0004_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0004_post.png"
     },
     {
       "step": 5,
       "label": "Preferred session date",
       "widget_type": "date",
       "value": "2025-07-06",
-      "success": true,
-      "t_start_s": 17.66648719700015,
-      "t_end_s": 19.502660486999957,
-      "bbox": {
-        "x": 312.5,
-        "y": 723.1875,
-        "width": 640,
-        "height": 153
-      }
+      "success": false,
+      "t_start_s": 2.6858622590000323,
+      "t_end_s": 2.711033015999874,
+      "bbox": null,
+      "intent": "Fill Preferred session date",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0005_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0005_post.png"
     },
     {
       "step": 6,
       "label": "May we email you updates?",
       "widget_type": "single_choice",
       "value": "Yes",
-      "success": true,
-      "t_start_s": 19.50266875899979,
-      "t_end_s": 21.123660211999777,
-      "bbox": {
-        "x": 312.5,
-        "y": 419.1875,
-        "width": 640,
-        "height": 170
-      }
+      "success": false,
+      "t_start_s": 2.9127403019999747,
+      "t_end_s": 2.9281718309998723,
+      "bbox": null,
+      "intent": "Select Yes for May we email you updates?",
+      "scroll_y": null,
+      "target_bbox": null,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0006_pre.png",
+      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/step_0006_post.png"
     }
   ],
+  "trace": {
+    "tool_trace_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/tool_trace.jsonl",
+    "screenshot_dir": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations"
+  },
+  "submit": {
+    "success": true,
+    "t_start_s": 3.136248404000071,
+    "t_end_s": 3.142837413000052,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": "url",
+    "confirmation_text": null,
+    "final_url": null,
+    "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/submit_pre.png",
+    "post_screenshot": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/observations/submit_post.png"
+  },
   "run_metadata": {
     "suffix": "pro_data",
     "notes": "Advanced attendee focused on data engineering."
-  }
+  },
+  "form_id": "workshop_signup",
+  "run_name": "run_0002",
+  "video_path": null,
+  "run_params": {
+    "slow_mo": 200,
+    "type_delay_ms": 120,
+    "action_delay_ms": 200,
+    "pause_seconds": 0.0
+  },
+  "submitted": true,
+  "failure_reason": null
 }
