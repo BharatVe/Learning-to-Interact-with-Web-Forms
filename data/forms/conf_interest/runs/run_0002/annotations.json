@@ -1,87 +1,144 @@
 {
-  "schema_version": "2.0",
+  "schema_version": "3.0",
+  "form_id": "conf_interest",
+  "run_name": "run_0002",
+  "run_label": "conf_interest_run_0002",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/viewform",
   "viewport": {
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": null,
-  "user_agent": null,
-  "locale": null,
-  "timezone": null,
-  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/viewform",
-  "run_label": "conf_interest_run_0002",
+  "device_pixel_ratio": 1,
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+  "locale": "en-US",
+  "timezone": "Europe/Berlin",
+  "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/conf_interest_run_0002.webm",
+  "run_params": {
+    "headless": false,
+    "slow_mo": 250,
+    "timeout_ms": 30000,
+    "type_delay_ms": 100,
+    "action_delay_ms": 200,
+    "post_submit_delay_seconds": 0.0,
+    "screenshots": false,
+    "mouse_overlay": true
+  },
   "actions": [
     {
       "step": 0,
       "label": "Full Name",
       "widget_type": "short_text",
       "value": "Avery Chen",
-      "success": false,
-      "t_start_s": 1.7036802200000238,
-      "t_end_s": 1.7155707449999227,
-      "bbox": null,
       "intent": "Fill Full Name",
-      "scroll_y": null,
-      "target_bbox": null,
+      "success": true,
+      "t_start_s": 2.739822133999951,
+      "t_end_s": 6.59089109200022,
+      "bbox": {
+        "x": 312.5,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 306.1875,
+        "width": 295,
+        "height": 24
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0000_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0000_post.png"
+      "scroll_y": 0,
+      "error": null
     },
     {
       "step": 1,
       "label": "Preferred contact email",
       "widget_type": "short_text",
       "value": "avery.chen@streamforge.io",
-      "success": false,
-      "t_start_s": 1.9158705979998558,
-      "t_end_s": 1.9398491919998833,
-      "bbox": null,
       "intent": "Fill Preferred contact email",
-      "scroll_y": null,
-      "target_bbox": null,
+      "success": true,
+      "t_start_s": 6.591015055000298,
+      "t_end_s": 11.858122708000337,
+      "bbox": {
+        "x": 312.5,
+        "y": 377.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 456.1875,
+        "width": 295,
+        "height": 24
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0001_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0001_post.png"
+      "scroll_y": 0,
+      "error": null
     },
     {
       "step": 2,
       "label": "Brief bio",
       "widget_type": "paragraph_text",
       "value": "Industry professional leading applied ML work for collaboration tools.",
-      "success": false,
-      "t_start_s": 2.139996452999867,
-      "t_end_s": 2.1547550259999753,
-      "bbox": null,
       "intent": "Fill Brief bio",
-      "scroll_y": null,
-      "target_bbox": null,
+      "success": true,
+      "t_start_s": 11.858293223000146,
+      "t_end_s": 22.12420084500036,
+      "bbox": {
+        "x": 312.5,
+        "y": 527.1875,
+        "width": 640,
+        "height": 160
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 630.1875,
+        "width": 590,
+        "height": 24
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
       "target_role": null,
-      "target_name": null,
+      "target_name": "Meine Antwort",
       "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0002_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0002_post.png"
+      "scroll_y": 0,
+      "error": null
     },
     {
       "step": 3,
       "label": "Primary role",
       "widget_type": "single_choice",
       "value": "Industry Professional",
-      "success": false,
-      "t_start_s": 2.355040327999859,
-      "t_end_s": 2.3748618479999095,
-      "bbox": null,
       "intent": "Select Industry Professional for Primary role",
-      "scroll_y": null,
-      "target_bbox": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0003_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0003_post.png"
+      "success": true,
+      "t_start_s": 22.124289847,
+      "t_end_s": 24.19282335800017,
+      "bbox": {
+        "x": 312.5,
+        "y": 699.1875,
+        "width": 640,
+        "height": 250
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 665.1875,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
+      "target_role": "radio",
+      "target_name": "Industry Professional",
+      "target_selector": "#i30",
+      "scroll_y": 0,
+      "error": null
     },
     {
       "step": 4,
@@ -91,85 +148,113 @@
         "AI/ML",
         "Security"
       ],
-      "success": false,
-      "t_start_s": 2.5751793590000034,
-      "t_end_s": 2.5901270469998963,
-      "bbox": null,
       "intent": "Select AI/ML, Security for Topics you're interested in",
-      "scroll_y": null,
-      "target_bbox": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0004_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0004_post.png"
+      "success": true,
+      "t_start_s": 24.192921841000043,
+      "t_end_s": 27.99273524099999,
+      "bbox": {
+        "x": 312.5,
+        "y": 732.1875,
+        "width": 640,
+        "height": 258
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 364.1875,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
+      "target_role": "checkbox",
+      "target_name": "Security",
+      "target_selector": "#i42",
+      "scroll_y": 229,
+      "error": null
     },
     {
       "step": 5,
       "label": "Preferred meeting date",
       "widget_type": "date",
       "value": "2025-06-17",
-      "success": false,
-      "t_start_s": 2.790388056999973,
-      "t_end_s": 2.806309904000045,
-      "bbox": null,
       "intent": "Fill Preferred meeting date",
-      "scroll_y": null,
-      "target_bbox": null,
+      "success": true,
+      "t_start_s": 27.992880894000336,
+      "t_end_s": 30.60925220700028,
+      "bbox": {
+        "x": 312.5,
+        "y": 501.1875,
+        "width": 640,
+        "height": 153
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 595.1875,
+        "width": 127,
+        "height": 24
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0005_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0005_post.png"
+      "scroll_y": 730,
+      "error": null
     },
     {
       "step": 6,
       "label": "Preferred meeting time",
       "widget_type": "time",
       "value": "14:00",
-      "success": false,
-      "t_start_s": 3.0065428190000603,
-      "t_end_s": 3.0217502349998995,
-      "bbox": null,
       "intent": "Fill Preferred meeting time",
-      "scroll_y": null,
-      "target_bbox": null,
-      "target_role": null,
-      "target_name": null,
+      "success": true,
+      "t_start_s": 30.6093269400003,
+      "t_end_s": 35.87695385999996,
+      "bbox": {
+        "x": 312.5,
+        "y": 666.1875,
+        "width": 640,
+        "height": 164
+      },
+      "target_bbox": {
+        "x": 366.5,
+        "y": 659.1875,
+        "width": 17,
+        "height": 24
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
+      "target_role": "combobox",
+      "target_name": "Minute",
       "target_selector": null,
-      "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0006_pre.png",
-      "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/step_0006_post.png"
+      "scroll_y": 730,
+      "error": null
     }
   ],
-  "trace": {
-    "tool_trace_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/tool_trace.jsonl",
-    "screenshot_dir": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations"
-  },
   "submit": {
     "success": true,
-    "t_start_s": 3.2306248649999816,
-    "t_end_s": 3.237362904000065,
-    "bbox": null,
-    "submit_clicked": false,
+    "t_start_s": 35.877070280000225,
+    "t_end_s": 70.05934543100011,
+    "bbox": {
+      "x": 312.5,
+      "y": 502.1875,
+      "width": 98.453125,
+      "height": 36
+    },
+    "submit_clicked": true,
     "confirmation_method": "url",
-    "confirmation_text": null,
-    "final_url": null,
-    "pre_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/submit_pre.png",
-    "post_screenshot": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/observations/submit_post.png"
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/formResponse",
+    "pre_screenshot": null,
+    "post_screenshot": null
   },
+  "trace": {
+    "tool_trace_path": "tool_trace.jsonl",
+    "screenshot_dir": null
+  },
+  "submitted": true,
+  "failure_reason": null,
   "run_metadata": {
     "suffix": "industry",
     "notes": "Industry professional with applied ML interests."
-  },
-  "form_id": "conf_interest",
-  "run_name": "run_0002",
-  "video_path": null,
-  "run_params": {
-    "slow_mo": 200,
-    "type_delay_ms": 120,
-    "action_delay_ms": 200,
-    "pause_seconds": 0.0
-  },
-  "submitted": true,
-  "failure_reason": null
+  }
 }

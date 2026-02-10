@@ -20,12 +20,34 @@ If `PLAYWRIGHT_SKIP_FFMPEG_INSTALL` is set, video recording may fail.
 ```bash
 python3 src/engine/runner.py \
   --form-id conf_interest \
-  --answers data/answers/conf_interest/runs.json \
   --dataset-root data/forms \
   --num-runs 1
 ```
 
+Answers are matched automatically from:
+`data/answers/<form_id>/runs.json`
+
+Full dataset run (all forms under `src/forms`, each auto-matched to `data/answers/<form_id>/runs.json`):
+
+```bash
+python3 src/engine/runner.py \
+  --all-forms \
+  --dataset-root data/forms \
+  --skip-existing-video
+```
+
+Smoke test across all forms (runs exactly one answer instance per form, prints pass/fail summary):
+
+```bash
+python3 src/engine/runner.py \
+  --smoke-test-all-forms \
+  --dataset-root data/forms \
+  --overwrite-existing
+```
+
 By default the browser runs **headed** (visible). Use `--headless` to disable UI.
+Mouse overlay is enabled by default for video clarity. Use `--no-mouse-overlay` to disable it.
+Screenshots are optional and disabled by default. Use `--screenshots` to save `observations/*.png`.
 
 ## Inputs
 
@@ -57,6 +79,7 @@ Each run generates:
 
 `annotations.json` includes form/run identifiers, video path, run parameters, macro actions, submit timing, and trace pointers.
 `tool_trace.jsonl` is JSONL with Gemini-style micro-actions (click_at, hover_at, type_text_at, key_combination, scroll_document).
+Each action now also includes required-field metadata when detectable: `required`, `required_attr`, `required_marker`.
 
 ## Run Controls
 
@@ -68,18 +91,26 @@ Useful flags:
 - `--skip-existing` skip runs whose output directory already exists.
 - `--skip-existing-video` skip runs whose output directory already contains a `.webm`.
 - `--overwrite-existing` delete an existing run directory and regenerate it.
+- `--all-forms` run all form specs in `src/forms`.
+- `--smoke-test-all-forms` run one test run per form and continue through failures, then print summary.
 - `--form-url` override the URL from the spec file.
+- `--answers-root` base directory for automatic answer matching (default: `data/answers`).
+- `--answers-file` primary filename to look for in each form answer directory (default: `runs.json`).
+- Fallback if missing: `runs.jsonl`, `runs.ndjson` (fails with explicit error if none exist).
 - `--headless` run without visible browser UI.
 - `--slow-mo` add a delay (ms) to Playwright actions.
+- `--type-delay-ms` delay (ms) between typed characters.
+- `--action-delay-ms` delay (ms) after each action for visibility.
 - `--viewport-width` / `--viewport-height` set the browser viewport.
 - `--timeout-ms` set Playwright timeout for waits.
+- `--screenshots` enable per-step and submit screenshots.
+- `--no-mouse-overlay` disable the visible mouse overlay.
 
 Overwrite existing run:
 
 ```bash
 python3 src/engine/runner.py \
   --form-id conf_interest \
-  --answers data/answers/conf_interest/runs.json \
   --dataset-root data/forms \
   --num-runs 1 \
   --start-index 1 \

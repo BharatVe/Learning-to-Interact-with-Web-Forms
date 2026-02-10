@@ -16,7 +16,12 @@
   "run_params": {
     "headless": false,
     "slow_mo": 200,
-    "timeout_ms": 15000
+    "timeout_ms": 15000,
+    "type_delay_ms": 120,
+    "action_delay_ms": 220,
+    "post_submit_delay_seconds": 0.0,
+    "screenshots": false,
+    "mouse_overlay": true
   },
   "actions": [
     {
@@ -26,8 +31,8 @@
       "value": "Jordan Rivera",
       "intent": "Fill Full Name",
       "success": true,
-      "t_start_s": 3.8965367089999745,
-      "t_end_s": 7.054890317000172,
+      "t_start_s": 2.365273248000449,
+      "t_end_s": 6.661718607000694,
       "bbox": {
         "x": 312.5,
         "y": 227.1875,
@@ -40,12 +45,15 @@
         "width": 295,
         "height": 24
       },
-      "pre_screenshot": "observations/step_0000_pre.png",
-      "post_screenshot": "observations/step_0000_post.png",
+      "pre_screenshot": null,
+      "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
       "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -55,26 +63,29 @@
       "value": "jordan.rivera@example.com",
       "intent": "Fill Preferred contact email",
       "success": true,
-      "t_start_s": 7.055491409000069,
-      "t_end_s": 10.35184945800006,
+      "t_start_s": 6.661783129000469,
+      "t_end_s": 12.308980597999835,
       "bbox": {
         "x": 312.5,
-        "y": 269.1875,
+        "y": 377.1875,
         "width": 640,
         "height": 138
       },
       "target_bbox": {
         "x": 337.5,
-        "y": 348.1875,
+        "y": 456.1875,
         "width": 295,
         "height": 24
       },
-      "pre_screenshot": "observations/step_0001_pre.png",
-      "post_screenshot": "observations/step_0001_post.png",
+      "pre_screenshot": null,
+      "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 108,
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -84,26 +95,29 @@
       "value": "Graduate researcher focused on distributed training and edge inference.",
       "intent": "Fill Brief bio",
       "success": true,
-      "t_start_s": 10.351902435000056,
-      "t_end_s": 16.872743366000122,
+      "t_start_s": 12.309027139000136,
+      "t_end_s": 24.029678885000067,
       "bbox": {
         "x": 312.5,
-        "y": 245.1875,
+        "y": 527.1875,
         "width": 640,
         "height": 160
       },
       "target_bbox": {
         "x": 337.5,
-        "y": 348.1875,
+        "y": 630.1875,
         "width": 590,
         "height": 24
       },
-      "pre_screenshot": "observations/step_0002_pre.png",
-      "post_screenshot": "observations/step_0002_post.png",
+      "pre_screenshot": null,
+      "post_screenshot": null,
       "target_role": null,
       "target_name": "Meine Antwort",
       "target_selector": null,
-      "scroll_y": 282,
+      "scroll_y": 0,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -112,18 +126,31 @@
       "widget_type": "single_choice",
       "value": "PhD student",
       "intent": "Select PhD student for Primary role",
-      "success": false,
-      "t_start_s": 16.872811357000046,
-      "t_end_s": 17.040164541999957,
-      "bbox": null,
-      "target_bbox": null,
-      "pre_screenshot": "observations/step_0003_pre.png",
-      "post_screenshot": "observations/step_0003_post.png",
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "error": "TypeError: Page.evaluate() takes from 2 to 3 positional arguments but 5 were given"
+      "success": true,
+      "t_start_s": 24.029754442000012,
+      "t_end_s": 25.99320995100061,
+      "bbox": {
+        "x": 312.5,
+        "y": 699.1875,
+        "width": 640,
+        "height": 250
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 625.1875,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
+      "target_role": "radio",
+      "target_name": "PhD student",
+      "target_selector": "#i27",
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "error": null
     },
     {
       "step": 4,
@@ -134,18 +161,31 @@
         "Systems"
       ],
       "intent": "Select AI/ML, Systems for Topics you're interested in",
-      "success": false,
-      "t_start_s": 17.04023518400004,
-      "t_end_s": 17.210344648000046,
-      "bbox": null,
-      "target_bbox": null,
-      "pre_screenshot": "observations/step_0004_pre.png",
-      "post_screenshot": "observations/step_0004_post.png",
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "error": "TypeError: Page.evaluate() takes from 2 to 3 positional arguments but 5 were given"
+      "success": true,
+      "t_start_s": 25.9932968840003,
+      "t_end_s": 29.59534985099981,
+      "bbox": {
+        "x": 312.5,
+        "y": 732.1875,
+        "width": 640,
+        "height": 258
+      },
+      "target_bbox": {
+        "x": 337.5,
+        "y": 400.1875,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": null,
+      "post_screenshot": null,
+      "target_role": "checkbox",
+      "target_name": "Systems",
+      "target_selector": "#i45",
+      "scroll_y": 229,
+      "required": true,
+      "required_attr": false,
+      "required_marker": true,
+      "error": null
     },
     {
       "step": 5,
@@ -154,26 +194,29 @@
       "value": "2025-06-15",
       "intent": "Fill Preferred meeting date",
       "success": true,
-      "t_start_s": 17.210411456999964,
-      "t_end_s": 19.47031934300003,
+      "t_start_s": 29.595436188999884,
+      "t_end_s": 32.044422712000596,
       "bbox": {
         "x": 312.5,
-        "y": 284.1875,
+        "y": 501.1875,
         "width": 640,
         "height": 153
       },
       "target_bbox": {
         "x": 337.5,
-        "y": 378.1875,
+        "y": 595.1875,
         "width": 127,
         "height": 24
       },
-      "pre_screenshot": "observations/step_0005_pre.png",
-      "post_screenshot": "observations/step_0005_post.png",
+      "pre_screenshot": null,
+      "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 947,
+      "scroll_y": 730,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -183,46 +226,54 @@
       "value": "10:30",
       "intent": "Fill Preferred meeting time",
       "success": true,
-      "t_start_s": 19.47037946399996,
-      "t_end_s": 23.025704267000037,
+      "t_start_s": 32.044562585000676,
+      "t_end_s": 37.081763475000116,
       "bbox": {
         "x": 312.5,
-        "y": 326.1875,
+        "y": 666.1875,
         "width": 640,
         "height": 164
       },
       "target_bbox": {
         "x": 366.5,
-        "y": 429.1875,
+        "y": 659.1875,
         "width": 17,
         "height": 24
       },
-      "pre_screenshot": "observations/step_0006_pre.png",
-      "post_screenshot": "observations/step_0006_post.png",
-      "target_role": null,
-      "target_name": null,
+      "pre_screenshot": null,
+      "post_screenshot": null,
+      "target_role": "combobox",
+      "target_name": "Minute",
       "target_selector": null,
-      "scroll_y": 1070,
+      "scroll_y": 730,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     }
   ],
   "submit": {
-    "success": false,
-    "t_start_s": 23.10386389900009,
-    "t_end_s": 23.185125355000082,
-    "bbox": null,
-    "submit_clicked": false,
-    "confirmation_method": null,
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/viewform",
-    "pre_screenshot": "observations/submit_pre.png",
-    "post_screenshot": "observations/submit_post.png"
+    "success": true,
+    "t_start_s": 37.0818861759999,
+    "t_end_s": 71.19394417700005,
+    "bbox": {
+      "x": 312.5,
+      "y": 502.1875,
+      "width": 98.453125,
+      "height": 36
+    },
+    "submit_clicked": true,
+    "confirmation_method": "url",
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/formResponse",
+    "pre_screenshot": null,
+    "post_screenshot": null
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
-    "screenshot_dir": "observations"
+    "screenshot_dir": null
   },
-  "submitted": false,
-  "failure_reason": "submit_not_clicked",
+  "submitted": true,
+  "failure_reason": null,
   "run_metadata": {
     "suffix": "mlsys",
     "notes": "Graduate researcher focused on ML systems."

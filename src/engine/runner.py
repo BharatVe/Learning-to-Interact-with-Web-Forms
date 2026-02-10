@@ -19,17 +19,23 @@ from engine.trace_logger import TraceLogger  # noqa: E402
 DEFAULT_DATASET_ROOT = "data/forms"
 DEFAULT_SLOW_MO = 200
 DEFAULT_TIMEOUT_MS = 15000
+DEFAULT_TYPE_DELAY_MS = 120
+DEFAULT_ACTION_DELAY_MS = 220
+DEFAULT_POST_SUBMIT_DELAY_SECONDS = 0.0
+DEFAULT_ANSWERS_ROOT = "data/answers"
+DEFAULT_ANSWERS_FILE = "runs.json"
 
 RUN_DIR_PATTERN = re.compile(r"run_(\d{4})$")
 
 
 def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate form datasets via Playwright")
-    parser.add_argument("--form-id", required=True)
+    parser.add_argument("--form-id")
+    parser.add_argument("--all-forms", action="store_true")
+    parser.add_argument("--smoke-test-all-forms", action="store_true")
     parser.add_argument("--form-url")
-    parser.add_argument("--answers", dest="answers_source")
-    parser.add_argument("--answers-source", dest="answers_source")
-    parser.add_argument("--answers-json", dest="answers_source")
+    parser.add_argument("--answers-root", default=DEFAULT_ANSWERS_ROOT)
+    parser.add_argument("--answers-file", default=DEFAULT_ANSWERS_FILE)
     parser.add_argument("--dataset-root", default=DEFAULT_DATASET_ROOT)
     parser.add_argument("--specs-root")
     parser.add_argument("--num-runs", type=int)
@@ -43,13 +49,36 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--viewport-width", type=int, default=1280)
     parser.add_argument("--viewport-height", type=int, default=720)
     parser.add_argument("--timeout-ms", type=int, default=DEFAULT_TIMEOUT_MS)
+    parser.add_argument("--type-delay-ms", type=int, default=DEFAULT_TYPE_DELAY_MS)
+    parser.add_argument("--action-delay-ms", type=int, default=DEFAULT_ACTION_DELAY_MS)
+    parser.add_argument(
+        "--post-submit-delay-seconds",
+        type=float,
+        default=DEFAULT_POST_SUBMIT_DELAY_SECONDS,
+    )
+    parser.add_argument("--screenshots", action="store_true", default=False)
+    parser.add_argument("--no-mouse-overlay", action="store_true", default=False)
     args = parser.parse_args(argv)
-    if not args.answers_source:
-        parser.error("--answers is required")
+    if args.form_id and args.all_forms:
+        parser.error("Use either --form-id or --all-forms, not both")
+    if args.form_id and args.smoke_test_all_forms:
+        parser.error("Use either --form-id or --smoke-test-all-forms, not both")
+    if not args.form_id and not args.all_forms and not args.smoke_test_all_forms:
+        parser.error("Either --form-id, --all-forms, or --smoke-test-all-forms is required")
+    if (args.all_forms or args.smoke_test_all_forms) and args.form_url:
+        parser.error("--form-url is only supported with --form-id")
+    if args.smoke_test_all_forms and args.num_runs is not None:
+        parser.error("--num-runs is not supported with --smoke-test-all-forms (it always runs 1)")
     if args.num_runs is not None and args.num_runs < 1:
         parser.error("--num-runs must be >= 1")
     if args.timeout_ms < 1000:
         parser.error("--timeout-ms must be >= 1000")
+    if args.type_delay_ms < 0:
+        parser.error("--type-delay-ms must be >= 0")
+    if args.action_delay_ms < 0:
+        parser.error("--action-delay-ms must be >= 0")
+    if args.post_submit_delay_seconds < 0:
+        parser.error("--post-submit-delay-seconds must be >= 0")
     return args
 
 
@@ -61,6 +90,45 @@ def load_form_spec(form_id: str, specs_root: Path) -> Dict[str, Any]:
     if not isinstance(data, dict):
         raise ValueError(f"Spec file must contain an object: {spec_path}")
     return data
+
+
+def discover_form_ids(specs_root: Path) -> List[str]:
+    if not specs_root.exists():
+        raise FileNotFoundError(f"Specs root not found: {specs_root}")
+    form_ids: List[str] = []
+    for entry in specs_root.iterdir():
+        if entry.is_dir() and (entry / "spec.json").exists():
+            form_ids.append(entry.name)
+    return sorted(form_ids)
+
+
+def resolve_answers_path(args: argparse.Namespace, form_id: str) -> Path:
+    form_answers_dir = (Path(args.answers_root) / form_id).resolve()
+    if not form_answers_dir.exists() or not form_answers_dir.is_dir():
+        raise FileNotFoundError(
+            f"Answers directory not found for '{form_id}': {form_answers_dir}. "
+            f"Expected convention: {args.answers_root}/<form_id>/"
+        )
+
+    candidates: List[str] = []
+    for name in [args.answers_file, "runs.json", "runs.jsonl", "runs.ndjson"]:
+        if name not in candidates:
+            candidates.append(name)
+
+    for name in candidates:
+        candidate = form_answers_dir / name
+        if candidate.exists() and candidate.is_file():
+            return candidate
+
+    available = sorted(
+        p.name for p in form_answers_dir.iterdir() if p.is_file() and p.suffix.lower() in {".json", ".jsonl", ".ndjson"}
+    )
+    expected = ", ".join(candidates)
+    found = ", ".join(available) if available else "(none)"
+    raise FileNotFoundError(
+        f"No valid answers file found for '{form_id}' in {form_answers_dir}. "
+        f"Tried: {expected}. Found: {found}"
+    )
 
 
 def normalize_run_spec(run_obj: Any, index_label: str) -> Dict[str, Any]:
@@ -198,6 +266,7 @@ def validate_run_artifacts(
     annotations_path: Path,
     trace_path: Path,
     observations_dir: Path,
+    screenshots_required: bool,
 ) -> None:
     missing: List[str] = []
     if not answers_path.exists():
@@ -206,15 +275,18 @@ def validate_run_artifacts(
         missing.append("annotations.json")
     if not trace_path.exists() or trace_path.stat().st_size == 0:
         missing.append("tool_trace.jsonl (missing or empty)")
-    if not observations_dir.exists():
-        missing.append("observations/")
-    else:
-        submit_pre = observations_dir / "submit_pre.png"
-        submit_post = observations_dir / "submit_post.png"
-        if not submit_pre.exists():
-            missing.append("observations/submit_pre.png")
-        if not submit_post.exists():
-            missing.append("observations/submit_post.png")
+
+    if screenshots_required:
+        if not observations_dir.exists():
+            missing.append("observations/")
+        else:
+            submit_pre = observations_dir / "submit_pre.png"
+            submit_post = observations_dir / "submit_post.png"
+            if not submit_pre.exists():
+                missing.append("observations/submit_pre.png")
+            if not submit_post.exists():
+                missing.append("observations/submit_post.png")
+
     if video_path is None or not video_path.exists() or video_path.stat().st_size == 0:
         missing.append("final video (.webm)")
     if missing:
@@ -254,7 +326,8 @@ def run_single(
     answers_path.write_text(json.dumps(answers, indent=2))
 
     observations_dir = run_dir / "observations"
-    observations_dir.mkdir(parents=True, exist_ok=True)
+    if args.screenshots:
+        observations_dir.mkdir(parents=True, exist_ok=True)
     trace_path = run_dir / "tool_trace.jsonl"
 
     start_time = time.perf_counter()
@@ -276,6 +349,11 @@ def run_single(
             "headless": bool(args.headless),
             "slow_mo": args.slow_mo,
             "timeout_ms": args.timeout_ms,
+            "type_delay_ms": args.type_delay_ms,
+            "action_delay_ms": args.action_delay_ms,
+            "post_submit_delay_seconds": args.post_submit_delay_seconds,
+            "screenshots": bool(args.screenshots),
+            "mouse_overlay": not bool(args.no_mouse_overlay),
         },
         "actions": [],
         "submit": {
@@ -291,7 +369,7 @@ def run_single(
         },
         "trace": {
             "tool_trace_path": "tool_trace.jsonl",
-            "screenshot_dir": "observations",
+            "screenshot_dir": "observations" if args.screenshots else None,
         },
         "submitted": False,
         "failure_reason": None,
@@ -338,7 +416,13 @@ def run_single(
                     observations_dir=observations_dir,
                     trace=trace,
                     timeout_ms=args.timeout_ms,
+                    type_delay_ms=args.type_delay_ms,
+                    action_delay_ms=args.action_delay_ms,
+                    take_screenshots=args.screenshots,
                 )
+
+                if not args.no_mouse_overlay:
+                    engine.enable_mouse_overlay()
 
                 for idx, entry in enumerate(answers):
                     label = entry.get("label") if isinstance(entry, dict) else None
@@ -356,6 +440,8 @@ def run_single(
                 annotations["submit"] = submit_info
                 if submit_err:
                     errors.append(f"submit: {submit_err}")
+                elif submit_info.get("success") and args.post_submit_delay_seconds > 0:
+                    page.wait_for_timeout(int(args.post_submit_delay_seconds * 1000))
             except PlaywrightError as exc:
                 raise _playwright_browser_error(exc) from exc
             except PlaywrightTimeoutError as exc:
@@ -411,9 +497,10 @@ def run_single(
         annotations_path=annotations_path,
         trace_path=trace_path,
         observations_dir=observations_dir,
+        screenshots_required=bool(args.screenshots),
     )
 
-    screenshot_count = len(list(observations_dir.glob("*.png")))
+    screenshot_count = len(list(observations_dir.glob("*.png"))) if observations_dir.exists() else 0
     print("[INFO] Run complete")
     print(f"[INFO] run_dir: {run_dir}")
     print(f"[INFO] video: {video_path}")
@@ -427,25 +514,22 @@ def run_single(
         raise RuntimeError(f"Run completed with errors: {joined}")
 
 
-def main(argv: Optional[List[str]] = None) -> bool:
-    args = parse_args(argv)
-    specs_root = Path(args.specs_root) if args.specs_root else (SRC_DIR / "forms")
-    form_spec = load_form_spec(args.form_id, specs_root)
+def run_for_form(
+    args: argparse.Namespace,
+    specs_root: Path,
+    dataset_root: Path,
+    form_id: str,
+    num_runs_limit: Optional[int] = None,
+) -> None:
+    form_spec = load_form_spec(form_id, specs_root)
     form_url = args.form_url or form_spec.get("form_url")
     if not form_url:
-        raise ValueError("Form URL not provided and not found in spec")
+        raise ValueError(f"Form URL not provided and not found in spec for form_id={form_id}")
 
-    if os.environ.get("PLAYWRIGHT_SKIP_FFMPEG_INSTALL"):
-        print(
-            "[WARN] PLAYWRIGHT_SKIP_FFMPEG_INSTALL is set; video recording may fail.",
-            file=sys.stderr,
-        )
-
-    answers_path = Path(args.answers_source).resolve()
+    answers_path = resolve_answers_path(args, form_id)
     run_specs_iter = iter_run_specs(answers_path)
 
-    dataset_root = Path(args.dataset_root).resolve()
-    runs_dir = dataset_root / args.form_id / "runs"
+    runs_dir = dataset_root / form_id / "runs"
     runs_dir.mkdir(parents=True, exist_ok=True)
 
     existing_indices = set(existing_run_indices(runs_dir))
@@ -459,7 +543,10 @@ def main(argv: Optional[List[str]] = None) -> bool:
     generated = 0
     current_index = start_index
 
+    print(f"[INFO] form_id={form_id}, answers={answers_path}")
     for spec in run_specs_iter:
+        if num_runs_limit is not None and generated >= num_runs_limit:
+            break
         if args.num_runs is not None and generated >= args.num_runs:
             break
         if skip_existing:
@@ -476,14 +563,15 @@ def main(argv: Optional[List[str]] = None) -> bool:
             print(f"[INFO] Skipping existing video for {run_name}.")
             current_index = run_index + 1
             continue
-        run_label = f"{args.form_id}_{run_name}"
+
+        run_label = f"{form_id}_{run_name}"
         answers = spec.get("answers", [])
         if not isinstance(answers, list):
             raise ValueError("Run answers must be a list")
         run_metadata = spec.get("metadata", {})
 
         run_single(
-            form_id=args.form_id,
+            form_id=form_id,
             form_url=form_url,
             answers=answers,
             run_dir=run_dir,
@@ -492,9 +580,50 @@ def main(argv: Optional[List[str]] = None) -> bool:
             args=args,
             run_metadata=run_metadata,
         )
-
         generated += 1
         current_index = run_index + 1
+
+
+def main(argv: Optional[List[str]] = None) -> bool:
+    args = parse_args(argv)
+    specs_root = Path(args.specs_root) if args.specs_root else (SRC_DIR / "forms")
+    dataset_root = Path(args.dataset_root).resolve()
+
+    if os.environ.get("PLAYWRIGHT_SKIP_FFMPEG_INSTALL"):
+        print(
+            "[WARN] PLAYWRIGHT_SKIP_FFMPEG_INSTALL is set; video recording may fail.",
+            file=sys.stderr,
+        )
+
+    if args.smoke_test_all_forms:
+        form_ids = discover_form_ids(specs_root)
+        if not form_ids:
+            raise ValueError(f"No forms found in specs root: {specs_root}")
+
+        failures: List[Tuple[str, str]] = []
+        for form_id in form_ids:
+            print(f"[SMOKE] Running one test run for form_id={form_id}")
+            try:
+                run_for_form(args, specs_root, dataset_root, form_id, num_runs_limit=1)
+                print(f"[SMOKE] PASS form_id={form_id}")
+            except Exception as exc:  # noqa: BLE001
+                message = str(exc)
+                failures.append((form_id, message))
+                print(f"[SMOKE] FAIL form_id={form_id}: {message}", file=sys.stderr)
+
+        passed = len(form_ids) - len(failures)
+        print(f"[SMOKE] Summary: passed={passed}, failed={len(failures)}, total={len(form_ids)}")
+        if failures:
+            failed_forms = ", ".join(form_id for form_id, _ in failures)
+            raise RuntimeError(f"Smoke test failures in forms: {failed_forms}")
+        return True
+
+    form_ids = discover_form_ids(specs_root) if args.all_forms else [str(args.form_id)]
+    if not form_ids:
+        raise ValueError(f"No forms found in specs root: {specs_root}")
+
+    for form_id in form_ids:
+        run_for_form(args, specs_root, dataset_root, form_id)
 
     return True
 
