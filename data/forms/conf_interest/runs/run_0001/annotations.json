@@ -21,7 +21,14 @@
     "action_delay_ms": 220,
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
-    "mouse_overlay": true
+    "mouse_overlay": true,
+    "interaction_mode": "mcp_actions",
+    "trace_mode": "mcp",
+    "mcp_server_cmd": "bundled_default",
+    "mcp_tool_name": "record_action",
+    "mcp_timeout_ms": 5000,
+    "mcp_verify_trace": true,
+    "mcp_strict": true
   },
   "actions": [
     {
@@ -31,8 +38,8 @@
       "value": "Jordan Rivera",
       "intent": "Fill Full Name",
       "success": true,
-      "t_start_s": 4.59839980400011,
-      "t_end_s": 9.27191047299948,
+      "t_start_s": 4.688193762001902,
+      "t_end_s": 9.34729552600038,
       "bbox": {
         "x": 312.5,
         "y": 227.1875,
@@ -63,8 +70,8 @@
       "value": "jordan.rivera@example.com",
       "intent": "Fill Preferred contact email",
       "success": true,
-      "t_start_s": 9.272029843999917,
-      "t_end_s": 14.920385272000203,
+      "t_start_s": 9.347538464000536,
+      "t_end_s": 15.269716173999768,
       "bbox": {
         "x": 312.5,
         "y": 377.1875,
@@ -95,8 +102,8 @@
       "value": "Graduate researcher focused on distributed training and edge inference.",
       "intent": "Fill Brief bio",
       "success": true,
-      "t_start_s": 14.920465852999769,
-      "t_end_s": 26.593452363000324,
+      "t_start_s": 15.26982490500086,
+      "t_end_s": 26.811695115000475,
       "bbox": {
         "x": 312.5,
         "y": 527.1875,
@@ -127,8 +134,8 @@
       "value": "PhD student",
       "intent": "Select PhD student for Primary role",
       "success": true,
-      "t_start_s": 26.593572136999683,
-      "t_end_s": 28.559590124999886,
+      "t_start_s": 26.811815036999178,
+      "t_end_s": 28.618683852000686,
       "bbox": {
         "x": 312.5,
         "y": 699.1875,
@@ -162,8 +169,8 @@
       ],
       "intent": "Select AI/ML, Systems for Topics you're interested in",
       "success": true,
-      "t_start_s": 28.559668451000107,
-      "t_end_s": 32.11673859700022,
+      "t_start_s": 28.618727559001854,
+      "t_end_s": 31.86413798799913,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -194,8 +201,8 @@
       "value": "2025-06-15",
       "intent": "Fill Preferred meeting date",
       "success": true,
-      "t_start_s": 32.116806254999574,
-      "t_end_s": 34.563219450999895,
+      "t_start_s": 31.86417382700165,
+      "t_end_s": 34.0950680950009,
       "bbox": {
         "x": 312.5,
         "y": 501.1875,
@@ -226,8 +233,8 @@
       "value": "10:30",
       "intent": "Fill Preferred meeting time",
       "success": true,
-      "t_start_s": 34.563318610999886,
-      "t_end_s": 39.58860010999979,
+      "t_start_s": 34.095118485001876,
+      "t_end_s": 39.21196256800249,
       "bbox": {
         "x": 312.5,
         "y": 666.1875,
@@ -254,8 +261,8 @@
   ],
   "submit": {
     "success": true,
-    "t_start_s": 39.588717419000204,
-    "t_end_s": 73.54205640100008,
+    "t_start_s": 39.21204838099948,
+    "t_end_s": 72.72552332499981,
     "bbox": {
       "x": 312.5,
       "y": 502.1875,
@@ -270,7 +277,44 @@
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
-    "screenshot_dir": null
+    "screenshot_dir": null,
+    "mcp": {
+      "format": "mcp_computer_use_compatible",
+      "mode": "mcp_server",
+      "validate_mcp_actions": true,
+      "strict_mcp_validation": true,
+      "event_count": 30,
+      "validation_error_count": 0,
+      "events_by_name": {
+        "click_at": 10,
+        "hover_at": 10,
+        "scroll_document": 4,
+        "type_text_at": 6
+      },
+      "supported_actions": [
+        "click_at",
+        "hover_at",
+        "key_combination",
+        "scroll_document",
+        "type_text_at"
+      ],
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/bharat/gf_form_agent_env/bin/python3",
+          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
+        ],
+        "tool_name": "record_action",
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ]
+      }
+    }
   },
   "submitted": true,
   "failure_reason": null,

@@ -21,7 +21,14 @@
     "action_delay_ms": 220,
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
-    "mouse_overlay": true
+    "mouse_overlay": true,
+    "interaction_mode": "mcp_actions",
+    "trace_mode": "mcp",
+    "mcp_server_cmd": "bundled_default",
+    "mcp_tool_name": "record_action",
+    "mcp_timeout_ms": 5000,
+    "mcp_verify_trace": true,
+    "mcp_strict": true
   },
   "actions": [
     {
@@ -31,8 +38,8 @@
       "value": "Priya Nair",
       "intent": "Fill Full name",
       "success": true,
-      "t_start_s": 2.3579574929990486,
-      "t_end_s": 6.395981191999454,
+      "t_start_s": 11.905031608999707,
+      "t_end_s": 15.651554012998531,
       "bbox": {
         "x": 312.5,
         "y": 227.1875,
@@ -63,8 +70,8 @@
       "value": "priya.nair@example.com",
       "intent": "Fill Contact email",
       "success": true,
-      "t_start_s": 6.396091783999509,
-      "t_end_s": 11.67296268300015,
+      "t_start_s": 15.651641901997209,
+      "t_end_s": 20.90357809299894,
       "bbox": {
         "x": 312.5,
         "y": 377.1875,
@@ -95,8 +102,8 @@
       "value": "Bengaluru",
       "intent": "Fill Current city",
       "success": true,
-      "t_start_s": 11.673070528999233,
-      "t_end_s": 15.200878943000134,
+      "t_start_s": 20.903675967998424,
+      "t_end_s": 24.45210048199806,
       "bbox": {
         "x": 312.5,
         "y": 527.1875,
@@ -127,8 +134,8 @@
       "value": "Master's",
       "intent": "Select Master's for Degree program",
       "success": true,
-      "t_start_s": 15.201003420999768,
-      "t_end_s": 17.186859258999903,
+      "t_start_s": 24.452140043998952,
+      "t_end_s": 26.22199236099914,
       "bbox": {
         "x": 312.5,
         "y": 677.1875,
@@ -162,8 +169,8 @@
       ],
       "intent": "Select Backend, Data and Machine Learning for Primary area of interest",
       "success": true,
-      "t_start_s": 17.18695390999892,
-      "t_end_s": 23.50323304199992,
+      "t_start_s": 26.222030929999164,
+      "t_end_s": 31.75300404399968,
       "bbox": {
         "x": 312.5,
         "y": 243.1875,
@@ -198,8 +205,8 @@
       ],
       "intent": "Select Python, SQL, JavaScript/TypeScript for Programming languages you use",
       "success": true,
-      "t_start_s": 23.503322712998852,
-      "t_end_s": 28.747285043999,
+      "t_start_s": 31.753071163999266,
+      "t_end_s": 36.56255066099766,
       "bbox": {
         "x": 312.5,
         "y": 548.1875,
@@ -230,8 +237,8 @@
       "value": "https://github.com/priyanair",
       "intent": "Fill Link to GitHub or portfolio",
       "success": true,
-      "t_start_s": 28.747371981999095,
-      "t_end_s": 34.83274624899968,
+      "t_start_s": 36.56259044399849,
+      "t_end_s": 42.68700024199643,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -262,8 +269,8 @@
       "value": "I enjoy building reliable services that support ML teams. I want to learn how product systems scale in production. This internship matches my interests in backend tooling and data pipelines. I am eager to contribute and learn from the team.",
       "intent": "Fill Brief motivation statement",
       "success": true,
-      "t_start_s": 34.83285101199908,
-      "t_end_s": 48.18439025999942,
+      "t_start_s": 42.68704441299997,
+      "t_end_s": 76.42127955099932,
       "bbox": {
         "x": 312.5,
         "y": 441.1875,
@@ -294,8 +301,8 @@
       "value": "2025-06-10",
       "intent": "Fill Earliest start date",
       "success": true,
-      "t_start_s": 48.18447969399858,
-      "t_end_s": 53.12777747099972,
+      "t_start_s": 76.4213678069973,
+      "t_end_s": 80.48765646899847,
       "bbox": {
         "x": 312.5,
         "y": 243.1875,
@@ -326,8 +333,8 @@
       "value": "20",
       "intent": "Fill Weekly availability (hours)",
       "success": true,
-      "t_start_s": 53.1278816189988,
-      "t_end_s": 55.71217117099877,
+      "t_start_s": 80.48773134999647,
+      "t_end_s": 83.13797831699776,
       "bbox": {
         "x": 312.5,
         "y": 407.1875,
@@ -358,8 +365,8 @@
       "value": "13:30",
       "intent": "Fill Preferred meeting time for interview",
       "success": true,
-      "t_start_s": 55.71227890599948,
-      "t_end_s": 60.69171511899913,
+      "t_start_s": 83.1380560059988,
+      "t_end_s": 88.21514816099807,
       "bbox": {
         "x": 312.5,
         "y": 581.1875,
@@ -390,8 +397,8 @@
       "value": "Yes",
       "intent": "Select Yes for Are you open to remote work?",
       "success": true,
-      "t_start_s": 60.69180099499863,
-      "t_end_s": 62.69671038699926,
+      "t_start_s": 88.21518413999729,
+      "t_end_s": 90.00685164199967,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -418,8 +425,8 @@
   ],
   "submit": {
     "success": true,
-    "t_start_s": 62.69678824499897,
-    "t_end_s": 96.71480764199987,
+    "t_start_s": 90.00688658299987,
+    "t_end_s": 123.47822190899751,
     "bbox": {
       "x": 421.203125,
       "y": 502.1875,
@@ -434,7 +441,44 @@
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
-    "screenshot_dir": null
+    "screenshot_dir": null,
+    "mcp": {
+      "format": "mcp_computer_use_compatible",
+      "mode": "mcp_server",
+      "validate_mcp_actions": true,
+      "strict_mcp_validation": true,
+      "event_count": 53,
+      "validation_error_count": 0,
+      "events_by_name": {
+        "click_at": 19,
+        "hover_at": 19,
+        "scroll_document": 6,
+        "type_text_at": 9
+      },
+      "supported_actions": [
+        "click_at",
+        "hover_at",
+        "key_combination",
+        "scroll_document",
+        "type_text_at"
+      ],
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/bharat/gf_form_agent_env/bin/python3",
+          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
+        ],
+        "tool_name": "record_action",
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ]
+      }
+    }
   },
   "submitted": true,
   "failure_reason": null,

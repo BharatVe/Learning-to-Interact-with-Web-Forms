@@ -1,0 +1,212 @@
+import json
+import select
+import shlex
+import subprocess
+import time
+from typing import Any, Dict, List, Optional, Union
+
+
+class MCPClientError(RuntimeError):
+    """Raised for MCP transport/protocol errors."""
+
+
+class MCPTraceClient:
+    def __init__(
+        self,
+        command: Union[str, List[str]],
+        tool_name: str = "record_action",
+        timeout_ms: int = 5000,
+    ) -> None:
+        if isinstance(command, str):
+            self.command = shlex.split(command)
+        else:
+            self.command = list(command)
+        if not self.command:
+            raise MCPClientError("MCP command is empty")
+
+        self.tool_name = tool_name
+        self.timeout_s = max(float(timeout_ms) / 1000.0, 0.1)
+        self._next_id = 1
+        self._closed = False
+        self.server_info: Dict[str, Any] = {}
+        self.protocol_version: Optional[str] = None
+        self.available_tools: List[str] = []
+
+        self._proc = subprocess.Popen(
+            self.command,
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            bufsize=1,
+        )
+        self._initialize()
+
+    def _next_request_id(self) -> int:
+        req_id = self._next_id
+        self._next_id += 1
+        return req_id
+
+    def _read_stderr(self) -> str:
+        if not self._proc.stderr:
+            return ""
+        try:
+            if self._proc.poll() is not None:
+                return self._proc.stderr.read() or ""
+        except Exception:
+            return ""
+        return ""
+
+    def _write_message(self, payload: Dict[str, Any]) -> None:
+        if self._closed:
+            raise MCPClientError("MCP client is closed")
+        if not self._proc.stdin:
+            raise MCPClientError("MCP stdin unavailable")
+        raw = json.dumps(payload, ensure_ascii=True) + "\n"
+        try:
+            self._proc.stdin.write(raw)
+            self._proc.stdin.flush()
+        except BrokenPipeError as exc:
+            stderr = self._read_stderr()
+            raise MCPClientError(f"MCP server pipe closed. stderr={stderr}") from exc
+
+    def _read_message(self, timeout_s: float) -> Dict[str, Any]:
+        if self._closed:
+            raise MCPClientError("MCP client is closed")
+        if not self._proc.stdout:
+            raise MCPClientError("MCP stdout unavailable")
+
+        ready, _, _ = select.select([self._proc.stdout], [], [], timeout_s)
+        if not ready:
+            raise MCPClientError(f"MCP response timed out after {timeout_s:.2f}s")
+
+        line = self._proc.stdout.readline()
+        if not line:
+            stderr = self._read_stderr()
+            raise MCPClientError(f"MCP server exited unexpectedly. stderr={stderr}")
+
+        try:
+            message = json.loads(line)
+        except Exception as exc:
+            raise MCPClientError(f"Invalid MCP JSON: {line}") from exc
+        if not isinstance(message, dict):
+            raise MCPClientError("MCP response must be a JSON object")
+        return message
+
+    def _request(self, method: str, params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        req_id = self._next_request_id()
+        self._write_message(
+            {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "method": method,
+                "params": params or {},
+            }
+        )
+        started = time.monotonic()
+        while True:
+            remaining = self.timeout_s - (time.monotonic() - started)
+            if remaining <= 0:
+                raise MCPClientError(f"MCP request timed out: {method}")
+            message = self._read_message(remaining)
+            if message.get("id") != req_id:
+                continue
+            if "error" in message:
+                raise MCPClientError(f"MCP error for {method}: {message['error']}")
+            result = message.get("result")
+            if not isinstance(result, dict):
+                raise MCPClientError(f"MCP result for {method} must be an object")
+            return result
+
+    def _notify_initialized(self) -> None:
+        self._write_message(
+            {
+                "jsonrpc": "2.0",
+                "method": "notifications/initialized",
+                "params": {},
+            }
+        )
+
+    def _initialize(self) -> None:
+        result = self._request(
+            "initialize",
+            {
+                "protocolVersion": "2024-11-05",
+                "capabilities": {"tools": {}},
+                "clientInfo": {"name": "thesis-runner", "version": "1.0.0"},
+            },
+        )
+        self.protocol_version = str(result.get("protocolVersion", ""))
+        server_info = result.get("serverInfo")
+        self.server_info = server_info if isinstance(server_info, dict) else {}
+
+        self._notify_initialized()
+        tools_result = self._request("tools/list", {})
+        tools = tools_result.get("tools")
+        if not isinstance(tools, list):
+            raise MCPClientError("MCP tools/list missing tools array")
+
+        names: List[str] = []
+        for tool in tools:
+            if isinstance(tool, dict):
+                name = tool.get("name")
+                if isinstance(name, str):
+                    names.append(name)
+        self.available_tools = sorted(set(names))
+        if self.tool_name not in self.available_tools:
+            raise MCPClientError(
+                f"MCP tool '{self.tool_name}' not found. Available: {', '.join(self.available_tools) or '(none)'}"
+            )
+
+    def record_action(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        result = self._request(
+            "tools/call",
+            {"name": self.tool_name, "arguments": payload},
+        )
+        if result.get("isError"):
+            raise MCPClientError(f"MCP tool call failed: {result}")
+
+        structured = result.get("structuredContent")
+        if isinstance(structured, dict):
+            return structured
+
+        content = result.get("content")
+        if isinstance(content, list) and content:
+            first = content[0]
+            if isinstance(first, dict):
+                text = first.get("text")
+                if isinstance(text, str):
+                    parsed = json.loads(text)
+                    if isinstance(parsed, dict):
+                        return parsed
+
+        raise MCPClientError("MCP tool returned no structured payload")
+
+    def summary(self) -> Dict[str, Any]:
+        return {
+            "mode": "mcp_server",
+            "command": self.command,
+            "tool_name": self.tool_name,
+            "protocol_version": self.protocol_version,
+            "server_info": self.server_info,
+            "available_tools": self.available_tools,
+        }
+
+    def close(self) -> None:
+        if self._closed:
+            return
+        self._closed = True
+        try:
+            if self._proc.stdin:
+                self._proc.stdin.close()
+        except Exception:
+            pass
+        try:
+            if self._proc.poll() is None:
+                self._proc.terminate()
+                self._proc.wait(timeout=1.0)
+        except Exception:
+            try:
+                self._proc.kill()
+            except Exception:
+                pass

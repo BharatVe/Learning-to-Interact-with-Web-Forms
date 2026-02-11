@@ -14,6 +14,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from engine.form_engine import FormEngine  # noqa: E402
+from engine.mcp_trace_client import MCPTraceClient  # noqa: E402
 from engine.trace_logger import TraceLogger  # noqa: E402
 
 DEFAULT_DATASET_ROOT = "data/forms"
@@ -24,8 +25,15 @@ DEFAULT_ACTION_DELAY_MS = 220
 DEFAULT_POST_SUBMIT_DELAY_SECONDS = 0.0
 DEFAULT_ANSWERS_ROOT = "data/answers"
 DEFAULT_ANSWERS_FILE = "runs.json"
+DEFAULT_TRACE_MODE = "mcp"
+DEFAULT_MCP_TOOL_NAME = "record_action"
+DEFAULT_MCP_TIMEOUT_MS = 5000
 
 RUN_DIR_PATTERN = re.compile(r"run_(\d{4})$")
+
+
+def _default_mcp_server_command() -> List[str]:
+    return [sys.executable, str(SRC_DIR / "engine" / "mcp_trace_server.py")]
 
 
 def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
@@ -58,6 +66,13 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument("--screenshots", action="store_true", default=False)
     parser.add_argument("--no-mouse-overlay", action="store_true", default=False)
+    parser.add_argument("--interaction-mode", choices=["local", "mcp_actions"], default="local")
+    parser.add_argument("--trace-mode", choices=["mcp", "local"], default=DEFAULT_TRACE_MODE)
+    parser.add_argument("--mcp-server-cmd")
+    parser.add_argument("--mcp-tool-name", default=DEFAULT_MCP_TOOL_NAME)
+    parser.add_argument("--mcp-timeout-ms", type=int, default=DEFAULT_MCP_TIMEOUT_MS)
+    parser.add_argument("--no-mcp-verify-trace", action="store_true", default=False)
+    parser.add_argument("--no-mcp-strict", action="store_true", default=False)
     args = parser.parse_args(argv)
     if args.form_id and args.all_forms:
         parser.error("Use either --form-id or --all-forms, not both")
@@ -79,6 +94,8 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
         parser.error("--action-delay-ms must be >= 0")
     if args.post_submit_delay_seconds < 0:
         parser.error("--post-submit-delay-seconds must be >= 0")
+    if args.mcp_timeout_ms < 100:
+        parser.error("--mcp-timeout-ms must be >= 100")
     return args
 
 
@@ -265,6 +282,7 @@ def validate_run_artifacts(
     answers_path: Path,
     annotations_path: Path,
     trace_path: Path,
+    trace_summary: Dict[str, Any],
     observations_dir: Path,
     screenshots_required: bool,
 ) -> None:
@@ -275,6 +293,10 @@ def validate_run_artifacts(
         missing.append("annotations.json")
     if not trace_path.exists() or trace_path.stat().st_size == 0:
         missing.append("tool_trace.jsonl (missing or empty)")
+    if trace_summary.get("event_count", 0) < 1:
+        missing.append("tool_trace.jsonl (no events)")
+    if trace_summary.get("strict_mcp_validation") and trace_summary.get("validation_error_count", 0) > 0:
+        missing.append("tool_trace.jsonl (MCP validation errors)")
 
     if screenshots_required:
         if not observations_dir.exists():
@@ -331,7 +353,29 @@ def run_single(
     trace_path = run_dir / "tool_trace.jsonl"
 
     start_time = time.perf_counter()
-    trace = TraceLogger(trace_path, start_time)
+    mcp_client = None
+    if args.trace_mode == "mcp":
+        mcp_command: Any = args.mcp_server_cmd or _default_mcp_server_command()
+        try:
+            mcp_client = MCPTraceClient(
+                command=mcp_command,
+                tool_name=args.mcp_tool_name,
+                timeout_ms=args.mcp_timeout_ms,
+            )
+        except Exception as exc:
+            raise RuntimeError(
+                "Failed to initialize MCP trace server. "
+                "Use --trace-mode local to bypass MCP tracing. "
+                f"Details: {exc}"
+            ) from exc
+
+    trace = TraceLogger(
+        trace_path,
+        start_time,
+        validate_mcp_actions=not args.no_mcp_verify_trace,
+        strict_mcp_validation=not args.no_mcp_strict,
+        mcp_client=mcp_client,
+    )
 
     annotations: Dict[str, Any] = {
         "schema_version": "3.0",
@@ -354,6 +398,13 @@ def run_single(
             "post_submit_delay_seconds": args.post_submit_delay_seconds,
             "screenshots": bool(args.screenshots),
             "mouse_overlay": not bool(args.no_mouse_overlay),
+            "interaction_mode": args.interaction_mode,
+            "trace_mode": args.trace_mode,
+            "mcp_server_cmd": args.mcp_server_cmd or "bundled_default",
+            "mcp_tool_name": args.mcp_tool_name,
+            "mcp_timeout_ms": args.mcp_timeout_ms,
+            "mcp_verify_trace": not bool(args.no_mcp_verify_trace),
+            "mcp_strict": not bool(args.no_mcp_strict),
         },
         "actions": [],
         "submit": {
@@ -370,6 +421,7 @@ def run_single(
         "trace": {
             "tool_trace_path": "tool_trace.jsonl",
             "screenshot_dir": "observations" if args.screenshots else None,
+            "mcp": None,
         },
         "submitted": False,
         "failure_reason": None,
@@ -415,6 +467,7 @@ def run_single(
                     viewport={"width": args.viewport_width, "height": args.viewport_height},
                     observations_dir=observations_dir,
                     trace=trace,
+                    interaction_mode=args.interaction_mode,
                     timeout_ms=args.timeout_ms,
                     type_delay_ms=args.type_delay_ms,
                     action_delay_ms=args.action_delay_ms,
@@ -469,6 +522,9 @@ def run_single(
     finally:
         trace.close()
 
+    trace_summary = trace.summary()
+    annotations["trace"]["mcp"] = trace_summary
+
     video_path = finalize_video(run_dir, form_id, run_name)
     annotations["video_path"] = str(video_path) if video_path else None
 
@@ -496,6 +552,7 @@ def run_single(
         answers_path=answers_path,
         annotations_path=annotations_path,
         trace_path=trace_path,
+        trace_summary=trace_summary,
         observations_dir=observations_dir,
         screenshots_required=bool(args.screenshots),
     )
@@ -506,6 +563,8 @@ def run_single(
     print(f"[INFO] video: {video_path}")
     print(f"[INFO] screenshots: {screenshot_count}")
     print(f"[INFO] trace: {trace_path}")
+    print(f"[INFO] trace_events: {trace_summary.get('event_count')}")
+    print(f"[INFO] trace_mode: {trace_summary.get('mode')}")
 
     if run_error is not None:
         raise RuntimeError(f"Run failed: {run_error}")

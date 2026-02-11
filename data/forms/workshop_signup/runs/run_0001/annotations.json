@@ -21,7 +21,14 @@
     "action_delay_ms": 220,
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
-    "mouse_overlay": true
+    "mouse_overlay": true,
+    "interaction_mode": "mcp_actions",
+    "trace_mode": "mcp",
+    "mcp_server_cmd": "bundled_default",
+    "mcp_tool_name": "record_action",
+    "mcp_timeout_ms": 5000,
+    "mcp_verify_trace": true,
+    "mcp_strict": true
   },
   "actions": [
     {
@@ -31,8 +38,8 @@
       "value": "Lena Ortiz",
       "intent": "Fill Full name",
       "success": true,
-      "t_start_s": 2.2635915640003077,
-      "t_end_s": 6.322374163000859,
+      "t_start_s": 2.7981042389983486,
+      "t_end_s": 6.876152871998784,
       "bbox": {
         "x": 312.5,
         "y": 227.1875,
@@ -63,8 +70,8 @@
       "value": "Stanford University",
       "intent": "Fill University or organization",
       "success": true,
-      "t_start_s": 6.322478167001464,
-      "t_end_s": 11.202076894000129,
+      "t_start_s": 6.876210646998516,
+      "t_end_s": 12.027330852997693,
       "bbox": {
         "x": 312.5,
         "y": 377.1875,
@@ -95,8 +102,8 @@
       "value": "Intro to Machine Learning",
       "intent": "Select Intro to Machine Learning for Which workshop track are you registering for?",
       "success": true,
-      "t_start_s": 11.202211884001372,
-      "t_end_s": 13.202193443001306,
+      "t_start_s": 12.027368390998163,
+      "t_end_s": 13.796217875998991,
       "bbox": {
         "x": 312.5,
         "y": 527.1875,
@@ -127,8 +134,8 @@
       "value": "Beginner",
       "intent": "Select Beginner for Experience level",
       "success": true,
-      "t_start_s": 13.202278393000597,
-      "t_end_s": 15.140733576001367,
+      "t_start_s": 13.796259569997346,
+      "t_end_s": 15.586545219997788,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -161,8 +168,8 @@
       ],
       "intent": "Select None for Dietary restrictions",
       "success": true,
-      "t_start_s": 15.140828961000807,
-      "t_end_s": 17.199460796000494,
+      "t_start_s": 15.586633006998454,
+      "t_end_s": 18.385160852998524,
       "bbox": {
         "x": 312.5,
         "y": 477.1875,
@@ -193,8 +200,8 @@
       "value": "2025-07-05",
       "intent": "Fill Preferred session date",
       "success": true,
-      "t_start_s": 17.19952678900154,
-      "t_end_s": 19.56234384400159,
+      "t_start_s": 18.385254423999868,
+      "t_end_s": 21.355339083998842,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -225,8 +232,8 @@
       "value": "Yes",
       "intent": "Select Yes for May we email you updates?",
       "success": true,
-      "t_start_s": 19.562446149000607,
-      "t_end_s": 21.5707001640003,
+      "t_start_s": 21.35541972200008,
+      "t_end_s": 23.491479917000106,
       "bbox": {
         "x": 312.5,
         "y": 449.1875,
@@ -253,8 +260,8 @@
   ],
   "submit": {
     "success": true,
-    "t_start_s": 21.57077118900088,
-    "t_end_s": 55.54675824300102,
+    "t_start_s": 23.491546666999056,
+    "t_end_s": 57.13280548900002,
     "bbox": {
       "x": 312.5,
       "y": 631.1875,
@@ -269,7 +276,44 @@
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
-    "screenshot_dir": null
+    "screenshot_dir": null,
+    "mcp": {
+      "format": "mcp_computer_use_compatible",
+      "mode": "mcp_server",
+      "validate_mcp_actions": true,
+      "strict_mcp_validation": true,
+      "event_count": 23,
+      "validation_error_count": 0,
+      "events_by_name": {
+        "click_at": 8,
+        "hover_at": 8,
+        "scroll_document": 4,
+        "type_text_at": 3
+      },
+      "supported_actions": [
+        "click_at",
+        "hover_at",
+        "key_combination",
+        "scroll_document",
+        "type_text_at"
+      ],
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/bharat/gf_form_agent_env/bin/python3",
+          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
+        ],
+        "tool_name": "record_action",
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ]
+      }
+    }
   },
   "submitted": true,
   "failure_reason": null,

@@ -2,7 +2,8 @@
 
 ## Overview
 
-This project generates a dataset of Google Form interactions using **direct Playwright Python** (no MCP). Each run fills a form, records a video, saves step screenshots, and writes annotations + a tool trace.
+This project generates a dataset of Google Form interactions using direct Playwright Python for browser control.
+Tool traces are validated and normalized through an MCP server by default, then written to `tool_trace.jsonl`.
 
 ## Install
 
@@ -48,6 +49,8 @@ python3 src/engine/runner.py \
 By default the browser runs **headed** (visible). Use `--headless` to disable UI.
 Mouse overlay is enabled by default for video clarity. Use `--no-mouse-overlay` to disable it.
 Screenshots are optional and disabled by default. Use `--screenshots` to save `observations/*.png`.
+Trace mode defaults to `mcp` and auto-starts the bundled server `src/engine/mcp_trace_server.py`.
+Interaction mode defaults to `local`. Use `--interaction-mode mcp_actions` to execute primitive browser actions via MCP-style action names.
 
 ## Inputs
 
@@ -78,7 +81,7 @@ Each run generates:
 - `data/forms/<form_id>/runs/run_XXXX/observations/submit_post.png`
 
 `annotations.json` includes form/run identifiers, video path, run parameters, macro actions, submit timing, and trace pointers.
-`tool_trace.jsonl` is JSONL with Gemini-style micro-actions (click_at, hover_at, type_text_at, key_combination, scroll_document).
+`tool_trace.jsonl` is JSONL with MCP-compatible micro-actions (click_at, hover_at, type_text_at, key_combination, scroll_document).
 Each action now also includes required-field metadata when detectable: `required`, `required_attr`, `required_marker`.
 
 ## Run Controls
@@ -105,6 +108,13 @@ Useful flags:
 - `--timeout-ms` set Playwright timeout for waits.
 - `--screenshots` enable per-step and submit screenshots.
 - `--no-mouse-overlay` disable the visible mouse overlay.
+- `--interaction-mode` choose browser action backend: `local` (default) or `mcp_actions`.
+- `--trace-mode` choose trace backend: `mcp` (default) or `local`.
+- `--mcp-server-cmd` override MCP server command (defaults to bundled trace server).
+- `--mcp-tool-name` MCP tool used for event normalization (default: `record_action`).
+- `--mcp-timeout-ms` MCP request timeout (default: `5000`).
+- `--no-mcp-verify-trace` disable MCP action-schema validation for trace events.
+- `--no-mcp-strict` keep validation on but do not fail the run on validation errors.
 
 Overwrite existing run:
 

@@ -21,7 +21,14 @@
     "action_delay_ms": 220,
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
-    "mouse_overlay": true
+    "mouse_overlay": true,
+    "interaction_mode": "mcp_actions",
+    "trace_mode": "mcp",
+    "mcp_server_cmd": "bundled_default",
+    "mcp_tool_name": "record_action",
+    "mcp_timeout_ms": 5000,
+    "mcp_verify_trace": true,
+    "mcp_strict": true
   },
   "actions": [
     {
@@ -31,8 +38,8 @@
       "value": "Machine Learning Bootcamp",
       "intent": "Fill Course name",
       "success": true,
-      "t_start_s": 2.1894112400004815,
-      "t_end_s": 8.030594895000831,
+      "t_start_s": 3.10188609800025,
+      "t_end_s": 8.70396118699864,
       "bbox": {
         "x": 312.5,
         "y": 227.1875,
@@ -63,8 +70,8 @@
       "value": "Master's",
       "intent": "Select Master's for Your program level",
       "success": true,
-      "t_start_s": 8.030717755000296,
-      "t_end_s": 10.018660355000975,
+      "t_start_s": 8.704003991999343,
+      "t_end_s": 10.616692841998884,
       "bbox": {
         "x": 312.5,
         "y": 377.1875,
@@ -95,8 +102,8 @@
       "value": "Yes",
       "intent": "Select Yes for Did you attend most sessions?",
       "success": true,
-      "t_start_s": 10.018730268999207,
-      "t_end_s": 11.965353920999405,
+      "t_start_s": 10.61675928600016,
+      "t_end_s": 12.621206167998025,
       "bbox": {
         "x": 312.5,
         "y": 639.1875,
@@ -127,8 +134,8 @@
       "value": "5 - Very satisfied",
       "intent": "Select 5 - Very satisfied for Overall satisfaction",
       "success": true,
-      "t_start_s": 11.965447065000262,
-      "t_end_s": 16.36850038600096,
+      "t_start_s": 12.62127456899907,
+      "t_end_s": 16.921164453997335,
       "bbox": {
         "x": 312.5,
         "y": 243.1875,
@@ -159,8 +166,8 @@
       "value": "About right",
       "intent": "Select About right for Workload felt",
       "success": true,
-      "t_start_s": 16.368613376000212,
-      "t_end_s": 18.328350251000302,
+      "t_start_s": 16.92122076799933,
+      "t_end_s": 18.7859665199976,
       "bbox": {
         "x": 312.5,
         "y": 544.1875,
@@ -191,8 +198,8 @@
       "value": "Hands on labs and clear weekly goals.",
       "intent": "Fill What did you like most?",
       "success": true,
-      "t_start_s": 18.32841459699921,
-      "t_end_s": 25.502004586000112,
+      "t_start_s": 18.78600875799748,
+      "t_end_s": 25.959156245997292,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -223,8 +230,8 @@
       "value": "More time for project demos.",
       "intent": "Fill What should be improved?",
       "success": true,
-      "t_start_s": 25.502188017999288,
-      "t_end_s": 31.576299280999592,
+      "t_start_s": 25.959239349998825,
+      "t_end_s": 31.993156814998656,
       "bbox": {
         "x": 312.5,
         "y": 440.1875,
@@ -258,8 +265,8 @@
       ],
       "intent": "Select Practical labs, Project work for Most useful aspects",
       "success": true,
-      "t_start_s": 31.576521699000295,
-      "t_end_s": 35.22463011199943,
+      "t_start_s": 31.99323863799873,
+      "t_end_s": 35.30243217899988,
       "bbox": {
         "x": 312.5,
         "y": 588.1875,
@@ -290,8 +297,8 @@
       "value": "Yes",
       "intent": "Select Yes for Would you recommend this course?",
       "success": true,
-      "t_start_s": 35.22471349599982,
-      "t_end_s": 37.21046770999965,
+      "t_start_s": 35.30287690299883,
+      "t_end_s": 37.095933488999435,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -318,8 +325,8 @@
   ],
   "submit": {
     "success": true,
-    "t_start_s": 37.21053500400012,
-    "t_end_s": 71.28907296599937,
+    "t_start_s": 37.09597391999705,
+    "t_end_s": 70.57309888799864,
     "bbox": {
       "x": 421.203125,
       "y": 502.1875,
@@ -334,7 +341,44 @@
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
-    "screenshot_dir": null
+    "screenshot_dir": null,
+    "mcp": {
+      "format": "mcp_computer_use_compatible",
+      "mode": "mcp_server",
+      "validate_mcp_actions": true,
+      "strict_mcp_validation": true,
+      "event_count": 33,
+      "validation_error_count": 0,
+      "events_by_name": {
+        "click_at": 12,
+        "hover_at": 12,
+        "scroll_document": 6,
+        "type_text_at": 3
+      },
+      "supported_actions": [
+        "click_at",
+        "hover_at",
+        "key_combination",
+        "scroll_document",
+        "type_text_at"
+      ],
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/bharat/gf_form_agent_env/bin/python3",
+          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
+        ],
+        "tool_name": "record_action",
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ]
+      }
+    }
   },
   "submitted": true,
   "failure_reason": null,

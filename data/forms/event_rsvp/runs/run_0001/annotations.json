@@ -21,7 +21,14 @@
     "action_delay_ms": 220,
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
-    "mouse_overlay": true
+    "mouse_overlay": true,
+    "interaction_mode": "mcp_actions",
+    "trace_mode": "mcp",
+    "mcp_server_cmd": "bundled_default",
+    "mcp_tool_name": "record_action",
+    "mcp_timeout_ms": 5000,
+    "mcp_verify_trace": true,
+    "mcp_strict": true
   },
   "actions": [
     {
@@ -31,8 +38,8 @@
       "value": "Olivia Brooks",
       "intent": "Fill Name",
       "success": true,
-      "t_start_s": 2.341365460999441,
-      "t_end_s": 6.78096767200077,
+      "t_start_s": 3.6299473070030217,
+      "t_end_s": 7.8614399260004575,
       "bbox": {
         "x": 312.5,
         "y": 227.1875,
@@ -63,8 +70,8 @@
       "value": "Yes",
       "intent": "Select Yes for Will you attend?",
       "success": true,
-      "t_start_s": 6.781067362000613,
-      "t_end_s": 8.745881757999086,
+      "t_start_s": 7.861523674000637,
+      "t_end_s": 9.703287416999956,
       "bbox": {
         "x": 312.5,
         "y": 377.1875,
@@ -95,8 +102,8 @@
       "value": "1",
       "intent": "Fill Number of guests (including yourself)",
       "success": true,
-      "t_start_s": 8.745952470000702,
-      "t_end_s": 11.236333660999662,
+      "t_start_s": 9.703351591000683,
+      "t_end_s": 12.346060092000698,
       "bbox": {
         "x": 312.5,
         "y": 599.1875,
@@ -127,8 +134,8 @@
       "value": "18:30",
       "intent": "Fill Preferred arrival time",
       "success": true,
-      "t_start_s": 11.23639907100005,
-      "t_end_s": 16.25882544399974,
+      "t_start_s": 12.346150948000286,
+      "t_end_s": 17.510152928000025,
       "bbox": {
         "x": 312.5,
         "y": 732.1875,
@@ -162,8 +169,8 @@
       ],
       "intent": "Select Talks, Networking for Activities you're interested in",
       "success": true,
-      "t_start_s": 16.258956040999692,
-      "t_end_s": 19.864546754999537,
+      "t_start_s": 17.510248821999994,
+      "t_end_s": 20.86623644500287,
       "bbox": {
         "x": 312.5,
         "y": 454.1875,
@@ -194,8 +201,8 @@
       "value": "Need wheelchair accessible seating.",
       "intent": "Fill Accessibility needs or comments",
       "success": true,
-      "t_start_s": 19.86482962899936,
-      "t_end_s": 26.827504726999905,
+      "t_start_s": 20.866291819002072,
+      "t_end_s": 27.713719606002996,
       "bbox": {
         "x": 312.5,
         "y": 724.1875,
@@ -222,8 +229,8 @@
   ],
   "submit": {
     "success": true,
-    "t_start_s": 26.82758885399926,
-    "t_end_s": 60.879928356000164,
+    "t_start_s": 27.713756282002578,
+    "t_end_s": 61.26459594500193,
     "bbox": {
       "x": 312.5,
       "y": 502.1875,
@@ -238,7 +245,44 @@
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
-    "screenshot_dir": null
+    "screenshot_dir": null,
+    "mcp": {
+      "format": "mcp_computer_use_compatible",
+      "mode": "mcp_server",
+      "validate_mcp_actions": true,
+      "strict_mcp_validation": true,
+      "event_count": 26,
+      "validation_error_count": 0,
+      "events_by_name": {
+        "click_at": 9,
+        "hover_at": 9,
+        "scroll_document": 3,
+        "type_text_at": 5
+      },
+      "supported_actions": [
+        "click_at",
+        "hover_at",
+        "key_combination",
+        "scroll_document",
+        "type_text_at"
+      ],
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/bharat/gf_form_agent_env/bin/python3",
+          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
+        ],
+        "tool_name": "record_action",
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ]
+      }
+    }
   },
   "submitted": true,
   "failure_reason": null,
