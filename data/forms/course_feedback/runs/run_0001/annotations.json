@@ -8,10 +8,10 @@
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": 1,
-  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-  "locale": "en-US",
-  "timezone": "Europe/Berlin",
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "video_path": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0001/course_feedback_run_0001.webm",
   "run_params": {
     "headless": false,
@@ -22,13 +22,34 @@
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
     "mouse_overlay": true,
-    "interaction_mode": "mcp_actions",
+    "interaction_mode": "mcp_server",
     "trace_mode": "mcp",
     "mcp_server_cmd": "bundled_default",
     "mcp_tool_name": "record_action",
     "mcp_timeout_ms": 5000,
+    "browser_mcp_cmd": [
+      "/home/bharat/.nvm/versions/node/v22.20.0/bin/playwright-mcp",
+      "--browser",
+      "chromium",
+      "--isolated",
+      "--host",
+      "127.0.0.1",
+      "--output-dir",
+      "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0001",
+      "--save-video",
+      "1280x720",
+      "--viewport-size",
+      "1280,720",
+      "--executable-path",
+      "/home/bharat/.cache/ms-playwright/chromium-1117/chrome-linux/chrome",
+      "--no-sandbox"
+    ],
+    "browser_mcp_timeout_ms": 180000,
     "mcp_verify_trace": true,
-    "mcp_strict": true
+    "mcp_strict": true,
+    "browser_mcp_env": {
+      "PLAYWRIGHT_BROWSERS_PATH": "/home/bharat/.cache/ms-playwright"
+    }
   },
   "actions": [
     {
@@ -38,29 +59,19 @@
       "value": "Machine Learning Bootcamp",
       "intent": "Fill Course name",
       "success": true,
-      "t_start_s": 3.10188609800025,
-      "t_end_s": 8.70396118699864,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 306.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 6.522825844000181,
+      "t_end_s": 11.237181462999615,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -70,29 +81,19 @@
       "value": "Master's",
       "intent": "Select Master's for Your program level",
       "success": true,
-      "t_start_s": 8.704003991999343,
-      "t_end_s": 10.616692841998884,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 250
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 492.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 11.237225251999917,
+      "t_end_s": 14.020224093999786,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Master\u2019s",
-      "target_selector": "#i14",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -102,29 +103,19 @@
       "value": "Yes",
       "intent": "Select Yes for Did you attend most sessions?",
       "success": true,
-      "t_start_s": 10.61675928600016,
-      "t_end_s": 12.621206167998025,
-      "bbox": {
-        "x": 312.5,
-        "y": 639.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 585.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 14.020257098000002,
+      "t_end_s": 15.565844034999827,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Yes",
-      "target_selector": "#i28",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -134,29 +125,19 @@
       "value": "5 - Very satisfied",
       "intent": "Select 5 - Very satisfied for Overall satisfaction",
       "success": true,
-      "t_start_s": 12.62127456899907,
-      "t_end_s": 16.921164453997335,
-      "bbox": {
-        "x": 312.5,
-        "y": 243.1875,
-        "width": 640,
-        "height": 289
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 477.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 15.565873432999979,
+      "t_end_s": 18.129430721999597,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "5 \u2013 Very satisfied",
-      "target_selector": "#i18",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -166,29 +147,19 @@
       "value": "About right",
       "intent": "Select About right for Workload felt",
       "success": true,
-      "t_start_s": 16.92122076799933,
-      "t_end_s": 18.7859665199976,
-      "bbox": {
-        "x": 312.5,
-        "y": 544.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 625.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 18.129462933000468,
+      "t_end_s": 19.68889187700006,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "About right",
-      "target_selector": "#i29",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -198,29 +169,19 @@
       "value": "Hands on labs and clear weekly goals.",
       "intent": "Fill What did you like most?",
       "success": true,
-      "t_start_s": 18.78600875799748,
-      "t_end_s": 25.959156245997292,
-      "bbox": {
-        "x": 312.5,
-        "y": 732.1875,
-        "width": 640,
-        "height": 136
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 371.1875,
-        "width": 590,
-        "height": 24
-      },
+      "t_start_s": 19.688925219999874,
+      "t_end_s": 26.02139546499984,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
-      "target_name": "Meine Antwort",
+      "target_name": null,
       "target_selector": null,
-      "scroll_y": 34,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -230,29 +191,19 @@
       "value": "More time for project demos.",
       "intent": "Fill What should be improved?",
       "success": true,
-      "t_start_s": 25.959239349998825,
-      "t_end_s": 31.993156814998656,
-      "bbox": {
-        "x": 312.5,
-        "y": 440.1875,
-        "width": 640,
-        "height": 136
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 519.1875,
-        "width": 590,
-        "height": 24
-      },
+      "t_start_s": 26.021561755999755,
+      "t_end_s": 32.0581176579999,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
-      "target_name": "Meine Antwort",
+      "target_name": null,
       "target_selector": null,
-      "scroll_y": 474,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -265,29 +216,19 @@
       ],
       "intent": "Select Practical labs, Project work for Most useful aspects",
       "success": true,
-      "t_start_s": 31.99323863799873,
-      "t_end_s": 35.30243217899988,
-      "bbox": {
-        "x": 312.5,
-        "y": 588.1875,
-        "width": 640,
-        "height": 258
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 667.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 32.05814870900031,
+      "t_end_s": 34.74288154199985,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "checkbox",
-      "target_name": "Project work",
-      "target_selector": "#i60",
-      "scroll_y": 474,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -297,45 +238,30 @@
       "value": "Yes",
       "intent": "Select Yes for Would you recommend this course?",
       "success": true,
-      "t_start_s": 35.30287690299883,
-      "t_end_s": 37.095933488999435,
-      "bbox": {
-        "x": 312.5,
-        "y": 732.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 355.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 34.7430455650001,
+      "t_end_s": 36.21160436399987,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Yes",
-      "target_selector": "#i68",
-      "scroll_y": 600,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     }
   ],
   "submit": {
-    "success": true,
-    "t_start_s": 37.09597391999705,
-    "t_end_s": 70.57309888799864,
-    "bbox": {
-      "x": 421.203125,
-      "y": 502.1875,
-      "width": 98.453125,
-      "height": 36
-    },
-    "submit_clicked": true,
-    "confirmation_method": "url",
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSczlT7s8tTQgmYpXnfzz4taF5pvj-qpzgksyBZImfHBGwMpBA/formResponse",
+    "success": false,
+    "t_start_s": 36.21163491199968,
+    "t_end_s": 70.01528560899987,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": null,
+    "final_url": null,
     "pre_screenshot": null,
     "post_screenshot": null
   },
@@ -347,20 +273,25 @@
       "mode": "mcp_server",
       "validate_mcp_actions": true,
       "strict_mcp_validation": true,
-      "event_count": 33,
+      "event_count": 25,
       "validation_error_count": 0,
       "events_by_name": {
-        "click_at": 12,
-        "hover_at": 12,
-        "scroll_document": 6,
-        "type_text_at": 3
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 12,
+        "browser_wait_for": 11
       },
       "supported_actions": [
-        "click_at",
-        "hover_at",
-        "key_combination",
-        "scroll_document",
-        "type_text_at"
+        "browser_close",
+        "browser_mouse_click_xy",
+        "browser_mouse_move_xy",
+        "browser_mouse_wheel",
+        "browser_navigate",
+        "browser_press_key",
+        "browser_run_code",
+        "browser_take_screenshot",
+        "browser_type",
+        "browser_wait_for"
       ],
       "mcp": {
         "mode": "mcp_server",
@@ -368,7 +299,6 @@
           "/home/bharat/gf_form_agent_env/bin/python3",
           "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
         ],
-        "tool_name": "record_action",
         "protocol_version": "2024-11-05",
         "server_info": {
           "name": "thesis-trace-mcp",
@@ -376,12 +306,13 @@
         },
         "available_tools": [
           "record_action"
-        ]
+        ],
+        "tool_name": "record_action"
       }
     }
   },
-  "submitted": true,
-  "failure_reason": null,
+  "submitted": false,
+  "failure_reason": "submit_not_clicked",
   "run_metadata": {
     "suffix": "ml_bootcamp",
     "notes": "Strongly positive feedback for an applied ML course."

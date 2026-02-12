@@ -1,23 +1,21 @@
-{"t_s": 4.023299690998101, "step_ref": 0, "name": "hover_at", "args": {"x": 379, "y": 441}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 485.0, "y_px": 318.1875}
-{"t_s": 4.487612397999328, "step_ref": 0, "name": "click_at", "args": {"x": 379, "y": 441}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 485.0, "y_px": 318.1875}
-{"t_s": 6.6438494289977825, "step_ref": 0, "name": "type_text_at", "args": {"x": 379, "y": 441, "text": "Lena Ortiz", "clear_before_typing": true, "input_method": "type"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 485.0, "y_px": 318.1875}
-{"t_s": 7.91582527999708, "step_ref": 1, "name": "hover_at", "args": {"x": 379, "y": 650}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 485.0, "y_px": 468.1875}
-{"t_s": 8.442375860999164, "step_ref": 1, "name": "click_at", "args": {"x": 379, "y": 650}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 485.0, "y_px": 468.1875}
-{"t_s": 11.799312018996716, "step_ref": 1, "name": "type_text_at", "args": {"x": 379, "y": 650, "text": "Stanford University", "clear_before_typing": true, "input_method": "type"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 485.0, "y_px": 468.1875}
-{"t_s": 12.28989449099754, "step_ref": 2, "name": "scroll_document", "args": {"direction": "down"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 17, "x_px": null, "y_px": null}
-{"t_s": 13.069194146999507, "step_ref": 2, "name": "hover_at", "args": {"x": 271, "y": 826}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 17, "x_px": 347.5, "y_px": 595.1875}
-{"t_s": 13.535999898998853, "step_ref": 2, "name": "click_at", "args": {"x": 271, "y": 826}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 17, "x_px": 347.5, "y_px": 595.1875}
-{"t_s": 14.055087127999286, "step_ref": 3, "name": "scroll_document", "args": {"direction": "down"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 494, "x_px": null, "y_px": null}
-{"t_s": 14.846318655996583, "step_ref": 3, "name": "hover_at", "args": {"x": 271, "y": 472}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 494, "x_px": 347.5, "y_px": 340.1875}
-{"t_s": 15.307831895999698, "step_ref": 3, "name": "click_at", "args": {"x": 271, "y": 472}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 494, "x_px": 347.5, "y_px": 340.1875}
-{"t_s": 15.998843634999503, "step_ref": 4, "name": "scroll_document", "args": {"direction": "down"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 545, "x_px": null, "y_px": null}
-{"t_s": 17.48282332099916, "step_ref": 4, "name": "hover_at", "args": {"x": 271, "y": 890}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 545, "x_px": 347.5, "y_px": 641.1875}
-{"t_s": 18.085588458998245, "step_ref": 4, "name": "click_at", "args": {"x": 271, "y": 890}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 545, "x_px": 347.5, "y_px": 641.1875}
-{"t_s": 18.79616118999911, "step_ref": 5, "name": "scroll_document", "args": {"direction": "down"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": null, "y_px": null}
-{"t_s": 19.882583484999486, "step_ref": 5, "name": "hover_at", "args": {"x": 313, "y": 541}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 401.0, "y_px": 390.1875}
-{"t_s": 20.371519275999162, "step_ref": 5, "name": "click_at", "args": {"x": 313, "y": 541}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 401.0, "y_px": 390.1875}
-{"t_s": 21.11725858099817, "step_ref": 5, "name": "type_text_at", "args": {"x": 313, "y": 541, "text": "2025-07-05", "clear_before_typing": true, "input_method": "fill"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 401.0, "y_px": 390.1875}
-{"t_s": 22.69960951199755, "step_ref": 6, "name": "hover_at", "args": {"x": 271, "y": 741}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 347.5, "y_px": 534.1875}
-{"t_s": 23.196116909999546, "step_ref": 6, "name": "click_at", "args": {"x": 271, "y": 741}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 347.5, "y_px": 534.1875}
-{"t_s": 24.424206222996872, "step_ref": null, "name": "hover_at", "args": {"x": 282, "y": 901}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 361.7265625, "y_px": 649.1875}
-{"t_s": 24.88470598099957, "step_ref": null, "name": "click_at", "args": {"x": 282, "y": 901}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 361.7265625, "y_px": 649.1875}
+{"t_s": 2.3119383760003984, "step_ref": null, "name": "browser_navigate", "args": {"url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 2.6421851869999955, "step_ref": null, "name": "browser_wait_for", "args": {"time": 0.3}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 4.7194976090004275, "step_ref": null, "name": "browser_run_code", "args": {"purpose": "collect_env"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 6.762512524000158, "step_ref": null, "name": "browser_run_code", "args": {"purpose": "enable_mouse_overlay"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 9.269084295000539, "step_ref": 0, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 9.524536887000068, "step_ref": 0, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 14.2236189690002, "step_ref": 1, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 14.486192345000745, "step_ref": 1, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 15.745688113000142, "step_ref": 2, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 15.997925689000112, "step_ref": 2, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 18.331787350000013, "step_ref": 3, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 18.580225166000673, "step_ref": 3, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 19.83339563300069, "step_ref": 4, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 20.082823467000708, "step_ref": 4, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 21.278817330000493, "step_ref": 5, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 21.524167850000595, "step_ref": 5, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 23.768026774000646, "step_ref": 6, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 24.01763398700041, "step_ref": 6, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 57.47431367000081, "step_ref": null, "name": "browser_run_code", "args": {"purpose": "submit"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 57.70003192900003, "step_ref": null, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 60.725095865000185, "step_ref": null, "name": "browser_close", "args": {}, "ok": true, "error": null, "backend": "mcp_server"}

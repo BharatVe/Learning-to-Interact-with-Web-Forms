@@ -3,6 +3,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -14,6 +15,8 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from engine.form_engine import FormEngine  # noqa: E402
+from engine.mcp_browser_engine import MCPBrowserEngine  # noqa: E402
+from engine.mcp_trace_client import MCPClient  # noqa: E402
 from engine.mcp_trace_client import MCPTraceClient  # noqa: E402
 from engine.trace_logger import TraceLogger  # noqa: E402
 
@@ -28,12 +31,131 @@ DEFAULT_ANSWERS_FILE = "runs.json"
 DEFAULT_TRACE_MODE = "mcp"
 DEFAULT_MCP_TOOL_NAME = "record_action"
 DEFAULT_MCP_TIMEOUT_MS = 5000
+DEFAULT_BROWSER_MCP_TIMEOUT_MS = 120000
+DEFAULT_MCP_BROWSER_INSTALL_TIMEOUT_SECONDS = 600
 
 RUN_DIR_PATTERN = re.compile(r"run_(\d{4})$")
 
 
 def _default_mcp_server_command() -> List[str]:
     return [sys.executable, str(SRC_DIR / "engine" / "mcp_trace_server.py")]
+
+
+def _default_browser_mcp_command(args: argparse.Namespace, run_dir: Path) -> List[str]:
+    python_playwright_executable = _detect_python_playwright_chromium_executable()
+    mcp_bin = shutil.which("playwright-mcp")
+    command = (
+        [mcp_bin]
+        if mcp_bin
+        else ["npx", "-y", "@playwright/mcp@latest"]
+    ) + [
+        "--browser",
+        "chromium",
+        "--isolated",
+        "--host",
+        "127.0.0.1",
+        "--output-dir",
+        str(run_dir),
+        "--save-video",
+        f"{args.viewport_width}x{args.viewport_height}",
+        "--viewport-size",
+        f"{args.viewport_width},{args.viewport_height}",
+    ]
+    if python_playwright_executable:
+        command.extend(["--executable-path", python_playwright_executable])
+    if args.headless:
+        command.append("--headless")
+    if _is_wsl():
+        command.append("--no-sandbox")
+    return command
+
+
+def _default_playwright_browsers_path() -> str:
+    return str(Path.home() / ".cache" / "ms-playwright")
+
+
+def _is_wsl() -> bool:
+    try:
+        data = Path("/proc/version").read_text(encoding="utf-8", errors="ignore").lower()
+    except Exception:
+        return False
+    return "microsoft" in data or "wsl" in data
+
+
+def _detect_python_playwright_chromium_executable() -> Optional[str]:
+    try:
+        from playwright.sync_api import sync_playwright
+    except Exception:
+        return None
+    try:
+        with sync_playwright() as p:
+            path = p.chromium.executable_path
+    except Exception:
+        return None
+    return str(path) if path else None
+
+
+def _has_any_chromium_cache() -> bool:
+    cache_dir = Path(_default_playwright_browsers_path())
+    if not cache_dir.exists():
+        return False
+    for entry in cache_dir.iterdir():
+        if entry.is_dir() and entry.name.startswith("chromium-"):
+            return True
+    return False
+
+
+def ensure_playwright_mcp_package(timeout_seconds: int) -> None:
+    if shutil.which("playwright-mcp"):
+        return
+    cmd = ["npx", "-y", "@playwright/mcp@latest", "--version"]
+    proc = subprocess.run(
+        cmd,
+        capture_output=True,
+        text=True,
+        timeout=max(30, timeout_seconds),
+    )
+    if proc.returncode == 0:
+        return
+    stderr = (proc.stderr or "").strip()
+    stdout = (proc.stdout or "").strip()
+    details = stderr or stdout or "no output"
+    raise RuntimeError(
+        "Failed to resolve official Playwright MCP package via npx. "
+        f"Command: {' '.join(cmd)}. Details: {details}"
+    )
+
+
+def ensure_node_playwright_browser(browser_name: str, timeout_seconds: int) -> None:
+    if browser_name != "chromium":
+        return
+    cmd = ["npx", "-y", "playwright@latest", "install", browser_name]
+    env = dict(os.environ)
+    env.setdefault("PLAYWRIGHT_BROWSERS_PATH", _default_playwright_browsers_path())
+    print(f"[INFO] Installing Node Playwright browser for MCP: {browser_name}")
+    proc = subprocess.run(
+        cmd,
+        capture_output=True,
+        text=True,
+        timeout=max(60, timeout_seconds),
+        env=env,
+    )
+    if proc.returncode == 0:
+        return
+    stderr = (proc.stderr or "").strip()
+    stdout = (proc.stdout or "").strip()
+    details = stderr or stdout or "no output"
+    if _has_any_chromium_cache():
+        print(
+            "[WARN] Node Playwright browser install failed, but existing Chromium cache was found. "
+            f"Proceeding with cached browser. Details: {details}",
+            file=sys.stderr,
+        )
+        return
+    raise RuntimeError(
+        f"Failed to install Node Playwright browser '{browser_name}' for MCP. "
+        f"Command: {' '.join(cmd)}. Details: {details}"
+    )
 
 
 def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
@@ -66,11 +188,24 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument("--screenshots", action="store_true", default=False)
     parser.add_argument("--no-mouse-overlay", action="store_true", default=False)
-    parser.add_argument("--interaction-mode", choices=["local", "mcp_actions"], default="local")
+    parser.add_argument("--interaction-mode", choices=["local", "mcp_server"], default="local")
     parser.add_argument("--trace-mode", choices=["mcp", "local"], default=DEFAULT_TRACE_MODE)
     parser.add_argument("--mcp-server-cmd")
     parser.add_argument("--mcp-tool-name", default=DEFAULT_MCP_TOOL_NAME)
     parser.add_argument("--mcp-timeout-ms", type=int, default=DEFAULT_MCP_TIMEOUT_MS)
+    parser.add_argument("--browser-mcp-cmd")
+    parser.add_argument("--browser-mcp-timeout-ms", type=int, default=DEFAULT_BROWSER_MCP_TIMEOUT_MS)
+    parser.add_argument(
+        "--no-mcp-browser-install",
+        action="store_true",
+        default=False,
+        help="Disable automatic Node Playwright browser install preflight for mcp_server mode.",
+    )
+    parser.add_argument(
+        "--mcp-browser-install-timeout-s",
+        type=int,
+        default=DEFAULT_MCP_BROWSER_INSTALL_TIMEOUT_SECONDS,
+    )
     parser.add_argument("--no-mcp-verify-trace", action="store_true", default=False)
     parser.add_argument("--no-mcp-strict", action="store_true", default=False)
     args = parser.parse_args(argv)
@@ -96,6 +231,10 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
         parser.error("--post-submit-delay-seconds must be >= 0")
     if args.mcp_timeout_ms < 100:
         parser.error("--mcp-timeout-ms must be >= 100")
+    if args.browser_mcp_timeout_ms < 100:
+        parser.error("--browser-mcp-timeout-ms must be >= 100")
+    if args.mcp_browser_install_timeout_s < 30:
+        parser.error("--mcp-browser-install-timeout-s must be >= 30")
     return args
 
 
@@ -285,6 +424,8 @@ def validate_run_artifacts(
     trace_summary: Dict[str, Any],
     observations_dir: Path,
     screenshots_required: bool,
+    run_error: Optional[Exception] = None,
+    execution_errors: Optional[List[str]] = None,
 ) -> None:
     missing: List[str] = []
     if not answers_path.exists():
@@ -313,7 +454,13 @@ def validate_run_artifacts(
         missing.append("final video (.webm)")
     if missing:
         joined = ", ".join(missing)
-        raise RuntimeError(f"Missing required artifacts in {run_dir}: {joined}")
+        detail_parts: List[str] = []
+        if run_error is not None:
+            detail_parts.append(f"run_error={run_error}")
+        if execution_errors:
+            detail_parts.append(f"errors={' ; '.join(execution_errors)}")
+        details = f" Details: {' | '.join(detail_parts)}" if detail_parts else ""
+        raise RuntimeError(f"Missing required artifacts in {run_dir}: {joined}.{details}")
 
 
 def _playwright_import_error() -> RuntimeError:
@@ -334,50 +481,25 @@ def _playwright_browser_error(exc: Exception) -> RuntimeError:
     )
 
 
-def run_single(
-    form_id: str,
-    form_url: str,
-    answers: List[Dict[str, Any]],
-    run_dir: Path,
-    run_name: str,
-    run_label: str,
-    args: argparse.Namespace,
-    run_metadata: Dict[str, Any],
-) -> None:
-    answers_path = run_dir / "answers_instance.json"
-    answers_path.write_text(json.dumps(answers, indent=2))
-
-    observations_dir = run_dir / "observations"
-    if args.screenshots:
-        observations_dir.mkdir(parents=True, exist_ok=True)
-    trace_path = run_dir / "tool_trace.jsonl"
-
-    start_time = time.perf_counter()
-    mcp_client = None
-    if args.trace_mode == "mcp":
-        mcp_command: Any = args.mcp_server_cmd or _default_mcp_server_command()
-        try:
-            mcp_client = MCPTraceClient(
-                command=mcp_command,
-                tool_name=args.mcp_tool_name,
-                timeout_ms=args.mcp_timeout_ms,
-            )
-        except Exception as exc:
-            raise RuntimeError(
-                "Failed to initialize MCP trace server. "
-                "Use --trace-mode local to bypass MCP tracing. "
-                f"Details: {exc}"
-            ) from exc
-
-    trace = TraceLogger(
-        trace_path,
-        start_time,
-        validate_mcp_actions=not args.no_mcp_verify_trace,
-        strict_mcp_validation=not args.no_mcp_strict,
-        mcp_client=mcp_client,
+def _mcp_browser_error(exc: Exception) -> RuntimeError:
+    return RuntimeError(
+        "Failed to initialize official Playwright MCP browser server. Ensure Node.js + npx are available, "
+        "or pass --browser-mcp-cmd with a working server command. "
+        "For offline/reliable startup, install MCP once with `npm i -g @playwright/mcp`. "
+        "If MCP reports missing browser binaries, run `npx playwright install chromium` (or `npx playwright install chrome`). "
+        f"Original error: {exc}"
     )
 
-    annotations: Dict[str, Any] = {
+
+def _new_annotations(
+    form_id: str,
+    run_name: str,
+    run_label: str,
+    form_url: str,
+    args: argparse.Namespace,
+    trace: TraceLogger,
+) -> Dict[str, Any]:
+    return {
         "schema_version": "3.0",
         "form_id": form_id,
         "run_name": run_name,
@@ -403,6 +525,8 @@ def run_single(
             "mcp_server_cmd": args.mcp_server_cmd or "bundled_default",
             "mcp_tool_name": args.mcp_tool_name,
             "mcp_timeout_ms": args.mcp_timeout_ms,
+            "browser_mcp_cmd": args.browser_mcp_cmd or "default_playwright_mcp",
+            "browser_mcp_timeout_ms": args.browser_mcp_timeout_ms,
             "mcp_verify_trace": not bool(args.no_mcp_verify_trace),
             "mcp_strict": not bool(args.no_mcp_strict),
         },
@@ -427,9 +551,18 @@ def run_single(
         "failure_reason": None,
     }
 
+
+def _run_single_local(
+    annotations: Dict[str, Any],
+    answers: List[Dict[str, Any]],
+    form_url: str,
+    run_dir: Path,
+    observations_dir: Path,
+    args: argparse.Namespace,
+    trace: TraceLogger,
+) -> Tuple[List[str], Optional[Exception]]:
     errors: List[str] = []
     run_error: Optional[Exception] = None
-
     page = None
     context = None
     browser = None
@@ -467,13 +600,11 @@ def run_single(
                     viewport={"width": args.viewport_width, "height": args.viewport_height},
                     observations_dir=observations_dir,
                     trace=trace,
-                    interaction_mode=args.interaction_mode,
                     timeout_ms=args.timeout_ms,
                     type_delay_ms=args.type_delay_ms,
                     action_delay_ms=args.action_delay_ms,
                     take_screenshots=args.screenshots,
                 )
-
                 if not args.no_mouse_overlay:
                     engine.enable_mouse_overlay()
 
@@ -507,18 +638,191 @@ def run_single(
                 if page is not None:
                     try:
                         page.close()
-                    except Exception:
+                    except BaseException:
                         pass
                 if context is not None:
                     try:
                         context.close()
-                    except Exception:
+                    except BaseException:
                         pass
                 if browser is not None:
                     try:
                         browser.close()
-                    except Exception:
+                    except BaseException:
                         pass
+    except Exception as exc:
+        run_error = exc
+        if not any(str(exc) in item for item in errors):
+            errors.append(f"run_error: {exc}")
+    return errors, run_error
+
+
+def _run_single_mcp_server(
+    annotations: Dict[str, Any],
+    answers: List[Dict[str, Any]],
+    form_url: str,
+    run_dir: Path,
+    observations_dir: Path,
+    args: argparse.Namespace,
+    trace: TraceLogger,
+) -> Tuple[List[str], Optional[Exception]]:
+    errors: List[str] = []
+    run_error: Optional[Exception] = None
+    browser_mcp: Optional[MCPClient] = None
+    engine: Optional[MCPBrowserEngine] = None
+
+    required_tools = ["browser_navigate", "browser_run_code", "browser_wait_for", "browser_close"]
+    if args.screenshots:
+        required_tools.append("browser_take_screenshot")
+
+    mcp_command: Any = args.browser_mcp_cmd or _default_browser_mcp_command(args, run_dir)
+    mcp_env = {"PLAYWRIGHT_BROWSERS_PATH": _default_playwright_browsers_path()}
+    annotations["run_params"]["browser_mcp_cmd"] = mcp_command
+    annotations["run_params"]["browser_mcp_env"] = mcp_env
+    try:
+        timeout_ms = args.browser_mcp_timeout_ms
+        last_init_error: Optional[Exception] = None
+        for attempt in [1, 2]:
+            try:
+                browser_mcp = MCPClient(
+                    command=mcp_command,
+                    timeout_ms=timeout_ms,
+                    required_tools=required_tools,
+                    env=mcp_env,
+                )
+                break
+            except Exception as exc:
+                last_init_error = exc
+                if attempt == 1 and "timed out" in str(exc).lower():
+                    timeout_ms = max(timeout_ms * 2, 180000)
+                    print(
+                        f"[WARN] MCP browser init timed out, retrying once with timeout_ms={timeout_ms}",
+                        file=sys.stderr,
+                    )
+                    continue
+                raise
+        if browser_mcp is None and last_init_error is not None:
+            raise last_init_error
+        engine = MCPBrowserEngine(
+            mcp_client=browser_mcp,
+            trace=trace,
+            observations_dir=observations_dir,
+            timeout_ms=args.timeout_ms,
+            type_delay_ms=args.type_delay_ms,
+            action_delay_ms=args.action_delay_ms,
+            take_screenshots=args.screenshots,
+        )
+        env = engine.navigate(form_url)
+        if isinstance(env, dict):
+            annotations["device_pixel_ratio"] = env.get("devicePixelRatio")
+            annotations["user_agent"] = env.get("userAgent")
+            annotations["locale"] = env.get("locale")
+            annotations["timezone"] = env.get("timezone")
+
+        if not args.no_mouse_overlay:
+            engine.enable_mouse_overlay()
+
+        for idx, entry in enumerate(answers):
+            label = entry.get("label") if isinstance(entry, dict) else None
+            if label:
+                print(f"[INFO] Filling step {idx}: {label}")
+            else:
+                print(f"[INFO] Filling step {idx}")
+            action, err = engine.fill_step(entry, idx)
+            annotations["actions"].append(action)
+            if err:
+                errors.append(f"step {idx}: {err}")
+
+        print("[INFO] Submitting form")
+        submit_info, submit_err = engine.submit()
+        annotations["submit"] = submit_info
+        if submit_err:
+            errors.append(f"submit: {submit_err}")
+        elif submit_info.get("success") and args.post_submit_delay_seconds > 0:
+            engine.wait_seconds(args.post_submit_delay_seconds, step_ref=None)
+    except Exception as exc:
+        mapped = _mcp_browser_error(exc)
+        run_error = mapped
+        errors.append(f"run_error: {mapped}")
+    finally:
+        if engine is not None:
+            try:
+                engine.close()
+            except Exception:
+                pass
+        if browser_mcp is not None:
+            try:
+                browser_mcp.close()
+            except Exception:
+                pass
+    return errors, run_error
+
+
+def run_single(
+    form_id: str,
+    form_url: str,
+    answers: List[Dict[str, Any]],
+    run_dir: Path,
+    run_name: str,
+    run_label: str,
+    args: argparse.Namespace,
+    run_metadata: Dict[str, Any],
+) -> None:
+    answers_path = run_dir / "answers_instance.json"
+    answers_path.write_text(json.dumps(answers, indent=2))
+
+    observations_dir = run_dir / "observations"
+    if args.screenshots:
+        observations_dir.mkdir(parents=True, exist_ok=True)
+    trace_path = run_dir / "tool_trace.jsonl"
+
+    start_time = time.perf_counter()
+    trace_mcp_client = None
+    if args.trace_mode == "mcp":
+        trace_command: Any = args.mcp_server_cmd or _default_mcp_server_command()
+        try:
+            trace_mcp_client = MCPTraceClient(
+                command=trace_command,
+                tool_name=args.mcp_tool_name,
+                timeout_ms=args.mcp_timeout_ms,
+            )
+        except Exception as exc:
+            raise RuntimeError(
+                "Failed to initialize MCP trace server. "
+                "Use --trace-mode local to bypass MCP tracing. "
+                f"Details: {exc}"
+            ) from exc
+
+    trace = TraceLogger(
+        trace_path,
+        start_time,
+        validate_mcp_actions=not args.no_mcp_verify_trace,
+        strict_mcp_validation=not args.no_mcp_strict,
+        mcp_client=trace_mcp_client,
+    )
+
+    annotations = _new_annotations(form_id, run_name, run_label, form_url, args, trace)
+    try:
+        if args.interaction_mode == "mcp_server":
+            errors, run_error = _run_single_mcp_server(
+                annotations=annotations,
+                answers=answers,
+                form_url=form_url,
+                run_dir=run_dir,
+                observations_dir=observations_dir,
+                args=args,
+                trace=trace,
+            )
+        else:
+            errors, run_error = _run_single_local(
+                annotations=annotations,
+                answers=answers,
+                form_url=form_url,
+                run_dir=run_dir,
+                observations_dir=observations_dir,
+                args=args,
+                trace=trace,
+            )
     finally:
         trace.close()
 
@@ -539,6 +843,8 @@ def run_single(
     if run_error is not None and not submitted:
         failure_reason = "run_error"
     annotations["failure_reason"] = failure_reason
+    if run_error is not None:
+        annotations["run_error"] = str(run_error)
 
     if run_metadata:
         annotations["run_metadata"] = run_metadata
@@ -555,6 +861,8 @@ def run_single(
         trace_summary=trace_summary,
         observations_dir=observations_dir,
         screenshots_required=bool(args.screenshots),
+        run_error=run_error,
+        execution_errors=errors,
     )
 
     screenshot_count = len(list(observations_dir.glob("*.png"))) if observations_dir.exists() else 0
@@ -565,6 +873,7 @@ def run_single(
     print(f"[INFO] trace: {trace_path}")
     print(f"[INFO] trace_events: {trace_summary.get('event_count')}")
     print(f"[INFO] trace_mode: {trace_summary.get('mode')}")
+    print(f"[INFO] interaction_mode: {args.interaction_mode}")
 
     if run_error is not None:
         raise RuntimeError(f"Run failed: {run_error}")
@@ -654,6 +963,41 @@ def main(argv: Optional[List[str]] = None) -> bool:
             file=sys.stderr,
         )
 
+    if args.interaction_mode == "mcp_server" and not args.no_mcp_browser_install:
+        if args.browser_mcp_cmd:
+            print(
+                "[WARN] Skipping MCP browser auto-install because --browser-mcp-cmd was provided. "
+                "Ensure that custom MCP server command has browser binaries available.",
+                file=sys.stderr,
+            )
+        else:
+            try:
+                python_executable = _detect_python_playwright_chromium_executable()
+                if python_executable:
+                    print(
+                        f"[INFO] Using Python Playwright Chromium executable for MCP: {python_executable}",
+                        file=sys.stderr,
+                    )
+                try:
+                    ensure_playwright_mcp_package(timeout_seconds=args.mcp_browser_install_timeout_s)
+                except Exception as preflight_exc:
+                    print(
+                        "[WARN] MCP package preflight failed; continuing with cached/local resolution. "
+                        f"Details: {preflight_exc}",
+                        file=sys.stderr,
+                    )
+                if not python_executable:
+                    ensure_node_playwright_browser(
+                        browser_name="chromium",
+                        timeout_seconds=args.mcp_browser_install_timeout_s,
+                    )
+            except Exception as exc:
+                raise RuntimeError(
+                    "MCP browser preflight failed before run start. "
+                    "You can retry, run `npx playwright install chromium`, or bypass this with --no-mcp-browser-install. "
+                    f"Details: {exc}"
+                ) from exc
+
     if args.smoke_test_all_forms:
         form_ids = discover_form_ids(specs_root)
         if not form_ids:
@@ -688,4 +1032,8 @@ def main(argv: Optional[List[str]] = None) -> bool:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("[INFO] Interrupted by user.", file=sys.stderr)
+        raise SystemExit(130)

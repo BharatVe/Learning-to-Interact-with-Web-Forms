@@ -8,10 +8,10 @@
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": 1,
-  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-  "locale": "en-US",
-  "timezone": "Europe/Berlin",
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "video_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/workshop_signup_run_0001.webm",
   "run_params": {
     "headless": false,
@@ -22,13 +22,34 @@
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
     "mouse_overlay": true,
-    "interaction_mode": "mcp_actions",
+    "interaction_mode": "mcp_server",
     "trace_mode": "mcp",
     "mcp_server_cmd": "bundled_default",
     "mcp_tool_name": "record_action",
     "mcp_timeout_ms": 5000,
+    "browser_mcp_cmd": [
+      "/home/bharat/.nvm/versions/node/v22.20.0/bin/playwright-mcp",
+      "--browser",
+      "chromium",
+      "--isolated",
+      "--host",
+      "127.0.0.1",
+      "--output-dir",
+      "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001",
+      "--save-video",
+      "1280x720",
+      "--viewport-size",
+      "1280,720",
+      "--executable-path",
+      "/home/bharat/.cache/ms-playwright/chromium-1117/chrome-linux/chrome",
+      "--no-sandbox"
+    ],
+    "browser_mcp_timeout_ms": 180000,
     "mcp_verify_trace": true,
-    "mcp_strict": true
+    "mcp_strict": true,
+    "browser_mcp_env": {
+      "PLAYWRIGHT_BROWSERS_PATH": "/home/bharat/.cache/ms-playwright"
+    }
   },
   "actions": [
     {
@@ -38,29 +59,19 @@
       "value": "Lena Ortiz",
       "intent": "Fill Full name",
       "success": true,
-      "t_start_s": 2.7981042389983486,
-      "t_end_s": 6.876152871998784,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 306.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 6.76272355600031,
+      "t_end_s": 9.52462317500067,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -70,29 +81,19 @@
       "value": "Stanford University",
       "intent": "Fill University or organization",
       "success": true,
-      "t_start_s": 6.876210646998516,
-      "t_end_s": 12.027330852997693,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 456.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 9.524672955000824,
+      "t_end_s": 14.486242354000751,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -102,29 +103,19 @@
       "value": "Intro to Machine Learning",
       "intent": "Select Intro to Machine Learning for Which workshop track are you registering for?",
       "success": true,
-      "t_start_s": 12.027368390998163,
-      "t_end_s": 13.796217875998991,
-      "bbox": {
-        "x": 312.5,
-        "y": 527.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 585.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 14.486274821000734,
+      "t_end_s": 15.998016343000018,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Intro to Machine Learning",
-      "target_selector": "#i16",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -134,29 +125,19 @@
       "value": "Beginner",
       "intent": "Select Beginner for Experience level",
       "success": true,
-      "t_start_s": 13.796259569997346,
-      "t_end_s": 15.586545219997788,
-      "bbox": {
-        "x": 312.5,
-        "y": 732.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 330.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 15.998072978000891,
+      "t_end_s": 18.580297079000047,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Beginner",
-      "target_selector": "#i30",
-      "scroll_y": 17,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -168,29 +149,19 @@
       ],
       "intent": "Select None for Dietary restrictions",
       "success": true,
-      "t_start_s": 15.586633006998454,
-      "t_end_s": 18.385160852998524,
-      "bbox": {
-        "x": 312.5,
-        "y": 477.1875,
-        "width": 640,
-        "height": 294
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 631.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 18.580337954000242,
+      "t_end_s": 20.0828933290004,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "checkbox",
-      "target_name": "None",
-      "target_selector": "#i54",
-      "scroll_y": 494,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -200,29 +171,19 @@
       "value": "2025-07-05",
       "intent": "Fill Preferred session date",
       "success": true,
-      "t_start_s": 18.385254423999868,
-      "t_end_s": 21.355339083998842,
-      "bbox": {
-        "x": 312.5,
-        "y": 732.1875,
-        "width": 640,
-        "height": 153
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 378.1875,
-        "width": 127,
-        "height": 24
-      },
+      "t_start_s": 20.082934610000848,
+      "t_end_s": 21.52425411100012,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 545,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -232,45 +193,30 @@
       "value": "Yes",
       "intent": "Select Yes for May we email you updates?",
       "success": true,
-      "t_start_s": 21.35541972200008,
-      "t_end_s": 23.491479917000106,
-      "bbox": {
-        "x": 312.5,
-        "y": 449.1875,
-        "width": 640,
-        "height": 170
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 524.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 21.524306369000442,
+      "t_end_s": 24.01775311200072,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Yes",
-      "target_selector": "#i71",
-      "scroll_y": 993,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     }
   ],
   "submit": {
-    "success": true,
-    "t_start_s": 23.491546666999056,
-    "t_end_s": 57.13280548900002,
-    "bbox": {
-      "x": 312.5,
-      "y": 631.1875,
-      "width": 98.453125,
-      "height": 36
-    },
-    "submit_clicked": true,
-    "confirmation_method": "url",
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/formResponse",
+    "success": false,
+    "t_start_s": 24.017811610000535,
+    "t_end_s": 57.70008127900019,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": null,
+    "final_url": null,
     "pre_screenshot": null,
     "post_screenshot": null
   },
@@ -282,20 +228,25 @@
       "mode": "mcp_server",
       "validate_mcp_actions": true,
       "strict_mcp_validation": true,
-      "event_count": 23,
+      "event_count": 21,
       "validation_error_count": 0,
       "events_by_name": {
-        "click_at": 8,
-        "hover_at": 8,
-        "scroll_document": 4,
-        "type_text_at": 3
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_wait_for": 9
       },
       "supported_actions": [
-        "click_at",
-        "hover_at",
-        "key_combination",
-        "scroll_document",
-        "type_text_at"
+        "browser_close",
+        "browser_mouse_click_xy",
+        "browser_mouse_move_xy",
+        "browser_mouse_wheel",
+        "browser_navigate",
+        "browser_press_key",
+        "browser_run_code",
+        "browser_take_screenshot",
+        "browser_type",
+        "browser_wait_for"
       ],
       "mcp": {
         "mode": "mcp_server",
@@ -303,7 +254,6 @@
           "/home/bharat/gf_form_agent_env/bin/python3",
           "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
         ],
-        "tool_name": "record_action",
         "protocol_version": "2024-11-05",
         "server_info": {
           "name": "thesis-trace-mcp",
@@ -311,12 +261,13 @@
         },
         "available_tools": [
           "record_action"
-        ]
+        ],
+        "tool_name": "record_action"
       }
     }
   },
-  "submitted": true,
-  "failure_reason": null,
+  "submitted": false,
+  "failure_reason": "submit_not_clicked",
   "run_metadata": {
     "suffix": "student_intro",
     "notes": "Beginner student registering for the intro track."

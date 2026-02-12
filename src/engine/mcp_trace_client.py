@@ -1,21 +1,23 @@
 import json
+import os
 import select
 import shlex
 import subprocess
 import time
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Sequence, Union
 
 
 class MCPClientError(RuntimeError):
     """Raised for MCP transport/protocol errors."""
 
 
-class MCPTraceClient:
+class MCPClient:
     def __init__(
         self,
         command: Union[str, List[str]],
-        tool_name: str = "record_action",
         timeout_ms: int = 5000,
+        required_tools: Optional[Sequence[str]] = None,
+        env: Optional[Dict[str, str]] = None,
     ) -> None:
         if isinstance(command, str):
             self.command = shlex.split(command)
@@ -24,8 +26,11 @@ class MCPTraceClient:
         if not self.command:
             raise MCPClientError("MCP command is empty")
 
-        self.tool_name = tool_name
         self.timeout_s = max(float(timeout_ms) / 1000.0, 0.1)
+        self.required_tools = [tool for tool in (required_tools or []) if tool]
+        self.env = dict(os.environ)
+        if env:
+            self.env.update(env)
         self._next_id = 1
         self._closed = False
         self.server_info: Dict[str, Any] = {}
@@ -39,6 +44,7 @@ class MCPTraceClient:
             stderr=subprocess.PIPE,
             text=True,
             bufsize=1,
+            env=self.env,
         )
         self._initialize()
 
@@ -153,19 +159,14 @@ class MCPTraceClient:
                 if isinstance(name, str):
                     names.append(name)
         self.available_tools = sorted(set(names))
-        if self.tool_name not in self.available_tools:
-            raise MCPClientError(
-                f"MCP tool '{self.tool_name}' not found. Available: {', '.join(self.available_tools) or '(none)'}"
-            )
+        missing = [tool for tool in self.required_tools if tool not in self.available_tools]
+        if missing:
+            missing_joined = ", ".join(missing)
+            available = ", ".join(self.available_tools) or "(none)"
+            raise MCPClientError(f"Missing MCP tools: {missing_joined}. Available: {available}")
 
-    def record_action(self, payload: Dict[str, Any]) -> Dict[str, Any]:
-        result = self._request(
-            "tools/call",
-            {"name": self.tool_name, "arguments": payload},
-        )
-        if result.get("isError"):
-            raise MCPClientError(f"MCP tool call failed: {result}")
-
+    @staticmethod
+    def _structured_payload_from_tool_result(result: Dict[str, Any]) -> Dict[str, Any]:
         structured = result.get("structuredContent")
         if isinstance(structured, dict):
             return structured
@@ -176,17 +177,36 @@ class MCPTraceClient:
             if isinstance(first, dict):
                 text = first.get("text")
                 if isinstance(text, str):
-                    parsed = json.loads(text)
+                    try:
+                        parsed = json.loads(text)
+                    except Exception:
+                        return {"text": text}
                     if isinstance(parsed, dict):
                         return parsed
+                    return {"value": parsed}
+        return {}
 
+    def call_tool(self, tool_name: str, arguments: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        result = self._request(
+            "tools/call",
+            {"name": tool_name, "arguments": arguments or {}},
+        )
+        if result.get("isError"):
+            raise MCPClientError(f"MCP tool call failed for '{tool_name}': {result}")
+        payload = self._structured_payload_from_tool_result(result)
+        payload["_tool_result"] = result
+        return payload
+
+    def record_action(self, payload: Dict[str, Any], tool_name: str = "record_action") -> Dict[str, Any]:
+        parsed = self.call_tool(tool_name, payload)
+        if parsed:
+            return parsed
         raise MCPClientError("MCP tool returned no structured payload")
 
     def summary(self) -> Dict[str, Any]:
         return {
             "mode": "mcp_server",
             "command": self.command,
-            "tool_name": self.tool_name,
             "protocol_version": self.protocol_version,
             "server_info": self.server_info,
             "available_tools": self.available_tools,
@@ -210,3 +230,26 @@ class MCPTraceClient:
                 self._proc.kill()
             except Exception:
                 pass
+
+
+class MCPTraceClient(MCPClient):
+    def __init__(
+        self,
+        command: Union[str, List[str]],
+        tool_name: str = "record_action",
+        timeout_ms: int = 5000,
+    ) -> None:
+        self.tool_name = tool_name
+        super().__init__(
+            command=command,
+            timeout_ms=timeout_ms,
+            required_tools=[tool_name],
+        )
+
+    def record_action(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        return super().record_action(payload, tool_name=self.tool_name)
+
+    def summary(self) -> Dict[str, Any]:
+        data = super().summary()
+        data["tool_name"] = self.tool_name
+        return data

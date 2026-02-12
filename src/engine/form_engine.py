@@ -4,7 +4,6 @@ import unicodedata
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from engine.mcp_action_executor import MCPActionExecutionError, MCPActionExecutor
 from engine.trace_logger import TraceLogger
 
 
@@ -64,7 +63,6 @@ class FormEngine:
         viewport: Dict[str, int],
         observations_dir: Path,
         trace: TraceLogger,
-        interaction_mode: str = "local",
         timeout_ms: int = 15000,
         type_delay_ms: int = 120,
         action_delay_ms: int = 220,
@@ -74,23 +72,12 @@ class FormEngine:
         self.viewport = viewport
         self.observations_dir = observations_dir
         self.trace = trace
-        self.interaction_mode = interaction_mode
         self.timeout_ms = timeout_ms
         self.type_delay_ms = max(0, type_delay_ms)
         self.action_delay_ms = max(0, action_delay_ms)
         self.take_screenshots = take_screenshots
         self.long_text_threshold = 90
         self.long_text_max_delay_ms = 35
-        self.mcp_action_executor = (
-            MCPActionExecutor(
-                page=self.page,
-                viewport=self.viewport,
-                timeout_ms=self.timeout_ms,
-                type_delay_ms=self.type_delay_ms,
-            )
-            if self.interaction_mode == "mcp_actions"
-            else None
-        )
         self.handlers = {
             "short_text": self._handle_text,
             "paragraph_text": self._handle_text,
@@ -178,10 +165,9 @@ class FormEngine:
         delta = after_y - before_y
         if abs(delta) < 1:
             return
-        direction = "down" if delta > 0 else "up"
         self.trace.log_event(
-            "scroll_document",
-            {"direction": direction},
+            "browser_mouse_wheel",
+            {"deltaX": 0, "deltaY": int(round(delta))},
             step_ref=step_ref,
             extra=self._event_extra(after),
         )
@@ -199,12 +185,9 @@ class FormEngine:
             if x is None or y is None:
                 raise RuntimeError("target_not_visible")
             x_norm, y_norm = self._coords_norm(x, y)
-            if self.mcp_action_executor is not None:
-                self.mcp_action_executor.execute("hover_at", {"x": x_norm, "y": y_norm})
-            else:
-                self.page.mouse.move(x, y, steps=20)
+            self.page.mouse.move(x, y, steps=20)
             self.trace.log_event(
-                "hover_at",
+                "browser_mouse_move_xy",
                 {"x": x_norm, "y": y_norm},
                 step_ref=step_ref,
                 extra=self._event_extra(scroll, x_px=x, y_px=y),
@@ -212,7 +195,7 @@ class FormEngine:
             self._pause()
         except Exception as exc:
             self.trace.log_event(
-                "hover_at",
+                "browser_mouse_move_xy",
                 {"x": None, "y": None},
                 step_ref=step_ref,
                 ok=False,
@@ -230,15 +213,9 @@ class FormEngine:
                 args = {"x": x_norm, "y": y_norm}
             else:
                 args = {"x": None, "y": None}
-            if self.mcp_action_executor is not None:
-                try:
-                    self.mcp_action_executor.execute("click_at", args)
-                except MCPActionExecutionError:
-                    locator.click(timeout=self.timeout_ms)
-            else:
-                locator.click(timeout=self.timeout_ms)
+            locator.click(timeout=self.timeout_ms)
             self.trace.log_event(
-                "click_at",
+                "browser_mouse_click_xy",
                 args,
                 step_ref=step_ref,
                 extra=self._event_extra(scroll, x_px=x, y_px=y),
@@ -246,7 +223,7 @@ class FormEngine:
             self._pause()
         except Exception as exc:
             self.trace.log_event(
-                "click_at",
+                "browser_mouse_click_xy",
                 {"x": None, "y": None},
                 step_ref=step_ref,
                 ok=False,
@@ -267,41 +244,10 @@ class FormEngine:
             if text_len > self.long_text_threshold:
                 effective_delay = min(self.type_delay_ms, self.long_text_max_delay_ms)
             dynamic_timeout = max(self.timeout_ms, 3000 + (text_len * max(effective_delay, 8)))
-            input_method = "type"
-            if x is not None and y is not None:
-                x_norm, y_norm = self._coords_norm(x, y)
-                args = {
-                    "x": x_norm,
-                    "y": y_norm,
-                    "text": text_str,
-                    "clear_before_typing": clear_before_typing,
-                    "input_method": input_method,
-                }
-            else:
-                args = {
-                    "x": None,
-                    "y": None,
-                    "text": text_str,
-                    "clear_before_typing": clear_before_typing,
-                    "input_method": input_method,
-                }
-            if self.mcp_action_executor is not None:
-                try:
-                    self.mcp_action_executor.execute(
-                        "type_text_at",
-                        {
-                            "x": args["x"],
-                            "y": args["y"],
-                            "text": text_str,
-                            "clear_before_typing": clear_before_typing,
-                        },
-                    )
-                except MCPActionExecutionError:
-                    locator.type(text_str, delay=effective_delay, timeout=dynamic_timeout)
-            else:
-                locator.type(text_str, delay=effective_delay, timeout=dynamic_timeout)
+            args = {"text": text_str, "slowly": effective_delay > 0, "submit": False}
+            locator.type(text_str, delay=effective_delay, timeout=dynamic_timeout)
             self.trace.log_event(
-                "type_text_at",
+                "browser_type",
                 args,
                 step_ref=step_ref,
                 extra=self._event_extra(scroll, x_px=x, y_px=y),
@@ -309,13 +255,8 @@ class FormEngine:
             self._pause()
         except Exception as exc:
             self.trace.log_event(
-                "type_text_at",
-                {
-                    "x": None,
-                    "y": None,
-                    "text": str(text),
-                    "clear_before_typing": clear_before_typing,
-                },
+                "browser_type",
+                {"text": str(text), "slowly": self.type_delay_ms > 0, "submit": False},
                 step_ref=step_ref,
                 ok=False,
                 error=str(exc),
@@ -330,25 +271,9 @@ class FormEngine:
             if clear_before_typing:
                 locator.fill("", timeout=self.timeout_ms)
             locator.fill(str(text), timeout=self.timeout_ms)
-            if x is not None and y is not None:
-                x_norm, y_norm = self._coords_norm(x, y)
-                args = {
-                    "x": x_norm,
-                    "y": y_norm,
-                    "text": str(text),
-                    "clear_before_typing": clear_before_typing,
-                    "input_method": "fill",
-                }
-            else:
-                args = {
-                    "x": None,
-                    "y": None,
-                    "text": str(text),
-                    "clear_before_typing": clear_before_typing,
-                    "input_method": "fill",
-                }
+            args = {"text": str(text), "slowly": False, "submit": False}
             self.trace.log_event(
-                "type_text_at",
+                "browser_type",
                 args,
                 step_ref=step_ref,
                 extra=self._event_extra(scroll, x_px=x, y_px=y),
@@ -356,14 +281,8 @@ class FormEngine:
             self._pause()
         except Exception as exc:
             self.trace.log_event(
-                "type_text_at",
-                {
-                    "x": None,
-                    "y": None,
-                    "text": str(text),
-                    "clear_before_typing": clear_before_typing,
-                    "input_method": "fill",
-                },
+                "browser_type",
+                {"text": str(text), "slowly": False, "submit": False},
                 step_ref=step_ref,
                 ok=False,
                 error=str(exc),
