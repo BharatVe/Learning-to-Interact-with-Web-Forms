@@ -1,33 +1,25 @@
-{"t_s": 3.651307144000384, "step_ref": 0, "name": "hover_at", "args": {"x": 379, "y": 441}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 485.0, "y_px": 318.1875}
-{"t_s": 4.156908131000819, "step_ref": 0, "name": "click_at", "args": {"x": 379, "y": 441}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 485.0, "y_px": 318.1875}
-{"t_s": 7.375663585000439, "step_ref": 0, "name": "type_text_at", "args": {"x": 379, "y": 441, "text": "Distributed Systems", "clear_before_typing": true, "input_method": "type"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 485.0, "y_px": 318.1875}
-{"t_s": 8.837153395999849, "step_ref": 1, "name": "hover_at", "args": {"x": 271, "y": 641}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 347.5, "y_px": 462.1875}
-{"t_s": 9.341332280000643, "step_ref": 1, "name": "click_at", "args": {"x": 271, "y": 641}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 347.5, "y_px": 462.1875}
-{"t_s": 9.883627564000562, "step_ref": 2, "name": "scroll_document", "args": {"direction": "down"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 129, "x_px": null, "y_px": null}
-{"t_s": 10.763109548999637, "step_ref": 2, "name": "hover_at", "args": {"x": 271, "y": 937}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 129, "x_px": 347.5, "y_px": 675.1875}
-{"t_s": 11.283652836000329, "step_ref": 2, "name": "click_at", "args": {"x": 271, "y": 937}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 129, "x_px": 347.5, "y_px": 675.1875}
-{"t_s": 11.837455957000202, "step_ref": 3, "name": "scroll_document", "args": {"direction": "down"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 359, "x_px": null, "y_px": null}
-{"t_s": 12.400553811999998, "step_ref": 3, "name": "hover_at", "args": {"x": 280, "y": 722}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 359, "x_px": 358.765625, "y_px": 520.1875}
-{"t_s": 13.368701157000032, "step_ref": 3, "name": "click_at", "args": {"x": 280, "y": 722}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 359, "x_px": 358.765625, "y_px": 520.1875}
-{"t_s": 15.419701790000545, "step_ref": 3, "name": "hover_at", "args": {"x": 271, "y": 565}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 347.5, "y_px": 407.1875}
-{"t_s": 15.934930641000392, "step_ref": 3, "name": "click_at", "args": {"x": 271, "y": 565}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 347.5, "y_px": 407.1875}
-{"t_s": 16.533752731000277, "step_ref": 4, "name": "scroll_document", "args": {"direction": "down"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 34, "x_px": null, "y_px": null}
-{"t_s": 17.492434661000516, "step_ref": 4, "name": "hover_at", "args": {"x": 271, "y": 937}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 34, "x_px": 347.5, "y_px": 675.1875}
-{"t_s": 17.983783038000183, "step_ref": 4, "name": "click_at", "args": {"x": 271, "y": 937}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 34, "x_px": 347.5, "y_px": 675.1875}
-{"t_s": 18.552519910999763, "step_ref": 5, "name": "scroll_document", "args": {"direction": "down"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 474, "x_px": null, "y_px": null}
-{"t_s": 19.12886416100082, "step_ref": 5, "name": "hover_at", "args": {"x": 494, "y": 532}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 474, "x_px": 632.5, "y_px": 383.1875}
-{"t_s": 19.63690642199981, "step_ref": 5, "name": "click_at", "args": {"x": 494, "y": 532}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 474, "x_px": 632.5, "y_px": 383.1875}
-{"t_s": 24.96006626000053, "step_ref": 5, "name": "type_text_at", "args": {"x": 494, "y": 532, "text": "Case studies from real deployments.", "clear_before_typing": true, "input_method": "type"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 474, "x_px": 632.5, "y_px": 383.1875}
-{"t_s": 26.124197928000285, "step_ref": 6, "name": "hover_at", "args": {"x": 494, "y": 737}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 474, "x_px": 632.5, "y_px": 531.1875}
-{"t_s": 26.617832301999442, "step_ref": 6, "name": "click_at", "args": {"x": 494, "y": 737}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 474, "x_px": 632.5, "y_px": 531.1875}
-{"t_s": 31.012401707999743, "step_ref": 6, "name": "type_text_at", "args": {"x": 494, "y": 737, "text": "More guided review sessions.", "clear_before_typing": true, "input_method": "type"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 474, "x_px": 632.5, "y_px": 531.1875}
-{"t_s": 31.57896278299995, "step_ref": 7, "name": "scroll_document", "args": {"direction": "down"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 600, "x_px": null, "y_px": null}
-{"t_s": 32.42665067999951, "step_ref": 7, "name": "hover_at", "args": {"x": 271, "y": 790}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 600, "x_px": 347.5, "y_px": 569.1875}
-{"t_s": 32.93782389300031, "step_ref": 7, "name": "click_at", "args": {"x": 271, "y": 790}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 600, "x_px": 347.5, "y_px": 569.1875}
-{"t_s": 34.05453120600032, "step_ref": 7, "name": "hover_at", "args": {"x": 271, "y": 890}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 600, "x_px": 347.5, "y_px": 641.1875}
-{"t_s": 34.564638861000276, "step_ref": 7, "name": "click_at", "args": {"x": 271, "y": 890}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 600, "x_px": 347.5, "y_px": 641.1875}
-{"t_s": 35.18268439900021, "step_ref": 8, "name": "scroll_document", "args": {"direction": "down"}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 1052, "x_px": null, "y_px": null}
-{"t_s": 36.034197601000415, "step_ref": 8, "name": "hover_at", "args": {"x": 271, "y": 618}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 1052, "x_px": 347.5, "y_px": 445.1875}
-{"t_s": 36.533072891999836, "step_ref": 8, "name": "click_at", "args": {"x": 271, "y": 618}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 1052, "x_px": 347.5, "y_px": 445.1875}
-{"t_s": 37.64516132100107, "step_ref": null, "name": "hover_at", "args": {"x": 367, "y": 722}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 1052, "x_px": 470.4296875, "y_px": 520.1875}
-{"t_s": 38.53365017000033, "step_ref": null, "name": "click_at", "args": {"x": 367, "y": 722}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 1052, "x_px": 470.4296875, "y_px": 520.1875}
+{"t_s": 3.315438894999943, "step_ref": null, "name": "browser_navigate", "args": {"url": "https://docs.google.com/forms/d/e/1FAIpQLSczlT7s8tTQgmYpXnfzz4taF5pvj-qpzgksyBZImfHBGwMpBA/viewform"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 3.8128156899999794, "step_ref": null, "name": "browser_wait_for", "args": {"time": 0.3}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 5.018960526000001, "step_ref": null, "name": "browser_run_code", "args": {"purpose": "collect_env"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 6.09030990500014, "step_ref": null, "name": "browser_run_code", "args": {"purpose": "enable_mouse_overlay"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 10.009724935000122, "step_ref": 0, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 10.254586878000055, "step_ref": 0, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 12.677597613999978, "step_ref": 1, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 12.926200258000108, "step_ref": 1, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 14.22198212100011, "step_ref": 2, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 14.465546924000137, "step_ref": 2, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 18.00062724700001, "step_ref": 3, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 18.27142406300004, "step_ref": 3, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 21.06791355700011, "step_ref": 4, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 21.431847277000088, "step_ref": 4, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 27.97756806899997, "step_ref": 5, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 28.222130639999932, "step_ref": 5, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 34.15631924200011, "step_ref": 6, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 34.441944740000054, "step_ref": 6, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 37.139004226, "step_ref": 7, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 37.38175912199995, "step_ref": 7, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 38.73791116899997, "step_ref": 8, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 39.0055905480001, "step_ref": 8, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 72.54508890900001, "step_ref": null, "name": "browser_run_code", "args": {"purpose": "submit"}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 72.78145642499999, "step_ref": null, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 76.53140228500001, "step_ref": null, "name": "browser_close", "args": {}, "ok": true, "error": null, "backend": "mcp_server"}

@@ -8,10 +8,10 @@
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": 1,
-  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-  "locale": "en-US",
-  "timezone": "Europe/Berlin",
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "video_path": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003/course_feedback_run_0003.webm",
   "run_params": {
     "headless": false,
@@ -21,7 +21,35 @@
     "action_delay_ms": 220,
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
-    "mouse_overlay": true
+    "mouse_overlay": true,
+    "interaction_mode": "mcp_server",
+    "trace_mode": "mcp",
+    "mcp_server_cmd": "bundled_default",
+    "mcp_tool_name": "record_action",
+    "mcp_timeout_ms": 5000,
+    "browser_mcp_cmd": [
+      "/home/bharat/.nvm/versions/node/v22.20.0/bin/playwright-mcp",
+      "--browser",
+      "chromium",
+      "--isolated",
+      "--host",
+      "127.0.0.1",
+      "--output-dir",
+      "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0003",
+      "--save-video",
+      "1280x720",
+      "--viewport-size",
+      "1280,720",
+      "--executable-path",
+      "/home/bharat/.cache/ms-playwright/chromium-1117/chrome-linux/chrome",
+      "--no-sandbox"
+    ],
+    "browser_mcp_timeout_ms": 120000,
+    "mcp_verify_trace": true,
+    "mcp_strict": true,
+    "browser_mcp_env": {
+      "PLAYWRIGHT_BROWSERS_PATH": "/home/bharat/.cache/ms-playwright"
+    }
   },
   "actions": [
     {
@@ -31,29 +59,19 @@
       "value": "AI Ethics",
       "intent": "Fill Course name",
       "success": true,
-      "t_start_s": 2.1130956530014373,
-      "t_end_s": 5.987284721000833,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 306.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 10.395537445999935,
+      "t_end_s": 13.093012569999928,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -63,29 +81,19 @@
       "value": "PhD",
       "intent": "Select PhD for Your program level",
       "success": true,
-      "t_start_s": 5.987369276001118,
-      "t_end_s": 8.0068242690013,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 250
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 532.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 13.093070638999961,
+      "t_end_s": 15.747754765999844,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "PhD",
-      "target_selector": "#i17",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -95,29 +103,19 @@
       "value": "Yes",
       "intent": "Select Yes for Did you attend most sessions?",
       "success": true,
-      "t_start_s": 8.006940996001504,
-      "t_end_s": 9.922155146001387,
-      "bbox": {
-        "x": 312.5,
-        "y": 639.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 585.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 15.747812586999999,
+      "t_end_s": 17.350706332999835,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Yes",
-      "target_selector": "#i28",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -127,29 +125,19 @@
       "value": "4",
       "intent": "Select 4 for Overall satisfaction",
       "success": true,
-      "t_start_s": 9.922232372000508,
-      "t_end_s": 14.42797362300007,
-      "bbox": {
-        "x": 312.5,
-        "y": 243.1875,
-        "width": 640,
-        "height": 289
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 437.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 17.350748937999924,
+      "t_end_s": 20.79442422199986,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "4",
-      "target_selector": "#i15",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -159,29 +147,19 @@
       "value": "About right",
       "intent": "Select About right for Workload felt",
       "success": true,
-      "t_start_s": 14.428040003000206,
-      "t_end_s": 16.318182267001248,
-      "bbox": {
-        "x": 312.5,
-        "y": 544.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 625.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 20.794703733000006,
+      "t_end_s": 23.388981439999952,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "About right",
-      "target_selector": "#i29",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -191,29 +169,19 @@
       "value": "Debates and applied policy examples.",
       "intent": "Fill What did you like most?",
       "success": true,
-      "t_start_s": 16.31828022600166,
-      "t_end_s": 23.407609890000458,
-      "bbox": {
-        "x": 312.5,
-        "y": 732.1875,
-        "width": 640,
-        "height": 136
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 371.1875,
-        "width": 590,
-        "height": 24
-      },
+      "t_start_s": 23.38901659399994,
+      "t_end_s": 29.665822442000035,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
-      "target_name": "Meine Antwort",
+      "target_name": null,
       "target_selector": null,
-      "scroll_y": 34,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -223,29 +191,19 @@
       "value": "Add more guest speakers.",
       "intent": "Fill What should be improved?",
       "success": true,
-      "t_start_s": 23.407696797001336,
-      "t_end_s": 28.922309794001194,
-      "bbox": {
-        "x": 312.5,
-        "y": 440.1875,
-        "width": 640,
-        "height": 136
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 519.1875,
-        "width": 590,
-        "height": 24
-      },
+      "t_start_s": 29.665867789000004,
+      "t_end_s": 35.29959698799985,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
-      "target_name": "Meine Antwort",
+      "target_name": null,
       "target_selector": null,
-      "scroll_y": 474,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -258,29 +216,19 @@
       ],
       "intent": "Select Theory, Practical labs for Most useful aspects",
       "success": true,
-      "t_start_s": 28.922464642000705,
-      "t_end_s": 32.544698434001475,
-      "bbox": {
-        "x": 312.5,
-        "y": 588.1875,
-        "width": 640,
-        "height": 258
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 595.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 35.29964146399993,
+      "t_end_s": 38.01466793999998,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "checkbox",
-      "target_name": "Practical labs",
-      "target_selector": "#i54",
-      "scroll_y": 474,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -290,54 +238,81 @@
       "value": "Yes",
       "intent": "Select Yes for Would you recommend this course?",
       "success": true,
-      "t_start_s": 32.54476466699998,
-      "t_end_s": 34.53986785100096,
-      "bbox": {
-        "x": 312.5,
-        "y": 732.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 355.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 38.01470633600002,
+      "t_end_s": 39.5732620849999,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Yes",
-      "target_selector": "#i68",
-      "scroll_y": 600,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     }
   ],
   "submit": {
-    "success": true,
-    "t_start_s": 34.539947207000296,
-    "t_end_s": 68.4751377370012,
-    "bbox": {
-      "x": 421.203125,
-      "y": 502.1875,
-      "width": 98.453125,
-      "height": 36
-    },
-    "submit_clicked": true,
-    "confirmation_method": "url",
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSczlT7s8tTQgmYpXnfzz4taF5pvj-qpzgksyBZImfHBGwMpBA/formResponse",
+    "success": false,
+    "t_start_s": 39.57329213000003,
+    "t_end_s": 73.32676958899992,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": null,
+    "final_url": null,
     "pre_screenshot": null,
     "post_screenshot": null
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
-    "screenshot_dir": null
+    "screenshot_dir": null,
+    "mcp": {
+      "format": "mcp_computer_use_compatible",
+      "mode": "mcp_server",
+      "validate_mcp_actions": true,
+      "strict_mcp_validation": true,
+      "event_count": 25,
+      "validation_error_count": 0,
+      "events_by_name": {
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 12,
+        "browser_wait_for": 11
+      },
+      "supported_actions": [
+        "browser_close",
+        "browser_mouse_click_xy",
+        "browser_mouse_move_xy",
+        "browser_mouse_wheel",
+        "browser_navigate",
+        "browser_press_key",
+        "browser_run_code",
+        "browser_take_screenshot",
+        "browser_type",
+        "browser_wait_for"
+      ],
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/bharat/gf_form_agent_env/bin/python3",
+          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
+        ],
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ],
+        "tool_name": "record_action"
+      }
+    }
   },
-  "submitted": true,
-  "failure_reason": null,
+  "submitted": false,
+  "failure_reason": "submit_not_clicked",
   "run_metadata": {
     "suffix": "ai_ethics",
     "notes": "Positive feedback for an ethics seminar."

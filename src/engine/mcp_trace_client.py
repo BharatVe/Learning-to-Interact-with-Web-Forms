@@ -173,17 +173,27 @@ class MCPClient:
 
         content = result.get("content")
         if isinstance(content, list) and content:
-            first = content[0]
-            if isinstance(first, dict):
-                text = first.get("text")
-                if isinstance(text, str):
-                    try:
-                        parsed = json.loads(text)
-                    except Exception:
-                        return {"text": text}
-                    if isinstance(parsed, dict):
-                        return parsed
-                    return {"value": parsed}
+            text_fragments: List[str] = []
+            for item in content:
+                if not isinstance(item, dict):
+                    continue
+                json_payload = item.get("json")
+                if isinstance(json_payload, dict):
+                    return json_payload
+                text = item.get("text")
+                if not isinstance(text, str):
+                    continue
+                text_fragments.append(text)
+                try:
+                    parsed = json.loads(text)
+                except Exception:
+                    continue
+                if isinstance(parsed, dict):
+                    return parsed
+                return {"value": parsed}
+            if text_fragments:
+                merged = "\n".join(text_fragments)
+                return {"text": merged, "content": text_fragments}
         return {}
 
     def call_tool(self, tool_name: str, arguments: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:

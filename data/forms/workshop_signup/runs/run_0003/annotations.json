@@ -8,10 +8,10 @@
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": 1,
-  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-  "locale": "en-US",
-  "timezone": "Europe/Berlin",
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "video_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003/workshop_signup_run_0003.webm",
   "run_params": {
     "headless": false,
@@ -21,7 +21,35 @@
     "action_delay_ms": 220,
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
-    "mouse_overlay": true
+    "mouse_overlay": true,
+    "interaction_mode": "mcp_server",
+    "trace_mode": "mcp",
+    "mcp_server_cmd": "bundled_default",
+    "mcp_tool_name": "record_action",
+    "mcp_timeout_ms": 5000,
+    "browser_mcp_cmd": [
+      "/home/bharat/.nvm/versions/node/v22.20.0/bin/playwright-mcp",
+      "--browser",
+      "chromium",
+      "--isolated",
+      "--host",
+      "127.0.0.1",
+      "--output-dir",
+      "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0003",
+      "--save-video",
+      "1280x720",
+      "--viewport-size",
+      "1280,720",
+      "--executable-path",
+      "/home/bharat/.cache/ms-playwright/chromium-1117/chrome-linux/chrome",
+      "--no-sandbox"
+    ],
+    "browser_mcp_timeout_ms": 120000,
+    "mcp_verify_trace": true,
+    "mcp_strict": true,
+    "browser_mcp_env": {
+      "PLAYWRIGHT_BROWSERS_PATH": "/home/bharat/.cache/ms-playwright"
+    }
   },
   "actions": [
     {
@@ -31,29 +59,19 @@
       "value": "Morgan Lee",
       "intent": "Fill Full name",
       "success": true,
-      "t_start_s": 2.2688721790000272,
-      "t_end_s": 6.480072301999826,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 306.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 8.712917451000067,
+      "t_end_s": 11.823380133999763,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -63,29 +81,19 @@
       "value": "UX Collective",
       "intent": "Fill University or organization",
       "success": true,
-      "t_start_s": 6.480180579001171,
-      "t_end_s": 10.598821970001154,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 456.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 11.823426479999853,
+      "t_end_s": 16.093823149999935,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -95,29 +103,19 @@
       "value": "UI Agents and Automation",
       "intent": "Select UI Agents and Automation for Which workshop track are you registering for?",
       "success": true,
-      "t_start_s": 10.598909704000107,
-      "t_end_s": 12.610369281999738,
-      "bbox": {
-        "x": 312.5,
-        "y": 527.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 665.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 16.0938597129998,
+      "t_end_s": 17.612766584999918,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "UI Agents and Automation",
-      "target_selector": "#i22",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -127,29 +125,19 @@
       "value": "Intermediate",
       "intent": "Select Intermediate for Experience level",
       "success": true,
-      "t_start_s": 12.610431770001014,
-      "t_end_s": 14.56600945900027,
-      "bbox": {
-        "x": 312.5,
-        "y": 732.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 370.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 17.612815887000124,
+      "t_end_s": 20.180298785000105,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Intermediate",
-      "target_selector": "#i33",
-      "scroll_y": 17,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -161,29 +149,19 @@
       ],
       "intent": "Select Vegetarian for Dietary restrictions",
       "success": true,
-      "t_start_s": 14.566096951000873,
-      "t_end_s": 16.507452728001226,
-      "bbox": {
-        "x": 312.5,
-        "y": 477.1875,
-        "width": 640,
-        "height": 294
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 523.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 20.180337245999908,
+      "t_end_s": 21.733662256000116,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "checkbox",
-      "target_name": "Vegetarian",
-      "target_selector": "#i45",
-      "scroll_y": 494,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -193,29 +171,19 @@
       "value": "2025-07-07",
       "intent": "Fill Preferred session date",
       "success": true,
-      "t_start_s": 16.507512131000112,
-      "t_end_s": 18.84293946100115,
-      "bbox": {
-        "x": 312.5,
-        "y": 732.1875,
-        "width": 640,
-        "height": 153
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 378.1875,
-        "width": 127,
-        "height": 24
-      },
+      "t_start_s": 21.733730872999786,
+      "t_end_s": 23.20882534400016,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 545,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -225,54 +193,81 @@
       "value": "No",
       "intent": "Select No for May we email you updates?",
       "success": true,
-      "t_start_s": 18.84301646899985,
-      "t_end_s": 20.824973261000196,
-      "bbox": {
-        "x": 312.5,
-        "y": 449.1875,
-        "width": 640,
-        "height": 170
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 564.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 23.208862181999848,
+      "t_end_s": 25.797458334000112,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "No",
-      "target_selector": "#i74",
-      "scroll_y": 993,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     }
   ],
   "submit": {
-    "success": true,
-    "t_start_s": 20.825031407001006,
-    "t_end_s": 54.78555557100117,
-    "bbox": {
-      "x": 312.5,
-      "y": 631.1875,
-      "width": 98.453125,
-      "height": 36
-    },
-    "submit_clicked": true,
-    "confirmation_method": "url",
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/formResponse",
+    "success": false,
+    "t_start_s": 25.797491703000105,
+    "t_end_s": 59.42418275399996,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": null,
+    "final_url": null,
     "pre_screenshot": null,
     "post_screenshot": null
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
-    "screenshot_dir": null
+    "screenshot_dir": null,
+    "mcp": {
+      "format": "mcp_computer_use_compatible",
+      "mode": "mcp_server",
+      "validate_mcp_actions": true,
+      "strict_mcp_validation": true,
+      "event_count": 21,
+      "validation_error_count": 0,
+      "events_by_name": {
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_wait_for": 9
+      },
+      "supported_actions": [
+        "browser_close",
+        "browser_mouse_click_xy",
+        "browser_mouse_move_xy",
+        "browser_mouse_wheel",
+        "browser_navigate",
+        "browser_press_key",
+        "browser_run_code",
+        "browser_take_screenshot",
+        "browser_type",
+        "browser_wait_for"
+      ],
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/bharat/gf_form_agent_env/bin/python3",
+          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
+        ],
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ],
+        "tool_name": "record_action"
+      }
+    }
   },
-  "submitted": true,
-  "failure_reason": null,
+  "submitted": false,
+  "failure_reason": "submit_not_clicked",
   "run_metadata": {
     "suffix": "ui_agents",
     "notes": "Intermediate attendee interested in UI agents."

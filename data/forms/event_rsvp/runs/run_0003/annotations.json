@@ -8,10 +8,10 @@
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": 1,
-  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-  "locale": "en-US",
-  "timezone": "Europe/Berlin",
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "video_path": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0003/event_rsvp_run_0003.webm",
   "run_params": {
     "headless": false,
@@ -21,7 +21,35 @@
     "action_delay_ms": 220,
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
-    "mouse_overlay": true
+    "mouse_overlay": true,
+    "interaction_mode": "mcp_server",
+    "trace_mode": "mcp",
+    "mcp_server_cmd": "bundled_default",
+    "mcp_tool_name": "record_action",
+    "mcp_timeout_ms": 5000,
+    "browser_mcp_cmd": [
+      "/home/bharat/.nvm/versions/node/v22.20.0/bin/playwright-mcp",
+      "--browser",
+      "chromium",
+      "--isolated",
+      "--host",
+      "127.0.0.1",
+      "--output-dir",
+      "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0003",
+      "--save-video",
+      "1280x720",
+      "--viewport-size",
+      "1280,720",
+      "--executable-path",
+      "/home/bharat/.cache/ms-playwright/chromium-1117/chrome-linux/chrome",
+      "--no-sandbox"
+    ],
+    "browser_mcp_timeout_ms": 120000,
+    "mcp_verify_trace": true,
+    "mcp_strict": true,
+    "browser_mcp_env": {
+      "PLAYWRIGHT_BROWSERS_PATH": "/home/bharat/.cache/ms-playwright"
+    }
   },
   "actions": [
     {
@@ -31,29 +59,19 @@
       "value": "Harper Singh",
       "intent": "Fill Name",
       "success": true,
-      "t_start_s": 2.3039842339985626,
-      "t_end_s": 6.551009728998906,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 306.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 6.928773134000039,
+      "t_end_s": 11.160699952999948,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -63,29 +81,19 @@
       "value": "No",
       "intent": "Select No for Will you attend?",
       "success": true,
-      "t_start_s": 6.551104009999108,
-      "t_end_s": 8.510450036999828,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 492.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 11.160849034999956,
+      "t_end_s": 14.422611295000024,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "No",
-      "target_selector": "#i14",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -95,29 +103,19 @@
       "value": "0",
       "intent": "Fill Number of guests (including yourself)",
       "success": true,
-      "t_start_s": 8.510541136000029,
-      "t_end_s": 10.967984359998809,
-      "bbox": {
-        "x": 312.5,
-        "y": 599.1875,
-        "width": 640,
-        "height": 162
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 661.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 14.422672993999868,
+      "t_end_s": 16.361560829999917,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -127,29 +125,19 @@
       "value": "18:00",
       "intent": "Fill Preferred arrival time",
       "success": true,
-      "t_start_s": 10.968063460999474,
-      "t_end_s": 16.017574832998434,
-      "bbox": {
-        "x": 312.5,
-        "y": 732.1875,
-        "width": 640,
-        "height": 164
-      },
-      "target_bbox": {
-        "x": 366.5,
-        "y": 381.1875,
-        "width": 17,
-        "height": 24
-      },
+      "t_start_s": 16.36164811200001,
+      "t_end_s": 19.873931972000037,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "combobox",
-      "target_name": "Minute",
+      "target_role": null,
+      "target_name": null,
       "target_selector": null,
-      "scroll_y": 41,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -161,29 +149,19 @@
       ],
       "intent": "Select Networking for Activities you're interested in",
       "success": true,
-      "t_start_s": 16.017714329998853,
-      "t_end_s": 18.047830946999966,
-      "bbox": {
-        "x": 312.5,
-        "y": 454.1875,
-        "width": 640,
-        "height": 258
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 623.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 19.87399309600005,
+      "t_end_s": 21.50243100600005,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "checkbox",
-      "target_name": "Networking",
-      "target_selector": "#i43",
-      "scroll_y": 495,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -193,54 +171,81 @@
       "value": "Cannot attend this time.",
       "intent": "Fill Accessibility needs or comments",
       "success": true,
-      "t_start_s": 18.047935765000148,
-      "t_end_s": 23.63068057199962,
-      "bbox": {
-        "x": 312.5,
-        "y": 724.1875,
-        "width": 640,
-        "height": 136
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 433.1875,
-        "width": 590,
-        "height": 24
-      },
+      "t_start_s": 21.502483858000005,
+      "t_end_s": 26.19527713100001,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
-      "target_name": "Meine Antwort",
+      "target_name": null,
       "target_selector": null,
-      "scroll_y": 495,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     }
   ],
   "submit": {
-    "success": true,
-    "t_start_s": 23.630780319999758,
-    "t_end_s": 57.73602540899992,
-    "bbox": {
-      "x": 312.5,
-      "y": 502.1875,
-      "width": 98.453125,
-      "height": 36
-    },
-    "submit_clicked": true,
-    "confirmation_method": "url",
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSdykQqKi_FnFo9Tdc7ArF-LEB6-hhKx5-1GnA2HM7TDyp8yRA/formResponse",
+    "success": false,
+    "t_start_s": 26.19531987000005,
+    "t_end_s": 60.08461218399998,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": null,
+    "final_url": null,
     "pre_screenshot": null,
     "post_screenshot": null
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
-    "screenshot_dir": null
+    "screenshot_dir": null,
+    "mcp": {
+      "format": "mcp_computer_use_compatible",
+      "mode": "mcp_server",
+      "validate_mcp_actions": true,
+      "strict_mcp_validation": true,
+      "event_count": 19,
+      "validation_error_count": 0,
+      "events_by_name": {
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 9,
+        "browser_wait_for": 8
+      },
+      "supported_actions": [
+        "browser_close",
+        "browser_mouse_click_xy",
+        "browser_mouse_move_xy",
+        "browser_mouse_wheel",
+        "browser_navigate",
+        "browser_press_key",
+        "browser_run_code",
+        "browser_take_screenshot",
+        "browser_type",
+        "browser_wait_for"
+      ],
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/bharat/gf_form_agent_env/bin/python3",
+          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
+        ],
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ],
+        "tool_name": "record_action"
+      }
+    }
   },
-  "submitted": true,
-  "failure_reason": null,
+  "submitted": false,
+  "failure_reason": "submit_not_clicked",
   "run_metadata": {
     "suffix": "decline",
     "notes": "Unable to attend this time."

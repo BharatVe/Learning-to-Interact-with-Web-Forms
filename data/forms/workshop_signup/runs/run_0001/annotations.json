@@ -1,5 +1,5 @@
 {
-  "schema_version": "3.0",
+  "schema_version": "4.0",
   "form_id": "workshop_signup",
   "run_name": "run_0001",
   "run_label": "workshop_signup_run_0001",
@@ -59,8 +59,8 @@
       "value": "Lena Ortiz",
       "intent": "Fill Full name",
       "success": true,
-      "t_start_s": 6.76272355600031,
-      "t_end_s": 9.52462317500067,
+      "t_start_s": 6.914124749999246,
+      "t_end_s": 10.992019306999282,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -72,6 +72,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -81,8 +92,8 @@
       "value": "Stanford University",
       "intent": "Fill University or organization",
       "success": true,
-      "t_start_s": 9.524672955000824,
-      "t_end_s": 14.486242354000751,
+      "t_start_s": 10.992103763999694,
+      "t_end_s": 16.001915556998938,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -94,6 +105,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -103,8 +125,8 @@
       "value": "Intro to Machine Learning",
       "intent": "Select Intro to Machine Learning for Which workshop track are you registering for?",
       "success": true,
-      "t_start_s": 14.486274821000734,
-      "t_end_s": 15.998016343000018,
+      "t_start_s": 16.00194957599888,
+      "t_end_s": 17.54925117199855,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -116,6 +138,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -125,8 +158,8 @@
       "value": "Beginner",
       "intent": "Select Beginner for Experience level",
       "success": true,
-      "t_start_s": 15.998072978000891,
-      "t_end_s": 18.580297079000047,
+      "t_start_s": 17.54928942299921,
+      "t_end_s": 20.14111698799934,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -138,6 +171,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -149,8 +193,8 @@
       ],
       "intent": "Select None for Dietary restrictions",
       "success": true,
-      "t_start_s": 18.580337954000242,
-      "t_end_s": 20.0828933290004,
+      "t_start_s": 20.14117416499903,
+      "t_end_s": 21.71041072299886,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -162,6 +206,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -171,8 +226,8 @@
       "value": "2025-07-05",
       "intent": "Fill Preferred session date",
       "success": true,
-      "t_start_s": 20.082934610000848,
-      "t_end_s": 21.52425411100012,
+      "t_start_s": 21.710461292999753,
+      "t_end_s": 23.17445728199891,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -184,6 +239,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -193,8 +259,8 @@
       "value": "Yes",
       "intent": "Select Yes for May we email you updates?",
       "success": true,
-      "t_start_s": 21.524306369000442,
-      "t_end_s": 24.01775311200072,
+      "t_start_s": 23.17449906299953,
+      "t_end_s": 25.792009831999167,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -206,19 +272,39 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     }
   ],
   "submit": {
-    "success": false,
-    "t_start_s": 24.017811610000535,
-    "t_end_s": 57.70008127900019,
+    "success": true,
+    "success_inferred": true,
+    "t_start_s": 25.792046142998515,
+    "t_end_s": 59.52634370299893,
     "bbox": null,
-    "submit_clicked": false,
-    "confirmation_method": null,
+    "submit_clicked": true,
+    "confirmation_method": "mcp_inferred_no_structured_result",
     "final_url": null,
     "pre_screenshot": null,
-    "post_screenshot": null
+    "post_screenshot": null,
+    "metadata_status": "missing",
+    "metadata_missing_keys": [
+      "success",
+      "submit_clicked",
+      "confirmation_method",
+      "final_url",
+      "bbox"
+    ]
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
@@ -266,10 +352,224 @@
       }
     }
   },
-  "submitted": false,
-  "failure_reason": "submit_not_clicked",
+  "submitted": true,
+  "failure_reason": null,
   "run_metadata": {
     "suffix": "student_intro",
     "notes": "Beginner student registering for the intro track."
+  },
+  "information_layers": {
+    "level_0_run": {
+      "form_id": "workshop_signup",
+      "run_name": "run_0001",
+      "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform",
+      "submitted": true,
+      "failure_reason": null,
+      "total_steps": 7,
+      "trace_event_count": 21,
+      "video_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0001/workshop_signup_run_0001.webm"
+    },
+    "level_1_steps": [
+      {
+        "step": 0,
+        "label": "Full name",
+        "widget_type": "short_text",
+        "intent": "Fill Full name",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 6.914124749999246,
+        "t_end_s": 10.992019306999282,
+        "trace_event_count": 2
+      },
+      {
+        "step": 1,
+        "label": "University or organization",
+        "widget_type": "short_text",
+        "intent": "Fill University or organization",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 10.992103763999694,
+        "t_end_s": 16.001915556998938,
+        "trace_event_count": 2
+      },
+      {
+        "step": 2,
+        "label": "Which workshop track are you registering for?",
+        "widget_type": "single_choice",
+        "intent": "Select Intro to Machine Learning for Which workshop track are you registering for?",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 16.00194957599888,
+        "t_end_s": 17.54925117199855,
+        "trace_event_count": 2
+      },
+      {
+        "step": 3,
+        "label": "Experience level",
+        "widget_type": "single_choice",
+        "intent": "Select Beginner for Experience level",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 17.54928942299921,
+        "t_end_s": 20.14111698799934,
+        "trace_event_count": 2
+      },
+      {
+        "step": 4,
+        "label": "Dietary restrictions",
+        "widget_type": "multi_choice",
+        "intent": "Select None for Dietary restrictions",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 20.14117416499903,
+        "t_end_s": 21.71041072299886,
+        "trace_event_count": 2
+      },
+      {
+        "step": 5,
+        "label": "Preferred session date",
+        "widget_type": "date",
+        "intent": "Fill Preferred session date",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 21.710461292999753,
+        "t_end_s": 23.17445728199891,
+        "trace_event_count": 2
+      },
+      {
+        "step": 6,
+        "label": "May we email you updates?",
+        "widget_type": "single_choice",
+        "intent": "Select Yes for May we email you updates?",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 23.17449906299953,
+        "t_end_s": 25.792009831999167,
+        "trace_event_count": 2
+      }
+    ],
+    "level_2_trace": {
+      "trace_path": "tool_trace.jsonl",
+      "event_count": 21,
+      "events_by_name": {
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_wait_for": 9
+      },
+      "step_event_counts": {
+        "0": 2,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2
+      },
+      "trace_actions": [
+        "browser_close",
+        "browser_navigate",
+        "browser_run_code",
+        "browser_wait_for"
+      ]
+    }
   }
 }

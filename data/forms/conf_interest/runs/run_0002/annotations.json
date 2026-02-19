@@ -8,10 +8,10 @@
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": 1,
-  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-  "locale": "en-US",
-  "timezone": "Europe/Berlin",
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
   "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/conf_interest_run_0002.webm",
   "run_params": {
     "headless": false,
@@ -21,7 +21,35 @@
     "action_delay_ms": 220,
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
-    "mouse_overlay": true
+    "mouse_overlay": true,
+    "interaction_mode": "mcp_server",
+    "trace_mode": "mcp",
+    "mcp_server_cmd": "bundled_default",
+    "mcp_tool_name": "record_action",
+    "mcp_timeout_ms": 5000,
+    "browser_mcp_cmd": [
+      "/home/bharat/.nvm/versions/node/v22.20.0/bin/playwright-mcp",
+      "--browser",
+      "chromium",
+      "--isolated",
+      "--host",
+      "127.0.0.1",
+      "--output-dir",
+      "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002",
+      "--save-video",
+      "1280x720",
+      "--viewport-size",
+      "1280,720",
+      "--executable-path",
+      "/home/bharat/.cache/ms-playwright/chromium-1117/chrome-linux/chrome",
+      "--no-sandbox"
+    ],
+    "browser_mcp_timeout_ms": 120000,
+    "mcp_verify_trace": true,
+    "mcp_strict": true,
+    "browser_mcp_env": {
+      "PLAYWRIGHT_BROWSERS_PATH": "/home/bharat/.cache/ms-playwright"
+    }
   },
   "actions": [
     {
@@ -31,29 +59,19 @@
       "value": "Avery Chen",
       "intent": "Fill Full Name",
       "success": true,
-      "t_start_s": 2.3737990670006184,
-      "t_end_s": 6.567398535999928,
-      "bbox": {
-        "x": 312.5,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 306.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 5.854775892000021,
+      "t_end_s": 9.840464867999913,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -63,29 +81,19 @@
       "value": "avery.chen@streamforge.io",
       "intent": "Fill Preferred contact email",
       "success": true,
-      "t_start_s": 6.567485872000361,
-      "t_end_s": 12.232111366000026,
-      "bbox": {
-        "x": 312.5,
-        "y": 377.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 456.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 9.840635118000023,
+      "t_end_s": 15.601110805000076,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -95,29 +103,19 @@
       "value": "Industry professional leading applied ML work for collaboration tools.",
       "intent": "Fill Brief bio",
       "success": true,
-      "t_start_s": 12.2321789610005,
-      "t_end_s": 23.823445281000204,
-      "bbox": {
-        "x": 312.5,
-        "y": 527.1875,
-        "width": 640,
-        "height": 160
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 630.1875,
-        "width": 590,
-        "height": 24
-      },
+      "t_start_s": 15.601159247000055,
+      "t_end_s": 26.360336114000006,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
-      "target_name": "Meine Antwort",
+      "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -127,29 +125,19 @@
       "value": "Industry Professional",
       "intent": "Select Industry Professional for Primary role",
       "success": true,
-      "t_start_s": 23.82354467500045,
-      "t_end_s": 25.846142373000475,
-      "bbox": {
-        "x": 312.5,
-        "y": 699.1875,
-        "width": 640,
-        "height": 250
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 665.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 26.36048577500003,
+      "t_end_s": 28.934219519000067,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Industry Professional",
-      "target_selector": "#i30",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -162,29 +150,19 @@
       ],
       "intent": "Select AI/ML, Security for Topics you're interested in",
       "success": true,
-      "t_start_s": 25.846216840000125,
-      "t_end_s": 29.45531549200041,
-      "bbox": {
-        "x": 312.5,
-        "y": 732.1875,
-        "width": 640,
-        "height": 258
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 364.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 28.9343256840001,
+      "t_end_s": 31.749724227,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "checkbox",
-      "target_name": "Security",
-      "target_selector": "#i42",
-      "scroll_y": 229,
-      "required": true,
-      "required_attr": false,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -194,29 +172,19 @@
       "value": "2025-06-17",
       "intent": "Fill Preferred meeting date",
       "success": true,
-      "t_start_s": 29.455382253000607,
-      "t_end_s": 31.837260156999946,
-      "bbox": {
-        "x": 312.5,
-        "y": 501.1875,
-        "width": 640,
-        "height": 153
-      },
-      "target_bbox": {
-        "x": 337.5,
-        "y": 595.1875,
-        "width": 127,
-        "height": 24
-      },
+      "t_start_s": 31.74976365200007,
+      "t_end_s": 33.30542717500009,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 730,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     },
     {
@@ -226,54 +194,81 @@
       "value": "14:00",
       "intent": "Fill Preferred meeting time",
       "success": true,
-      "t_start_s": 31.837322387000313,
-      "t_end_s": 36.8540951140003,
-      "bbox": {
-        "x": 312.5,
-        "y": 666.1875,
-        "width": 640,
-        "height": 164
-      },
-      "target_bbox": {
-        "x": 366.5,
-        "y": 659.1875,
-        "width": 17,
-        "height": 24
-      },
+      "t_start_s": 33.30549256000006,
+      "t_end_s": 36.624384636999935,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "combobox",
-      "target_name": "Minute",
+      "target_role": null,
+      "target_name": null,
       "target_selector": null,
-      "scroll_y": 730,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
       "error": null
     }
   ],
   "submit": {
-    "success": true,
-    "t_start_s": 36.854216030000316,
-    "t_end_s": 70.8284337619998,
-    "bbox": {
-      "x": 312.5,
-      "y": 502.1875,
-      "width": 98.453125,
-      "height": 36
-    },
-    "submit_clicked": true,
-    "confirmation_method": "url",
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/formResponse",
+    "success": false,
+    "t_start_s": 36.624450090000096,
+    "t_end_s": 70.8001477439999,
+    "bbox": null,
+    "submit_clicked": false,
+    "confirmation_method": null,
+    "final_url": null,
     "pre_screenshot": null,
     "post_screenshot": null
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
-    "screenshot_dir": null
+    "screenshot_dir": null,
+    "mcp": {
+      "format": "mcp_computer_use_compatible",
+      "mode": "mcp_server",
+      "validate_mcp_actions": true,
+      "strict_mcp_validation": true,
+      "event_count": 21,
+      "validation_error_count": 0,
+      "events_by_name": {
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_wait_for": 9
+      },
+      "supported_actions": [
+        "browser_close",
+        "browser_mouse_click_xy",
+        "browser_mouse_move_xy",
+        "browser_mouse_wheel",
+        "browser_navigate",
+        "browser_press_key",
+        "browser_run_code",
+        "browser_take_screenshot",
+        "browser_type",
+        "browser_wait_for"
+      ],
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/bharat/gf_form_agent_env/bin/python3",
+          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
+        ],
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ],
+        "tool_name": "record_action"
+      }
+    }
   },
-  "submitted": true,
-  "failure_reason": null,
+  "submitted": false,
+  "failure_reason": "submit_not_clicked",
   "run_metadata": {
     "suffix": "industry",
     "notes": "Industry professional with applied ML interests."

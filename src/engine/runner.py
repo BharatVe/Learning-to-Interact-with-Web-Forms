@@ -18,6 +18,7 @@ from engine.form_engine import FormEngine  # noqa: E402
 from engine.mcp_browser_engine import MCPBrowserEngine  # noqa: E402
 from engine.mcp_trace_client import MCPClient  # noqa: E402
 from engine.mcp_trace_client import MCPTraceClient  # noqa: E402
+from engine.trace_contract import supported_actions  # noqa: E402
 from engine.trace_logger import TraceLogger  # noqa: E402
 
 DEFAULT_DATASET_ROOT = "data/forms"
@@ -415,6 +416,174 @@ def finalize_video(run_dir: Path, form_id: str, run_name: str) -> Optional[Path]
         return raw_video_path
 
 
+def _load_trace_records(trace_path: Path) -> List[Dict[str, Any]]:
+    if not trace_path.exists():
+        return []
+    records: List[Dict[str, Any]] = []
+    with trace_path.open("r", encoding="utf-8") as handle:
+        for line_number, raw in enumerate(handle, start=1):
+            line = raw.strip()
+            if not line:
+                continue
+            try:
+                record = json.loads(line)
+            except Exception as exc:
+                raise RuntimeError(f"Invalid JSON in tool trace at line {line_number}: {exc}") from exc
+            if not isinstance(record, dict):
+                raise RuntimeError(f"Invalid trace record type at line {line_number}: {type(record).__name__}")
+            records.append(record)
+    return records
+
+
+def _count_events_by_name(trace_records: List[Dict[str, Any]]) -> Dict[str, int]:
+    counts: Dict[str, int] = {}
+    for record in trace_records:
+        name = record.get("name")
+        if isinstance(name, str) and name:
+            counts[name] = counts.get(name, 0) + 1
+    return dict(sorted(counts.items()))
+
+
+def _step_event_counts(trace_records: List[Dict[str, Any]]) -> Dict[int, int]:
+    counts: Dict[int, int] = {}
+    for record in trace_records:
+        step_ref = record.get("step_ref")
+        if isinstance(step_ref, int):
+            counts[step_ref] = counts.get(step_ref, 0) + 1
+    return dict(sorted(counts.items()))
+
+
+def _build_information_layers(annotations: Dict[str, Any], trace_records: List[Dict[str, Any]]) -> Dict[str, Any]:
+    actions = annotations.get("actions")
+    action_list = actions if isinstance(actions, list) else []
+    step_counts = _step_event_counts(trace_records)
+    events_by_name = _count_events_by_name(trace_records)
+
+    level_1_steps: List[Dict[str, Any]] = []
+    for index, action in enumerate(action_list):
+        if not isinstance(action, dict):
+            level_1_steps.append({"step": index, "error": "invalid_action_record"})
+            continue
+        step_value = action.get("step")
+        step_idx = step_value if isinstance(step_value, int) else index
+        level_1_steps.append(
+            {
+                "step": step_idx,
+                "label": action.get("label"),
+                "widget_type": action.get("widget_type"),
+                "intent": action.get("intent"),
+                "success": bool(action.get("success")),
+                "error": action.get("error"),
+                "required": action.get("required"),
+                "target_role": action.get("target_role"),
+                "target_selector": action.get("target_selector"),
+                "metadata_status": action.get("metadata_status"),
+                "metadata_missing_keys": action.get("metadata_missing_keys"),
+                "t_start_s": action.get("t_start_s"),
+                "t_end_s": action.get("t_end_s"),
+                "trace_event_count": step_counts.get(step_idx, 0),
+            }
+        )
+
+    return {
+        "level_0_run": {
+            "form_id": annotations.get("form_id"),
+            "run_name": annotations.get("run_name"),
+            "form_url": annotations.get("form_url"),
+            "submitted": bool(annotations.get("submitted")),
+            "failure_reason": annotations.get("failure_reason"),
+            "total_steps": len(action_list),
+            "trace_event_count": len(trace_records),
+            "video_path": annotations.get("video_path"),
+        },
+        "level_1_steps": level_1_steps,
+        "level_2_trace": {
+            "trace_path": (annotations.get("trace") or {}).get("tool_trace_path"),
+            "event_count": len(trace_records),
+            "events_by_name": events_by_name,
+            "step_event_counts": step_counts,
+            "trace_actions": sorted(events_by_name.keys()),
+        },
+    }
+
+
+def _validate_annotation_trace_consistency(
+    annotations: Dict[str, Any],
+    answers: List[Dict[str, Any]],
+    trace_records: List[Dict[str, Any]],
+    trace_summary: Dict[str, Any],
+    require_submit_success: bool = True,
+) -> None:
+    problems: List[str] = []
+
+    actions = annotations.get("actions")
+    if not isinstance(actions, list):
+        problems.append("annotations.actions must be a list")
+        actions = []
+
+    if len(actions) != len(answers):
+        problems.append(f"actions count ({len(actions)}) does not match answers count ({len(answers)})")
+
+    for idx, action in enumerate(actions):
+        if not isinstance(action, dict):
+            problems.append(f"actions[{idx}] must be an object")
+            continue
+        if action.get("step") != idx:
+            problems.append(f"actions[{idx}].step must equal {idx}")
+        success = bool(action.get("success"))
+        error = action.get("error")
+        if success and error not in (None, ""):
+            problems.append(f"actions[{idx}] is marked success=true but contains error")
+        if (not success) and error in (None, ""):
+            problems.append(f"actions[{idx}] is marked success=false but error is empty")
+
+    if not trace_records:
+        problems.append("tool trace must contain at least one event")
+    else:
+        allowed_actions = set(supported_actions())
+        for line_number, record in enumerate(trace_records, start=1):
+            name = record.get("name")
+            if not isinstance(name, str) or not name.strip():
+                problems.append(f"tool_trace line {line_number} has missing/invalid action name")
+                continue
+            if name not in allowed_actions:
+                problems.append(f"tool_trace line {line_number} uses unsupported action '{name}'")
+
+    step_counts = _step_event_counts(trace_records)
+    for idx in range(len(actions)):
+        if step_counts.get(idx, 0) < 1:
+            problems.append(f"no trace event found for step_ref={idx}")
+
+    summary_count = trace_summary.get("event_count")
+    if isinstance(summary_count, int) and summary_count != len(trace_records):
+        problems.append(
+            f"trace_summary.event_count ({summary_count}) does not match trace lines ({len(trace_records)})"
+        )
+
+    submit = annotations.get("submit")
+    if not isinstance(submit, dict):
+        problems.append("annotations.submit must be an object")
+        submit = {}
+    submitted = bool(annotations.get("submitted"))
+    submit_success = bool(submit.get("success"))
+    if submitted != submit_success:
+        problems.append("annotations.submitted must match annotations.submit.success")
+    if submit_success and submit.get("submit_clicked") is False:
+        problems.append("submit.success=true but submit_clicked=false")
+
+    failure_reason = annotations.get("failure_reason")
+    if submitted and failure_reason is not None:
+        problems.append("failure_reason must be null when submitted=true")
+    if (not submitted) and not failure_reason:
+        problems.append("failure_reason must be non-null when submitted=false")
+    if require_submit_success and not submitted:
+        problems.append("submission confirmation is required but submitted=false")
+
+    if problems:
+        details = "\n- ".join(problems)
+        raise RuntimeError(f"Annotation/trace consistency check failed:\n- {details}")
+
+
 def validate_run_artifacts(
     run_dir: Path,
     video_path: Optional[Path],
@@ -500,7 +669,7 @@ def _new_annotations(
     trace: TraceLogger,
 ) -> Dict[str, Any]:
     return {
-        "schema_version": "3.0",
+        "schema_version": "4.0",
         "form_id": form_id,
         "run_name": run_name,
         "run_label": run_label,
@@ -533,6 +702,7 @@ def _new_annotations(
         "actions": [],
         "submit": {
             "success": False,
+            "success_inferred": False,
             "t_start_s": trace.now(),
             "t_end_s": trace.now(),
             "bbox": None,
@@ -541,6 +711,8 @@ def _new_annotations(
             "final_url": None,
             "pre_screenshot": None,
             "post_screenshot": None,
+            "metadata_status": "unknown",
+            "metadata_missing_keys": [],
         },
         "trace": {
             "tool_trace_path": "tool_trace.jsonl",
@@ -624,6 +796,8 @@ def _run_single_local(
                 annotations["submit"] = submit_info
                 if submit_err:
                     errors.append(f"submit: {submit_err}")
+                elif not submit_info.get("success"):
+                    errors.append("submit_not_confirmed")
                 elif submit_info.get("success") and args.post_submit_delay_seconds > 0:
                     page.wait_for_timeout(int(args.post_submit_delay_seconds * 1000))
             except PlaywrightError as exc:
@@ -738,6 +912,8 @@ def _run_single_mcp_server(
         annotations["submit"] = submit_info
         if submit_err:
             errors.append(f"submit: {submit_err}")
+        elif not submit_info.get("success"):
+            errors.append("submit_not_confirmed")
         elif submit_info.get("success") and args.post_submit_delay_seconds > 0:
             engine.wait_seconds(args.post_submit_delay_seconds, step_ref=None)
     except Exception as exc:
@@ -828,6 +1004,7 @@ def run_single(
 
     trace_summary = trace.summary()
     annotations["trace"]["mcp"] = trace_summary
+    trace_records = _load_trace_records(trace_path)
 
     video_path = finalize_video(run_dir, form_id, run_name)
     annotations["video_path"] = str(video_path) if video_path else None
@@ -849,21 +1026,32 @@ def run_single(
     if run_metadata:
         annotations["run_metadata"] = run_metadata
 
+    annotations["information_layers"] = _build_information_layers(annotations, trace_records)
+
     annotations_path = run_dir / "annotations.json"
     annotations_path.write_text(json.dumps(annotations, indent=2))
 
-    validate_run_artifacts(
-        run_dir=run_dir,
-        video_path=video_path,
-        answers_path=answers_path,
-        annotations_path=annotations_path,
-        trace_path=trace_path,
-        trace_summary=trace_summary,
-        observations_dir=observations_dir,
-        screenshots_required=bool(args.screenshots),
-        run_error=run_error,
-        execution_errors=errors,
-    )
+    if run_error is None and not errors:
+        _validate_annotation_trace_consistency(
+            annotations=annotations,
+            answers=answers,
+            trace_records=trace_records,
+            trace_summary=trace_summary,
+            require_submit_success=True,
+        )
+
+        validate_run_artifacts(
+            run_dir=run_dir,
+            video_path=video_path,
+            answers_path=answers_path,
+            annotations_path=annotations_path,
+            trace_path=trace_path,
+            trace_summary=trace_summary,
+            observations_dir=observations_dir,
+            screenshots_required=bool(args.screenshots),
+            run_error=run_error,
+            execution_errors=errors,
+        )
 
     screenshot_count = len(list(observations_dir.glob("*.png"))) if observations_dir.exists() else 0
     print("[INFO] Run complete")

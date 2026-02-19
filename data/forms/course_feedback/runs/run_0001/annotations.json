@@ -1,5 +1,5 @@
 {
-  "schema_version": "3.0",
+  "schema_version": "4.0",
   "form_id": "course_feedback",
   "run_name": "run_0001",
   "run_label": "course_feedback_run_0001",
@@ -59,8 +59,8 @@
       "value": "Machine Learning Bootcamp",
       "intent": "Fill Course name",
       "success": true,
-      "t_start_s": 6.522825844000181,
-      "t_end_s": 11.237181462999615,
+      "t_start_s": 8.63038843600043,
+      "t_end_s": 13.591127888999836,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -72,6 +72,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -81,8 +92,8 @@
       "value": "Master's",
       "intent": "Select Master's for Your program level",
       "success": true,
-      "t_start_s": 11.237225251999917,
-      "t_end_s": 14.020224093999786,
+      "t_start_s": 13.591176854000878,
+      "t_end_s": 16.133454064000034,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -94,6 +105,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -103,8 +125,8 @@
       "value": "Yes",
       "intent": "Select Yes for Did you attend most sessions?",
       "success": true,
-      "t_start_s": 14.020257098000002,
-      "t_end_s": 15.565844034999827,
+      "t_start_s": 16.133491855000102,
+      "t_end_s": 17.64053952100039,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -116,6 +138,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -125,8 +158,8 @@
       "value": "5 - Very satisfied",
       "intent": "Select 5 - Very satisfied for Overall satisfaction",
       "success": true,
-      "t_start_s": 15.565873432999979,
-      "t_end_s": 18.129430721999597,
+      "t_start_s": 17.640587449001032,
+      "t_end_s": 20.856917687000532,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -138,6 +171,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -147,8 +191,8 @@
       "value": "About right",
       "intent": "Select About right for Workload felt",
       "success": true,
-      "t_start_s": 18.129462933000468,
-      "t_end_s": 19.68889187700006,
+      "t_start_s": 20.85696300699965,
+      "t_end_s": 23.47249064300013,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -160,6 +204,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -169,8 +224,8 @@
       "value": "Hands on labs and clear weekly goals.",
       "intent": "Fill What did you like most?",
       "success": true,
-      "t_start_s": 19.688925219999874,
-      "t_end_s": 26.02139546499984,
+      "t_start_s": 23.472539182999753,
+      "t_end_s": 29.830086518000826,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -182,6 +237,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -191,8 +257,8 @@
       "value": "More time for project demos.",
       "intent": "Fill What should be improved?",
       "success": true,
-      "t_start_s": 26.021561755999755,
-      "t_end_s": 32.0581176579999,
+      "t_start_s": 29.8301203230003,
+      "t_end_s": 35.97382342200035,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -204,6 +270,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -216,8 +293,8 @@
       ],
       "intent": "Select Practical labs, Project work for Most useful aspects",
       "success": true,
-      "t_start_s": 32.05814870900031,
-      "t_end_s": 34.74288154199985,
+      "t_start_s": 35.973860649000926,
+      "t_end_s": 38.641585720000876,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -229,6 +306,17 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -238,8 +326,8 @@
       "value": "Yes",
       "intent": "Select Yes for Would you recommend this course?",
       "success": true,
-      "t_start_s": 34.7430455650001,
-      "t_end_s": 36.21160436399987,
+      "t_start_s": 38.641642046000925,
+      "t_end_s": 40.182664916999784,
       "bbox": null,
       "target_bbox": null,
       "pre_screenshot": null,
@@ -251,19 +339,39 @@
       "required": null,
       "required_attr": null,
       "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     }
   ],
   "submit": {
-    "success": false,
-    "t_start_s": 36.21163491199968,
-    "t_end_s": 70.01528560899987,
+    "success": true,
+    "success_inferred": true,
+    "t_start_s": 40.18271915300102,
+    "t_end_s": 73.94174111400025,
     "bbox": null,
-    "submit_clicked": false,
-    "confirmation_method": null,
+    "submit_clicked": true,
+    "confirmation_method": "mcp_inferred_no_structured_result",
     "final_url": null,
     "pre_screenshot": null,
-    "post_screenshot": null
+    "post_screenshot": null,
+    "metadata_status": "missing",
+    "metadata_missing_keys": [
+      "success",
+      "submit_clicked",
+      "confirmation_method",
+      "final_url",
+      "bbox"
+    ]
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
@@ -311,10 +419,276 @@
       }
     }
   },
-  "submitted": false,
-  "failure_reason": "submit_not_clicked",
+  "submitted": true,
+  "failure_reason": null,
   "run_metadata": {
     "suffix": "ml_bootcamp",
     "notes": "Strongly positive feedback for an applied ML course."
+  },
+  "information_layers": {
+    "level_0_run": {
+      "form_id": "course_feedback",
+      "run_name": "run_0001",
+      "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSczlT7s8tTQgmYpXnfzz4taF5pvj-qpzgksyBZImfHBGwMpBA/viewform",
+      "submitted": true,
+      "failure_reason": null,
+      "total_steps": 9,
+      "trace_event_count": 25,
+      "video_path": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0001/course_feedback_run_0001.webm"
+    },
+    "level_1_steps": [
+      {
+        "step": 0,
+        "label": "Course name",
+        "widget_type": "short_text",
+        "intent": "Fill Course name",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 8.63038843600043,
+        "t_end_s": 13.591127888999836,
+        "trace_event_count": 2
+      },
+      {
+        "step": 1,
+        "label": "Your program level",
+        "widget_type": "single_choice",
+        "intent": "Select Master's for Your program level",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 13.591176854000878,
+        "t_end_s": 16.133454064000034,
+        "trace_event_count": 2
+      },
+      {
+        "step": 2,
+        "label": "Did you attend most sessions?",
+        "widget_type": "single_choice",
+        "intent": "Select Yes for Did you attend most sessions?",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 16.133491855000102,
+        "t_end_s": 17.64053952100039,
+        "trace_event_count": 2
+      },
+      {
+        "step": 3,
+        "label": "Overall satisfaction",
+        "widget_type": "single_choice",
+        "intent": "Select 5 - Very satisfied for Overall satisfaction",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 17.640587449001032,
+        "t_end_s": 20.856917687000532,
+        "trace_event_count": 2
+      },
+      {
+        "step": 4,
+        "label": "Workload felt",
+        "widget_type": "single_choice",
+        "intent": "Select About right for Workload felt",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 20.85696300699965,
+        "t_end_s": 23.47249064300013,
+        "trace_event_count": 2
+      },
+      {
+        "step": 5,
+        "label": "What did you like most?",
+        "widget_type": "paragraph_text",
+        "intent": "Fill What did you like most?",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 23.472539182999753,
+        "t_end_s": 29.830086518000826,
+        "trace_event_count": 2
+      },
+      {
+        "step": 6,
+        "label": "What should be improved?",
+        "widget_type": "paragraph_text",
+        "intent": "Fill What should be improved?",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 29.8301203230003,
+        "t_end_s": 35.97382342200035,
+        "trace_event_count": 2
+      },
+      {
+        "step": 7,
+        "label": "Most useful aspects",
+        "widget_type": "multi_choice",
+        "intent": "Select Practical labs, Project work for Most useful aspects",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 35.973860649000926,
+        "t_end_s": 38.641585720000876,
+        "trace_event_count": 2
+      },
+      {
+        "step": 8,
+        "label": "Would you recommend this course?",
+        "widget_type": "single_choice",
+        "intent": "Select Yes for Would you recommend this course?",
+        "success": true,
+        "error": null,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 38.641642046000925,
+        "t_end_s": 40.182664916999784,
+        "trace_event_count": 2
+      }
+    ],
+    "level_2_trace": {
+      "trace_path": "tool_trace.jsonl",
+      "event_count": 25,
+      "events_by_name": {
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 12,
+        "browser_wait_for": 11
+      },
+      "step_event_counts": {
+        "0": 2,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 2
+      },
+      "trace_actions": [
+        "browser_close",
+        "browser_navigate",
+        "browser_run_code",
+        "browser_wait_for"
+      ]
+    }
   }
 }
