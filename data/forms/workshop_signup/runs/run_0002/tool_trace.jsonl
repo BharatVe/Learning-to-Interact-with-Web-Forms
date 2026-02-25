@@ -1,21 +1,23 @@
-{"t_s": 5.112317415000007, "step_ref": null, "name": "browser_navigate", "args": {"url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform"}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 6.2107063250000465, "step_ref": null, "name": "browser_wait_for", "args": {"time": 0.3}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 8.792113708999977, "step_ref": null, "name": "browser_run_code", "args": {"purpose": "collect_env"}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 9.817079978000038, "step_ref": null, "name": "browser_run_code", "args": {"purpose": "enable_mouse_overlay"}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 12.605247750999979, "step_ref": 0, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 12.862445825000123, "step_ref": 0, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 16.870603849999952, "step_ref": 1, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 17.132684556999948, "step_ref": 1, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 18.54045681399998, "step_ref": 2, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 18.790311830000064, "step_ref": 2, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 21.11387002599986, "step_ref": 3, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 21.359786151000208, "step_ref": 3, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 22.668456848999995, "step_ref": 4, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 22.92170130600016, "step_ref": 4, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 24.276496914999825, "step_ref": 5, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 24.526400679999824, "step_ref": 5, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 26.87233727900002, "step_ref": 6, "name": "browser_run_code", "args": {"purpose": "fill_step"}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 27.133313704000102, "step_ref": 6, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 60.61295262500016, "step_ref": null, "name": "browser_run_code", "args": {"purpose": "submit"}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 60.84165764699992, "step_ref": null, "name": "browser_wait_for", "args": {"time": 0.22}, "ok": true, "error": null, "backend": "mcp_server"}
-{"t_s": 64.58409226399999, "step_ref": null, "name": "browser_close", "args": {}, "ok": true, "error": null, "backend": "mcp_server"}
+{"t_s": 3.3577589460001036, "step_ref": 0, "name": "browser_mouse_move_xy", "args": {"x": 384, "y": 441}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 492.5, "y_px": 318.1875}
+{"t_s": 4.139070763999825, "step_ref": 0, "name": "browser_mouse_click_xy", "args": {"x": 384, "y": 441}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 492.5, "y_px": 318.1875}
+{"t_s": 6.302641288999894, "step_ref": 0, "name": "browser_type", "args": {"text": "Riley Patel", "slowly": true, "submit": false}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 492.5, "y_px": 318.1875}
+{"t_s": 7.453915382000105, "step_ref": 1, "name": "browser_mouse_move_xy", "args": {"x": 384, "y": 650}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 492.5, "y_px": 468.1875}
+{"t_s": 7.957087514999785, "step_ref": 1, "name": "browser_mouse_click_xy", "args": {"x": 384, "y": 650}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 492.5, "y_px": 468.1875}
+{"t_s": 10.359671634999813, "step_ref": 1, "name": "browser_type", "args": {"text": "DataFlux Labs", "slowly": true, "submit": false}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 0, "x_px": 492.5, "y_px": 468.1875}
+{"t_s": 10.916201885000191, "step_ref": 2, "name": "browser_mouse_wheel", "args": {"deltaX": 0, "deltaY": 17}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 17, "x_px": null, "y_px": null}
+{"t_s": 11.75308869699984, "step_ref": 2, "name": "browser_mouse_move_xy", "args": {"x": 277, "y": 881}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 17, "x_px": 355.0, "y_px": 635.1875}
+{"t_s": 12.257504021999921, "step_ref": 2, "name": "browser_mouse_click_xy", "args": {"x": 277, "y": 881}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 17, "x_px": 355.0, "y_px": 635.1875}
+{"t_s": 12.860716492999927, "step_ref": 3, "name": "browser_mouse_wheel", "args": {"deltaX": 0, "deltaY": 477}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 494, "x_px": null, "y_px": null}
+{"t_s": 13.704504153000016, "step_ref": 3, "name": "browser_mouse_move_xy", "args": {"x": 277, "y": 583}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 494, "x_px": 355.0, "y_px": 420.1875}
+{"t_s": 14.209621580000203, "step_ref": 3, "name": "browser_mouse_click_xy", "args": {"x": 277, "y": 583}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 494, "x_px": 355.0, "y_px": 420.1875}
+{"t_s": 14.776706916999956, "step_ref": 4, "name": "browser_mouse_wheel", "args": {"deltaX": 0, "deltaY": 51}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 545, "x_px": null, "y_px": null}
+{"t_s": 15.586209095999948, "step_ref": 4, "name": "browser_mouse_move_xy", "args": {"x": 277, "y": 790}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 545, "x_px": 355.0, "y_px": 569.1875}
+{"t_s": 16.093880349999836, "step_ref": 4, "name": "browser_mouse_click_xy", "args": {"x": 277, "y": 790}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 545, "x_px": 355.0, "y_px": 569.1875}
+{"t_s": 16.695320333999916, "step_ref": 5, "name": "browser_mouse_wheel", "args": {"deltaX": 0, "deltaY": 448}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": null, "y_px": null}
+{"t_s": 17.303580104000048, "step_ref": 5, "name": "browser_mouse_move_xy", "args": {"x": 319, "y": 541}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 408.5, "y_px": 390.1875}
+{"t_s": 17.78180195999994, "step_ref": 5, "name": "browser_mouse_click_xy", "args": {"x": 319, "y": 541}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 408.5, "y_px": 390.1875}
+{"t_s": 18.483692238000003, "step_ref": 5, "name": "browser_type", "args": {"text": "2025-07-06", "slowly": false, "submit": false}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 408.5, "y_px": 390.1875}
+{"t_s": 19.871674881999752, "step_ref": 6, "name": "browser_mouse_move_xy", "args": {"x": 277, "y": 741}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 355.0, "y_px": 534.1875}
+{"t_s": 20.376977177999834, "step_ref": 6, "name": "browser_mouse_click_xy", "args": {"x": 277, "y": 741}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 355.0, "y_px": 534.1875}
+{"t_s": 21.453811937999944, "step_ref": null, "name": "browser_mouse_move_xy", "args": {"x": 288, "y": 901}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 369.25, "y_px": 649.1875}
+{"t_s": 22.245429149999836, "step_ref": null, "name": "browser_mouse_click_xy", "args": {"x": 288, "y": 901}, "ok": true, "error": null, "viewport_w": 1280, "viewport_h": 720, "scroll_x": 0, "scroll_y": 993, "x_px": 369.25, "y_px": 649.1875}

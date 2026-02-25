@@ -1,5 +1,5 @@
 {
-  "schema_version": "3.0",
+  "schema_version": "4.0",
   "form_id": "conf_interest",
   "run_name": "run_0002",
   "run_label": "conf_interest_run_0002",
@@ -8,13 +8,13 @@
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": null,
-  "user_agent": null,
-  "locale": null,
-  "timezone": null,
+  "device_pixel_ratio": 1,
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/125.0.6422.26 Safari/537.36",
+  "locale": "en-US",
+  "timezone": "Europe/Berlin",
   "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/conf_interest_run_0002.webm",
   "run_params": {
-    "headless": false,
+    "headless": true,
     "slow_mo": 200,
     "timeout_ms": 15000,
     "type_delay_ms": 120,
@@ -22,34 +22,15 @@
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
     "mouse_overlay": true,
-    "interaction_mode": "mcp_server",
-    "trace_mode": "mcp",
+    "interaction_mode": "local",
+    "trace_mode": "local",
     "mcp_server_cmd": "bundled_default",
     "mcp_tool_name": "record_action",
     "mcp_timeout_ms": 5000,
-    "browser_mcp_cmd": [
-      "/home/bharat/.nvm/versions/node/v22.20.0/bin/playwright-mcp",
-      "--browser",
-      "chromium",
-      "--isolated",
-      "--host",
-      "127.0.0.1",
-      "--output-dir",
-      "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002",
-      "--save-video",
-      "1280x720",
-      "--viewport-size",
-      "1280,720",
-      "--executable-path",
-      "/home/bharat/.cache/ms-playwright/chromium-1117/chrome-linux/chrome",
-      "--no-sandbox"
-    ],
+    "browser_mcp_cmd": "default_playwright_mcp",
     "browser_mcp_timeout_ms": 120000,
     "mcp_verify_trace": true,
-    "mcp_strict": true,
-    "browser_mcp_env": {
-      "PLAYWRIGHT_BROWSERS_PATH": "/home/bharat/.cache/ms-playwright"
-    }
+    "mcp_strict": true
   },
   "actions": [
     {
@@ -59,19 +40,29 @@
       "value": "Avery Chen",
       "intent": "Fill Full Name",
       "success": true,
-      "t_start_s": 5.854775892000021,
-      "t_end_s": 9.840464867999913,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 2.176205222000135,
+      "t_end_s": 6.3676292560001,
+      "bbox": {
+        "x": 320,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 306.1875,
+        "width": 295,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -81,19 +72,29 @@
       "value": "avery.chen@streamforge.io",
       "intent": "Fill Preferred contact email",
       "success": true,
-      "t_start_s": 9.840635118000023,
-      "t_end_s": 15.601110805000076,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 6.367643661000102,
+      "t_end_s": 12.008340546999989,
+      "bbox": {
+        "x": 320,
+        "y": 377.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 456.1875,
+        "width": 295,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -103,19 +104,29 @@
       "value": "Industry professional leading applied ML work for collaboration tools.",
       "intent": "Fill Brief bio",
       "success": true,
-      "t_start_s": 15.601159247000055,
-      "t_end_s": 26.360336114000006,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 12.00835973900007,
+      "t_end_s": 23.54633794900019,
+      "bbox": {
+        "x": 320,
+        "y": 527.1875,
+        "width": 640,
+        "height": 160
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 630.1875,
+        "width": 590,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
-      "target_name": null,
+      "target_name": "Meine Antwort",
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "scroll_y": 0,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -125,19 +136,29 @@
       "value": "Industry Professional",
       "intent": "Select Industry Professional for Primary role",
       "success": true,
-      "t_start_s": 26.36048577500003,
-      "t_end_s": 28.934219519000067,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 23.546363807000034,
+      "t_end_s": 25.533969335000165,
+      "bbox": {
+        "x": 320,
+        "y": 699.1875,
+        "width": 640,
+        "height": 250
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 665.1875,
+        "width": 20,
+        "height": 20
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "target_role": "radio",
+      "target_name": "Industry Professional",
+      "target_selector": "#i30",
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -150,19 +171,29 @@
       ],
       "intent": "Select AI/ML, Security for Topics you're interested in",
       "success": true,
-      "t_start_s": 28.9343256840001,
-      "t_end_s": 31.749724227,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 25.533988702999977,
+      "t_end_s": 29.122887193999986,
+      "bbox": {
+        "x": 320,
+        "y": 732.1875,
+        "width": 640,
+        "height": 258
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 364.1875,
+        "width": 20,
+        "height": 20
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "target_role": "checkbox",
+      "target_name": "Security",
+      "target_selector": "#i42",
+      "scroll_y": 229,
+      "required": true,
+      "required_attr": false,
+      "required_marker": true,
       "error": null
     },
     {
@@ -172,19 +203,29 @@
       "value": "2025-06-17",
       "intent": "Fill Preferred meeting date",
       "success": true,
-      "t_start_s": 31.74976365200007,
-      "t_end_s": 33.30542717500009,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 29.122904458999983,
+      "t_end_s": 31.527211050000005,
+      "bbox": {
+        "x": 320,
+        "y": 501.1875,
+        "width": 640,
+        "height": 153
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 595.1875,
+        "width": 127,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "scroll_y": 730,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -194,30 +235,45 @@
       "value": "14:00",
       "intent": "Fill Preferred meeting time",
       "success": true,
-      "t_start_s": 33.30549256000006,
-      "t_end_s": 36.624384636999935,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 31.527231759000188,
+      "t_end_s": 36.46337387200015,
+      "bbox": {
+        "x": 320,
+        "y": 666.1875,
+        "width": 640,
+        "height": 164
+      },
+      "target_bbox": {
+        "x": 374,
+        "y": 659.1875,
+        "width": 17,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
+      "target_role": "combobox",
+      "target_name": "Minute",
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "scroll_y": 730,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     }
   ],
   "submit": {
-    "success": false,
-    "t_start_s": 36.624450090000096,
-    "t_end_s": 70.8001477439999,
-    "bbox": null,
-    "submit_clicked": false,
-    "confirmation_method": null,
-    "final_url": null,
+    "success": true,
+    "t_start_s": 36.46338671800004,
+    "t_end_s": 70.32228353699998,
+    "bbox": {
+      "x": 320,
+      "y": 502.1875,
+      "width": 98.5,
+      "height": 36
+    },
+    "submit_clicked": true,
+    "confirmation_method": "url",
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/formResponse",
     "pre_screenshot": null,
     "post_screenshot": null
   },
@@ -226,16 +282,16 @@
     "screenshot_dir": null,
     "mcp": {
       "format": "mcp_computer_use_compatible",
-      "mode": "mcp_server",
+      "mode": "local",
       "validate_mcp_actions": true,
       "strict_mcp_validation": true,
-      "event_count": 21,
+      "event_count": 30,
       "validation_error_count": 0,
       "events_by_name": {
-        "browser_close": 1,
-        "browser_navigate": 1,
-        "browser_run_code": 10,
-        "browser_wait_for": 9
+        "browser_mouse_click_xy": 10,
+        "browser_mouse_move_xy": 10,
+        "browser_mouse_wheel": 4,
+        "browser_type": 6
       },
       "supported_actions": [
         "browser_close",
@@ -249,28 +305,164 @@
         "browser_type",
         "browser_wait_for"
       ],
-      "mcp": {
-        "mode": "mcp_server",
-        "command": [
-          "/home/bharat/gf_form_agent_env/bin/python3",
-          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
-        ],
-        "protocol_version": "2024-11-05",
-        "server_info": {
-          "name": "thesis-trace-mcp",
-          "version": "1.0.0"
-        },
-        "available_tools": [
-          "record_action"
-        ],
-        "tool_name": "record_action"
-      }
+      "mcp": null
     }
   },
-  "submitted": false,
-  "failure_reason": "submit_not_clicked",
+  "submitted": true,
+  "failure_reason": null,
   "run_metadata": {
     "suffix": "industry",
     "notes": "Industry professional with applied ML interests."
+  },
+  "information_layers": {
+    "level_0_run": {
+      "form_id": "conf_interest",
+      "run_name": "run_0002",
+      "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/viewform",
+      "submitted": true,
+      "failure_reason": null,
+      "total_steps": 7,
+      "trace_event_count": 30,
+      "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0002/conf_interest_run_0002.webm"
+    },
+    "level_1_steps": [
+      {
+        "step": 0,
+        "label": "Full Name",
+        "widget_type": "short_text",
+        "intent": "Fill Full Name",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 2.176205222000135,
+        "t_end_s": 6.3676292560001,
+        "trace_event_count": 3
+      },
+      {
+        "step": 1,
+        "label": "Preferred contact email",
+        "widget_type": "short_text",
+        "intent": "Fill Preferred contact email",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 6.367643661000102,
+        "t_end_s": 12.008340546999989,
+        "trace_event_count": 3
+      },
+      {
+        "step": 2,
+        "label": "Brief bio",
+        "widget_type": "paragraph_text",
+        "intent": "Fill Brief bio",
+        "success": true,
+        "error": null,
+        "required": false,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 12.00835973900007,
+        "t_end_s": 23.54633794900019,
+        "trace_event_count": 3
+      },
+      {
+        "step": 3,
+        "label": "Primary role",
+        "widget_type": "single_choice",
+        "intent": "Select Industry Professional for Primary role",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": "radio",
+        "target_selector": "#i30",
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 23.546363807000034,
+        "t_end_s": 25.533969335000165,
+        "trace_event_count": 3
+      },
+      {
+        "step": 4,
+        "label": "Topics you're interested in",
+        "widget_type": "multi_choice",
+        "intent": "Select AI/ML, Security for Topics you're interested in",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": "checkbox",
+        "target_selector": "#i42",
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 25.533988702999977,
+        "t_end_s": 29.122887193999986,
+        "trace_event_count": 5
+      },
+      {
+        "step": 5,
+        "label": "Preferred meeting date",
+        "widget_type": "date",
+        "intent": "Fill Preferred meeting date",
+        "success": true,
+        "error": null,
+        "required": false,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 29.122904458999983,
+        "t_end_s": 31.527211050000005,
+        "trace_event_count": 3
+      },
+      {
+        "step": 6,
+        "label": "Preferred meeting time",
+        "widget_type": "time",
+        "intent": "Fill Preferred meeting time",
+        "success": true,
+        "error": null,
+        "required": false,
+        "target_role": "combobox",
+        "target_selector": null,
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 31.527231759000188,
+        "t_end_s": 36.46337387200015,
+        "trace_event_count": 7
+      }
+    ],
+    "level_2_trace": {
+      "trace_path": "tool_trace.jsonl",
+      "event_count": 30,
+      "events_by_name": {
+        "browser_mouse_click_xy": 10,
+        "browser_mouse_move_xy": 10,
+        "browser_mouse_wheel": 4,
+        "browser_type": 6
+      },
+      "step_event_counts": {
+        "0": 3,
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 5,
+        "5": 3,
+        "6": 7
+      },
+      "trace_actions": [
+        "browser_mouse_click_xy",
+        "browser_mouse_move_xy",
+        "browser_mouse_wheel",
+        "browser_type"
+      ]
+    }
   }
 }

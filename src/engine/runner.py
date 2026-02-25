@@ -642,6 +642,14 @@ def _playwright_import_error() -> RuntimeError:
 
 def _playwright_browser_error(exc: Exception) -> RuntimeError:
     msg = str(exc)
+    lowered = msg.lower()
+    if "sandbox_host_linux.cc" in lowered or "operation not permitted" in lowered:
+        return RuntimeError(
+            "Playwright browser launch failed due to sandbox/container restrictions. "
+            "If running in a restricted environment, execute outside sandbox restrictions, "
+            "or run on a host where Chromium sandbox operations are allowed. "
+            f"Original error: {msg}"
+        )
     return RuntimeError(
         "Playwright browser install appears missing. Run:\n"
         "  python -m playwright install chromium\n"
@@ -651,12 +659,21 @@ def _playwright_browser_error(exc: Exception) -> RuntimeError:
 
 
 def _mcp_browser_error(exc: Exception) -> RuntimeError:
+    message = str(exc)
+    lowered = message.lower()
+    if "listen eperm" in lowered or "operation not permitted" in lowered:
+        return RuntimeError(
+            "Failed to initialize official Playwright MCP browser server due to local network/socket restrictions. "
+            "Use `--interaction-mode local` in restricted environments, or run MCP browser mode on a machine "
+            "that allows local listener startup. "
+            f"Original error: {message}"
+        )
     return RuntimeError(
         "Failed to initialize official Playwright MCP browser server. Ensure Node.js + npx are available, "
         "or pass --browser-mcp-cmd with a working server command. "
         "For offline/reliable startup, install MCP once with `npm i -g @playwright/mcp`. "
         "If MCP reports missing browser binaries, run `npx playwright install chromium` (or `npx playwright install chrome`). "
-        f"Original error: {exc}"
+        f"Original error: {message}"
     )
 
 

@@ -8,13 +8,13 @@
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": null,
-  "user_agent": null,
-  "locale": null,
-  "timezone": null,
+  "device_pixel_ratio": 1,
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/125.0.6422.26 Safari/537.36",
+  "locale": "en-US",
+  "timezone": "Europe/Berlin",
   "video_path": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0001/internship_app_run_0001.webm",
   "run_params": {
-    "headless": false,
+    "headless": true,
     "slow_mo": 200,
     "timeout_ms": 15000,
     "type_delay_ms": 120,
@@ -22,34 +22,15 @@
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
     "mouse_overlay": true,
-    "interaction_mode": "mcp_server",
-    "trace_mode": "mcp",
+    "interaction_mode": "local",
+    "trace_mode": "local",
     "mcp_server_cmd": "bundled_default",
     "mcp_tool_name": "record_action",
     "mcp_timeout_ms": 5000,
-    "browser_mcp_cmd": [
-      "/home/bharat/.nvm/versions/node/v22.20.0/bin/playwright-mcp",
-      "--browser",
-      "chromium",
-      "--isolated",
-      "--host",
-      "127.0.0.1",
-      "--output-dir",
-      "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0001",
-      "--save-video",
-      "1280x720",
-      "--viewport-size",
-      "1280,720",
-      "--executable-path",
-      "/home/bharat/.cache/ms-playwright/chromium-1117/chrome-linux/chrome",
-      "--no-sandbox"
-    ],
-    "browser_mcp_timeout_ms": 180000,
+    "browser_mcp_cmd": "default_playwright_mcp",
+    "browser_mcp_timeout_ms": 120000,
     "mcp_verify_trace": true,
-    "mcp_strict": true,
-    "browser_mcp_env": {
-      "PLAYWRIGHT_BROWSERS_PATH": "/home/bharat/.cache/ms-playwright"
-    }
+    "mcp_strict": true
   },
   "actions": [
     {
@@ -59,30 +40,29 @@
       "value": "Priya Nair",
       "intent": "Fill Full name",
       "success": true,
-      "t_start_s": 8.233453349999763,
-      "t_end_s": 11.104614236999623,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 2.02978093899992,
+      "t_end_s": 5.8140692239999225,
+      "bbox": {
+        "x": 320,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 306.1875,
+        "width": 295,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -92,30 +72,29 @@
       "value": "priya.nair@example.com",
       "intent": "Fill Contact email",
       "success": true,
-      "t_start_s": 11.104666360999545,
-      "t_end_s": 16.557165915999576,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 5.814091677000306,
+      "t_end_s": 10.991863134000141,
+      "bbox": {
+        "x": 320,
+        "y": 377.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 456.1875,
+        "width": 295,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -125,30 +104,29 @@
       "value": "Bengaluru",
       "intent": "Fill Current city",
       "success": true,
-      "t_start_s": 16.557202039999538,
-      "t_end_s": 19.23519997599942,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 10.991876559000048,
+      "t_end_s": 14.532659490000242,
+      "bbox": {
+        "x": 320,
+        "y": 527.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 606.1875,
+        "width": 295,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "scroll_y": 0,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -158,30 +136,29 @@
       "value": "Master's",
       "intent": "Select Master's for Degree program",
       "success": true,
-      "t_start_s": 19.235235291998833,
-      "t_end_s": 21.814234876999762,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 14.53268226199998,
+      "t_end_s": 16.46458032700002,
+      "bbox": {
+        "x": 320,
+        "y": 677.1875,
+        "width": 640,
+        "height": 250
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 585.1875,
+        "width": 20,
+        "height": 20
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "target_role": "radio",
+      "target_name": "Master\u2019s",
+      "target_selector": "#i24",
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -194,30 +171,29 @@
       ],
       "intent": "Select Backend, Data and Machine Learning for Primary area of interest",
       "success": true,
-      "t_start_s": 21.814287768000213,
-      "t_end_s": 25.359166436999658,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 16.46460220600011,
+      "t_end_s": 22.48958908600025,
+      "bbox": {
+        "x": 320,
+        "y": 243.1875,
+        "width": 640,
+        "height": 293
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 411.1875,
+        "width": 20,
+        "height": 20
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "target_role": "checkbox",
+      "target_name": "Data and Machine Learning",
+      "target_selector": "#i13",
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": false,
+      "required_marker": true,
       "error": null
     },
     {
@@ -231,30 +207,29 @@
       ],
       "intent": "Select Python, SQL, JavaScript/TypeScript for Programming languages you use",
       "success": true,
-      "t_start_s": 25.35921413699907,
-      "t_end_s": 28.835959459998776,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 22.489616619000117,
+      "t_end_s": 27.763983282000027,
+      "bbox": {
+        "x": 320,
+        "y": 548.1875,
+        "width": 640,
+        "height": 306
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 595.1875,
+        "width": 20,
+        "height": 20
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "target_role": "checkbox",
+      "target_name": "JavaScript/TypeScript",
+      "target_selector": "#i37",
+      "scroll_y": 0,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -264,30 +239,29 @@
       "value": "https://github.com/priyanair",
       "intent": "Fill Link to GitHub or portfolio",
       "success": true,
-      "t_start_s": 28.836006454999733,
-      "t_end_s": 35.014710907000335,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 27.764000170000145,
+      "t_end_s": 33.866876573000354,
+      "bbox": {
+        "x": 320,
+        "y": 732.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 370.1875,
+        "width": 295,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "scroll_y": 134,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -297,30 +271,29 @@
       "value": "I enjoy building reliable services that support ML teams. I want to learn how product systems scale in production. This internship matches my interests in backend tooling and data pipelines. I am eager to contribute and learn from the team.",
       "intent": "Fill Brief motivation statement",
       "success": true,
-      "t_start_s": 35.014776340000026,
-      "t_end_s": 68.85842717199921,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 33.866897595999944,
+      "t_end_s": 46.93926461199999,
+      "bbox": {
+        "x": 320,
+        "y": 441.1875,
+        "width": 640,
+        "height": 160
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 544.1875,
+        "width": 590,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
-      "target_name": null,
+      "target_name": "Meine Antwort",
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "scroll_y": 575,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -330,30 +303,29 @@
       "value": "2025-06-10",
       "intent": "Fill Earliest start date",
       "success": true,
-      "t_start_s": 68.85845952099953,
-      "t_end_s": 71.53331036700001,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 46.93930091600032,
+      "t_end_s": 51.89911325899993,
+      "bbox": {
+        "x": 320,
+        "y": 243.1875,
+        "width": 640,
+        "height": 152
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 336.1875,
+        "width": 127,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": false,
+      "required_marker": true,
       "error": null
     },
     {
@@ -363,30 +335,29 @@
       "value": "20",
       "intent": "Fill Weekly availability (hours)",
       "success": true,
-      "t_start_s": 71.53336870400017,
-      "t_end_s": 74.44253685100011,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 51.89913474800005,
+      "t_end_s": 54.458332217000134,
+      "bbox": {
+        "x": 320,
+        "y": 407.1875,
+        "width": 640,
+        "height": 162
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 510.1875,
+        "width": 295,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -396,30 +367,29 @@
       "value": "13:30",
       "intent": "Fill Preferred meeting time for interview",
       "success": true,
-      "t_start_s": 74.44258534399887,
-      "t_end_s": 77.64309979799873,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 54.45835090900027,
+      "t_end_s": 59.42480850100037,
+      "bbox": {
+        "x": 320,
+        "y": 581.1875,
+        "width": 640,
+        "height": 164
+      },
+      "target_bbox": {
+        "x": 374,
+        "y": 659.1875,
+        "width": 17,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
+      "target_role": "combobox",
+      "target_name": "Minute",
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "scroll_y": 0,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -429,68 +399,63 @@
       "value": "Yes",
       "intent": "Select Yes for Are you open to remote work?",
       "success": true,
-      "t_start_s": 77.6431447670002,
-      "t_end_s": 79.29993114699937,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 59.42482335800014,
+      "t_end_s": 61.32640607900021,
+      "bbox": {
+        "x": 320,
+        "y": 732.1875,
+        "width": 640,
+        "height": 210
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 355.1875,
+        "width": 20,
+        "height": 20
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
-      "metadata_status": "missing",
-      "metadata_missing_keys": [
-        "bbox",
-        "target_bbox",
-        "target_role",
-        "target_name",
-        "target_selector",
-        "required",
-        "required_attr",
-        "required_marker"
-      ],
+      "target_role": "radio",
+      "target_name": "Yes",
+      "target_selector": "#i23",
+      "scroll_y": 25,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     }
   ],
   "submit": {
     "success": true,
-    "success_inferred": true,
-    "t_start_s": 79.30008350699973,
-    "t_end_s": 113.0300699519994,
-    "bbox": null,
+    "t_start_s": 61.326415201000145,
+    "t_end_s": 95.36434406300032,
+    "bbox": {
+      "x": 428.5,
+      "y": 502.1875,
+      "width": 98.5,
+      "height": 36
+    },
     "submit_clicked": true,
-    "confirmation_method": "mcp_inferred_no_structured_result",
-    "final_url": null,
+    "confirmation_method": "url",
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSenqUex1eG1k80vjfzNx0Rm9GqkAYTXr2x0XdzQjaJGCRvkDg/formResponse",
     "pre_screenshot": null,
-    "post_screenshot": null,
-    "metadata_status": "missing",
-    "metadata_missing_keys": [
-      "success",
-      "submit_clicked",
-      "confirmation_method",
-      "final_url",
-      "bbox"
-    ]
+    "post_screenshot": null
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
     "screenshot_dir": null,
     "mcp": {
       "format": "mcp_computer_use_compatible",
-      "mode": "mcp_server",
+      "mode": "local",
       "validate_mcp_actions": true,
       "strict_mcp_validation": true,
-      "event_count": 31,
+      "event_count": 53,
       "validation_error_count": 0,
       "events_by_name": {
-        "browser_close": 1,
-        "browser_navigate": 1,
-        "browser_run_code": 15,
-        "browser_wait_for": 14
+        "browser_mouse_click_xy": 19,
+        "browser_mouse_move_xy": 19,
+        "browser_mouse_wheel": 6,
+        "browser_type": 9
       },
       "supported_actions": [
         "browser_close",
@@ -504,22 +469,7 @@
         "browser_type",
         "browser_wait_for"
       ],
-      "mcp": {
-        "mode": "mcp_server",
-        "command": [
-          "/home/bharat/gf_form_agent_env/bin/python3",
-          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
-        ],
-        "protocol_version": "2024-11-05",
-        "server_info": {
-          "name": "thesis-trace-mcp",
-          "version": "1.0.0"
-        },
-        "available_tools": [
-          "record_action"
-        ],
-        "tool_name": "record_action"
-      }
+      "mcp": null
     }
   },
   "submitted": true,
@@ -536,7 +486,7 @@
       "submitted": true,
       "failure_reason": null,
       "total_steps": 12,
-      "trace_event_count": 31,
+      "trace_event_count": 53,
       "video_path": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0001/internship_app_run_0001.webm"
     },
     "level_1_steps": [
@@ -547,23 +497,14 @@
         "intent": "Fill Full name",
         "success": true,
         "error": null,
-        "required": null,
+        "required": true,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 8.233453349999763,
-        "t_end_s": 11.104614236999623,
-        "trace_event_count": 2
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 2.02978093899992,
+        "t_end_s": 5.8140692239999225,
+        "trace_event_count": 3
       },
       {
         "step": 1,
@@ -572,23 +513,14 @@
         "intent": "Fill Contact email",
         "success": true,
         "error": null,
-        "required": null,
+        "required": true,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 11.104666360999545,
-        "t_end_s": 16.557165915999576,
-        "trace_event_count": 2
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 5.814091677000306,
+        "t_end_s": 10.991863134000141,
+        "trace_event_count": 3
       },
       {
         "step": 2,
@@ -597,23 +529,14 @@
         "intent": "Fill Current city",
         "success": true,
         "error": null,
-        "required": null,
+        "required": false,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 16.557202039999538,
-        "t_end_s": 19.23519997599942,
-        "trace_event_count": 2
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 10.991876559000048,
+        "t_end_s": 14.532659490000242,
+        "trace_event_count": 3
       },
       {
         "step": 3,
@@ -622,23 +545,14 @@
         "intent": "Select Master's for Degree program",
         "success": true,
         "error": null,
-        "required": null,
-        "target_role": null,
-        "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 19.235235291998833,
-        "t_end_s": 21.814234876999762,
-        "trace_event_count": 2
+        "required": true,
+        "target_role": "radio",
+        "target_selector": "#i24",
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 14.53268226199998,
+        "t_end_s": 16.46458032700002,
+        "trace_event_count": 3
       },
       {
         "step": 4,
@@ -647,23 +561,14 @@
         "intent": "Select Backend, Data and Machine Learning for Primary area of interest",
         "success": true,
         "error": null,
-        "required": null,
-        "target_role": null,
-        "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 21.814287768000213,
-        "t_end_s": 25.359166436999658,
-        "trace_event_count": 2
+        "required": true,
+        "target_role": "checkbox",
+        "target_selector": "#i13",
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 16.46460220600011,
+        "t_end_s": 22.48958908600025,
+        "trace_event_count": 7
       },
       {
         "step": 5,
@@ -672,23 +577,14 @@
         "intent": "Select Python, SQL, JavaScript/TypeScript for Programming languages you use",
         "success": true,
         "error": null,
-        "required": null,
-        "target_role": null,
-        "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 25.35921413699907,
-        "t_end_s": 28.835959459998776,
-        "trace_event_count": 2
+        "required": false,
+        "target_role": "checkbox",
+        "target_selector": "#i37",
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 22.489616619000117,
+        "t_end_s": 27.763983282000027,
+        "trace_event_count": 7
       },
       {
         "step": 6,
@@ -697,23 +593,14 @@
         "intent": "Fill Link to GitHub or portfolio",
         "success": true,
         "error": null,
-        "required": null,
+        "required": false,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 28.836006454999733,
-        "t_end_s": 35.014710907000335,
-        "trace_event_count": 2
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 27.764000170000145,
+        "t_end_s": 33.866876573000354,
+        "trace_event_count": 4
       },
       {
         "step": 7,
@@ -722,23 +609,14 @@
         "intent": "Fill Brief motivation statement",
         "success": true,
         "error": null,
-        "required": null,
+        "required": true,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 35.014776340000026,
-        "t_end_s": 68.85842717199921,
-        "trace_event_count": 2
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 33.866897595999944,
+        "t_end_s": 46.93926461199999,
+        "trace_event_count": 3
       },
       {
         "step": 8,
@@ -747,23 +625,14 @@
         "intent": "Fill Earliest start date",
         "success": true,
         "error": null,
-        "required": null,
+        "required": true,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 68.85845952099953,
-        "t_end_s": 71.53331036700001,
-        "trace_event_count": 2
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 46.93930091600032,
+        "t_end_s": 51.89911325899993,
+        "trace_event_count": 5
       },
       {
         "step": 9,
@@ -772,23 +641,14 @@
         "intent": "Fill Weekly availability (hours)",
         "success": true,
         "error": null,
-        "required": null,
+        "required": true,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 71.53336870400017,
-        "t_end_s": 74.44253685100011,
-        "trace_event_count": 2
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 51.89913474800005,
+        "t_end_s": 54.458332217000134,
+        "trace_event_count": 3
       },
       {
         "step": 10,
@@ -797,23 +657,14 @@
         "intent": "Fill Preferred meeting time for interview",
         "success": true,
         "error": null,
-        "required": null,
-        "target_role": null,
+        "required": false,
+        "target_role": "combobox",
         "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 74.44258534399887,
-        "t_end_s": 77.64309979799873,
-        "trace_event_count": 2
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 54.45835090900027,
+        "t_end_s": 59.42480850100037,
+        "trace_event_count": 7
       },
       {
         "step": 11,
@@ -822,53 +673,44 @@
         "intent": "Select Yes for Are you open to remote work?",
         "success": true,
         "error": null,
-        "required": null,
-        "target_role": null,
-        "target_selector": null,
-        "metadata_status": "missing",
-        "metadata_missing_keys": [
-          "bbox",
-          "target_bbox",
-          "target_role",
-          "target_name",
-          "target_selector",
-          "required",
-          "required_attr",
-          "required_marker"
-        ],
-        "t_start_s": 77.6431447670002,
-        "t_end_s": 79.29993114699937,
-        "trace_event_count": 2
+        "required": true,
+        "target_role": "radio",
+        "target_selector": "#i23",
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 59.42482335800014,
+        "t_end_s": 61.32640607900021,
+        "trace_event_count": 3
       }
     ],
     "level_2_trace": {
       "trace_path": "tool_trace.jsonl",
-      "event_count": 31,
+      "event_count": 53,
       "events_by_name": {
-        "browser_close": 1,
-        "browser_navigate": 1,
-        "browser_run_code": 15,
-        "browser_wait_for": 14
+        "browser_mouse_click_xy": 19,
+        "browser_mouse_move_xy": 19,
+        "browser_mouse_wheel": 6,
+        "browser_type": 9
       },
       "step_event_counts": {
-        "0": 2,
-        "1": 2,
-        "2": 2,
-        "3": 2,
-        "4": 2,
-        "5": 2,
-        "6": 2,
-        "7": 2,
-        "8": 2,
-        "9": 2,
-        "10": 2,
-        "11": 2
+        "0": 3,
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 7,
+        "5": 7,
+        "6": 4,
+        "7": 3,
+        "8": 5,
+        "9": 3,
+        "10": 7,
+        "11": 3
       },
       "trace_actions": [
-        "browser_close",
-        "browser_navigate",
-        "browser_run_code",
-        "browser_wait_for"
+        "browser_mouse_click_xy",
+        "browser_mouse_move_xy",
+        "browser_mouse_wheel",
+        "browser_type"
       ]
     }
   }

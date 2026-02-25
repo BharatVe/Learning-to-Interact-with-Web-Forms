@@ -1,5 +1,5 @@
 {
-  "schema_version": "3.0",
+  "schema_version": "4.0",
   "form_id": "workshop_signup",
   "run_name": "run_0002",
   "run_label": "workshop_signup_run_0002",
@@ -8,13 +8,13 @@
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": null,
-  "user_agent": null,
-  "locale": null,
-  "timezone": null,
+  "device_pixel_ratio": 1,
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/125.0.6422.26 Safari/537.36",
+  "locale": "en-US",
+  "timezone": "Europe/Berlin",
   "video_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/workshop_signup_run_0002.webm",
   "run_params": {
-    "headless": false,
+    "headless": true,
     "slow_mo": 200,
     "timeout_ms": 15000,
     "type_delay_ms": 120,
@@ -22,34 +22,15 @@
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
     "mouse_overlay": true,
-    "interaction_mode": "mcp_server",
-    "trace_mode": "mcp",
+    "interaction_mode": "local",
+    "trace_mode": "local",
     "mcp_server_cmd": "bundled_default",
     "mcp_tool_name": "record_action",
     "mcp_timeout_ms": 5000,
-    "browser_mcp_cmd": [
-      "/home/bharat/.nvm/versions/node/v22.20.0/bin/playwright-mcp",
-      "--browser",
-      "chromium",
-      "--isolated",
-      "--host",
-      "127.0.0.1",
-      "--output-dir",
-      "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002",
-      "--save-video",
-      "1280x720",
-      "--viewport-size",
-      "1280,720",
-      "--executable-path",
-      "/home/bharat/.cache/ms-playwright/chromium-1117/chrome-linux/chrome",
-      "--no-sandbox"
-    ],
+    "browser_mcp_cmd": "default_playwright_mcp",
     "browser_mcp_timeout_ms": 120000,
     "mcp_verify_trace": true,
-    "mcp_strict": true,
-    "browser_mcp_env": {
-      "PLAYWRIGHT_BROWSERS_PATH": "/home/bharat/.cache/ms-playwright"
-    }
+    "mcp_strict": true
   },
   "actions": [
     {
@@ -59,19 +40,29 @@
       "value": "Riley Patel",
       "intent": "Fill Full name",
       "success": true,
-      "t_start_s": 9.817190077000078,
-      "t_end_s": 12.862523193000015,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 2.2784500719999414,
+      "t_end_s": 6.543524549999802,
+      "bbox": {
+        "x": 320,
+        "y": 227.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 306.1875,
+        "width": 295,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -81,19 +72,29 @@
       "value": "DataFlux Labs",
       "intent": "Fill University or organization",
       "success": true,
-      "t_start_s": 12.86257132500009,
-      "t_end_s": 17.132761839000068,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 6.543547694000154,
+      "t_end_s": 10.59562198499998,
+      "bbox": {
+        "x": 320,
+        "y": 377.1875,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 456.1875,
+        "width": 295,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -103,19 +104,29 @@
       "value": "Advanced Data Engineering",
       "intent": "Select Advanced Data Engineering for Which workshop track are you registering for?",
       "success": true,
-      "t_start_s": 17.132803489000025,
-      "t_end_s": 18.790394005000053,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 10.595644975000141,
+      "t_end_s": 12.538514142000167,
+      "bbox": {
+        "x": 320,
+        "y": 527.1875,
+        "width": 640,
+        "height": 210
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 625.1875,
+        "width": 20,
+        "height": 20
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "target_role": "radio",
+      "target_name": "Advanced Data Engineering",
+      "target_selector": "#i19",
+      "scroll_y": 0,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -125,19 +136,29 @@
       "value": "Advanced",
       "intent": "Select Advanced for Experience level",
       "success": true,
-      "t_start_s": 18.790436308999915,
-      "t_end_s": 21.359859223000058,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 12.538531620999947,
+      "t_end_s": 14.477945377000196,
+      "bbox": {
+        "x": 320,
+        "y": 732.1875,
+        "width": 640,
+        "height": 210
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 410.1875,
+        "width": 20,
+        "height": 20
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "target_role": "radio",
+      "target_name": "Advanced",
+      "target_selector": "#i36",
+      "scroll_y": 17,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     },
     {
@@ -149,19 +170,29 @@
       ],
       "intent": "Select Vegan for Dietary restrictions",
       "success": true,
-      "t_start_s": 21.35990390699999,
-      "t_end_s": 22.921769654999935,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 14.477965014999882,
+      "t_end_s": 16.36974125200004,
+      "bbox": {
+        "x": 320,
+        "y": 477.1875,
+        "width": 640,
+        "height": 294
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 559.1875,
+        "width": 20,
+        "height": 20
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "target_role": "checkbox",
+      "target_name": "Vegan",
+      "target_selector": "#i48",
+      "scroll_y": 494,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -171,19 +202,29 @@
       "value": "2025-07-06",
       "intent": "Fill Preferred session date",
       "success": true,
-      "t_start_s": 22.92180597000015,
-      "t_end_s": 24.526510156999848,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 16.369756314999904,
+      "t_end_s": 18.71619667699997,
+      "bbox": {
+        "x": 320,
+        "y": 732.1875,
+        "width": 640,
+        "height": 153
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 378.1875,
+        "width": 127,
+        "height": 24
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "scroll_y": 545,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
       "error": null
     },
     {
@@ -193,30 +234,45 @@
       "value": "Yes",
       "intent": "Select Yes for May we email you updates?",
       "success": true,
-      "t_start_s": 24.526579304999814,
-      "t_end_s": 27.133381715999803,
-      "bbox": null,
-      "target_bbox": null,
+      "t_start_s": 18.71621938999988,
+      "t_end_s": 20.635116674000074,
+      "bbox": {
+        "x": 320,
+        "y": 449.1875,
+        "width": 640,
+        "height": 170
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 524.1875,
+        "width": 20,
+        "height": 20
+      },
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": null,
-      "target_name": null,
-      "target_selector": null,
-      "scroll_y": null,
-      "required": null,
-      "required_attr": null,
-      "required_marker": null,
+      "target_role": "radio",
+      "target_name": "Yes",
+      "target_selector": "#i71",
+      "scroll_y": 993,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
       "error": null
     }
   ],
   "submit": {
-    "success": false,
-    "t_start_s": 27.13341487200023,
-    "t_end_s": 60.841700690999915,
-    "bbox": null,
-    "submit_clicked": false,
-    "confirmation_method": null,
-    "final_url": null,
+    "success": true,
+    "t_start_s": 20.635128592,
+    "t_end_s": 54.49424503399996,
+    "bbox": {
+      "x": 320,
+      "y": 631.1875,
+      "width": 98.5,
+      "height": 36
+    },
+    "submit_clicked": true,
+    "confirmation_method": "url",
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/formResponse",
     "pre_screenshot": null,
     "post_screenshot": null
   },
@@ -225,16 +281,16 @@
     "screenshot_dir": null,
     "mcp": {
       "format": "mcp_computer_use_compatible",
-      "mode": "mcp_server",
+      "mode": "local",
       "validate_mcp_actions": true,
       "strict_mcp_validation": true,
-      "event_count": 21,
+      "event_count": 23,
       "validation_error_count": 0,
       "events_by_name": {
-        "browser_close": 1,
-        "browser_navigate": 1,
-        "browser_run_code": 10,
-        "browser_wait_for": 9
+        "browser_mouse_click_xy": 8,
+        "browser_mouse_move_xy": 8,
+        "browser_mouse_wheel": 4,
+        "browser_type": 3
       },
       "supported_actions": [
         "browser_close",
@@ -248,28 +304,164 @@
         "browser_type",
         "browser_wait_for"
       ],
-      "mcp": {
-        "mode": "mcp_server",
-        "command": [
-          "/home/bharat/gf_form_agent_env/bin/python3",
-          "/home/bharat/Projects/thesis/src/engine/mcp_trace_server.py"
-        ],
-        "protocol_version": "2024-11-05",
-        "server_info": {
-          "name": "thesis-trace-mcp",
-          "version": "1.0.0"
-        },
-        "available_tools": [
-          "record_action"
-        ],
-        "tool_name": "record_action"
-      }
+      "mcp": null
     }
   },
-  "submitted": false,
-  "failure_reason": "submit_not_clicked",
+  "submitted": true,
+  "failure_reason": null,
   "run_metadata": {
     "suffix": "pro_data",
     "notes": "Advanced attendee focused on data engineering."
+  },
+  "information_layers": {
+    "level_0_run": {
+      "form_id": "workshop_signup",
+      "run_name": "run_0002",
+      "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform",
+      "submitted": true,
+      "failure_reason": null,
+      "total_steps": 7,
+      "trace_event_count": 23,
+      "video_path": "/home/bharat/Projects/thesis/data/forms/workshop_signup/runs/run_0002/workshop_signup_run_0002.webm"
+    },
+    "level_1_steps": [
+      {
+        "step": 0,
+        "label": "Full name",
+        "widget_type": "short_text",
+        "intent": "Fill Full name",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 2.2784500719999414,
+        "t_end_s": 6.543524549999802,
+        "trace_event_count": 3
+      },
+      {
+        "step": 1,
+        "label": "University or organization",
+        "widget_type": "short_text",
+        "intent": "Fill University or organization",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 6.543547694000154,
+        "t_end_s": 10.59562198499998,
+        "trace_event_count": 3
+      },
+      {
+        "step": 2,
+        "label": "Which workshop track are you registering for?",
+        "widget_type": "single_choice",
+        "intent": "Select Advanced Data Engineering for Which workshop track are you registering for?",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": "radio",
+        "target_selector": "#i19",
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 10.595644975000141,
+        "t_end_s": 12.538514142000167,
+        "trace_event_count": 3
+      },
+      {
+        "step": 3,
+        "label": "Experience level",
+        "widget_type": "single_choice",
+        "intent": "Select Advanced for Experience level",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": "radio",
+        "target_selector": "#i36",
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 12.538531620999947,
+        "t_end_s": 14.477945377000196,
+        "trace_event_count": 3
+      },
+      {
+        "step": 4,
+        "label": "Dietary restrictions",
+        "widget_type": "multi_choice",
+        "intent": "Select Vegan for Dietary restrictions",
+        "success": true,
+        "error": null,
+        "required": false,
+        "target_role": "checkbox",
+        "target_selector": "#i48",
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 14.477965014999882,
+        "t_end_s": 16.36974125200004,
+        "trace_event_count": 3
+      },
+      {
+        "step": 5,
+        "label": "Preferred session date",
+        "widget_type": "date",
+        "intent": "Fill Preferred session date",
+        "success": true,
+        "error": null,
+        "required": false,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 16.369756314999904,
+        "t_end_s": 18.71619667699997,
+        "trace_event_count": 4
+      },
+      {
+        "step": 6,
+        "label": "May we email you updates?",
+        "widget_type": "single_choice",
+        "intent": "Select Yes for May we email you updates?",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": "radio",
+        "target_selector": "#i71",
+        "metadata_status": null,
+        "metadata_missing_keys": null,
+        "t_start_s": 18.71621938999988,
+        "t_end_s": 20.635116674000074,
+        "trace_event_count": 2
+      }
+    ],
+    "level_2_trace": {
+      "trace_path": "tool_trace.jsonl",
+      "event_count": 23,
+      "events_by_name": {
+        "browser_mouse_click_xy": 8,
+        "browser_mouse_move_xy": 8,
+        "browser_mouse_wheel": 4,
+        "browser_type": 3
+      },
+      "step_event_counts": {
+        "0": 3,
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "5": 4,
+        "6": 2
+      },
+      "trace_actions": [
+        "browser_mouse_click_xy",
+        "browser_mouse_move_xy",
+        "browser_mouse_wheel",
+        "browser_type"
+      ]
+    }
   }
 }
