@@ -12,7 +12,7 @@
   "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/125.0.6422.26 Safari/537.36",
   "locale": "en-US",
   "timezone": "Europe/Berlin",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0001/internship_app_run_0001.webm",
+  "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/internship_app/runs/run_0001/internship_app_run_0001.webm",
   "run_params": {
     "headless": true,
     "slow_mo": 200,
@@ -23,7 +23,7 @@
     "screenshots": false,
     "mouse_overlay": true,
     "interaction_mode": "local",
-    "trace_mode": "local",
+    "trace_mode": "mcp",
     "mcp_server_cmd": "bundled_default",
     "mcp_tool_name": "record_action",
     "mcp_timeout_ms": 5000,
@@ -40,8 +40,8 @@
       "value": "Priya Nair",
       "intent": "Fill Full name",
       "success": true,
-      "t_start_s": 2.02978093899992,
-      "t_end_s": 5.8140692239999225,
+      "t_start_s": 2.243292620871216,
+      "t_end_s": 5.836358713917434,
       "bbox": {
         "x": 320,
         "y": 227.1875,
@@ -72,8 +72,8 @@
       "value": "priya.nair@example.com",
       "intent": "Fill Contact email",
       "success": true,
-      "t_start_s": 5.814091677000306,
-      "t_end_s": 10.991863134000141,
+      "t_start_s": 5.836384893860668,
+      "t_end_s": 10.749070125631988,
       "bbox": {
         "x": 320,
         "y": 377.1875,
@@ -104,8 +104,8 @@
       "value": "Bengaluru",
       "intent": "Fill Current city",
       "success": true,
-      "t_start_s": 10.991876559000048,
-      "t_end_s": 14.532659490000242,
+      "t_start_s": 10.749101245775819,
+      "t_end_s": 14.047468409873545,
       "bbox": {
         "x": 320,
         "y": 527.1875,
@@ -136,8 +136,8 @@
       "value": "Master's",
       "intent": "Select Master's for Degree program",
       "success": true,
-      "t_start_s": 14.53268226199998,
-      "t_end_s": 16.46458032700002,
+      "t_start_s": 14.04749114997685,
+      "t_end_s": 15.809708476997912,
       "bbox": {
         "x": 320,
         "y": 677.1875,
@@ -171,8 +171,8 @@
       ],
       "intent": "Select Backend, Data and Machine Learning for Primary area of interest",
       "success": true,
-      "t_start_s": 16.46460220600011,
-      "t_end_s": 22.48958908600025,
+      "t_start_s": 15.809746887069196,
+      "t_end_s": 21.300202521961182,
       "bbox": {
         "x": 320,
         "y": 243.1875,
@@ -207,8 +207,8 @@
       ],
       "intent": "Select Python, SQL, JavaScript/TypeScript for Programming languages you use",
       "success": true,
-      "t_start_s": 22.489616619000117,
-      "t_end_s": 27.763983282000027,
+      "t_start_s": 21.300228761974722,
+      "t_end_s": 26.03995525278151,
       "bbox": {
         "x": 320,
         "y": 548.1875,
@@ -239,8 +239,8 @@
       "value": "https://github.com/priyanair",
       "intent": "Fill Link to GitHub or portfolio",
       "success": true,
-      "t_start_s": 27.764000170000145,
-      "t_end_s": 33.866876573000354,
+      "t_start_s": 26.039977812673897,
+      "t_end_s": 31.664336662739515,
       "bbox": {
         "x": 320,
         "y": 732.1875,
@@ -271,8 +271,8 @@
       "value": "I enjoy building reliable services that support ML teams. I want to learn how product systems scale in production. This internship matches my interests in backend tooling and data pipelines. I am eager to contribute and learn from the team.",
       "intent": "Fill Brief motivation statement",
       "success": true,
-      "t_start_s": 33.866897595999944,
-      "t_end_s": 46.93926461199999,
+      "t_start_s": 31.66436351276934,
+      "t_end_s": 43.253322447650135,
       "bbox": {
         "x": 320,
         "y": 441.1875,
@@ -303,8 +303,8 @@
       "value": "2025-06-10",
       "intent": "Fill Earliest start date",
       "success": true,
-      "t_start_s": 46.93930091600032,
-      "t_end_s": 51.89911325899993,
+      "t_start_s": 43.25334300799295,
+      "t_end_s": 47.60412396583706,
       "bbox": {
         "x": 320,
         "y": 243.1875,
@@ -335,8 +335,8 @@
       "value": "20",
       "intent": "Fill Weekly availability (hours)",
       "success": true,
-      "t_start_s": 51.89913474800005,
-      "t_end_s": 54.458332217000134,
+      "t_start_s": 47.60414664587006,
+      "t_end_s": 49.97006389591843,
       "bbox": {
         "x": 320,
         "y": 407.1875,
@@ -367,8 +367,8 @@
       "value": "13:30",
       "intent": "Fill Preferred meeting time for interview",
       "success": true,
-      "t_start_s": 54.45835090900027,
-      "t_end_s": 59.42480850100037,
+      "t_start_s": 49.97008619597182,
+      "t_end_s": 54.478451002854854,
       "bbox": {
         "x": 320,
         "y": 581.1875,
@@ -399,8 +399,8 @@
       "value": "Yes",
       "intent": "Select Yes for Are you open to remote work?",
       "success": true,
-      "t_start_s": 59.42482335800014,
-      "t_end_s": 61.32640607900021,
+      "t_start_s": 54.478473423048854,
+      "t_end_s": 56.19316699402407,
       "bbox": {
         "x": 320,
         "y": 732.1875,
@@ -427,8 +427,8 @@
   ],
   "submit": {
     "success": true,
-    "t_start_s": 61.326415201000145,
-    "t_end_s": 95.36434406300032,
+    "t_start_s": 56.193185983691365,
+    "t_end_s": 90.01875910768285,
     "bbox": {
       "x": 428.5,
       "y": 502.1875,
@@ -446,7 +446,7 @@
     "screenshot_dir": null,
     "mcp": {
       "format": "mcp_computer_use_compatible",
-      "mode": "local",
+      "mode": "mcp_server",
       "validate_mcp_actions": true,
       "strict_mcp_validation": true,
       "event_count": 53,
@@ -469,7 +469,22 @@
         "browser_type",
         "browser_wait_for"
       ],
-      "mcp": null
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/.venv/bin/python3",
+          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/src/engine/mcp_trace_server.py"
+        ],
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ],
+        "tool_name": "record_action"
+      }
     }
   },
   "submitted": true,
@@ -487,7 +502,7 @@
       "failure_reason": null,
       "total_steps": 12,
       "trace_event_count": 53,
-      "video_path": "/home/bharat/Projects/thesis/data/forms/internship_app/runs/run_0001/internship_app_run_0001.webm"
+      "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/internship_app/runs/run_0001/internship_app_run_0001.webm"
     },
     "level_1_steps": [
       {
@@ -502,8 +517,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 2.02978093899992,
-        "t_end_s": 5.8140692239999225,
+        "t_start_s": 2.243292620871216,
+        "t_end_s": 5.836358713917434,
         "trace_event_count": 3
       },
       {
@@ -518,8 +533,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 5.814091677000306,
-        "t_end_s": 10.991863134000141,
+        "t_start_s": 5.836384893860668,
+        "t_end_s": 10.749070125631988,
         "trace_event_count": 3
       },
       {
@@ -534,8 +549,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 10.991876559000048,
-        "t_end_s": 14.532659490000242,
+        "t_start_s": 10.749101245775819,
+        "t_end_s": 14.047468409873545,
         "trace_event_count": 3
       },
       {
@@ -550,8 +565,8 @@
         "target_selector": "#i24",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 14.53268226199998,
-        "t_end_s": 16.46458032700002,
+        "t_start_s": 14.04749114997685,
+        "t_end_s": 15.809708476997912,
         "trace_event_count": 3
       },
       {
@@ -566,8 +581,8 @@
         "target_selector": "#i13",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 16.46460220600011,
-        "t_end_s": 22.48958908600025,
+        "t_start_s": 15.809746887069196,
+        "t_end_s": 21.300202521961182,
         "trace_event_count": 7
       },
       {
@@ -582,8 +597,8 @@
         "target_selector": "#i37",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 22.489616619000117,
-        "t_end_s": 27.763983282000027,
+        "t_start_s": 21.300228761974722,
+        "t_end_s": 26.03995525278151,
         "trace_event_count": 7
       },
       {
@@ -598,8 +613,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 27.764000170000145,
-        "t_end_s": 33.866876573000354,
+        "t_start_s": 26.039977812673897,
+        "t_end_s": 31.664336662739515,
         "trace_event_count": 4
       },
       {
@@ -614,8 +629,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 33.866897595999944,
-        "t_end_s": 46.93926461199999,
+        "t_start_s": 31.66436351276934,
+        "t_end_s": 43.253322447650135,
         "trace_event_count": 3
       },
       {
@@ -630,8 +645,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 46.93930091600032,
-        "t_end_s": 51.89911325899993,
+        "t_start_s": 43.25334300799295,
+        "t_end_s": 47.60412396583706,
         "trace_event_count": 5
       },
       {
@@ -646,8 +661,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 51.89913474800005,
-        "t_end_s": 54.458332217000134,
+        "t_start_s": 47.60414664587006,
+        "t_end_s": 49.97006389591843,
         "trace_event_count": 3
       },
       {
@@ -662,8 +677,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 54.45835090900027,
-        "t_end_s": 59.42480850100037,
+        "t_start_s": 49.97008619597182,
+        "t_end_s": 54.478451002854854,
         "trace_event_count": 7
       },
       {
@@ -678,8 +693,8 @@
         "target_selector": "#i23",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 59.42482335800014,
-        "t_end_s": 61.32640607900021,
+        "t_start_s": 54.478473423048854,
+        "t_end_s": 56.19316699402407,
         "trace_event_count": 3
       }
     ],

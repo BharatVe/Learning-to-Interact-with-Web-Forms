@@ -12,7 +12,7 @@
   "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/125.0.6422.26 Safari/537.36",
   "locale": "en-US",
   "timezone": "Europe/Berlin",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0001/conf_interest_run_0001.webm",
+  "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0001/conf_interest_run_0001.webm",
   "run_params": {
     "headless": true,
     "slow_mo": 200,
@@ -23,7 +23,7 @@
     "screenshots": false,
     "mouse_overlay": true,
     "interaction_mode": "local",
-    "trace_mode": "local",
+    "trace_mode": "mcp",
     "mcp_server_cmd": "bundled_default",
     "mcp_tool_name": "record_action",
     "mcp_timeout_ms": 5000,
@@ -40,8 +40,8 @@
       "value": "Jordan Rivera",
       "intent": "Fill Full Name",
       "success": true,
-      "t_start_s": 3.822244320999971,
-      "t_end_s": 8.25995148900006,
+      "t_start_s": 3.6926438990049064,
+      "t_end_s": 7.90908774221316,
       "bbox": {
         "x": 320,
         "y": 227.1875,
@@ -72,8 +72,8 @@
       "value": "jordan.rivera@example.com",
       "intent": "Fill Preferred contact email",
       "success": true,
-      "t_start_s": 8.259978614999909,
-      "t_end_s": 13.851132212000039,
+      "t_start_s": 7.909117741975933,
+      "t_end_s": 13.142903252039105,
       "bbox": {
         "x": 320,
         "y": 377.1875,
@@ -104,8 +104,8 @@
       "value": "Graduate researcher focused on distributed training and edge inference.",
       "intent": "Fill Brief bio",
       "success": true,
-      "t_start_s": 13.851156787000036,
-      "t_end_s": 25.549738296999976,
+      "t_start_s": 13.14293397217989,
+      "t_end_s": 24.03149966429919,
       "bbox": {
         "x": 320,
         "y": 527.1875,
@@ -136,8 +136,8 @@
       "value": "PhD student",
       "intent": "Select PhD student for Primary role",
       "success": true,
-      "t_start_s": 25.549764413000048,
-      "t_end_s": 27.49808424899993,
+      "t_start_s": 24.031532634049654,
+      "t_end_s": 25.76991580799222,
       "bbox": {
         "x": 320,
         "y": 699.1875,
@@ -171,8 +171,8 @@
       ],
       "intent": "Select AI/ML, Systems for Topics you're interested in",
       "success": true,
-      "t_start_s": 27.49810713099987,
-      "t_end_s": 31.066197418,
+      "t_start_s": 25.76994922803715,
+      "t_end_s": 28.998472552280873,
       "bbox": {
         "x": 320,
         "y": 732.1875,
@@ -203,8 +203,8 @@
       "value": "2025-06-15",
       "intent": "Fill Preferred meeting date",
       "success": true,
-      "t_start_s": 31.066213264999988,
-      "t_end_s": 33.447140324999964,
+      "t_start_s": 28.998500362038612,
+      "t_end_s": 31.16098289610818,
       "bbox": {
         "x": 320,
         "y": 501.1875,
@@ -235,8 +235,8 @@
       "value": "10:30",
       "intent": "Fill Preferred meeting time",
       "success": true,
-      "t_start_s": 33.44716246500002,
-      "t_end_s": 38.39337655899999,
+      "t_start_s": 31.161022586282343,
+      "t_end_s": 35.708523666951805,
       "bbox": {
         "x": 320,
         "y": 666.1875,
@@ -263,8 +263,8 @@
   ],
   "submit": {
     "success": true,
-    "t_start_s": 38.39339811700006,
-    "t_end_s": 72.42011500199987,
+    "t_start_s": 35.70854275720194,
+    "t_end_s": 69.49457493191585,
     "bbox": {
       "x": 320,
       "y": 502.1875,
@@ -282,7 +282,7 @@
     "screenshot_dir": null,
     "mcp": {
       "format": "mcp_computer_use_compatible",
-      "mode": "local",
+      "mode": "mcp_server",
       "validate_mcp_actions": true,
       "strict_mcp_validation": true,
       "event_count": 30,
@@ -305,7 +305,22 @@
         "browser_type",
         "browser_wait_for"
       ],
-      "mcp": null
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/.venv/bin/python3",
+          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/src/engine/mcp_trace_server.py"
+        ],
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ],
+        "tool_name": "record_action"
+      }
     }
   },
   "submitted": true,
@@ -323,7 +338,7 @@
       "failure_reason": null,
       "total_steps": 7,
       "trace_event_count": 30,
-      "video_path": "/home/bharat/Projects/thesis/data/forms/conf_interest/runs/run_0001/conf_interest_run_0001.webm"
+      "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0001/conf_interest_run_0001.webm"
     },
     "level_1_steps": [
       {
@@ -338,8 +353,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 3.822244320999971,
-        "t_end_s": 8.25995148900006,
+        "t_start_s": 3.6926438990049064,
+        "t_end_s": 7.90908774221316,
         "trace_event_count": 3
       },
       {
@@ -354,8 +369,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 8.259978614999909,
-        "t_end_s": 13.851132212000039,
+        "t_start_s": 7.909117741975933,
+        "t_end_s": 13.142903252039105,
         "trace_event_count": 3
       },
       {
@@ -370,8 +385,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 13.851156787000036,
-        "t_end_s": 25.549738296999976,
+        "t_start_s": 13.14293397217989,
+        "t_end_s": 24.03149966429919,
         "trace_event_count": 3
       },
       {
@@ -386,8 +401,8 @@
         "target_selector": "#i27",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 25.549764413000048,
-        "t_end_s": 27.49808424899993,
+        "t_start_s": 24.031532634049654,
+        "t_end_s": 25.76991580799222,
         "trace_event_count": 3
       },
       {
@@ -402,8 +417,8 @@
         "target_selector": "#i45",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 27.49810713099987,
-        "t_end_s": 31.066197418,
+        "t_start_s": 25.76994922803715,
+        "t_end_s": 28.998472552280873,
         "trace_event_count": 5
       },
       {
@@ -418,8 +433,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 31.066213264999988,
-        "t_end_s": 33.447140324999964,
+        "t_start_s": 28.998500362038612,
+        "t_end_s": 31.16098289610818,
         "trace_event_count": 3
       },
       {
@@ -434,8 +449,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 33.44716246500002,
-        "t_end_s": 38.39337655899999,
+        "t_start_s": 31.161022586282343,
+        "t_end_s": 35.708523666951805,
         "trace_event_count": 7
       }
     ],

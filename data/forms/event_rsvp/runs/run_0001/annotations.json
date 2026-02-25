@@ -12,7 +12,7 @@
   "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/125.0.6422.26 Safari/537.36",
   "locale": "en-US",
   "timezone": "Europe/Berlin",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/event_rsvp_run_0001.webm",
+  "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/event_rsvp/runs/run_0001/event_rsvp_run_0001.webm",
   "run_params": {
     "headless": true,
     "slow_mo": 200,
@@ -23,7 +23,7 @@
     "screenshots": false,
     "mouse_overlay": true,
     "interaction_mode": "local",
-    "trace_mode": "local",
+    "trace_mode": "mcp",
     "mcp_server_cmd": "bundled_default",
     "mcp_tool_name": "record_action",
     "mcp_timeout_ms": 5000,
@@ -40,8 +40,8 @@
       "value": "Olivia Brooks",
       "intent": "Fill Name",
       "success": true,
-      "t_start_s": 1.8230099160000464,
-      "t_end_s": 6.2217733279999266,
+      "t_start_s": 2.239943604916334,
+      "t_end_s": 6.299558710772544,
       "bbox": {
         "x": 320,
         "y": 227.1875,
@@ -72,8 +72,8 @@
       "value": "Yes",
       "intent": "Select Yes for Will you attend?",
       "success": true,
-      "t_start_s": 6.221792846999961,
-      "t_end_s": 8.133421425000051,
+      "t_start_s": 6.299586181063205,
+      "t_end_s": 8.047591022681445,
       "bbox": {
         "x": 320,
         "y": 377.1875,
@@ -104,8 +104,8 @@
       "value": "1",
       "intent": "Fill Number of guests (including yourself)",
       "success": true,
-      "t_start_s": 8.133436994000022,
-      "t_end_s": 10.581233627000074,
+      "t_start_s": 8.047615583054721,
+      "t_end_s": 10.304890118073672,
       "bbox": {
         "x": 320,
         "y": 599.1875,
@@ -136,8 +136,8 @@
       "value": "18:30",
       "intent": "Fill Preferred arrival time",
       "success": true,
-      "t_start_s": 10.581246827000086,
-      "t_end_s": 15.560844081999676,
+      "t_start_s": 10.304911087732762,
+      "t_end_s": 14.869729168713093,
       "bbox": {
         "x": 320,
         "y": 732.1875,
@@ -171,8 +171,8 @@
       ],
       "intent": "Select Talks, Networking for Activities you're interested in",
       "success": true,
-      "t_start_s": 15.560904030000074,
-      "t_end_s": 19.094496370999877,
+      "t_start_s": 14.869752929080278,
+      "t_end_s": 18.05378550477326,
       "bbox": {
         "x": 320,
         "y": 454.1875,
@@ -203,8 +203,8 @@
       "value": "Need wheelchair accessible seating.",
       "intent": "Fill Accessibility needs or comments",
       "success": true,
-      "t_start_s": 19.094512247999774,
-      "t_end_s": 26.048433471999942,
+      "t_start_s": 18.05380222480744,
+      "t_end_s": 24.526303115766495,
       "bbox": {
         "x": 320,
         "y": 724.1875,
@@ -231,8 +231,8 @@
   ],
   "submit": {
     "success": true,
-    "t_start_s": 26.048442109000007,
-    "t_end_s": 60.05563173399969,
+    "t_start_s": 24.526321895886213,
+    "t_end_s": 58.287299644667655,
     "bbox": {
       "x": 320,
       "y": 502.1875,
@@ -250,7 +250,7 @@
     "screenshot_dir": null,
     "mcp": {
       "format": "mcp_computer_use_compatible",
-      "mode": "local",
+      "mode": "mcp_server",
       "validate_mcp_actions": true,
       "strict_mcp_validation": true,
       "event_count": 26,
@@ -273,7 +273,22 @@
         "browser_type",
         "browser_wait_for"
       ],
-      "mcp": null
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/.venv/bin/python3",
+          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/src/engine/mcp_trace_server.py"
+        ],
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ],
+        "tool_name": "record_action"
+      }
     }
   },
   "submitted": true,
@@ -291,7 +306,7 @@
       "failure_reason": null,
       "total_steps": 6,
       "trace_event_count": 26,
-      "video_path": "/home/bharat/Projects/thesis/data/forms/event_rsvp/runs/run_0001/event_rsvp_run_0001.webm"
+      "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/event_rsvp/runs/run_0001/event_rsvp_run_0001.webm"
     },
     "level_1_steps": [
       {
@@ -306,8 +321,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 1.8230099160000464,
-        "t_end_s": 6.2217733279999266,
+        "t_start_s": 2.239943604916334,
+        "t_end_s": 6.299558710772544,
         "trace_event_count": 3
       },
       {
@@ -322,8 +337,8 @@
         "target_selector": "#i11",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 6.221792846999961,
-        "t_end_s": 8.133421425000051,
+        "t_start_s": 6.299586181063205,
+        "t_end_s": 8.047591022681445,
         "trace_event_count": 2
       },
       {
@@ -338,8 +353,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 8.133436994000022,
-        "t_end_s": 10.581233627000074,
+        "t_start_s": 8.047615583054721,
+        "t_end_s": 10.304890118073672,
         "trace_event_count": 4
       },
       {
@@ -354,8 +369,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 10.581246827000086,
-        "t_end_s": 15.560844081999676,
+        "t_start_s": 10.304911087732762,
+        "t_end_s": 14.869729168713093,
         "trace_event_count": 7
       },
       {
@@ -370,8 +385,8 @@
         "target_selector": "#i43",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 15.560904030000074,
-        "t_end_s": 19.094496370999877,
+        "t_start_s": 14.869752929080278,
+        "t_end_s": 18.05378550477326,
         "trace_event_count": 4
       },
       {
@@ -386,8 +401,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 19.094512247999774,
-        "t_end_s": 26.048433471999942,
+        "t_start_s": 18.05380222480744,
+        "t_end_s": 24.526303115766495,
         "trace_event_count": 4
       }
     ],

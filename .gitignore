@@ -103,7 +103,9 @@ celerybeat.pid
 
 # Environments
 .env
+.env.*
 .venv
+.venv/
 env/
 venv/
 ENV/
@@ -139,3 +141,19 @@ Thumbs.db
 # Playwright run videos
 videos/
 data/forms/**/runs/**/*.webm
+
+# Playwright/browser cache and local model storage
+.playwright-browsers/
+models/
+
+# Generated run artifacts (keep sample tracked files as-is, ignore new ones)
+data/forms/**/runs/run_*/
+
+# Cluster / batch logs and scratch files
+slurm-*.out
+slurm-*.err
+*.out
+*.err
+logs/
+tmp/
+tmp_*/

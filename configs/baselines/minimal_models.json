@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "description": "Minimal standardized baseline set: one text model, one VLM, one computer-use provider path.",
+  "models": [
+    {
+      "id": "text_qwen25_3b_instruct",
+      "kind": "text_llm",
+      "provider": "local_hf",
+      "hf_repo": "Qwen/Qwen2.5-3B-Instruct",
+      "notes": "Open-weight text baseline for symbolic/action generation."
+    },
+    {
+      "id": "vlm_qwen25_vl_3b_instruct",
+      "kind": "vlm",
+      "provider": "local_hf",
+      "hf_repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+      "notes": "Open-weight vision-language baseline for screenshot-based UI interaction."
+    },
+    {
+      "id": "computer_use_mcp_api",
+      "kind": "computer_use_agent",
+      "provider": "api_over_mcp",
+      "hf_repo": null,
+      "notes": "Use via MCP tool orchestration with provider API credentials."
+    }
+  ]
+}

@@ -14,6 +14,28 @@ python -m playwright install chromium
 python -m playwright install --with-deps chromium
 ```
 
+HPC-friendly setup wrapper (no `sudo`, project-local venv/browser cache):
+
+```bash
+bash scripts/hpc_setup.sh
+```
+
+Runtime readiness check:
+
+```bash
+python3 scripts/verify_runtime_setup.py
+python3 scripts/preflight_baseline_eval.py
+```
+
+Headless baseline wrapper:
+
+```bash
+bash scripts/run_baselines_headless.sh --smoke-test-all-forms --overwrite-existing
+```
+
+For cluster workflow (canonical directory policy, model install, Slurm/headless usage), see:
+`README_HPC.md`
+
 If `PLAYWRIGHT_SKIP_FFMPEG_INSTALL` is set, video recording may fail.
 `mcp_server` interaction mode also requires `node` + `npx` to run the official Playwright MCP server.
 The default MCP command now forces `--browser chromium` to avoid system Chrome dependency.

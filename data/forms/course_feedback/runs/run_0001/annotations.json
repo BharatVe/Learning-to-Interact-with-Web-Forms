@@ -12,7 +12,7 @@
   "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/125.0.6422.26 Safari/537.36",
   "locale": "en-US",
   "timezone": "Europe/Berlin",
-  "video_path": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0001/course_feedback_run_0001.webm",
+  "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/course_feedback/runs/run_0001/course_feedback_run_0001.webm",
   "run_params": {
     "headless": true,
     "slow_mo": 200,
@@ -23,7 +23,7 @@
     "screenshots": false,
     "mouse_overlay": true,
     "interaction_mode": "local",
-    "trace_mode": "local",
+    "trace_mode": "mcp",
     "mcp_server_cmd": "bundled_default",
     "mcp_tool_name": "record_action",
     "mcp_timeout_ms": 5000,
@@ -40,8 +40,8 @@
       "value": "Machine Learning Bootcamp",
       "intent": "Fill Course name",
       "success": true,
-      "t_start_s": 1.8192105329999322,
-      "t_end_s": 7.667476035999925,
+      "t_start_s": 2.179959774017334,
+      "t_end_s": 7.5762369660660625,
       "bbox": {
         "x": 320,
         "y": 227.1875,
@@ -72,8 +72,8 @@
       "value": "Master's",
       "intent": "Select Master's for Your program level",
       "success": true,
-      "t_start_s": 7.667499214999907,
-      "t_end_s": 9.624502915999983,
+      "t_start_s": 7.576270126271993,
+      "t_end_s": 9.341976867988706,
       "bbox": {
         "x": 320,
         "y": 377.1875,
@@ -104,8 +104,8 @@
       "value": "Yes",
       "intent": "Select Yes for Did you attend most sessions?",
       "success": true,
-      "t_start_s": 9.624519279999959,
-      "t_end_s": 11.59124149399986,
+      "t_start_s": 9.342007197905332,
+      "t_end_s": 11.090695119928569,
       "bbox": {
         "x": 320,
         "y": 639.1875,
@@ -136,8 +136,8 @@
       "value": "5 - Very satisfied",
       "intent": "Select 5 - Very satisfied for Overall satisfaction",
       "success": true,
-      "t_start_s": 11.591257253999856,
-      "t_end_s": 15.942954970999835,
+      "t_start_s": 11.090720950160176,
+      "t_end_s": 15.140843994915485,
       "bbox": {
         "x": 320,
         "y": 243.1875,
@@ -168,8 +168,8 @@
       "value": "About right",
       "intent": "Select About right for Workload felt",
       "success": true,
-      "t_start_s": 15.942972033999922,
-      "t_end_s": 17.848056317999863,
+      "t_start_s": 15.140913404989988,
+      "t_end_s": 16.858830192126334,
       "bbox": {
         "x": 320,
         "y": 544.1875,
@@ -200,8 +200,8 @@
       "value": "Hands on labs and clear weekly goals.",
       "intent": "Fill What did you like most?",
       "success": true,
-      "t_start_s": 17.848072495999986,
-      "t_end_s": 25.100238597000043,
+      "t_start_s": 16.858856251928955,
+      "t_end_s": 23.58826571609825,
       "bbox": {
         "x": 320,
         "y": 732.1875,
@@ -232,8 +232,8 @@
       "value": "More time for project demos.",
       "intent": "Fill What should be improved?",
       "success": true,
-      "t_start_s": 25.10025665099988,
-      "t_end_s": 31.134227334999878,
+      "t_start_s": 23.588287625927478,
+      "t_end_s": 29.202561305835843,
       "bbox": {
         "x": 320,
         "y": 440.1875,
@@ -267,8 +267,8 @@
       ],
       "intent": "Select Practical labs, Project work for Most useful aspects",
       "success": true,
-      "t_start_s": 31.134254537999823,
-      "t_end_s": 34.74820301,
+      "t_start_s": 29.202638036105782,
+      "t_end_s": 32.45071705710143,
       "bbox": {
         "x": 320,
         "y": 588.1875,
@@ -299,8 +299,8 @@
       "value": "Yes",
       "intent": "Select Yes for Would you recommend this course?",
       "success": true,
-      "t_start_s": 34.74821897499987,
-      "t_end_s": 36.720119581999825,
+      "t_start_s": 32.45074032712728,
+      "t_end_s": 34.18534404505044,
       "bbox": {
         "x": 320,
         "y": 732.1875,
@@ -327,8 +327,8 @@
   ],
   "submit": {
     "success": true,
-    "t_start_s": 36.72012826399987,
-    "t_end_s": 70.65379723199999,
+    "t_start_s": 34.18537577521056,
+    "t_end_s": 67.94188804924488,
     "bbox": {
       "x": 428.5,
       "y": 502.1875,
@@ -346,7 +346,7 @@
     "screenshot_dir": null,
     "mcp": {
       "format": "mcp_computer_use_compatible",
-      "mode": "local",
+      "mode": "mcp_server",
       "validate_mcp_actions": true,
       "strict_mcp_validation": true,
       "event_count": 33,
@@ -369,7 +369,22 @@
         "browser_type",
         "browser_wait_for"
       ],
-      "mcp": null
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/.venv/bin/python3",
+          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/src/engine/mcp_trace_server.py"
+        ],
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ],
+        "tool_name": "record_action"
+      }
     }
   },
   "submitted": true,
@@ -387,7 +402,7 @@
       "failure_reason": null,
       "total_steps": 9,
       "trace_event_count": 33,
-      "video_path": "/home/bharat/Projects/thesis/data/forms/course_feedback/runs/run_0001/course_feedback_run_0001.webm"
+      "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/course_feedback/runs/run_0001/course_feedback_run_0001.webm"
     },
     "level_1_steps": [
       {
@@ -402,8 +417,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 1.8192105329999322,
-        "t_end_s": 7.667476035999925,
+        "t_start_s": 2.179959774017334,
+        "t_end_s": 7.5762369660660625,
         "trace_event_count": 3
       },
       {
@@ -418,8 +433,8 @@
         "target_selector": "#i14",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 7.667499214999907,
-        "t_end_s": 9.624502915999983,
+        "t_start_s": 7.576270126271993,
+        "t_end_s": 9.341976867988706,
         "trace_event_count": 2
       },
       {
@@ -434,8 +449,8 @@
         "target_selector": "#i28",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 9.624519279999959,
-        "t_end_s": 11.59124149399986,
+        "t_start_s": 9.342007197905332,
+        "t_end_s": 11.090695119928569,
         "trace_event_count": 3
       },
       {
@@ -450,8 +465,8 @@
         "target_selector": "#i18",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 11.591257253999856,
-        "t_end_s": 15.942954970999835,
+        "t_start_s": 11.090720950160176,
+        "t_end_s": 15.140843994915485,
         "trace_event_count": 5
       },
       {
@@ -466,8 +481,8 @@
         "target_selector": "#i29",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 15.942972033999922,
-        "t_end_s": 17.848056317999863,
+        "t_start_s": 15.140913404989988,
+        "t_end_s": 16.858830192126334,
         "trace_event_count": 3
       },
       {
@@ -482,8 +497,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 17.848072495999986,
-        "t_end_s": 25.100238597000043,
+        "t_start_s": 16.858856251928955,
+        "t_end_s": 23.58826571609825,
         "trace_event_count": 4
       },
       {
@@ -498,8 +513,8 @@
         "target_selector": null,
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 25.10025665099988,
-        "t_end_s": 31.134227334999878,
+        "t_start_s": 23.588287625927478,
+        "t_end_s": 29.202561305835843,
         "trace_event_count": 3
       },
       {
@@ -514,8 +529,8 @@
         "target_selector": "#i60",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 31.134254537999823,
-        "t_end_s": 34.74820301,
+        "t_start_s": 29.202638036105782,
+        "t_end_s": 32.45071705710143,
         "trace_event_count": 5
       },
       {
@@ -530,8 +545,8 @@
         "target_selector": "#i68",
         "metadata_status": null,
         "metadata_missing_keys": null,
-        "t_start_s": 34.74821897499987,
-        "t_end_s": 36.720119581999825,
+        "t_start_s": 32.45074032712728,
+        "t_end_s": 34.18534404505044,
         "trace_event_count": 3
       }
     ],

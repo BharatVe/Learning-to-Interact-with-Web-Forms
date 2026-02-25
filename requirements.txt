@@ -1,1 +1,5 @@
 playwright==1.44.0
+huggingface_hub>=0.34.0,<1.0.0
+transformers>=4.53.0
+accelerate>=1.8.0
+pillow>=10.0.0
