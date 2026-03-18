@@ -15,6 +15,7 @@ REQUIRED_PYTHON_PACKAGES = [
     "transformers",
     "accelerate",
     "PIL",
+    "torchvision",
 ]
 
 

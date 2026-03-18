@@ -148,6 +148,7 @@ models/
 
 # Generated run artifacts (keep sample tracked files as-is, ignore new ones)
 data/forms/**/runs/run_*/
+data/baseline_eval/
 
 # Cluster / batch logs and scratch files
 slurm-*.out

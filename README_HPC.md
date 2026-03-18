@@ -6,21 +6,21 @@ This file covers HPC-specific workflow details that are intentionally not expand
 
 Use this as the canonical git working copy:
 
-- `/home/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms`
+- `/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms`
 
 The path below is a symlinked storage location and should be treated as an upstream/source mirror, not the main place for edits:
 
-- `/home/bhve224e/workspaces/horse/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms`
+- `/home/h1/bhve224e/workspaces/horse/Learning-to-Interact-with-Web-Forms`
 
 If you need to check it:
 
 ```bash
-readlink -f /home/bhve224e/workspaces/horse/bhve224e-thesis-draft-20260224
+readlink -f /home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms
 ```
 
 ## Why Two Paths Exist
 
-- `horse/bhve224e-thesis-draft-20260224` is a symlink to `/data/horse/ws/...` (cluster storage).
+- `horse/Learning-to-Interact-with-Web-Forms` is the backing location in this environment.
 - `workspaces/Learning-to-Interact-with-Web-Forms` is your local writable project copy used for iterative development.
 
 To avoid overlap/confusion:
@@ -32,7 +32,7 @@ To avoid overlap/confusion:
 ## One-Time Setup (Canonical Directory)
 
 ```bash
-cd /home/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms
+cd /home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms
 bash scripts/hpc_setup.sh
 source .venv/bin/activate
 ```
@@ -105,12 +105,34 @@ bash scripts/run_baselines_headless.sh --form-id conf_interest --num-runs 3
 sbatch scripts/slurm_baseline.sbatch
 ```
 
+GPU-backed local baseline pilot:
+
+```bash
+sbatch scripts/slurm_local_baseline_eval.sbatch
+```
+
+Check queue and logs:
+
+```bash
+squeue -u "$USER"
+scontrol show job <job_id>
+tail -f logs/slurm/baseline-local-<job_id>.out
+```
+
+Important cluster notes:
+
+- Productive baseline runs should go through Slurm, not the login node. ZIH enforces a 600-second runtime limit on login nodes.
+- On `Capella`, request GPUs explicitly and stay within the documented CPU/memory-per-GPU limits.
+- `Capella` recommends workspaces on `/data/cat` for active ML work and Python environments.
+- If `sbatch` is rejected with a quota lock for `/home/$USER`, reduce home usage or move runtime-heavy assets (`.venv`, model caches, generated artifacts) into a workspace before retrying.
+
 ## Integrity Check Before Runs
 
 ```bash
 python3 scripts/verify_baseline_integrity.py
 python3 scripts/verify_runtime_setup.py
 python3 scripts/preflight_baseline_eval.py
+python3 scripts/eval_model_baseline_smoke.py --include-kinds text_llm,vlm --exclude-providers api_over_mcp
 ```
 
 Start a safe pilot run (preflight gate + smoke evaluation):

@@ -1,0 +1,205 @@
+#!/usr/bin/env python3
+import argparse
+import json
+import os
+import shutil
+import time
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List, Tuple
+
+
+def load_config(path: Path) -> Dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _trim(text: str, max_chars: int = 240) -> str:
+    if len(text) <= max_chars:
+        return text
+    return text[:max_chars].rstrip() + "..."
+
+
+def _parse_csv(raw: str) -> List[str]:
+    return [item.strip() for item in str(raw or "").split(",") if item.strip()]
+
+
+def eval_text_model(model_dir: Path, max_new_tokens: int) -> Tuple[bool, Dict[str, Any]]:
+    start = time.time()
+    try:
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+    except Exception as exc:
+        return False, {"error": f"transformers import failed: {exc}"}
+
+    try:
+        tok = AutoTokenizer.from_pretrained(str(model_dir), trust_remote_code=True)
+        model = AutoModelForCausalLM.from_pretrained(
+            str(model_dir),
+            trust_remote_code=True,
+            dtype="auto",
+            low_cpu_mem_usage=True,
+            device_map="cpu",
+        )
+        prompt = "Return exactly one word: OK"
+        inputs = tok(prompt, return_tensors="pt")
+        out = model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False)
+        text = tok.decode(out[0], skip_special_tokens=True)
+        return True, {
+            "latency_s": round(time.time() - start, 3),
+            "output_preview": _trim(text),
+        }
+    except Exception as exc:
+        return False, {"latency_s": round(time.time() - start, 3), "error": str(exc)}
+
+
+def eval_vlm_model_load(model_dir: Path) -> Tuple[bool, Dict[str, Any]]:
+    start = time.time()
+    try:
+        from transformers import AutoModelForVision2Seq, AutoProcessor
+    except Exception as exc:
+        return False, {"error": f"transformers import failed: {exc}"}
+    try:
+        _ = AutoProcessor.from_pretrained(str(model_dir), trust_remote_code=True)
+        _ = AutoModelForVision2Seq.from_pretrained(
+            str(model_dir),
+            trust_remote_code=True,
+            dtype="auto",
+            low_cpu_mem_usage=True,
+            device_map="cpu",
+        )
+        return True, {"latency_s": round(time.time() - start, 3), "detail": "load ok"}
+    except Exception as exc:
+        return False, {"latency_s": round(time.time() - start, 3), "error": str(exc)}
+
+
+def eval_api_over_mcp() -> Tuple[bool, Dict[str, Any]]:
+    node_tools = {name: bool(shutil.which(name)) for name in ["node", "npm", "npx"]}
+    api_keys = {
+        "OPENAI_API_KEY": bool(os.getenv("OPENAI_API_KEY")),
+        "ANTHROPIC_API_KEY": bool(os.getenv("ANTHROPIC_API_KEY")),
+    }
+    ok = all(node_tools.values()) and any(api_keys.values())
+    detail = {
+        "node_tools": node_tools,
+        "api_keys_present": api_keys,
+    }
+    if ok:
+        detail["detail"] = "runtime prerequisites detected"
+    else:
+        detail["detail"] = "missing prerequisites for api_over_mcp baseline"
+    return ok, detail
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Smoke-evaluate configured baseline models.")
+    parser.add_argument("--config", default="configs/baselines/minimal_models.json")
+    parser.add_argument("--models-root", default="models")
+    parser.add_argument("--output", default="logs/model_baseline_smoke.json")
+    parser.add_argument("--max-new-tokens", type=int, default=6)
+    parser.add_argument("--include-kinds", default="", help="Comma-separated model kinds to evaluate.")
+    parser.add_argument("--exclude-providers", default="", help="Comma-separated providers to defer.")
+    parser.add_argument("--strict", action="store_true", help="Return non-zero if any model check fails.")
+    args = parser.parse_args()
+
+    repo_root = Path(__file__).resolve().parents[1]
+    cfg_path = (repo_root / args.config).resolve()
+    models_root = (repo_root / args.models_root).resolve()
+    output_path = (repo_root / args.output).resolve()
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    cfg = load_config(cfg_path)
+    models = cfg.get("models", [])
+    if not isinstance(models, list) or not models:
+        print(f"[FAIL] no models configured in {cfg_path}")
+        return 1
+
+    include_kinds = set(_parse_csv(args.include_kinds))
+    exclude_providers = set(_parse_csv(args.exclude_providers))
+
+    report: Dict[str, Any] = {
+        "timestamp_utc": datetime.utcnow().isoformat() + "Z",
+        "config_path": str(cfg_path),
+        "models_root": str(models_root),
+        "results": [],
+        "summary": {"passed": 0, "failed": 0, "skipped": 0, "total": 0},
+    }
+
+    for model in models:
+        model_id = str(model.get("id", ""))
+        kind = str(model.get("kind", ""))
+        provider = str(model.get("provider", ""))
+        model_dir = models_root / model_id
+
+        entry: Dict[str, Any] = {
+            "id": model_id,
+            "kind": kind,
+            "provider": provider,
+            "status": "skipped",
+            "detail": {},
+        }
+
+        if include_kinds and kind not in include_kinds:
+            entry["status"] = "deferred"
+            entry["detail"] = {"reason": f"kind '{kind}' not selected by --include-kinds"}
+            report["results"].append(entry)
+            continue
+        if provider in exclude_providers:
+            entry["status"] = "deferred"
+            entry["detail"] = {"reason": f"provider '{provider}' excluded by --exclude-providers"}
+            report["results"].append(entry)
+            continue
+
+        if provider == "local_hf":
+            if not model_dir.exists():
+                entry["status"] = "failed"
+                entry["detail"] = {"error": f"missing model directory: {model_dir}"}
+            elif kind == "text_llm":
+                ok, detail = eval_text_model(model_dir, args.max_new_tokens)
+                entry["status"] = "passed" if ok else "failed"
+                entry["detail"] = detail
+            elif kind == "vlm":
+                ok, detail = eval_vlm_model_load(model_dir)
+                entry["status"] = "passed" if ok else "failed"
+                entry["detail"] = detail
+            else:
+                entry["status"] = "skipped"
+                entry["detail"] = {"reason": f"unsupported local_hf kind '{kind}'"}
+        elif provider == "api_over_mcp":
+            ok, detail = eval_api_over_mcp()
+            entry["status"] = "passed" if ok else "failed"
+            entry["detail"] = detail
+        else:
+            entry["status"] = "skipped"
+            entry["detail"] = {"reason": f"unsupported provider '{provider}'"}
+
+        report["results"].append(entry)
+
+    for row in report["results"]:
+        report["summary"]["total"] += 1
+        if row["status"] == "passed":
+            report["summary"]["passed"] += 1
+        elif row["status"] == "failed":
+            report["summary"]["failed"] += 1
+        elif row["status"] == "deferred":
+            report["summary"]["skipped"] += 1
+        else:
+            report["summary"]["skipped"] += 1
+
+    output_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
+    print(f"[INFO] wrote model smoke report: {output_path}")
+    print(
+        "[INFO] summary: "
+        f"passed={report['summary']['passed']} "
+        f"failed={report['summary']['failed']} "
+        f"skipped={report['summary']['skipped']} "
+        f"total={report['summary']['total']}"
+    )
+    for row in report["results"]:
+        print(f"[{row['status'].upper()}] {row['id']} ({row['provider']}/{row['kind']})")
+
+    if args.strict and report["summary"]["failed"] > 0:
+        return 2
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
