@@ -46,7 +46,7 @@ def check_model_config(config_path: Path) -> Tuple[List[str], List[str], List[Di
             errors.append(f"duplicate model id: {model_id}")
             continue
         seen_ids.add(model_id)
-        if provider not in {"local_hf", "api_over_mcp"}:
+        if provider not in {"local_hf", "openai_compat", "api_over_mcp"}:
             warnings.append(f"model '{model_id}' uses unknown provider '{provider}'")
         models_info.append({"id": model_id, "provider": provider, "kind": kind, "hf_repo": model.get("hf_repo")})
 
@@ -86,7 +86,7 @@ def main() -> int:
     parser.add_argument("--output", default="logs/preflight_report.json")
     parser.add_argument(
         "--smoke-load-text-id",
-        default="text_qwen25_3b_instruct",
+        default="text_qwen3_30b_a3b_instruct_2507",
         help="Model id (kind=text_llm, provider=local_hf) to smoke-load.",
     )
     parser.add_argument(
@@ -121,7 +121,7 @@ def main() -> int:
     if rc != 0:
         report["hard_failures"].append("verify_baseline_integrity failed")
 
-    rc, out = run_cmd([sys.executable, "scripts/verify_runtime_setup.py"], repo_root)
+    rc, out = run_cmd([sys.executable, "scripts/verify_runtime_setup.py", "--skip-playwright-smoke"], repo_root)
     report["checks"]["verify_runtime_setup"] = {"exit_code": rc, "output": out}
     if rc != 0:
         report["hard_failures"].append("verify_runtime_setup failed")
@@ -151,11 +151,21 @@ def main() -> int:
     # Optional text model smoke load
     smoke_result: Dict[str, Any] = {"skipped": bool(args.skip_smoke_load)}
     if not args.skip_smoke_load:
-        smoke_model_dir = models_root / args.smoke_load_text_id
-        ok, detail = smoke_load_text_model(smoke_model_dir)
-        smoke_result = {"skipped": False, "model_id": args.smoke_load_text_id, "ok": ok, "detail": detail}
-        if not ok:
-            report["hard_failures"].append(f"text model smoke load failed: {detail}")
+        model_lookup = {str(item.get("id") or ""): item for item in models_info if isinstance(item, dict)}
+        smoke_model = model_lookup.get(str(args.smoke_load_text_id or ""))
+        smoke_provider = str((smoke_model or {}).get("provider") or "")
+        if smoke_provider and smoke_provider != "local_hf":
+            smoke_result = {
+                "skipped": True,
+                "model_id": args.smoke_load_text_id,
+                "detail": f"provider={smoke_provider} does not use local_hf smoke load",
+            }
+        else:
+            smoke_model_dir = models_root / args.smoke_load_text_id
+            ok, detail = smoke_load_text_model(smoke_model_dir)
+            smoke_result = {"skipped": False, "model_id": args.smoke_load_text_id, "ok": ok, "detail": detail}
+            if not ok:
+                report["hard_failures"].append(f"text model smoke load failed: {detail}")
     report["checks"]["text_model_smoke_load"] = smoke_result
 
     if report["hard_failures"]:

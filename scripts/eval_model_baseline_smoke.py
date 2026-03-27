@@ -2,8 +2,10 @@
 import argparse
 import json
 import os
+import socket
 import shutil
 import time
+import urllib.parse
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
@@ -35,7 +37,7 @@ def eval_text_model(model_dir: Path, max_new_tokens: int) -> Tuple[bool, Dict[st
         model = AutoModelForCausalLM.from_pretrained(
             str(model_dir),
             trust_remote_code=True,
-            dtype="auto",
+            torch_dtype="auto",
             low_cpu_mem_usage=True,
             device_map="cpu",
         )
@@ -62,7 +64,7 @@ def eval_vlm_model_load(model_dir: Path) -> Tuple[bool, Dict[str, Any]]:
         _ = AutoModelForVision2Seq.from_pretrained(
             str(model_dir),
             trust_remote_code=True,
-            dtype="auto",
+            torch_dtype="auto",
             low_cpu_mem_usage=True,
             device_map="cpu",
         )
@@ -86,6 +88,44 @@ def eval_api_over_mcp() -> Tuple[bool, Dict[str, Any]]:
         detail["detail"] = "runtime prerequisites detected"
     else:
         detail["detail"] = "missing prerequisites for api_over_mcp baseline"
+    return ok, detail
+
+
+def eval_openai_compat(model: Dict[str, Any]) -> Tuple[bool, Dict[str, Any]]:
+    def endpoint_reachable(base_url: str, timeout_s: float = 3.0) -> Tuple[bool, str]:
+        raw = str(base_url or "").strip()
+        if not raw:
+            return False, "missing_base_url"
+        parsed = urllib.parse.urlparse(raw if "://" in raw else f"http://{raw}")
+        host = parsed.hostname
+        if not host:
+            return False, "invalid_base_url_host"
+        port = parsed.port or (443 if parsed.scheme == "https" else 80)
+        try:
+            with socket.create_connection((host, int(port)), timeout=float(timeout_s)):
+                return True, f"tcp_ok:{host}:{port}"
+        except Exception as exc:
+            return False, f"tcp_unreachable:{host}:{port}:{exc}"
+
+    base_url = str(os.getenv("OPENAI_BASE_URL") or model.get("openai_base_url") or "").strip()
+    model_name = str(os.getenv("OPENAI_MODEL") or model.get("openai_model") or "").strip()
+    api_key_present = bool(os.getenv("OPENAI_API_KEY") or model.get("openai_api_key"))
+    endpoint_ok, endpoint_detail = endpoint_reachable(base_url)
+    ok = bool(base_url and model_name and endpoint_ok)
+    detail = {
+        "base_url_configured": bool(base_url),
+        "model_configured": bool(model_name),
+        "api_key_present": api_key_present,
+        "endpoint_reachable": endpoint_ok,
+        "endpoint_detail": endpoint_detail,
+        "detail": "openai_compat prerequisites detected"
+        if ok
+        else "missing OPENAI_BASE_URL/OPENAI_MODEL or endpoint unreachable",
+    }
+    if base_url:
+        detail["base_url"] = base_url
+    if model_name:
+        detail["model"] = model_name
     return ok, detail
 
 
@@ -165,6 +205,10 @@ def main() -> int:
                 entry["detail"] = {"reason": f"unsupported local_hf kind '{kind}'"}
         elif provider == "api_over_mcp":
             ok, detail = eval_api_over_mcp()
+            entry["status"] = "passed" if ok else "failed"
+            entry["detail"] = detail
+        elif provider == "openai_compat":
+            ok, detail = eval_openai_compat(model)
             entry["status"] = "passed" if ok else "failed"
             entry["detail"] = detail
         else:

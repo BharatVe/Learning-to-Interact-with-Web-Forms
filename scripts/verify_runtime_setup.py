@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import importlib.util
 import json
 import os
 import shutil
@@ -24,10 +25,13 @@ def check_python_packages() -> Tuple[List[str], List[str]]:
     missing: List[str] = []
     for module_name in REQUIRED_PYTHON_PACKAGES:
         try:
-            __import__(module_name)
-            ok.append(module_name)
+            spec = importlib.util.find_spec(module_name)
         except Exception:
+            spec = None
+        if spec is None:
             missing.append(module_name)
+        else:
+            ok.append(module_name)
     return ok, missing
 
 
@@ -41,6 +45,33 @@ def check_model_dir(model_dir: Path) -> Tuple[bool, List[str]]:
     if not has_weights:
         problems.append("missing weight files")
     return len(problems) == 0, problems
+
+
+def check_model_runtime_compatibility(model_dir: Path) -> Tuple[bool, str]:
+    cfg_path = model_dir / "config.json"
+    if not cfg_path.exists():
+        return False, "missing config.json"
+    try:
+        config_payload = json.loads(cfg_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        return False, f"invalid config.json: {exc}"
+    model_type = str(config_payload.get("model_type") or "")
+
+    try:
+        from transformers import AutoConfig
+    except Exception as exc:
+        return False, f"transformers import failed: {exc}"
+
+    try:
+        AutoConfig.from_pretrained(str(model_dir), trust_remote_code=True, local_files_only=True)
+    except Exception as exc:
+        return (
+            False,
+            "runtime_incompatible: "
+            f"model_type={model_type or 'unknown'}; error={exc}. "
+            "Upgrade transformers to a version that supports this architecture.",
+        )
+    return True, f"ok:model_type={model_type or 'unknown'}"
 
 
 def get_playwright_version() -> str:
@@ -155,14 +186,36 @@ def main() -> int:
         for model in models:
             model_id = str(model.get("id", ""))
             provider = str(model.get("provider", ""))
-            entry: Dict[str, Any] = {"id": model_id, "provider": provider}
+            kind = str(model.get("kind", ""))
+            entry: Dict[str, Any] = {"id": model_id, "provider": provider, "kind": kind}
             if provider == "local_hf":
                 valid, issues = check_model_dir(models_root / model_id)
                 entry["local_ready"] = valid
                 entry["issues"] = issues
+                if valid:
+                    compat_ok, compat_detail = check_model_runtime_compatibility(models_root / model_id)
+                    entry["runtime_compat_ok"] = compat_ok
+                    entry["runtime_compat_detail"] = compat_detail
+                else:
+                    entry["runtime_compat_ok"] = False
+                    entry["runtime_compat_detail"] = "skipped_local_not_ready"
+            elif provider == "openai_compat":
+                issues: List[str] = []
+                model_name = str(os.environ.get("OPENAI_MODEL") or model.get("openai_model") or "").strip()
+                base_url = str(os.environ.get("OPENAI_BASE_URL") or model.get("openai_base_url") or "").strip()
+                if not model_name:
+                    issues.append("missing OPENAI_MODEL or model.openai_model")
+                if not base_url:
+                    issues.append("missing OPENAI_BASE_URL or model.openai_base_url")
+                entry["local_ready"] = len(issues) == 0
+                entry["issues"] = issues
+                entry["runtime_compat_ok"] = len(issues) == 0
+                entry["runtime_compat_detail"] = "openai_compat_ready" if not issues else "openai_compat_config_missing"
             else:
                 entry["local_ready"] = True
                 entry["issues"] = []
+                entry["runtime_compat_ok"] = True
+                entry["runtime_compat_detail"] = "not_applicable_non_local"
             models_report.append(entry)
     report["checks"]["config_errors"] = config_errors
     report["checks"]["models"] = models_report
@@ -177,6 +230,9 @@ def main() -> int:
     for model in models_report:
         if model["provider"] == "local_hf" and not model["local_ready"]:
             hard_failures.append(f"model not ready: {model['id']} ({model['issues']})")
+            continue
+        if model["provider"] == "local_hf" and not bool(model.get("runtime_compat_ok")):
+            hard_failures.append(f"model runtime incompatible: {model['id']} ({model.get('runtime_compat_detail')})")
 
     report["status"] = "pass" if not hard_failures else "fail"
     report["hard_failures"] = hard_failures

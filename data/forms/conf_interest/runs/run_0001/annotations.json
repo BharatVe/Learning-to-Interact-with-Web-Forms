@@ -8,11 +8,11 @@
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": 1,
-  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/125.0.6422.26 Safari/537.36",
-  "locale": "en-US",
-  "timezone": "Europe/Berlin",
-  "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0001/conf_interest_run_0001.webm",
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
+  "video_path": "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0001/conf_interest_run_0001.webm",
   "run_params": {
     "headless": true,
     "slow_mo": 200,
@@ -22,15 +22,32 @@
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
     "mouse_overlay": true,
-    "interaction_mode": "local",
+    "interaction_mode": "mcp_server",
     "trace_mode": "mcp",
     "mcp_server_cmd": "bundled_default",
     "mcp_tool_name": "record_action",
     "mcp_timeout_ms": 5000,
-    "browser_mcp_cmd": "default_playwright_mcp",
+    "browser_mcp_cmd": [
+      "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/.node-tools/node_modules/.bin/playwright-mcp",
+      "--browser",
+      "chromium",
+      "--isolated",
+      "--host",
+      "127.0.0.1",
+      "--output-dir",
+      "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0001",
+      "--save-video",
+      "1280x720",
+      "--viewport-size",
+      "1280,720",
+      "--headless"
+    ],
     "browser_mcp_timeout_ms": 120000,
     "mcp_verify_trace": true,
-    "mcp_strict": true
+    "mcp_strict": true,
+    "browser_mcp_env": {
+      "PLAYWRIGHT_BROWSERS_PATH": "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/.playwright-browsers-node"
+    }
   },
   "actions": [
     {
@@ -40,29 +57,30 @@
       "value": "Jordan Rivera",
       "intent": "Fill Full Name",
       "success": true,
-      "t_start_s": 3.6926438990049064,
-      "t_end_s": 7.90908774221316,
-      "bbox": {
-        "x": 320,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 306.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 52.78786695099552,
+      "t_end_s": 57.04998215800151,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -72,29 +90,30 @@
       "value": "jordan.rivera@example.com",
       "intent": "Fill Preferred contact email",
       "success": true,
-      "t_start_s": 7.909117741975933,
-      "t_end_s": 13.142903252039105,
-      "bbox": {
-        "x": 320,
-        "y": 377.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 456.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 57.05020733800484,
+      "t_end_s": 62.67362627098919,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -104,29 +123,30 @@
       "value": "Graduate researcher focused on distributed training and edge inference.",
       "intent": "Fill Brief bio",
       "success": true,
-      "t_start_s": 13.14293397217989,
-      "t_end_s": 24.03149966429919,
-      "bbox": {
-        "x": 320,
-        "y": 527.1875,
-        "width": 640,
-        "height": 160
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 630.1875,
-        "width": 590,
-        "height": 24
-      },
+      "t_start_s": 62.67386973099201,
+      "t_end_s": 72.97811845800607,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
-      "target_name": "Meine Antwort",
+      "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -136,29 +156,30 @@
       "value": "PhD student",
       "intent": "Select PhD student for Primary role",
       "success": true,
-      "t_start_s": 24.031532634049654,
-      "t_end_s": 25.76991580799222,
-      "bbox": {
-        "x": 320,
-        "y": 699.1875,
-        "width": 640,
-        "height": 250
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 625.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 72.97829977801302,
+      "t_end_s": 75.47652251800173,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "PhD student",
-      "target_selector": "#i27",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -171,29 +192,30 @@
       ],
       "intent": "Select AI/ML, Systems for Topics you're interested in",
       "success": true,
-      "t_start_s": 25.76994922803715,
-      "t_end_s": 28.998472552280873,
-      "bbox": {
-        "x": 320,
-        "y": 732.1875,
-        "width": 640,
-        "height": 258
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 400.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 75.47671557799913,
+      "t_end_s": 78.09481687599327,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "checkbox",
-      "target_name": "Systems",
-      "target_selector": "#i45",
-      "scroll_y": 229,
-      "required": true,
-      "required_attr": false,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -203,29 +225,30 @@
       "value": "2025-06-15",
       "intent": "Fill Preferred meeting date",
       "success": true,
-      "t_start_s": 28.998500362038612,
-      "t_end_s": 31.16098289610818,
-      "bbox": {
-        "x": 320,
-        "y": 501.1875,
-        "width": 640,
-        "height": 153
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 595.1875,
-        "width": 127,
-        "height": 24
-      },
+      "t_start_s": 78.09512251600972,
+      "t_end_s": 79.49905011898954,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 730,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -235,47 +258,52 @@
       "value": "10:30",
       "intent": "Fill Preferred meeting time",
       "success": true,
-      "t_start_s": 31.161022586282343,
-      "t_end_s": 35.708523666951805,
-      "bbox": {
-        "x": 320,
-        "y": 666.1875,
-        "width": 640,
-        "height": 164
-      },
-      "target_bbox": {
-        "x": 374,
-        "y": 659.1875,
-        "width": 17,
-        "height": 24
-      },
+      "t_start_s": 79.49919396900805,
+      "t_end_s": 82.59617441799492,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "combobox",
-      "target_name": "Minute",
+      "target_role": null,
+      "target_name": null,
       "target_selector": null,
-      "scroll_y": 730,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     }
   ],
   "submit": {
     "success": true,
-    "t_start_s": 35.70854275720194,
-    "t_end_s": 69.49457493191585,
-    "bbox": {
-      "x": 320,
-      "y": 502.1875,
-      "width": 98.5,
-      "height": 36
-    },
+    "success_inferred": true,
+    "t_start_s": 82.59637224901235,
+    "t_end_s": 116.51096658801544,
+    "bbox": null,
     "submit_clicked": true,
-    "confirmation_method": "url",
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/formResponse",
+    "confirmation_method": "mcp_inferred_no_structured_result",
+    "final_url": null,
     "pre_screenshot": null,
-    "post_screenshot": null
+    "post_screenshot": null,
+    "metadata_status": "missing",
+    "metadata_missing_keys": [
+      "success",
+      "submit_clicked",
+      "confirmation_method",
+      "final_url",
+      "bbox"
+    ]
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
@@ -285,13 +313,13 @@
       "mode": "mcp_server",
       "validate_mcp_actions": true,
       "strict_mcp_validation": true,
-      "event_count": 30,
+      "event_count": 21,
       "validation_error_count": 0,
       "events_by_name": {
-        "browser_mouse_click_xy": 10,
-        "browser_mouse_move_xy": 10,
-        "browser_mouse_wheel": 4,
-        "browser_type": 6
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_wait_for": 9
       },
       "supported_actions": [
         "browser_close",
@@ -308,8 +336,8 @@
       "mcp": {
         "mode": "mcp_server",
         "command": [
-          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/.venv/bin/python3",
-          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/src/engine/mcp_trace_server.py"
+          "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/.venv/bin/python",
+          "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/src/engine/mcp_trace_server.py"
         ],
         "protocol_version": "2024-11-05",
         "server_info": {
@@ -337,8 +365,8 @@
       "submitted": true,
       "failure_reason": null,
       "total_steps": 7,
-      "trace_event_count": 30,
-      "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0001/conf_interest_run_0001.webm"
+      "trace_event_count": 21,
+      "video_path": "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0001/conf_interest_run_0001.webm"
     },
     "level_1_steps": [
       {
@@ -348,14 +376,23 @@
         "intent": "Fill Full Name",
         "success": true,
         "error": null,
-        "required": true,
+        "required": null,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 3.6926438990049064,
-        "t_end_s": 7.90908774221316,
-        "trace_event_count": 3
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 52.78786695099552,
+        "t_end_s": 57.04998215800151,
+        "trace_event_count": 2
       },
       {
         "step": 1,
@@ -364,14 +401,23 @@
         "intent": "Fill Preferred contact email",
         "success": true,
         "error": null,
-        "required": true,
+        "required": null,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 7.909117741975933,
-        "t_end_s": 13.142903252039105,
-        "trace_event_count": 3
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 57.05020733800484,
+        "t_end_s": 62.67362627098919,
+        "trace_event_count": 2
       },
       {
         "step": 2,
@@ -380,14 +426,23 @@
         "intent": "Fill Brief bio",
         "success": true,
         "error": null,
-        "required": false,
+        "required": null,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 13.14293397217989,
-        "t_end_s": 24.03149966429919,
-        "trace_event_count": 3
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 62.67386973099201,
+        "t_end_s": 72.97811845800607,
+        "trace_event_count": 2
       },
       {
         "step": 3,
@@ -396,14 +451,23 @@
         "intent": "Select PhD student for Primary role",
         "success": true,
         "error": null,
-        "required": true,
-        "target_role": "radio",
-        "target_selector": "#i27",
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 24.031532634049654,
-        "t_end_s": 25.76991580799222,
-        "trace_event_count": 3
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 72.97829977801302,
+        "t_end_s": 75.47652251800173,
+        "trace_event_count": 2
       },
       {
         "step": 4,
@@ -412,14 +476,23 @@
         "intent": "Select AI/ML, Systems for Topics you're interested in",
         "success": true,
         "error": null,
-        "required": true,
-        "target_role": "checkbox",
-        "target_selector": "#i45",
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 25.76994922803715,
-        "t_end_s": 28.998472552280873,
-        "trace_event_count": 5
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 75.47671557799913,
+        "t_end_s": 78.09481687599327,
+        "trace_event_count": 2
       },
       {
         "step": 5,
@@ -428,14 +501,23 @@
         "intent": "Fill Preferred meeting date",
         "success": true,
         "error": null,
-        "required": false,
+        "required": null,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 28.998500362038612,
-        "t_end_s": 31.16098289610818,
-        "trace_event_count": 3
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 78.09512251600972,
+        "t_end_s": 79.49905011898954,
+        "trace_event_count": 2
       },
       {
         "step": 6,
@@ -444,39 +526,48 @@
         "intent": "Fill Preferred meeting time",
         "success": true,
         "error": null,
-        "required": false,
-        "target_role": "combobox",
+        "required": null,
+        "target_role": null,
         "target_selector": null,
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 31.161022586282343,
-        "t_end_s": 35.708523666951805,
-        "trace_event_count": 7
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 79.49919396900805,
+        "t_end_s": 82.59617441799492,
+        "trace_event_count": 2
       }
     ],
     "level_2_trace": {
       "trace_path": "tool_trace.jsonl",
-      "event_count": 30,
+      "event_count": 21,
       "events_by_name": {
-        "browser_mouse_click_xy": 10,
-        "browser_mouse_move_xy": 10,
-        "browser_mouse_wheel": 4,
-        "browser_type": 6
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_wait_for": 9
       },
       "step_event_counts": {
-        "0": 3,
-        "1": 3,
-        "2": 3,
-        "3": 3,
-        "4": 5,
-        "5": 3,
-        "6": 7
+        "0": 2,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2
       },
       "trace_actions": [
-        "browser_mouse_click_xy",
-        "browser_mouse_move_xy",
-        "browser_mouse_wheel",
-        "browser_type"
+        "browser_close",
+        "browser_navigate",
+        "browser_run_code",
+        "browser_wait_for"
       ]
     }
   }

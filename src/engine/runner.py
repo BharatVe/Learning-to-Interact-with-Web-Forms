@@ -45,6 +45,7 @@ def _default_mcp_server_command() -> List[str]:
 def _default_browser_mcp_command(args: argparse.Namespace, run_dir: Path) -> List[str]:
     python_playwright_executable = _detect_python_playwright_chromium_executable()
     mcp_bin = shutil.which("playwright-mcp")
+    timeout_ms = max(15000, int(getattr(args, "browser_mcp_timeout_ms", DEFAULT_BROWSER_MCP_TIMEOUT_MS)))
     command = (
         [mcp_bin]
         if mcp_bin
@@ -61,6 +62,12 @@ def _default_browser_mcp_command(args: argparse.Namespace, run_dir: Path) -> Lis
         f"{args.viewport_width}x{args.viewport_height}",
         "--viewport-size",
         f"{args.viewport_width},{args.viewport_height}",
+        "--snapshot-mode",
+        "none",
+        "--timeout-action",
+        str(timeout_ms),
+        "--timeout-navigation",
+        str(max(60000, timeout_ms)),
     ]
     if python_playwright_executable:
         command.extend(["--executable-path", python_playwright_executable])
@@ -72,6 +79,9 @@ def _default_browser_mcp_command(args: argparse.Namespace, run_dir: Path) -> Lis
 
 
 def _default_playwright_browsers_path() -> str:
+    env_value = os.environ.get("PLAYWRIGHT_BROWSERS_PATH")
+    if env_value:
+        return env_value
     return str(Path.home() / ".cache" / "ms-playwright")
 
 
@@ -93,7 +103,10 @@ def _detect_python_playwright_chromium_executable() -> Optional[str]:
             path = p.chromium.executable_path
     except Exception:
         return None
-    return str(path) if path else None
+    if not path:
+        return None
+    path_str = str(path)
+    return path_str if Path(path_str).exists() else None
 
 
 def _has_any_chromium_cache() -> bool:

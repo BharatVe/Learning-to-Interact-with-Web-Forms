@@ -10,7 +10,17 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 
 REQUIRED_MODEL_KEYS = {"id", "kind", "provider"}
-OPTIONAL_PROVIDER_KEYS = {"hf_repo"}
+OPTIONAL_PROVIDER_KEYS = {
+    "hf_repo",
+    "track",
+    "requires_gpu",
+    "openai_model",
+    "openai_base_url",
+    "openai_api_key",
+    "anthropic_model",
+    "is_fallback",
+    "fallback_for",
+}
 MANDATORY_MODEL_FILES = {"config.json"}
 
 

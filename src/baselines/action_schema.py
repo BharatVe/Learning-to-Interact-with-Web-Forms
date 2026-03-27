@@ -71,7 +71,7 @@ def validate_action(action: Dict[str, Any]) -> Tuple[Dict[str, Any], List[str]]:
             warnings.append(f"unknown_top_level_key:{key}")
 
     for key in list(normalized["target"].keys()):
-        if key not in {"label", "text", "selector_hint"}:
+        if key not in {"question_id", "label", "text", "selector_hint"}:
             warnings.append(f"unknown_target_key:{key}")
 
     if "reason" in normalized and normalized["reason"] is not None and not isinstance(normalized["reason"], str):

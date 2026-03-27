@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "description": "Local-HF baseline matrix for Qwen models on Slurm GPU nodes.",
+  "models": [
+    {
+      "id": "text_qwen3_30b_a3b_instruct_2507",
+      "kind": "text_llm",
+      "provider": "local_hf",
+      "hf_repo": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "track": "mediated",
+      "requires_gpu": true,
+      "notes": "Primary text baseline."
+    },
+    {
+      "id": "vlm_qwen3_vl_30b_a3b_instruct",
+      "kind": "vlm",
+      "provider": "local_hf",
+      "hf_repo": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+      "track": "mediated",
+      "requires_gpu": true,
+      "notes": "Primary VLM baseline."
+    },
+    {
+      "id": "vlm_qwen25_vl_7b_instruct",
+      "kind": "vlm",
+      "provider": "local_hf",
+      "hf_repo": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "track": "mediated",
+      "requires_gpu": true,
+      "is_fallback": true,
+      "fallback_for": "vlm_qwen3_vl_30b_a3b_instruct",
+      "notes": "Fallback VLM when 30B VLM fails with timeout/OOM/startup errors."
+    }
+  ]
+}

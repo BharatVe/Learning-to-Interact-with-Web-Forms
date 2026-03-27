@@ -8,11 +8,11 @@
     "width": 1280,
     "height": 720
   },
-  "device_pixel_ratio": 1,
-  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/125.0.6422.26 Safari/537.36",
-  "locale": "en-US",
-  "timezone": "Europe/Berlin",
-  "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/workshop_signup/runs/run_0001/workshop_signup_run_0001.webm",
+  "device_pixel_ratio": null,
+  "user_agent": null,
+  "locale": null,
+  "timezone": null,
+  "video_path": "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/data/forms/workshop_signup/runs/run_0001/workshop_signup_run_0001.webm",
   "run_params": {
     "headless": true,
     "slow_mo": 200,
@@ -22,15 +22,32 @@
     "post_submit_delay_seconds": 0.0,
     "screenshots": false,
     "mouse_overlay": true,
-    "interaction_mode": "local",
+    "interaction_mode": "mcp_server",
     "trace_mode": "mcp",
     "mcp_server_cmd": "bundled_default",
     "mcp_tool_name": "record_action",
     "mcp_timeout_ms": 5000,
-    "browser_mcp_cmd": "default_playwright_mcp",
+    "browser_mcp_cmd": [
+      "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/.node-tools/node_modules/.bin/playwright-mcp",
+      "--browser",
+      "chromium",
+      "--isolated",
+      "--host",
+      "127.0.0.1",
+      "--output-dir",
+      "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/data/forms/workshop_signup/runs/run_0001",
+      "--save-video",
+      "1280x720",
+      "--viewport-size",
+      "1280,720",
+      "--headless"
+    ],
     "browser_mcp_timeout_ms": 120000,
     "mcp_verify_trace": true,
-    "mcp_strict": true
+    "mcp_strict": true,
+    "browser_mcp_env": {
+      "PLAYWRIGHT_BROWSERS_PATH": "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/.playwright-browsers-node"
+    }
   },
   "actions": [
     {
@@ -40,29 +57,30 @@
       "value": "Lena Ortiz",
       "intent": "Fill Full name",
       "success": true,
-      "t_start_s": 2.3991752909496427,
-      "t_end_s": 6.043989825062454,
-      "bbox": {
-        "x": 320,
-        "y": 227.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 306.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 5.98628749200725,
+      "t_end_s": 9.757017138006631,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -72,29 +90,30 @@
       "value": "Stanford University",
       "intent": "Fill University or organization",
       "success": true,
-      "t_start_s": 6.044022785034031,
-      "t_end_s": 10.552612991072237,
-      "bbox": {
-        "x": 320,
-        "y": 377.1875,
-        "width": 640,
-        "height": 138
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 456.1875,
-        "width": 295,
-        "height": 24
-      },
+      "t_start_s": 9.75860291000572,
+      "t_end_s": 13.570561380998697,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -104,29 +123,30 @@
       "value": "Intro to Machine Learning",
       "intent": "Select Intro to Machine Learning for Which workshop track are you registering for?",
       "success": true,
-      "t_start_s": 10.552643741015345,
-      "t_end_s": 12.294076330959797,
-      "bbox": {
-        "x": 320,
-        "y": 527.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 585.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 13.57083399099065,
+      "t_end_s": 16.058381373994052,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Intro to Machine Learning",
-      "target_selector": "#i16",
-      "scroll_y": 0,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -136,29 +156,30 @@
       "value": "Beginner",
       "intent": "Select Beginner for Experience level",
       "success": true,
-      "t_start_s": 12.294100320897996,
-      "t_end_s": 14.052140171639621,
-      "bbox": {
-        "x": 320,
-        "y": 732.1875,
-        "width": 640,
-        "height": 210
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 330.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 16.05867671497981,
+      "t_end_s": 17.51907302599284,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Beginner",
-      "target_selector": "#i30",
-      "scroll_y": 17,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -170,29 +191,30 @@
       ],
       "intent": "Select None for Dietary restrictions",
       "success": true,
-      "t_start_s": 14.052178082056344,
-      "t_end_s": 15.807600545696914,
-      "bbox": {
-        "x": 320,
-        "y": 477.1875,
-        "width": 640,
-        "height": 294
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 631.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 17.519200635986635,
+      "t_end_s": 19.98921140099992,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "checkbox",
-      "target_name": "None",
-      "target_selector": "#i54",
-      "scroll_y": 494,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -202,29 +224,30 @@
       "value": "2025-07-05",
       "intent": "Fill Preferred session date",
       "success": true,
-      "t_start_s": 15.807627545669675,
-      "t_end_s": 17.971796637866646,
-      "bbox": {
-        "x": 320,
-        "y": 732.1875,
-        "width": 640,
-        "height": 153
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 378.1875,
-        "width": 127,
-        "height": 24
-      },
+      "t_start_s": 19.990788244002033,
+      "t_end_s": 21.39641417900566,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
       "target_role": null,
       "target_name": null,
       "target_selector": null,
-      "scroll_y": 545,
-      "required": false,
-      "required_attr": false,
-      "required_marker": false,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     },
     {
@@ -234,47 +257,52 @@
       "value": "Yes",
       "intent": "Select Yes for May we email you updates?",
       "success": true,
-      "t_start_s": 17.97184442775324,
-      "t_end_s": 19.738030289765447,
-      "bbox": {
-        "x": 320,
-        "y": 449.1875,
-        "width": 640,
-        "height": 170
-      },
-      "target_bbox": {
-        "x": 345,
-        "y": 524.1875,
-        "width": 20,
-        "height": 20
-      },
+      "t_start_s": 21.396634598990204,
+      "t_end_s": 22.853298675006954,
+      "bbox": null,
+      "target_bbox": null,
       "pre_screenshot": null,
       "post_screenshot": null,
-      "target_role": "radio",
-      "target_name": "Yes",
-      "target_selector": "#i71",
-      "scroll_y": 993,
-      "required": true,
-      "required_attr": true,
-      "required_marker": true,
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": null,
+      "required_attr": null,
+      "required_marker": null,
+      "metadata_status": "missing",
+      "metadata_missing_keys": [
+        "bbox",
+        "target_bbox",
+        "target_role",
+        "target_name",
+        "target_selector",
+        "required",
+        "required_attr",
+        "required_marker"
+      ],
       "error": null
     }
   ],
   "submit": {
     "success": true,
-    "t_start_s": 19.73805043986067,
-    "t_end_s": 53.95247756782919,
-    "bbox": {
-      "x": 320,
-      "y": 631.1875,
-      "width": 98.5,
-      "height": 36
-    },
+    "success_inferred": true,
+    "t_start_s": 22.85354188500787,
+    "t_end_s": 56.507983746996615,
+    "bbox": null,
     "submit_clicked": true,
-    "confirmation_method": "url",
-    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/formResponse",
+    "confirmation_method": "mcp_inferred_no_structured_result",
+    "final_url": null,
     "pre_screenshot": null,
-    "post_screenshot": null
+    "post_screenshot": null,
+    "metadata_status": "missing",
+    "metadata_missing_keys": [
+      "success",
+      "submit_clicked",
+      "confirmation_method",
+      "final_url",
+      "bbox"
+    ]
   },
   "trace": {
     "tool_trace_path": "tool_trace.jsonl",
@@ -284,13 +312,13 @@
       "mode": "mcp_server",
       "validate_mcp_actions": true,
       "strict_mcp_validation": true,
-      "event_count": 23,
+      "event_count": 21,
       "validation_error_count": 0,
       "events_by_name": {
-        "browser_mouse_click_xy": 8,
-        "browser_mouse_move_xy": 8,
-        "browser_mouse_wheel": 4,
-        "browser_type": 3
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_wait_for": 9
       },
       "supported_actions": [
         "browser_close",
@@ -307,8 +335,8 @@
       "mcp": {
         "mode": "mcp_server",
         "command": [
-          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/.venv/bin/python3",
-          "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/src/engine/mcp_trace_server.py"
+          "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/.venv/bin/python",
+          "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/src/engine/mcp_trace_server.py"
         ],
         "protocol_version": "2024-11-05",
         "server_info": {
@@ -336,8 +364,8 @@
       "submitted": true,
       "failure_reason": null,
       "total_steps": 7,
-      "trace_event_count": 23,
-      "video_path": "/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms/data/forms/workshop_signup/runs/run_0001/workshop_signup_run_0001.webm"
+      "trace_event_count": 21,
+      "video_path": "/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms/data/forms/workshop_signup/runs/run_0001/workshop_signup_run_0001.webm"
     },
     "level_1_steps": [
       {
@@ -347,14 +375,23 @@
         "intent": "Fill Full name",
         "success": true,
         "error": null,
-        "required": true,
+        "required": null,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 2.3991752909496427,
-        "t_end_s": 6.043989825062454,
-        "trace_event_count": 3
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 5.98628749200725,
+        "t_end_s": 9.757017138006631,
+        "trace_event_count": 2
       },
       {
         "step": 1,
@@ -363,14 +400,23 @@
         "intent": "Fill University or organization",
         "success": true,
         "error": null,
-        "required": true,
+        "required": null,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 6.044022785034031,
-        "t_end_s": 10.552612991072237,
-        "trace_event_count": 3
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 9.75860291000572,
+        "t_end_s": 13.570561380998697,
+        "trace_event_count": 2
       },
       {
         "step": 2,
@@ -379,14 +425,23 @@
         "intent": "Select Intro to Machine Learning for Which workshop track are you registering for?",
         "success": true,
         "error": null,
-        "required": true,
-        "target_role": "radio",
-        "target_selector": "#i16",
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 10.552643741015345,
-        "t_end_s": 12.294076330959797,
-        "trace_event_count": 3
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 13.57083399099065,
+        "t_end_s": 16.058381373994052,
+        "trace_event_count": 2
       },
       {
         "step": 3,
@@ -395,14 +450,23 @@
         "intent": "Select Beginner for Experience level",
         "success": true,
         "error": null,
-        "required": true,
-        "target_role": "radio",
-        "target_selector": "#i30",
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 12.294100320897996,
-        "t_end_s": 14.052140171639621,
-        "trace_event_count": 3
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 16.05867671497981,
+        "t_end_s": 17.51907302599284,
+        "trace_event_count": 2
       },
       {
         "step": 4,
@@ -411,14 +475,23 @@
         "intent": "Select None for Dietary restrictions",
         "success": true,
         "error": null,
-        "required": false,
-        "target_role": "checkbox",
-        "target_selector": "#i54",
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 14.052178082056344,
-        "t_end_s": 15.807600545696914,
-        "trace_event_count": 3
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 17.519200635986635,
+        "t_end_s": 19.98921140099992,
+        "trace_event_count": 2
       },
       {
         "step": 5,
@@ -427,14 +500,23 @@
         "intent": "Fill Preferred session date",
         "success": true,
         "error": null,
-        "required": false,
+        "required": null,
         "target_role": null,
         "target_selector": null,
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 15.807627545669675,
-        "t_end_s": 17.971796637866646,
-        "trace_event_count": 4
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 19.990788244002033,
+        "t_end_s": 21.39641417900566,
+        "trace_event_count": 2
       },
       {
         "step": 6,
@@ -443,39 +525,48 @@
         "intent": "Select Yes for May we email you updates?",
         "success": true,
         "error": null,
-        "required": true,
-        "target_role": "radio",
-        "target_selector": "#i71",
-        "metadata_status": null,
-        "metadata_missing_keys": null,
-        "t_start_s": 17.97184442775324,
-        "t_end_s": 19.738030289765447,
+        "required": null,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "missing",
+        "metadata_missing_keys": [
+          "bbox",
+          "target_bbox",
+          "target_role",
+          "target_name",
+          "target_selector",
+          "required",
+          "required_attr",
+          "required_marker"
+        ],
+        "t_start_s": 21.396634598990204,
+        "t_end_s": 22.853298675006954,
         "trace_event_count": 2
       }
     ],
     "level_2_trace": {
       "trace_path": "tool_trace.jsonl",
-      "event_count": 23,
+      "event_count": 21,
       "events_by_name": {
-        "browser_mouse_click_xy": 8,
-        "browser_mouse_move_xy": 8,
-        "browser_mouse_wheel": 4,
-        "browser_type": 3
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_wait_for": 9
       },
       "step_event_counts": {
-        "0": 3,
-        "1": 3,
-        "2": 3,
-        "3": 3,
-        "4": 3,
-        "5": 4,
+        "0": 2,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2,
         "6": 2
       },
       "trace_actions": [
-        "browser_mouse_click_xy",
-        "browser_mouse_move_xy",
-        "browser_mouse_wheel",
-        "browser_type"
+        "browser_close",
+        "browser_navigate",
+        "browser_run_code",
+        "browser_wait_for"
       ]
     }
   }

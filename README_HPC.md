@@ -8,28 +8,17 @@ Use this as the canonical git working copy:
 
 - `/home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms`
 
-The path below is a symlinked storage location and should be treated as an upstream/source mirror, not the main place for edits:
+The backing workspace resolves to the Horse storage path used in batch jobs:
 
-- `/home/h1/bhve224e/workspaces/horse/Learning-to-Interact-with-Web-Forms`
+- `/data/horse/ws/bhve224e-thesis-draft-20260224/Learning-to-Interact-with-Web-Forms`
 
-If you need to check it:
+Check the resolved path if needed:
 
 ```bash
 readlink -f /home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms
 ```
 
-## Why Two Paths Exist
-
-- `horse/Learning-to-Interact-with-Web-Forms` is the backing location in this environment.
-- `workspaces/Learning-to-Interact-with-Web-Forms` is your local writable project copy used for iterative development.
-
-To avoid overlap/confusion:
-
-1. Run git commands only in the canonical working directory.
-2. Keep scripts, configs, and docs changes in the canonical directory.
-3. Treat generated artifacts and model weights as local runtime assets (ignored by git).
-
-## One-Time Setup (Canonical Directory)
+## One-Time Setup
 
 ```bash
 cd /home/h1/bhve224e/workspaces/Learning-to-Interact-with-Web-Forms
@@ -37,124 +26,169 @@ bash scripts/hpc_setup.sh
 source .venv/bin/activate
 ```
 
-## Install Minimal Baseline Models
+## Model Installation
 
-Model set is defined in:
+Configured baseline models live in:
 
 - `configs/baselines/minimal_models.json`
 
-Install:
+Install or verify them with:
 
 ```bash
 source .venv/bin/activate
 python3 scripts/install_minimal_models.py
+python3 scripts/verify_runtime_setup.py --skip-playwright-smoke
 ```
 
-Expected local storage:
+Expected local model directories:
 
 - `models/text_qwen25_3b_instruct`
 - `models/vlm_qwen25_vl_3b_instruct`
 
-Model installer safeguards:
+## MCP Runtime Requirements
 
-- validates config schema before download
-- supports swapping models via config without crashing unrelated installs
-- skips valid existing models (`--skip-if-valid`)
-- continues on per-model failure by default (use `--strict` to fail fast)
-- writes run logs to `logs/model_install_*.log`
+The MCP-backed baseline path requires Node tooling and the Playwright MCP package.
 
-Useful commands:
+This project uses:
+
+- `module load release/25.06 GCCcore/13.3.0 nodejs/20.13.1`
+- local package cache under `.node-tools/`
+- Node Playwright browser cache under `.playwright-browsers-node/`
+
+The baseline scripts export:
+
+- `PATH=$ROOT_DIR/.node-tools/node_modules/.bin:$PATH`
+- `PLAYWRIGHT_BROWSERS_PATH=$ROOT_DIR/.playwright-browsers-node`
+
+## Reference Runs vs Model Baselines
+
+Reference/scripted generation runs remain immutable under:
+
+- `data/forms/<form_id>/runs/run_XXXX/`
+
+Model baseline evaluation artifacts are written under:
+
+- `data/model_baselines/<experiment_id>/<model_id>/<form_id>/<answer_run_id>/<trial_id>/`
+
+Each canonical baseline trial now contains:
+
+- `summary.json`
+- `annotations.json`
+- `model_io.jsonl`
+- `tool_trace.jsonl`
+- `answers_instance.json`
+- `<form_id>_<trial_id>.webm`
+- `observations/step_0000.png`, `step_0001.png`, ...
+- `final.png` or `error.png` when available
+
+Each experiment also gets:
+
+- `data/model_baselines/<experiment_id>/manifest.jsonl`
+
+The runner never uses `--overwrite-existing`. Repeated trials create new `trial_id` directories.
+
+## Pilot Baseline Matrix
+
+Current v1 pilot matrix:
+
+- `text_qwen25_3b_instruct` × `conf_interest` × `run_0001`
+- `text_qwen25_3b_instruct` × `event_rsvp` × `run_0001`
+- `vlm_qwen25_vl_3b_instruct` × `conf_interest` × `run_0001`
+- `vlm_qwen25_vl_3b_instruct` × `event_rsvp` × `run_0001`
+
+Protocol defaults:
+
+- execution backend: `mcp_server`
+- inputs before interaction: form URL + answer entries (`label`, `widget_type`, `value`)
+- no full form spec
+- no upfront DOM dump
+- per-step observations: screenshot + compact page text + last action result
+- one strict JSON action per turn
+- `max_steps=20`
+- `timeout_s=900`
+- invalid action budget: `0` (`0` means unlimited until `max_steps`)
+- default `max_new_tokens=160` for baseline action generation
+- partial success metrics:
+  - `attempted_correctness`
+  - `verified_correctness` as headline metric
+
+## Baseline Commands
+
+Run the MCP-backed model baseline matrix directly:
 
 ```bash
-# show what would happen, no download
-python3 scripts/install_minimal_models.py --dry-run
-
-# install only selected ids
-python3 scripts/install_minimal_models.py --include-ids text_qwen25_3b_instruct
-
-# exclude one model id
-python3 scripts/install_minimal_models.py --exclude-ids vlm_qwen25_vl_3b_instruct
+bash scripts/run_model_baseline_matrix.sh
 ```
 
-## MCP/Computer-Use Runtime Requirements
-
-For `--interaction-mode mcp_server`, install Node tooling on the execution environment:
-
-- `node`
-- `npm`
-- `npx`
-- `@playwright/mcp` (global or via `npx`)
-
-Without Node, local Playwright mode still works (`--interaction-mode local`).
-
-## Baseline Execution (Headless)
+Useful overrides:
 
 ```bash
-bash scripts/run_baselines_headless.sh --smoke-test-all-forms --overwrite-existing
+EXPERIMENT_ID=baseline_mcp_trial2 bash scripts/run_model_baseline_matrix.sh
+MAX_STEPS=25 TIMEOUT_S=1200 bash scripts/run_model_baseline_matrix.sh
+RUN_INDEX=1 MAX_NEW_TOKENS=160 INVALID_ACTION_BUDGET=0 bash scripts/run_model_baseline_matrix.sh
 ```
 
-Or single form:
+Submit the same matrix through Slurm:
 
 ```bash
-bash scripts/run_baselines_headless.sh --form-id conf_interest --num-runs 3
+sbatch scripts/slurm_baseline_mcp.sbatch
 ```
 
-## Slurm Example
-
-```bash
-sbatch scripts/slurm_baseline.sbatch
-```
-
-GPU-backed local baseline pilot:
-
-```bash
-sbatch scripts/slurm_local_baseline_eval.sbatch
-```
-
-Check queue and logs:
+Check status and logs:
 
 ```bash
 squeue -u "$USER"
-scontrol show job <job_id>
-tail -f logs/slurm/baseline-local-<job_id>.out
+sacct -j <job_id> --format=JobID,JobName,Partition,State,Elapsed,ExitCode -P
+tail -f logs/slurm/model-baseline-mcp-<job_id>.out
 ```
 
-Important cluster notes:
-
-- Productive baseline runs should go through Slurm, not the login node. ZIH enforces a 600-second runtime limit on login nodes.
-- On `Capella`, request GPUs explicitly and stay within the documented CPU/memory-per-GPU limits.
-- `Capella` recommends workspaces on `/data/cat` for active ML work and Python environments.
-- If `sbatch` is rejected with a quota lock for `/home/$USER`, reduce home usage or move runtime-heavy assets (`.venv`, model caches, generated artifacts) into a workspace before retrying.
-
-## Integrity Check Before Runs
+## Validation Before Submission
 
 ```bash
 python3 scripts/verify_baseline_integrity.py
-python3 scripts/verify_runtime_setup.py
-python3 scripts/preflight_baseline_eval.py
-python3 scripts/eval_model_baseline_smoke.py --include-kinds text_llm,vlm --exclude-providers api_over_mcp
+python3 scripts/verify_runtime_setup.py --skip-playwright-smoke
+python3 scripts/eval_model_baseline_smoke.py --include-kinds text_llm,vlm --exclude-providers api_over_mcp --strict
+python3 -m py_compile src/baselines/run_baseline_eval.py src/engine/form_engine.py src/engine/mcp_browser_engine.py
+bash -n scripts/run_model_baseline_matrix.sh scripts/slurm_baseline_mcp.sbatch
 ```
 
-Start a safe pilot run (preflight gate + smoke evaluation):
+## Workspace Cleanup
+
+Legacy baseline outputs are no longer part of the active workflow:
+
+- `data/baseline_eval/`
+- mirrored `logs/baseline_eval/`
+
+Preview cleanup:
 
 ```bash
-bash scripts/start_baseline_pilot.sh
+bash scripts/cleanup_legacy_baseline_outputs.sh
 ```
 
-If you only want fast checks without model load generation:
+Apply cleanup:
 
 ```bash
-python3 scripts/preflight_baseline_eval.py --skip-smoke-load
+bash scripts/cleanup_legacy_baseline_outputs.sh --apply
 ```
 
 ## Storage and Git Hygiene
 
-Ignored runtime-heavy directories/files:
+Ignored runtime-heavy paths include:
 
 - `.venv/`
-- `.playwright-browsers/`
 - `models/`
-- generated run artifacts under `data/forms/**/runs/`
-- slurm logs and scratch outputs
+- `.playwright-browsers/`
+- `.playwright-browsers-node/`
+- `.node-tools/`
+- `logs/`
+- `data/model_baselines/`
+- `data/baseline_eval/`
 
-This prevents accidental upload of large or irrelevant files.
+Reference run artifacts under `data/forms/**/runs/` are also ignored to avoid committing generated files.
+
+## Cluster Notes
+
+- Run actual baseline evaluations through Slurm, not on the login node.
+- TU Dresden enforces short runtime limits on login nodes.
+- Request GPUs explicitly for VLM evaluation.
+- The matrix wrapper continues across failed form/model trials and reports aggregate pass/fail counts at the end.

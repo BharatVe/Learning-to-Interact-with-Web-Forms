@@ -148,9 +148,18 @@ class FormEngine:
         if not self.take_screenshots:
             return None
         self.observations_dir.mkdir(parents=True, exist_ok=True)
-        abs_path = self.observations_dir / name
+        abs_path = (self.observations_dir / name).resolve()
         self.page.screenshot(path=str(abs_path))
-        return f"observations/{name}"
+        return str(abs_path)
+
+    def get_page_text(self) -> str:
+        try:
+            return self.page.locator("body").inner_text(timeout=min(self.timeout_ms, 3000))
+        except Exception:
+            return ""
+
+    def take_observation_screenshot(self, filename: str) -> Optional[str]:
+        return self._screenshot(filename)
 
     def _log_scroll_if_needed(
         self,
@@ -748,6 +757,159 @@ class FormEngine:
             self._hover(am_pm_target, step_idx)
             self._click(am_pm_target, step_idx)
 
+    def _selected_option_labels(self, container, role: str) -> List[str]:
+        labels: List[str] = []
+        options = container.locator(f"[role='{role}']")
+        count = options.count()
+        for idx in range(count):
+            option = options.nth(idx)
+            if not self._is_option_selected(option):
+                continue
+            try:
+                label = option.get_attribute("aria-label") or option.inner_text(timeout=1000) or ""
+            except Exception:
+                label = ""
+            label_text = re.sub(r"\s+", " ", str(label or "")).strip()
+            if label_text and label_text not in labels:
+                labels.append(label_text)
+        return labels
+
+    def _read_date_value(self, container) -> Optional[str]:
+        native = container.locator("input[type='date']")
+        if native.count() > 0:
+            value = self._read_input_value(native.first).strip()
+            return value or None
+
+        text_inputs = container.locator("input[type='text']")
+        if text_inputs.count() == 1:
+            raw = self._read_input_value(text_inputs.first).strip()
+            if not raw:
+                return None
+            try:
+                return self._normalize_date(raw).strftime("%Y-%m-%d")
+            except Exception:
+                return raw
+
+        year_input = self._find_input_by_keywords(container, ["year", "yyyy", "yy"])
+        month_input = self._find_input_by_keywords(container, ["month", "mm"])
+        day_input = self._find_input_by_keywords(container, ["day", "dd"])
+        ordered = self._ordered_inputs(container)
+        if (not year_input or not month_input or not day_input) and len(ordered) >= 3:
+            year_input, month_input, day_input = ordered[0], ordered[1], ordered[2]
+        if not year_input or not month_input or not day_input:
+            return None
+        year = self._read_input_value(year_input).strip()
+        month = self._read_input_value(month_input).strip()
+        day = self._read_input_value(day_input).strip()
+        if not year or not month or not day:
+            return None
+        if year.isdigit() and month.isdigit() and day.isdigit():
+            return f"{int(year):04d}-{int(month):02d}-{int(day):02d}"
+        return f"{year}-{month}-{day}"
+
+    def _read_time_value(self, container) -> Optional[str]:
+        native = container.locator("input[type='time']")
+        if native.count() > 0:
+            value = self._read_input_value(native.first).strip()
+            return value or None
+
+        hour_input = self._find_input_by_keywords(container, ["hour", "hh", "h"])
+        minute_input = self._find_input_by_keywords(container, ["minute", "mm", "m"])
+        ordered = self._ordered_inputs(container)
+        if (not hour_input or not minute_input) and len(ordered) >= 2:
+            hour_input, minute_input = ordered[0], ordered[1]
+        if not hour_input or not minute_input:
+            return None
+        hour = self._read_input_value(hour_input).strip()
+        minute = self._read_input_value(minute_input).strip()
+        if not hour or not minute:
+            return None
+
+        marker_state = None
+        for marker_text in ["AM", "PM"]:
+            probe = container.get_by_text(marker_text, exact=False)
+            if probe.count() == 0:
+                continue
+            option = probe.first
+            try:
+                state = option.evaluate(
+                    """(el) => {
+                      const aria = el.getAttribute('aria-checked') || el.getAttribute('aria-pressed') || el.getAttribute('aria-selected');
+                      if (aria !== null) return aria === 'true';
+                      const cls = (el.getAttribute('class') || '').toLowerCase();
+                      return cls.includes('checked') || cls.includes('selected') || cls.includes('active');
+                    }"""
+                )
+            except Exception:
+                state = False
+            if state:
+                marker_state = marker_text
+                break
+
+        if marker_state and hour.isdigit() and minute.isdigit():
+            hour_num = int(hour) % 12
+            if marker_state == "PM":
+                hour_num += 12
+            return f"{hour_num:02d}:{int(minute):02d}"
+        if hour.isdigit() and minute.isdigit():
+            return f"{int(hour):02d}:{int(minute):02d}"
+        return f"{hour}:{minute}"
+
+    def verify_entry(self, entry: Dict[str, Any]) -> Dict[str, Any]:
+        label = str(entry.get("label") or "")
+        widget = str(entry.get("widget_type") or "")
+        result: Dict[str, Any] = {
+            "label": label,
+            "widget_type": widget,
+            "verified": False,
+            "actual_value": None,
+            "detail": None,
+        }
+        if not label or not widget:
+            result["detail"] = "missing_label_or_widget"
+            return result
+
+        container = self._find_question_container(label)
+        if container is None:
+            result["detail"] = "container_not_visible"
+            return result
+
+        try:
+            if widget in {"short_text", "paragraph_text"}:
+                field = container.locator(
+                    "textarea, input[type='text'], input[type='email'], input[type='url'], input[type='number']"
+                ).first
+                if field.count() == 0:
+                    raise RuntimeError("input_not_found")
+                result["actual_value"] = self._read_input_value(field).strip()
+                result["verified"] = True
+            elif widget == "single_choice":
+                labels = self._selected_option_labels(container, "radio")
+                result["actual_value"] = labels[0] if labels else None
+                result["verified"] = bool(labels)
+                if not labels:
+                    result["detail"] = "no_selected_option"
+            elif widget == "multi_choice":
+                labels = self._selected_option_labels(container, "checkbox")
+                result["actual_value"] = labels
+                result["verified"] = True
+            elif widget == "date":
+                result["actual_value"] = self._read_date_value(container)
+                result["verified"] = result["actual_value"] is not None
+                if result["actual_value"] is None:
+                    result["detail"] = "date_value_unavailable"
+            elif widget == "time":
+                result["actual_value"] = self._read_time_value(container)
+                result["verified"] = result["actual_value"] is not None
+                if result["actual_value"] is None:
+                    result["detail"] = "time_value_unavailable"
+            else:
+                result["detail"] = "unsupported_widget"
+        except Exception as exc:
+            result["detail"] = f"{type(exc).__name__}: {exc}"
+            result["verified"] = False
+        return result
+
     def fill_step(self, entry: Dict[str, Any], step_idx: int) -> Tuple[Dict[str, Any], Optional[str]]:
         label = entry.get("label", "")
         widget = entry.get("widget_type", "")
@@ -807,15 +969,17 @@ class FormEngine:
     def _find_submit_button_with_pagination(self, max_page_hops: int = 4):
         button = self._find_button_by_name(re.compile(r"submit", re.I))
         if button is not None:
-            return button
+            return button, 0
+        pagination_hops = 0
         for _ in range(max_page_hops):
             moved = self._click_next_page(None)
             if not moved:
                 break
+            pagination_hops += 1
             button = self._find_button_by_name(re.compile(r"submit", re.I))
             if button is not None:
-                return button
-        return None
+                return button, pagination_hops
+        return None, pagination_hops
 
     def submit(self) -> Tuple[Dict[str, Any], Optional[str]]:
         error: Optional[str] = None
@@ -827,17 +991,27 @@ class FormEngine:
             "submit_clicked": False,
             "confirmation_method": None,
             "final_url": None,
+            "pagination_hops": 0,
+            "submit_label": None,
             "pre_screenshot": self._screenshot("submit_pre.png"),
             "post_screenshot": None,
         }
 
         try:
-            button = self._find_submit_button_with_pagination()
+            button, pagination_hops = self._find_submit_button_with_pagination()
+            info["pagination_hops"] = pagination_hops
             if button is None:
                 raise RuntimeError("submit_button_not_found")
 
             self._scroll_into_view(button, None)
             info["bbox"] = self._bbox(button)
+            try:
+                info["submit_label"] = (button.inner_text(timeout=1000) or "").strip() or button.get_attribute("aria-label")
+            except Exception:
+                try:
+                    info["submit_label"] = button.get_attribute("aria-label")
+                except Exception:
+                    info["submit_label"] = None
             self._hover(button, None)
             self._click(button, None)
             info["submit_clicked"] = True
@@ -848,9 +1022,9 @@ class FormEngine:
                 "Thanks for submitting",
                 "Your response has been recorded",
             ]
-            for text in confirmation_texts:
+            for text_value in confirmation_texts:
                 try:
-                    self.page.get_by_text(text, exact=False).wait_for(state="visible", timeout=8000)
+                    self.page.get_by_text(text_value, exact=False).wait_for(state="visible", timeout=8000)
                     info["success"] = True
                     info["confirmation_method"] = "text"
                     info["final_url"] = self.page.url
@@ -863,6 +1037,36 @@ class FormEngine:
                     self.page.wait_for_url(re.compile(r"formResponse", re.IGNORECASE), timeout=8000)
                     info["success"] = True
                     info["confirmation_method"] = "url"
+                except Exception:
+                    pass
+
+            if not info["success"]:
+                try:
+                    body_text = (self.page.locator("body").inner_text(timeout=2000) or "").lower()
+                    indicators = [
+                        "response recorded",
+                        "response has been recorded",
+                        "your response has been recorded",
+                        "response submitted",
+                        "submit another response",
+                        "edit your response",
+                        "thanks for submitting",
+                        "thank you for submitting",
+                        "thank you",
+                    ]
+                    if any(token in body_text for token in indicators):
+                        info["success"] = True
+                        info["confirmation_method"] = "heuristic_text"
+                except Exception:
+                    pass
+
+            if not info["success"]:
+                try:
+                    submit_still_visible = self._find_button_by_name(re.compile(r"submit", re.I))
+                    question_count = self.page.locator("div[role='listitem']").count()
+                    if submit_still_visible is None and question_count == 0:
+                        info["success"] = True
+                        info["confirmation_method"] = "heuristic_post_submit_state"
                 except Exception:
                     pass
 

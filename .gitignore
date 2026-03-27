@@ -144,7 +144,10 @@ data/forms/**/runs/**/*.webm
 
 # Playwright/browser cache and local model storage
 .playwright-browsers/
+.playwright-browsers-node/
 models/
+.node-tools/
+data/model_baselines/
 
 # Generated run artifacts (keep sample tracked files as-is, ignore new ones)
 data/forms/**/runs/run_*/
@@ -156,5 +159,9 @@ slurm-*.err
 *.out
 *.err
 logs/
+logs/slurm/
+logs/baseline_eval/
+logs/*.json
+logs/*.log
 tmp/
 tmp_*/
