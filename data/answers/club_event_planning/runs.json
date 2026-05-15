@@ -1,0 +1,1023 @@
+{
+  "form_id": "club_event_planning",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Organizer name",
+          "widget_type": "short_text",
+          "value": "Jordan Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organizer email",
+          "widget_type": "short_text",
+          "value": "jordan.ortiz.1@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event title",
+          "widget_type": "short_text",
+          "value": "delta-01-39",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event type",
+          "widget_type": "dropdown",
+          "value": "Social event",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred event date",
+          "widget_type": "date",
+          "value": "2025-06-14",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Expected number of attendees",
+          "widget_type": "short_text",
+          "value": "3",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Venue needs",
+          "widget_type": "multi_choice",
+          "value": [
+            "Microphone",
+            "Tables",
+            "No special needs"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Promotion channels",
+          "widget_type": "multi_choice",
+          "value": [
+            "Instagram",
+            "Email",
+            "Posters"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Short event description",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Organizer name",
+          "widget_type": "short_text",
+          "value": "Priya Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organizer email",
+          "widget_type": "short_text",
+          "value": "priya.singh.2@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event title",
+          "widget_type": "short_text",
+          "value": "alpha-02-99",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event type",
+          "widget_type": "dropdown",
+          "value": "Guest talk",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred event date",
+          "widget_type": "date",
+          "value": "2025-06-02",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Expected number of attendees",
+          "widget_type": "short_text",
+          "value": "4",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Venue needs",
+          "widget_type": "multi_choice",
+          "value": [
+            "Open space"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Promotion channels",
+          "widget_type": "multi_choice",
+          "value": [
+            "Posters"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Short event description",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Short event description; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Organizer name",
+          "widget_type": "short_text",
+          "value": "Casey Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organizer email",
+          "widget_type": "short_text",
+          "value": "casey.chen.3@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event title",
+          "widget_type": "short_text",
+          "value": "delta-03-78",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event type",
+          "widget_type": "dropdown",
+          "value": "Social event",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred event date",
+          "widget_type": "date",
+          "value": "2025-06-30",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Expected number of attendees",
+          "widget_type": "short_text",
+          "value": "3",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Venue needs",
+          "widget_type": "multi_choice",
+          "value": [
+            "Projector",
+            "Whiteboard",
+            "No special needs"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Promotion channels",
+          "widget_type": "multi_choice",
+          "value": [
+            "Instagram",
+            "Email",
+            "Posters"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Short event description",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Organizer name",
+          "widget_type": "short_text",
+          "value": "Taylor Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organizer email",
+          "widget_type": "short_text",
+          "value": "taylor.khan.4@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event title",
+          "widget_type": "short_text",
+          "value": "omega-04-00",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event type",
+          "widget_type": "dropdown",
+          "value": "Social event",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred event date",
+          "widget_type": "date",
+          "value": "2025-11-26",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Expected number of attendees",
+          "widget_type": "short_text",
+          "value": "1",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Venue needs",
+          "widget_type": "multi_choice",
+          "value": [
+            "Open space"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Promotion channels",
+          "widget_type": "multi_choice",
+          "value": [
+            "Website"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Short event description",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Short event description; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Organizer name",
+          "widget_type": "short_text",
+          "value": "Taylor Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organizer email",
+          "widget_type": "short_text",
+          "value": "taylor.rivera.5@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event title",
+          "widget_type": "short_text",
+          "value": "beta-05-41",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event type",
+          "widget_type": "dropdown",
+          "value": "Social event",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred event date",
+          "widget_type": "date",
+          "value": "2025-08-31",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Expected number of attendees",
+          "widget_type": "short_text",
+          "value": "1",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Venue needs",
+          "widget_type": "multi_choice",
+          "value": [
+            "Projector"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Promotion channels",
+          "widget_type": "multi_choice",
+          "value": [
+            "Email"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Short event description",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Short event description; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Organizer name",
+          "widget_type": "short_text",
+          "value": "Lena Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organizer email",
+          "widget_type": "short_text",
+          "value": "lena.nguyen.6@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event title",
+          "widget_type": "short_text",
+          "value": "beta-06-86",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event type",
+          "widget_type": "dropdown",
+          "value": "Competition",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred event date",
+          "widget_type": "date",
+          "value": "2025-06-08",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Expected number of attendees",
+          "widget_type": "short_text",
+          "value": "4",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Venue needs",
+          "widget_type": "multi_choice",
+          "value": [
+            "Projector",
+            "Microphone"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Promotion channels",
+          "widget_type": "multi_choice",
+          "value": [
+            "Email"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Short event description",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Organizer name",
+          "widget_type": "short_text",
+          "value": "Taylor Meyer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organizer email",
+          "widget_type": "short_text",
+          "value": "taylor.meyer.7@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event title",
+          "widget_type": "short_text",
+          "value": "gamma-07-61",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event type",
+          "widget_type": "dropdown",
+          "value": "Study session",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred event date",
+          "widget_type": "date",
+          "value": "2025-06-18",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Expected number of attendees",
+          "widget_type": "short_text",
+          "value": "4",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Venue needs",
+          "widget_type": "multi_choice",
+          "value": [
+            "Projector"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Promotion channels",
+          "widget_type": "multi_choice",
+          "value": [
+            "Instagram",
+            "Posters",
+            "Class announcements"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Short event description",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Organizer name",
+          "widget_type": "short_text",
+          "value": "Taylor Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organizer email",
+          "widget_type": "short_text",
+          "value": "taylor.chen.8@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event title",
+          "widget_type": "short_text",
+          "value": "omega-08-27",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event type",
+          "widget_type": "dropdown",
+          "value": "Workshop",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred event date",
+          "widget_type": "date",
+          "value": "2025-11-05",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Expected number of attendees",
+          "widget_type": "short_text",
+          "value": "3",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Venue needs",
+          "widget_type": "multi_choice",
+          "value": [
+            "Projector"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Promotion channels",
+          "widget_type": "multi_choice",
+          "value": [
+            "Email",
+            "Website",
+            "Class announcements"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Short event description",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Organizer name",
+          "widget_type": "short_text",
+          "value": "Lena Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organizer email",
+          "widget_type": "short_text",
+          "value": "lena.singh.9@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event title",
+          "widget_type": "short_text",
+          "value": "beta-09-24",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event type",
+          "widget_type": "dropdown",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred event date",
+          "widget_type": "date",
+          "value": "2025-10-17",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Expected number of attendees",
+          "widget_type": "short_text",
+          "value": "1",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Venue needs",
+          "widget_type": "multi_choice",
+          "value": [
+            "Whiteboard",
+            "Open space",
+            "Tables"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Promotion channels",
+          "widget_type": "multi_choice",
+          "value": [
+            "Email"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Short event description",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Organizer name",
+          "widget_type": "short_text",
+          "value": "Lena Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organizer email",
+          "widget_type": "short_text",
+          "value": "lena.singh.10@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event title",
+          "widget_type": "short_text",
+          "value": "gamma-10-97",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Event type",
+          "widget_type": "dropdown",
+          "value": "Guest talk",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred event date",
+          "widget_type": "date",
+          "value": "2025-10-26",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Expected number of attendees",
+          "widget_type": "short_text",
+          "value": "2",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Venue needs",
+          "widget_type": "multi_choice",
+          "value": [
+            "Microphone",
+            "No special needs"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Promotion channels",
+          "widget_type": "multi_choice",
+          "value": [
+            "Website",
+            "Class announcements"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Short event description",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Short event description; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    }
+  ]
+}

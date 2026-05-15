@@ -1,0 +1,81 @@
+form_id,run_id,q_title,q_type,answer
+project_update,run_0001,Name,SHORT_TEXT,Noah Patel
+project_update,run_0001,Project name,SHORT_TEXT,Noah Patel
+project_update,run_0001,Reporting week start date,DATE,2025-09-11
+project_update,run_0001,Current project status,SINGLE_CHOICE,On track
+project_update,run_0001,Tasks completed this week,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Tasks completed this week; run 1)
+project_update,run_0001,Blockers or risks,MULTI_CHOICE,Technical issue;Waiting for feedback
+project_update,run_0001,Next planned task,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Next planned task; run 1)
+project_update,run_0001,Preferred sync time,TIME,13:00
+project_update,run_0002,Name,SHORT_TEXT,Taylor Bauer
+project_update,run_0002,Project name,SHORT_TEXT,Taylor Bauer
+project_update,run_0002,Reporting week start date,DATE,2025-10-15
+project_update,run_0002,Current project status,SINGLE_CHOICE,Blocked
+project_update,run_0002,Tasks completed this week,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Tasks completed this week; run 2)
+project_update,run_0002,Blockers or risks,MULTI_CHOICE,Waiting for feedback
+project_update,run_0002,Next planned task,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Next planned task; run 2)
+project_update,run_0002,Preferred sync time,TIME,15:30
+project_update,run_0003,Name,SHORT_TEXT,Sam Bauer
+project_update,run_0003,Project name,SHORT_TEXT,Sam Bauer
+project_update,run_0003,Reporting week start date,DATE,2025-08-07
+project_update,run_0003,Current project status,SINGLE_CHOICE,On track
+project_update,run_0003,Tasks completed this week,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Tasks completed this week; run 3)
+project_update,run_0003,Blockers or risks,MULTI_CHOICE,Missing data;Scheduling conflict
+project_update,run_0003,Next planned task,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Next planned task; run 3)"
+project_update,run_0003,Preferred sync time,TIME,16:45
+project_update,run_0004,Name,SHORT_TEXT,Taylor Singh
+project_update,run_0004,Project name,SHORT_TEXT,Taylor Singh
+project_update,run_0004,Reporting week start date,DATE,2025-10-30
+project_update,run_0004,Current project status,SINGLE_CHOICE,On track
+project_update,run_0004,Tasks completed this week,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Tasks completed this week; run 4)
+project_update,run_0004,Blockers or risks,MULTI_CHOICE,Technical issue;Waiting for feedback;Scheduling conflict
+project_update,run_0004,Next planned task,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Next planned task; run 4)"
+project_update,run_0004,Preferred sync time,TIME,14:15
+project_update,run_0005,Name,SHORT_TEXT,Priya Khan
+project_update,run_0005,Project name,SHORT_TEXT,Priya Khan
+project_update,run_0005,Reporting week start date,DATE,2025-09-04
+project_update,run_0005,Current project status,SINGLE_CHOICE,Slightly delayed
+project_update,run_0005,Tasks completed this week,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Tasks completed this week; run 5)"
+project_update,run_0005,Blockers or risks,MULTI_CHOICE,Waiting for feedback;Scheduling conflict
+project_update,run_0005,Next planned task,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Next planned task; run 5)
+project_update,run_0005,Preferred sync time,TIME,08:30
+project_update,run_0006,Name,SHORT_TEXT,Casey Patel
+project_update,run_0006,Project name,SHORT_TEXT,Casey Patel
+project_update,run_0006,Reporting week start date,DATE,2025-11-01
+project_update,run_0006,Current project status,SINGLE_CHOICE,Blocked
+project_update,run_0006,Tasks completed this week,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Tasks completed this week; run 6)
+project_update,run_0006,Blockers or risks,MULTI_CHOICE,Technical issue;Missing data;Scheduling conflict
+project_update,run_0006,Next planned task,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Next planned task; run 6)"
+project_update,run_0006,Preferred sync time,TIME,14:15
+project_update,run_0007,Name,SHORT_TEXT,Jordan Khan
+project_update,run_0007,Project name,SHORT_TEXT,Jordan Khan
+project_update,run_0007,Reporting week start date,DATE,2025-09-19
+project_update,run_0007,Current project status,SINGLE_CHOICE,Completed
+project_update,run_0007,Tasks completed this week,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Tasks completed this week; run 7)
+project_update,run_0007,Blockers or risks,MULTI_CHOICE,Waiting for feedback
+project_update,run_0007,Next planned task,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Next planned task; run 7)
+project_update,run_0007,Preferred sync time,TIME,14:15
+project_update,run_0008,Name,SHORT_TEXT,Noah Kim
+project_update,run_0008,Project name,SHORT_TEXT,Noah Kim
+project_update,run_0008,Reporting week start date,DATE,2025-06-14
+project_update,run_0008,Current project status,SINGLE_CHOICE,Slightly delayed
+project_update,run_0008,Tasks completed this week,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Tasks completed this week; run 8)
+project_update,run_0008,Blockers or risks,MULTI_CHOICE,Technical issue;Scheduling conflict;No blockers
+project_update,run_0008,Next planned task,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Next planned task; run 8)"
+project_update,run_0008,Preferred sync time,TIME,14:15
+project_update,run_0009,Name,SHORT_TEXT,Riley Singh
+project_update,run_0009,Project name,SHORT_TEXT,Riley Singh
+project_update,run_0009,Reporting week start date,DATE,2025-11-27
+project_update,run_0009,Current project status,SINGLE_CHOICE,Completed
+project_update,run_0009,Tasks completed this week,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Tasks completed this week; run 9)
+project_update,run_0009,Blockers or risks,MULTI_CHOICE,Technical issue;Missing data;Waiting for feedback
+project_update,run_0009,Next planned task,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Next planned task; run 9)
+project_update,run_0009,Preferred sync time,TIME,11:30
+project_update,run_0010,Name,SHORT_TEXT,Priya Khan
+project_update,run_0010,Project name,SHORT_TEXT,Priya Khan
+project_update,run_0010,Reporting week start date,DATE,2025-06-16
+project_update,run_0010,Current project status,SINGLE_CHOICE,Blocked
+project_update,run_0010,Tasks completed this week,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Tasks completed this week; run 10)"
+project_update,run_0010,Blockers or risks,MULTI_CHOICE,Technical issue;Waiting for feedback
+project_update,run_0010,Next planned task,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Next planned task; run 10)"
+project_update,run_0010,Preferred sync time,TIME,14:15

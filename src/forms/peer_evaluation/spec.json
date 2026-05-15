@@ -1,0 +1,83 @@
+{
+  "form_id": "peer_evaluation",
+  "form_title": "Peer Evaluation Form",
+  "form_description": "Collects peer feedback for group projects and collaboration assessment.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1g_3ZoJIjlnjQQOQ0lo1kfxUUwMl6WsIhmqm5DI4W5Lk/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSeXim3eZ1RwUKcXLWGCgILKASIsT0Ic8cO_DgeN-NlvS0f_GQ/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeXim3eZ1RwUKcXLWGCgILKASIsT0Ic8cO_DgeN-NlvS0f_GQ/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Project and evaluator",
+      "q_order": 1,
+      "q_title": "Your name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Project and evaluator",
+      "q_order": 2,
+      "q_title": "Project group name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Project and evaluator",
+      "q_order": 3,
+      "q_title": "Peer being evaluated",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Project and evaluator",
+      "q_order": 4,
+      "q_title": "Contribution level",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Very low;Low;Moderate;High;Very high",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Project and evaluator",
+      "q_order": 5,
+      "q_title": "Strengths observed",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Communication;Technical work;Writing;Presentation;Organization;Problem solving",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Project and evaluator",
+      "q_order": 6,
+      "q_title": "Collaboration rating",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "1;2;3;4;5",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Project and evaluator",
+      "q_order": 7,
+      "q_title": "Constructive feedback",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

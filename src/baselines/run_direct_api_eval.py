@@ -18,6 +18,7 @@ from baselines import run_baseline_eval as rbe  # noqa: E402
 from baselines.action_schema import parse_action, validate_action  # noqa: E402
 from baselines.model_registry import get_model_by_id  # noqa: E402
 from baselines.prompt_builders import build_text_prompt, compact_page_text  # noqa: E402
+from engine.browser_language import force_english_google_forms_url  # noqa: E402
 from engine.runner import iter_run_specs, load_form_spec, resolve_answers_path  # noqa: E402
 from engine.trace_logger import TraceLogger  # noqa: E402
 
@@ -215,7 +216,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     resolved_provider = adapter.provider
 
     form_spec = load_form_spec(args.form_id, ROOT_DIR / "src" / "forms")
-    form_url = str(form_spec.get("form_url") or form_spec.get("url") or "")
+    form_url = force_english_google_forms_url(str(form_spec.get("form_url") or form_spec.get("url") or ""))
     if not form_url:
         raise ValueError(f"Missing form_url in spec for {args.form_id}")
 
@@ -623,6 +624,15 @@ def main(argv: Optional[List[str]] = None) -> int:
     metrics = rbe._calculate_metrics(question_states)
     annotations.update(metrics)
     annotations["duration_s"] = round(time.perf_counter() - start_time, 3)
+    annotations.update(
+        rbe._resolve_reference_efficiency(
+            form_id=args.form_id,
+            answer_run_id=answer_run_id,
+            model_duration_s=annotations["duration_s"],
+            model_trace_path=paths["trace_path"],
+            model_action_count=annotations.get("action_count"),
+        )
+    )
     annotations["trace"] = trace_summary
     run_completed_utc = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     annotations["run_completed_utc"] = run_completed_utc
@@ -655,8 +665,20 @@ def main(argv: Optional[List[str]] = None) -> int:
         "verified_count": annotations["verified_count"],
         "verified_correctness": annotations["verified_correctness"],
         "action_count": annotations["action_count"],
+        "trace_action_count": annotations.get("trace_action_count"),
+        "trace_action_count_source": annotations.get("trace_action_count_source"),
         "invalid_actions": annotations["invalid_actions"],
         "duration_s": annotations["duration_s"],
+        "reference_available": annotations.get("reference_available"),
+        "reference_run_path": annotations.get("reference_run_path"),
+        "reference_trace_path": annotations.get("reference_trace_path"),
+        "reference_video_path": annotations.get("reference_video_path"),
+        "reference_action_count": annotations.get("reference_action_count"),
+        "reference_duration_s": annotations.get("reference_duration_s"),
+        "action_overhead_ratio": annotations.get("action_overhead_ratio"),
+        "time_overhead_ratio": annotations.get("time_overhead_ratio"),
+        "action_count_delta": annotations.get("action_count_delta"),
+        "duration_delta_s": annotations.get("duration_delta_s"),
         "artifacts": annotations["artifacts"],
     }
 
@@ -672,6 +694,12 @@ def main(argv: Optional[List[str]] = None) -> int:
             "submit_success": summary["submit_success"],
             "attempted_correctness": summary["attempted_correctness"],
             "verified_correctness": summary["verified_correctness"],
+            "trace_action_count": summary.get("trace_action_count"),
+            "reference_available": summary.get("reference_available"),
+            "reference_action_count": summary.get("reference_action_count"),
+            "reference_duration_s": summary.get("reference_duration_s"),
+            "action_overhead_ratio": summary.get("action_overhead_ratio"),
+            "time_overhead_ratio": summary.get("time_overhead_ratio"),
         },
     )
 
@@ -696,6 +724,13 @@ def main(argv: Optional[List[str]] = None) -> int:
         "stop_reason": summary["stop_reason"],
         "failure_category": summary["failure_category"],
         "failure_detail": summary["failure_detail"],
+        "trace_action_count": summary.get("trace_action_count"),
+        "trace_action_count_source": summary.get("trace_action_count_source"),
+        "reference_available": summary.get("reference_available"),
+        "reference_action_count": summary.get("reference_action_count"),
+        "reference_duration_s": summary.get("reference_duration_s"),
+        "action_overhead_ratio": summary.get("action_overhead_ratio"),
+        "time_overhead_ratio": summary.get("time_overhead_ratio"),
         "summary_path": str(paths["summary_path"]),
         "annotations_path": str(paths["annotations_path"]),
         "trace_path": str(paths["trace_path"]),

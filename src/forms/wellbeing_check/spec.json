@@ -1,0 +1,83 @@
+{
+  "form_id": "wellbeing_check",
+  "form_title": "Weekly Wellbeing Check-in (2 pages)",
+  "form_description": "Short wellbeing form with habit and schedule questions across two pages.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1yf1--EUFIbtomL8AjBKHhUULPwFX7ULELjFO6ZqHxpg/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLScF9RoAESwkVgI2JAzgVRBYaLgAEjR1BzpHBRq79P04L0ixsQ/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScF9RoAESwkVgI2JAzgVRBYaLgAEjR1BzpHBRq79P04L0ixsQ/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Check-in",
+      "q_order": 1,
+      "q_title": "Name or nickname",
+      "q_type": "SHORT_TEXT",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Check-in",
+      "q_order": 2,
+      "q_title": "How are you feeling today?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Very good;Good;Okay;Low;Very low",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Check-in",
+      "q_order": 3,
+      "q_title": "Hours of sleep last night",
+      "q_type": "SHORT_TEXT",
+      "required": false,
+      "options": "",
+      "help_text": "Example: 6, 7.5, 8"
+    },
+    {
+      "section_order": 1,
+      "section_title": "Check-in",
+      "q_order": 4,
+      "q_title": "Habits completed today",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Exercise;Healthy meal;Study session;Break outdoors;Meditation",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Support and planning",
+      "q_order": 1,
+      "q_title": "Do you feel stressed this week?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No;Somewhat",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Support and planning",
+      "q_order": 2,
+      "q_title": "Preferred time for a check-in call",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Support and planning",
+      "q_order": 3,
+      "q_title": "Anything you want to note?",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

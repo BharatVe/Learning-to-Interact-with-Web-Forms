@@ -1,0 +1,83 @@
+{
+  "form_id": "paper_review",
+  "form_title": "Paper Review Assignment",
+  "form_description": "Form for assigning and collecting structured paper review preferences.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/10kYbX4_cxnkHQG4bCmfWokb8zxDjCo1hAO5zQJ6Zz6M/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSepuqCYosmltrO6GYmYyPuSbVZwQML0pyydtMuB_p0Ia0z67w/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSepuqCYosmltrO6GYmYyPuSbVZwQML0pyydtMuB_p0Ia0z67w/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Reviewer details",
+      "q_order": 1,
+      "q_title": "Reviewer name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Reviewer details",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Reviewer details",
+      "q_order": 3,
+      "q_title": "Preferred paper topic",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Computer use agents;Vision-language models;Web automation;Dataset construction;Evaluation metrics",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Reviewer details",
+      "q_order": 4,
+      "q_title": "Comfort level with reviewing",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Beginner;Intermediate;Advanced",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Reviewer details",
+      "q_order": 5,
+      "q_title": "Number of papers you can review",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "1;2;3;4;5",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Reviewer details",
+      "q_order": 6,
+      "q_title": "Review deadline preference",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Reviewer details",
+      "q_order": 7,
+      "q_title": "Conflicts of interest",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": "Mention authors, labs, or topics you cannot review."
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

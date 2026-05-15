@@ -1,0 +1,730 @@
+{
+  "form_id": "paper_review",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Reviewer name",
+          "widget_type": "short_text",
+          "value": "Taylor Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "taylor.bauer.1@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred paper topic",
+          "widget_type": "multi_choice",
+          "value": [
+            "Web automation"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level with reviewing",
+          "widget_type": "single_choice",
+          "value": "Beginner",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of papers you can review",
+          "widget_type": "dropdown",
+          "value": "4",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Review deadline preference",
+          "widget_type": "date",
+          "value": "2025-06-03",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Conflicts of interest",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Conflicts of interest; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Reviewer name",
+          "widget_type": "short_text",
+          "value": "Avery Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "avery.patel.2@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred paper topic",
+          "widget_type": "multi_choice",
+          "value": [
+            "Computer use agents",
+            "Vision-language models",
+            "Evaluation metrics"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level with reviewing",
+          "widget_type": "single_choice",
+          "value": "Intermediate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of papers you can review",
+          "widget_type": "dropdown",
+          "value": "5",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Review deadline preference",
+          "widget_type": "date",
+          "value": "2025-10-28",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Conflicts of interest",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Conflicts of interest; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Reviewer name",
+          "widget_type": "short_text",
+          "value": "Noah Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "noah.rivera.3@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred paper topic",
+          "widget_type": "multi_choice",
+          "value": [
+            "Computer use agents",
+            "Evaluation metrics"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level with reviewing",
+          "widget_type": "single_choice",
+          "value": "Intermediate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of papers you can review",
+          "widget_type": "dropdown",
+          "value": "3",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Review deadline preference",
+          "widget_type": "date",
+          "value": "2025-09-15",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Conflicts of interest",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Conflicts of interest; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Reviewer name",
+          "widget_type": "short_text",
+          "value": "Jordan Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "jordan.chen.4@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred paper topic",
+          "widget_type": "multi_choice",
+          "value": [
+            "Computer use agents",
+            "Dataset construction",
+            "Evaluation metrics"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level with reviewing",
+          "widget_type": "single_choice",
+          "value": "Intermediate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of papers you can review",
+          "widget_type": "dropdown",
+          "value": "5",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Review deadline preference",
+          "widget_type": "date",
+          "value": "2025-06-16",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Conflicts of interest",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Conflicts of interest; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Reviewer name",
+          "widget_type": "short_text",
+          "value": "Sam Meyer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "sam.meyer.5@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred paper topic",
+          "widget_type": "multi_choice",
+          "value": [
+            "Computer use agents",
+            "Vision-language models"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level with reviewing",
+          "widget_type": "single_choice",
+          "value": "Beginner",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of papers you can review",
+          "widget_type": "dropdown",
+          "value": "1",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Review deadline preference",
+          "widget_type": "date",
+          "value": "2025-10-08",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Conflicts of interest",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Conflicts of interest; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Reviewer name",
+          "widget_type": "short_text",
+          "value": "Priya Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "priya.singh.6@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred paper topic",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vision-language models",
+            "Dataset construction",
+            "Evaluation metrics"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level with reviewing",
+          "widget_type": "single_choice",
+          "value": "Intermediate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of papers you can review",
+          "widget_type": "dropdown",
+          "value": "2",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Review deadline preference",
+          "widget_type": "date",
+          "value": "2025-11-26",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Conflicts of interest",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Conflicts of interest; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Reviewer name",
+          "widget_type": "short_text",
+          "value": "Sam Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "sam.patel.7@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred paper topic",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vision-language models",
+            "Dataset construction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level with reviewing",
+          "widget_type": "single_choice",
+          "value": "Advanced",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of papers you can review",
+          "widget_type": "dropdown",
+          "value": "1",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Review deadline preference",
+          "widget_type": "date",
+          "value": "2025-07-14",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Conflicts of interest",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Conflicts of interest; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Reviewer name",
+          "widget_type": "short_text",
+          "value": "Priya Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "priya.patel.8@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred paper topic",
+          "widget_type": "multi_choice",
+          "value": [
+            "Computer use agents",
+            "Dataset construction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level with reviewing",
+          "widget_type": "single_choice",
+          "value": "Beginner",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of papers you can review",
+          "widget_type": "dropdown",
+          "value": "3",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Review deadline preference",
+          "widget_type": "date",
+          "value": "2025-09-07",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Conflicts of interest",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Conflicts of interest; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Reviewer name",
+          "widget_type": "short_text",
+          "value": "Sam Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "sam.kim.9@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred paper topic",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vision-language models",
+            "Web automation",
+            "Evaluation metrics"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level with reviewing",
+          "widget_type": "single_choice",
+          "value": "Beginner",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of papers you can review",
+          "widget_type": "dropdown",
+          "value": "4",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Review deadline preference",
+          "widget_type": "date",
+          "value": "2025-11-20",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Conflicts of interest",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Conflicts of interest; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Reviewer name",
+          "widget_type": "short_text",
+          "value": "Noah Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "noah.nguyen.10@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred paper topic",
+          "widget_type": "multi_choice",
+          "value": [
+            "Web automation",
+            "Dataset construction",
+            "Evaluation metrics"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level with reviewing",
+          "widget_type": "single_choice",
+          "value": "Beginner",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of papers you can review",
+          "widget_type": "dropdown",
+          "value": "4",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Review deadline preference",
+          "widget_type": "date",
+          "value": "2025-10-20",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Conflicts of interest",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Conflicts of interest; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    }
+  ]
+}

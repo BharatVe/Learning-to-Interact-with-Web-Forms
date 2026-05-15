@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from engine.mcp_trace_client import MCPClient
+from engine.browser_language import force_english_google_forms_url
 from engine.trace_logger import TraceLogger
 
 
@@ -314,6 +315,7 @@ async (page) => {{
         return str(result.get("text") or "")
 
     def navigate(self, form_url: str) -> Dict[str, Any]:
+        form_url = force_english_google_forms_url(form_url)
         self._call_tool("browser_navigate", {"url": form_url}, step_ref=None)
         self._wait_seconds(max(self.action_delay_ms, 300) / 1000.0, step_ref=None)
         env_code = f"""
@@ -563,6 +565,22 @@ async (page) => {
     throw new Error(`option_not_selected: ${value}`);
   };
 
+  const readDropdownValue = async (container) => {
+    const trigger = container.locator("[role='listbox'], [role='combobox'], select, div[aria-haspopup='listbox']").first();
+    if (await trigger.count() === 0) return "";
+    const tag = await trigger.evaluate((el) => String(el.tagName || "").toLowerCase()).catch(() => "");
+    if (tag === "select") {
+      const selectedText = await trigger.evaluate((el) => {
+        const select = /** @type {HTMLSelectElement} */ (el);
+        const opt = select.options && select.selectedIndex >= 0 ? select.options[select.selectedIndex] : null;
+        return String(opt ? (opt.textContent || opt.innerText || "") : "");
+      }).catch(() => "");
+      return canonical(selectedText);
+    }
+    const text = await trigger.innerText({ timeout: 1000 }).catch(() => "");
+    return canonical(text);
+  };
+
   const parseDateParts = (raw) => {
     const text = String(raw || "").trim();
     let m = text.match(/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})$/);
@@ -622,6 +640,46 @@ async (page) => {
       await assertRoleSelected(container, String(value), "checkbox");
       result.target_bbox = await bbox(option);
       Object.assign(result, await getTargetMeta(option));
+    }
+  } else if (widget === "dropdown") {
+    let trigger = container.locator("[role='listbox'], [role='combobox'], select, div[aria-haspopup='listbox']").first();
+    if (await trigger.count() === 0) {
+      trigger = container.getByText("Choose", { exact: false }).first();
+    }
+    if (await trigger.count() === 0) throw new Error("dropdown_trigger_not_found");
+    await trigger.scrollIntoViewIfNeeded().catch(() => {});
+    const tag = await trigger.evaluate((el) => String(el.tagName || "").toLowerCase()).catch(() => "");
+    const target = String(step.value ?? "");
+    if (tag === "select") {
+      const selected = await trigger.selectOption({ label: target }).catch(async () => {
+        return await trigger.selectOption({ value: target }).catch(async () => {
+          return await trigger.selectOption(target).catch(() => []);
+        });
+      });
+      if (!Array.isArray(selected) || selected.length === 0) {
+        throw new Error(`dropdown_option_not_found: ${target}`);
+      }
+      result.target_bbox = await bbox(trigger);
+      Object.assign(result, await getTargetMeta(trigger));
+    } else {
+      await trigger.click({ timeout: step.timeoutMs });
+      await page.waitForTimeout(Math.max(step.actionDelayMs, 150));
+      let option = page.locator("[role='option']").filter({ hasText: target }).first();
+      if (await option.count() === 0) {
+        option = container.getByText(target, { exact: false }).first();
+      }
+      if (await option.count() === 0) {
+        option = page.getByText(target, { exact: false }).first();
+      }
+      if (await option.count() === 0) throw new Error(`dropdown_option_not_found: ${target}`);
+      await option.scrollIntoViewIfNeeded().catch(() => {});
+      await option.click({ timeout: step.timeoutMs });
+      result.target_bbox = await bbox(option);
+      Object.assign(result, await getTargetMeta(option));
+    }
+    const actual = await readDropdownValue(container);
+    if (!actual || (norm(target) && !norm(actual).includes(norm(target)))) {
+      throw new Error(`dropdown_value_mismatch: expected=${target}, actual=${actual}`);
     }
   } else if (widget === "date") {
     const date = parseDateParts(step.value);
@@ -780,11 +838,12 @@ async (page) => {
   await submitTarget.button.click({ timeout: cfg.timeoutMs });
   info.submit_clicked = true;
 
-  const confirmations = [
-    "Response recorded",
-    "Response has been recorded",
-    "Thanks for submitting",
-    "Your response has been recorded"
+    const confirmations = [
+      "Response recorded",
+      "Response has been recorded",
+      "Thanks for submitting",
+      "Your response has been recorded",
+      "Ihre Antwort wurde gesendet"
   ];
   for (const text of confirmations) {
     try {
@@ -814,6 +873,8 @@ async (page) => {
         "response recorded",
         "response has been recorded",
         "your response has been recorded",
+        "ihre antwort wurde gesendet",
+        "antwort wurde gesendet",
         "response submitted",
         "submit another response",
         "edit your response",
@@ -958,6 +1019,24 @@ async (page) => {
     }).catch(() => false);
   };
 
+  const readDropdownValue = async (container) => {
+    const trigger = container.locator("[role='listbox'], [role='combobox'], select, div[aria-haspopup='listbox']").first();
+    if (await trigger.count() === 0) return null;
+    const tag = await trigger.evaluate((el) => String(el.tagName || "").toLowerCase()).catch(() => "");
+    if (tag === "select") {
+      const selectedText = await trigger.evaluate((el) => {
+        const select = /** @type {HTMLSelectElement} */ (el);
+        const opt = select.options && select.selectedIndex >= 0 ? select.options[select.selectedIndex] : null;
+        return String(opt ? (opt.textContent || opt.innerText || "") : "");
+      }).catch(() => "");
+      const cleaned = String(selectedText || "").replace(/\s+/g, " ").trim();
+      return cleaned || null;
+    }
+    const text = await trigger.innerText({ timeout: 1000 }).catch(() => "");
+    const cleaned = String(text || "").replace(/\s+/g, " ").trim();
+    return cleaned || null;
+  };
+
   const readDateValue = async (container) => {
     const native = container.locator("input[type='date']");
     if (await native.count() > 0) {
@@ -1047,6 +1126,10 @@ async (page) => {
     } else if (step.widgetType === 'multi_choice') {
       result.actual_value = await selectedRoleLabels(container, 'checkbox');
       result.verified = true;
+    } else if (step.widgetType === 'dropdown') {
+      result.actual_value = await readDropdownValue(container);
+      result.verified = !!result.actual_value;
+      if (!result.actual_value) result.detail = 'dropdown_value_unavailable';
     } else if (step.widgetType === 'date') {
       result.actual_value = await readDateValue(container);
       result.verified = !!result.actual_value;
@@ -1082,7 +1165,7 @@ async (page) => {
         widget = entry.get("widget_type", "")
         value = entry.get("value")
 
-        if label and widget in {"single_choice", "multi_choice"}:
+        if label and widget in {"single_choice", "multi_choice", "dropdown"}:
             value_text = ", ".join(str(v) for v in value) if isinstance(value, list) else str(value)
             intent = f"Select {value_text} for {label}"
         elif label:

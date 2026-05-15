@@ -1,0 +1,724 @@
+{
+  "form_id": "scholarship_interest",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "riley.singh.1@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "dropdown",
+          "value": "Bachelor's",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Scholarship type of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Need-based",
+            "Travel grant"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Expected application date",
+          "widget_type": "date",
+          "value": "2025-07-22",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Do you need help reviewing documents?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Brief background or question",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief background or question; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Casey Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "casey.khan.2@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "dropdown",
+          "value": "PhD",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Scholarship type of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Research funding"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Expected application date",
+          "widget_type": "date",
+          "value": "2025-10-20",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Do you need help reviewing documents?",
+          "widget_type": "single_choice",
+          "value": "Maybe",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Brief background or question",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief background or question; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "avery.ortiz.3@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "dropdown",
+          "value": "Bachelor's",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Scholarship type of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Research funding",
+            "Travel grant",
+            "Emergency support"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Expected application date",
+          "widget_type": "date",
+          "value": "2025-09-18",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Do you need help reviewing documents?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Brief background or question",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief background or question; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Casey Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "casey.bauer.4@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "dropdown",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Scholarship type of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Emergency support"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Expected application date",
+          "widget_type": "date",
+          "value": "2025-11-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Do you need help reviewing documents?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Brief background or question",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief background or question; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Taylor Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "taylor.bauer.5@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "dropdown",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Scholarship type of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Research funding"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Expected application date",
+          "widget_type": "date",
+          "value": "2025-06-21",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Do you need help reviewing documents?",
+          "widget_type": "single_choice",
+          "value": "Maybe",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Brief background or question",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief background or question; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Sam Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "sam.nguyen.6@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "dropdown",
+          "value": "Master's",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Scholarship type of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Need-based",
+            "Travel grant"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Expected application date",
+          "widget_type": "date",
+          "value": "2025-10-02",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Do you need help reviewing documents?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Brief background or question",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief background or question; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "avery.singh.7@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "dropdown",
+          "value": "Master's",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Scholarship type of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Need-based",
+            "Travel grant",
+            "Emergency support"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Expected application date",
+          "widget_type": "date",
+          "value": "2025-09-15",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Do you need help reviewing documents?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Brief background or question",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief background or question; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "lena.ortiz.8@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "dropdown",
+          "value": "PhD",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Scholarship type of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Merit-based",
+            "Research funding"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Expected application date",
+          "widget_type": "date",
+          "value": "2025-11-15",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Do you need help reviewing documents?",
+          "widget_type": "single_choice",
+          "value": "Maybe",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Brief background or question",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief background or question; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "lena.bauer.9@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "dropdown",
+          "value": "PhD",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Scholarship type of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Travel grant"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Expected application date",
+          "widget_type": "date",
+          "value": "2025-09-20",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Do you need help reviewing documents?",
+          "widget_type": "single_choice",
+          "value": "Maybe",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Brief background or question",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief background or question; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "noah.bauer.10@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "dropdown",
+          "value": "Master's",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Scholarship type of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Need-based",
+            "Research funding"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Expected application date",
+          "widget_type": "date",
+          "value": "2025-10-07",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Do you need help reviewing documents?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Brief background or question",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief background or question; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    }
+  ]
+}

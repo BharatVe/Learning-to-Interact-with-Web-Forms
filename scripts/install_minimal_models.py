@@ -18,6 +18,10 @@ OPTIONAL_PROVIDER_KEYS = {
     "openai_base_url",
     "openai_api_key",
     "anthropic_model",
+    "gemini_model",
+    "served_model_name",
+    "server_backend",
+    "coordinate_type",
     "is_fallback",
     "fallback_for",
 }

@@ -1,0 +1,816 @@
+{
+  "form_id": "field_trip",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Morgan Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "morgan.khan.1@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact name",
+          "widget_type": "short_text",
+          "value": "Morgan Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact phone",
+          "widget_type": "short_text",
+          "value": "delta-01-27",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Trip option",
+          "widget_type": "dropdown",
+          "value": "Field site visit",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred trip date",
+          "widget_type": "date",
+          "value": "2025-06-25",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vegan",
+            "Gluten-free",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Mobility or accessibility notes",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Mobility or accessibility notes; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "noah.patel.2@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact name",
+          "widget_type": "short_text",
+          "value": "Noah Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact phone",
+          "widget_type": "short_text",
+          "value": "omega-02-36",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Trip option",
+          "widget_type": "dropdown",
+          "value": "Company visit",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred trip date",
+          "widget_type": "date",
+          "value": "2025-06-29",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vegetarian"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Mobility or accessibility notes",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Mobility or accessibility notes; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "riley.singh.3@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact name",
+          "widget_type": "short_text",
+          "value": "Riley Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact phone",
+          "widget_type": "short_text",
+          "value": "gamma-03-30",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Trip option",
+          "widget_type": "dropdown",
+          "value": "Field site visit",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred trip date",
+          "widget_type": "date",
+          "value": "2025-06-27",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vegan",
+            "None",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Mobility or accessibility notes",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Mobility or accessibility notes; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Taylor Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "taylor.chen.4@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact name",
+          "widget_type": "short_text",
+          "value": "Taylor Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact phone",
+          "widget_type": "short_text",
+          "value": "alpha-04-56",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Trip option",
+          "widget_type": "dropdown",
+          "value": "Company visit",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred trip date",
+          "widget_type": "date",
+          "value": "2025-06-23",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Mobility or accessibility notes",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Mobility or accessibility notes; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "avery.nguyen.5@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact name",
+          "widget_type": "short_text",
+          "value": "Avery Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact phone",
+          "widget_type": "short_text",
+          "value": "omega-05-39",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Trip option",
+          "widget_type": "dropdown",
+          "value": "Company visit",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred trip date",
+          "widget_type": "date",
+          "value": "2025-09-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "Gluten-free",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Mobility or accessibility notes",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Mobility or accessibility notes; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "priya.patel.6@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact name",
+          "widget_type": "short_text",
+          "value": "Priya Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact phone",
+          "widget_type": "short_text",
+          "value": "omega-06-27",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Trip option",
+          "widget_type": "dropdown",
+          "value": "Research institute tour",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred trip date",
+          "widget_type": "date",
+          "value": "2025-11-09",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vegan",
+            "Halal"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Mobility or accessibility notes",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Mobility or accessibility notes; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Sam Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "sam.chen.7@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact name",
+          "widget_type": "short_text",
+          "value": "Sam Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact phone",
+          "widget_type": "short_text",
+          "value": "delta-07-12",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Trip option",
+          "widget_type": "dropdown",
+          "value": "Company visit",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred trip date",
+          "widget_type": "date",
+          "value": "2025-10-10",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "None"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Mobility or accessibility notes",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Mobility or accessibility notes; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "riley.ortiz.8@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact name",
+          "widget_type": "short_text",
+          "value": "Riley Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact phone",
+          "widget_type": "short_text",
+          "value": "sigma-08-17",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Trip option",
+          "widget_type": "dropdown",
+          "value": "Company visit",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred trip date",
+          "widget_type": "date",
+          "value": "2025-07-30",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vegetarian",
+            "Vegan"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Mobility or accessibility notes",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Mobility or accessibility notes; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Morgan Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "morgan.bauer.9@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact name",
+          "widget_type": "short_text",
+          "value": "Morgan Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact phone",
+          "widget_type": "short_text",
+          "value": "alpha-09-86",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Trip option",
+          "widget_type": "dropdown",
+          "value": "Field site visit",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred trip date",
+          "widget_type": "date",
+          "value": "2025-09-21",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vegetarian",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Mobility or accessibility notes",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Mobility or accessibility notes; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Jordan Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "jordan.singh.10@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact name",
+          "widget_type": "short_text",
+          "value": "Jordan Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Emergency contact phone",
+          "widget_type": "short_text",
+          "value": "sigma-10-35",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Trip option",
+          "widget_type": "dropdown",
+          "value": "Field site visit",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Preferred trip date",
+          "widget_type": "date",
+          "value": "2025-07-05",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Dietary restrictions",
+          "widget_type": "multi_choice",
+          "value": [
+            "Vegan",
+            "None",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Mobility or accessibility notes",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Mobility or accessibility notes; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+form_id,run_id,q_title,q_type,answer
+orientation_signup,run_0001,Full name,SHORT_TEXT,Lena Patel
+orientation_signup,run_0001,Email address,SHORT_TEXT,lena.patel.1@demo.org
+orientation_signup,run_0001,Program,SHORT_TEXT,sigma-01-97
+orientation_signup,run_0001,Student type,SINGLE_CHOICE,Exchange
+orientation_signup,run_0001,Orientation activities,MULTI_CHOICE,IT setup
+orientation_signup,run_0001,Preferred orientation date,DATE,2025-11-12
+orientation_signup,run_0001,Preferred start time,TIME,14:15
+orientation_signup,run_0001,Questions before orientation,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Questions before orientation; run 1)"
+orientation_signup,run_0002,Full name,SHORT_TEXT,Riley Chen
+orientation_signup,run_0002,Email address,SHORT_TEXT,riley.chen.2@mail.test
+orientation_signup,run_0002,Program,SHORT_TEXT,delta-02-86
+orientation_signup,run_0002,Student type,SINGLE_CHOICE,Master's
+orientation_signup,run_0002,Orientation activities,MULTI_CHOICE,Campus tour
+orientation_signup,run_0002,Preferred orientation date,DATE,2025-09-11
+orientation_signup,run_0002,Preferred start time,TIME,15:30
+orientation_signup,run_0002,Questions before orientation,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Questions before orientation; run 2)
+orientation_signup,run_0003,Full name,SHORT_TEXT,Casey Khan
+orientation_signup,run_0003,Email address,SHORT_TEXT,casey.khan.3@mail.test
+orientation_signup,run_0003,Program,SHORT_TEXT,delta-03-80
+orientation_signup,run_0003,Student type,SINGLE_CHOICE,Master's
+orientation_signup,run_0003,Orientation activities,MULTI_CHOICE,Campus tour;IT setup;Program Q&A
+orientation_signup,run_0003,Preferred orientation date,DATE,2025-09-09
+orientation_signup,run_0003,Preferred start time,TIME,14:15
+orientation_signup,run_0003,Questions before orientation,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Questions before orientation; run 3)
+orientation_signup,run_0004,Full name,SHORT_TEXT,Taylor Singh
+orientation_signup,run_0004,Email address,SHORT_TEXT,taylor.singh.4@demo.org
+orientation_signup,run_0004,Program,SHORT_TEXT,beta-04-31
+orientation_signup,run_0004,Student type,SINGLE_CHOICE,Exchange
+orientation_signup,run_0004,Orientation activities,MULTI_CHOICE,IT setup;City tour;Program Q&A
+orientation_signup,run_0004,Preferred orientation date,DATE,2025-08-05
+orientation_signup,run_0004,Preferred start time,TIME,14:15
+orientation_signup,run_0004,Questions before orientation,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Questions before orientation; run 4)
+orientation_signup,run_0005,Full name,SHORT_TEXT,Sam Ortiz
+orientation_signup,run_0005,Email address,SHORT_TEXT,sam.ortiz.5@research.edu
+orientation_signup,run_0005,Program,SHORT_TEXT,beta-05-78
+orientation_signup,run_0005,Student type,SINGLE_CHOICE,Other
+orientation_signup,run_0005,Orientation activities,MULTI_CHOICE,Library introduction;City tour
+orientation_signup,run_0005,Preferred orientation date,DATE,2025-08-06
+orientation_signup,run_0005,Preferred start time,TIME,08:30
+orientation_signup,run_0005,Questions before orientation,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Questions before orientation; run 5)"
+orientation_signup,run_0006,Full name,SHORT_TEXT,Avery Ortiz
+orientation_signup,run_0006,Email address,SHORT_TEXT,avery.ortiz.6@research.edu
+orientation_signup,run_0006,Program,SHORT_TEXT,sigma-06-49
+orientation_signup,run_0006,Student type,SINGLE_CHOICE,Exchange
+orientation_signup,run_0006,Orientation activities,MULTI_CHOICE,Campus tour;IT setup;City tour
+orientation_signup,run_0006,Preferred orientation date,DATE,2025-08-19
+orientation_signup,run_0006,Preferred start time,TIME,16:45
+orientation_signup,run_0006,Questions before orientation,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Questions before orientation; run 6)
+orientation_signup,run_0007,Full name,SHORT_TEXT,Taylor Kim
+orientation_signup,run_0007,Email address,SHORT_TEXT,taylor.kim.7@demo.org
+orientation_signup,run_0007,Program,SHORT_TEXT,omega-07-29
+orientation_signup,run_0007,Student type,SINGLE_CHOICE,Other
+orientation_signup,run_0007,Orientation activities,MULTI_CHOICE,Campus tour;Library introduction;City tour
+orientation_signup,run_0007,Preferred orientation date,DATE,2025-11-20
+orientation_signup,run_0007,Preferred start time,TIME,16:45
+orientation_signup,run_0007,Questions before orientation,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Questions before orientation; run 7)"
+orientation_signup,run_0008,Full name,SHORT_TEXT,Taylor Khan
+orientation_signup,run_0008,Email address,SHORT_TEXT,taylor.khan.8@example.com
+orientation_signup,run_0008,Program,SHORT_TEXT,gamma-08-66
+orientation_signup,run_0008,Student type,SINGLE_CHOICE,Other
+orientation_signup,run_0008,Orientation activities,MULTI_CHOICE,IT setup;City tour
+orientation_signup,run_0008,Preferred orientation date,DATE,2025-07-25
+orientation_signup,run_0008,Preferred start time,TIME,08:30
+orientation_signup,run_0008,Questions before orientation,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Questions before orientation; run 8)"
+orientation_signup,run_0009,Full name,SHORT_TEXT,Morgan Patel
+orientation_signup,run_0009,Email address,SHORT_TEXT,morgan.patel.9@research.edu
+orientation_signup,run_0009,Program,SHORT_TEXT,beta-09-71
+orientation_signup,run_0009,Student type,SINGLE_CHOICE,PhD
+orientation_signup,run_0009,Orientation activities,MULTI_CHOICE,Campus tour;IT setup;City tour
+orientation_signup,run_0009,Preferred orientation date,DATE,2025-07-09
+orientation_signup,run_0009,Preferred start time,TIME,16:45
+orientation_signup,run_0009,Questions before orientation,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Questions before orientation; run 9)
+orientation_signup,run_0010,Full name,SHORT_TEXT,Noah Kim
+orientation_signup,run_0010,Email address,SHORT_TEXT,noah.kim.10@example.com
+orientation_signup,run_0010,Program,SHORT_TEXT,sigma-10-51
+orientation_signup,run_0010,Student type,SINGLE_CHOICE,Other
+orientation_signup,run_0010,Orientation activities,MULTI_CHOICE,IT setup;City tour
+orientation_signup,run_0010,Preferred orientation date,DATE,2025-11-16
+orientation_signup,run_0010,Preferred start time,TIME,13:00
+orientation_signup,run_0010,Questions before orientation,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Questions before orientation; run 10)

@@ -1,0 +1,83 @@
+{
+  "form_id": "newsletter_signup",
+  "form_title": "Newsletter Preference Signup",
+  "form_description": "Signup form for topic-specific newsletters and communication preferences.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1jkmNLde8MDzN0zbciI6GzM2M4bdDG-VBIIenRPR-ufA/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSfrAjZHTmB-1Tqku0-rQDr35T0-SMHoBt_XYE06D2A2PLzq4Q/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSfrAjZHTmB-1Tqku0-rQDr35T0-SMHoBt_XYE06D2A2PLzq4Q/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Subscription preferences",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Subscription preferences",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Subscription preferences",
+      "q_order": 3,
+      "q_title": "Newsletter topics",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Research news;Events;Job opportunities;Student projects;Funding calls",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Subscription preferences",
+      "q_order": 4,
+      "q_title": "Email frequency",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "Weekly;Biweekly;Monthly;Only major announcements",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Subscription preferences",
+      "q_order": 5,
+      "q_title": "Preferred language",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "English;German;No preference",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Subscription preferences",
+      "q_order": 6,
+      "q_title": "Would you like event reminders?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Subscription preferences",
+      "q_order": 7,
+      "q_title": "Additional interests",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

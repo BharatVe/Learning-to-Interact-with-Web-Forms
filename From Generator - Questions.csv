@@ -1,0 +1,410 @@
+form_id	section_order	section_title	q_order	q_title	q_type	required	options	help_text																	
+conf_interest	1	About you	1	Full Name	SHORT_TEXT	TRUE																			
+conf_interest	1	About you	2	Preferred contact email	SHORT_TEXT	TRUE																			
+conf_interest	1	About you	3	Brief bio	PARAGRAPH	FALSE		2–3 sentences about your background.																	
+conf_interest	1	About you	4	Primary role	SINGLE_CHOICE	TRUE	Undergraduate student;Master’s student;PhD student;Industry Professional																		
+conf_interest	1	About you	5	Topics you’re interested in	MULTI_CHOICE	TRUE	AI/ML;Security;Systems;Human-Computer Interaction	Select one or more.																	
+conf_interest	1	About you	6	Preferred meeting date	DATE	FALSE																			
+conf_interest	1	About you	7	Preferred meeting time	TIME	FALSE																			
+workshop_signup	1	Attendee info	1	Full name	SHORT_TEXT	TRUE																			
+workshop_signup	1	Attendee info	2	University or organization	SHORT_TEXT	TRUE																			
+workshop_signup	1	Attendee info	3	Which workshop track are you registering for?	SINGLE_CHOICE	TRUE	Intro to Machine Learning;Advanced Data Engineering;UI Agents and Automation																		
+workshop_signup	1	Attendee info	4	Experience level	SINGLE_CHOICE	TRUE	Beginner;Intermediate;Advanced																		
+workshop_signup	1	Attendee info	5	Dietary restrictions	MULTI_CHOICE	FALSE	Vegetarian;Vegan;Halal;None;Other	Select all that apply.																	
+workshop_signup	1	Attendee info	6	Preferred session date	DATE	FALSE																			
+workshop_signup	1	Attendee info	7	May we email you updates?	SINGLE_CHOICE	TRUE	Yes;No																		
+course_feedback	1	Course details	1	Course name	SHORT_TEXT	TRUE																			
+course_feedback	1	Course details	2	Your program level	SINGLE_CHOICE	TRUE	Bachelor’s;Master’s;PhD;Other																		
+course_feedback	1	Course details	3	Did you attend most sessions?	SINGLE_CHOICE	TRUE	Yes;No;Partially																		
+course_feedback	2	Ratings and feedback	1	Overall satisfaction	SINGLE_CHOICE	TRUE	1 – Very dissatisfied;2;3;4;5 – Very satisfied																		
+course_feedback	2	Ratings and feedback	2	Workload felt	SINGLE_CHOICE	TRUE	Too low;About right;Too high																		
+course_feedback	2	Ratings and feedback	3	What did you like most?	PARAGRAPH	FALSE																			
+course_feedback	2	Ratings and feedback	4	What should be improved?	PARAGRAPH	FALSE																			
+course_feedback	2	Ratings and feedback	5	Most useful aspects	MULTI_CHOICE	FALSE	Theory;Practical labs;Assignments;Project work	Select all that apply.																	
+course_feedback	2	Ratings and feedback	6	Would you recommend this course?	SINGLE_CHOICE	TRUE	Yes;No;Maybe																		
+internship_app	1	Personal information	1	Full name	SHORT_TEXT	TRUE																			
+internship_app	1	Personal information	2	Contact email	SHORT_TEXT	TRUE																			
+internship_app	1	Personal information	3	Current city	SHORT_TEXT	FALSE																			
+internship_app	1	Personal information	4	Degree program	SINGLE_CHOICE	TRUE	Bachelor’s;Master’s;PhD;Other																		
+internship_app	2	Background and skills	1	Primary area of interest	MULTI_CHOICE	TRUE	Backend;Frontend;Data and Machine Learning;UI/UX;DevOps	Select one or more.																	
+internship_app	2	Background and skills	2	Programming languages you use	MULTI_CHOICE	FALSE	Python;Java;C/C++;JavaScript/TypeScript;SQL;Other																		
+internship_app	2	Background and skills	3	Link to GitHub or portfolio	SHORT_TEXT	FALSE																			
+internship_app	2	Background and skills	4	Brief motivation statement	PARAGRAPH	TRUE		3–5 sentences.																	
+internship_app	3	Availability	1	Earliest start date	DATE	TRUE																			
+internship_app	3	Availability	2	Weekly availability (hours)	SHORT_TEXT	TRUE		Example: 10, 20, 30																	
+internship_app	3	Availability	3	Preferred meeting time for interview	TIME	FALSE																			
+internship_app	3	Availability	4	Are you open to remote work?	SINGLE_CHOICE	TRUE	Yes;No;Hybrid																		
+event_rsvp	1	RSVP	1	Name	SHORT_TEXT	TRUE																			
+event_rsvp	1	RSVP	2	Will you attend?	SINGLE_CHOICE	TRUE	Yes;No;Maybe																		
+event_rsvp	1	RSVP	3	Number of guests (including yourself)	SHORT_TEXT	TRUE		Use a number like 1, 2, or 3																	
+event_rsvp	1	RSVP	4	Preferred arrival time	TIME	FALSE																			
+event_rsvp	1	RSVP	5	Activities you’re interested in	MULTI_CHOICE	FALSE	Talks;Poster session;Networking;Demo booths	Select all that apply.																	
+event_rsvp	1	RSVP	6	Accessibility needs or comments	PARAGRAPH	FALSE																			
+alumni_checkin	1	Background	1	Full name	SHORT_TEXT	TRUE																			
+alumni_checkin	1	Background	2	Graduation year	SHORT_TEXT	TRUE		Example: 2022																	
+alumni_checkin	1	Background	3	Current city	SHORT_TEXT	FALSE																			
+alumni_checkin	1	Background	4	Current role	SINGLE_CHOICE	TRUE	Student;Researcher;Industry Professional;Entrepreneur;Other																		
+alumni_checkin	1	Background	5	Areas you would like to stay connected to	MULTI_CHOICE	TRUE	Networking;Mentoring;Research talks;Job opportunities;Alumni events	Select one or more.																	
+alumni_checkin	1	Background	6	Preferred contact email	SHORT_TEXT	TRUE																			
+alumni_checkin	1	Background	7	Would you attend an alumni meetup?	SINGLE_CHOICE	TRUE	Yes;No;Maybe																		
+hackathon_signup	1	Participant info	1	Full name	SHORT_TEXT	TRUE																			
+hackathon_signup	1	Participant info	2	Email address	SHORT_TEXT	TRUE																			
+hackathon_signup	1	Participant info	3	University or organization	SHORT_TEXT	TRUE																			
+hackathon_signup	1	Participant info	4	Participation type	SINGLE_CHOICE	TRUE	Solo participant;Already in a team;Looking for a team																		
+hackathon_signup	2	Project and logistics	1	Preferred challenge track	SINGLE_CHOICE	TRUE	AI for Education;Sustainability;Health Tech;Open Innovation																		
+hackathon_signup	2	Project and logistics	2	Skills you can contribute	MULTI_CHOICE	TRUE	Programming;Design;Data Analysis;Presentation;Project Management	Select one or more.																	
+hackathon_signup	2	Project and logistics	3	Dietary restrictions	MULTI_CHOICE	FALSE	Vegetarian;Vegan;Halal;None;Other	Select all that apply.																	
+hackathon_signup	2	Project and logistics	4	Arrival date	DATE	FALSE																			
+hackathon_signup	2	Project and logistics	5	Emergency contact number	SHORT_TEXT	FALSE																			
+library_membership	1	Member details	1	Full name	SHORT_TEXT	TRUE																			
+library_membership	1	Member details	2	University ID	SHORT_TEXT	TRUE																			
+library_membership	1	Member details	3	Department or program	SHORT_TEXT	TRUE																			
+library_membership	1	Member details	4	Membership type	SINGLE_CHOICE	TRUE	Student;Research staff;Faculty;External visitor																		
+library_membership	1	Member details	5	Resources you use most	MULTI_CHOICE	FALSE	Books;E-books;Study rooms;Journals;Computers	Select one or more.																	
+library_membership	1	Member details	6	Preferred visit date	DATE	FALSE																			
+library_membership	1	Member details	7	Any additional access needs?	PARAGRAPH	FALSE																			
+study_group_match	1	Student profile	1	Full name	SHORT_TEXT	TRUE																			
+study_group_match	1	Student profile	2	Email address	SHORT_TEXT	TRUE																			
+study_group_match	1	Student profile	3	Course or subject	SHORT_TEXT	TRUE																			
+study_group_match	1	Student profile	4	Current level	SINGLE_CHOICE	TRUE	Beginner;Intermediate;Advanced																		
+study_group_match	1	Student profile	5	Preferred study format	SINGLE_CHOICE	TRUE	In person;Online;Either																		
+study_group_match	1	Student profile	6	Topics you want help with	MULTI_CHOICE	TRUE	Theory review;Exercises;Exam prep;Projects;Assignments	Select one or more.																	
+study_group_match	1	Student profile	7	Preferred meeting time	TIME	FALSE																			
+travel_reimbursement	1	Trip details	1	Full name	SHORT_TEXT	TRUE																			
+travel_reimbursement	1	Trip details	2	Email address	SHORT_TEXT	TRUE																			
+travel_reimbursement	1	Trip details	3	Purpose of travel	PARAGRAPH	TRUE		Briefly describe the event or reason.																	
+travel_reimbursement	1	Trip details	4	Departure date	DATE	TRUE																			
+travel_reimbursement	1	Trip details	5	Return date	DATE	TRUE																			
+travel_reimbursement	2	Expenses	1	Transport mode	SINGLE_CHOICE	TRUE	Train;Flight;Bus;Car;Other																		
+travel_reimbursement	2	Expenses	2	Expense categories claimed	MULTI_CHOICE	TRUE	Transport;Accommodation;Meals;Conference fee;Local travel	Select one or more.																	
+travel_reimbursement	2	Expenses	3	Approximate total amount	SHORT_TEXT	TRUE		Enter a number only.																	
+travel_reimbursement	3	Payment details	1	Bank account holder name	SHORT_TEXT	TRUE																			
+travel_reimbursement	3	Payment details	2	IBAN	SHORT_TEXT	TRUE																			
+travel_reimbursement	3	Payment details	3	Preferred contact time	TIME	FALSE																			
+research_interest	1	Research background	1	Full name	SHORT_TEXT	TRUE																			
+research_interest	1	Research background	2	Contact email	SHORT_TEXT	TRUE																			
+research_interest	1	Research background	3	Current degree level	SINGLE_CHOICE	TRUE	Bachelor’s;Master’s;PhD;Other																		
+research_interest	1	Research background	4	Research areas of interest	MULTI_CHOICE	TRUE	Machine Learning;Computer Vision;NLP;Robotics;Human-Computer Interaction	Select one or more.																	
+research_interest	1	Research background	5	Previous research experience	PARAGRAPH	FALSE		2–4 sentences.																	
+research_interest	1	Research background	6	Preferred meeting date	DATE	FALSE																			
+research_interest	1	Research background	7	Preferred meeting time	TIME	FALSE																			
+volunteer_shift	1	Volunteer details	1	Full name	SHORT_TEXT	TRUE																			
+volunteer_shift	1	Volunteer details	2	Contact email	SHORT_TEXT	TRUE																			
+volunteer_shift	1	Volunteer details	3	Preferred volunteer role	SINGLE_CHOICE	TRUE	Registration desk;Technical support;Logistics;Guest assistance																		
+volunteer_shift	1	Volunteer details	4	Available shift(s)	MULTI_CHOICE	TRUE	Morning;Afternoon;Evening	Select one or more.																	
+volunteer_shift	1	Volunteer details	5	Previous volunteering experience	SINGLE_CHOICE	FALSE	Yes;No																		
+volunteer_shift	1	Volunteer details	6	Preferred volunteer date	DATE	TRUE																			
+volunteer_shift	1	Volunteer details	7	Comments or restrictions	PARAGRAPH	FALSE																			
+wellbeing_check	1	Check-in	1	Name or nickname	SHORT_TEXT	FALSE																			
+wellbeing_check	1	Check-in	2	How are you feeling today?	SINGLE_CHOICE	TRUE	Very good;Good;Okay;Low;Very low																		
+wellbeing_check	1	Check-in	3	Hours of sleep last night	SHORT_TEXT	FALSE		Example: 6, 7.5, 8																	
+wellbeing_check	1	Check-in	4	Habits completed today	MULTI_CHOICE	FALSE	Exercise;Healthy meal;Study session;Break outdoors;Meditation	Select all that apply.																	
+wellbeing_check	2	Support and planning	1	Do you feel stressed this week?	SINGLE_CHOICE	TRUE	Yes;No;Somewhat																		
+wellbeing_check	2	Support and planning	2	Preferred time for a check-in call	TIME	FALSE																			
+wellbeing_check	2	Support and planning	3	Anything you want to note?	PARAGRAPH	FALSE																			
+housing_preference	1	Housing details	1	Full name	SHORT_TEXT	TRUE																			
+housing_preference	1	Housing details	2	Contact email	SHORT_TEXT	TRUE																			
+housing_preference	1	Housing details	3	Preferred accommodation type	SINGLE_CHOICE	TRUE	Studio;Shared flat;Single room in dorm;Private apartment																		
+housing_preference	1	Housing details	4	Preferred budget range	SINGLE_CHOICE	TRUE	Below 300 EUR;300–500 EUR;500–700 EUR;Above 700 EUR																		
+housing_preference	1	Housing details	5	Preferred move-in date	DATE	TRUE																			
+housing_preference	1	Housing details	6	Important features	MULTI_CHOICE	TRUE	Furnished;Near campus;Private bathroom;Quiet area;Good public transport	Select one or more.																	
+housing_preference	1	Housing details	7	Additional notes	PARAGRAPH	FALSE																			
+seminar_proposal	1	Proposal basics	1	Full name	SHORT_TEXT	TRUE																			
+seminar_proposal	1	Proposal basics	2	Email address	SHORT_TEXT	TRUE																			
+seminar_proposal	1	Proposal basics	3	Proposed seminar title	SHORT_TEXT	TRUE																			
+seminar_proposal	1	Proposal basics	4	Topic area	SINGLE_CHOICE	TRUE	Data Science;Machine Learning;Visualization;Systems;Ethics in AI																		
+seminar_proposal	2	Details	1	Short abstract	PARAGRAPH	TRUE		3–5 sentences.																	
+seminar_proposal	2	Details	2	Preferred presentation date	DATE	FALSE																			
+seminar_proposal	2	Details	3	Preferred presentation time	TIME	FALSE																			
+seminar_proposal	2	Details	4	Resources needed	MULTI_CHOICE	FALSE	Projector;Whiteboard;Internet access;Demo setup;None	Select all that apply.																	
+mentor_match	1	Background and goals	1	Full name	SHORT_TEXT	TRUE																			
+mentor_match	1	Background and goals	2	Email address	SHORT_TEXT	TRUE																			
+mentor_match	1	Background and goals	3	Role in the program	SINGLE_CHOICE	TRUE	Mentor;Mentee																		
+mentor_match	1	Background and goals	4	Field or area	SINGLE_CHOICE	TRUE	Computer Science;Data Science;Business;Design;Other																		
+mentor_match	1	Background and goals	5	Goals for mentorship	MULTI_CHOICE	TRUE	Career guidance;Research advice;Networking;Skill development;Study planning	Select one or more.																	
+mentor_match	1	Background and goals	6	Brief introduction	PARAGRAPH	FALSE																			
+mentor_match	1	Background and goals	7	Preferred meeting time	TIME	FALSE																			
+club_application	1	Applicant details	1	Full name	SHORT_TEXT	TRUE																			
+club_application	1	Applicant details	2	Student email	SHORT_TEXT	TRUE																			
+club_application	1	Applicant details	3	Study program	SHORT_TEXT	TRUE																			
+club_application	1	Applicant details	4	Year of study	SINGLE_CHOICE	TRUE	1st year;2nd year;3rd year;4th year;Master’s;Other																		
+club_application	2	Interest and activities	1	Why do you want to join?	PARAGRAPH	TRUE		2–4 sentences.																	
+club_application	2	Interest and activities	2	Activities you are interested in	MULTI_CHOICE	TRUE	Events;Workshops;Social media;Sponsorship;Technical projects	Select one or more.																	
+club_application	2	Interest and activities	3	Previous club experience	SINGLE_CHOICE	FALSE	Yes;No																		
+club_application	3	Availability	1	Available start date	DATE	TRUE																			
+club_application	3	Availability	2	Weekly time you can contribute	SHORT_TEXT	TRUE		Example: 2, 4, 6																	
+club_application	3	Availability	3	Preferred meeting time	TIME	FALSE																			
+usability_test	1	Participant info	1	Full name	SHORT_TEXT	TRUE																			
+usability_test	1	Participant info	2	Email address	SHORT_TEXT	TRUE																			
+usability_test	1	Participant info	3	Age group	SINGLE_CHOICE	TRUE	18–24;25–34;35–44;45+																		
+usability_test	1	Participant info	4	Devices available	MULTI_CHOICE	TRUE	Laptop;Desktop;Tablet;Android phone;iPhone	Select one or more.																	
+usability_test	1	Participant info	5	Have you used similar tools before?	SINGLE_CHOICE	TRUE	Yes;No;Not sure																		
+usability_test	1	Participant info	6	Preferred session date	DATE	FALSE																			
+usability_test	1	Participant info	7	Preferred session time	TIME	FALSE																			
+meal_plan	1	Food preferences	1	Full name	SHORT_TEXT	TRUE																			
+meal_plan	1	Food preferences	2	Meal preference	SINGLE_CHOICE	TRUE	Vegetarian;Vegan;Chicken;Fish;Beef																		
+meal_plan	1	Food preferences	3	Allergies or intolerances	MULTI_CHOICE	FALSE	Gluten;Nuts;Dairy;Soy;None;Other	Select all that apply.																	
+meal_plan	1	Food preferences	4	Preferred dining date	DATE	FALSE																			
+meal_plan	1	Food preferences	5	Preferred dining time	TIME	FALSE																			
+meal_plan	1	Food preferences	6	Would you like dessert?	SINGLE_CHOICE	TRUE	Yes;No;Maybe																		
+meal_plan	1	Food preferences	7	Additional notes	PARAGRAPH	FALSE																			
+language_exchange	1	Participant profile	1	Full name	SHORT_TEXT	TRUE																			
+language_exchange	1	Participant profile	2	Contact email	SHORT_TEXT	TRUE																			
+language_exchange	1	Participant profile	3	Native language	SHORT_TEXT	TRUE																			
+language_exchange	1	Participant profile	4	Language(s) you want to practice	MULTI_CHOICE	TRUE	English;German;French;Spanish;Hindi;Other	Select one or more.																	
+language_exchange	2	Availability and format	1	Comfort level speaking target language	SINGLE_CHOICE	TRUE	Beginner;Intermediate;Advanced																		
+language_exchange	2	Availability and format	2	Preferred format	SINGLE_CHOICE	TRUE	In person;Online;Either																		
+language_exchange	2	Availability and format	3	Preferred meeting date	DATE	FALSE																			
+language_exchange	2	Availability and format	4	Preferred meeting time	TIME	FALSE																			
+language_exchange	2	Availability and format	5	Topics you enjoy discussing	MULTI_CHOICE	FALSE	Travel;Culture;Technology;Food;Daily life	Select one or more.																	
+equipment_checkout	1	Requester details	1	Full name	SHORT_TEXT	TRUE																			
+equipment_checkout	1	Requester details	2	Email address	SHORT_TEXT	TRUE																			
+equipment_checkout	1	Requester details	3	Department or group	SHORT_TEXT	TRUE																			
+equipment_checkout	1	Requester details	4	Equipment category	DROPDOWN	TRUE	Laptop;Camera;Microphone;Sensor kit;Projector;Other																		
+equipment_checkout	1	Requester details	5	Specific item requested	SHORT_TEXT	TRUE		Example: DSLR camera kit or laptop charger																	
+equipment_checkout	1	Requester details	6	Pickup date	DATE	TRUE																			
+equipment_checkout	1	Requester details	7	Pickup time	TIME	FALSE																			
+equipment_checkout	1	Requester details	8	Expected return date	DATE	TRUE																			
+equipment_checkout	1	Requester details	9	Purpose of checkout	PARAGRAPH	FALSE		Briefly describe how the item will be used.																	
+room_booking	1	Booking details	1	Requester name	SHORT_TEXT	TRUE																			
+room_booking	1	Booking details	2	Contact email	SHORT_TEXT	TRUE																			
+room_booking	1	Booking details	3	Room type requested	SINGLE_CHOICE	TRUE	Small study room;Meeting room;Seminar room;Computer lab																		
+room_booking	1	Booking details	4	Number of participants	SHORT_TEXT	TRUE		Enter a number only.																	
+room_booking	1	Booking details	5	Preferred booking date	DATE	TRUE																			
+room_booking	1	Booking details	6	Preferred start time	TIME	TRUE																			
+room_booking	2	Room requirements	1	Equipment needed	MULTI_CHOICE	FALSE	Projector;Whiteboard;Video conferencing;Power outlets;None	Select all that apply.																	
+room_booking	2	Room requirements	2	Catering or food planned?	SINGLE_CHOICE	TRUE	Yes;No;Not sure																		
+room_booking	2	Room requirements	3	Purpose of booking	PARAGRAPH	FALSE																			
+lab_safety	1	Participant details	1	Full name	SHORT_TEXT	TRUE																			
+lab_safety	1	Participant details	2	University email	SHORT_TEXT	TRUE																			
+lab_safety	1	Participant details	3	Role	SINGLE_CHOICE	TRUE	Bachelor's student;Master's student;PhD student;Research staff;Visitor																		
+lab_safety	1	Participant details	4	Lab area you need access to	DROPDOWN	TRUE	Wet lab;Electronics lab;Robotics lab;Computer lab;Workshop																		
+lab_safety	1	Participant details	5	Previous safety training completed	SINGLE_CHOICE	TRUE	Yes;No;Not sure																		
+lab_safety	1	Participant details	6	Training topics needed	MULTI_CHOICE	FALSE	General safety;Chemical handling;Electrical safety;Machine safety;Emergency procedures	Select one or more.																	
+lab_safety	1	Participant details	7	Preferred training date	DATE	FALSE																			
+lab_safety	1	Participant details	8	Questions for the trainer	PARAGRAPH	FALSE																			
+bug_report	1	Issue details	1	Reporter name	SHORT_TEXT	FALSE																			
+bug_report	1	Issue details	2	Contact email	SHORT_TEXT	TRUE																			
+bug_report	1	Issue details	3	Application or module name	SHORT_TEXT	TRUE																			
+bug_report	1	Issue details	4	Bug severity	SINGLE_CHOICE	TRUE	Low;Medium;High;Critical																		
+bug_report	1	Issue details	5	Device or browser used	DROPDOWN	TRUE	Chrome;Firefox;Edge;Safari;Android app;iOS app;Other																		
+bug_report	1	Issue details	6	Steps to reproduce	PARAGRAPH	TRUE		List the actions that caused the issue.																	
+bug_report	1	Issue details	7	Expected behavior	PARAGRAPH	FALSE																			
+bug_report	1	Issue details	8	Observed behavior	PARAGRAPH	TRUE																			
+bug_report	1	Issue details	9	Date when issue occurred	DATE	FALSE																			
+dataset_request	1	Requester information	1	Full name	SHORT_TEXT	TRUE																			
+dataset_request	1	Requester information	2	Institutional email	SHORT_TEXT	TRUE																			
+dataset_request	1	Requester information	3	Affiliation	SHORT_TEXT	TRUE																			
+dataset_request	1	Requester information	4	Requester type	SINGLE_CHOICE	TRUE	Student;Researcher;Instructor;Industry partner;Other																		
+dataset_request	2	Dataset request	1	Dataset requested	DROPDOWN	TRUE	Form interaction videos;Annotation traces;Synthetic answers;Evaluation logs;All available datasets																		
+dataset_request	2	Dataset request	2	Intended use	MULTI_CHOICE	TRUE	Course project;Thesis;Research paper;Benchmark evaluation;Tool development	Select all that apply.																	
+dataset_request	2	Dataset request	3	Short project description	PARAGRAPH	TRUE		2-5 sentences.																	
+dataset_request	2	Dataset request	4	Requested access start date	DATE	FALSE																			
+dataset_request	2	Dataset request	5	Do you agree to cite the dataset if used?	SINGLE_CHOICE	TRUE	Yes;No;Need clarification																		
+thesis_meeting	1	Meeting request	1	Student name	SHORT_TEXT	TRUE																			
+thesis_meeting	1	Meeting request	2	Email address	SHORT_TEXT	TRUE																			
+thesis_meeting	1	Meeting request	3	Thesis stage	DROPDOWN	TRUE	Topic planning;Implementation;Data collection;Evaluation;Writing;Final review																		
+thesis_meeting	1	Meeting request	4	Main topics to discuss	MULTI_CHOICE	TRUE	Research question;Implementation;Dataset design;Evaluation;Writing structure;Timeline	Select one or more.																	
+thesis_meeting	1	Meeting request	5	Current progress summary	PARAGRAPH	TRUE		Briefly summarize what has changed since the last meeting.																	
+thesis_meeting	1	Meeting request	6	Preferred meeting date	DATE	TRUE																			
+thesis_meeting	1	Meeting request	7	Preferred meeting time	TIME	FALSE																			
+thesis_meeting	1	Meeting request	8	Urgency	SINGLE_CHOICE	TRUE	Low;Normal;High																		
+paper_review	1	Reviewer details	1	Reviewer name	SHORT_TEXT	TRUE																			
+paper_review	1	Reviewer details	2	Email address	SHORT_TEXT	TRUE																			
+paper_review	1	Reviewer details	3	Preferred paper topic	MULTI_CHOICE	TRUE	Computer use agents;Vision-language models;Web automation;Dataset construction;Evaluation metrics	Select one or more.																	
+paper_review	1	Reviewer details	4	Comfort level with reviewing	SINGLE_CHOICE	TRUE	Beginner;Intermediate;Advanced																		
+paper_review	1	Reviewer details	5	Number of papers you can review	DROPDOWN	TRUE	1;2;3;4;5																		
+paper_review	1	Reviewer details	6	Review deadline preference	DATE	FALSE																			
+paper_review	1	Reviewer details	7	Conflicts of interest	PARAGRAPH	FALSE		Mention authors, labs, or topics you cannot review.																	
+job_fair	1	Attendee profile	1	Full name	SHORT_TEXT	TRUE																			
+job_fair	1	Attendee profile	2	Email address	SHORT_TEXT	TRUE																			
+job_fair	1	Attendee profile	3	Current study level	SINGLE_CHOICE	TRUE	Bachelor's;Master's;PhD;Graduate;Other																		
+job_fair	1	Attendee profile	4	Career interests	MULTI_CHOICE	TRUE	Software Engineering;Data Engineering;AI/ML;Product Management;Research;Consulting	Select one or more.																	
+job_fair	1	Attendee profile	5	Are you currently looking for a job?	SINGLE_CHOICE	TRUE	Yes;No;Maybe soon																		
+job_fair	2	Event preferences	1	Preferred attendance date	DATE	FALSE																			
+job_fair	2	Event preferences	2	Preferred arrival time	TIME	FALSE																			
+job_fair	2	Event preferences	3	Sessions you want to attend	MULTI_CHOICE	FALSE	Company booths;CV review;Mock interviews;Tech talks;Networking	Select all that apply.																	
+job_fair	2	Event preferences	4	Questions for recruiters	PARAGRAPH	FALSE																			
+project_update	1	Weekly update	1	Name	SHORT_TEXT	TRUE																			
+project_update	1	Weekly update	2	Project name	SHORT_TEXT	TRUE																			
+project_update	1	Weekly update	3	Reporting week start date	DATE	TRUE																			
+project_update	1	Weekly update	4	Current project status	SINGLE_CHOICE	TRUE	On track;Slightly delayed;Blocked;Completed																		
+project_update	1	Weekly update	5	Tasks completed this week	PARAGRAPH	TRUE																			
+project_update	1	Weekly update	6	Blockers or risks	MULTI_CHOICE	FALSE	Technical issue;Missing data;Waiting for feedback;Scheduling conflict;No blockers	Select all that apply.																	
+project_update	1	Weekly update	7	Next planned task	PARAGRAPH	TRUE																			
+project_update	1	Weekly update	8	Preferred sync time	TIME	FALSE																			
+purchase_request	1	Requester details	1	Requester name	SHORT_TEXT	TRUE																			
+purchase_request	1	Requester details	2	Email address	SHORT_TEXT	TRUE																			
+purchase_request	1	Requester details	3	Department or project	SHORT_TEXT	TRUE																			
+purchase_request	2	Purchase details	1	Purchase category	DROPDOWN	TRUE	Hardware;Software;Books;Lab materials;Cloud credits;Other																		
+purchase_request	2	Purchase details	2	Item name	SHORT_TEXT	TRUE																			
+purchase_request	2	Purchase details	3	Estimated cost	SHORT_TEXT	TRUE		Enter approximate amount and currency.																	
+purchase_request	2	Purchase details	4	Reason for purchase	PARAGRAPH	TRUE																			
+purchase_request	3	Approval and timing	1	Needed by date	DATE	FALSE																			
+purchase_request	3	Approval and timing	2	Budget source known?	SINGLE_CHOICE	TRUE	Yes;No;Not sure																		
+purchase_request	3	Approval and timing	3	Urgency level	SINGLE_CHOICE	TRUE	Low;Normal;High																		
+software_access	1	Access request	1	Full name	SHORT_TEXT	TRUE																			
+software_access	1	Access request	2	Institutional email	SHORT_TEXT	TRUE																			
+software_access	1	Access request	3	Software or platform requested	DROPDOWN	TRUE	GitHub;Overleaf;MATLAB;JetBrains;Cloud platform;Internal server;Other																		
+software_access	1	Access request	4	Access level needed	SINGLE_CHOICE	TRUE	Viewer;Editor;Admin;Temporary guest access																		
+software_access	1	Access request	5	Purpose of access	PARAGRAPH	TRUE																			
+software_access	1	Access request	6	Requested start date	DATE	FALSE																			
+software_access	1	Access request	7	Expected duration	SINGLE_CHOICE	TRUE	Less than 1 week;1 month;1 semester;Long term																		
+software_access	1	Access request	8	Related project or course	SHORT_TEXT	FALSE																			
+conference_travel	1	Conference details	1	Full name	SHORT_TEXT	TRUE																			
+conference_travel	1	Conference details	2	Email address	SHORT_TEXT	TRUE																			
+conference_travel	1	Conference details	3	Conference name	SHORT_TEXT	TRUE																			
+conference_travel	1	Conference details	4	Conference role	SINGLE_CHOICE	TRUE	Attendee;Presenter;Poster presenter;Organizer;Volunteer																		
+conference_travel	1	Conference details	5	Conference start date	DATE	TRUE																			
+conference_travel	1	Conference details	6	Conference end date	DATE	TRUE																			
+conference_travel	2	Travel preferences	1	Preferred travel mode	DROPDOWN	TRUE	Train;Flight;Bus;Car;Not decided																		
+conference_travel	2	Travel preferences	2	Accommodation preferences	MULTI_CHOICE	FALSE	Single room;Shared room;Near venue;Budget option;No accommodation needed	Select all that apply.																	
+conference_travel	2	Travel preferences	3	Preferred departure time	TIME	FALSE																			
+conference_travel	2	Travel preferences	4	Additional travel notes	PARAGRAPH	FALSE																			
+exam_registration	1	Student details	1	Full name	SHORT_TEXT	TRUE																			
+exam_registration	1	Student details	2	Student ID	SHORT_TEXT	TRUE																			
+exam_registration	1	Student details	3	Email address	SHORT_TEXT	TRUE																			
+exam_registration	1	Student details	4	Program level	SINGLE_CHOICE	TRUE	Bachelor's;Master's;PhD;Exchange student																		
+exam_registration	1	Student details	5	Exam or module name	SHORT_TEXT	TRUE																			
+exam_registration	1	Student details	6	Issue type	DROPDOWN	TRUE	Registration not visible;Deadline question;Wrong exam listed;Deregistration request;Other																		
+exam_registration	1	Student details	7	Exam date	DATE	FALSE																			
+exam_registration	1	Student details	8	Describe the issue	PARAGRAPH	TRUE																			
+peer_evaluation	1	Project and evaluator	1	Your name	SHORT_TEXT	TRUE																			
+peer_evaluation	1	Project and evaluator	2	Project group name	SHORT_TEXT	TRUE																			
+peer_evaluation	1	Project and evaluator	3	Peer being evaluated	SHORT_TEXT	TRUE																			
+peer_evaluation	1	Project and evaluator	4	Contribution level	SINGLE_CHOICE	TRUE	Very low;Low;Moderate;High;Very high																		
+peer_evaluation	1	Project and evaluator	5	Strengths observed	MULTI_CHOICE	FALSE	Communication;Technical work;Writing;Presentation;Organization;Problem solving	Select all that apply.																	
+peer_evaluation	1	Project and evaluator	6	Collaboration rating	DROPDOWN	TRUE	1;2;3;4;5																		
+peer_evaluation	1	Project and evaluator	7	Constructive feedback	PARAGRAPH	FALSE																			
+lab_visit	1	Visitor information	1	Visitor name	SHORT_TEXT	TRUE																			
+lab_visit	1	Visitor information	2	Contact email	SHORT_TEXT	TRUE																			
+lab_visit	1	Visitor information	3	Organization or school	SHORT_TEXT	FALSE																			
+lab_visit	1	Visitor information	4	Visitor type	SINGLE_CHOICE	TRUE	Student;Researcher;Industry visitor;School group;Other																		
+lab_visit	1	Visitor information	5	Areas of interest	MULTI_CHOICE	TRUE	Robotics;AI demos;Visualization lab;Data science;Human-computer interaction	Select one or more.																	
+lab_visit	1	Visitor information	6	Preferred visit date	DATE	TRUE																			
+lab_visit	1	Visitor information	7	Preferred arrival time	TIME	FALSE																			
+lab_visit	1	Visitor information	8	Group size	SHORT_TEXT	TRUE		Use a number like 1, 5, or 12.																	
+remote_setup	1	Remote work request	1	Full name	SHORT_TEXT	TRUE																			
+remote_setup	1	Remote work request	2	Email address	SHORT_TEXT	TRUE																			
+remote_setup	1	Remote work request	3	Remote work start date	DATE	TRUE																			
+remote_setup	1	Remote work request	4	Expected remote work duration	DROPDOWN	TRUE	1 day;1 week;1 month;Full semester;Long term																		
+remote_setup	1	Remote work request	5	Equipment needed	MULTI_CHOICE	FALSE	Laptop;Monitor;Keyboard;Mouse;Headset;VPN access;None	Select all that apply.																	
+remote_setup	1	Remote work request	6	Primary work location	SINGLE_CHOICE	TRUE	Home;Co-working space;Traveling;Other																		
+remote_setup	1	Remote work request	7	Technical constraints	PARAGRAPH	FALSE																			
+data_annotation	1	Annotator profile	1	Full name	SHORT_TEXT	TRUE																			
+data_annotation	1	Annotator profile	2	Email address	SHORT_TEXT	TRUE																			
+data_annotation	1	Annotator profile	3	Annotation experience	SINGLE_CHOICE	TRUE	None;Some experience;Experienced																		
+data_annotation	1	Annotator profile	4	Languages comfortable with	MULTI_CHOICE	FALSE	English;German;French;Spanish;Hindi;Other	Select one or more.																	
+data_annotation	2	Task preferences	1	Preferred annotation task	DROPDOWN	TRUE	Bounding boxes;Action labels;Text transcription;Quality checking;Metadata cleanup																		
+data_annotation	2	Task preferences	2	Available start date	DATE	FALSE																			
+data_annotation	2	Task preferences	3	Preferred work time	TIME	FALSE																			
+data_annotation	2	Task preferences	4	Weekly availability	SHORT_TEXT	TRUE		Example: 5, 10, 15																	
+data_annotation	2	Task preferences	5	Comments about task preference	PARAGRAPH	FALSE																			
+accessibility_feedback	1	Feedback context	1	Name	SHORT_TEXT	FALSE																			
+accessibility_feedback	1	Feedback context	2	Email address	SHORT_TEXT	FALSE																			
+accessibility_feedback	1	Feedback context	3	Feedback area	DROPDOWN	TRUE	Event;Website;Classroom;Library;Student service;Other																		
+accessibility_feedback	1	Feedback context	4	Type of issue noticed	MULTI_CHOICE	TRUE	Navigation;Visual readability;Audio;Physical access;Timing;Communication	Select one or more.																	
+accessibility_feedback	1	Feedback context	5	How severe was the issue?	SINGLE_CHOICE	TRUE	Minor;Moderate;Major;Blocking																		
+accessibility_feedback	1	Feedback context	6	Date of experience	DATE	FALSE																			
+accessibility_feedback	1	Feedback context	7	Detailed feedback	PARAGRAPH	TRUE																			
+accessibility_feedback	1	Feedback context	8	May we contact you for follow-up?	SINGLE_CHOICE	TRUE	Yes;No																		
+club_event_planning	1	Event basics	1	Organizer name	SHORT_TEXT	TRUE																			
+club_event_planning	1	Event basics	2	Organizer email	SHORT_TEXT	TRUE																			
+club_event_planning	1	Event basics	3	Event title	SHORT_TEXT	TRUE																			
+club_event_planning	1	Event basics	4	Event type	DROPDOWN	TRUE	Workshop;Social event;Guest talk;Competition;Study session;Other																		
+club_event_planning	2	Schedule and venue	1	Preferred event date	DATE	TRUE																			
+club_event_planning	2	Schedule and venue	2	Preferred start time	TIME	TRUE																			
+club_event_planning	2	Schedule and venue	3	Expected number of attendees	SHORT_TEXT	TRUE		Enter an approximate number.																	
+club_event_planning	2	Schedule and venue	4	Venue needs	MULTI_CHOICE	FALSE	Projector;Microphone;Whiteboard;Open space;Tables;No special needs	Select all that apply.																	
+club_event_planning	3	Planning notes	1	Promotion channels	MULTI_CHOICE	FALSE	Instagram;Email;Posters;Website;Class announcements	Select all that apply.																	
+club_event_planning	3	Planning notes	2	Short event description	PARAGRAPH	TRUE																			
+newsletter_signup	1	Subscription preferences	1	Full name	SHORT_TEXT	FALSE																			
+newsletter_signup	1	Subscription preferences	2	Email address	SHORT_TEXT	TRUE																			
+newsletter_signup	1	Subscription preferences	3	Newsletter topics	MULTI_CHOICE	TRUE	Research news;Events;Job opportunities;Student projects;Funding calls	Select one or more.																	
+newsletter_signup	1	Subscription preferences	4	Email frequency	DROPDOWN	TRUE	Weekly;Biweekly;Monthly;Only major announcements																		
+newsletter_signup	1	Subscription preferences	5	Preferred language	SINGLE_CHOICE	TRUE	English;German;No preference																		
+newsletter_signup	1	Subscription preferences	6	Would you like event reminders?	SINGLE_CHOICE	TRUE	Yes;No																		
+newsletter_signup	1	Subscription preferences	7	Additional interests	PARAGRAPH	FALSE																			
+survey_consent	1	Consent and contact	1	Participant code or name	SHORT_TEXT	TRUE																			
+survey_consent	1	Consent and contact	2	Contact email	SHORT_TEXT	TRUE																			
+survey_consent	1	Consent and contact	3	I have read the study information	SINGLE_CHOICE	TRUE	Yes;No																		
+survey_consent	1	Consent and contact	4	I agree to participate	SINGLE_CHOICE	TRUE	Yes;No																		
+survey_consent	1	Consent and contact	5	Participation mode preferred	DROPDOWN	TRUE	Online;In person;Either																		
+survey_consent	1	Consent and contact	6	Available dates	MULTI_CHOICE	FALSE	Monday;Tuesday;Wednesday;Thursday;Friday	Select all weekdays that usually work.																	
+survey_consent	1	Consent and contact	7	Preferred session date	DATE	FALSE																			
+survey_consent	1	Consent and contact	8	Preferred session time	TIME	FALSE																			
+technical_support	1	Support request	1	Full name	SHORT_TEXT	TRUE																			
+technical_support	1	Support request	2	Email address	SHORT_TEXT	TRUE																			
+technical_support	1	Support request	3	Issue category	DROPDOWN	TRUE	Account;Network;Software;Hardware;Printing;Other																		
+technical_support	1	Support request	4	Affected device	SINGLE_CHOICE	TRUE	Laptop;Desktop;Phone;Tablet;Lab workstation;Other																		
+technical_support	1	Support request	5	When did the issue start?	DATE	FALSE																			
+technical_support	1	Support request	6	Best time to contact you	TIME	FALSE																			
+technical_support	1	Support request	7	Impact level	SINGLE_CHOICE	TRUE	Low;Medium;High;Cannot work																		
+technical_support	1	Support request	8	Description of the issue	PARAGRAPH	TRUE																			
+publication_submission	1	Publication details	1	Publication title	SHORT_TEXT	TRUE																			
+publication_submission	1	Publication details	2	Author name	SHORT_TEXT	TRUE																			
+publication_submission	1	Publication details	3	Contact email	SHORT_TEXT	TRUE																			
+publication_submission	1	Publication details	4	Publication type	DROPDOWN	TRUE	Journal article;Conference paper;Preprint;Book chapter;Dataset;Other																		
+publication_submission	1	Publication details	5	Publication date	DATE	FALSE																			
+publication_submission	2	Metadata and links	1	DOI or URL	SHORT_TEXT	FALSE																			
+publication_submission	2	Metadata and links	2	Keywords	SHORT_TEXT	FALSE		Separate keywords with commas.																	
+publication_submission	2	Metadata and links	3	Research area	MULTI_CHOICE	TRUE	AI/ML;GIS;Human-computer interaction;Data engineering;Visualization;Other	Select one or more.																	
+publication_submission	2	Metadata and links	4	Abstract or short summary	PARAGRAPH	FALSE																			
+publication_submission	2	Metadata and links	5	Should this be shown publicly?	SINGLE_CHOICE	TRUE	Yes;No;Needs review																		
+orientation_signup	1	Student information	1	Full name	SHORT_TEXT	TRUE																			
+orientation_signup	1	Student information	2	Email address	SHORT_TEXT	TRUE																			
+orientation_signup	1	Student information	3	Program	SHORT_TEXT	TRUE																			
+orientation_signup	1	Student information	4	Student type	SINGLE_CHOICE	TRUE	Bachelor's;Master's;Exchange;PhD;Other																		
+orientation_signup	1	Student information	5	Orientation activities	MULTI_CHOICE	TRUE	Campus tour;Library introduction;IT setup;City tour;Program Q&A	Select one or more.																	
+orientation_signup	1	Student information	6	Preferred orientation date	DATE	FALSE																			
+orientation_signup	1	Student information	7	Preferred start time	TIME	FALSE																			
+orientation_signup	1	Student information	8	Questions before orientation	PARAGRAPH	FALSE																			
+scholarship_interest	1	Applicant profile	1	Full name	SHORT_TEXT	TRUE																			
+scholarship_interest	1	Applicant profile	2	Email address	SHORT_TEXT	TRUE																			
+scholarship_interest	1	Applicant profile	3	Current study level	DROPDOWN	TRUE	Bachelor's;Master's;PhD;Other																		
+scholarship_interest	1	Applicant profile	4	Scholarship type of interest	MULTI_CHOICE	TRUE	Merit-based;Need-based;Research funding;Travel grant;Emergency support	Select one or more.																	
+scholarship_interest	1	Applicant profile	5	Expected application date	DATE	FALSE																			
+scholarship_interest	1	Applicant profile	6	Do you need help reviewing documents?	SINGLE_CHOICE	TRUE	Yes;No;Maybe																		
+scholarship_interest	1	Applicant profile	7	Brief background or question	PARAGRAPH	FALSE																			
+sports_tournament	1	Participant details	1	Full name	SHORT_TEXT	TRUE																			
+sports_tournament	1	Participant details	2	Contact email	SHORT_TEXT	TRUE																			
+sports_tournament	1	Participant details	3	Sport	DROPDOWN	TRUE	Football;Basketball;Badminton;Table tennis;Volleyball;Running																		
+sports_tournament	1	Participant details	4	Registration type	SINGLE_CHOICE	TRUE	Individual;Team captain;Team member																		
+sports_tournament	2	Team and schedule	1	Team name	SHORT_TEXT	FALSE																			
+sports_tournament	2	Team and schedule	2	Skill level	SINGLE_CHOICE	TRUE	Beginner;Intermediate;Advanced																		
+sports_tournament	2	Team and schedule	3	Available match days	MULTI_CHOICE	TRUE	Monday;Tuesday;Wednesday;Thursday;Friday;Weekend	Select all that apply.																	
+sports_tournament	2	Team and schedule	4	Preferred first match date	DATE	FALSE																			
+sports_tournament	2	Team and schedule	5	Preferred match time	TIME	FALSE																			
+field_trip	1	Participant details	1	Full name	SHORT_TEXT	TRUE																			
+field_trip	1	Participant details	2	Email address	SHORT_TEXT	TRUE																			
+field_trip	1	Participant details	3	Emergency contact name	SHORT_TEXT	TRUE																			
+field_trip	1	Participant details	4	Emergency contact phone	SHORT_TEXT	TRUE																			
+field_trip	1	Participant details	5	Trip option	DROPDOWN	TRUE	Museum visit;Research institute tour;Field site visit;Company visit																		
+field_trip	1	Participant details	6	Preferred trip date	DATE	FALSE																			
+field_trip	1	Participant details	7	Dietary restrictions	MULTI_CHOICE	FALSE	Vegetarian;Vegan;Halal;Gluten-free;None;Other	Select all that apply.																	
+field_trip	1	Participant details	8	Mobility or accessibility notes	PARAGRAPH	FALSE																			
+office_hours	1	Booking details	1	Student name	SHORT_TEXT	TRUE																			
+office_hours	1	Booking details	2	Email address	SHORT_TEXT	TRUE																			
+office_hours	1	Booking details	3	Course or project	SHORT_TEXT	TRUE																			
+office_hours	1	Booking details	4	Topic category	DROPDOWN	TRUE	Lecture content;Assignment;Exam preparation;Project feedback;Administrative question;Other																		
+office_hours	1	Booking details	5	Preferred meeting mode	SINGLE_CHOICE	TRUE	In person;Online;Either																		
+office_hours	1	Booking details	6	Preferred date	DATE	TRUE																			
+office_hours	1	Booking details	7	Preferred time	TIME	TRUE																			
+office_hours	1	Booking details	8	Question or context	PARAGRAPH	FALSE		Briefly describe what you want to discuss.																	
+experiment_booking	1	Participant details	1	Participant name	SHORT_TEXT	TRUE																			
+experiment_booking	1	Participant details	2	Email address	SHORT_TEXT	TRUE																			
+experiment_booking	1	Participant details	3	Participant group	SINGLE_CHOICE	TRUE	Student;Research staff;External participant;Pilot tester																		
+experiment_booking	1	Participant details	4	Prior participation in similar studies	SINGLE_CHOICE	TRUE	Yes;No;Not sure																		
+experiment_booking	2	Session scheduling	1	Experiment type	DROPDOWN	TRUE	Usability test;Eye-tracking session;Interview;Annotation task;Pilot session																		
+experiment_booking	2	Session scheduling	2	Preferred session date	DATE	TRUE																			
+experiment_booking	2	Session scheduling	3	Preferred start time	TIME	FALSE																			
+experiment_booking	2	Session scheduling	4	Session constraints	MULTI_CHOICE	FALSE	Needs online option;Needs quiet room;Cannot be recorded;Flexible schedule;No constraints	Select all that apply.																	
+experiment_booking	2	Session scheduling	5	Additional comments	PARAGRAPH	FALSE																			
+course_enrollment	1	Enrollment preferences	1	Full name	SHORT_TEXT	TRUE																			
+course_enrollment	1	Enrollment preferences	2	Student ID	SHORT_TEXT	TRUE																			
+course_enrollment	1	Enrollment preferences	3	Email address	SHORT_TEXT	TRUE																			
+course_enrollment	1	Enrollment preferences	4	Preferred course	DROPDOWN	TRUE	Machine Learning;Data Visualization;Scalable Data Engineering;Human-Computer Interaction;Computer Vision																		
+course_enrollment	1	Enrollment preferences	5	Prior knowledge	SINGLE_CHOICE	TRUE	None;Basic;Intermediate;Advanced																		
+course_enrollment	1	Enrollment preferences	6	Reasons for enrolling	MULTI_CHOICE	FALSE	Degree requirement;Research interest;Career preparation;Project topic;General interest	Select all that apply.																	
+course_enrollment	1	Enrollment preferences	7	Schedule constraints	PARAGRAPH	FALSE																			
+course_enrollment	1	Enrollment preferences	8	Preferred lab session time	TIME	FALSE																			

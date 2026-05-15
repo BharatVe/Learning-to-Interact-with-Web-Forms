@@ -46,7 +46,7 @@ def check_model_config(config_path: Path) -> Tuple[List[str], List[str], List[Di
             errors.append(f"duplicate model id: {model_id}")
             continue
         seen_ids.add(model_id)
-        if provider not in {"local_hf", "openai_compat", "api_over_mcp"}:
+        if provider not in {"local_hf", "openai_compat", "api_over_mcp", "gemini_native"}:
             warnings.append(f"model '{model_id}' uses unknown provider '{provider}'")
         models_info.append({"id": model_id, "provider": provider, "kind": kind, "hf_repo": model.get("hf_repo")})
 

@@ -1,0 +1,816 @@
+{
+  "form_id": "survey_consent",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Participant code or name",
+          "widget_type": "short_text",
+          "value": "Noah Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "noah.kim.1@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "I have read the study information",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "I agree to participate",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Participation mode preferred",
+          "widget_type": "dropdown",
+          "value": "Either",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Available dates",
+          "widget_type": "multi_choice",
+          "value": [
+            "Monday",
+            "Thursday"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-10-26",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred session time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Participant code or name",
+          "widget_type": "short_text",
+          "value": "Morgan Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "morgan.chen.2@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "I have read the study information",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "I agree to participate",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Participation mode preferred",
+          "widget_type": "dropdown",
+          "value": "In person",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Available dates",
+          "widget_type": "multi_choice",
+          "value": [
+            "Wednesday",
+            "Thursday"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-06-24",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred session time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Participant code or name",
+          "widget_type": "short_text",
+          "value": "Avery Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "avery.patel.3@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "I have read the study information",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "I agree to participate",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Participation mode preferred",
+          "widget_type": "dropdown",
+          "value": "In person",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Available dates",
+          "widget_type": "multi_choice",
+          "value": [
+            "Tuesday",
+            "Friday"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-06-22",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred session time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Participant code or name",
+          "widget_type": "short_text",
+          "value": "Jordan Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "jordan.chen.4@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "I have read the study information",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "I agree to participate",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Participation mode preferred",
+          "widget_type": "dropdown",
+          "value": "Either",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Available dates",
+          "widget_type": "multi_choice",
+          "value": [
+            "Monday",
+            "Wednesday",
+            "Thursday"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-09-08",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred session time",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Participant code or name",
+          "widget_type": "short_text",
+          "value": "Morgan Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "morgan.bauer.5@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "I have read the study information",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "I agree to participate",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Participation mode preferred",
+          "widget_type": "dropdown",
+          "value": "In person",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Available dates",
+          "widget_type": "multi_choice",
+          "value": [
+            "Tuesday",
+            "Wednesday",
+            "Friday"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-10-17",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred session time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Participant code or name",
+          "widget_type": "short_text",
+          "value": "Noah Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "noah.nguyen.6@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "I have read the study information",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "I agree to participate",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Participation mode preferred",
+          "widget_type": "dropdown",
+          "value": "Online",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Available dates",
+          "widget_type": "multi_choice",
+          "value": [
+            "Thursday"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-09-16",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred session time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Participant code or name",
+          "widget_type": "short_text",
+          "value": "Priya Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "priya.nguyen.7@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "I have read the study information",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "I agree to participate",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Participation mode preferred",
+          "widget_type": "dropdown",
+          "value": "Online",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Available dates",
+          "widget_type": "multi_choice",
+          "value": [
+            "Tuesday",
+            "Thursday"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-08-07",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred session time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Participant code or name",
+          "widget_type": "short_text",
+          "value": "Riley Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "riley.khan.8@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "I have read the study information",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "I agree to participate",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Participation mode preferred",
+          "widget_type": "dropdown",
+          "value": "Online",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Available dates",
+          "widget_type": "multi_choice",
+          "value": [
+            "Monday",
+            "Friday"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-07-31",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred session time",
+          "widget_type": "time",
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Participant code or name",
+          "widget_type": "short_text",
+          "value": "Avery Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "avery.rivera.9@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "I have read the study information",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "I agree to participate",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Participation mode preferred",
+          "widget_type": "dropdown",
+          "value": "Online",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Available dates",
+          "widget_type": "multi_choice",
+          "value": [
+            "Tuesday"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-11-27",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred session time",
+          "widget_type": "time",
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Participant code or name",
+          "widget_type": "short_text",
+          "value": "Priya Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "priya.khan.10@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "I have read the study information",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "I agree to participate",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Participation mode preferred",
+          "widget_type": "dropdown",
+          "value": "Either",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Available dates",
+          "widget_type": "multi_choice",
+          "value": [
+            "Wednesday",
+            "Friday"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred session date",
+          "widget_type": "date",
+          "value": "2025-10-18",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred session time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,932 @@
+{
+  "form_id": "job_fair",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "riley.rivera.1@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "single_choice",
+          "value": "Bachelor's",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Career interests",
+          "widget_type": "multi_choice",
+          "value": [
+            "Data Engineering",
+            "AI/ML",
+            "Consulting"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Are you currently looking for a job?",
+          "widget_type": "single_choice",
+          "value": "Maybe soon",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred attendance date",
+          "widget_type": "date",
+          "value": "2025-09-28",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Sessions you want to attend",
+          "widget_type": "multi_choice",
+          "value": [
+            "Company booths"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Questions for recruiters",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Questions for recruiters; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Morgan Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "morgan.khan.2@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "single_choice",
+          "value": "Bachelor's",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Career interests",
+          "widget_type": "multi_choice",
+          "value": [
+            "Product Management"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Are you currently looking for a job?",
+          "widget_type": "single_choice",
+          "value": "Maybe soon",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred attendance date",
+          "widget_type": "date",
+          "value": "2025-10-20",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Sessions you want to attend",
+          "widget_type": "multi_choice",
+          "value": [
+            "Company booths"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Questions for recruiters",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Questions for recruiters; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "avery.chen.3@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "single_choice",
+          "value": "Master's",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Career interests",
+          "widget_type": "multi_choice",
+          "value": [
+            "Consulting"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Are you currently looking for a job?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred attendance date",
+          "widget_type": "date",
+          "value": "2025-09-12",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Sessions you want to attend",
+          "widget_type": "multi_choice",
+          "value": [
+            "Company booths",
+            "CV review",
+            "Networking"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Questions for recruiters",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Questions for recruiters; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "priya.singh.4@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "single_choice",
+          "value": "Graduate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Career interests",
+          "widget_type": "multi_choice",
+          "value": [
+            "AI/ML",
+            "Product Management",
+            "Research"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Are you currently looking for a job?",
+          "widget_type": "single_choice",
+          "value": "Maybe soon",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred attendance date",
+          "widget_type": "date",
+          "value": "2025-06-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "11:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Sessions you want to attend",
+          "widget_type": "multi_choice",
+          "value": [
+            "CV review",
+            "Tech talks",
+            "Networking"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Questions for recruiters",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Questions for recruiters; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Taylor Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "taylor.chen.5@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "single_choice",
+          "value": "Graduate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Career interests",
+          "widget_type": "multi_choice",
+          "value": [
+            "Consulting"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Are you currently looking for a job?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred attendance date",
+          "widget_type": "date",
+          "value": "2025-10-26",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Sessions you want to attend",
+          "widget_type": "multi_choice",
+          "value": [
+            "Company booths",
+            "Mock interviews",
+            "Tech talks"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Questions for recruiters",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Questions for recruiters; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Casey Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "casey.khan.6@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "single_choice",
+          "value": "PhD",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Career interests",
+          "widget_type": "multi_choice",
+          "value": [
+            "Software Engineering",
+            "Data Engineering"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Are you currently looking for a job?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred attendance date",
+          "widget_type": "date",
+          "value": "2025-10-30",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Sessions you want to attend",
+          "widget_type": "multi_choice",
+          "value": [
+            "Mock interviews"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Questions for recruiters",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Questions for recruiters; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "riley.singh.7@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "single_choice",
+          "value": "Bachelor's",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Career interests",
+          "widget_type": "multi_choice",
+          "value": [
+            "Software Engineering"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Are you currently looking for a job?",
+          "widget_type": "single_choice",
+          "value": "Maybe soon",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred attendance date",
+          "widget_type": "date",
+          "value": "2025-06-30",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Sessions you want to attend",
+          "widget_type": "multi_choice",
+          "value": [
+            "Mock interviews",
+            "Tech talks",
+            "Networking"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Questions for recruiters",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Questions for recruiters; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "avery.singh.8@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "single_choice",
+          "value": "Graduate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Career interests",
+          "widget_type": "multi_choice",
+          "value": [
+            "Consulting"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Are you currently looking for a job?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred attendance date",
+          "widget_type": "date",
+          "value": "2025-11-06",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "11:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Sessions you want to attend",
+          "widget_type": "multi_choice",
+          "value": [
+            "Company booths",
+            "CV review",
+            "Tech talks"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Questions for recruiters",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Questions for recruiters; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Casey Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "casey.chen.9@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "single_choice",
+          "value": "Bachelor's",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Career interests",
+          "widget_type": "multi_choice",
+          "value": [
+            "Product Management"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Are you currently looking for a job?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred attendance date",
+          "widget_type": "date",
+          "value": "2025-08-05",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Sessions you want to attend",
+          "widget_type": "multi_choice",
+          "value": [
+            "Company booths"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Questions for recruiters",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Questions for recruiters; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "avery.khan.10@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current study level",
+          "widget_type": "single_choice",
+          "value": "Bachelor's",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Career interests",
+          "widget_type": "multi_choice",
+          "value": [
+            "Research"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Are you currently looking for a job?",
+          "widget_type": "single_choice",
+          "value": "Maybe soon",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred attendance date",
+          "widget_type": "date",
+          "value": "2025-09-22",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Sessions you want to attend",
+          "widget_type": "multi_choice",
+          "value": [
+            "Company booths",
+            "Networking"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Questions for recruiters",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Questions for recruiters; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    }
+  ]
+}

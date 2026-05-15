@@ -91,6 +91,38 @@ def eval_api_over_mcp() -> Tuple[bool, Dict[str, Any]]:
     return ok, detail
 
 
+def eval_gemini_native(model: Dict[str, Any]) -> Tuple[bool, Dict[str, Any]]:
+    node_tools = {name: bool(shutil.which(name)) for name in ["node", "npm", "npx"]}
+    api_key_present = bool(os.getenv("GEMINI_API_KEY"))
+    model_name = str(os.getenv("GEMINI_MODEL") or model.get("gemini_model") or "").strip()
+    expected_model = "gemini-2.5-computer-use-preview-10-2025"
+    sdk_ok = False
+    sdk_error = None
+    try:
+        from google import genai  # noqa: F401
+
+        sdk_ok = True
+    except Exception as exc:
+        sdk_error = str(exc)
+    model_valid = model_name == expected_model
+    ok = all(node_tools.values()) and api_key_present and sdk_ok and bool(model_name) and model_valid
+    detail = {
+        "node_tools": node_tools,
+        "gemini_api_key_present": api_key_present,
+        "gemini_model_configured": bool(model_name),
+        "gemini_model": model_name or None,
+        "expected_gemini_model": expected_model,
+        "gemini_model_valid_for_native_computer_use": model_valid,
+        "google_genai_import_ok": sdk_ok,
+        "google_genai_import_error": sdk_error,
+    }
+    if ok:
+        detail["detail"] = "runtime prerequisites detected for gemini_native"
+    else:
+        detail["detail"] = "missing prerequisites or wrong model for gemini_native baseline"
+    return ok, detail
+
+
 def eval_openai_compat(model: Dict[str, Any]) -> Tuple[bool, Dict[str, Any]]:
     def endpoint_reachable(base_url: str, timeout_s: float = 3.0) -> Tuple[bool, str]:
         raw = str(base_url or "").strip()
@@ -145,8 +177,16 @@ def main() -> int:
     models_root = (repo_root / args.models_root).resolve()
     output_path = (repo_root / args.output).resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    print(f"[INFO] smoke_config={cfg_path}")
+    if not cfg_path.exists():
+        print(f"[FAIL] config not found: {cfg_path}")
+        return 1
 
-    cfg = load_config(cfg_path)
+    try:
+        cfg = load_config(cfg_path)
+    except Exception as exc:
+        print(f"[FAIL] failed to load config {cfg_path}: {exc}")
+        return 1
     models = cfg.get("models", [])
     if not isinstance(models, list) or not models:
         print(f"[FAIL] no models configured in {cfg_path}")
@@ -154,6 +194,10 @@ def main() -> int:
 
     include_kinds = set(_parse_csv(args.include_kinds))
     exclude_providers = set(_parse_csv(args.exclude_providers))
+    if include_kinds:
+        print(f"[INFO] include_kinds={sorted(include_kinds)}")
+    if exclude_providers:
+        print(f"[INFO] exclude_providers={sorted(exclude_providers)}")
 
     report: Dict[str, Any] = {
         "timestamp_utc": datetime.utcnow().isoformat() + "Z",
@@ -209,6 +253,10 @@ def main() -> int:
             entry["detail"] = detail
         elif provider == "openai_compat":
             ok, detail = eval_openai_compat(model)
+            entry["status"] = "passed" if ok else "failed"
+            entry["detail"] = detail
+        elif provider == "gemini_native":
+            ok, detail = eval_gemini_native(model)
             entry["status"] = "passed" if ok else "failed"
             entry["detail"] = detail
         else:

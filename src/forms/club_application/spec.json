@@ -1,0 +1,113 @@
+{
+  "form_id": "club_application",
+  "form_title": "Student Club Application (3 pages)",
+  "form_description": "Application form for joining a student club and choosing activities.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1frcHtS4qcggRo9Yv9H5Axm3enN7e5dm-0SZLqFeBr8w/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSee2g_H25OAB5E0MY8mGeofVFuIdOzD2eXjb2wg1aEIHrpgVw/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSee2g_H25OAB5E0MY8mGeofVFuIdOzD2eXjb2wg1aEIHrpgVw/viewform",
+  "question_count": 10,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Applicant details",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Applicant details",
+      "q_order": 2,
+      "q_title": "Student email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Applicant details",
+      "q_order": 3,
+      "q_title": "Study program",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Applicant details",
+      "q_order": 4,
+      "q_title": "Year of study",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "1st year;2nd year;3rd year;4th year;Master\u2019s;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Interest and activities",
+      "q_order": 1,
+      "q_title": "Why do you want to join?",
+      "q_type": "PARAGRAPH",
+      "required": true,
+      "options": "",
+      "help_text": "2\u20134 sentences."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Interest and activities",
+      "q_order": 2,
+      "q_title": "Activities you are interested in",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Events;Workshops;Social media;Sponsorship;Technical projects",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Interest and activities",
+      "q_order": 3,
+      "q_title": "Previous club experience",
+      "q_type": "SINGLE_CHOICE",
+      "required": false,
+      "options": "Yes;No",
+      "help_text": ""
+    },
+    {
+      "section_order": 3,
+      "section_title": "Availability",
+      "q_order": 1,
+      "q_title": "Available start date",
+      "q_type": "DATE",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 3,
+      "section_title": "Availability",
+      "q_order": 2,
+      "q_title": "Weekly time you can contribute",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": "Example: 2, 4, 6"
+    },
+    {
+      "section_order": 3,
+      "section_title": "Availability",
+      "q_order": 3,
+      "q_title": "Preferred meeting time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

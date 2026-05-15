@@ -1,0 +1,113 @@
+{
+  "form_id": "club_event_planning",
+  "form_title": "Club Event Planning Form (3 pages)",
+  "form_description": "Planning form for student club events with logistics and promotion details.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1RYLTSEZccFHSrXB953e2cY3aBCAHMdn1VKWgnxyu1BI/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLScSkE5ozCTSUpU40PfX4bzeAT5F3WLnOHQzp6QaFSLLTZkSdQ/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScSkE5ozCTSUpU40PfX4bzeAT5F3WLnOHQzp6QaFSLLTZkSdQ/viewform",
+  "question_count": 10,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Event basics",
+      "q_order": 1,
+      "q_title": "Organizer name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Event basics",
+      "q_order": 2,
+      "q_title": "Organizer email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Event basics",
+      "q_order": 3,
+      "q_title": "Event title",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Event basics",
+      "q_order": 4,
+      "q_title": "Event type",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "Workshop;Social event;Guest talk;Competition;Study session;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Schedule and venue",
+      "q_order": 1,
+      "q_title": "Preferred event date",
+      "q_type": "DATE",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Schedule and venue",
+      "q_order": 2,
+      "q_title": "Preferred start time",
+      "q_type": "TIME",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Schedule and venue",
+      "q_order": 3,
+      "q_title": "Expected number of attendees",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": "Enter an approximate number."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Schedule and venue",
+      "q_order": 4,
+      "q_title": "Venue needs",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Projector;Microphone;Whiteboard;Open space;Tables;No special needs",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 3,
+      "section_title": "Planning notes",
+      "q_order": 1,
+      "q_title": "Promotion channels",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Instagram;Email;Posters;Website;Class announcements",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 3,
+      "section_title": "Planning notes",
+      "q_order": 2,
+      "q_title": "Short event description",
+      "q_type": "PARAGRAPH",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

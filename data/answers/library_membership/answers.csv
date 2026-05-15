@@ -1,0 +1,71 @@
+form_id,run_id,q_title,q_type,answer
+library_membership,run_0001,Full name,SHORT_TEXT,Jordan Singh
+library_membership,run_0001,University ID,SHORT_TEXT,Open Systems Group
+library_membership,run_0001,Department or program,SHORT_TEXT,gamma-01-42
+library_membership,run_0001,Membership type,SINGLE_CHOICE,Research staff
+library_membership,run_0001,Resources you use most,MULTI_CHOICE,Books;Journals;Computers
+library_membership,run_0001,Preferred visit date,DATE,2025-10-29
+library_membership,run_0001,Any additional access needs?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 1)"
+library_membership,run_0002,Full name,SHORT_TEXT,Noah Ortiz
+library_membership,run_0002,University ID,SHORT_TEXT,Open Systems Group
+library_membership,run_0002,Department or program,SHORT_TEXT,gamma-02-28
+library_membership,run_0002,Membership type,SINGLE_CHOICE,External visitor
+library_membership,run_0002,Resources you use most,MULTI_CHOICE,Study rooms
+library_membership,run_0002,Preferred visit date,DATE,2025-06-08
+library_membership,run_0002,Any additional access needs?,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Any additional access needs?; run 2)
+library_membership,run_0003,Full name,SHORT_TEXT,Priya Ortiz
+library_membership,run_0003,University ID,SHORT_TEXT,Acme Labs
+library_membership,run_0003,Department or program,SHORT_TEXT,delta-03-24
+library_membership,run_0003,Membership type,SINGLE_CHOICE,Student
+library_membership,run_0003,Resources you use most,MULTI_CHOICE,Journals;Computers
+library_membership,run_0003,Preferred visit date,DATE,2025-07-21
+library_membership,run_0003,Any additional access needs?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 3)"
+library_membership,run_0004,Full name,SHORT_TEXT,Avery Nguyen
+library_membership,run_0004,University ID,SHORT_TEXT,Open Systems Group
+library_membership,run_0004,Department or program,SHORT_TEXT,gamma-04-00
+library_membership,run_0004,Membership type,SINGLE_CHOICE,External visitor
+library_membership,run_0004,Resources you use most,MULTI_CHOICE,Journals
+library_membership,run_0004,Preferred visit date,DATE,2025-06-30
+library_membership,run_0004,Any additional access needs?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 4)"
+library_membership,run_0005,Full name,SHORT_TEXT,Priya Nguyen
+library_membership,run_0005,University ID,SHORT_TEXT,DataWorks Institute
+library_membership,run_0005,Department or program,SHORT_TEXT,gamma-05-85
+library_membership,run_0005,Membership type,SINGLE_CHOICE,Faculty
+library_membership,run_0005,Resources you use most,MULTI_CHOICE,E-books;Study rooms;Journals
+library_membership,run_0005,Preferred visit date,DATE,2025-11-24
+library_membership,run_0005,Any additional access needs?,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Any additional access needs?; run 5)
+library_membership,run_0006,Full name,SHORT_TEXT,Riley Kim
+library_membership,run_0006,University ID,SHORT_TEXT,Open Systems Group
+library_membership,run_0006,Department or program,SHORT_TEXT,delta-06-32
+library_membership,run_0006,Membership type,SINGLE_CHOICE,Student
+library_membership,run_0006,Resources you use most,MULTI_CHOICE,Study rooms;Journals;Computers
+library_membership,run_0006,Preferred visit date,DATE,2025-08-29
+library_membership,run_0006,Any additional access needs?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 6)"
+library_membership,run_0007,Full name,SHORT_TEXT,Casey Kim
+library_membership,run_0007,University ID,SHORT_TEXT,Open Systems Group
+library_membership,run_0007,Department or program,SHORT_TEXT,sigma-07-04
+library_membership,run_0007,Membership type,SINGLE_CHOICE,External visitor
+library_membership,run_0007,Resources you use most,MULTI_CHOICE,Books;E-books;Journals
+library_membership,run_0007,Preferred visit date,DATE,2025-10-24
+library_membership,run_0007,Any additional access needs?,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Any additional access needs?; run 7)
+library_membership,run_0008,Full name,SHORT_TEXT,Noah Rivera
+library_membership,run_0008,University ID,SHORT_TEXT,Stanford University
+library_membership,run_0008,Department or program,SHORT_TEXT,omega-08-01
+library_membership,run_0008,Membership type,SINGLE_CHOICE,Faculty
+library_membership,run_0008,Resources you use most,MULTI_CHOICE,Journals
+library_membership,run_0008,Preferred visit date,DATE,2025-10-24
+library_membership,run_0008,Any additional access needs?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 8)"
+library_membership,run_0009,Full name,SHORT_TEXT,Sam Patel
+library_membership,run_0009,University ID,SHORT_TEXT,Stanford University
+library_membership,run_0009,Department or program,SHORT_TEXT,beta-09-73
+library_membership,run_0009,Membership type,SINGLE_CHOICE,Student
+library_membership,run_0009,Resources you use most,MULTI_CHOICE,Study rooms;Journals
+library_membership,run_0009,Preferred visit date,DATE,2025-08-31
+library_membership,run_0009,Any additional access needs?,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Any additional access needs?; run 9)
+library_membership,run_0010,Full name,SHORT_TEXT,Avery Rivera
+library_membership,run_0010,University ID,SHORT_TEXT,Open Systems Group
+library_membership,run_0010,Department or program,SHORT_TEXT,alpha-10-41
+library_membership,run_0010,Membership type,SINGLE_CHOICE,External visitor
+library_membership,run_0010,Resources you use most,MULTI_CHOICE,E-books;Study rooms;Computers
+library_membership,run_0010,Preferred visit date,DATE,2025-08-03
+library_membership,run_0010,Any additional access needs?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 10)"

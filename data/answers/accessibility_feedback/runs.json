@@ -1,0 +1,818 @@
+{
+  "form_id": "accessibility_feedback",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Riley Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "riley.rivera.1@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Feedback area",
+          "widget_type": "dropdown",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Type of issue noticed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Navigation",
+            "Physical access",
+            "Timing"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "How severe was the issue?",
+          "widget_type": "single_choice",
+          "value": "Blocking",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Date of experience",
+          "widget_type": "date",
+          "value": "2025-07-12",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Detailed feedback",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Detailed feedback; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "May we contact you for follow-up?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Casey Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "casey.chen.2@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Feedback area",
+          "widget_type": "dropdown",
+          "value": "Student service",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Type of issue noticed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Navigation",
+            "Communication"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "How severe was the issue?",
+          "widget_type": "single_choice",
+          "value": "Major",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Date of experience",
+          "widget_type": "date",
+          "value": "2025-08-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Detailed feedback",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Detailed feedback; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "May we contact you for follow-up?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Jordan Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "jordan.khan.3@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Feedback area",
+          "widget_type": "dropdown",
+          "value": "Student service",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Type of issue noticed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Visual readability",
+            "Audio",
+            "Physical access"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "How severe was the issue?",
+          "widget_type": "single_choice",
+          "value": "Major",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Date of experience",
+          "widget_type": "date",
+          "value": "2025-06-19",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Detailed feedback",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Detailed feedback; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "May we contact you for follow-up?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Sam Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "sam.nguyen.4@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Feedback area",
+          "widget_type": "dropdown",
+          "value": "Website",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Type of issue noticed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Audio",
+            "Physical access",
+            "Timing"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "How severe was the issue?",
+          "widget_type": "single_choice",
+          "value": "Major",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Date of experience",
+          "widget_type": "date",
+          "value": "2025-11-07",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Detailed feedback",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Detailed feedback; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "May we contact you for follow-up?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Priya Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "priya.singh.5@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Feedback area",
+          "widget_type": "dropdown",
+          "value": "Event",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Type of issue noticed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Navigation"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "How severe was the issue?",
+          "widget_type": "single_choice",
+          "value": "Major",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Date of experience",
+          "widget_type": "date",
+          "value": "2025-08-12",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Detailed feedback",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Detailed feedback; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "May we contact you for follow-up?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Morgan Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "morgan.chen.6@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Feedback area",
+          "widget_type": "dropdown",
+          "value": "Event",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Type of issue noticed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Timing"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "How severe was the issue?",
+          "widget_type": "single_choice",
+          "value": "Moderate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Date of experience",
+          "widget_type": "date",
+          "value": "2025-07-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Detailed feedback",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Detailed feedback; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "May we contact you for follow-up?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Jordan Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "jordan.kim.7@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Feedback area",
+          "widget_type": "dropdown",
+          "value": "Website",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Type of issue noticed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Communication"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "How severe was the issue?",
+          "widget_type": "single_choice",
+          "value": "Moderate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Date of experience",
+          "widget_type": "date",
+          "value": "2025-10-29",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Detailed feedback",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Detailed feedback; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "May we contact you for follow-up?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Jordan Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "jordan.nguyen.8@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Feedback area",
+          "widget_type": "dropdown",
+          "value": "Website",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Type of issue noticed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Navigation",
+            "Communication"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "How severe was the issue?",
+          "widget_type": "single_choice",
+          "value": "Moderate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Date of experience",
+          "widget_type": "date",
+          "value": "2025-10-11",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Detailed feedback",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Detailed feedback; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "May we contact you for follow-up?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Riley Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "riley.ortiz.9@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Feedback area",
+          "widget_type": "dropdown",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Type of issue noticed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Navigation",
+            "Physical access",
+            "Timing"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "How severe was the issue?",
+          "widget_type": "single_choice",
+          "value": "Blocking",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Date of experience",
+          "widget_type": "date",
+          "value": "2025-08-27",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Detailed feedback",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Detailed feedback; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "May we contact you for follow-up?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Name",
+          "widget_type": "short_text",
+          "value": "Taylor Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "taylor.chen.10@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Feedback area",
+          "widget_type": "dropdown",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Type of issue noticed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Navigation",
+            "Audio",
+            "Timing"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "How severe was the issue?",
+          "widget_type": "single_choice",
+          "value": "Moderate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Date of experience",
+          "widget_type": "date",
+          "value": "2025-06-10",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Detailed feedback",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Detailed feedback; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "May we contact you for follow-up?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    }
+  ]
+}

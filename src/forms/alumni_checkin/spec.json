@@ -1,0 +1,83 @@
+{
+  "form_id": "alumni_checkin",
+  "form_title": "Alumni Check-in Survey",
+  "form_description": "Collects alumni background, current role, and event interest.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1vxwh7ugcelYFuEbFJYcZShlIPLLtzd7X5nqsmxU9Pxk/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLScRd4JMMYhQW4aQNcy2kOWzMbzfUtMjba5_CZwlHn7R8ymPCA/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScRd4JMMYhQW4aQNcy2kOWzMbzfUtMjba5_CZwlHn7R8ymPCA/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Background",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Background",
+      "q_order": 2,
+      "q_title": "Graduation year",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": "Example: 2022"
+    },
+    {
+      "section_order": 1,
+      "section_title": "Background",
+      "q_order": 3,
+      "q_title": "Current city",
+      "q_type": "SHORT_TEXT",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Background",
+      "q_order": 4,
+      "q_title": "Current role",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Student;Researcher;Industry Professional;Entrepreneur;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Background",
+      "q_order": 5,
+      "q_title": "Areas you would like to stay connected to",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Networking;Mentoring;Research talks;Job opportunities;Alumni events",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Background",
+      "q_order": 6,
+      "q_title": "Preferred contact email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Background",
+      "q_order": 7,
+      "q_title": "Would you attend an alumni meetup?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No;Maybe",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

@@ -1,0 +1,101 @@
+form_id,run_id,q_title,q_type,answer
+publication_submission,run_0001,Publication title,SHORT_TEXT,beta-01-72
+publication_submission,run_0001,Author name,SHORT_TEXT,Riley Ortiz
+publication_submission,run_0001,Contact email,SHORT_TEXT,riley.ortiz.1@demo.org
+publication_submission,run_0001,Publication type,DROPDOWN,Book chapter
+publication_submission,run_0001,Publication date,DATE,2025-10-01
+publication_submission,run_0001,DOI or URL,SHORT_TEXT,gamma-01-14
+publication_submission,run_0001,Keywords,SHORT_TEXT,delta-01-53
+publication_submission,run_0001,Research area,MULTI_CHOICE,Other
+publication_submission,run_0001,Abstract or short summary,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Abstract or short summary; run 1)
+publication_submission,run_0001,Should this be shown publicly?,SINGLE_CHOICE,No
+publication_submission,run_0002,Publication title,SHORT_TEXT,sigma-02-00
+publication_submission,run_0002,Author name,SHORT_TEXT,Avery Chen
+publication_submission,run_0002,Contact email,SHORT_TEXT,avery.chen.2@example.com
+publication_submission,run_0002,Publication type,DROPDOWN,Journal article
+publication_submission,run_0002,Publication date,DATE,2025-09-02
+publication_submission,run_0002,DOI or URL,SHORT_TEXT,beta-02-69
+publication_submission,run_0002,Keywords,SHORT_TEXT,beta-02-93
+publication_submission,run_0002,Research area,MULTI_CHOICE,GIS;Data engineering;Other
+publication_submission,run_0002,Abstract or short summary,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Abstract or short summary; run 2)
+publication_submission,run_0002,Should this be shown publicly?,SINGLE_CHOICE,Needs review
+publication_submission,run_0003,Publication title,SHORT_TEXT,gamma-03-71
+publication_submission,run_0003,Author name,SHORT_TEXT,Sam Kim
+publication_submission,run_0003,Contact email,SHORT_TEXT,sam.kim.3@mail.test
+publication_submission,run_0003,Publication type,DROPDOWN,Other
+publication_submission,run_0003,Publication date,DATE,2025-06-27
+publication_submission,run_0003,DOI or URL,SHORT_TEXT,sigma-03-43
+publication_submission,run_0003,Keywords,SHORT_TEXT,beta-03-07
+publication_submission,run_0003,Research area,MULTI_CHOICE,AI/ML;Data engineering;Other
+publication_submission,run_0003,Abstract or short summary,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Abstract or short summary; run 3)"
+publication_submission,run_0003,Should this be shown publicly?,SINGLE_CHOICE,Yes
+publication_submission,run_0004,Publication title,SHORT_TEXT,beta-04-81
+publication_submission,run_0004,Author name,SHORT_TEXT,Priya Nguyen
+publication_submission,run_0004,Contact email,SHORT_TEXT,priya.nguyen.4@mail.test
+publication_submission,run_0004,Publication type,DROPDOWN,Other
+publication_submission,run_0004,Publication date,DATE,2025-07-15
+publication_submission,run_0004,DOI or URL,SHORT_TEXT,delta-04-83
+publication_submission,run_0004,Keywords,SHORT_TEXT,omega-04-57
+publication_submission,run_0004,Research area,MULTI_CHOICE,Human-computer interaction;Visualization
+publication_submission,run_0004,Abstract or short summary,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Abstract or short summary; run 4)"
+publication_submission,run_0004,Should this be shown publicly?,SINGLE_CHOICE,Needs review
+publication_submission,run_0005,Publication title,SHORT_TEXT,alpha-05-10
+publication_submission,run_0005,Author name,SHORT_TEXT,Sam Nguyen
+publication_submission,run_0005,Contact email,SHORT_TEXT,sam.nguyen.5@demo.org
+publication_submission,run_0005,Publication type,DROPDOWN,Conference paper
+publication_submission,run_0005,Publication date,DATE,2025-08-15
+publication_submission,run_0005,DOI or URL,SHORT_TEXT,beta-05-27
+publication_submission,run_0005,Keywords,SHORT_TEXT,beta-05-32
+publication_submission,run_0005,Research area,MULTI_CHOICE,AI/ML;Human-computer interaction
+publication_submission,run_0005,Abstract or short summary,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Abstract or short summary; run 5)
+publication_submission,run_0005,Should this be shown publicly?,SINGLE_CHOICE,No
+publication_submission,run_0006,Publication title,SHORT_TEXT,delta-06-09
+publication_submission,run_0006,Author name,SHORT_TEXT,Avery Patel
+publication_submission,run_0006,Contact email,SHORT_TEXT,avery.patel.6@demo.org
+publication_submission,run_0006,Publication type,DROPDOWN,Other
+publication_submission,run_0006,Publication date,DATE,2025-11-21
+publication_submission,run_0006,DOI or URL,SHORT_TEXT,delta-06-85
+publication_submission,run_0006,Keywords,SHORT_TEXT,delta-06-11
+publication_submission,run_0006,Research area,MULTI_CHOICE,AI/ML;Visualization;Other
+publication_submission,run_0006,Abstract or short summary,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Abstract or short summary; run 6)
+publication_submission,run_0006,Should this be shown publicly?,SINGLE_CHOICE,No
+publication_submission,run_0007,Publication title,SHORT_TEXT,gamma-07-57
+publication_submission,run_0007,Author name,SHORT_TEXT,Riley Khan
+publication_submission,run_0007,Contact email,SHORT_TEXT,riley.khan.7@research.edu
+publication_submission,run_0007,Publication type,DROPDOWN,Other
+publication_submission,run_0007,Publication date,DATE,2025-11-02
+publication_submission,run_0007,DOI or URL,SHORT_TEXT,beta-07-24
+publication_submission,run_0007,Keywords,SHORT_TEXT,delta-07-35
+publication_submission,run_0007,Research area,MULTI_CHOICE,GIS;Other
+publication_submission,run_0007,Abstract or short summary,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Abstract or short summary; run 7)
+publication_submission,run_0007,Should this be shown publicly?,SINGLE_CHOICE,Needs review
+publication_submission,run_0008,Publication title,SHORT_TEXT,omega-08-75
+publication_submission,run_0008,Author name,SHORT_TEXT,Priya Khan
+publication_submission,run_0008,Contact email,SHORT_TEXT,priya.khan.8@research.edu
+publication_submission,run_0008,Publication type,DROPDOWN,Other
+publication_submission,run_0008,Publication date,DATE,2025-07-08
+publication_submission,run_0008,DOI or URL,SHORT_TEXT,delta-08-85
+publication_submission,run_0008,Keywords,SHORT_TEXT,alpha-08-78
+publication_submission,run_0008,Research area,MULTI_CHOICE,AI/ML;GIS;Human-computer interaction
+publication_submission,run_0008,Abstract or short summary,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Abstract or short summary; run 8)"
+publication_submission,run_0008,Should this be shown publicly?,SINGLE_CHOICE,No
+publication_submission,run_0009,Publication title,SHORT_TEXT,alpha-09-86
+publication_submission,run_0009,Author name,SHORT_TEXT,Avery Ortiz
+publication_submission,run_0009,Contact email,SHORT_TEXT,avery.ortiz.9@mail.test
+publication_submission,run_0009,Publication type,DROPDOWN,Dataset
+publication_submission,run_0009,Publication date,DATE,2025-11-07
+publication_submission,run_0009,DOI or URL,SHORT_TEXT,delta-09-97
+publication_submission,run_0009,Keywords,SHORT_TEXT,beta-09-82
+publication_submission,run_0009,Research area,MULTI_CHOICE,Visualization;Other
+publication_submission,run_0009,Abstract or short summary,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Abstract or short summary; run 9)
+publication_submission,run_0009,Should this be shown publicly?,SINGLE_CHOICE,No
+publication_submission,run_0010,Publication title,SHORT_TEXT,delta-10-56
+publication_submission,run_0010,Author name,SHORT_TEXT,Sam Ortiz
+publication_submission,run_0010,Contact email,SHORT_TEXT,sam.ortiz.10@demo.org
+publication_submission,run_0010,Publication type,DROPDOWN,Preprint
+publication_submission,run_0010,Publication date,DATE,2025-07-01
+publication_submission,run_0010,DOI or URL,SHORT_TEXT,alpha-10-54
+publication_submission,run_0010,Keywords,SHORT_TEXT,delta-10-40
+publication_submission,run_0010,Research area,MULTI_CHOICE,Human-computer interaction;Other
+publication_submission,run_0010,Abstract or short summary,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Abstract or short summary; run 10)
+publication_submission,run_0010,Should this be shown publicly?,SINGLE_CHOICE,No

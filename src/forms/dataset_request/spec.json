@@ -1,0 +1,103 @@
+{
+  "form_id": "dataset_request",
+  "form_title": "Dataset Access Request (2 pages)",
+  "form_description": "Request form for accessing research datasets and describing intended use.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1gY4Gp6JqXV0xLVVvz3GXf9Z05cqtGZdVu1Y3M__H8W4/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSeC43blfP6CajwgpRRYPwszKh7dBC_av6jtj70_CgMqi68O0w/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeC43blfP6CajwgpRRYPwszKh7dBC_av6jtj70_CgMqi68O0w/viewform",
+  "question_count": 9,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Requester information",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester information",
+      "q_order": 2,
+      "q_title": "Institutional email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester information",
+      "q_order": 3,
+      "q_title": "Affiliation",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester information",
+      "q_order": 4,
+      "q_title": "Requester type",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Student;Researcher;Instructor;Industry partner;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Dataset request",
+      "q_order": 1,
+      "q_title": "Dataset requested",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "Form interaction videos;Annotation traces;Synthetic answers;Evaluation logs;All available datasets",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Dataset request",
+      "q_order": 2,
+      "q_title": "Intended use",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Course project;Thesis;Research paper;Benchmark evaluation;Tool development",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Dataset request",
+      "q_order": 3,
+      "q_title": "Short project description",
+      "q_type": "PARAGRAPH",
+      "required": true,
+      "options": "",
+      "help_text": "2-5 sentences."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Dataset request",
+      "q_order": 4,
+      "q_title": "Requested access start date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Dataset request",
+      "q_order": 5,
+      "q_title": "Do you agree to cite the dataset if used?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No;Need clarification",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

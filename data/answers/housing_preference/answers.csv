@@ -1,0 +1,71 @@
+form_id,run_id,q_title,q_type,answer
+housing_preference,run_0001,Full name,SHORT_TEXT,Casey Singh
+housing_preference,run_0001,Contact email,SHORT_TEXT,casey.singh.1@mail.test
+housing_preference,run_0001,Preferred accommodation type,SINGLE_CHOICE,Studio
+housing_preference,run_0001,Preferred budget range,SINGLE_CHOICE,Above 700 EUR
+housing_preference,run_0001,Preferred move-in date,DATE,2025-09-20
+housing_preference,run_0001,Important features,MULTI_CHOICE,Private bathroom;Quiet area
+housing_preference,run_0001,Additional notes,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 1)"
+housing_preference,run_0002,Full name,SHORT_TEXT,Morgan Khan
+housing_preference,run_0002,Contact email,SHORT_TEXT,morgan.khan.2@demo.org
+housing_preference,run_0002,Preferred accommodation type,SINGLE_CHOICE,Studio
+housing_preference,run_0002,Preferred budget range,SINGLE_CHOICE,Below 300 EUR
+housing_preference,run_0002,Preferred move-in date,DATE,2025-08-20
+housing_preference,run_0002,Important features,MULTI_CHOICE,Quiet area
+housing_preference,run_0002,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 2)
+housing_preference,run_0003,Full name,SHORT_TEXT,Morgan Khan
+housing_preference,run_0003,Contact email,SHORT_TEXT,morgan.khan.3@mail.test
+housing_preference,run_0003,Preferred accommodation type,SINGLE_CHOICE,Single room in dorm
+housing_preference,run_0003,Preferred budget range,SINGLE_CHOICE,Below 300 EUR
+housing_preference,run_0003,Preferred move-in date,DATE,2025-06-26
+housing_preference,run_0003,Important features,MULTI_CHOICE,Furnished
+housing_preference,run_0003,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 3)
+housing_preference,run_0004,Full name,SHORT_TEXT,Jordan Nguyen
+housing_preference,run_0004,Contact email,SHORT_TEXT,jordan.nguyen.4@example.com
+housing_preference,run_0004,Preferred accommodation type,SINGLE_CHOICE,Studio
+housing_preference,run_0004,Preferred budget range,SINGLE_CHOICE,500–700 EUR
+housing_preference,run_0004,Preferred move-in date,DATE,2025-07-17
+housing_preference,run_0004,Important features,MULTI_CHOICE,Furnished
+housing_preference,run_0004,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 4)
+housing_preference,run_0005,Full name,SHORT_TEXT,Riley Rivera
+housing_preference,run_0005,Contact email,SHORT_TEXT,riley.rivera.5@mail.test
+housing_preference,run_0005,Preferred accommodation type,SINGLE_CHOICE,Studio
+housing_preference,run_0005,Preferred budget range,SINGLE_CHOICE,Below 300 EUR
+housing_preference,run_0005,Preferred move-in date,DATE,2025-11-17
+housing_preference,run_0005,Important features,MULTI_CHOICE,Near campus;Quiet area;Good public transport
+housing_preference,run_0005,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 5)
+housing_preference,run_0006,Full name,SHORT_TEXT,Jordan Kim
+housing_preference,run_0006,Contact email,SHORT_TEXT,jordan.kim.6@mail.test
+housing_preference,run_0006,Preferred accommodation type,SINGLE_CHOICE,Private apartment
+housing_preference,run_0006,Preferred budget range,SINGLE_CHOICE,300–500 EUR
+housing_preference,run_0006,Preferred move-in date,DATE,2025-10-16
+housing_preference,run_0006,Important features,MULTI_CHOICE,Furnished;Private bathroom;Good public transport
+housing_preference,run_0006,Additional notes,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Additional notes; run 6)
+housing_preference,run_0007,Full name,SHORT_TEXT,Taylor Khan
+housing_preference,run_0007,Contact email,SHORT_TEXT,taylor.khan.7@demo.org
+housing_preference,run_0007,Preferred accommodation type,SINGLE_CHOICE,Single room in dorm
+housing_preference,run_0007,Preferred budget range,SINGLE_CHOICE,300–500 EUR
+housing_preference,run_0007,Preferred move-in date,DATE,2025-06-12
+housing_preference,run_0007,Important features,MULTI_CHOICE,Private bathroom;Quiet area;Good public transport
+housing_preference,run_0007,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 7)
+housing_preference,run_0008,Full name,SHORT_TEXT,Sam Chen
+housing_preference,run_0008,Contact email,SHORT_TEXT,sam.chen.8@demo.org
+housing_preference,run_0008,Preferred accommodation type,SINGLE_CHOICE,Studio
+housing_preference,run_0008,Preferred budget range,SINGLE_CHOICE,500–700 EUR
+housing_preference,run_0008,Preferred move-in date,DATE,2025-11-13
+housing_preference,run_0008,Important features,MULTI_CHOICE,Furnished;Quiet area
+housing_preference,run_0008,Additional notes,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Additional notes; run 8)
+housing_preference,run_0009,Full name,SHORT_TEXT,Sam Ortiz
+housing_preference,run_0009,Contact email,SHORT_TEXT,sam.ortiz.9@demo.org
+housing_preference,run_0009,Preferred accommodation type,SINGLE_CHOICE,Studio
+housing_preference,run_0009,Preferred budget range,SINGLE_CHOICE,500–700 EUR
+housing_preference,run_0009,Preferred move-in date,DATE,2025-11-13
+housing_preference,run_0009,Important features,MULTI_CHOICE,Furnished
+housing_preference,run_0009,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 9)
+housing_preference,run_0010,Full name,SHORT_TEXT,Jordan Kim
+housing_preference,run_0010,Contact email,SHORT_TEXT,jordan.kim.10@demo.org
+housing_preference,run_0010,Preferred accommodation type,SINGLE_CHOICE,Studio
+housing_preference,run_0010,Preferred budget range,SINGLE_CHOICE,Below 300 EUR
+housing_preference,run_0010,Preferred move-in date,DATE,2025-06-09
+housing_preference,run_0010,Important features,MULTI_CHOICE,Near campus;Private bathroom
+housing_preference,run_0010,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 10)

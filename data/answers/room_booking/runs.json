@@ -1,0 +1,905 @@
+{
+  "form_id": "room_booking",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Requester name",
+          "widget_type": "short_text",
+          "value": "Jordan Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "jordan.chen.1@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Room type requested",
+          "widget_type": "single_choice",
+          "value": "Small study room",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of participants",
+          "widget_type": "short_text",
+          "value": "2",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred booking date",
+          "widget_type": "date",
+          "value": "2025-06-12",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Equipment needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Whiteboard",
+            "Power outlets",
+            "None"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Catering or food planned?",
+          "widget_type": "single_choice",
+          "value": "Not sure",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of booking",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Purpose of booking; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Requester name",
+          "widget_type": "short_text",
+          "value": "Riley Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "riley.kim.2@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Room type requested",
+          "widget_type": "single_choice",
+          "value": "Computer lab",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of participants",
+          "widget_type": "short_text",
+          "value": "4",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred booking date",
+          "widget_type": "date",
+          "value": "2025-09-28",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "11:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Equipment needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "None"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Catering or food planned?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of booking",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of booking; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Requester name",
+          "widget_type": "short_text",
+          "value": "Jordan Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "jordan.ortiz.3@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Room type requested",
+          "widget_type": "single_choice",
+          "value": "Seminar room",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of participants",
+          "widget_type": "short_text",
+          "value": "3",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred booking date",
+          "widget_type": "date",
+          "value": "2025-08-09",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "11:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Equipment needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Video conferencing"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Catering or food planned?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of booking",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of booking; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Requester name",
+          "widget_type": "short_text",
+          "value": "Sam Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "sam.nguyen.4@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Room type requested",
+          "widget_type": "single_choice",
+          "value": "Meeting room",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of participants",
+          "widget_type": "short_text",
+          "value": "3",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred booking date",
+          "widget_type": "date",
+          "value": "2025-07-22",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Equipment needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Projector",
+            "Power outlets",
+            "None"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Catering or food planned?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of booking",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Purpose of booking; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Requester name",
+          "widget_type": "short_text",
+          "value": "Jordan Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "jordan.khan.5@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Room type requested",
+          "widget_type": "single_choice",
+          "value": "Seminar room",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of participants",
+          "widget_type": "short_text",
+          "value": "2",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred booking date",
+          "widget_type": "date",
+          "value": "2025-06-22",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Equipment needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Whiteboard",
+            "Video conferencing"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Catering or food planned?",
+          "widget_type": "single_choice",
+          "value": "Not sure",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of booking",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Purpose of booking; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Requester name",
+          "widget_type": "short_text",
+          "value": "Taylor Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "taylor.singh.6@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Room type requested",
+          "widget_type": "single_choice",
+          "value": "Computer lab",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of participants",
+          "widget_type": "short_text",
+          "value": "4",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred booking date",
+          "widget_type": "date",
+          "value": "2025-10-28",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Equipment needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Power outlets"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Catering or food planned?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of booking",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of booking; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Requester name",
+          "widget_type": "short_text",
+          "value": "Sam Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "sam.kim.7@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Room type requested",
+          "widget_type": "single_choice",
+          "value": "Meeting room",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of participants",
+          "widget_type": "short_text",
+          "value": "4",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred booking date",
+          "widget_type": "date",
+          "value": "2025-10-06",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Equipment needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Projector",
+            "Power outlets"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Catering or food planned?",
+          "widget_type": "single_choice",
+          "value": "Not sure",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of booking",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of booking; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Requester name",
+          "widget_type": "short_text",
+          "value": "Taylor Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "taylor.chen.8@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Room type requested",
+          "widget_type": "single_choice",
+          "value": "Seminar room",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of participants",
+          "widget_type": "short_text",
+          "value": "3",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred booking date",
+          "widget_type": "date",
+          "value": "2025-08-29",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Equipment needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Projector",
+            "Video conferencing",
+            "Power outlets"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Catering or food planned?",
+          "widget_type": "single_choice",
+          "value": "Not sure",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of booking",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of booking; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Requester name",
+          "widget_type": "short_text",
+          "value": "Jordan Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "jordan.khan.9@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Room type requested",
+          "widget_type": "single_choice",
+          "value": "Small study room",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of participants",
+          "widget_type": "short_text",
+          "value": "3",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred booking date",
+          "widget_type": "date",
+          "value": "2025-08-15",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Equipment needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Video conferencing"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Catering or food planned?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of booking",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Purpose of booking; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Requester name",
+          "widget_type": "short_text",
+          "value": "Avery Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "avery.chen.10@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Room type requested",
+          "widget_type": "single_choice",
+          "value": "Small study room",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Number of participants",
+          "widget_type": "short_text",
+          "value": "4",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred booking date",
+          "widget_type": "date",
+          "value": "2025-06-16",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Equipment needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Projector",
+            "Whiteboard"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Catering or food planned?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of booking",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Purpose of booking; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    }
+  ]
+}

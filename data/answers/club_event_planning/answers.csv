@@ -1,0 +1,101 @@
+form_id,run_id,q_title,q_type,answer
+club_event_planning,run_0001,Organizer name,SHORT_TEXT,Jordan Ortiz
+club_event_planning,run_0001,Organizer email,SHORT_TEXT,jordan.ortiz.1@research.edu
+club_event_planning,run_0001,Event title,SHORT_TEXT,delta-01-39
+club_event_planning,run_0001,Event type,DROPDOWN,Social event
+club_event_planning,run_0001,Preferred event date,DATE,2025-06-14
+club_event_planning,run_0001,Preferred start time,TIME,08:30
+club_event_planning,run_0001,Expected number of attendees,SHORT_TEXT,3
+club_event_planning,run_0001,Venue needs,MULTI_CHOICE,Microphone;Tables;No special needs
+club_event_planning,run_0001,Promotion channels,MULTI_CHOICE,Instagram;Email;Posters
+club_event_planning,run_0001,Short event description,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 1)
+club_event_planning,run_0002,Organizer name,SHORT_TEXT,Priya Singh
+club_event_planning,run_0002,Organizer email,SHORT_TEXT,priya.singh.2@example.com
+club_event_planning,run_0002,Event title,SHORT_TEXT,alpha-02-99
+club_event_planning,run_0002,Event type,DROPDOWN,Guest talk
+club_event_planning,run_0002,Preferred event date,DATE,2025-06-02
+club_event_planning,run_0002,Preferred start time,TIME,08:30
+club_event_planning,run_0002,Expected number of attendees,SHORT_TEXT,4
+club_event_planning,run_0002,Venue needs,MULTI_CHOICE,Open space
+club_event_planning,run_0002,Promotion channels,MULTI_CHOICE,Posters
+club_event_planning,run_0002,Short event description,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Short event description; run 2)"
+club_event_planning,run_0003,Organizer name,SHORT_TEXT,Casey Chen
+club_event_planning,run_0003,Organizer email,SHORT_TEXT,casey.chen.3@demo.org
+club_event_planning,run_0003,Event title,SHORT_TEXT,delta-03-78
+club_event_planning,run_0003,Event type,DROPDOWN,Social event
+club_event_planning,run_0003,Preferred event date,DATE,2025-06-30
+club_event_planning,run_0003,Preferred start time,TIME,16:45
+club_event_planning,run_0003,Expected number of attendees,SHORT_TEXT,3
+club_event_planning,run_0003,Venue needs,MULTI_CHOICE,Projector;Whiteboard;No special needs
+club_event_planning,run_0003,Promotion channels,MULTI_CHOICE,Instagram;Email;Posters
+club_event_planning,run_0003,Short event description,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 3)
+club_event_planning,run_0004,Organizer name,SHORT_TEXT,Taylor Khan
+club_event_planning,run_0004,Organizer email,SHORT_TEXT,taylor.khan.4@research.edu
+club_event_planning,run_0004,Event title,SHORT_TEXT,omega-04-00
+club_event_planning,run_0004,Event type,DROPDOWN,Social event
+club_event_planning,run_0004,Preferred event date,DATE,2025-11-26
+club_event_planning,run_0004,Preferred start time,TIME,13:00
+club_event_planning,run_0004,Expected number of attendees,SHORT_TEXT,1
+club_event_planning,run_0004,Venue needs,MULTI_CHOICE,Open space
+club_event_planning,run_0004,Promotion channels,MULTI_CHOICE,Website
+club_event_planning,run_0004,Short event description,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Short event description; run 4)
+club_event_planning,run_0005,Organizer name,SHORT_TEXT,Taylor Rivera
+club_event_planning,run_0005,Organizer email,SHORT_TEXT,taylor.rivera.5@example.com
+club_event_planning,run_0005,Event title,SHORT_TEXT,beta-05-41
+club_event_planning,run_0005,Event type,DROPDOWN,Social event
+club_event_planning,run_0005,Preferred event date,DATE,2025-08-31
+club_event_planning,run_0005,Preferred start time,TIME,13:00
+club_event_planning,run_0005,Expected number of attendees,SHORT_TEXT,1
+club_event_planning,run_0005,Venue needs,MULTI_CHOICE,Projector
+club_event_planning,run_0005,Promotion channels,MULTI_CHOICE,Email
+club_event_planning,run_0005,Short event description,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Short event description; run 5)"
+club_event_planning,run_0006,Organizer name,SHORT_TEXT,Lena Nguyen
+club_event_planning,run_0006,Organizer email,SHORT_TEXT,lena.nguyen.6@research.edu
+club_event_planning,run_0006,Event title,SHORT_TEXT,beta-06-86
+club_event_planning,run_0006,Event type,DROPDOWN,Competition
+club_event_planning,run_0006,Preferred event date,DATE,2025-06-08
+club_event_planning,run_0006,Preferred start time,TIME,09:00
+club_event_planning,run_0006,Expected number of attendees,SHORT_TEXT,4
+club_event_planning,run_0006,Venue needs,MULTI_CHOICE,Projector;Microphone
+club_event_planning,run_0006,Promotion channels,MULTI_CHOICE,Email
+club_event_planning,run_0006,Short event description,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 6)
+club_event_planning,run_0007,Organizer name,SHORT_TEXT,Taylor Meyer
+club_event_planning,run_0007,Organizer email,SHORT_TEXT,taylor.meyer.7@research.edu
+club_event_planning,run_0007,Event title,SHORT_TEXT,gamma-07-61
+club_event_planning,run_0007,Event type,DROPDOWN,Study session
+club_event_planning,run_0007,Preferred event date,DATE,2025-06-18
+club_event_planning,run_0007,Preferred start time,TIME,09:00
+club_event_planning,run_0007,Expected number of attendees,SHORT_TEXT,4
+club_event_planning,run_0007,Venue needs,MULTI_CHOICE,Projector
+club_event_planning,run_0007,Promotion channels,MULTI_CHOICE,Instagram;Posters;Class announcements
+club_event_planning,run_0007,Short event description,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 7)
+club_event_planning,run_0008,Organizer name,SHORT_TEXT,Taylor Chen
+club_event_planning,run_0008,Organizer email,SHORT_TEXT,taylor.chen.8@research.edu
+club_event_planning,run_0008,Event title,SHORT_TEXT,omega-08-27
+club_event_planning,run_0008,Event type,DROPDOWN,Workshop
+club_event_planning,run_0008,Preferred event date,DATE,2025-11-05
+club_event_planning,run_0008,Preferred start time,TIME,10:15
+club_event_planning,run_0008,Expected number of attendees,SHORT_TEXT,3
+club_event_planning,run_0008,Venue needs,MULTI_CHOICE,Projector
+club_event_planning,run_0008,Promotion channels,MULTI_CHOICE,Email;Website;Class announcements
+club_event_planning,run_0008,Short event description,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 8)
+club_event_planning,run_0009,Organizer name,SHORT_TEXT,Lena Singh
+club_event_planning,run_0009,Organizer email,SHORT_TEXT,lena.singh.9@example.com
+club_event_planning,run_0009,Event title,SHORT_TEXT,beta-09-24
+club_event_planning,run_0009,Event type,DROPDOWN,Other
+club_event_planning,run_0009,Preferred event date,DATE,2025-10-17
+club_event_planning,run_0009,Preferred start time,TIME,14:15
+club_event_planning,run_0009,Expected number of attendees,SHORT_TEXT,1
+club_event_planning,run_0009,Venue needs,MULTI_CHOICE,Whiteboard;Open space;Tables
+club_event_planning,run_0009,Promotion channels,MULTI_CHOICE,Email
+club_event_planning,run_0009,Short event description,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 9)
+club_event_planning,run_0010,Organizer name,SHORT_TEXT,Lena Singh
+club_event_planning,run_0010,Organizer email,SHORT_TEXT,lena.singh.10@example.com
+club_event_planning,run_0010,Event title,SHORT_TEXT,gamma-10-97
+club_event_planning,run_0010,Event type,DROPDOWN,Guest talk
+club_event_planning,run_0010,Preferred event date,DATE,2025-10-26
+club_event_planning,run_0010,Preferred start time,TIME,10:15
+club_event_planning,run_0010,Expected number of attendees,SHORT_TEXT,2
+club_event_planning,run_0010,Venue needs,MULTI_CHOICE,Microphone;No special needs
+club_event_planning,run_0010,Promotion channels,MULTI_CHOICE,Website;Class announcements
+club_event_planning,run_0010,Short event description,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Short event description; run 10)"

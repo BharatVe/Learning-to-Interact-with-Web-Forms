@@ -1,0 +1,93 @@
+{
+  "form_id": "course_enrollment",
+  "form_title": "Course Enrollment Preference Form",
+  "form_description": "Collects course enrollment preferences, prior knowledge, and schedule constraints.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1oteL6E_hwwJnpuzCncCai-GFM1Ro4xlM5ajZJ8R0564/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSe2Y1A7t2XlgpK1mDqkX58oxUgMe2nirgWsrjRk_hdbZPYVOw/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSe2Y1A7t2XlgpK1mDqkX58oxUgMe2nirgWsrjRk_hdbZPYVOw/viewform",
+  "question_count": 8,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Enrollment preferences",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Enrollment preferences",
+      "q_order": 2,
+      "q_title": "Student ID",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Enrollment preferences",
+      "q_order": 3,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Enrollment preferences",
+      "q_order": 4,
+      "q_title": "Preferred course",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "Machine Learning;Data Visualization;Scalable Data Engineering;Human-Computer Interaction;Computer Vision",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Enrollment preferences",
+      "q_order": 5,
+      "q_title": "Prior knowledge",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "None;Basic;Intermediate;Advanced",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Enrollment preferences",
+      "q_order": 6,
+      "q_title": "Reasons for enrolling",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Degree requirement;Research interest;Career preparation;Project topic;General interest",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Enrollment preferences",
+      "q_order": 7,
+      "q_title": "Schedule constraints",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Enrollment preferences",
+      "q_order": 8,
+      "q_title": "Preferred lab session time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

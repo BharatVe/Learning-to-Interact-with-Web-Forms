@@ -1,0 +1,81 @@
+form_id,run_id,q_title,q_type,answer
+technical_support,run_0001,Full name,SHORT_TEXT,Jordan Kim
+technical_support,run_0001,Email address,SHORT_TEXT,jordan.kim.1@example.com
+technical_support,run_0001,Issue category,DROPDOWN,Network
+technical_support,run_0001,Affected device,SINGLE_CHOICE,Tablet
+technical_support,run_0001,When did the issue start?,DATE,2025-07-17
+technical_support,run_0001,Best time to contact you,TIME,13:00
+technical_support,run_0001,Impact level,SINGLE_CHOICE,Low
+technical_support,run_0001,Description of the issue,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Description of the issue; run 1)
+technical_support,run_0002,Full name,SHORT_TEXT,Noah Rivera
+technical_support,run_0002,Email address,SHORT_TEXT,noah.rivera.2@demo.org
+technical_support,run_0002,Issue category,DROPDOWN,Printing
+technical_support,run_0002,Affected device,SINGLE_CHOICE,Laptop
+technical_support,run_0002,When did the issue start?,DATE,2025-09-28
+technical_support,run_0002,Best time to contact you,TIME,14:15
+technical_support,run_0002,Impact level,SINGLE_CHOICE,High
+technical_support,run_0002,Description of the issue,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Description of the issue; run 2)
+technical_support,run_0003,Full name,SHORT_TEXT,Avery Singh
+technical_support,run_0003,Email address,SHORT_TEXT,avery.singh.3@mail.test
+technical_support,run_0003,Issue category,DROPDOWN,Printing
+technical_support,run_0003,Affected device,SINGLE_CHOICE,Other
+technical_support,run_0003,When did the issue start?,DATE,2025-11-14
+technical_support,run_0003,Best time to contact you,TIME,08:30
+technical_support,run_0003,Impact level,SINGLE_CHOICE,Low
+technical_support,run_0003,Description of the issue,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Description of the issue; run 3)"
+technical_support,run_0004,Full name,SHORT_TEXT,Noah Kim
+technical_support,run_0004,Email address,SHORT_TEXT,noah.kim.4@demo.org
+technical_support,run_0004,Issue category,DROPDOWN,Other
+technical_support,run_0004,Affected device,SINGLE_CHOICE,Lab workstation
+technical_support,run_0004,When did the issue start?,DATE,2025-10-13
+technical_support,run_0004,Best time to contact you,TIME,08:30
+technical_support,run_0004,Impact level,SINGLE_CHOICE,Medium
+technical_support,run_0004,Description of the issue,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Description of the issue; run 4)
+technical_support,run_0005,Full name,SHORT_TEXT,Sam Nguyen
+technical_support,run_0005,Email address,SHORT_TEXT,sam.nguyen.5@research.edu
+technical_support,run_0005,Issue category,DROPDOWN,Network
+technical_support,run_0005,Affected device,SINGLE_CHOICE,Phone
+technical_support,run_0005,When did the issue start?,DATE,2025-10-28
+technical_support,run_0005,Best time to contact you,TIME,13:00
+technical_support,run_0005,Impact level,SINGLE_CHOICE,Medium
+technical_support,run_0005,Description of the issue,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Description of the issue; run 5)
+technical_support,run_0006,Full name,SHORT_TEXT,Casey Patel
+technical_support,run_0006,Email address,SHORT_TEXT,casey.patel.6@research.edu
+technical_support,run_0006,Issue category,DROPDOWN,Account
+technical_support,run_0006,Affected device,SINGLE_CHOICE,Laptop
+technical_support,run_0006,When did the issue start?,DATE,2025-09-08
+technical_support,run_0006,Best time to contact you,TIME,13:00
+technical_support,run_0006,Impact level,SINGLE_CHOICE,Medium
+technical_support,run_0006,Description of the issue,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Description of the issue; run 6)
+technical_support,run_0007,Full name,SHORT_TEXT,Morgan Khan
+technical_support,run_0007,Email address,SHORT_TEXT,morgan.khan.7@demo.org
+technical_support,run_0007,Issue category,DROPDOWN,Software
+technical_support,run_0007,Affected device,SINGLE_CHOICE,Phone
+technical_support,run_0007,When did the issue start?,DATE,2025-07-19
+technical_support,run_0007,Best time to contact you,TIME,13:00
+technical_support,run_0007,Impact level,SINGLE_CHOICE,Cannot work
+technical_support,run_0007,Description of the issue,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Description of the issue; run 7)
+technical_support,run_0008,Full name,SHORT_TEXT,Casey Khan
+technical_support,run_0008,Email address,SHORT_TEXT,casey.khan.8@research.edu
+technical_support,run_0008,Issue category,DROPDOWN,Network
+technical_support,run_0008,Affected device,SINGLE_CHOICE,Other
+technical_support,run_0008,When did the issue start?,DATE,2025-06-25
+technical_support,run_0008,Best time to contact you,TIME,13:00
+technical_support,run_0008,Impact level,SINGLE_CHOICE,Medium
+technical_support,run_0008,Description of the issue,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Description of the issue; run 8)"
+technical_support,run_0009,Full name,SHORT_TEXT,Jordan Nguyen
+technical_support,run_0009,Email address,SHORT_TEXT,jordan.nguyen.9@mail.test
+technical_support,run_0009,Issue category,DROPDOWN,Account
+technical_support,run_0009,Affected device,SINGLE_CHOICE,Tablet
+technical_support,run_0009,When did the issue start?,DATE,2025-08-18
+technical_support,run_0009,Best time to contact you,TIME,15:30
+technical_support,run_0009,Impact level,SINGLE_CHOICE,Medium
+technical_support,run_0009,Description of the issue,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Description of the issue; run 9)
+technical_support,run_0010,Full name,SHORT_TEXT,Riley Singh
+technical_support,run_0010,Email address,SHORT_TEXT,riley.singh.10@example.com
+technical_support,run_0010,Issue category,DROPDOWN,Account
+technical_support,run_0010,Affected device,SINGLE_CHOICE,Lab workstation
+technical_support,run_0010,When did the issue start?,DATE,2025-10-27
+technical_support,run_0010,Best time to contact you,TIME,13:00
+technical_support,run_0010,Impact level,SINGLE_CHOICE,Medium
+technical_support,run_0010,Description of the issue,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Description of the issue; run 10)"

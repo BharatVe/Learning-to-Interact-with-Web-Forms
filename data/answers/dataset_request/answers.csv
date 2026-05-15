@@ -1,0 +1,91 @@
+form_id,run_id,q_title,q_type,answer
+dataset_request,run_0001,Full name,SHORT_TEXT,Noah Rivera
+dataset_request,run_0001,Institutional email,SHORT_TEXT,noah.rivera.1@research.edu
+dataset_request,run_0001,Affiliation,SHORT_TEXT,omega-01-23
+dataset_request,run_0001,Requester type,SINGLE_CHOICE,Student
+dataset_request,run_0001,Dataset requested,DROPDOWN,Synthetic answers
+dataset_request,run_0001,Intended use,MULTI_CHOICE,Course project;Benchmark evaluation
+dataset_request,run_0001,Short project description,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short project description; run 1)
+dataset_request,run_0001,Requested access start date,DATE,2025-10-20
+dataset_request,run_0001,Do you agree to cite the dataset if used?,SINGLE_CHOICE,Need clarification
+dataset_request,run_0002,Full name,SHORT_TEXT,Riley Rivera
+dataset_request,run_0002,Institutional email,SHORT_TEXT,riley.rivera.2@demo.org
+dataset_request,run_0002,Affiliation,SHORT_TEXT,omega-02-21
+dataset_request,run_0002,Requester type,SINGLE_CHOICE,Instructor
+dataset_request,run_0002,Dataset requested,DROPDOWN,Evaluation logs
+dataset_request,run_0002,Intended use,MULTI_CHOICE,Benchmark evaluation;Tool development
+dataset_request,run_0002,Short project description,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Short project description; run 2)
+dataset_request,run_0002,Requested access start date,DATE,2025-08-27
+dataset_request,run_0002,Do you agree to cite the dataset if used?,SINGLE_CHOICE,No
+dataset_request,run_0003,Full name,SHORT_TEXT,Sam Kim
+dataset_request,run_0003,Institutional email,SHORT_TEXT,sam.kim.3@demo.org
+dataset_request,run_0003,Affiliation,SHORT_TEXT,gamma-03-35
+dataset_request,run_0003,Requester type,SINGLE_CHOICE,Industry partner
+dataset_request,run_0003,Dataset requested,DROPDOWN,Form interaction videos
+dataset_request,run_0003,Intended use,MULTI_CHOICE,Thesis;Tool development
+dataset_request,run_0003,Short project description,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short project description; run 3)
+dataset_request,run_0003,Requested access start date,DATE,2025-07-17
+dataset_request,run_0003,Do you agree to cite the dataset if used?,SINGLE_CHOICE,No
+dataset_request,run_0004,Full name,SHORT_TEXT,Taylor Kim
+dataset_request,run_0004,Institutional email,SHORT_TEXT,taylor.kim.4@mail.test
+dataset_request,run_0004,Affiliation,SHORT_TEXT,omega-04-09
+dataset_request,run_0004,Requester type,SINGLE_CHOICE,Industry partner
+dataset_request,run_0004,Dataset requested,DROPDOWN,Evaluation logs
+dataset_request,run_0004,Intended use,MULTI_CHOICE,Course project;Benchmark evaluation
+dataset_request,run_0004,Short project description,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Short project description; run 4)"
+dataset_request,run_0004,Requested access start date,DATE,2025-06-28
+dataset_request,run_0004,Do you agree to cite the dataset if used?,SINGLE_CHOICE,Need clarification
+dataset_request,run_0005,Full name,SHORT_TEXT,Morgan Chen
+dataset_request,run_0005,Institutional email,SHORT_TEXT,morgan.chen.5@demo.org
+dataset_request,run_0005,Affiliation,SHORT_TEXT,omega-05-41
+dataset_request,run_0005,Requester type,SINGLE_CHOICE,Researcher
+dataset_request,run_0005,Dataset requested,DROPDOWN,Evaluation logs
+dataset_request,run_0005,Intended use,MULTI_CHOICE,Tool development
+dataset_request,run_0005,Short project description,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Short project description; run 5)"
+dataset_request,run_0005,Requested access start date,DATE,2025-06-08
+dataset_request,run_0005,Do you agree to cite the dataset if used?,SINGLE_CHOICE,Yes
+dataset_request,run_0006,Full name,SHORT_TEXT,Riley Khan
+dataset_request,run_0006,Institutional email,SHORT_TEXT,riley.khan.6@mail.test
+dataset_request,run_0006,Affiliation,SHORT_TEXT,alpha-06-11
+dataset_request,run_0006,Requester type,SINGLE_CHOICE,Instructor
+dataset_request,run_0006,Dataset requested,DROPDOWN,Evaluation logs
+dataset_request,run_0006,Intended use,MULTI_CHOICE,Benchmark evaluation
+dataset_request,run_0006,Short project description,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short project description; run 6)
+dataset_request,run_0006,Requested access start date,DATE,2025-10-12
+dataset_request,run_0006,Do you agree to cite the dataset if used?,SINGLE_CHOICE,Yes
+dataset_request,run_0007,Full name,SHORT_TEXT,Avery Chen
+dataset_request,run_0007,Institutional email,SHORT_TEXT,avery.chen.7@demo.org
+dataset_request,run_0007,Affiliation,SHORT_TEXT,gamma-07-47
+dataset_request,run_0007,Requester type,SINGLE_CHOICE,Student
+dataset_request,run_0007,Dataset requested,DROPDOWN,Synthetic answers
+dataset_request,run_0007,Intended use,MULTI_CHOICE,Thesis
+dataset_request,run_0007,Short project description,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short project description; run 7)
+dataset_request,run_0007,Requested access start date,DATE,2025-06-21
+dataset_request,run_0007,Do you agree to cite the dataset if used?,SINGLE_CHOICE,Yes
+dataset_request,run_0008,Full name,SHORT_TEXT,Lena Meyer
+dataset_request,run_0008,Institutional email,SHORT_TEXT,lena.meyer.8@research.edu
+dataset_request,run_0008,Affiliation,SHORT_TEXT,alpha-08-02
+dataset_request,run_0008,Requester type,SINGLE_CHOICE,Researcher
+dataset_request,run_0008,Dataset requested,DROPDOWN,Synthetic answers
+dataset_request,run_0008,Intended use,MULTI_CHOICE,Course project;Benchmark evaluation;Tool development
+dataset_request,run_0008,Short project description,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short project description; run 8)
+dataset_request,run_0008,Requested access start date,DATE,2025-06-02
+dataset_request,run_0008,Do you agree to cite the dataset if used?,SINGLE_CHOICE,No
+dataset_request,run_0009,Full name,SHORT_TEXT,Sam Nguyen
+dataset_request,run_0009,Institutional email,SHORT_TEXT,sam.nguyen.9@example.com
+dataset_request,run_0009,Affiliation,SHORT_TEXT,gamma-09-40
+dataset_request,run_0009,Requester type,SINGLE_CHOICE,Student
+dataset_request,run_0009,Dataset requested,DROPDOWN,All available datasets
+dataset_request,run_0009,Intended use,MULTI_CHOICE,Research paper
+dataset_request,run_0009,Short project description,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Short project description; run 9)
+dataset_request,run_0009,Requested access start date,DATE,2025-06-13
+dataset_request,run_0009,Do you agree to cite the dataset if used?,SINGLE_CHOICE,Need clarification
+dataset_request,run_0010,Full name,SHORT_TEXT,Jordan Kim
+dataset_request,run_0010,Institutional email,SHORT_TEXT,jordan.kim.10@demo.org
+dataset_request,run_0010,Affiliation,SHORT_TEXT,alpha-10-31
+dataset_request,run_0010,Requester type,SINGLE_CHOICE,Researcher
+dataset_request,run_0010,Dataset requested,DROPDOWN,Evaluation logs
+dataset_request,run_0010,Intended use,MULTI_CHOICE,Thesis;Benchmark evaluation
+dataset_request,run_0010,Short project description,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Short project description; run 10)
+dataset_request,run_0010,Requested access start date,DATE,2025-07-14
+dataset_request,run_0010,Do you agree to cite the dataset if used?,SINGLE_CHOICE,Need clarification

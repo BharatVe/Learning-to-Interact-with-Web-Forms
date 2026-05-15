@@ -13,6 +13,7 @@ if str(SRC_ROOT) not in sys.path:
 
 from baselines import prompt_builders as pb
 from baselines import run_baseline_eval as rbe
+from baselines.action_schema import validate_low_level_action
 
 
 class FakeTrace:
@@ -35,7 +36,7 @@ class FakeSession:
         path = self.observations_dir / f"step_{step_idx:04d}.png"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(b"png")
-        return {"page_text": "Name Submit", "screenshot_path": str(path)}
+        return {"page_text": "Name Submit", "screenshot_path": str(path), "interaction_map": []}
 
     def execute_fill(self, entry, step_idx: int):
         return ({"success": True, "step": step_idx, "value": entry.get("value")}, None)
@@ -60,8 +61,75 @@ class FakeSession:
         path.write_bytes(b"png")
         return str(path)
 
+    def execute_move_mouse(self, x_norm: int, y_norm: int, step_idx: int):
+        _ = x_norm
+        _ = y_norm
+        _ = step_idx
+        return {"status": "moved"}
+
+    def execute_click_mouse(self, x_norm: int, y_norm: int, step_idx: int):
+        _ = x_norm
+        _ = y_norm
+        _ = step_idx
+        return {"status": "clicked"}
+
+    def execute_type_text(self, text: str, step_idx: int):
+        _ = text
+        _ = step_idx
+        return {"status": "typed"}
+
+    def execute_wait(self, seconds: float, step_idx: int):
+        _ = seconds
+        _ = step_idx
+        return None
+
+    def execute_scroll(self, delta: int, step_idx: int):
+        _ = delta
+        _ = step_idx
+        return None
+
+    def execute_press_key(self, key: str, step_idx: int):
+        _ = key
+        _ = step_idx
+        return None
+
     def close(self):
         return None
+
+
+class FakeLowLevelSession(FakeSession):
+    def __init__(self, artifact_dir: Path):
+        super().__init__(artifact_dir)
+        self.coord_to_question = {(200, 300): "q_001"}
+        self.focused_question_id = None
+        self.typed_values = {}
+
+    def observe(self, step_idx: int):
+        path = self.observations_dir / f"step_{step_idx:04d}.png"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(b"png")
+        return {
+            "page_text": "Name Submit",
+            "screenshot_path": str(path),
+            "interaction_map": [{"role": "input", "label": "Name", "x": 200, "y": 300}],
+        }
+
+    def execute_click_mouse(self, x_norm: int, y_norm: int, step_idx: int):
+        _ = step_idx
+        self.focused_question_id = self.coord_to_question.get((int(x_norm), int(y_norm)))
+        return {"status": "clicked", "x": int(x_norm), "y": int(y_norm)}
+
+    def execute_type_text(self, text: str, step_idx: int):
+        _ = step_idx
+        if self.focused_question_id:
+            self.typed_values[self.focused_question_id] = str(text)
+        return {"status": "typed", "text_len": len(str(text))}
+
+    def verify_entry(self, entry, step_idx: int):
+        _ = step_idx
+        qid = str(entry.get("question_id") or "")
+        actual = self.typed_values.get(qid)
+        return {"verified": actual is not None, "actual_value": actual, "detail": None}
 
 
 class SequenceAdapter:
@@ -122,6 +190,40 @@ class BaselineEvalContractTests(TestCase):
         self.assertEqual(state["label"], "Email")
         self.assertEqual(debug["match_strategy"], "question_id")
 
+    def test_target_only_verification_without_target_does_not_full_pass(self):
+        class CountingSession:
+            def __init__(self):
+                self.calls = 0
+
+            def verify_entry(self, entry, step_idx):
+                _ = entry
+                _ = step_idx
+                self.calls += 1
+                return {"verified": True, "actual_value": "x", "detail": None}
+
+        session = CountingSession()
+        rows = rbe._run_verification_pass(
+            execution_session=session,
+            question_states=[
+                {"question_id": "q_001", "label": "Name", "widget_type": "short_text", "value": "Olivia"},
+                {"question_id": "q_002", "label": "Email", "widget_type": "short_text", "value": "o@example.test"},
+            ],
+            step_idx=0,
+            scope="target_only",
+            target_question_state=None,
+        )
+        self.assertEqual(rows, [])
+        self.assertEqual(session.calls, 0)
+
+    def test_low_level_verification_policy_ignores_navigation_and_text_focus_clicks(self):
+        text_state = {"question_id": "q_001", "widget_type": "short_text"}
+        choice_state = {"question_id": "q_002", "widget_type": "dropdown"}
+        self.assertFalse(rbe._low_level_action_should_verify("move_mouse", text_state))
+        self.assertFalse(rbe._low_level_action_should_verify("scroll", None))
+        self.assertFalse(rbe._low_level_action_should_verify("click_mouse", text_state))
+        self.assertTrue(rbe._low_level_action_should_verify("type_text", text_state))
+        self.assertTrue(rbe._low_level_action_should_verify("click_mouse", choice_state))
+
     def test_soft_timeout_retry_collects_attempts(self):
         class RetryAdapter:
             def __init__(self):
@@ -162,12 +264,13 @@ class BaselineEvalContractTests(TestCase):
                 "1",
             ]
         )
-        self.assertEqual(args.max_steps, 36)
-        self.assertEqual(args.timeout_s, 1800)
-        self.assertEqual(args.max_new_tokens, 224)
-        self.assertEqual(int(args.step_soft_timeout_s), 60)
-        self.assertEqual(args.step_retry_max_new_tokens, 160)
+        self.assertEqual(args.timeout_s, 900)
+        self.assertEqual(args.max_steps, 24)
+        self.assertEqual(args.max_new_tokens, 192)
+        self.assertEqual(int(args.step_soft_timeout_s), 90)
+        self.assertEqual(args.step_retry_max_new_tokens, 96)
         self.assertEqual(args.compact_page_text_max_chars, 5000)
+        self.assertEqual(args.verification_scope, "target_only")
         self.assertEqual(args.prompt_profile, "detailed_v1")
         self.assertEqual(args.history_window, 4)
         self.assertTrue(args.fewshot_enabled)
@@ -177,6 +280,41 @@ class BaselineEvalContractTests(TestCase):
         self.assertEqual(args.inference_backend, "auto")
         self.assertEqual(args.api_timeout_s, 120)
         self.assertEqual(args.browser_init_retries, 2)
+        self.assertEqual(args.control_level, "high_level")
+        self.assertEqual(args.interaction_protocol, "human_ui_v1")
+        self.assertEqual(args.observation_mode, "vision_coords")
+        self.assertEqual(args.scoring_mode, "soft_quality_v1")
+
+    def test_mcp_interaction_map_uses_page_evaluate_and_returns_items(self):
+        class FakeEngine:
+            def __init__(self):
+                self.last_code = None
+
+            def _run_code(self, code, purpose, step_ref):
+                _ = step_ref
+                self.last_code = str(code)
+                if purpose != "interaction_map":
+                    return {}
+                if "page.evaluate" not in self.last_code:
+                    raise RuntimeError("interaction_map must use page.evaluate")
+                return {"items": [{"role": "input", "label": "Name", "x": 100, "y": 200}]}
+
+        session = rbe.MCPExecutionSession(
+            artifact_dir=Path("."),
+            observations_dir=Path("."),
+            trace=FakeTrace(),
+            headless=True,
+            viewport_width=1280,
+            viewport_height=720,
+            browser_mcp_cmd=None,
+            browser_mcp_timeout_ms=120000,
+            browser_init_retries=0,
+            browser_init_retry_delay_s=0.0,
+        )
+        session.engine = FakeEngine()
+        items = session._get_interaction_map(step_idx=0)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["label"], "Name")
 
     def test_select_inference_backend_for_openai_compat(self):
         model_cfg = {"provider": "openai_compat"}
@@ -224,6 +362,137 @@ class BaselineEvalContractTests(TestCase):
         self.assertIn("Prompt profile: runtime_safe_v1", prompt)
         self.assertIn("Canonical few-shot examples:", prompt)
 
+    def test_low_level_prompt_contains_interaction_map(self):
+        prompt = pb.build_text_prompt(
+            form_url="https://example.test/form",
+            remaining_answers=[{"question_id": "q_001", "label": "Name", "widget_type": "short_text", "value": "Olivia"}],
+            page_text="Name Email Submit",
+            last_result={"status": "observed", "error": None, "remaining_answers": 1},
+            control_level="low_level",
+            interaction_map=[{"role": "input", "label": "Name", "x": 200, "y": 300}],
+            recent_history=[{"step_index": 0, "status": "observed"}],
+            validation_feedback={"category": "ok"},
+        )
+        self.assertIn("Control level: direct browser tool calls.", prompt)
+        self.assertIn("Interaction map:", prompt)
+        self.assertIn("browser_mouse_move_xy|browser_mouse_click_xy|browser_type", prompt)
+        self.assertIn("The model must choose direct browser tool calls on its own from the observed state.", prompt)
+        self.assertNotIn("click target, then type_text", prompt)
+        self.assertNotIn("Current page text:", prompt)
+
+    def test_idle_recovery_nudge_returns_neutral_stall_payload(self):
+        payload = json.loads(
+            rbe._build_idle_recovery_nudge(
+                idle_streak=4,
+                remaining_answers=[{"question_id": "q_001", "label": "Name"}],
+                nudge_index=1,
+                nudge_max=3,
+                validation_feedback={"category": "verification_failed", "hint": "Retry with exact expected value formatting and verify field focus/selection."},
+                recent_history=[
+                    {
+                        "action": {"action": "type_text", "target": {"question_id": "q_001"}, "value": "Olivia"},
+                        "matched_question_id": "q_001",
+                        "progress_made": False,
+                    },
+                    {
+                        "action": {"action": "type_text", "target": {"question_id": "q_001"}, "value": "Olivia"},
+                        "matched_question_id": "q_001",
+                        "progress_made": False,
+                    },
+                ],
+                interaction_map=[{"question_id_guess": "q_001"}],
+            )
+        )
+        self.assertEqual(payload["stall_type"], "repeat_same_signature")
+        self.assertEqual(payload["last_target_question_id"], "q_001")
+        self.assertEqual(payload["repeat_same_signature_count"], 2)
+        self.assertNotIn("recommended_strategy", payload)
+        self.assertNotIn("forbidden_repeats", payload)
+
+    def test_enrich_interaction_map_adds_grounding_fields(self):
+        enriched = rbe._enrich_interaction_map(
+            [
+                {
+                    "role": "input",
+                    "label": "",
+                    "question_label": "Full Name",
+                    "option_label": "",
+                    "x": 100,
+                    "y": 200,
+                }
+            ],
+            [{"question_id": "q_001", "label": "Full Name", "widget_type": "short_text", "value": "Olivia"}],
+        )
+        self.assertEqual(len(enriched), 1)
+        self.assertEqual(enriched[0]["label"], "Full Name")
+        self.assertEqual(enriched[0]["question_id_guess"], "q_001")
+        self.assertEqual(enriched[0]["widget_type_guess"], "short_text")
+
+    def test_enrich_interaction_map_marks_combobox_as_dropdown(self):
+        enriched = rbe._enrich_interaction_map(
+            [
+                {
+                    "role": "combobox",
+                    "label": "",
+                    "question_label": "Issue category",
+                    "option_label": "",
+                    "x": 100,
+                    "y": 200,
+                }
+            ],
+            [{"question_id": "q_003", "label": "Issue category", "widget_type": "dropdown", "value": "Network"}],
+        )
+        self.assertEqual(len(enriched), 1)
+        self.assertEqual(enriched[0]["question_id_guess"], "q_003")
+        self.assertEqual(enriched[0]["widget_type_guess"], "dropdown")
+
+    def test_dropdown_supports_select_option_and_type_coercion(self):
+        self.assertTrue(rbe._action_supported_for_widget("select_option", "dropdown"))
+        self.assertTrue(rbe._action_supported_for_widget("click", "dropdown"))
+        self.assertFalse(rbe._action_supported_for_widget("type", "dropdown"))
+        action, warnings = rbe._coerce_action_for_widget(
+            {"action": "type", "target": {"question_id": "q_003"}},
+            {"widget_type": "dropdown"},
+        )
+        self.assertEqual(action["action"], "select_option")
+        self.assertIn("coerced_action:type->select_option", warnings)
+
+    def test_low_level_prompt_can_include_page_text_when_requested(self):
+        prompt = pb.build_text_prompt(
+            form_url="https://example.test/form",
+            remaining_answers=[{"question_id": "q_001", "label": "Name", "widget_type": "short_text", "value": "Olivia"}],
+            page_text="Name Email Submit",
+            last_result={"status": "observed", "error": None, "remaining_answers": 1},
+            control_level="low_level",
+            observation_mode="vision_coords_text",
+            interaction_map=[{"role": "input", "label": "Name", "x": 200, "y": 300}],
+        )
+        self.assertIn("Current page text:", prompt)
+
+    def test_validate_low_level_action_requires_coords(self):
+        with self.assertRaises(ValueError):
+            validate_low_level_action({"action": "click_mouse", "target": {"x": 100}})
+        action, warnings = validate_low_level_action({"action": "click_mouse", "target": {"x": 100, "y": 200}})
+        self.assertEqual(action["action"], "click_mouse")
+        self.assertEqual(warnings, [])
+
+    def test_validate_direct_browser_tool_call_requires_args(self):
+        with self.assertRaises(ValueError):
+            validate_low_level_action({"tool": "browser_mouse_click_xy", "args": {"x": 100}})
+        action, warnings = validate_low_level_action(
+            {"tool": "browser_mouse_click_xy", "args": {"x": 100, "y": 200, "question_id": "q_001"}}
+        )
+        self.assertEqual(action["tool"], "browser_mouse_click_xy")
+        self.assertEqual(action["action"], "browser_mouse_click_xy")
+        self.assertEqual(action["args"]["question_id"], "q_001")
+        self.assertEqual(warnings, [])
+
+    def test_direct_browser_tool_helpers_extract_args_and_target(self):
+        action = {"tool": "browser_type", "action": "browser_type", "args": {"text": "Olivia", "question_id": "q_001", "label": "Name"}}
+        self.assertEqual(rbe._low_level_action_target(action)["question_id"], "q_001")
+        self.assertEqual(rbe._low_level_executed_value(action), "Olivia")
+        self.assertTrue(rbe._low_level_action_should_verify("browser_type", {"widget_type": "short_text"}))
+
     def test_recent_history_window_truncation(self):
         rows = [
             {"step_index": 0, "status": "failed", "error": "x", "action": {"action": "wait"}},
@@ -240,6 +509,23 @@ class BaselineEvalContractTests(TestCase):
         self.assertEqual(payload["category"], "model_output_invalid")
         payload2 = rbe._normalize_validation_feedback({"status": "failed", "error": "target_not_found"})
         self.assertEqual(payload2["category"], "target_not_found")
+
+    def test_soft_quality_metrics_helper(self):
+        steps = [
+            {"action": {"action": "click_mouse", "target": {"x": 100, "y": 200}}, "progress_made": False, "status": "failed"},
+            {"action": {"action": "type_text", "value": "A"}, "progress_made": True, "status": "filled"},
+            {"action": {"action": "submit"}, "progress_made": True, "status": "submitted"},
+        ]
+        metrics = rbe._calculate_soft_quality_metrics(
+            steps=steps,
+            summary_metrics={"question_total": 1, "verified_correctness": 1},
+            submit_success=True,
+        )
+        self.assertTrue(metrics["model_driven_execution"])
+        self.assertGreaterEqual(metrics["autonomy_step_rate"], 0.0)
+        self.assertLessEqual(metrics["autonomy_step_rate"], 1.0)
+        self.assertGreaterEqual(metrics["composite_score"], 0.0)
+        self.assertLessEqual(metrics["composite_score"], 1.0)
 
     def test_make_run_label_uses_slurm_or_na(self):
         with patch.dict("os.environ", {"SLURM_JOB_ID": "2167542"}, clear=True):
@@ -309,6 +595,8 @@ class BaselineEvalContractTests(TestCase):
                 "trial_demo",
                 "--execution-backend",
                 "local",
+                "--interaction-protocol",
+                "legacy_semantic_v1",
             ]
             with patch.object(rbe, "ROOT_DIR", repo_root), patch.object(rbe, "_ensure_model_runtime_compat", return_value=None), patch.object(
                 rbe, "_make_adapter", return_value=adapter
@@ -356,6 +644,288 @@ class BaselineEvalContractTests(TestCase):
             self.assertIn("fewshot_ids", step_rows[0])
             self.assertTrue(isinstance(step_rows[0].get("prompt_hash"), str) and len(step_rows[0].get("prompt_hash")) == 64)
 
+    def test_main_low_level_control_executes_and_records_inputs(self):
+        with TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            self._write_config(repo_root)
+
+            def fake_session_factory(args, paths, trace):
+                _ = args
+                _ = trace
+                return FakeLowLevelSession(paths["artifact_dir"])
+
+            adapter = SequenceAdapter(
+                [
+                    json.dumps({"action": "click_mouse", "target": {"x": 200, "y": 300, "question_id": "q_001"}}),
+                    json.dumps({"action": "type_text", "target": {"question_id": "q_001"}, "value": "Olivia Brooks"}),
+                    json.dumps({"action": "submit"}),
+                ]
+            )
+            answers = [{"label": "Name", "widget_type": "short_text", "value": "Olivia Brooks"}]
+            argv = [
+                "--config",
+                "configs/baselines/minimal_models.json",
+                "--model-id",
+                "text_qwen25_3b_instruct",
+                "--model-kind",
+                "text_llm",
+                "--form-id",
+                "event_rsvp",
+                "--run-index",
+                "1",
+                "--dataset-root",
+                "data/model_baselines",
+                "--answers-root",
+                "data/answers",
+                "--trial-id",
+                "trial_low_level",
+                "--execution-backend",
+                "local",
+                "--control-level",
+                "low_level",
+            ]
+            with patch.object(rbe, "ROOT_DIR", repo_root), patch.object(rbe, "_ensure_model_runtime_compat", return_value=None), patch.object(
+                rbe, "_make_adapter", return_value=adapter
+            ), patch.object(rbe, "_make_execution_session", side_effect=fake_session_factory), patch.object(
+                rbe, "_load_run_answers", return_value=answers
+            ), patch.object(
+                rbe, "load_form_spec", return_value={"form_url": "https://example.test/form"}
+            ), patch.object(
+                rbe, "resolve_answers_path", return_value=repo_root / "data/answers/event_rsvp/runs.json"
+            ), patch.object(
+                rbe, "TraceLogger", return_value=FakeTrace()
+            ), patch.object(
+                rbe, "MCPTraceClient", side_effect=RuntimeError("disabled")
+            ), patch.object(
+                rbe, "_finalize_trial_video", return_value=None
+            ):
+                rc = rbe.main(argv)
+
+            self.assertEqual(rc, 0)
+            summary_path = (
+                repo_root
+                / "data/model_baselines/baseline_mcp_v1/text_qwen25_3b_instruct/event_rsvp/run_0001/trial_low_level/summary.json"
+            )
+            summary = json.loads(summary_path.read_text())
+            self.assertEqual(summary.get("interaction_protocol"), "human_ui_v1")
+            self.assertEqual(summary.get("observation_mode"), "vision_coords")
+            self.assertEqual(summary.get("scoring_mode"), "soft_quality_v1")
+            self.assertEqual(summary.get("control_level"), "low_level")
+            self.assertIsInstance(summary.get("composite_score"), float)
+            self.assertIn("autonomy_step_rate", summary)
+            self.assertIsNone(summary.get("failure_category"))
+            step_rows = [json.loads(line) for line in (summary_path.parent / "step_inputs.jsonl").read_text().splitlines() if line.strip()]
+            self.assertGreaterEqual(len(step_rows), 1)
+            self.assertEqual(step_rows[0].get("control_level"), "low_level")
+            self.assertIn("interaction_map", step_rows[0])
+            self.assertTrue(isinstance(step_rows[0]["interaction_map"], list))
+            self.assertEqual(step_rows[0].get("verification_scope"), "target_only")
+
+    def test_human_ui_protocol_forces_low_level_execution(self):
+        with TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            self._write_config(repo_root)
+
+            def fake_session_factory(args, paths, trace):
+                _ = args
+                _ = trace
+                return FakeLowLevelSession(paths["artifact_dir"])
+
+            adapter = SequenceAdapter(
+                [
+                    json.dumps({"action": "click_mouse", "target": {"x": 200, "y": 300, "question_id": "q_001"}}),
+                    json.dumps({"action": "type_text", "target": {"question_id": "q_001"}, "value": "Olivia Brooks"}),
+                    json.dumps({"action": "submit"}),
+                ]
+            )
+            answers = [{"label": "Name", "widget_type": "short_text", "value": "Olivia Brooks"}]
+            argv = [
+                "--config",
+                "configs/baselines/minimal_models.json",
+                "--model-id",
+                "text_qwen25_3b_instruct",
+                "--model-kind",
+                "text_llm",
+                "--form-id",
+                "event_rsvp",
+                "--run-index",
+                "1",
+                "--dataset-root",
+                "data/model_baselines",
+                "--answers-root",
+                "data/answers",
+                "--trial-id",
+                "trial_human_default",
+                "--execution-backend",
+                "local",
+                "--control-level",
+                "high_level",
+            ]
+            with patch.object(rbe, "ROOT_DIR", repo_root), patch.object(rbe, "_ensure_model_runtime_compat", return_value=None), patch.object(
+                rbe, "_make_adapter", return_value=adapter
+            ), patch.object(rbe, "_make_execution_session", side_effect=fake_session_factory), patch.object(
+                rbe, "_load_run_answers", return_value=answers
+            ), patch.object(
+                rbe, "load_form_spec", return_value={"form_url": "https://example.test/form"}
+            ), patch.object(
+                rbe, "resolve_answers_path", return_value=repo_root / "data/answers/event_rsvp/runs.json"
+            ), patch.object(
+                rbe, "TraceLogger", return_value=FakeTrace()
+            ), patch.object(
+                rbe, "MCPTraceClient", side_effect=RuntimeError("disabled")
+            ), patch.object(
+                rbe, "_finalize_trial_video", return_value=None
+            ):
+                rc = rbe.main(argv)
+
+            self.assertEqual(rc, 0)
+            summary_path = (
+                repo_root
+                / "data/model_baselines/baseline_mcp_v1/text_qwen25_3b_instruct/event_rsvp/run_0001/trial_human_default/summary.json"
+            )
+            summary = json.loads(summary_path.read_text())
+            self.assertEqual(summary.get("interaction_protocol"), "human_ui_v1")
+            self.assertEqual(summary.get("requested_control_level"), "high_level")
+            self.assertEqual(summary.get("control_level"), "low_level")
+
+    def test_human_ui_loop_stall_terminates_early(self):
+        with TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            self._write_config(repo_root)
+
+            def fake_session_factory(args, paths, trace):
+                _ = args
+                _ = trace
+                return FakeLowLevelSession(paths["artifact_dir"])
+
+            adapter = SequenceAdapter(
+                [
+                    json.dumps({"action": "click_mouse", "target": {"x": 200, "y": 300, "question_id": "q_001"}}),
+                    json.dumps({"action": "click_mouse", "target": {"x": 200, "y": 300, "question_id": "q_001"}}),
+                    json.dumps({"action": "click_mouse", "target": {"x": 200, "y": 300, "question_id": "q_001"}}),
+                    json.dumps({"action": "click_mouse", "target": {"x": 200, "y": 300, "question_id": "q_001"}}),
+                    json.dumps({"action": "click_mouse", "target": {"x": 200, "y": 300, "question_id": "q_001"}}),
+                ]
+            )
+            answers = [{"label": "Name", "widget_type": "short_text", "value": "Olivia Brooks"}]
+            argv = [
+                "--config",
+                "configs/baselines/minimal_models.json",
+                "--model-id",
+                "text_qwen25_3b_instruct",
+                "--model-kind",
+                "text_llm",
+                "--form-id",
+                "event_rsvp",
+                "--run-index",
+                "1",
+                "--dataset-root",
+                "data/model_baselines",
+                "--answers-root",
+                "data/answers",
+                "--trial-id",
+                "trial_loop_terminal",
+                "--execution-backend",
+                "local",
+                "--control-level",
+                "low_level",
+                "--max-steps",
+                "24",
+            ]
+            with patch.object(rbe, "ROOT_DIR", repo_root), patch.object(rbe, "_ensure_model_runtime_compat", return_value=None), patch.object(
+                rbe, "_make_adapter", return_value=adapter
+            ), patch.object(rbe, "_make_execution_session", side_effect=fake_session_factory), patch.object(
+                rbe, "_load_run_answers", return_value=answers
+            ), patch.object(
+                rbe, "load_form_spec", return_value={"form_url": "https://example.test/form"}
+            ), patch.object(
+                rbe, "resolve_answers_path", return_value=repo_root / "data/answers/event_rsvp/runs.json"
+            ), patch.object(
+                rbe, "TraceLogger", return_value=FakeTrace()
+            ), patch.object(
+                rbe, "MCPTraceClient", side_effect=RuntimeError("disabled")
+            ), patch.object(
+                rbe, "_finalize_trial_video", return_value=None
+            ):
+                rc = rbe.main(argv)
+
+            self.assertEqual(rc, 1)
+            summary_path = (
+                repo_root
+                / "data/model_baselines/baseline_mcp_v1/text_qwen25_3b_instruct/event_rsvp/run_0001/trial_loop_terminal/summary.json"
+            )
+            summary = json.loads(summary_path.read_text())
+            self.assertEqual(summary.get("stop_reason"), "loop_stall_terminal")
+            self.assertEqual(summary.get("failure_category"), "loop_stall_terminal")
+            self.assertTrue(summary.get("termination_due_to_loop_stall"))
+
+    def test_human_ui_invalid_output_is_soft_violation(self):
+        with TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            self._write_config(repo_root)
+
+            def fake_session_factory(args, paths, trace):
+                _ = args
+                _ = trace
+                return FakeLowLevelSession(paths["artifact_dir"])
+
+            adapter = SequenceAdapter(
+                [
+                    "not_json",
+                    json.dumps({"action": "click_mouse", "target": {"x": 200, "y": 300, "question_id": "q_001"}}),
+                    json.dumps({"action": "type_text", "target": {"question_id": "q_001"}, "value": "Olivia Brooks"}),
+                    json.dumps({"action": "submit"}),
+                ]
+            )
+            answers = [{"label": "Name", "widget_type": "short_text", "value": "Olivia Brooks"}]
+            argv = [
+                "--config",
+                "configs/baselines/minimal_models.json",
+                "--model-id",
+                "text_qwen25_3b_instruct",
+                "--model-kind",
+                "text_llm",
+                "--form-id",
+                "event_rsvp",
+                "--run-index",
+                "1",
+                "--dataset-root",
+                "data/model_baselines",
+                "--answers-root",
+                "data/answers",
+                "--trial-id",
+                "trial_soft_invalid",
+                "--execution-backend",
+                "local",
+            ]
+            with patch.object(rbe, "ROOT_DIR", repo_root), patch.object(rbe, "_ensure_model_runtime_compat", return_value=None), patch.object(
+                rbe, "_make_adapter", return_value=adapter
+            ), patch.object(rbe, "_make_execution_session", side_effect=fake_session_factory), patch.object(
+                rbe, "_load_run_answers", return_value=answers
+            ), patch.object(
+                rbe, "load_form_spec", return_value={"form_url": "https://example.test/form"}
+            ), patch.object(
+                rbe, "resolve_answers_path", return_value=repo_root / "data/answers/event_rsvp/runs.json"
+            ), patch.object(
+                rbe, "TraceLogger", return_value=FakeTrace()
+            ), patch.object(
+                rbe, "MCPTraceClient", side_effect=RuntimeError("disabled")
+            ), patch.object(
+                rbe, "_finalize_trial_video", return_value=None
+            ):
+                rc = rbe.main(argv)
+
+            self.assertEqual(rc, 0)
+            summary_path = (
+                repo_root
+                / "data/model_baselines/baseline_mcp_v1/text_qwen25_3b_instruct/event_rsvp/run_0001/trial_soft_invalid/summary.json"
+            )
+            summary = json.loads(summary_path.read_text())
+            self.assertEqual(summary.get("interaction_protocol"), "human_ui_v1")
+            self.assertGreaterEqual(int(summary.get("invalid_actions") or 0), 1)
+            self.assertGreaterEqual(int(summary.get("soft_violation_count") or 0), 1)
+            self.assertIsNone(summary.get("failure_category"))
+
     def test_disable_action_coercion_surfaces_widget_failure(self):
         with TemporaryDirectory() as tmp:
             repo_root = Path(tmp)
@@ -387,6 +957,8 @@ class BaselineEvalContractTests(TestCase):
                 "trial_no_coercion",
                 "--execution-backend",
                 "local",
+                "--interaction-protocol",
+                "legacy_semantic_v1",
                 "--disable-action-coercion",
                 "--max-steps",
                 "1",
@@ -473,6 +1045,8 @@ class BaselineEvalContractTests(TestCase):
                         "trial_form1",
                         "--execution-backend",
                         "local",
+                        "--interaction-protocol",
+                        "legacy_semantic_v1",
                         "--experiment-id",
                         "pilot_mediated_test",
                     ]
@@ -497,6 +1071,8 @@ class BaselineEvalContractTests(TestCase):
                         "trial_form2",
                         "--execution-backend",
                         "local",
+                        "--interaction-protocol",
+                        "legacy_semantic_v1",
                         "--experiment-id",
                         "pilot_mediated_test",
                     ]
@@ -566,6 +1142,8 @@ class BaselineEvalContractTests(TestCase):
                 "trial_fallback",
                 "--execution-backend",
                 "local",
+                "--interaction-protocol",
+                "legacy_semantic_v1",
             ]
             with patch.object(rbe, "ROOT_DIR", repo_root), patch.object(rbe, "_ensure_model_runtime_compat", return_value=None), patch.object(
                 rbe, "_make_adapter", return_value=adapter

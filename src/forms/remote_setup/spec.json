@@ -1,0 +1,83 @@
+{
+  "form_id": "remote_setup",
+  "form_title": "Remote Work Setup Request",
+  "form_description": "Request form for remote work equipment, access, and support needs.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1Zxey3UkROUDVlh6f0fl-KAQCPBKD6ZlJ_BCzuFPArlE/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSdyItnlP8DVWGo_XHqydFEQ9EjSOOrp_SC2I6UMr3o_ZvyVPw/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdyItnlP8DVWGo_XHqydFEQ9EjSOOrp_SC2I6UMr3o_ZvyVPw/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Remote work request",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Remote work request",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Remote work request",
+      "q_order": 3,
+      "q_title": "Remote work start date",
+      "q_type": "DATE",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Remote work request",
+      "q_order": 4,
+      "q_title": "Expected remote work duration",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "1 day;1 week;1 month;Full semester;Long term",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Remote work request",
+      "q_order": 5,
+      "q_title": "Equipment needed",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Laptop;Monitor;Keyboard;Mouse;Headset;VPN access;None",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Remote work request",
+      "q_order": 6,
+      "q_title": "Primary work location",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Home;Co-working space;Traveling;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Remote work request",
+      "q_order": 7,
+      "q_title": "Technical constraints",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

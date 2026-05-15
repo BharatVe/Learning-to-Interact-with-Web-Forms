@@ -1,0 +1,728 @@
+{
+  "form_id": "meal_plan",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Meal preference",
+          "widget_type": "single_choice",
+          "value": "Chicken",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Allergies or intolerances",
+          "widget_type": "multi_choice",
+          "value": [
+            "Nuts",
+            "Dairy",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred dining date",
+          "widget_type": "date",
+          "value": "2025-11-02",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred dining time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Would you like dessert?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Additional notes",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Meal preference",
+          "widget_type": "single_choice",
+          "value": "Vegan",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Allergies or intolerances",
+          "widget_type": "multi_choice",
+          "value": [
+            "Nuts"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred dining date",
+          "widget_type": "date",
+          "value": "2025-07-28",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred dining time",
+          "widget_type": "time",
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Would you like dessert?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Additional notes",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Additional notes; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Morgan Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Meal preference",
+          "widget_type": "single_choice",
+          "value": "Vegan",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Allergies or intolerances",
+          "widget_type": "multi_choice",
+          "value": [
+            "Dairy",
+            "None"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred dining date",
+          "widget_type": "date",
+          "value": "2025-07-19",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred dining time",
+          "widget_type": "time",
+          "value": "11:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Would you like dessert?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Additional notes",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Additional notes; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Morgan Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Meal preference",
+          "widget_type": "single_choice",
+          "value": "Vegan",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Allergies or intolerances",
+          "widget_type": "multi_choice",
+          "value": [
+            "Dairy",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred dining date",
+          "widget_type": "date",
+          "value": "2025-09-30",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred dining time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Would you like dessert?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Additional notes",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Casey Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Meal preference",
+          "widget_type": "single_choice",
+          "value": "Vegan",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Allergies or intolerances",
+          "widget_type": "multi_choice",
+          "value": [
+            "Gluten",
+            "None",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred dining date",
+          "widget_type": "date",
+          "value": "2025-07-31",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred dining time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Would you like dessert?",
+          "widget_type": "single_choice",
+          "value": "Maybe",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Additional notes",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Meal preference",
+          "widget_type": "single_choice",
+          "value": "Vegan",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Allergies or intolerances",
+          "widget_type": "multi_choice",
+          "value": [
+            "Gluten",
+            "Dairy"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred dining date",
+          "widget_type": "date",
+          "value": "2025-09-05",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred dining time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Would you like dessert?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Additional notes",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Jordan Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Meal preference",
+          "widget_type": "single_choice",
+          "value": "Fish",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Allergies or intolerances",
+          "widget_type": "multi_choice",
+          "value": [
+            "Nuts",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred dining date",
+          "widget_type": "date",
+          "value": "2025-10-19",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred dining time",
+          "widget_type": "time",
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Would you like dessert?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Additional notes",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Additional notes; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Meal preference",
+          "widget_type": "single_choice",
+          "value": "Beef",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Allergies or intolerances",
+          "widget_type": "multi_choice",
+          "value": [
+            "Gluten",
+            "Dairy",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred dining date",
+          "widget_type": "date",
+          "value": "2025-10-17",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred dining time",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Would you like dessert?",
+          "widget_type": "single_choice",
+          "value": "Maybe",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Additional notes",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Additional notes; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Meal preference",
+          "widget_type": "single_choice",
+          "value": "Fish",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Allergies or intolerances",
+          "widget_type": "multi_choice",
+          "value": [
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred dining date",
+          "widget_type": "date",
+          "value": "2025-09-07",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred dining time",
+          "widget_type": "time",
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Would you like dessert?",
+          "widget_type": "single_choice",
+          "value": "Maybe",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Additional notes",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Additional notes; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Meal preference",
+          "widget_type": "single_choice",
+          "value": "Vegan",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Allergies or intolerances",
+          "widget_type": "multi_choice",
+          "value": [
+            "Gluten",
+            "Soy",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred dining date",
+          "widget_type": "date",
+          "value": "2025-06-14",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred dining time",
+          "widget_type": "time",
+          "value": "11:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Would you like dessert?",
+          "widget_type": "single_choice",
+          "value": "Maybe",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Additional notes",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Additional notes; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+form_id,run_id,q_title,q_type,answer
+paper_review,run_0001,Reviewer name,SHORT_TEXT,Taylor Bauer
+paper_review,run_0001,Email address,SHORT_TEXT,taylor.bauer.1@example.com
+paper_review,run_0001,Preferred paper topic,MULTI_CHOICE,Web automation
+paper_review,run_0001,Comfort level with reviewing,SINGLE_CHOICE,Beginner
+paper_review,run_0001,Number of papers you can review,DROPDOWN,4
+paper_review,run_0001,Review deadline preference,DATE,2025-06-03
+paper_review,run_0001,Conflicts of interest,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Conflicts of interest; run 1)
+paper_review,run_0002,Reviewer name,SHORT_TEXT,Avery Patel
+paper_review,run_0002,Email address,SHORT_TEXT,avery.patel.2@mail.test
+paper_review,run_0002,Preferred paper topic,MULTI_CHOICE,Computer use agents;Vision-language models;Evaluation metrics
+paper_review,run_0002,Comfort level with reviewing,SINGLE_CHOICE,Intermediate
+paper_review,run_0002,Number of papers you can review,DROPDOWN,5
+paper_review,run_0002,Review deadline preference,DATE,2025-10-28
+paper_review,run_0002,Conflicts of interest,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Conflicts of interest; run 2)"
+paper_review,run_0003,Reviewer name,SHORT_TEXT,Noah Rivera
+paper_review,run_0003,Email address,SHORT_TEXT,noah.rivera.3@example.com
+paper_review,run_0003,Preferred paper topic,MULTI_CHOICE,Computer use agents;Evaluation metrics
+paper_review,run_0003,Comfort level with reviewing,SINGLE_CHOICE,Intermediate
+paper_review,run_0003,Number of papers you can review,DROPDOWN,3
+paper_review,run_0003,Review deadline preference,DATE,2025-09-15
+paper_review,run_0003,Conflicts of interest,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Conflicts of interest; run 3)
+paper_review,run_0004,Reviewer name,SHORT_TEXT,Jordan Chen
+paper_review,run_0004,Email address,SHORT_TEXT,jordan.chen.4@mail.test
+paper_review,run_0004,Preferred paper topic,MULTI_CHOICE,Computer use agents;Dataset construction;Evaluation metrics
+paper_review,run_0004,Comfort level with reviewing,SINGLE_CHOICE,Intermediate
+paper_review,run_0004,Number of papers you can review,DROPDOWN,5
+paper_review,run_0004,Review deadline preference,DATE,2025-06-16
+paper_review,run_0004,Conflicts of interest,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Conflicts of interest; run 4)"
+paper_review,run_0005,Reviewer name,SHORT_TEXT,Sam Meyer
+paper_review,run_0005,Email address,SHORT_TEXT,sam.meyer.5@research.edu
+paper_review,run_0005,Preferred paper topic,MULTI_CHOICE,Computer use agents;Vision-language models
+paper_review,run_0005,Comfort level with reviewing,SINGLE_CHOICE,Beginner
+paper_review,run_0005,Number of papers you can review,DROPDOWN,1
+paper_review,run_0005,Review deadline preference,DATE,2025-10-08
+paper_review,run_0005,Conflicts of interest,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Conflicts of interest; run 5)"
+paper_review,run_0006,Reviewer name,SHORT_TEXT,Priya Singh
+paper_review,run_0006,Email address,SHORT_TEXT,priya.singh.6@example.com
+paper_review,run_0006,Preferred paper topic,MULTI_CHOICE,Vision-language models;Dataset construction;Evaluation metrics
+paper_review,run_0006,Comfort level with reviewing,SINGLE_CHOICE,Intermediate
+paper_review,run_0006,Number of papers you can review,DROPDOWN,2
+paper_review,run_0006,Review deadline preference,DATE,2025-11-26
+paper_review,run_0006,Conflicts of interest,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Conflicts of interest; run 6)
+paper_review,run_0007,Reviewer name,SHORT_TEXT,Sam Patel
+paper_review,run_0007,Email address,SHORT_TEXT,sam.patel.7@mail.test
+paper_review,run_0007,Preferred paper topic,MULTI_CHOICE,Vision-language models;Dataset construction
+paper_review,run_0007,Comfort level with reviewing,SINGLE_CHOICE,Advanced
+paper_review,run_0007,Number of papers you can review,DROPDOWN,1
+paper_review,run_0007,Review deadline preference,DATE,2025-07-14
+paper_review,run_0007,Conflicts of interest,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Conflicts of interest; run 7)
+paper_review,run_0008,Reviewer name,SHORT_TEXT,Priya Patel
+paper_review,run_0008,Email address,SHORT_TEXT,priya.patel.8@example.com
+paper_review,run_0008,Preferred paper topic,MULTI_CHOICE,Computer use agents;Dataset construction
+paper_review,run_0008,Comfort level with reviewing,SINGLE_CHOICE,Beginner
+paper_review,run_0008,Number of papers you can review,DROPDOWN,3
+paper_review,run_0008,Review deadline preference,DATE,2025-09-07
+paper_review,run_0008,Conflicts of interest,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Conflicts of interest; run 8)
+paper_review,run_0009,Reviewer name,SHORT_TEXT,Sam Kim
+paper_review,run_0009,Email address,SHORT_TEXT,sam.kim.9@research.edu
+paper_review,run_0009,Preferred paper topic,MULTI_CHOICE,Vision-language models;Web automation;Evaluation metrics
+paper_review,run_0009,Comfort level with reviewing,SINGLE_CHOICE,Beginner
+paper_review,run_0009,Number of papers you can review,DROPDOWN,4
+paper_review,run_0009,Review deadline preference,DATE,2025-11-20
+paper_review,run_0009,Conflicts of interest,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Conflicts of interest; run 9)"
+paper_review,run_0010,Reviewer name,SHORT_TEXT,Noah Nguyen
+paper_review,run_0010,Email address,SHORT_TEXT,noah.nguyen.10@mail.test
+paper_review,run_0010,Preferred paper topic,MULTI_CHOICE,Web automation;Dataset construction;Evaluation metrics
+paper_review,run_0010,Comfort level with reviewing,SINGLE_CHOICE,Beginner
+paper_review,run_0010,Number of papers you can review,DROPDOWN,4
+paper_review,run_0010,Review deadline preference,DATE,2025-10-20
+paper_review,run_0010,Conflicts of interest,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Conflicts of interest; run 10)

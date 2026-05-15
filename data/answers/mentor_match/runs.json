@@ -1,0 +1,726 @@
+{
+  "form_id": "mentor_match",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Taylor Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "taylor.kim.1@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role in the program",
+          "widget_type": "single_choice",
+          "value": "Mentor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Field or area",
+          "widget_type": "single_choice",
+          "value": "Business",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Goals for mentorship",
+          "widget_type": "multi_choice",
+          "value": [
+            "Skill development",
+            "Study planning"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Brief introduction",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief introduction; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "lena.ortiz.2@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role in the program",
+          "widget_type": "single_choice",
+          "value": "Mentee",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Field or area",
+          "widget_type": "single_choice",
+          "value": "Data Science",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Goals for mentorship",
+          "widget_type": "multi_choice",
+          "value": [
+            "Research advice",
+            "Networking",
+            "Study planning"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Brief introduction",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief introduction; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "riley.rivera.3@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role in the program",
+          "widget_type": "single_choice",
+          "value": "Mentor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Field or area",
+          "widget_type": "single_choice",
+          "value": "Data Science",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Goals for mentorship",
+          "widget_type": "multi_choice",
+          "value": [
+            "Skill development"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Brief introduction",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief introduction; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "noah.bauer.4@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role in the program",
+          "widget_type": "single_choice",
+          "value": "Mentor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Field or area",
+          "widget_type": "single_choice",
+          "value": "Design",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Goals for mentorship",
+          "widget_type": "multi_choice",
+          "value": [
+            "Research advice",
+            "Networking",
+            "Skill development"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Brief introduction",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief introduction; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "noah.nguyen.5@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role in the program",
+          "widget_type": "single_choice",
+          "value": "Mentor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Field or area",
+          "widget_type": "single_choice",
+          "value": "Design",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Goals for mentorship",
+          "widget_type": "multi_choice",
+          "value": [
+            "Career guidance",
+            "Networking"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Brief introduction",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief introduction; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "noah.nguyen.6@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role in the program",
+          "widget_type": "single_choice",
+          "value": "Mentee",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Field or area",
+          "widget_type": "single_choice",
+          "value": "Design",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Goals for mentorship",
+          "widget_type": "multi_choice",
+          "value": [
+            "Networking"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Brief introduction",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief introduction; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Taylor Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "taylor.kim.7@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role in the program",
+          "widget_type": "single_choice",
+          "value": "Mentee",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Field or area",
+          "widget_type": "single_choice",
+          "value": "Data Science",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Goals for mentorship",
+          "widget_type": "multi_choice",
+          "value": [
+            "Skill development"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Brief introduction",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief introduction; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "lena.patel.8@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role in the program",
+          "widget_type": "single_choice",
+          "value": "Mentor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Field or area",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Goals for mentorship",
+          "widget_type": "multi_choice",
+          "value": [
+            "Skill development",
+            "Study planning"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Brief introduction",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief introduction; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "11:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "priya.nguyen.9@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role in the program",
+          "widget_type": "single_choice",
+          "value": "Mentee",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Field or area",
+          "widget_type": "single_choice",
+          "value": "Business",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Goals for mentorship",
+          "widget_type": "multi_choice",
+          "value": [
+            "Research advice",
+            "Skill development"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Brief introduction",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief introduction; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Email address",
+          "widget_type": "short_text",
+          "value": "avery.ortiz.10@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role in the program",
+          "widget_type": "single_choice",
+          "value": "Mentor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Field or area",
+          "widget_type": "single_choice",
+          "value": "Computer Science",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Goals for mentorship",
+          "widget_type": "multi_choice",
+          "value": [
+            "Career guidance",
+            "Research advice",
+            "Networking"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Brief introduction",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief introduction; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    }
+  ]
+}

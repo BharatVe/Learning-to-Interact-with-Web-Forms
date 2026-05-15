@@ -1,0 +1,113 @@
+{
+  "form_id": "purchase_request",
+  "form_title": "Purchase Request Form (3 pages)",
+  "form_description": "Internal request form for software, hardware, or material purchases.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1-8sOg-ENFlu7TVgWjJ3PN1DusMW5r8Ldx8QmIRMWyfo/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSeO-lH1Ueus-LsIJx6dA2A7RvjjnHy5sGJr3nz6oFTqIae1yw/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeO-lH1Ueus-LsIJx6dA2A7RvjjnHy5sGJr3nz6oFTqIae1yw/viewform",
+  "question_count": 10,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 1,
+      "q_title": "Requester name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 3,
+      "q_title": "Department or project",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Purchase details",
+      "q_order": 1,
+      "q_title": "Purchase category",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "Hardware;Software;Books;Lab materials;Cloud credits;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Purchase details",
+      "q_order": 2,
+      "q_title": "Item name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Purchase details",
+      "q_order": 3,
+      "q_title": "Estimated cost",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": "Enter approximate amount and currency."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Purchase details",
+      "q_order": 4,
+      "q_title": "Reason for purchase",
+      "q_type": "PARAGRAPH",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 3,
+      "section_title": "Approval and timing",
+      "q_order": 1,
+      "q_title": "Needed by date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 3,
+      "section_title": "Approval and timing",
+      "q_order": 2,
+      "q_title": "Budget source known?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No;Not sure",
+      "help_text": ""
+    },
+    {
+      "section_order": 3,
+      "section_title": "Approval and timing",
+      "q_order": 3,
+      "q_title": "Urgency level",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Low;Normal;High",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

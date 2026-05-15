@@ -1,238 +1,1205 @@
 {
   "form_id": "internship_app",
-  "description": "Run variations for Internship Application submissions.",
+  "description": "Deterministically generated answer sets.",
   "runs": [
     {
-      "suffix": "backend_ml",
-      "notes": "Candidate focused on backend and ML tooling.",
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
       "answers": [
         {
           "label": "Full name",
           "widget_type": "short_text",
-          "value": "Priya Nair",
-          "tags": ["profile", "identity"]
+          "value": "Jordan Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Contact email",
           "widget_type": "short_text",
-          "value": "priya.nair@example.com",
-          "tags": ["profile", "contact"]
+          "value": "jordan.chen.1@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Current city",
           "widget_type": "short_text",
-          "value": "Bengaluru",
-          "tags": ["profile", "location"]
+          "value": "omega-01-43",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Degree program",
           "widget_type": "single_choice",
-          "value": "Master's",
-          "tags": ["education"]
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
           "label": "Primary area of interest",
           "widget_type": "multi_choice",
-          "value": ["Backend", "Data and Machine Learning"],
-          "tags": ["interests"]
+          "value": [
+            "Backend",
+            "Frontend",
+            "DevOps"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
         },
         {
           "label": "Programming languages you use",
           "widget_type": "multi_choice",
-          "value": ["Python", "SQL", "JavaScript/TypeScript"],
-          "tags": ["skills"]
+          "value": [
+            "Python",
+            "C/C++",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
         },
         {
           "label": "Link to GitHub or portfolio",
           "widget_type": "short_text",
-          "value": "https://github.com/priyanair",
-          "tags": ["portfolio"]
+          "value": "beta-01-86",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Brief motivation statement",
           "widget_type": "paragraph_text",
-          "value": "I enjoy building reliable services that support ML teams. I want to learn how product systems scale in production. This internship matches my interests in backend tooling and data pipelines. I am eager to contribute and learn from the team.",
-          "tags": ["statement"]
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief motivation statement; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
         },
         {
           "label": "Earliest start date",
           "widget_type": "date",
-          "value": "2025-06-10",
-          "tags": ["availability"]
+          "value": "2025-06-16",
+          "tags": [
+            "generated",
+            "date"
+          ]
         },
         {
           "label": "Weekly availability (hours)",
           "widget_type": "short_text",
-          "value": "20",
-          "tags": ["availability"]
+          "value": "beta-01-35",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Preferred meeting time for interview",
           "widget_type": "time",
-          "value": "13:30",
-          "tags": ["scheduling"]
-        },
-        {
-          "label": "Are you open to remote work?",
-          "widget_type": "single_choice",
-          "value": "Yes",
-          "tags": ["preferences"]
-        }
-      ]
-    },
-    {
-      "suffix": "uiux",
-      "notes": "Candidate focused on UX and frontend work.",
-      "answers": [
-        {
-          "label": "Full name",
-          "widget_type": "short_text",
-          "value": "Elliot Park",
-          "tags": ["profile", "identity"]
-        },
-        {
-          "label": "Contact email",
-          "widget_type": "short_text",
-          "value": "elliot.park@example.com",
-          "tags": ["profile", "contact"]
-        },
-        {
-          "label": "Current city",
-          "widget_type": "short_text",
-          "value": "Toronto",
-          "tags": ["profile", "location"]
-        },
-        {
-          "label": "Degree program",
-          "widget_type": "single_choice",
-          "value": "Bachelor's",
-          "tags": ["education"]
-        },
-        {
-          "label": "Primary area of interest",
-          "widget_type": "multi_choice",
-          "value": ["UI/UX", "Frontend"],
-          "tags": ["interests"]
-        },
-        {
-          "label": "Programming languages you use",
-          "widget_type": "multi_choice",
-          "value": ["JavaScript/TypeScript", "Python"],
-          "tags": ["skills"]
-        },
-        {
-          "label": "Link to GitHub or portfolio",
-          "widget_type": "short_text",
-          "value": "https://portfolio.elliotpark.design",
-          "tags": ["portfolio"]
-        },
-        {
-          "label": "Brief motivation statement",
-          "widget_type": "paragraph_text",
-          "value": "I focus on user workflows and interface clarity. I want to work with a team that ships iterative design. The role fits my interest in UI automation and prototyping. I am excited to collaborate across disciplines.",
-          "tags": ["statement"]
-        },
-        {
-          "label": "Earliest start date",
-          "widget_type": "date",
-          "value": "2025-05-20",
-          "tags": ["availability"]
-        },
-        {
-          "label": "Weekly availability (hours)",
-          "widget_type": "short_text",
-          "value": "15",
-          "tags": ["availability"]
-        },
-        {
-          "label": "Preferred meeting time for interview",
-          "widget_type": "time",
-          "value": "09:30",
-          "tags": ["scheduling"]
-        },
-        {
-          "label": "Are you open to remote work?",
-          "widget_type": "single_choice",
-          "value": "Hybrid",
-          "tags": ["preferences"]
-        }
-      ]
-    },
-    {
-      "suffix": "devops",
-      "notes": "Candidate focused on infrastructure and DevOps.",
-      "answers": [
-        {
-          "label": "Full name",
-          "widget_type": "short_text",
-          "value": "Samira Ortiz",
-          "tags": ["profile", "identity"]
-        },
-        {
-          "label": "Contact email",
-          "widget_type": "short_text",
-          "value": "samira.ortiz@example.com",
-          "tags": ["profile", "contact"]
-        },
-        {
-          "label": "Current city",
-          "widget_type": "short_text",
-          "value": "Berlin",
-          "tags": ["profile", "location"]
-        },
-        {
-          "label": "Degree program",
-          "widget_type": "single_choice",
-          "value": "PhD",
-          "tags": ["education"]
-        },
-        {
-          "label": "Primary area of interest",
-          "widget_type": "multi_choice",
-          "value": ["DevOps"],
-          "tags": ["interests"]
-        },
-        {
-          "label": "Programming languages you use",
-          "widget_type": "multi_choice",
-          "value": ["Python", "C/C++", "SQL"],
-          "tags": ["skills"]
-        },
-        {
-          "label": "Link to GitHub or portfolio",
-          "widget_type": "short_text",
-          "value": "https://github.com/samira-ortiz",
-          "tags": ["portfolio"]
-        },
-        {
-          "label": "Brief motivation statement",
-          "widget_type": "paragraph_text",
-          "value": "I work on automation for build and deployment systems. I want to apply my research on reliability to production pipelines. The internship offers hands on exposure to real infrastructure. I can contribute to tooling and monitoring.",
-          "tags": ["statement"]
-        },
-        {
-          "label": "Earliest start date",
-          "widget_type": "date",
-          "value": "2025-07-01",
-          "tags": ["availability"]
-        },
-        {
-          "label": "Weekly availability (hours)",
-          "widget_type": "short_text",
-          "value": "25",
-          "tags": ["availability"]
-        },
-        {
-          "label": "Preferred meeting time for interview",
-          "widget_type": "time",
-          "value": "11:00",
-          "tags": ["scheduling"]
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
         },
         {
           "label": "Are you open to remote work?",
           "widget_type": "single_choice",
           "value": "No",
-          "tags": ["preferences"]
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Jordan Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "jordan.kim.2@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "omega-02-37",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Backend",
+            "DevOps"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "Java"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "sigma-02-64",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief motivation statement; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-08-03",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "sigma-02-84",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "avery.chen.3@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "delta-03-39",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Data and Machine Learning",
+            "UI/UX"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "Python"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "beta-03-71",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief motivation statement; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-09-12",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "sigma-03-88",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Sam Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "sam.ortiz.4@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "gamma-04-10",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "Bachelor\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Frontend",
+            "UI/UX"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "alpha-04-72",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief motivation statement; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-06-11",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "omega-04-44",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "Hybrid",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Jordan Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "jordan.khan.5@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "delta-05-34",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "Master\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Frontend",
+            "Data and Machine Learning",
+            "UI/UX"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "beta-05-75",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief motivation statement; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-07-06",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "gamma-05-49",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "Hybrid",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Jordan Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "jordan.kim.6@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "gamma-06-39",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Backend",
+            "Data and Machine Learning",
+            "DevOps"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "Python",
+            "C/C++",
+            "JavaScript/TypeScript"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "sigma-06-56",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief motivation statement; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-08-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "omega-06-48",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "11:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "Hybrid",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Casey Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "casey.bauer.7@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "beta-07-75",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "Master\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Frontend"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "Java",
+            "C/C++"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "alpha-07-53",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief motivation statement; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-08-02",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "delta-07-73",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "Hybrid",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "riley.rivera.8@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "alpha-08-44",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "Bachelor\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Data and Machine Learning",
+            "UI/UX"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "Java",
+            "JavaScript/TypeScript",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "delta-08-97",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief motivation statement; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-11-15",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "beta-08-51",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "Hybrid",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "lena.nguyen.9@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "gamma-09-30",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "PhD",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Frontend",
+            "DevOps"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "Python",
+            "C/C++"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "beta-09-00",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief motivation statement; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-07-10",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "gamma-09-49",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Jordan Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "jordan.rivera.10@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current city",
+          "widget_type": "short_text",
+          "value": "delta-10-71",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Degree program",
+          "widget_type": "single_choice",
+          "value": "Master\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Primary area of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Backend"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Programming languages you use",
+          "widget_type": "multi_choice",
+          "value": [
+            "Python",
+            "Java",
+            "SQL"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Link to GitHub or portfolio",
+          "widget_type": "short_text",
+          "value": "gamma-10-44",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief motivation statement",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief motivation statement; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Earliest start date",
+          "widget_type": "date",
+          "value": "2025-07-21",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Weekly availability (hours)",
+          "widget_type": "short_text",
+          "value": "alpha-10-66",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Are you open to remote work?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         }
       ]
     }

@@ -1,0 +1,93 @@
+{
+  "form_id": "seminar_proposal",
+  "form_title": "Seminar Proposal Submission (2 pages)",
+  "form_description": "Submission form for student seminar topics and presentation preferences.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1ko2yG-3tHiCy8_z6FVc_rqg1bDdZs4ccBrhEuuK5AE4/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSfXhX7V-TQNBIFYsDpf6uJErMQ2RYlDgu6nq78mSpXFcmzMFg/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSfXhX7V-TQNBIFYsDpf6uJErMQ2RYlDgu6nq78mSpXFcmzMFg/viewform",
+  "question_count": 8,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Proposal basics",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Proposal basics",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Proposal basics",
+      "q_order": 3,
+      "q_title": "Proposed seminar title",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Proposal basics",
+      "q_order": 4,
+      "q_title": "Topic area",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Data Science;Machine Learning;Visualization;Systems;Ethics in AI",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Details",
+      "q_order": 1,
+      "q_title": "Short abstract",
+      "q_type": "PARAGRAPH",
+      "required": true,
+      "options": "",
+      "help_text": "3\u20135 sentences."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Details",
+      "q_order": 2,
+      "q_title": "Preferred presentation date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Details",
+      "q_order": 3,
+      "q_title": "Preferred presentation time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Details",
+      "q_order": 4,
+      "q_title": "Resources needed",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Projector;Whiteboard;Internet access;Demo setup;None",
+      "help_text": "Select all that apply."
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

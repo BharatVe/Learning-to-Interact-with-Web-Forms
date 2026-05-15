@@ -1,0 +1,71 @@
+form_id,run_id,q_title,q_type,answer
+scholarship_interest,run_0001,Full name,SHORT_TEXT,Riley Singh
+scholarship_interest,run_0001,Email address,SHORT_TEXT,riley.singh.1@research.edu
+scholarship_interest,run_0001,Current study level,DROPDOWN,Bachelor's
+scholarship_interest,run_0001,Scholarship type of interest,MULTI_CHOICE,Need-based;Travel grant
+scholarship_interest,run_0001,Expected application date,DATE,2025-07-22
+scholarship_interest,run_0001,Do you need help reviewing documents?,SINGLE_CHOICE,No
+scholarship_interest,run_0001,Brief background or question,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Brief background or question; run 1)"
+scholarship_interest,run_0002,Full name,SHORT_TEXT,Casey Khan
+scholarship_interest,run_0002,Email address,SHORT_TEXT,casey.khan.2@demo.org
+scholarship_interest,run_0002,Current study level,DROPDOWN,PhD
+scholarship_interest,run_0002,Scholarship type of interest,MULTI_CHOICE,Research funding
+scholarship_interest,run_0002,Expected application date,DATE,2025-10-20
+scholarship_interest,run_0002,Do you need help reviewing documents?,SINGLE_CHOICE,Maybe
+scholarship_interest,run_0002,Brief background or question,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Brief background or question; run 2)
+scholarship_interest,run_0003,Full name,SHORT_TEXT,Avery Ortiz
+scholarship_interest,run_0003,Email address,SHORT_TEXT,avery.ortiz.3@mail.test
+scholarship_interest,run_0003,Current study level,DROPDOWN,Bachelor's
+scholarship_interest,run_0003,Scholarship type of interest,MULTI_CHOICE,Research funding;Travel grant;Emergency support
+scholarship_interest,run_0003,Expected application date,DATE,2025-09-18
+scholarship_interest,run_0003,Do you need help reviewing documents?,SINGLE_CHOICE,No
+scholarship_interest,run_0003,Brief background or question,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Brief background or question; run 3)
+scholarship_interest,run_0004,Full name,SHORT_TEXT,Casey Bauer
+scholarship_interest,run_0004,Email address,SHORT_TEXT,casey.bauer.4@research.edu
+scholarship_interest,run_0004,Current study level,DROPDOWN,Other
+scholarship_interest,run_0004,Scholarship type of interest,MULTI_CHOICE,Emergency support
+scholarship_interest,run_0004,Expected application date,DATE,2025-11-01
+scholarship_interest,run_0004,Do you need help reviewing documents?,SINGLE_CHOICE,Yes
+scholarship_interest,run_0004,Brief background or question,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Brief background or question; run 4)"
+scholarship_interest,run_0005,Full name,SHORT_TEXT,Taylor Bauer
+scholarship_interest,run_0005,Email address,SHORT_TEXT,taylor.bauer.5@demo.org
+scholarship_interest,run_0005,Current study level,DROPDOWN,Other
+scholarship_interest,run_0005,Scholarship type of interest,MULTI_CHOICE,Research funding
+scholarship_interest,run_0005,Expected application date,DATE,2025-06-21
+scholarship_interest,run_0005,Do you need help reviewing documents?,SINGLE_CHOICE,Maybe
+scholarship_interest,run_0005,Brief background or question,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Brief background or question; run 5)
+scholarship_interest,run_0006,Full name,SHORT_TEXT,Sam Nguyen
+scholarship_interest,run_0006,Email address,SHORT_TEXT,sam.nguyen.6@mail.test
+scholarship_interest,run_0006,Current study level,DROPDOWN,Master's
+scholarship_interest,run_0006,Scholarship type of interest,MULTI_CHOICE,Need-based;Travel grant
+scholarship_interest,run_0006,Expected application date,DATE,2025-10-02
+scholarship_interest,run_0006,Do you need help reviewing documents?,SINGLE_CHOICE,No
+scholarship_interest,run_0006,Brief background or question,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Brief background or question; run 6)
+scholarship_interest,run_0007,Full name,SHORT_TEXT,Avery Singh
+scholarship_interest,run_0007,Email address,SHORT_TEXT,avery.singh.7@research.edu
+scholarship_interest,run_0007,Current study level,DROPDOWN,Master's
+scholarship_interest,run_0007,Scholarship type of interest,MULTI_CHOICE,Need-based;Travel grant;Emergency support
+scholarship_interest,run_0007,Expected application date,DATE,2025-09-15
+scholarship_interest,run_0007,Do you need help reviewing documents?,SINGLE_CHOICE,No
+scholarship_interest,run_0007,Brief background or question,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Brief background or question; run 7)
+scholarship_interest,run_0008,Full name,SHORT_TEXT,Lena Ortiz
+scholarship_interest,run_0008,Email address,SHORT_TEXT,lena.ortiz.8@demo.org
+scholarship_interest,run_0008,Current study level,DROPDOWN,PhD
+scholarship_interest,run_0008,Scholarship type of interest,MULTI_CHOICE,Merit-based;Research funding
+scholarship_interest,run_0008,Expected application date,DATE,2025-11-15
+scholarship_interest,run_0008,Do you need help reviewing documents?,SINGLE_CHOICE,Maybe
+scholarship_interest,run_0008,Brief background or question,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Brief background or question; run 8)
+scholarship_interest,run_0009,Full name,SHORT_TEXT,Lena Bauer
+scholarship_interest,run_0009,Email address,SHORT_TEXT,lena.bauer.9@example.com
+scholarship_interest,run_0009,Current study level,DROPDOWN,PhD
+scholarship_interest,run_0009,Scholarship type of interest,MULTI_CHOICE,Travel grant
+scholarship_interest,run_0009,Expected application date,DATE,2025-09-20
+scholarship_interest,run_0009,Do you need help reviewing documents?,SINGLE_CHOICE,Maybe
+scholarship_interest,run_0009,Brief background or question,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Brief background or question; run 9)
+scholarship_interest,run_0010,Full name,SHORT_TEXT,Noah Bauer
+scholarship_interest,run_0010,Email address,SHORT_TEXT,noah.bauer.10@demo.org
+scholarship_interest,run_0010,Current study level,DROPDOWN,Master's
+scholarship_interest,run_0010,Scholarship type of interest,MULTI_CHOICE,Need-based;Research funding
+scholarship_interest,run_0010,Expected application date,DATE,2025-10-07
+scholarship_interest,run_0010,Do you need help reviewing documents?,SINGLE_CHOICE,Yes
+scholarship_interest,run_0010,Brief background or question,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Brief background or question; run 10)

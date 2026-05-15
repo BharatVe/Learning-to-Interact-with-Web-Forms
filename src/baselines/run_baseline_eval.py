@@ -16,7 +16,7 @@ SRC_DIR = ROOT_DIR / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from baselines.action_schema import parse_action, validate_action  # noqa: E402
+from baselines.action_schema import parse_action, validate_action, validate_low_level_action  # noqa: E402
 from baselines.model_registry import get_model_by_id  # noqa: E402
 from baselines.prompt_builders import (  # noqa: E402
     CONTEXT_PACKAGE_VERSION,
@@ -25,6 +25,7 @@ from baselines.prompt_builders import (  # noqa: E402
     compact_page_text,
     selected_canonical_fewshot_ids,
 )
+from engine.browser_language import english_context_options, force_english_google_forms_url, write_playwright_mcp_english_config  # noqa: E402
 from engine.form_engine import FormEngine  # noqa: E402
 from engine.mcp_browser_engine import MCPBrowserEngine  # noqa: E402
 from engine.mcp_trace_client import MCPClient, MCPTraceClient  # noqa: E402
@@ -38,10 +39,10 @@ from engine.trace_logger import TraceLogger  # noqa: E402
 
 DEFAULT_ANSWERS_ROOT = "data/answers"
 DEFAULT_DATASET_ROOT = "data/model_baselines"
-DEFAULT_MAX_STEPS = 36
-DEFAULT_TIMEOUT_S = 1800
+DEFAULT_MAX_STEPS = 24
+DEFAULT_TIMEOUT_S = 900
 DEFAULT_INVALID_ACTION_BUDGET = 0
-DEFAULT_MAX_NEW_TOKENS = 224
+DEFAULT_MAX_NEW_TOKENS = 192
 DEFAULT_EXECUTION_BACKEND = "mcp_server"
 DEFAULT_PROMPT_MODE = "answers_labels_types_values"
 DEFAULT_PROMPT_PROFILE = "detailed_v1"
@@ -56,16 +57,39 @@ DEFAULT_BROWSER_INIT_RETRY_DELAY_S = 1.5
 DEFAULT_VIEWPORT_WIDTH = 1280
 DEFAULT_VIEWPORT_HEIGHT = 720
 DEFAULT_TRACE_MCP_TIMEOUT_MS = 5000
-DEFAULT_STEP_SOFT_TIMEOUT_S = 60.0
-DEFAULT_STEP_RETRY_MAX_NEW_TOKENS = 160
-DEFAULT_IDLE_STEP_THRESHOLD = 4
+DEFAULT_STEP_SOFT_TIMEOUT_S = 90.0
+DEFAULT_STEP_RETRY_MAX_NEW_TOKENS = 96
+DEFAULT_IDLE_STEP_THRESHOLD = 2
 DEFAULT_IDLE_NUDGE_MAX = 3
 DEFAULT_COMPACT_PAGE_TEXT_MAX_CHARS = 5000
 DEFAULT_RETENTION_WINDOW = 5
 DEFAULT_BROWSER_SNAPSHOT_MODE = "none"
 DEFAULT_TRACK = "mediated"
-BASELINE_EVAL_SCHEMA_VERSION = "baseline_eval.v3"
-BASELINE_SUMMARY_SCHEMA_VERSION = "baseline_summary.v3"
+DEFAULT_INTERACTION_PROTOCOL = "human_ui_v1"
+DEFAULT_OBSERVATION_MODE = "vision_coords"
+DEFAULT_SCORING_MODE = "soft_quality_v1"
+DEFAULT_VERIFICATION_SCOPE = "target_only"
+STALL_REPEAT_THRESHOLD = 2
+STALL_TERMINAL_REPEAT_THRESHOLD = 4
+NONPROGRESS_BUDGET_THRESHOLD = 8
+BASELINE_EVAL_SCHEMA_VERSION = "baseline_eval.v4"
+BASELINE_SUMMARY_SCHEMA_VERSION = "baseline_summary.v4"
+PRIMITIVE_ACTION_NAMES = {
+    "move_mouse",
+    "click_mouse",
+    "type_text",
+    "press_key",
+    "scroll",
+    "wait",
+    "submit",
+    "done",
+    "browser_mouse_move_xy",
+    "browser_mouse_click_xy",
+    "browser_type",
+    "browser_press_key",
+    "browser_mouse_wheel",
+    "browser_wait_for",
+}
 
 TEXT_WIDGET_ACTIONS = {
     "short_text": {"type"},
@@ -76,6 +100,7 @@ TEXT_WIDGET_ACTIONS = {
 CHOICE_WIDGET_ACTIONS = {
     "single_choice": {"select_option", "click"},
     "multi_choice": {"select_option", "click"},
+    "dropdown": {"select_option", "click"},
 }
 ALLOWED_WIDGET_ACTIONS = {**TEXT_WIDGET_ACTIONS, **CHOICE_WIDGET_ACTIONS}
 
@@ -84,6 +109,168 @@ def _norm_text(value: Any) -> str:
     text = str(value or "").lower()
     text = re.sub(r"[^a-z0-9\s]", " ", text)
     return re.sub(r"\s+", " ", text).strip()
+
+
+def _guess_widget_type_from_interaction_item(item: Dict[str, Any]) -> str:
+    role = str(item.get("role") or "").strip().lower()
+    question_label = _norm_text(item.get("question_label") or item.get("label") or "")
+    option_label = _norm_text(item.get("option_label") or "")
+    if role == "textarea":
+        return "paragraph_text"
+    if role == "checkbox":
+        return "multi_choice"
+    if role == "radio":
+        return "single_choice"
+    if role in {"select", "combobox"}:
+        if "minute" in question_label or "stunde" in question_label or "time" in question_label:
+            return "time"
+        if "date" in question_label or "datum" in question_label:
+            return "date"
+        return "dropdown"
+    if role == "input":
+        if option_label:
+            return "single_choice"
+        if "time" in question_label or "stunde" in question_label or "minute" in question_label:
+            return "time"
+        if "date" in question_label or "datum" in question_label:
+            return "date"
+        return "short_text"
+    return "unknown"
+
+
+def _best_question_id_guess(
+    item: Dict[str, Any],
+    remaining_answers: List[Dict[str, Any]],
+) -> Optional[str]:
+    question_label = _norm_text(item.get("question_label") or item.get("label") or "")
+    if not question_label:
+        return None
+    best_question_id: Optional[str] = None
+    best_score = 0
+    for answer in remaining_answers:
+        question_id = str(answer.get("question_id") or "").strip()
+        label_norm = _norm_text(answer.get("label") or "")
+        if not question_id or not label_norm:
+            continue
+        score = 0
+        if question_label == label_norm:
+            score = 100
+        elif question_label in label_norm or label_norm in question_label:
+            score = 80
+        if score > best_score:
+            best_question_id = question_id
+            best_score = score
+    return best_question_id if best_score >= 80 else None
+
+
+def _enrich_interaction_map(
+    interaction_map: List[Dict[str, Any]],
+    remaining_answers: List[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    enriched: List[Dict[str, Any]] = []
+    for raw_item in interaction_map:
+        if not isinstance(raw_item, dict):
+            continue
+        item = dict(raw_item)
+        if not str(item.get("widget_type_guess") or "").strip():
+            item["widget_type_guess"] = _guess_widget_type_from_interaction_item(item)
+        question_id_guess = _best_question_id_guess(item, remaining_answers)
+        if question_id_guess:
+            item["question_id_guess"] = question_id_guess
+        label = str(item.get("label") or "").strip()
+        question_label = str(item.get("question_label") or "").strip()
+        option_label = str(item.get("option_label") or "").strip()
+        role = str(item.get("role") or "").strip().lower()
+        if role in {"checkbox", "radio"} and option_label:
+            item["label"] = option_label
+        elif question_label and not label:
+            item["label"] = question_label
+        enriched.append(item)
+    return enriched
+
+
+def _recent_repeated_action_signatures(recent_history: List[Dict[str, Any]]) -> List[str]:
+    repeats: List[str] = []
+    previous: Optional[str] = None
+    for row in recent_history:
+        signature = _action_signature(row)
+        if previous is not None and signature == previous:
+            repeats.append(signature)
+        previous = signature
+    return list(dict.fromkeys(repeats))
+
+
+def _recent_failing_question_id(recent_history: List[Dict[str, Any]]) -> Optional[str]:
+    for row in reversed(recent_history):
+        action = row.get("action") if isinstance(row.get("action"), dict) else {}
+        target = action.get("target") if isinstance(action.get("target"), dict) else {}
+        question_id = str(target.get("question_id") or row.get("matched_question_id") or "").strip()
+        if question_id and not bool(row.get("progress_made")):
+            return question_id
+    return None
+
+
+def _recent_repeat_same_signature_count(recent_history: List[Dict[str, Any]]) -> int:
+    count = 0
+    last_signature: Optional[str] = None
+    for row in reversed(recent_history):
+        if bool(row.get("progress_made")):
+            break
+        signature = _action_signature(row)
+        if not signature:
+            break
+        if last_signature is None:
+            last_signature = signature
+            count = 1
+            continue
+        if signature != last_signature:
+            break
+        count += 1
+    return count
+
+
+def _recent_repeat_same_target_count(recent_history: List[Dict[str, Any]]) -> int:
+    count = 0
+    last_target: Optional[str] = None
+    for row in reversed(recent_history):
+        if bool(row.get("progress_made")):
+            break
+        action = row.get("action") if isinstance(row.get("action"), dict) else {}
+        target = action.get("target") if isinstance(action.get("target"), dict) else {}
+        question_id = str(target.get("question_id") or row.get("matched_question_id") or "").strip()
+        if not question_id:
+            break
+        if last_target is None:
+            last_target = question_id
+            count = 1
+            continue
+        if question_id != last_target:
+            break
+        count += 1
+    return count
+
+
+def _focused_element_summary(interaction_map: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    for item in interaction_map:
+        if not isinstance(item, dict) or not bool(item.get("focused")):
+            continue
+        return {
+            "role": item.get("role"),
+            "label": item.get("label"),
+            "question_label": item.get("question_label"),
+            "bbox": item.get("bbox"),
+        }
+    return None
+
+
+def _visible_question_ids(interaction_map: List[Dict[str, Any]]) -> List[str]:
+    return sorted(
+        {
+            str(item.get("question_id_guess") or "").strip()
+            for item in interaction_map
+            if isinstance(item, dict) and str(item.get("question_id_guess") or "").strip()
+        }
+    )
 
 
 def _load_run_answers(answers_path: Path, run_index: int) -> List[Dict[str, Any]]:
@@ -210,6 +397,20 @@ def _with_soft_timeout(timeout_s: float, fn):
         signal.signal(signal.SIGALRM, prev_handler)
 
 
+def _env_float(name: str) -> Optional[float]:
+    raw = str(os.environ.get(name) or "").strip()
+    if not raw:
+        return None
+    try:
+        return float(raw)
+    except Exception:
+        return None
+
+
+def _prompt_token_estimate(prompt: str) -> int:
+    return max(1, (len(str(prompt or "")) + 3) // 4)
+
+
 def _is_oom_error(exc: Exception) -> bool:
     text = str(exc or "").lower()
     return (
@@ -260,6 +461,9 @@ def _infer_with_retry(
                     "error": None,
                 }
             )
+            adapter_meta = getattr(adapter, "last_infer_meta", None)
+            if isinstance(adapter_meta, dict):
+                attempts[-1].update({k: v for k, v in adapter_meta.items() if v is not None})
             return str(output), {"attempts": attempts, "retried": attempt_idx > 1}
         except Exception as exc:
             last_exc = exc
@@ -320,24 +524,64 @@ def _build_idle_recovery_nudge(
     nudge_index: int,
     nudge_max: int,
     validation_feedback: Optional[Dict[str, Any]] = None,
+    recent_history: Optional[List[Dict[str, Any]]] = None,
+    interaction_map: Optional[List[Dict[str, Any]]] = None,
 ) -> str:
-    remaining_ids = [
-        str(item.get("question_id") or "").strip()
-        for item in remaining_answers
-        if str(item.get("question_id") or "").strip()
-    ]
+    _ = remaining_answers
+    _ = nudge_index
+    _ = nudge_max
     feedback = dict(validation_feedback or {})
-    feedback_text = ""
-    if feedback:
-        feedback_text = f" Last feedback: {json.dumps(feedback, ensure_ascii=True)}"
-    return (
-        f"No measurable progress for {idle_streak} consecutive steps. "
-        f"Recovery attempt {nudge_index}/{nudge_max}. "
-        "Choose ONE remaining question_id that is still unanswered, then execute a concrete UI interaction now. "
-        "Do not repeat a previously failed target, and do not output wait/scroll/submit unless strictly necessary. "
-        f"Prioritize unanswered IDs: {json.dumps(remaining_ids, ensure_ascii=True)}"
-        f"{feedback_text}"
-    )
+    history = [row for row in (recent_history or []) if isinstance(row, dict)]
+    repeat_same_signature_count = _recent_repeat_same_signature_count(history)
+    repeat_same_target_count = _recent_repeat_same_target_count(history)
+    repeated_target = _recent_failing_question_id(history)
+    interaction_items = [item for item in (interaction_map or []) if isinstance(item, dict)]
+    visible_question_ids = _visible_question_ids(interaction_items)
+    focused_element = _focused_element_summary(interaction_items)
+    feedback_category = str(feedback.get("category") or "").strip().lower()
+    feedback_hint = str(feedback.get("hint") or "").strip()
+    last_row = history[-1] if history else {}
+    last_action_signature = _action_signature(last_row) if history else None
+    last_target_widget_type = str(
+        (last_row.get("target_match") or {}).get("target_widget_type")
+        or (last_row.get("last_target_widget_type") or "")
+    ).strip() or None
+    last_target_visible = repeated_target in visible_question_ids if repeated_target else None
+
+    stall_type = "no_state_change"
+    if repeat_same_signature_count >= STALL_TERMINAL_REPEAT_THRESHOLD:
+        stall_type = "loop_stall_terminal"
+    elif feedback_category == "target_not_found":
+        stall_type = "target_not_grounded"
+    elif repeated_target and last_target_visible is False:
+        stall_type = "target_not_visible"
+    elif repeat_same_signature_count >= STALL_REPEAT_THRESHOLD:
+        stall_type = "repeat_same_signature"
+    elif repeat_same_target_count >= STALL_REPEAT_THRESHOLD:
+        stall_type = "repeat_same_target"
+    elif feedback_category == "verification_failed" and not focused_element:
+        stall_type = "focus_unknown"
+
+    payload = {
+        "stall_type": stall_type,
+        "repeat_count": max(repeat_same_signature_count, repeat_same_target_count, idle_streak),
+        "repeat_same_signature_count": repeat_same_signature_count,
+        "repeat_same_target_count": repeat_same_target_count,
+        "last_action_signature": last_action_signature,
+        "last_target_question_id": repeated_target,
+        "last_target_widget_type": last_target_widget_type,
+        "last_target_visible": last_target_visible,
+        "last_verification_state": {
+            "category": feedback_category or "ok",
+            "message": str(feedback.get("message") or "") or None,
+            "hint": feedback_hint or None,
+        },
+        "visible_question_ids": visible_question_ids,
+        "focused_element": focused_element,
+        "progress_made": False,
+        "idle_streak": idle_streak,
+    }
+    return json.dumps(payload, ensure_ascii=True)
 
 
 def _apply_action_policy(
@@ -360,6 +604,8 @@ def _default_browser_mcp_command(
     mcp_bin = shutil.which("playwright-mcp")
     timeout_ms = max(15000, int(browser_mcp_timeout_ms))
     command = ([mcp_bin] if mcp_bin else ["npx", "-y", "@playwright/mcp@latest"]) + [
+        "--config",
+        str(write_playwright_mcp_english_config(artifact_dir)),
         "--browser",
         "chromium",
         "--isolated",
@@ -378,6 +624,9 @@ def _default_browser_mcp_command(
         "--timeout-navigation",
         str(max(60000, timeout_ms)),
     ]
+    executable_path = os.environ.get("PLAYWRIGHT_MCP_CHROMIUM_EXECUTABLE", "").strip()
+    if executable_path:
+        command.extend(["--executable-path", executable_path])
     if headless:
         command.append("--headless")
     return command
@@ -709,16 +958,19 @@ def _recent_history_from_steps(steps: List[Dict[str, Any]], window: int) -> List
     for row in rows:
         if not isinstance(row, dict):
             continue
+        action_payload = row.get("action") if isinstance(row.get("action"), dict) else None
         history.append(
             {
                 "step_index": row.get("step_index"),
-                "action": (row.get("action") or {}).get("action") if isinstance(row.get("action"), dict) else None,
-                "target_question_id": ((row.get("action") or {}).get("target") or {}).get("question_id")
-                if isinstance((row.get("action") or {}).get("target"), dict)
+                "action": dict(action_payload) if isinstance(action_payload, dict) else None,
+                "target_question_id": (action_payload.get("target") or {}).get("question_id")
+                if isinstance((action_payload or {}).get("target"), dict)
                 else None,
+                "matched_question_id": row.get("matched_question_id"),
                 "status": row.get("status"),
                 "error": row.get("error"),
                 "progress_made": row.get("progress_made"),
+                "last_target_widget_type": row.get("last_target_widget_type"),
                 "remaining_answers_before": row.get("remaining_answers_before"),
             }
         )
@@ -738,22 +990,22 @@ def _normalize_validation_feedback(last_result: Optional[Dict[str, Any]]) -> Dic
 
     error_l = error.lower()
     category = "execution_error"
-    hint = "Choose a different remaining target.question_id and execute one concrete action."
+    hint = "Last action did not complete successfully."
     if "model_output_invalid" in error_l:
         category = "model_output_invalid"
-        hint = "Return one valid JSON object that follows the output schema exactly."
+        hint = "Last model output could not be parsed against the expected schema."
     elif "target_not_found" in error_l:
         category = "target_not_found"
-        hint = "Use one of the allowed target.question_id values from remaining answers."
+        hint = "The previous target could not be grounded reliably."
     elif "incompatible_action_for_widget" in error_l:
         category = "action_widget_mismatch"
-        hint = "Choose a widget-compatible action type for the target question."
+        hint = "The previous action type did not match the observed widget."
     elif "verification_failed" in error_l:
         category = "verification_failed"
-        hint = "Retry with exact expected value formatting and verify field focus/selection."
+        hint = "The previous action did not change verified form state."
     elif "premature_submit" in error_l:
         category = "premature_submit"
-        hint = "Do not submit until remaining answers is empty."
+        hint = "Submit was attempted while unanswered questions remained."
 
     return {
         "status": payload.get("status"),
@@ -788,6 +1040,7 @@ def _match_question_state(
         ],
         "available_labels": _available_open_labels(question_states),
         "match_strategy": None,
+        "target_widget_type": None,
     }
 
     open_states = [(idx, state) for idx, state in enumerate(question_states) if not state.get("verified_correct")]
@@ -795,6 +1048,7 @@ def _match_question_state(
         for idx, state in open_states:
             if str(state.get("question_id") or "").strip() == question_id:
                 debug["match_strategy"] = "question_id"
+                debug["target_widget_type"] = state.get("widget_type")
                 return idx, state, debug
 
     if normalized_aliases:
@@ -802,11 +1056,13 @@ def _match_question_state(
             label_norm = _norm_text(state.get("label", ""))
             if any(candidate == label_norm for candidate in normalized_aliases):
                 debug["match_strategy"] = "exact_label"
+                debug["target_widget_type"] = state.get("widget_type")
                 return idx, state, debug
         for idx, state in open_states:
             label_norm = _norm_text(state.get("label", ""))
             if any(candidate in label_norm or label_norm in candidate for candidate in normalized_aliases):
                 debug["match_strategy"] = "alias_substring"
+                debug["target_widget_type"] = state.get("widget_type")
                 return idx, state, debug
 
     return None, None, debug
@@ -835,6 +1091,177 @@ def _invalid_action_budget_exhausted(invalid_actions: int, invalid_action_budget
     return invalid_action_budget > 0 and invalid_actions >= invalid_action_budget
 
 
+def _clamp01(value: float) -> float:
+    return max(0.0, min(1.0, float(value)))
+
+
+def _action_signature(step: Dict[str, Any]) -> str:
+    action = step.get("action") if isinstance(step.get("action"), dict) else {}
+    name = str(action.get("action") or "")
+    target = action.get("target") if isinstance(action.get("target"), dict) else {}
+    args = action.get("args") if isinstance(action.get("args"), dict) else {}
+    key_fields = {
+        "action": name,
+        "tool": action.get("tool"),
+        "x": target.get("x"),
+        "y": target.get("y"),
+        "args_x": args.get("x"),
+        "args_y": args.get("y"),
+        "question_id": target.get("question_id"),
+        "args_question_id": args.get("question_id"),
+        "label": target.get("label"),
+        "args_label": args.get("label"),
+        "value": action.get("value"),
+        "args_text": args.get("text"),
+        "args_key": args.get("key"),
+        "delta": action.get("delta"),
+        "args_delta_x": args.get("deltaX"),
+        "args_delta_y": args.get("deltaY"),
+    }
+    return json.dumps(key_fields, sort_keys=True, ensure_ascii=True)
+
+
+def _update_state_from_verification(state: Dict[str, Any], result: Dict[str, Any]) -> Dict[str, Any]:
+    state["last_verification"] = result
+    state["actual_value"] = result.get("actual_value")
+    state["verified"] = bool(result.get("verified"))
+    state["verified_correct"] = bool(result.get("verified")) and _value_matches(
+        state.get("value"), result.get("actual_value")
+    )
+    if state["verified_correct"]:
+        state["final_status"] = "correct_verified"
+    elif state.get("attempted_correct"):
+        state["final_status"] = "correct_attempted_only"
+    elif state.get("attempted"):
+        state["final_status"] = "failed"
+    return {
+        "question_id": state.get("question_id"),
+        "verified": state.get("verified"),
+        "verified_correct": state.get("verified_correct"),
+        "detail": result.get("detail"),
+    }
+
+
+def _run_verification_pass(
+    execution_session: Any,
+    question_states: List[Dict[str, Any]],
+    step_idx: int,
+    scope: str,
+    target_question_state: Optional[Dict[str, Any]] = None,
+) -> List[Dict[str, Any]]:
+    rows: List[Dict[str, Any]] = []
+    if scope == "target_only":
+        if target_question_state is None:
+            return rows
+        result = execution_session.verify_entry(target_question_state, step_idx)
+        rows.append(_update_state_from_verification(target_question_state, result))
+        return rows
+    for state in question_states:
+        result = execution_session.verify_entry(state, step_idx)
+        rows.append(_update_state_from_verification(state, result))
+    return rows
+
+
+def _low_level_action_should_verify(action_name: str, question_state: Optional[Dict[str, Any]]) -> bool:
+    if question_state is None:
+        return False
+    widget_type = str(question_state.get("widget_type") or "")
+    if action_name in {"type_text", "browser_type"}:
+        return True
+    if action_name in {"click_mouse", "browser_mouse_click_xy"} and widget_type in CHOICE_WIDGET_ACTIONS:
+        return True
+    return False
+
+
+def _low_level_action_args(action: Dict[str, Any]) -> Dict[str, Any]:
+    args = action.get("args") if isinstance(action.get("args"), dict) else {}
+    target = action.get("target") if isinstance(action.get("target"), dict) else {}
+    merged = dict(args)
+    for key in ("question_id", "label", "text", "selector_hint"):
+        if key not in merged and key in target:
+            merged[key] = target.get(key)
+    return merged
+
+
+def _low_level_action_target(action: Dict[str, Any]) -> Dict[str, Any]:
+    target = action.get("target") if isinstance(action.get("target"), dict) else {}
+    args = action.get("args") if isinstance(action.get("args"), dict) else {}
+    merged = dict(target)
+    for key in ("x", "y", "question_id", "label", "text", "selector_hint"):
+        if key not in merged and key in args:
+            merged[key] = args.get(key)
+    return merged
+
+
+def _low_level_executed_value(action: Dict[str, Any]) -> Any:
+    action_name = str(action.get("action") or action.get("tool") or "")
+    args = action.get("args") if isinstance(action.get("args"), dict) else {}
+    if action_name == "browser_type":
+        return args.get("text")
+    if action_name == "browser_press_key":
+        return args.get("key")
+    return action.get("value")
+
+
+def _calculate_soft_quality_metrics(steps: List[Dict[str, Any]], summary_metrics: Dict[str, int], submit_success: bool) -> Dict[str, Any]:
+    action_rows = [
+        row
+        for row in steps
+        if isinstance(row, dict) and isinstance((row.get("action") or {}).get("action"), str)
+    ]
+    action_names = [str((row.get("action") or {}).get("action") or "") for row in action_rows]
+    primitive_action_rows = [name for name in action_names if name in PRIMITIVE_ACTION_NAMES]
+    total_action_rows = len(action_rows)
+    primitive_count = len(primitive_action_rows)
+    autonomy_step_rate = (primitive_count / total_action_rows) if total_action_rows else 0.0
+
+    unique_actions = {name for name in primitive_action_rows if name in PRIMITIVE_ACTION_NAMES}
+    action_diversity = (len(unique_actions) / len(PRIMITIVE_ACTION_NAMES)) if PRIMITIVE_ACTION_NAMES else 0.0
+
+    nonprogress_steps = sum(1 for row in action_rows if not bool(row.get("progress_made")))
+    nonprogress_ratio = (nonprogress_steps / total_action_rows) if total_action_rows else 0.0
+
+    wait_rows = [row for row in action_rows if str((row.get("action") or {}).get("action") or "") == "wait"]
+    wait_nonprogress = sum(1 for row in wait_rows if not bool(row.get("progress_made")))
+    wait_nonprogress_ratio = (wait_nonprogress / max(1, len(wait_rows))) if wait_rows else 0.0
+
+    loop_events = 0
+    previous_sig: Optional[str] = None
+    for row in action_rows:
+        signature = _action_signature(row)
+        if previous_sig is not None and signature == previous_sig:
+            loop_events += 1
+        previous_sig = signature
+    loop_ratio = (loop_events / max(1, total_action_rows - 1)) if total_action_rows > 1 else 0.0
+
+    correction_count = 0
+    for idx in range(1, len(action_rows)):
+        prev = action_rows[idx - 1]
+        cur = action_rows[idx]
+        prev_failed = str(prev.get("status") or "").lower() in {"failed", "filled_unverified"}
+        cur_progress = bool(cur.get("progress_made"))
+        if prev_failed and cur_progress:
+            correction_count += 1
+
+    task_total = max(1, int(summary_metrics.get("question_total") or 0))
+    verified_correctness = int(summary_metrics.get("verified_correctness") or 0)
+    task_score = 0.5 * (1.0 if submit_success else 0.0) + 0.5 * (verified_correctness / task_total)
+    quality_bonus = 0.2 * action_diversity + 0.15 * autonomy_step_rate + 0.1 * min(1.0, correction_count / 3.0)
+    quality_penalty = 0.2 * loop_ratio + 0.2 * wait_nonprogress_ratio + 0.15 * nonprogress_ratio
+    composite_score = _clamp01(task_score + quality_bonus - quality_penalty)
+
+    return {
+        "model_driven_execution": bool(total_action_rows > 0 and primitive_count == total_action_rows),
+        "autonomy_step_rate": round(autonomy_step_rate, 6),
+        "action_diversity": round(action_diversity, 6),
+        "loop_ratio": round(loop_ratio, 6),
+        "correction_count": correction_count,
+        "nonprogress_ratio": round(nonprogress_ratio, 6),
+        "wait_nonprogress_ratio": round(wait_nonprogress_ratio, 6),
+        "composite_score": round(composite_score, 6),
+    }
+
+
 def _calculate_metrics(question_states: List[Dict[str, Any]]) -> Dict[str, int]:
     attempted_count = sum(1 for item in question_states if item.get("attempted"))
     attempted_correctness = sum(1 for item in question_states if item.get("attempted_correct"))
@@ -857,6 +1284,13 @@ def _set_failure(annotations: Dict[str, Any], category: str, detail: str, step_i
     if step_index is not None:
         event["step_index"] = step_index
     annotations.setdefault("failure_events", []).append(event)
+
+
+def _record_soft_violation(annotations: Dict[str, Any], code: str, detail: str, step_index: Optional[int] = None) -> None:
+    event: Dict[str, Any] = {"type": str(code), "detail": str(detail)}
+    if step_index is not None:
+        event["step_index"] = int(step_index)
+    annotations.setdefault("soft_violations", []).append(event)
 
 
 def _finalize_trial_video(artifact_dir: Path, final_video_path: Path) -> Optional[Path]:
@@ -909,15 +1343,33 @@ class ExecutionSessionBase:
     def _get_page_text(self, step_idx: int) -> str:
         raise NotImplementedError
 
+    def _get_interaction_map(self, step_idx: int) -> List[Dict[str, Any]]:
+        raise NotImplementedError
+
+    def _coords_to_pixels(self, x_norm: int, y_norm: int) -> Tuple[float, float]:
+        x_px = (max(0, min(999, int(x_norm))) / 999.0) * float(self.viewport_width)
+        y_px = (max(0, min(999, int(y_norm))) / 999.0) * float(self.viewport_height)
+        return x_px, y_px
+
     def observe(self, step_idx: int) -> Dict[str, Any]:
         screenshot_path = self._capture_screenshot(self._observation_path(step_idx), step_idx)
         return {
             "page_text": self._get_page_text(step_idx),
             "screenshot_path": screenshot_path,
+            "interaction_map": self._get_interaction_map(step_idx),
         }
 
     def capture_terminal_screenshot(self, filename: str) -> Optional[str]:
         return self._capture_screenshot((self.artifact_dir / filename).resolve(), step_ref=None)
+
+    def execute_move_mouse(self, x_norm: int, y_norm: int, step_idx: int) -> Dict[str, Any]:
+        raise NotImplementedError
+
+    def execute_click_mouse(self, x_norm: int, y_norm: int, step_idx: int) -> Dict[str, Any]:
+        raise NotImplementedError
+
+    def execute_type_text(self, text: str, step_idx: int) -> Dict[str, Any]:
+        raise NotImplementedError
 
 
 class LocalExecutionSession(ExecutionSessionBase):
@@ -952,6 +1404,7 @@ class LocalExecutionSession(ExecutionSessionBase):
             viewport={"width": self.viewport_width, "height": self.viewport_height},
             record_video_dir=str(self.artifact_dir),
             record_video_size={"width": self.viewport_width, "height": self.viewport_height},
+            **english_context_options(),
         )
         self.page = self.context.new_page()
         self.page.set_default_timeout(15000)
@@ -981,6 +1434,214 @@ class LocalExecutionSession(ExecutionSessionBase):
         _ = step_idx
         return self.engine.get_page_text()
 
+    def _get_interaction_map(self, step_idx: int) -> List[Dict[str, Any]]:
+        _ = step_idx
+        try:
+            payload = self.page.evaluate(
+                """(cfg) => {
+                  const vw = Number(cfg?.vw || window.innerWidth || 1);
+                  const vh = Number(cfg?.vh || window.innerHeight || 1);
+                  const interactiveSelectors = [
+                    "input",
+                    "textarea",
+                    "button",
+                    "div[role='button']",
+                    "[role='radio']",
+                    "[role='checkbox']",
+                    "select",
+                    "[contenteditable='true']"
+                  ];
+                  const nodes = Array.from(document.querySelectorAll(interactiveSelectors.join(",")));
+                  const items = [];
+                  const seen = new Set();
+                  const toNorm = (value, maxValue) => {
+                    const clipped = Math.max(0, Math.min(maxValue, Number(value || 0)));
+                    if (maxValue <= 0) return 0;
+                    return Math.max(0, Math.min(999, Math.round((clipped / maxValue) * 999)));
+                  };
+                  const clean = (value) => String(value || "").replace(/\\s+/g, " ").trim().slice(0, 120);
+                  const overlapsX = (a, b) => Math.min(a.right, b.right) - Math.max(a.left, b.left) >= -12;
+                  const isVisible = (node, rect) => {
+                    if (!rect || rect.width < 3 || rect.height < 3) return false;
+                    if (rect.bottom < 0 || rect.right < 0 || rect.left > vw || rect.top > vh) return false;
+                    const style = window.getComputedStyle(node);
+                    return !!style && style.visibility !== "hidden" && style.display !== "none";
+                  };
+                  const normalizeRole = (node) => {
+                    const tag = (node.tagName || "").toLowerCase();
+                    const explicitRole = (node.getAttribute("role") || "").toLowerCase();
+                    const inputType = (node.getAttribute("type") || "").toLowerCase();
+                    if (explicitRole === "radio" || inputType === "radio") return "radio";
+                    if (explicitRole === "checkbox" || inputType === "checkbox") return "checkbox";
+                    if (tag === "textarea") return "textarea";
+                    if (tag === "select") return "combobox";
+                    if (tag === "button" || explicitRole === "button") return "button";
+                    if (node.getAttribute("contenteditable") === "true") return "textarea";
+                    return "input";
+                  };
+                  const interactiveSelector = interactiveSelectors.join(",");
+                  const textCandidates = Array.from(document.querySelectorAll("label, span, div, p, h1, h2, h3")).map((el) => {
+                    const rect = el.getBoundingClientRect();
+                    if (!isVisible(el, rect)) return null;
+                    if (el.matches(interactiveSelector)) return null;
+                    if (el.querySelector && el.querySelector(interactiveSelector)) return null;
+                    const text = clean(el.innerText || el.textContent || "");
+                    if (!text) return null;
+                    if (text.length < 2 || text.length > 120) return null;
+                    return {
+                      text,
+                      rect: {
+                        left: rect.left,
+                        right: rect.right,
+                        top: rect.top,
+                        bottom: rect.bottom,
+                        width: rect.width,
+                        height: rect.height,
+                        cx: rect.left + rect.width / 2,
+                        cy: rect.top + rect.height / 2,
+                      },
+                    };
+                  }).filter(Boolean);
+                  const nearestText = (predicate, scoreFn) => {
+                    let best = null;
+                    let bestScore = Number.POSITIVE_INFINITY;
+                    for (const cand of textCandidates) {
+                      if (!predicate(cand)) continue;
+                      const score = scoreFn(cand);
+                      if (score < bestScore) {
+                        bestScore = score;
+                        best = cand;
+                      }
+                    }
+                    return best;
+                  };
+                  const textFromLabelledBy = (node) => {
+                    const raw = clean(node.getAttribute("aria-labelledby") || "");
+                    if (!raw) return "";
+                    return clean(raw.split(/\\s+/).map((id) => {
+                      const ref = document.getElementById(id);
+                      return ref ? (ref.innerText || ref.textContent || "") : "";
+                    }).join(" "));
+                  };
+                  const explicitLabel = (node) => {
+                    const aria = clean(node.getAttribute("aria-label") || "");
+                    if (aria) return { text: aria, source: "aria" };
+                    const labelledBy = textFromLabelledBy(node);
+                    if (labelledBy) return { text: labelledBy, source: "aria_labelledby" };
+                    const id = clean(node.getAttribute("id") || "");
+                    if (id) {
+                      const labelNode = document.querySelector(`label[for="${id}"]`);
+                      const labelText = clean(labelNode ? (labelNode.innerText || labelNode.textContent || "") : "");
+                      if (labelText) return { text: labelText, source: "label_for" };
+                    }
+                    const wrappedLabel = node.closest("label");
+                    const wrappedText = clean(wrappedLabel ? (wrappedLabel.innerText || wrappedLabel.textContent || "") : "");
+                    if (wrappedText) return { text: wrappedText, source: "label_wrap" };
+                    const placeholder = clean(node.getAttribute("placeholder") || "");
+                    if (placeholder) return { text: placeholder, source: "placeholder" };
+                    return { text: "", source: "" };
+                  };
+                  for (const node of nodes) {
+                    const rect = node.getBoundingClientRect();
+                    if (!isVisible(node, rect)) continue;
+                    const cx = rect.left + rect.width / 2;
+                    const cy = rect.top + rect.height / 2;
+                    const x = toNorm(cx, vw);
+                    const y = toNorm(cy, vh);
+                    const role = normalizeRole(node);
+                    const explicit = explicitLabel(node);
+                    const rectInfo = {
+                      left: rect.left,
+                      right: rect.right,
+                      top: rect.top,
+                      bottom: rect.bottom,
+                      width: rect.width,
+                      height: rect.height,
+                      cx,
+                      cy,
+                    };
+                    let questionLabel = "";
+                    let optionLabel = "";
+                    let label = "";
+                    let labelSource = explicit.source || "";
+                    if (role === "checkbox" || role === "radio") {
+                      const optionCandidate = nearestText(
+                        (cand) =>
+                          Math.abs(cand.rect.cy - rectInfo.cy) <= Math.max(24, rectInfo.height * 1.6)
+                          && cand.rect.right >= rectInfo.left - 12
+                          && cand.rect.left <= rectInfo.right + 420,
+                        (cand) => Math.abs(cand.rect.cy - rectInfo.cy) * 6 + Math.abs(cand.rect.left - rectInfo.right),
+                      );
+                      optionLabel = clean(optionCandidate ? optionCandidate.text : "");
+                      const questionCandidate = nearestText(
+                        (cand) =>
+                          cand.rect.bottom <= rectInfo.top + 18
+                          && (overlapsX(rectInfo, cand.rect) || Math.abs(cand.rect.left - rectInfo.left) <= 220)
+                          && clean(cand.text) !== optionLabel,
+                        (cand) => (rectInfo.top - cand.rect.bottom) * 8 + Math.abs(cand.rect.cx - rectInfo.cx),
+                      );
+                      questionLabel = clean(explicit.text || (questionCandidate ? questionCandidate.text : ""));
+                      label = clean(optionLabel || explicit.text || questionLabel);
+                      labelSource = optionLabel ? "option_text" : (labelSource || (questionLabel ? "question_text" : ""));
+                    } else if (role === "button") {
+                      label = clean(explicit.text || node.innerText || node.textContent || "");
+                      questionLabel = "";
+                      labelSource = labelSource || (label ? "inner_text" : "");
+                    } else {
+                      const questionCandidate = nearestText(
+                        (cand) =>
+                          cand.rect.bottom <= rectInfo.top + 18
+                          && (overlapsX(rectInfo, cand.rect) || Math.abs(cand.rect.left - rectInfo.left) <= 220),
+                        (cand) => (rectInfo.top - cand.rect.bottom) * 8 + Math.abs(cand.rect.cx - rectInfo.cx),
+                      );
+                      questionLabel = clean((explicit.source && explicit.source !== "placeholder") ? explicit.text : (questionCandidate ? questionCandidate.text : ""));
+                      label = clean(explicit.text || questionLabel);
+                      labelSource = labelSource || (questionLabel ? "question_text" : "");
+                    }
+                    const selected = !!(
+                      node.checked
+                      || node.selected
+                      || String(node.getAttribute("aria-checked") || "").toLowerCase() === "true"
+                      || String(node.getAttribute("aria-selected") || "").toLowerCase() === "true"
+                    );
+                    const focused = document.activeElement === node;
+                    const widgetTypeGuess =
+                      role === "textarea" ? "paragraph_text"
+                      : role === "checkbox" ? "multi_choice"
+                      : role === "radio" ? "single_choice"
+                      : role === "combobox" ? "dropdown"
+                      : "unknown";
+                    const key = `${role}|${x}|${y}|${questionLabel}|${optionLabel}|${label}`;
+                    if (seen.has(key)) continue;
+                    seen.add(key);
+                    items.push({
+                      role,
+                      label,
+                      question_label: questionLabel,
+                      option_label: optionLabel,
+                      label_source: labelSource,
+                      widget_type_guess: widgetTypeGuess,
+                      selected,
+                      focused,
+                      x,
+                      y,
+                      bbox: {
+                        x: Math.round(rect.left),
+                        y: Math.round(rect.top),
+                        width: Math.round(rect.width),
+                        height: Math.round(rect.height),
+                      },
+                    });
+                    if (items.length >= 80) break;
+                  }
+                  return items;
+                }""",
+                {"vw": int(self.viewport_width), "vh": int(self.viewport_height)},
+            )
+            return payload if isinstance(payload, list) else []
+        except Exception:
+            return []
+
     def execute_fill(self, entry: Dict[str, Any], step_idx: int) -> Tuple[Dict[str, Any], Optional[str]]:
         return self.engine.fill_step(entry, step_idx)
 
@@ -991,6 +1652,38 @@ class LocalExecutionSession(ExecutionSessionBase):
     def execute_wait(self, seconds: float, step_idx: int) -> None:
         _ = step_idx
         self.page.wait_for_timeout(max(int(seconds * 1000), 0))
+
+    def execute_move_mouse(self, x_norm: int, y_norm: int, step_idx: int) -> Dict[str, Any]:
+        x_px, y_px = self._coords_to_pixels(x_norm, y_norm)
+        self.page.mouse.move(x_px, y_px, steps=12)
+        self.trace.log_event(
+            "browser_mouse_move_xy",
+            {"x": int(x_norm), "y": int(y_norm)},
+            step_ref=step_idx,
+            extra={"x_px": x_px, "y_px": y_px},
+        )
+        return {"status": "moved", "x": int(x_norm), "y": int(y_norm), "x_px": x_px, "y_px": y_px}
+
+    def execute_click_mouse(self, x_norm: int, y_norm: int, step_idx: int) -> Dict[str, Any]:
+        x_px, y_px = self._coords_to_pixels(x_norm, y_norm)
+        self.page.mouse.click(x_px, y_px)
+        self.trace.log_event(
+            "browser_mouse_click_xy",
+            {"x": int(x_norm), "y": int(y_norm)},
+            step_ref=step_idx,
+            extra={"x_px": x_px, "y_px": y_px},
+        )
+        return {"status": "clicked", "x": int(x_norm), "y": int(y_norm), "x_px": x_px, "y_px": y_px}
+
+    def execute_type_text(self, text: str, step_idx: int) -> Dict[str, Any]:
+        value = str(text or "")
+        self.page.keyboard.type(value, delay=40)
+        self.trace.log_event(
+            "browser_type",
+            {"text": value, "slowly": True, "submit": False},
+            step_ref=step_idx,
+        )
+        return {"status": "typed", "text_len": len(value)}
 
     def execute_scroll(self, delta: int, step_idx: int) -> None:
         self.page.mouse.wheel(0, delta)
@@ -1140,6 +1833,219 @@ class MCPExecutionSession(ExecutionSessionBase):
     def _get_page_text(self, step_idx: int) -> str:
         return self.engine.get_page_text(step_idx)
 
+    def _get_interaction_map(self, step_idx: int) -> List[Dict[str, Any]]:
+        code = f"""
+async (page) => {{
+  const items = await page.evaluate((cfg) => {{
+    const vw = Number(cfg?.vw || window.innerWidth || 1);
+    const vh = Number(cfg?.vh || window.innerHeight || 1);
+    const interactiveSelectors = [
+      "input",
+      "textarea",
+      "button",
+      "div[role='button']",
+      "[role='radio']",
+      "[role='checkbox']",
+      "select",
+      "[contenteditable='true']"
+    ];
+    const nodes = Array.from(document.querySelectorAll(interactiveSelectors.join(",")));
+    const out = [];
+    const seen = new Set();
+    const toNorm = (value, maxValue) => {{
+      const clipped = Math.max(0, Math.min(maxValue, Number(value || 0)));
+      if (maxValue <= 0) return 0;
+      return Math.max(0, Math.min(999, Math.round((clipped / maxValue) * 999)));
+    }};
+    const clean = (value) => String(value || "").replace(/\\s+/g, " ").trim().slice(0, 120);
+    const overlapsX = (a, b) => Math.min(a.right, b.right) - Math.max(a.left, b.left) >= -12;
+    const isVisible = (node, rect) => {{
+      if (!rect || rect.width < 3 || rect.height < 3) return false;
+      if (rect.bottom < 0 || rect.right < 0 || rect.left > vw || rect.top > vh) return false;
+      const style = window.getComputedStyle(node);
+      return !!style && style.visibility !== "hidden" && style.display !== "none";
+    }};
+    const normalizeRole = (node) => {{
+      const tag = (node.tagName || "").toLowerCase();
+      const explicitRole = (node.getAttribute("role") || "").toLowerCase();
+      const inputType = (node.getAttribute("type") || "").toLowerCase();
+      if (explicitRole === "radio" || inputType === "radio") return "radio";
+      if (explicitRole === "checkbox" || inputType === "checkbox") return "checkbox";
+      if (tag === "textarea") return "textarea";
+      if (tag === "select") return "combobox";
+      if (tag === "button" || explicitRole === "button") return "button";
+      if (node.getAttribute("contenteditable") === "true") return "textarea";
+      return "input";
+    }};
+    const interactiveSelector = interactiveSelectors.join(",");
+    const textCandidates = Array.from(document.querySelectorAll("label, span, div, p, h1, h2, h3")).map((el) => {{
+      const rect = el.getBoundingClientRect();
+      if (!isVisible(el, rect)) return null;
+      if (el.matches(interactiveSelector)) return null;
+      if (el.querySelector && el.querySelector(interactiveSelector)) return null;
+      const text = clean(el.innerText || el.textContent || "");
+      if (!text) return null;
+      if (text.length < 2 || text.length > 120) return null;
+      return {{
+        text,
+        rect: {{
+          left: rect.left,
+          right: rect.right,
+          top: rect.top,
+          bottom: rect.bottom,
+          width: rect.width,
+          height: rect.height,
+          cx: rect.left + rect.width / 2,
+          cy: rect.top + rect.height / 2,
+        }},
+      }};
+    }}).filter(Boolean);
+    const nearestText = (predicate, scoreFn) => {{
+      let best = null;
+      let bestScore = Number.POSITIVE_INFINITY;
+      for (const cand of textCandidates) {{
+        if (!predicate(cand)) continue;
+        const score = scoreFn(cand);
+        if (score < bestScore) {{
+          bestScore = score;
+          best = cand;
+        }}
+      }}
+      return best;
+    }};
+    const textFromLabelledBy = (node) => {{
+      const raw = clean(node.getAttribute("aria-labelledby") || "");
+      if (!raw) return "";
+      return clean(raw.split(/\\s+/).map((id) => {{
+        const ref = document.getElementById(id);
+        return ref ? (ref.innerText || ref.textContent || "") : "";
+      }}).join(" "));
+    }};
+    const explicitLabel = (node) => {{
+      const aria = clean(node.getAttribute("aria-label") || "");
+      if (aria) return {{ text: aria, source: "aria" }};
+      const labelledBy = textFromLabelledBy(node);
+      if (labelledBy) return {{ text: labelledBy, source: "aria_labelledby" }};
+      const id = clean(node.getAttribute("id") || "");
+      if (id) {{
+        const labelNode = document.querySelector(`label[for="${{id}}"]`);
+        const labelText = clean(labelNode ? (labelNode.innerText || labelNode.textContent || "") : "");
+        if (labelText) return {{ text: labelText, source: "label_for" }};
+      }}
+      const wrappedLabel = node.closest("label");
+      const wrappedText = clean(wrappedLabel ? (wrappedLabel.innerText || wrappedLabel.textContent || "") : "");
+      if (wrappedText) return {{ text: wrappedText, source: "label_wrap" }};
+      const placeholder = clean(node.getAttribute("placeholder") || "");
+      if (placeholder) return {{ text: placeholder, source: "placeholder" }};
+      return {{ text: "", source: "" }};
+    }};
+    for (const node of nodes) {{
+      const rect = node.getBoundingClientRect();
+      if (!isVisible(node, rect)) continue;
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const x = toNorm(cx, vw);
+      const y = toNorm(cy, vh);
+      const role = normalizeRole(node);
+      const explicit = explicitLabel(node);
+      const rectInfo = {{
+        left: rect.left,
+        right: rect.right,
+        top: rect.top,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        cx,
+        cy,
+      }};
+      let questionLabel = "";
+      let optionLabel = "";
+      let label = "";
+      let labelSource = explicit.source || "";
+      if (role === "checkbox" || role === "radio") {{
+        const optionCandidate = nearestText(
+          (cand) =>
+            Math.abs(cand.rect.cy - rectInfo.cy) <= Math.max(24, rectInfo.height * 1.6)
+            && cand.rect.right >= rectInfo.left - 12
+            && cand.rect.left <= rectInfo.right + 420,
+          (cand) => Math.abs(cand.rect.cy - rectInfo.cy) * 6 + Math.abs(cand.rect.left - rectInfo.right),
+        );
+        optionLabel = clean(optionCandidate ? optionCandidate.text : "");
+        const questionCandidate = nearestText(
+          (cand) =>
+            cand.rect.bottom <= rectInfo.top + 18
+            && (overlapsX(rectInfo, cand.rect) || Math.abs(cand.rect.left - rectInfo.left) <= 220)
+            && clean(cand.text) !== optionLabel,
+          (cand) => (rectInfo.top - cand.rect.bottom) * 8 + Math.abs(cand.rect.cx - rectInfo.cx),
+        );
+        questionLabel = clean(explicit.text || (questionCandidate ? questionCandidate.text : ""));
+        label = clean(optionLabel || explicit.text || questionLabel);
+        labelSource = optionLabel ? "option_text" : (labelSource || (questionLabel ? "question_text" : ""));
+      }} else if (role === "button") {{
+        label = clean(explicit.text || node.innerText || node.textContent || "");
+        questionLabel = "";
+        labelSource = labelSource || (label ? "inner_text" : "");
+      }} else {{
+        const questionCandidate = nearestText(
+          (cand) =>
+            cand.rect.bottom <= rectInfo.top + 18
+            && (overlapsX(rectInfo, cand.rect) || Math.abs(cand.rect.left - rectInfo.left) <= 220),
+          (cand) => (rectInfo.top - cand.rect.bottom) * 8 + Math.abs(cand.rect.cx - rectInfo.cx),
+        );
+        questionLabel = clean((explicit.source && explicit.source !== "placeholder") ? explicit.text : (questionCandidate ? questionCandidate.text : ""));
+        label = clean(explicit.text || questionLabel);
+        labelSource = labelSource || (questionLabel ? "question_text" : "");
+      }}
+      const selected = !!(
+        node.checked
+        || node.selected
+        || String(node.getAttribute("aria-checked") || "").toLowerCase() === "true"
+        || String(node.getAttribute("aria-selected") || "").toLowerCase() === "true"
+      );
+      const focused = document.activeElement === node;
+      const widgetTypeGuess =
+        role === "textarea" ? "paragraph_text"
+        : role === "checkbox" ? "multi_choice"
+        : role === "radio" ? "single_choice"
+        : role === "combobox" ? "dropdown"
+        : "unknown";
+      const key = `${{role}}|${{x}}|${{y}}|${{questionLabel}}|${{optionLabel}}|${{label}}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({{
+        role,
+        label,
+        question_label: questionLabel,
+        option_label: optionLabel,
+        label_source: labelSource,
+        widget_type_guess: widgetTypeGuess,
+        selected,
+        focused,
+        x,
+        y,
+        bbox: {{
+          x: Math.round(rect.left),
+          y: Math.round(rect.top),
+          width: Math.round(rect.width),
+          height: Math.round(rect.height),
+        }},
+      }});
+      if (out.length >= 80) break;
+    }}
+    return out;
+  }}, {{ vw: {int(self.viewport_width)}, vh: {int(self.viewport_height)} }});
+  const out = "THESIS_JSON:" + JSON.stringify({{items}});
+  console.log(out);
+  return out;
+}}
+"""
+        try:
+            result = self.engine._run_code(code, purpose="interaction_map", step_ref=step_idx)
+            items = result.get("items") if isinstance(result, dict) else None
+            return items if isinstance(items, list) else []
+        except Exception:
+            return []
+
     def execute_fill(self, entry: Dict[str, Any], step_idx: int) -> Tuple[Dict[str, Any], Optional[str]]:
         return self.engine.fill_step(entry, step_idx)
 
@@ -1148,6 +2054,63 @@ class MCPExecutionSession(ExecutionSessionBase):
 
     def execute_wait(self, seconds: float, step_idx: int) -> None:
         self.engine.wait_seconds(seconds, step_ref=step_idx)
+
+    def execute_move_mouse(self, x_norm: int, y_norm: int, step_idx: int) -> Dict[str, Any]:
+        x_px, y_px = self._coords_to_pixels(x_norm, y_norm)
+        code = f"""
+async (page) => {{
+  await page.mouse.move({x_px}, {y_px}, {{ steps: 12 }});
+  const out = "THESIS_JSON:" + JSON.stringify({{"ok": true}});
+  console.log(out);
+  return out;
+}}
+"""
+        self.engine._run_code(code, purpose="low_level_move_mouse", step_ref=step_idx)
+        self.trace.log_event(
+            "browser_mouse_move_xy",
+            {"x": int(x_norm), "y": int(y_norm)},
+            step_ref=step_idx,
+            extra={"backend": "mcp_server", "x_px": x_px, "y_px": y_px},
+        )
+        return {"status": "moved", "x": int(x_norm), "y": int(y_norm), "x_px": x_px, "y_px": y_px}
+
+    def execute_click_mouse(self, x_norm: int, y_norm: int, step_idx: int) -> Dict[str, Any]:
+        x_px, y_px = self._coords_to_pixels(x_norm, y_norm)
+        code = f"""
+async (page) => {{
+  await page.mouse.click({x_px}, {y_px});
+  const out = "THESIS_JSON:" + JSON.stringify({{"ok": true}});
+  console.log(out);
+  return out;
+}}
+"""
+        self.engine._run_code(code, purpose="low_level_click_mouse", step_ref=step_idx)
+        self.trace.log_event(
+            "browser_mouse_click_xy",
+            {"x": int(x_norm), "y": int(y_norm)},
+            step_ref=step_idx,
+            extra={"backend": "mcp_server", "x_px": x_px, "y_px": y_px},
+        )
+        return {"status": "clicked", "x": int(x_norm), "y": int(y_norm), "x_px": x_px, "y_px": y_px}
+
+    def execute_type_text(self, text: str, step_idx: int) -> Dict[str, Any]:
+        value = str(text or "")
+        code = f"""
+async (page) => {{
+  await page.keyboard.type({json.dumps(value)}, {{ delay: 40 }});
+  const out = "THESIS_JSON:" + JSON.stringify({{"ok": true}});
+  console.log(out);
+  return out;
+}}
+"""
+        self.engine._run_code(code, purpose="low_level_type_text", step_ref=step_idx)
+        self.trace.log_event(
+            "browser_type",
+            {"text": value, "slowly": True, "submit": False},
+            step_ref=step_idx,
+            extra={"backend": "mcp_server"},
+        )
+        return {"status": "typed", "text_len": len(value)}
 
     def execute_scroll(self, delta: int, step_idx: int) -> None:
         code = f"""
@@ -1209,6 +2172,30 @@ def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--viewport-width", type=int, default=DEFAULT_VIEWPORT_WIDTH)
     parser.add_argument("--viewport-height", type=int, default=DEFAULT_VIEWPORT_HEIGHT)
     parser.add_argument("--require-gpu", action="store_true", default=False)
+    parser.add_argument(
+        "--control-level",
+        choices=["high_level", "low_level"],
+        default="high_level",
+        help="high_level: model emits semantic fill actions; low_level: model emits explicit mouse/keyboard actions.",
+    )
+    parser.add_argument(
+        "--interaction-protocol",
+        choices=["legacy_semantic_v1", "human_ui_v1"],
+        default=DEFAULT_INTERACTION_PROTOCOL,
+        help="human_ui_v1: primitive-only execution; legacy_semantic_v1: compatibility path with semantic helper actions.",
+    )
+    parser.add_argument(
+        "--observation-mode",
+        choices=["vision_coords", "vision_coords_text"],
+        default=DEFAULT_OBSERVATION_MODE,
+        help="vision_coords omits page-text dumps from prompts and relies on screenshot + interaction map.",
+    )
+    parser.add_argument(
+        "--scoring-mode",
+        choices=["soft_quality_v1", "legacy_binary_v1"],
+        default=DEFAULT_SCORING_MODE,
+        help="soft_quality_v1 computes interaction-quality metrics without hard policy-fail invalidation.",
+    )
     parser.add_argument("--disable-action-coercion", dest="disable_action_coercion", action="store_true", default=True)
     parser.add_argument("--enable-action-coercion", dest="disable_action_coercion", action="store_false")
     parser.add_argument("--step-soft-timeout-s", type=float, default=DEFAULT_STEP_SOFT_TIMEOUT_S)
@@ -1216,6 +2203,11 @@ def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--idle-step-threshold", type=int, default=DEFAULT_IDLE_STEP_THRESHOLD)
     parser.add_argument("--idle-nudge-max", type=int, default=DEFAULT_IDLE_NUDGE_MAX)
     parser.add_argument("--compact-page-text-max-chars", type=int, default=DEFAULT_COMPACT_PAGE_TEXT_MAX_CHARS)
+    parser.add_argument(
+        "--verification-scope",
+        choices=["target_only", "full_pass"],
+        default=DEFAULT_VERIFICATION_SCOPE,
+    )
     parser.add_argument(
         "--prompt-profile",
         choices=["legacy", "detailed_v1", "runtime_safe_v1"],
@@ -1270,6 +2262,175 @@ def _artifact_payload(paths: Dict[str, Path]) -> Dict[str, Optional[str]]:
     }
 
 
+def _load_json_file(path: Path) -> Dict[str, Any]:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _count_valid_trace_events(trace_path: Path) -> int:
+    if not trace_path.exists():
+        return 0
+    count = 0
+    for line in trace_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            payload = json.loads(line)
+        except Exception:
+            continue
+        if isinstance(payload, dict) and isinstance(payload.get("name"), str) and str(payload.get("name")).strip():
+            count += 1
+    return count
+
+
+def _max_trace_time_s(trace_path: Path) -> Optional[float]:
+    if not trace_path.exists():
+        return None
+    max_t: Optional[float] = None
+    for line in trace_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            payload = json.loads(line)
+        except Exception:
+            continue
+        if not isinstance(payload, dict):
+            continue
+        raw = payload.get("t_s")
+        try:
+            value = float(raw)
+        except Exception:
+            continue
+        max_t = value if max_t is None or value > max_t else max_t
+    return max_t
+
+
+def _derive_reference_duration_s(reference_annotations: Dict[str, Any], reference_trace_path: Path) -> Optional[float]:
+    actions = reference_annotations.get("actions")
+    if isinstance(actions, list):
+        max_t: Optional[float] = None
+        for action in actions:
+            if not isinstance(action, dict):
+                continue
+            try:
+                value = float(action.get("t_end_s"))
+            except Exception:
+                continue
+            max_t = value if max_t is None or value > max_t else max_t
+        if max_t is not None:
+            return round(max_t, 6)
+    submit = reference_annotations.get("submit")
+    if isinstance(submit, dict):
+        try:
+            return round(float(submit.get("t_end_s")), 6)
+        except Exception:
+            pass
+    trace_max = _max_trace_time_s(reference_trace_path)
+    return round(trace_max, 6) if trace_max is not None else None
+
+
+def _reference_run_paths(form_id: str, answer_run_id: str) -> Dict[str, Path]:
+    run_root = (ROOT_DIR / "data" / "forms" / form_id / "runs" / answer_run_id).resolve()
+    return {
+        "run_root": run_root,
+        "annotations_path": run_root / "annotations.json",
+        "trace_path": run_root / "tool_trace.jsonl",
+    }
+
+
+def _resolve_reference_efficiency(
+    *,
+    form_id: str,
+    answer_run_id: str,
+    model_duration_s: Optional[float],
+    model_trace_path: Path,
+    model_action_count: Optional[int] = None,
+    prefer_model_action_count: bool = False,
+) -> Dict[str, Any]:
+    ref_paths = _reference_run_paths(form_id, answer_run_id)
+    reference_annotations = _load_json_file(ref_paths["annotations_path"]) if ref_paths["annotations_path"].exists() else {}
+    reference_trace_path = ref_paths["trace_path"]
+    reference_available = ref_paths["run_root"].exists() and ref_paths["annotations_path"].exists() and reference_trace_path.exists()
+    reference_video_path = None
+    if reference_available:
+        raw_video = reference_annotations.get("video_path")
+        if isinstance(raw_video, str) and raw_video.strip():
+            reference_video_path = raw_video.strip()
+        else:
+            candidates = sorted(ref_paths["run_root"].glob("*.webm"))
+            if candidates:
+                reference_video_path = str(candidates[0])
+
+    trace_action_count = _count_valid_trace_events(model_trace_path)
+    preferred_count = None
+    try:
+        preferred_count = int(model_action_count) if model_action_count is not None else None
+    except Exception:
+        preferred_count = None
+    if prefer_model_action_count and preferred_count is not None:
+        resolved_model_action_count = preferred_count
+        if trace_action_count > 0 and preferred_count != trace_action_count:
+            model_action_count_source = "summary_field_overrides_trace"
+        elif trace_action_count > 0:
+            model_action_count_source = "summary_field_matches_trace"
+        else:
+            model_action_count_source = "summary_field"
+    elif trace_action_count > 0:
+        resolved_model_action_count = trace_action_count
+        if preferred_count is not None and preferred_count == trace_action_count:
+            model_action_count_source = "summary_field_matches_trace"
+        elif preferred_count is not None:
+            model_action_count_source = "trace_overrides_summary_field"
+        else:
+            model_action_count_source = "trace"
+    else:
+        resolved_model_action_count = preferred_count
+        model_action_count_source = "summary_field" if preferred_count is not None else "unavailable"
+
+    reference_action_count = _count_valid_trace_events(reference_trace_path) if reference_available else None
+    reference_duration_s = _derive_reference_duration_s(reference_annotations, reference_trace_path) if reference_available else None
+
+    action_overhead_ratio = None
+    action_count_delta = None
+    if (
+        resolved_model_action_count is not None
+        and reference_action_count is not None
+        and reference_action_count > 0
+    ):
+        action_overhead_ratio = round(float(resolved_model_action_count) / float(reference_action_count), 6)
+        action_count_delta = int(resolved_model_action_count) - int(reference_action_count)
+
+    time_overhead_ratio = None
+    duration_delta_s = None
+    try:
+        model_duration_value = float(model_duration_s) if model_duration_s is not None else None
+    except Exception:
+        model_duration_value = None
+    if model_duration_value is not None and reference_duration_s is not None and float(reference_duration_s) > 0:
+        time_overhead_ratio = round(float(model_duration_value) / float(reference_duration_s), 6)
+        duration_delta_s = round(float(model_duration_value) - float(reference_duration_s), 6)
+
+    return {
+        "reference_available": bool(reference_available),
+        "reference_run_path": str(ref_paths["run_root"]),
+        "reference_trace_path": str(reference_trace_path),
+        "reference_video_path": reference_video_path,
+        "reference_action_count": reference_action_count,
+        "reference_duration_s": reference_duration_s,
+        "action_overhead_ratio": action_overhead_ratio,
+        "time_overhead_ratio": time_overhead_ratio,
+        "action_count_delta": action_count_delta,
+        "duration_delta_s": duration_delta_s,
+        "trace_action_count": resolved_model_action_count,
+        "trace_action_count_source": model_action_count_source,
+    }
+
+
 def _make_execution_session(args: argparse.Namespace, paths: Dict[str, Path], trace: TraceLogger):
     if args.execution_backend == "local":
         return LocalExecutionSession(
@@ -1306,6 +2467,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     args.browser_init_retries = max(0, int(args.browser_init_retries))
     args.browser_init_retry_delay_s = max(0.0, float(args.browser_init_retry_delay_s))
     args.prompt_profile = str(args.prompt_profile or DEFAULT_PROMPT_PROFILE).strip().lower()
+    args.interaction_protocol = str(args.interaction_protocol or DEFAULT_INTERACTION_PROTOCOL).strip().lower()
+    args.observation_mode = str(args.observation_mode or DEFAULT_OBSERVATION_MODE).strip().lower()
+    args.scoring_mode = str(args.scoring_mode or DEFAULT_SCORING_MODE).strip().lower()
+    human_ui_protocol = args.interaction_protocol == "human_ui_v1"
+    effective_control_level = "low_level" if human_ui_protocol else str(args.control_level)
+    prompt_page_text_enabled = not (human_ui_protocol and args.observation_mode == "vision_coords")
     run_label = _make_run_label(args.run_label)
     run_started_utc = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     config_path = (ROOT_DIR / args.config).resolve()
@@ -1322,7 +2489,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         _ensure_model_runtime_compat(model_cfg)
 
     form_spec = load_form_spec(args.form_id, ROOT_DIR / "src" / "forms")
-    form_url = str(form_spec.get("form_url") or form_spec.get("url") or "")
+    form_url = force_english_google_forms_url(str(form_spec.get("form_url") or form_spec.get("url") or ""))
     if not form_url:
         raise ValueError(f"Missing form_url in spec for {args.form_id}")
 
@@ -1374,7 +2541,12 @@ def main(argv: Optional[List[str]] = None) -> int:
         "model_kind": args.model_kind,
         "track": _track_name(model_cfg),
         "provider": model_cfg.get("provider"),
-        "inference_backend": args.inference_backend,
+        "inference_backend": resolved_inference_backend,
+        "serving_mode": str(os.environ.get("BASELINE_SERVING_MODE") or "local_hf_trial_local"),
+        "server_backend": str(os.environ.get("BASELINE_SERVER_BACKEND") or model_cfg.get("server_backend") or ""),
+        "server_startup_s": _env_float("BASELINE_SERVER_STARTUP_S"),
+        "server_warmup_s": _env_float("BASELINE_SERVER_WARMUP_S"),
+        "inference_roundtrip_s": None,
         "is_fallback_model": bool(model_cfg.get("is_fallback")),
         "fallback_for": model_cfg.get("fallback_for"),
         "form_id": args.form_id,
@@ -1383,6 +2555,11 @@ def main(argv: Optional[List[str]] = None) -> int:
         "execution_backend": args.execution_backend,
         "prompt_mode": DEFAULT_PROMPT_MODE,
         "prompt_profile": args.prompt_profile,
+        "interaction_protocol": args.interaction_protocol,
+        "observation_mode": args.observation_mode,
+        "scoring_mode": args.scoring_mode,
+        "requested_control_level": args.control_level,
+        "control_level": effective_control_level,
         "context_package_version": CONTEXT_PACKAGE_VERSION,
         "success": False,
         "submit_success": False,
@@ -1399,6 +2576,12 @@ def main(argv: Optional[List[str]] = None) -> int:
         "invalid_actions": 0,
         "duration_s": None,
         "idle_reprompts": 0,
+        "model_driven_execution": False,
+        "autonomy_step_rate": 0.0,
+        "action_diversity": 0.0,
+        "loop_ratio": 0.0,
+        "correction_count": 0,
+        "composite_score": 0.0,
         "model": {"provider": model_cfg.get("provider"), "hf_repo": model_cfg.get("hf_repo")},
         "input_contract": {
             "provides_form_spec": False,
@@ -1419,9 +2602,18 @@ def main(argv: Optional[List[str]] = None) -> int:
             "browser_mcp_timeout_ms": args.browser_mcp_timeout_ms,
             "browser_init_retries": int(args.browser_init_retries),
             "browser_init_retry_delay_s": float(args.browser_init_retry_delay_s),
-            "inference_backend": args.inference_backend,
+            "inference_backend": resolved_inference_backend,
             "api_timeout_s": int(args.api_timeout_s),
+            "serving_mode": str(os.environ.get("BASELINE_SERVING_MODE") or "local_hf_trial_local"),
+            "server_backend": str(os.environ.get("BASELINE_SERVER_BACKEND") or model_cfg.get("server_backend") or ""),
+            "server_startup_s": _env_float("BASELINE_SERVER_STARTUP_S"),
+            "server_warmup_s": _env_float("BASELINE_SERVER_WARMUP_S"),
             "require_gpu": bool(args.require_gpu),
+            "interaction_protocol": str(args.interaction_protocol),
+            "observation_mode": str(args.observation_mode),
+            "scoring_mode": str(args.scoring_mode),
+            "requested_control_level": str(args.control_level),
+            "control_level": str(effective_control_level),
             "disable_action_coercion": bool(args.disable_action_coercion),
             "step_soft_timeout_s": float(args.step_soft_timeout_s),
             "step_retry_max_new_tokens": int(args.step_retry_max_new_tokens),
@@ -1441,6 +2633,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "steps": [],
         "questions": question_states,
         "failure_events": [],
+        "soft_violations": [],
     }
 
     _append_jsonl(
@@ -1455,8 +2648,14 @@ def main(argv: Optional[List[str]] = None) -> int:
             "answer_run_id": answer_run_id,
             "status": "started",
             "prompt_profile": args.prompt_profile,
+            "interaction_protocol": args.interaction_protocol,
+            "observation_mode": args.observation_mode,
+            "scoring_mode": args.scoring_mode,
+            "verification_scope": args.verification_scope,
+            "requested_control_level": args.control_level,
+            "control_level": effective_control_level,
             "browser_mcp_timeout_ms": args.browser_mcp_timeout_ms,
-            "inference_backend": args.inference_backend,
+            "inference_backend": resolved_inference_backend,
             "api_timeout_s": int(args.api_timeout_s),
         },
     )
@@ -1473,12 +2672,32 @@ def main(argv: Optional[List[str]] = None) -> int:
         observation_cache[0] = execution_session.observe(0)
         initial_page_text = str(observation_cache[0].get("page_text") or "")
         initial_screenshot = observation_cache[0].get("screenshot_path")
+        initial_interaction_map = observation_cache[0].get("interaction_map") or []
+        initial_interaction_map_empty = not (isinstance(initial_interaction_map, list) and len(initial_interaction_map) > 0)
+        interaction_map_guard_failed = False
+        if human_ui_protocol and args.execution_backend == "mcp_server" and bool(initial_screenshot) and initial_interaction_map_empty:
+            try:
+                execution_session.execute_wait(0.6, 0)
+                observation_cache[0] = execution_session.observe(0)
+                initial_page_text = str(observation_cache[0].get("page_text") or "")
+                initial_screenshot = observation_cache[0].get("screenshot_path")
+                initial_interaction_map = observation_cache[0].get("interaction_map") or []
+                initial_interaction_map_empty = not (
+                    isinstance(initial_interaction_map, list) and len(initial_interaction_map) > 0
+                )
+            except Exception:
+                initial_interaction_map_empty = True
+        if human_ui_protocol and args.execution_backend == "mcp_server" and bool(initial_screenshot) and initial_interaction_map_empty:
+            interaction_map_guard_failed = True
+        initial_page_excerpt = initial_page_text[:500] if prompt_page_text_enabled else ""
         preflight_ok = bool(initial_page_text.strip()) or bool(initial_screenshot)
         annotations.setdefault("environment", {})["browser_preflight"] = {
             "ok": preflight_ok,
             "browser_mcp_timeout_ms": args.browser_mcp_timeout_ms,
             "has_page_text": bool(initial_page_text.strip()),
             "has_screenshot": bool(initial_screenshot),
+            "interaction_map_count": len(initial_interaction_map) if isinstance(initial_interaction_map, list) else 0,
+            "interaction_map_guard_failed": interaction_map_guard_failed,
         }
         _append_jsonl(
             paths["model_io_path"],
@@ -1487,14 +2706,24 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "timestamp_utc": datetime.utcnow().isoformat() + "Z",
                 "status": "ok" if preflight_ok else "failed",
                 "prompt_profile": args.prompt_profile,
+                "interaction_protocol": args.interaction_protocol,
+                "observation_mode": args.observation_mode,
+                "scoring_mode": args.scoring_mode,
+                "verification_scope": args.verification_scope,
+                "requested_control_level": args.control_level,
+                "control_level": effective_control_level,
                 "browser_mcp_timeout_ms": args.browser_mcp_timeout_ms,
                 "preflight_ok": preflight_ok,
                 "screenshot_path": initial_screenshot,
-                "page_text_excerpt": initial_page_text[:500],
+                "page_text_excerpt": initial_page_excerpt,
+                "interaction_map_count": len(initial_interaction_map) if isinstance(initial_interaction_map, list) else 0,
+                "interaction_map_guard_failed": interaction_map_guard_failed,
             },
         )
         if not preflight_ok:
             raise RuntimeError("browser_mcp_preflight_failed: initial observation missing screenshot and page text")
+        if interaction_map_guard_failed:
+            raise RuntimeError("browser_mcp_preflight_failed: interaction_map_empty_under_human_ui_v1")
 
         for step_idx in range(args.max_steps):
             elapsed = time.perf_counter() - start_time
@@ -1513,6 +2742,17 @@ def main(argv: Optional[List[str]] = None) -> int:
                 observation = execution_session.observe(step_idx)
             page_text = str(observation.get("page_text") or "")
             screenshot_path = observation.get("screenshot_path")
+            raw_interaction_map = observation.get("interaction_map") if isinstance(observation.get("interaction_map"), list) else []
+            interaction_map = _enrich_interaction_map(raw_interaction_map, remaining_answers)
+            focused_element = _focused_element_summary(interaction_map)
+            visible_question_ids = _visible_question_ids(interaction_map)
+            last_target_question_id = _recent_failing_question_id(recent_history)
+            last_target_widget_type = None
+            if recent_history:
+                last_history_row = recent_history[-1]
+                last_target_widget_type = str(last_history_row.get("last_target_widget_type") or "").strip() or None
+            last_target_visible = last_target_question_id in visible_question_ids if last_target_question_id else None
+            page_text_for_prompt = page_text if prompt_page_text_enabled else ""
 
             image_path = Path(screenshot_path) if screenshot_path else paths["observations_dir"] / f"step_{step_idx:04d}.png"
             behavior_nudge: Optional[str] = None
@@ -1530,13 +2770,15 @@ def main(argv: Optional[List[str]] = None) -> int:
                     nudge_index=idle_nudge_count,
                     nudge_max=args.idle_nudge_max,
                     validation_feedback=validation_feedback,
+                    recent_history=recent_history,
+                    interaction_map=interaction_map,
                 )
 
             if args.model_kind == "text_llm":
                 prompt = build_text_prompt(
                     form_url,
                     remaining_answers,
-                    page_text,
+                    page_text_for_prompt,
                     last_result,
                     behavior_nudge=behavior_nudge,
                     compact_page_text_max_chars=args.compact_page_text_max_chars,
@@ -1546,12 +2788,15 @@ def main(argv: Optional[List[str]] = None) -> int:
                     validation_feedback=validation_feedback,
                     fewshot_enabled=bool(args.fewshot_enabled),
                     fewshot_count=int(args.fewshot_count),
+                    control_level=effective_control_level,
+                    observation_mode=args.observation_mode,
+                    interaction_map=interaction_map,
                 )
             else:
                 prompt = build_vlm_prompt(
                     form_url,
                     remaining_answers,
-                    page_text,
+                    page_text_for_prompt,
                     last_result,
                     image_path,
                     behavior_nudge=behavior_nudge,
@@ -1562,6 +2807,9 @@ def main(argv: Optional[List[str]] = None) -> int:
                     validation_feedback=validation_feedback,
                     fewshot_enabled=bool(args.fewshot_enabled),
                     fewshot_count=int(args.fewshot_count),
+                    control_level=effective_control_level,
+                    observation_mode=args.observation_mode,
+                    interaction_map=interaction_map,
                 )
 
             step_input_record = {
@@ -1570,16 +2818,30 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "step_index": step_idx,
                 "form_url": form_url,
                 "prompt_profile": args.prompt_profile,
+                "interaction_protocol": args.interaction_protocol,
+                "observation_mode": args.observation_mode,
+                "scoring_mode": args.scoring_mode,
+                "verification_scope": args.verification_scope,
+                "requested_control_level": args.control_level,
+                "control_level": effective_control_level,
                 "context_package_version": CONTEXT_PACKAGE_VERSION,
                 "remaining_answers": remaining_answers,
                 "visible_field_map": visible_field_map,
+                "interaction_map": interaction_map,
+                "focused_element": focused_element,
+                "visible_question_ids": visible_question_ids,
                 "recent_history": recent_history,
                 "validation_feedback": validation_feedback,
                 "fewshot_ids": fewshot_ids,
                 "last_result": dict(last_result or {}),
-                "page_text_excerpt": compact_page_text(page_text, max_chars=int(args.compact_page_text_max_chars)),
+                "last_target_question_id": last_target_question_id,
+                "last_target_widget_type": last_target_widget_type,
+                "last_target_visible": last_target_visible,
+                "page_text_excerpt": compact_page_text(page_text_for_prompt, max_chars=int(args.compact_page_text_max_chars)),
                 "screenshot_path": screenshot_path,
                 "behavior_nudge": behavior_nudge,
+                "prompt_char_count": len(prompt),
+                "prompt_token_estimate": _prompt_token_estimate(prompt),
                 "prompt_hash": _prompt_hash(prompt),
             }
             _append_jsonl(paths["step_inputs_path"], step_input_record)
@@ -1600,9 +2862,18 @@ def main(argv: Optional[List[str]] = None) -> int:
                     "elapsed_s": round(time.perf_counter() - start_time, 3),
                     "prompt_mode": DEFAULT_PROMPT_MODE,
                     "prompt_profile": args.prompt_profile,
+                    "interaction_protocol": args.interaction_protocol,
+                    "observation_mode": args.observation_mode,
+                    "scoring_mode": args.scoring_mode,
+                    "verification_scope": args.verification_scope,
+                    "requested_control_level": args.control_level,
+                    "control_level": effective_control_level,
                     "remaining_answers_before": len(remaining_answers),
-                    "page_text_excerpt": page_text[:2000],
+                    "page_text_excerpt": page_text_for_prompt[:2000],
                     "screenshot_path": screenshot_path,
+                    "interaction_map_count": len(interaction_map),
+                    "focused_element": focused_element,
+                    "visible_question_ids": visible_question_ids,
                     "idle_streak_before": idle_streak,
                     "behavior_nudge": behavior_nudge,
                     "raw_model_output": None,
@@ -1616,15 +2887,29 @@ def main(argv: Optional[List[str]] = None) -> int:
                     "verification": None,
                     "model_inference": {"attempts": attempts},
                 }
+                for attempt in attempts:
+                    roundtrip = attempt.get("roundtrip_s")
+                    if isinstance(roundtrip, (int, float)):
+                        annotations["inference_roundtrip_s"] = float(roundtrip)
+                        break
                 io_record = {
                     "phase": "step",
                     "step_index": step_idx,
                     "elapsed_s": round(time.perf_counter() - start_time, 3),
                     "prompt_mode": DEFAULT_PROMPT_MODE,
                     "prompt_profile": args.prompt_profile,
+                    "interaction_protocol": args.interaction_protocol,
+                    "observation_mode": args.observation_mode,
+                    "scoring_mode": args.scoring_mode,
+                    "verification_scope": args.verification_scope,
+                    "requested_control_level": args.control_level,
+                    "control_level": effective_control_level,
                     "prompt": prompt,
                     "remaining_answers": remaining_answers,
                     "screenshot_path": screenshot_path,
+                    "interaction_map_count": len(interaction_map),
+                    "focused_element": focused_element,
+                    "visible_question_ids": visible_question_ids,
                     "idle_streak_before": idle_streak,
                     "behavior_nudge": behavior_nudge,
                     "raw_model_output": None,
@@ -1648,9 +2933,18 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "elapsed_s": round(time.perf_counter() - start_time, 3),
                 "prompt_mode": DEFAULT_PROMPT_MODE,
                 "prompt_profile": args.prompt_profile,
+                "interaction_protocol": args.interaction_protocol,
+                "observation_mode": args.observation_mode,
+                "scoring_mode": args.scoring_mode,
+                "verification_scope": args.verification_scope,
+                "requested_control_level": args.control_level,
+                "control_level": effective_control_level,
                 "remaining_answers_before": len(remaining_answers),
-                "page_text_excerpt": page_text[:2000],
+                "page_text_excerpt": page_text_for_prompt[:2000],
                 "screenshot_path": screenshot_path,
+                "interaction_map_count": len(interaction_map),
+                "focused_element": focused_element,
+                "visible_question_ids": visible_question_ids,
                 "idle_streak_before": idle_streak,
                 "behavior_nudge": behavior_nudge,
                 "raw_model_output": raw_output,
@@ -1664,15 +2958,29 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "verification": None,
                 "model_inference": infer_meta,
             }
+            for attempt in infer_meta.get("attempts", []):
+                roundtrip = attempt.get("roundtrip_s")
+                if isinstance(roundtrip, (int, float)):
+                    annotations["inference_roundtrip_s"] = float(roundtrip)
+                    break
             io_record: Dict[str, Any] = {
                 "phase": "step",
                 "step_index": step_idx,
                 "elapsed_s": round(time.perf_counter() - start_time, 3),
                 "prompt_mode": DEFAULT_PROMPT_MODE,
                 "prompt_profile": args.prompt_profile,
+                "interaction_protocol": args.interaction_protocol,
+                "observation_mode": args.observation_mode,
+                "scoring_mode": args.scoring_mode,
+                "verification_scope": args.verification_scope,
+                "requested_control_level": args.control_level,
+                "control_level": effective_control_level,
                 "prompt": prompt,
                 "remaining_answers": remaining_answers,
                 "screenshot_path": screenshot_path,
+                "interaction_map_count": len(interaction_map),
+                "focused_element": focused_element,
+                "visible_question_ids": visible_question_ids,
                 "idle_streak_before": idle_streak,
                 "behavior_nudge": behavior_nudge,
                 "raw_model_output": raw_output,
@@ -1688,7 +2996,10 @@ def main(argv: Optional[List[str]] = None) -> int:
 
             try:
                 parsed = parse_action(raw_output)
-                action, warnings = validate_action(parsed)
+                if effective_control_level == "low_level":
+                    action, warnings = validate_low_level_action(parsed)
+                else:
+                    action, warnings = validate_action(parsed)
                 step_record["action"] = action
                 step_record["warnings"] = warnings
                 io_record["parsed_action"] = action
@@ -1701,21 +3012,23 @@ def main(argv: Optional[List[str]] = None) -> int:
                 io_record["error"] = message
                 io_record["parse_error"] = str(exc)
                 io_record["raw_model_output_len"] = len(str(raw_output or ""))
-                _set_failure(annotations, "model_output_invalid", str(exc), step_idx)
+                if human_ui_protocol:
+                    _record_soft_violation(annotations, "model_output_invalid", str(exc), step_idx)
+                else:
+                    _set_failure(annotations, "model_output_invalid", str(exc), step_idx)
                 step_record["progress_made"] = False
                 io_record["progress_made"] = False
                 idle_streak += 1
                 annotations["steps"].append(step_record)
                 _append_jsonl(paths["model_io_path"], io_record)
                 last_result = {"status": "failed", "error": message, "remaining_answers": len(remaining_answers)}
-                if _invalid_action_budget_exhausted(annotations["invalid_actions"], args.invalid_action_budget):
+                if (not human_ui_protocol) and _invalid_action_budget_exhausted(annotations["invalid_actions"], args.invalid_action_budget):
                     annotations["stop_reason"] = "model_output_invalid"
                     break
                 continue
 
             action_name = action["action"]
             annotations["action_count"] += 1
-
             if action_name == "submit" and len(remaining_answers) > 0:
                 detail = json.dumps(
                     {
@@ -1727,7 +3040,10 @@ def main(argv: Optional[List[str]] = None) -> int:
                 step_record["status"] = "failed"
                 step_record["error"] = "premature_submit_with_remaining_answers"
                 io_record["error"] = "premature_submit_with_remaining_answers"
-                _set_failure(annotations, "premature_submit", detail, step_idx)
+                if human_ui_protocol:
+                    _record_soft_violation(annotations, "premature_submit", detail, step_idx)
+                else:
+                    _set_failure(annotations, "premature_submit", detail, step_idx)
                 step_record["progress_made"] = False
                 io_record["progress_made"] = False
                 idle_streak += 1
@@ -1740,133 +3056,290 @@ def main(argv: Optional[List[str]] = None) -> int:
                 }
                 continue
 
-            if action_name == "wait":
-                wait_seconds = max(0.25, float(action.get("delta") or 1000) / 1000.0)
-                execution_session.execute_wait(wait_seconds, step_idx)
-                step_record["status"] = "waited"
-                io_record["execution"] = {"status": "waited", "seconds": wait_seconds}
-            elif action_name == "scroll":
-                delta = int(action.get("delta") or 600)
-                execution_session.execute_scroll(delta, step_idx)
-                step_record["status"] = "scrolled"
-                io_record["execution"] = {"status": "scrolled", "delta": delta}
-            elif action_name == "press_key":
-                key = str(action.get("value") or "Tab")
-                execution_session.execute_press_key(key, step_idx)
-                step_record["status"] = "pressed_key"
-                io_record["execution"] = {"status": "pressed_key", "key": key}
-            elif action_name == "submit":
-                submit_info, submit_err = execution_session.submit()
-                step_record["execution"] = submit_info
-                io_record["execution"] = submit_info
-                if submit_err:
-                    step_record["status"] = "failed"
-                    step_record["error"] = f"submission_failed: {submit_err}"
-                    annotations["stop_reason"] = "submission_failed"
-                    _set_failure(annotations, "submission_failed", submit_err, step_idx)
-                elif submit_info.get("success"):
-                    step_record["status"] = "submitted"
-                    annotations["success"] = True
-                    annotations["submit_success"] = True
-                    annotations["stop_reason"] = "submitted"
-                else:
-                    step_record["status"] = "failed"
-                    step_record["error"] = "submission_failed: not confirmed"
-                    annotations["stop_reason"] = "submission_failed"
-                    _set_failure(annotations, "submission_failed", json.dumps(submit_info, ensure_ascii=True), step_idx)
-            elif action_name == "done":
-                step_record["status"] = "done"
-                annotations["stop_reason"] = "done"
-                io_record["execution"] = {"status": "done"}
-            else:
-                matched_idx, question_state, match_debug = _match_question_state(question_states, action.get("target", {}))
+            if effective_control_level == "low_level":
+                target = _low_level_action_target(action)
+                tool_args = _low_level_action_args(action)
+                matched_idx, question_state, match_debug = _match_question_state(question_states, target)
                 step_record["target_match"] = match_debug
                 io_record["target_match"] = match_debug
-                if question_state is None or matched_idx is None:
-                    detail = json.dumps(match_debug, ensure_ascii=True)
-                    step_record["status"] = "failed"
-                    step_record["error"] = "target_not_found"
-                    _set_failure(annotations, "target_not_found", detail, step_idx)
-                else:
-                    action, coercion_warnings = _apply_action_policy(action, question_state, bool(args.disable_action_coercion))
-                    if coercion_warnings:
-                        step_record["warnings"] = list(dict.fromkeys(step_record["warnings"] + coercion_warnings))
-                        io_record["warnings"] = list(dict.fromkeys(io_record["warnings"] + coercion_warnings))
-                        step_record["action"] = action
-                        io_record["parsed_action"] = action
-                    resolved_action_name = action.get("action")
-                    if not _action_supported_for_widget(str(resolved_action_name), str(question_state.get("widget_type") or "")):
-                        step_record["status"] = "failed"
-                        step_record["error"] = f"widget_interaction_failed: incompatible_action_for_widget:{question_state.get('widget_type')}"
-                        _set_failure(annotations, "widget_interaction_failed", f"incompatible_action_for_widget:{question_state.get('widget_type')}", step_idx)
-                        step_record["progress_made"] = False
-                        io_record["progress_made"] = False
-                        idle_streak += 1
-                        annotations["steps"].append(step_record)
-                        _append_jsonl(paths["model_io_path"], io_record)
-                        last_result = {
-                            "status": step_record["status"],
-                            "error": step_record["error"],
-                            "remaining_answers": len(_serialize_remaining_answers(question_states)),
-                        }
-                        continue
-                    exec_entry = _build_entry_from_action(action, question_state)
-                    question_state["attempted"] = True
+                step_record["last_target_widget_type"] = (
+                    str(match_debug.get("target_widget_type") or "").strip() or None
+                )
+                if question_state is not None and matched_idx is not None:
                     step_record["matched_question_id"] = question_state.get("question_id")
                     io_record["matched_question_id"] = question_state.get("question_id")
-                    action_result, exec_err = execution_session.execute_fill(exec_entry, step_idx)
-                    verification_result = execution_session.verify_entry(question_state, step_idx)
-                    question_state["last_execution"] = action_result
-                    question_state["last_verification"] = verification_result
-                    question_state["actual_value"] = verification_result.get("actual_value")
-                    question_state["attempted_correct"] = _value_matches(question_state.get("value"), exec_entry.get("value"))
-                    question_state["verified"] = bool(verification_result.get("verified"))
-                    question_state["verified_correct"] = bool(verification_result.get("verified")) and _value_matches(
-                        question_state.get("value"), verification_result.get("actual_value")
-                    )
-                    if question_state["verified_correct"]:
-                        question_state["final_status"] = "correct_verified"
-                    elif question_state["attempted_correct"]:
-                        question_state["final_status"] = "correct_attempted_only"
-                    else:
-                        question_state["final_status"] = "failed"
 
-                    step_record["execution"] = action_result
-                    step_record["verification"] = verification_result
-                    step_record["expected_label"] = question_state.get("label")
-                    step_record["expected_value"] = question_state.get("value")
-                    step_record["executed_value"] = exec_entry.get("value")
-                    io_record["execution"] = action_result
-                    io_record["verification"] = verification_result
-
-                    if exec_err:
-                        step_record["status"] = "failed"
-                        step_record["error"] = f"widget_interaction_failed: {exec_err}"
-                        _set_failure(annotations, "widget_interaction_failed", exec_err, step_idx)
-                    elif question_state["verified"] and not question_state["verified_correct"]:
-                        step_record["status"] = "filled_unverified"
-                        step_record["error"] = "verification_failed"
-                        _set_failure(
-                            annotations,
-                            "verification_failed",
-                            json.dumps({"expected": question_state.get("value"), "actual": verification_result.get("actual_value")}, ensure_ascii=True),
-                            step_idx,
+                execution_payload: Dict[str, Any] = {}
+                exec_err: Optional[str] = None
+                try:
+                    if action_name in {"move_mouse", "browser_mouse_move_xy"}:
+                        execution_payload = execution_session.execute_move_mouse(int(target.get("x")), int(target.get("y")), step_idx)
+                        step_record["status"] = "moved"
+                    elif action_name in {"click_mouse", "browser_mouse_click_xy"}:
+                        execution_payload = execution_session.execute_click_mouse(int(target.get("x")), int(target.get("y")), step_idx)
+                        step_record["status"] = "clicked"
+                    elif action_name in {"type_text", "browser_type"}:
+                        text_value = str(tool_args.get("text") if action_name == "browser_type" else action.get("value") or "")
+                        execution_payload = execution_session.execute_type_text(text_value, step_idx)
+                        step_record["status"] = "typed"
+                        if question_state is not None:
+                            question_state["attempted"] = True
+                            question_state["attempted_correct"] = _value_matches(
+                                question_state.get("value"), text_value
+                            )
+                    elif action_name in {"wait", "browser_wait_for"}:
+                        wait_seconds = (
+                            max(0.25, float(tool_args.get("time") or 0.25))
+                            if action_name == "browser_wait_for"
+                            else max(0.25, float(action.get("delta") or 1000) / 1000.0)
                         )
-                    elif not question_state["verified"]:
-                        step_record["status"] = "filled_unverified"
-                        step_record["error"] = f"verification_failed: {verification_result.get('detail')}"
-                        _set_failure(annotations, "verification_failed", str(verification_result.get("detail")), step_idx)
+                        execution_session.execute_wait(wait_seconds, step_idx)
+                        execution_payload = {"status": "waited", "seconds": wait_seconds}
+                        step_record["status"] = "waited"
+                    elif action_name in {"scroll", "browser_mouse_wheel"}:
+                        delta = int(tool_args.get("deltaY") if action_name == "browser_mouse_wheel" else action.get("delta") or 600)
+                        execution_session.execute_scroll(delta, step_idx)
+                        execution_payload = {"status": "scrolled", "deltaX": int(tool_args.get("deltaX", 0)), "deltaY": delta}
+                        step_record["status"] = "scrolled"
+                    elif action_name in {"press_key", "browser_press_key"}:
+                        key = str(tool_args.get("key") if action_name == "browser_press_key" else action.get("value") or "Tab")
+                        execution_session.execute_press_key(key, step_idx)
+                        execution_payload = {"status": "pressed_key", "key": key}
+                        step_record["status"] = "pressed_key"
+                    elif action_name == "submit":
+                        submit_info, submit_err = execution_session.submit()
+                        execution_payload = submit_info
+                        if submit_err:
+                            step_record["status"] = "failed"
+                            step_record["error"] = f"submission_failed: {submit_err}"
+                            if human_ui_protocol:
+                                _record_soft_violation(annotations, "submission_failed", submit_err, step_idx)
+                            else:
+                                annotations["stop_reason"] = "submission_failed"
+                                _set_failure(annotations, "submission_failed", submit_err, step_idx)
+                        elif submit_info.get("success"):
+                            step_record["status"] = "submitted"
+                            annotations["success"] = True
+                            annotations["submit_success"] = True
+                            annotations["stop_reason"] = "submitted"
+                        else:
+                            step_record["status"] = "failed"
+                            step_record["error"] = "submission_failed: not confirmed"
+                            if human_ui_protocol:
+                                _record_soft_violation(
+                                    annotations,
+                                    "submission_failed",
+                                    json.dumps(submit_info, ensure_ascii=True),
+                                    step_idx,
+                                )
+                            else:
+                                annotations["stop_reason"] = "submission_failed"
+                                _set_failure(annotations, "submission_failed", json.dumps(submit_info, ensure_ascii=True), step_idx)
+                    elif action_name == "done":
+                        execution_payload = {"status": "done"}
+                        step_record["status"] = "done"
+                        annotations["stop_reason"] = "done"
+                except Exception as exc:
+                    exec_err = str(exc)
+
+                step_record["execution"] = execution_payload
+                io_record["execution"] = execution_payload
+                if exec_err:
+                    step_record["status"] = "failed"
+                    step_record["error"] = f"widget_interaction_failed: {exec_err}"
+                    if human_ui_protocol:
+                        _record_soft_violation(annotations, "widget_interaction_failed", exec_err, step_idx)
                     else:
-                        step_record["status"] = "filled"
+                        _set_failure(annotations, "widget_interaction_failed", exec_err, step_idx)
+
+                should_verify = _low_level_action_should_verify(action_name, question_state)
+                if should_verify and step_record.get("status") not in {"submitted", "done", "failed"}:
+                    verification_scope = (
+                        "full_pass"
+                        if action_name == "submit"
+                        else str(args.verification_scope or DEFAULT_VERIFICATION_SCOPE)
+                    )
+                    verification_rows = _run_verification_pass(
+                        execution_session,
+                        question_states,
+                        step_idx,
+                        verification_scope,
+                        target_question_state=question_state,
+                    )
+                    io_record["verification"] = verification_rows
+
+                    if question_state is not None:
+                        step_verification = question_state.get("last_verification") or {}
+                        step_record["verification"] = step_verification
+                        step_record["expected_label"] = question_state.get("label")
+                        step_record["expected_value"] = question_state.get("value")
+                        step_record["executed_value"] = _low_level_executed_value(action)
+                        if question_state.get("verified_correct"):
+                            step_record["status"] = "filled"
+                        elif question_state.get("verified"):
+                            step_record["status"] = "filled_unverified"
+                            step_record["error"] = "verification_failed"
+                            detail = json.dumps(
+                                {
+                                    "expected": question_state.get("value"),
+                                    "actual": step_verification.get("actual_value"),
+                                },
+                                ensure_ascii=True,
+                            )
+                            if human_ui_protocol:
+                                _record_soft_violation(annotations, "verification_failed", detail, step_idx)
+                            else:
+                                _set_failure(annotations, "verification_failed", detail, step_idx)
+                        elif action_name == "type_text" and step_record.get("status") == "typed":
+                            step_record["status"] = "filled_unverified"
+                            step_record["error"] = f"verification_failed: {step_verification.get('detail')}"
+                            if human_ui_protocol:
+                                _record_soft_violation(
+                                    annotations,
+                                    "verification_failed",
+                                    str(step_verification.get("detail")),
+                                    step_idx,
+                                )
+                            else:
+                                _set_failure(annotations, "verification_failed", str(step_verification.get("detail")), step_idx)
+            else:
+                if action_name == "wait":
+                    wait_seconds = max(0.25, float(action.get("delta") or 1000) / 1000.0)
+                    execution_session.execute_wait(wait_seconds, step_idx)
+                    step_record["status"] = "waited"
+                    io_record["execution"] = {"status": "waited", "seconds": wait_seconds}
+                elif action_name == "scroll":
+                    delta = int(action.get("delta") or 600)
+                    execution_session.execute_scroll(delta, step_idx)
+                    step_record["status"] = "scrolled"
+                    io_record["execution"] = {"status": "scrolled", "delta": delta}
+                elif action_name == "press_key":
+                    key = str(action.get("value") or "Tab")
+                    execution_session.execute_press_key(key, step_idx)
+                    step_record["status"] = "pressed_key"
+                    io_record["execution"] = {"status": "pressed_key", "key": key}
+                elif action_name == "submit":
+                    submit_info, submit_err = execution_session.submit()
+                    step_record["execution"] = submit_info
+                    io_record["execution"] = submit_info
+                    if submit_err:
+                        step_record["status"] = "failed"
+                        step_record["error"] = f"submission_failed: {submit_err}"
+                        annotations["stop_reason"] = "submission_failed"
+                        _set_failure(annotations, "submission_failed", submit_err, step_idx)
+                    elif submit_info.get("success"):
+                        step_record["status"] = "submitted"
+                        annotations["success"] = True
+                        annotations["submit_success"] = True
+                        annotations["stop_reason"] = "submitted"
+                    else:
+                        step_record["status"] = "failed"
+                        step_record["error"] = "submission_failed: not confirmed"
+                        annotations["stop_reason"] = "submission_failed"
+                        _set_failure(annotations, "submission_failed", json.dumps(submit_info, ensure_ascii=True), step_idx)
+                elif action_name == "done":
+                    step_record["status"] = "done"
+                    annotations["stop_reason"] = "done"
+                    io_record["execution"] = {"status": "done"}
+                else:
+                    matched_idx, question_state, match_debug = _match_question_state(question_states, action.get("target", {}))
+                    step_record["target_match"] = match_debug
+                    io_record["target_match"] = match_debug
+                    if question_state is None or matched_idx is None:
+                        detail = json.dumps(match_debug, ensure_ascii=True)
+                        step_record["status"] = "failed"
+                        step_record["error"] = "target_not_found"
+                        _set_failure(annotations, "target_not_found", detail, step_idx)
+                    else:
+                        action, coercion_warnings = _apply_action_policy(action, question_state, bool(args.disable_action_coercion))
+                        if coercion_warnings:
+                            step_record["warnings"] = list(dict.fromkeys(step_record["warnings"] + coercion_warnings))
+                            io_record["warnings"] = list(dict.fromkeys(io_record["warnings"] + coercion_warnings))
+                            step_record["action"] = action
+                            io_record["parsed_action"] = action
+                        resolved_action_name = action.get("action")
+                        if not _action_supported_for_widget(str(resolved_action_name), str(question_state.get("widget_type") or "")):
+                            step_record["status"] = "failed"
+                            step_record["error"] = f"widget_interaction_failed: incompatible_action_for_widget:{question_state.get('widget_type')}"
+                            _set_failure(annotations, "widget_interaction_failed", f"incompatible_action_for_widget:{question_state.get('widget_type')}", step_idx)
+                            step_record["progress_made"] = False
+                            io_record["progress_made"] = False
+                            idle_streak += 1
+                            annotations["steps"].append(step_record)
+                            _append_jsonl(paths["model_io_path"], io_record)
+                            last_result = {
+                                "status": step_record["status"],
+                                "error": step_record["error"],
+                                "remaining_answers": len(_serialize_remaining_answers(question_states)),
+                            }
+                            continue
+                        exec_entry = _build_entry_from_action(action, question_state)
+                        question_state["attempted"] = True
+                        step_record["matched_question_id"] = question_state.get("question_id")
+                        io_record["matched_question_id"] = question_state.get("question_id")
+                        action_result, exec_err = execution_session.execute_fill(exec_entry, step_idx)
+                        verification_result = execution_session.verify_entry(question_state, step_idx)
+                        question_state["last_execution"] = action_result
+                        question_state["last_verification"] = verification_result
+                        question_state["actual_value"] = verification_result.get("actual_value")
+                        question_state["attempted_correct"] = _value_matches(question_state.get("value"), exec_entry.get("value"))
+                        question_state["verified"] = bool(verification_result.get("verified"))
+                        question_state["verified_correct"] = bool(verification_result.get("verified")) and _value_matches(
+                            question_state.get("value"), verification_result.get("actual_value")
+                        )
+                        if question_state["verified_correct"]:
+                            question_state["final_status"] = "correct_verified"
+                        elif question_state["attempted_correct"]:
+                            question_state["final_status"] = "correct_attempted_only"
+                        else:
+                            question_state["final_status"] = "failed"
+
+                        step_record["execution"] = action_result
+                        step_record["verification"] = verification_result
+                        step_record["expected_label"] = question_state.get("label")
+                        step_record["expected_value"] = question_state.get("value")
+                        step_record["executed_value"] = exec_entry.get("value")
+                        io_record["execution"] = action_result
+                        io_record["verification"] = verification_result
+
+                        if exec_err:
+                            step_record["status"] = "failed"
+                            step_record["error"] = f"widget_interaction_failed: {exec_err}"
+                            _set_failure(annotations, "widget_interaction_failed", exec_err, step_idx)
+                        elif question_state["verified"] and not question_state["verified_correct"]:
+                            step_record["status"] = "filled_unverified"
+                            step_record["error"] = "verification_failed"
+                            _set_failure(
+                                annotations,
+                                "verification_failed",
+                                json.dumps({"expected": question_state.get("value"), "actual": verification_result.get("actual_value")}, ensure_ascii=True),
+                                step_idx,
+                            )
+                        elif not question_state["verified"]:
+                            step_record["status"] = "filled_unverified"
+                            step_record["error"] = f"verification_failed: {verification_result.get('detail')}"
+                            _set_failure(annotations, "verification_failed", str(verification_result.get("detail")), step_idx)
+                        else:
+                            step_record["status"] = "filled"
 
             remaining_after = len(_serialize_remaining_answers(question_states))
             progress_made = remaining_after < len(remaining_answers) or step_record.get("status") in {"submitted", "done"}
             step_record["progress_made"] = bool(progress_made)
             io_record["progress_made"] = bool(progress_made)
+            repeat_same_signature_count = _recent_repeat_same_signature_count(annotations.get("steps", []) + [step_record])
+            repeat_same_target_count = _recent_repeat_same_target_count(annotations.get("steps", []) + [step_record])
+            step_record["repeat_same_signature_count"] = repeat_same_signature_count
+            step_record["repeat_same_target_count"] = repeat_same_target_count
+            io_record["repeat_same_signature_count"] = repeat_same_signature_count
+            io_record["repeat_same_target_count"] = repeat_same_target_count
             if progress_made:
                 idle_streak = 0
             else:
                 idle_streak += 1
+                if repeat_same_signature_count >= STALL_REPEAT_THRESHOLD or repeat_same_target_count >= STALL_REPEAT_THRESHOLD:
+                    stall_type = "repeat_same_signature" if repeat_same_signature_count >= repeat_same_target_count else "repeat_same_target"
+                    step_record["stall_type"] = stall_type
+                    io_record["stall_type"] = stall_type
 
             annotations["steps"].append(step_record)
             _append_jsonl(paths["model_io_path"], io_record)
@@ -1875,10 +3348,47 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "error": step_record["error"],
                 "remaining_answers": len(_serialize_remaining_answers(question_states)),
             }
+            if not progress_made and repeat_same_signature_count >= STALL_TERMINAL_REPEAT_THRESHOLD:
+                annotations["stop_reason"] = "loop_stall_terminal"
+                _set_failure(
+                    annotations,
+                    "loop_stall_terminal",
+                    step_record.get("matched_question_id") or _action_signature(step_record),
+                    step_idx,
+                )
+            elif not progress_made and idle_streak >= NONPROGRESS_BUDGET_THRESHOLD:
+                annotations["stop_reason"] = "nonprogress_budget_exhausted"
+                _set_failure(
+                    annotations,
+                    "nonprogress_budget_exhausted",
+                    f"consecutive_nonprogress={idle_streak}",
+                    step_idx,
+                )
 
-            if annotations["stop_reason"] in {"submitted", "submission_failed", "model_output_invalid", "model_inference_failed", "done"}:
+            terminal_reasons = {
+                "submitted",
+                "model_output_invalid",
+                "model_inference_failed",
+                "done",
+                "loop_stall_terminal",
+                "nonprogress_budget_exhausted",
+            }
+            if not human_ui_protocol:
+                terminal_reasons.add("submission_failed")
+            if annotations["stop_reason"] in terminal_reasons:
                 break
 
+        if execution_session is not None:
+            try:
+                _run_verification_pass(
+                    execution_session,
+                    question_states,
+                    len(annotations.get("steps", [])),
+                    "full_pass",
+                    target_question_state=None,
+                )
+            except Exception:
+                pass
         if annotations["stop_reason"] is None:
             annotations["stop_reason"] = "max_steps_exceeded"
             _set_failure(annotations, "max_steps_exceeded", f"max_steps={args.max_steps}")
@@ -1914,7 +3424,27 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     metrics = _calculate_metrics(question_states)
     annotations.update(metrics)
+    if args.scoring_mode == "soft_quality_v1":
+        quality_metrics = _calculate_soft_quality_metrics(
+            steps=annotations.get("steps", []),
+            summary_metrics=metrics,
+            submit_success=bool(annotations.get("submit_success")),
+        )
+        annotations.update(quality_metrics)
+    annotations["repeat_target_loop_count"] = sum(
+        1 for row in annotations.get("steps", []) if str(row.get("stall_type") or "") in {"repeat_same_target", "repeat_same_signature"}
+    )
+    annotations["termination_due_to_loop_stall"] = annotations.get("stop_reason") == "loop_stall_terminal"
     annotations["duration_s"] = round(time.perf_counter() - start_time, 3)
+    annotations.update(
+        _resolve_reference_efficiency(
+            form_id=args.form_id,
+            answer_run_id=answer_run_id,
+            model_duration_s=annotations["duration_s"],
+            model_trace_path=paths["trace_path"],
+            model_action_count=annotations.get("action_count"),
+        )
+    )
     annotations["trace"] = trace_summary
     run_completed_utc = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     annotations["run_completed_utc"] = run_completed_utc
@@ -1931,6 +3461,11 @@ def main(argv: Optional[List[str]] = None) -> int:
         "track": annotations.get("track"),
         "provider": annotations.get("provider"),
         "inference_backend": annotations.get("inference_backend"),
+        "serving_mode": annotations.get("serving_mode"),
+        "server_backend": annotations.get("server_backend"),
+        "server_startup_s": annotations.get("server_startup_s"),
+        "server_warmup_s": annotations.get("server_warmup_s"),
+        "inference_roundtrip_s": annotations.get("inference_roundtrip_s"),
         "is_fallback_model": bool(annotations.get("is_fallback_model")),
         "fallback_for": annotations.get("fallback_for"),
         "form_id": args.form_id,
@@ -1938,6 +3473,12 @@ def main(argv: Optional[List[str]] = None) -> int:
         "execution_backend": args.execution_backend,
         "prompt_mode": DEFAULT_PROMPT_MODE,
         "prompt_profile": annotations.get("prompt_profile"),
+        "interaction_protocol": args.interaction_protocol,
+        "observation_mode": args.observation_mode,
+        "scoring_mode": args.scoring_mode,
+        "verification_scope": args.verification_scope,
+        "requested_control_level": args.control_level,
+        "control_level": effective_control_level,
         "context_package_version": annotations.get("context_package_version"),
         "success": bool(annotations["success"]),
         "submit_success": bool(annotations["submit_success"]),
@@ -1951,9 +3492,30 @@ def main(argv: Optional[List[str]] = None) -> int:
         "verified_count": annotations["verified_count"],
         "verified_correctness": annotations["verified_correctness"],
         "action_count": annotations["action_count"],
+        "trace_action_count": annotations.get("trace_action_count"),
+        "trace_action_count_source": annotations.get("trace_action_count_source"),
         "invalid_actions": annotations["invalid_actions"],
         "idle_reprompts": annotations.get("idle_reprompts", 0),
+        "model_driven_execution": bool(annotations.get("model_driven_execution")),
+        "autonomy_step_rate": annotations.get("autonomy_step_rate"),
+        "action_diversity": annotations.get("action_diversity"),
+        "loop_ratio": annotations.get("loop_ratio"),
+        "correction_count": annotations.get("correction_count"),
+        "composite_score": annotations.get("composite_score"),
+        "repeat_target_loop_count": annotations.get("repeat_target_loop_count"),
+        "termination_due_to_loop_stall": annotations.get("termination_due_to_loop_stall"),
+        "soft_violation_count": len(annotations.get("soft_violations", [])),
         "duration_s": annotations["duration_s"],
+        "reference_available": annotations.get("reference_available"),
+        "reference_run_path": annotations.get("reference_run_path"),
+        "reference_trace_path": annotations.get("reference_trace_path"),
+        "reference_video_path": annotations.get("reference_video_path"),
+        "reference_action_count": annotations.get("reference_action_count"),
+        "reference_duration_s": annotations.get("reference_duration_s"),
+        "action_overhead_ratio": annotations.get("action_overhead_ratio"),
+        "time_overhead_ratio": annotations.get("time_overhead_ratio"),
+        "action_count_delta": annotations.get("action_count_delta"),
+        "duration_delta_s": annotations.get("duration_delta_s"),
         "artifacts": annotations["artifacts"],
     }
 
@@ -1970,6 +3532,21 @@ def main(argv: Optional[List[str]] = None) -> int:
             "attempted_correctness": summary["attempted_correctness"],
             "verified_correctness": summary["verified_correctness"],
             "idle_reprompts": summary.get("idle_reprompts", 0),
+            "model_driven_execution": summary.get("model_driven_execution"),
+            "autonomy_step_rate": summary.get("autonomy_step_rate"),
+            "action_diversity": summary.get("action_diversity"),
+            "loop_ratio": summary.get("loop_ratio"),
+            "correction_count": summary.get("correction_count"),
+            "composite_score": summary.get("composite_score"),
+            "repeat_target_loop_count": summary.get("repeat_target_loop_count"),
+            "termination_due_to_loop_stall": summary.get("termination_due_to_loop_stall"),
+            "soft_violation_count": summary.get("soft_violation_count"),
+            "reference_available": summary.get("reference_available"),
+            "reference_action_count": summary.get("reference_action_count"),
+            "reference_duration_s": summary.get("reference_duration_s"),
+            "action_overhead_ratio": summary.get("action_overhead_ratio"),
+            "time_overhead_ratio": summary.get("time_overhead_ratio"),
+            "trace_action_count": summary.get("trace_action_count"),
         },
     )
 
@@ -1987,9 +3564,20 @@ def main(argv: Optional[List[str]] = None) -> int:
         "track": annotations.get("track"),
         "provider": annotations.get("provider"),
         "inference_backend": annotations.get("inference_backend"),
+        "serving_mode": annotations.get("serving_mode"),
+        "server_backend": annotations.get("server_backend"),
+        "server_startup_s": annotations.get("server_startup_s"),
+        "server_warmup_s": annotations.get("server_warmup_s"),
+        "inference_roundtrip_s": annotations.get("inference_roundtrip_s"),
         "is_fallback_model": bool(annotations.get("is_fallback_model")),
         "fallback_for": annotations.get("fallback_for"),
         "prompt_profile": annotations.get("prompt_profile"),
+        "interaction_protocol": args.interaction_protocol,
+        "observation_mode": args.observation_mode,
+        "scoring_mode": args.scoring_mode,
+        "verification_scope": args.verification_scope,
+        "requested_control_level": args.control_level,
+        "control_level": effective_control_level,
         "context_package_version": annotations.get("context_package_version"),
         "form_id": args.form_id,
         "answer_run_id": answer_run_id,
@@ -1998,6 +3586,22 @@ def main(argv: Optional[List[str]] = None) -> int:
         "stop_reason": summary["stop_reason"],
         "failure_category": summary["failure_category"],
         "failure_detail": summary["failure_detail"],
+        "model_driven_execution": summary.get("model_driven_execution"),
+        "autonomy_step_rate": summary.get("autonomy_step_rate"),
+        "action_diversity": summary.get("action_diversity"),
+        "loop_ratio": summary.get("loop_ratio"),
+        "correction_count": summary.get("correction_count"),
+        "composite_score": summary.get("composite_score"),
+        "repeat_target_loop_count": summary.get("repeat_target_loop_count"),
+        "termination_due_to_loop_stall": summary.get("termination_due_to_loop_stall"),
+        "soft_violation_count": summary.get("soft_violation_count"),
+        "trace_action_count": summary.get("trace_action_count"),
+        "trace_action_count_source": summary.get("trace_action_count_source"),
+        "reference_available": summary.get("reference_available"),
+        "reference_action_count": summary.get("reference_action_count"),
+        "reference_duration_s": summary.get("reference_duration_s"),
+        "action_overhead_ratio": summary.get("action_overhead_ratio"),
+        "time_overhead_ratio": summary.get("time_overhead_ratio"),
         "summary_path": str(paths["summary_path"]),
         "annotations_path": str(paths["annotations_path"]),
         "trace_path": str(paths["trace_path"]),

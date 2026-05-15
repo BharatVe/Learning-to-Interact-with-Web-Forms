@@ -1,0 +1,91 @@
+form_id,run_id,q_title,q_type,answer
+job_fair,run_0001,Full name,SHORT_TEXT,Riley Rivera
+job_fair,run_0001,Email address,SHORT_TEXT,riley.rivera.1@mail.test
+job_fair,run_0001,Current study level,SINGLE_CHOICE,Bachelor's
+job_fair,run_0001,Career interests,MULTI_CHOICE,Data Engineering;AI/ML;Consulting
+job_fair,run_0001,Are you currently looking for a job?,SINGLE_CHOICE,Maybe soon
+job_fair,run_0001,Preferred attendance date,DATE,2025-09-28
+job_fair,run_0001,Preferred arrival time,TIME,09:00
+job_fair,run_0001,Sessions you want to attend,MULTI_CHOICE,Company booths
+job_fair,run_0001,Questions for recruiters,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Questions for recruiters; run 1)
+job_fair,run_0002,Full name,SHORT_TEXT,Morgan Khan
+job_fair,run_0002,Email address,SHORT_TEXT,morgan.khan.2@mail.test
+job_fair,run_0002,Current study level,SINGLE_CHOICE,Bachelor's
+job_fair,run_0002,Career interests,MULTI_CHOICE,Product Management
+job_fair,run_0002,Are you currently looking for a job?,SINGLE_CHOICE,Maybe soon
+job_fair,run_0002,Preferred attendance date,DATE,2025-10-20
+job_fair,run_0002,Preferred arrival time,TIME,16:45
+job_fair,run_0002,Sessions you want to attend,MULTI_CHOICE,Company booths
+job_fair,run_0002,Questions for recruiters,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Questions for recruiters; run 2)
+job_fair,run_0003,Full name,SHORT_TEXT,Avery Chen
+job_fair,run_0003,Email address,SHORT_TEXT,avery.chen.3@research.edu
+job_fair,run_0003,Current study level,SINGLE_CHOICE,Master's
+job_fair,run_0003,Career interests,MULTI_CHOICE,Consulting
+job_fair,run_0003,Are you currently looking for a job?,SINGLE_CHOICE,Yes
+job_fair,run_0003,Preferred attendance date,DATE,2025-09-12
+job_fair,run_0003,Preferred arrival time,TIME,10:15
+job_fair,run_0003,Sessions you want to attend,MULTI_CHOICE,Company booths;CV review;Networking
+job_fair,run_0003,Questions for recruiters,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Questions for recruiters; run 3)
+job_fair,run_0004,Full name,SHORT_TEXT,Priya Singh
+job_fair,run_0004,Email address,SHORT_TEXT,priya.singh.4@example.com
+job_fair,run_0004,Current study level,SINGLE_CHOICE,Graduate
+job_fair,run_0004,Career interests,MULTI_CHOICE,AI/ML;Product Management;Research
+job_fair,run_0004,Are you currently looking for a job?,SINGLE_CHOICE,Maybe soon
+job_fair,run_0004,Preferred attendance date,DATE,2025-06-01
+job_fair,run_0004,Preferred arrival time,TIME,11:30
+job_fair,run_0004,Sessions you want to attend,MULTI_CHOICE,CV review;Tech talks;Networking
+job_fair,run_0004,Questions for recruiters,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Questions for recruiters; run 4)
+job_fair,run_0005,Full name,SHORT_TEXT,Taylor Chen
+job_fair,run_0005,Email address,SHORT_TEXT,taylor.chen.5@example.com
+job_fair,run_0005,Current study level,SINGLE_CHOICE,Graduate
+job_fair,run_0005,Career interests,MULTI_CHOICE,Consulting
+job_fair,run_0005,Are you currently looking for a job?,SINGLE_CHOICE,No
+job_fair,run_0005,Preferred attendance date,DATE,2025-10-26
+job_fair,run_0005,Preferred arrival time,TIME,15:30
+job_fair,run_0005,Sessions you want to attend,MULTI_CHOICE,Company booths;Mock interviews;Tech talks
+job_fair,run_0005,Questions for recruiters,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Questions for recruiters; run 5)
+job_fair,run_0006,Full name,SHORT_TEXT,Casey Khan
+job_fair,run_0006,Email address,SHORT_TEXT,casey.khan.6@mail.test
+job_fair,run_0006,Current study level,SINGLE_CHOICE,PhD
+job_fair,run_0006,Career interests,MULTI_CHOICE,Software Engineering;Data Engineering
+job_fair,run_0006,Are you currently looking for a job?,SINGLE_CHOICE,Yes
+job_fair,run_0006,Preferred attendance date,DATE,2025-10-30
+job_fair,run_0006,Preferred arrival time,TIME,15:30
+job_fair,run_0006,Sessions you want to attend,MULTI_CHOICE,Mock interviews
+job_fair,run_0006,Questions for recruiters,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Questions for recruiters; run 6)
+job_fair,run_0007,Full name,SHORT_TEXT,Riley Singh
+job_fair,run_0007,Email address,SHORT_TEXT,riley.singh.7@mail.test
+job_fair,run_0007,Current study level,SINGLE_CHOICE,Bachelor's
+job_fair,run_0007,Career interests,MULTI_CHOICE,Software Engineering
+job_fair,run_0007,Are you currently looking for a job?,SINGLE_CHOICE,Maybe soon
+job_fair,run_0007,Preferred attendance date,DATE,2025-06-30
+job_fair,run_0007,Preferred arrival time,TIME,09:00
+job_fair,run_0007,Sessions you want to attend,MULTI_CHOICE,Mock interviews;Tech talks;Networking
+job_fair,run_0007,Questions for recruiters,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Questions for recruiters; run 7)
+job_fair,run_0008,Full name,SHORT_TEXT,Avery Singh
+job_fair,run_0008,Email address,SHORT_TEXT,avery.singh.8@mail.test
+job_fair,run_0008,Current study level,SINGLE_CHOICE,Graduate
+job_fair,run_0008,Career interests,MULTI_CHOICE,Consulting
+job_fair,run_0008,Are you currently looking for a job?,SINGLE_CHOICE,No
+job_fair,run_0008,Preferred attendance date,DATE,2025-11-06
+job_fair,run_0008,Preferred arrival time,TIME,11:30
+job_fair,run_0008,Sessions you want to attend,MULTI_CHOICE,Company booths;CV review;Tech talks
+job_fair,run_0008,Questions for recruiters,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Questions for recruiters; run 8)"
+job_fair,run_0009,Full name,SHORT_TEXT,Casey Chen
+job_fair,run_0009,Email address,SHORT_TEXT,casey.chen.9@mail.test
+job_fair,run_0009,Current study level,SINGLE_CHOICE,Bachelor's
+job_fair,run_0009,Career interests,MULTI_CHOICE,Product Management
+job_fair,run_0009,Are you currently looking for a job?,SINGLE_CHOICE,Yes
+job_fair,run_0009,Preferred attendance date,DATE,2025-08-05
+job_fair,run_0009,Preferred arrival time,TIME,14:15
+job_fair,run_0009,Sessions you want to attend,MULTI_CHOICE,Company booths
+job_fair,run_0009,Questions for recruiters,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Questions for recruiters; run 9)
+job_fair,run_0010,Full name,SHORT_TEXT,Avery Khan
+job_fair,run_0010,Email address,SHORT_TEXT,avery.khan.10@demo.org
+job_fair,run_0010,Current study level,SINGLE_CHOICE,Bachelor's
+job_fair,run_0010,Career interests,MULTI_CHOICE,Research
+job_fair,run_0010,Are you currently looking for a job?,SINGLE_CHOICE,Maybe soon
+job_fair,run_0010,Preferred attendance date,DATE,2025-09-22
+job_fair,run_0010,Preferred arrival time,TIME,13:00
+job_fair,run_0010,Sessions you want to attend,MULTI_CHOICE,Company booths;Networking
+job_fair,run_0010,Questions for recruiters,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Questions for recruiters; run 10)"

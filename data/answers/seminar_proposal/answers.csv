@@ -1,0 +1,81 @@
+form_id,run_id,q_title,q_type,answer
+seminar_proposal,run_0001,Full name,SHORT_TEXT,Morgan Kim
+seminar_proposal,run_0001,Email address,SHORT_TEXT,morgan.kim.1@example.com
+seminar_proposal,run_0001,Proposed seminar title,SHORT_TEXT,beta-01-55
+seminar_proposal,run_0001,Topic area,SINGLE_CHOICE,Visualization
+seminar_proposal,run_0001,Short abstract,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short abstract; run 1)
+seminar_proposal,run_0001,Preferred presentation date,DATE,2025-11-08
+seminar_proposal,run_0001,Preferred presentation time,TIME,16:45
+seminar_proposal,run_0001,Resources needed,MULTI_CHOICE,Whiteboard;Internet access;Demo setup
+seminar_proposal,run_0002,Full name,SHORT_TEXT,Riley Kim
+seminar_proposal,run_0002,Email address,SHORT_TEXT,riley.kim.2@research.edu
+seminar_proposal,run_0002,Proposed seminar title,SHORT_TEXT,beta-02-19
+seminar_proposal,run_0002,Topic area,SINGLE_CHOICE,Systems
+seminar_proposal,run_0002,Short abstract,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Short abstract; run 2)
+seminar_proposal,run_0002,Preferred presentation date,DATE,2025-08-20
+seminar_proposal,run_0002,Preferred presentation time,TIME,15:30
+seminar_proposal,run_0002,Resources needed,MULTI_CHOICE,None
+seminar_proposal,run_0003,Full name,SHORT_TEXT,Casey Chen
+seminar_proposal,run_0003,Email address,SHORT_TEXT,casey.chen.3@mail.test
+seminar_proposal,run_0003,Proposed seminar title,SHORT_TEXT,sigma-03-95
+seminar_proposal,run_0003,Topic area,SINGLE_CHOICE,Data Science
+seminar_proposal,run_0003,Short abstract,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short abstract; run 3)
+seminar_proposal,run_0003,Preferred presentation date,DATE,2025-06-04
+seminar_proposal,run_0003,Preferred presentation time,TIME,13:00
+seminar_proposal,run_0003,Resources needed,MULTI_CHOICE,None
+seminar_proposal,run_0004,Full name,SHORT_TEXT,Morgan Patel
+seminar_proposal,run_0004,Email address,SHORT_TEXT,morgan.patel.4@research.edu
+seminar_proposal,run_0004,Proposed seminar title,SHORT_TEXT,delta-04-15
+seminar_proposal,run_0004,Topic area,SINGLE_CHOICE,Ethics in AI
+seminar_proposal,run_0004,Short abstract,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Short abstract; run 4)
+seminar_proposal,run_0004,Preferred presentation date,DATE,2025-11-06
+seminar_proposal,run_0004,Preferred presentation time,TIME,13:00
+seminar_proposal,run_0004,Resources needed,MULTI_CHOICE,Projector;Internet access;Demo setup
+seminar_proposal,run_0005,Full name,SHORT_TEXT,Riley Kim
+seminar_proposal,run_0005,Email address,SHORT_TEXT,riley.kim.5@mail.test
+seminar_proposal,run_0005,Proposed seminar title,SHORT_TEXT,alpha-05-47
+seminar_proposal,run_0005,Topic area,SINGLE_CHOICE,Machine Learning
+seminar_proposal,run_0005,Short abstract,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short abstract; run 5)
+seminar_proposal,run_0005,Preferred presentation date,DATE,2025-10-03
+seminar_proposal,run_0005,Preferred presentation time,TIME,13:00
+seminar_proposal,run_0005,Resources needed,MULTI_CHOICE,Projector
+seminar_proposal,run_0006,Full name,SHORT_TEXT,Priya Rivera
+seminar_proposal,run_0006,Email address,SHORT_TEXT,priya.rivera.6@research.edu
+seminar_proposal,run_0006,Proposed seminar title,SHORT_TEXT,beta-06-45
+seminar_proposal,run_0006,Topic area,SINGLE_CHOICE,Machine Learning
+seminar_proposal,run_0006,Short abstract,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short abstract; run 6)
+seminar_proposal,run_0006,Preferred presentation date,DATE,2025-07-27
+seminar_proposal,run_0006,Preferred presentation time,TIME,09:00
+seminar_proposal,run_0006,Resources needed,MULTI_CHOICE,Whiteboard;Internet access;None
+seminar_proposal,run_0007,Full name,SHORT_TEXT,Taylor Khan
+seminar_proposal,run_0007,Email address,SHORT_TEXT,taylor.khan.7@mail.test
+seminar_proposal,run_0007,Proposed seminar title,SHORT_TEXT,delta-07-87
+seminar_proposal,run_0007,Topic area,SINGLE_CHOICE,Visualization
+seminar_proposal,run_0007,Short abstract,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Short abstract; run 7)
+seminar_proposal,run_0007,Preferred presentation date,DATE,2025-08-16
+seminar_proposal,run_0007,Preferred presentation time,TIME,08:30
+seminar_proposal,run_0007,Resources needed,MULTI_CHOICE,None
+seminar_proposal,run_0008,Full name,SHORT_TEXT,Priya Nguyen
+seminar_proposal,run_0008,Email address,SHORT_TEXT,priya.nguyen.8@research.edu
+seminar_proposal,run_0008,Proposed seminar title,SHORT_TEXT,gamma-08-60
+seminar_proposal,run_0008,Topic area,SINGLE_CHOICE,Systems
+seminar_proposal,run_0008,Short abstract,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Short abstract; run 8)
+seminar_proposal,run_0008,Preferred presentation date,DATE,2025-07-09
+seminar_proposal,run_0008,Preferred presentation time,TIME,13:00
+seminar_proposal,run_0008,Resources needed,MULTI_CHOICE,Whiteboard;None
+seminar_proposal,run_0009,Full name,SHORT_TEXT,Avery Ortiz
+seminar_proposal,run_0009,Email address,SHORT_TEXT,avery.ortiz.9@example.com
+seminar_proposal,run_0009,Proposed seminar title,SHORT_TEXT,sigma-09-68
+seminar_proposal,run_0009,Topic area,SINGLE_CHOICE,Visualization
+seminar_proposal,run_0009,Short abstract,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Short abstract; run 9)"
+seminar_proposal,run_0009,Preferred presentation date,DATE,2025-10-11
+seminar_proposal,run_0009,Preferred presentation time,TIME,08:30
+seminar_proposal,run_0009,Resources needed,MULTI_CHOICE,None
+seminar_proposal,run_0010,Full name,SHORT_TEXT,Sam Meyer
+seminar_proposal,run_0010,Email address,SHORT_TEXT,sam.meyer.10@demo.org
+seminar_proposal,run_0010,Proposed seminar title,SHORT_TEXT,delta-10-78
+seminar_proposal,run_0010,Topic area,SINGLE_CHOICE,Data Science
+seminar_proposal,run_0010,Short abstract,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Short abstract; run 10)
+seminar_proposal,run_0010,Preferred presentation date,DATE,2025-07-03
+seminar_proposal,run_0010,Preferred presentation time,TIME,16:45
+seminar_proposal,run_0010,Resources needed,MULTI_CHOICE,Internet access;Demo setup

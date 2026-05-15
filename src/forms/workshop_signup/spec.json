@@ -1,205 +1,83 @@
 {
   "form_id": "workshop_signup",
-  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeN0TV7ViBbjXqdaeKrk5zA38Wh9jtv-ivoSktmt2fU0ZZoQQ/viewform",
-  "description": "Answer variations for the Workshop Signup form. Each run varies attendee details, track choice, and update preferences.",
-  "runs": [
+  "form_title": "Workshop Registration",
+  "form_description": "Signup form for workshops including track selection and preferences.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1KCDpqbQwYtRn0mMz1n7bZXqmCG62E67G7_fh1VEX1f8/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSc6O_nHyjuawNuojYxqR3ETTA6Z31zLIS0dt0Q4DKS-m1Belw/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSc6O_nHyjuawNuojYxqR3ETTA6Z31zLIS0dt0Q4DKS-m1Belw/viewform",
+  "question_count": 7,
+  "questions": [
     {
-      "suffix": "student_intro",
-      "notes": "Beginner student registering for the intro track.",
-      "answers": [
-        {
-          "label": "Full name",
-          "widget_type": "short_text",
-          "value": "Lena Ortiz",
-          "tags": [
-            "profile",
-            "identity"
-          ]
-        },
-        {
-          "label": "University or organization",
-          "widget_type": "short_text",
-          "value": "Stanford University",
-          "tags": [
-            "profile",
-            "organization"
-          ]
-        },
-        {
-          "label": "Which workshop track are you registering for?",
-          "widget_type": "single_choice",
-          "value": "Intro to Machine Learning",
-          "tags": [
-            "track"
-          ]
-        },
-        {
-          "label": "Experience level",
-          "widget_type": "single_choice",
-          "value": "Beginner",
-          "tags": [
-            "experience"
-          ]
-        },
-        {
-          "label": "Dietary restrictions",
-          "widget_type": "multi_choice",
-          "value": [
-            "None"
-          ],
-          "tags": [
-            "diet"
-          ]
-        },
-        {
-          "label": "Preferred session date",
-          "widget_type": "date",
-          "value": "2025-07-05",
-          "tags": [
-            "scheduling"
-          ]
-        },
-        {
-          "label": "May we email you updates?",
-          "widget_type": "single_choice",
-          "value": "Yes",
-          "tags": [
-            "consent"
-          ]
-        }
-      ]
+      "section_order": 1,
+      "section_title": "Attendee info",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
     },
     {
-      "suffix": "pro_data",
-      "notes": "Advanced attendee focused on data engineering.",
-      "answers": [
-        {
-          "label": "Full name",
-          "widget_type": "short_text",
-          "value": "Riley Patel",
-          "tags": [
-            "profile",
-            "identity"
-          ]
-        },
-        {
-          "label": "University or organization",
-          "widget_type": "short_text",
-          "value": "DataFlux Labs",
-          "tags": [
-            "profile",
-            "organization"
-          ]
-        },
-        {
-          "label": "Which workshop track are you registering for?",
-          "widget_type": "single_choice",
-          "value": "Advanced Data Engineering",
-          "tags": [
-            "track"
-          ]
-        },
-        {
-          "label": "Experience level",
-          "widget_type": "single_choice",
-          "value": "Advanced",
-          "tags": [
-            "experience"
-          ]
-        },
-        {
-          "label": "Dietary restrictions",
-          "widget_type": "multi_choice",
-          "value": [
-            "Vegan"
-          ],
-          "tags": [
-            "diet"
-          ]
-        },
-        {
-          "label": "Preferred session date",
-          "widget_type": "date",
-          "value": "2025-07-06",
-          "tags": [
-            "scheduling"
-          ]
-        },
-        {
-          "label": "May we email you updates?",
-          "widget_type": "single_choice",
-          "value": "Yes",
-          "tags": [
-            "consent"
-          ]
-        }
-      ]
+      "section_order": 1,
+      "section_title": "Attendee info",
+      "q_order": 2,
+      "q_title": "University or organization",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
     },
     {
-      "suffix": "ui_agents",
-      "notes": "Intermediate attendee interested in UI agents.",
-      "answers": [
-        {
-          "label": "Full name",
-          "widget_type": "short_text",
-          "value": "Morgan Lee",
-          "tags": [
-            "profile",
-            "identity"
-          ]
-        },
-        {
-          "label": "University or organization",
-          "widget_type": "short_text",
-          "value": "UX Collective",
-          "tags": [
-            "profile",
-            "organization"
-          ]
-        },
-        {
-          "label": "Which workshop track are you registering for?",
-          "widget_type": "single_choice",
-          "value": "UI Agents and Automation",
-          "tags": [
-            "track"
-          ]
-        },
-        {
-          "label": "Experience level",
-          "widget_type": "single_choice",
-          "value": "Intermediate",
-          "tags": [
-            "experience"
-          ]
-        },
-        {
-          "label": "Dietary restrictions",
-          "widget_type": "multi_choice",
-          "value": [
-            "Vegetarian"
-          ],
-          "tags": [
-            "diet"
-          ]
-        },
-        {
-          "label": "Preferred session date",
-          "widget_type": "date",
-          "value": "2025-07-07",
-          "tags": [
-            "scheduling"
-          ]
-        },
-        {
-          "label": "May we email you updates?",
-          "widget_type": "single_choice",
-          "value": "No",
-          "tags": [
-            "consent"
-          ]
-        }
-      ]
+      "section_order": 1,
+      "section_title": "Attendee info",
+      "q_order": 3,
+      "q_title": "Which workshop track are you registering for?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Intro to Machine Learning;Advanced Data Engineering;UI Agents and Automation",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Attendee info",
+      "q_order": 4,
+      "q_title": "Experience level",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Beginner;Intermediate;Advanced",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Attendee info",
+      "q_order": 5,
+      "q_title": "Dietary restrictions",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Vegetarian;Vegan;Halal;None;Other",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Attendee info",
+      "q_order": 6,
+      "q_title": "Preferred session date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Attendee info",
+      "q_order": 7,
+      "q_title": "May we email you updates?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No",
+      "help_text": ""
     }
-  ]
+  ],
+  "source": "From Generator CSV sync"
 }

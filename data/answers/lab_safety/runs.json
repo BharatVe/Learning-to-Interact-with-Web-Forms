@@ -1,0 +1,817 @@
+{
+  "form_id": "lab_safety",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Sam Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University email",
+          "widget_type": "short_text",
+          "value": "sam.kim.1@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role",
+          "widget_type": "single_choice",
+          "value": "PhD student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Lab area you need access to",
+          "widget_type": "dropdown",
+          "value": "Wet lab",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Previous safety training completed",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Training topics needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Machine safety"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred training date",
+          "widget_type": "date",
+          "value": "2025-06-12",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Questions for the trainer",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Questions for the trainer; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University email",
+          "widget_type": "short_text",
+          "value": "priya.patel.2@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role",
+          "widget_type": "single_choice",
+          "value": "Visitor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Lab area you need access to",
+          "widget_type": "dropdown",
+          "value": "Wet lab",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Previous safety training completed",
+          "widget_type": "single_choice",
+          "value": "Not sure",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Training topics needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Machine safety"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred training date",
+          "widget_type": "date",
+          "value": "2025-11-22",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Questions for the trainer",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Questions for the trainer; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University email",
+          "widget_type": "short_text",
+          "value": "priya.patel.3@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role",
+          "widget_type": "single_choice",
+          "value": "PhD student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Lab area you need access to",
+          "widget_type": "dropdown",
+          "value": "Wet lab",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Previous safety training completed",
+          "widget_type": "single_choice",
+          "value": "Not sure",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Training topics needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "General safety",
+            "Chemical handling"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred training date",
+          "widget_type": "date",
+          "value": "2025-10-03",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Questions for the trainer",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Questions for the trainer; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University email",
+          "widget_type": "short_text",
+          "value": "priya.singh.4@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role",
+          "widget_type": "single_choice",
+          "value": "Bachelor's student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Lab area you need access to",
+          "widget_type": "dropdown",
+          "value": "Robotics lab",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Previous safety training completed",
+          "widget_type": "single_choice",
+          "value": "Not sure",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Training topics needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Chemical handling",
+            "Machine safety",
+            "Emergency procedures"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred training date",
+          "widget_type": "date",
+          "value": "2025-08-25",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Questions for the trainer",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Questions for the trainer; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Morgan Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University email",
+          "widget_type": "short_text",
+          "value": "morgan.khan.5@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role",
+          "widget_type": "single_choice",
+          "value": "Master's student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Lab area you need access to",
+          "widget_type": "dropdown",
+          "value": "Computer lab",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Previous safety training completed",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Training topics needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "General safety",
+            "Electrical safety"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred training date",
+          "widget_type": "date",
+          "value": "2025-06-23",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Questions for the trainer",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Questions for the trainer; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Taylor Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University email",
+          "widget_type": "short_text",
+          "value": "taylor.bauer.6@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role",
+          "widget_type": "single_choice",
+          "value": "Master's student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Lab area you need access to",
+          "widget_type": "dropdown",
+          "value": "Robotics lab",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Previous safety training completed",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Training topics needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "General safety",
+            "Emergency procedures"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred training date",
+          "widget_type": "date",
+          "value": "2025-09-19",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Questions for the trainer",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Questions for the trainer; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Jordan Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University email",
+          "widget_type": "short_text",
+          "value": "jordan.singh.7@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role",
+          "widget_type": "single_choice",
+          "value": "Master's student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Lab area you need access to",
+          "widget_type": "dropdown",
+          "value": "Workshop",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Previous safety training completed",
+          "widget_type": "single_choice",
+          "value": "Not sure",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Training topics needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Electrical safety",
+            "Machine safety",
+            "Emergency procedures"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred training date",
+          "widget_type": "date",
+          "value": "2025-06-25",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Questions for the trainer",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Questions for the trainer; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Taylor Meyer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University email",
+          "widget_type": "short_text",
+          "value": "taylor.meyer.8@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role",
+          "widget_type": "single_choice",
+          "value": "Master's student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Lab area you need access to",
+          "widget_type": "dropdown",
+          "value": "Robotics lab",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Previous safety training completed",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Training topics needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "General safety",
+            "Electrical safety",
+            "Machine safety"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred training date",
+          "widget_type": "date",
+          "value": "2025-07-17",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Questions for the trainer",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Questions for the trainer; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University email",
+          "widget_type": "short_text",
+          "value": "riley.ortiz.9@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role",
+          "widget_type": "single_choice",
+          "value": "PhD student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Lab area you need access to",
+          "widget_type": "dropdown",
+          "value": "Workshop",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Previous safety training completed",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Training topics needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "General safety",
+            "Electrical safety"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred training date",
+          "widget_type": "date",
+          "value": "2025-09-24",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Questions for the trainer",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Questions for the trainer; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Casey Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University email",
+          "widget_type": "short_text",
+          "value": "casey.khan.10@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Role",
+          "widget_type": "single_choice",
+          "value": "PhD student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Lab area you need access to",
+          "widget_type": "dropdown",
+          "value": "Robotics lab",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Previous safety training completed",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Training topics needed",
+          "widget_type": "multi_choice",
+          "value": [
+            "General safety",
+            "Emergency procedures"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred training date",
+          "widget_type": "date",
+          "value": "2025-10-06",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Questions for the trainer",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Questions for the trainer; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    }
+  ]
+}

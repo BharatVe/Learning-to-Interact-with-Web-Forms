@@ -1,0 +1,933 @@
+{
+  "form_id": "language_exchange",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "avery.patel.1@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Native language",
+          "widget_type": "short_text",
+          "value": "delta-01-41",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Language(s) you want to practice",
+          "widget_type": "multi_choice",
+          "value": [
+            "Spanish",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level speaking target language",
+          "widget_type": "single_choice",
+          "value": "Advanced",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred format",
+          "widget_type": "single_choice",
+          "value": "In person",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-11-14",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Topics you enjoy discussing",
+          "widget_type": "multi_choice",
+          "value": [
+            "Travel",
+            "Daily life"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "avery.khan.2@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Native language",
+          "widget_type": "short_text",
+          "value": "gamma-02-94",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Language(s) you want to practice",
+          "widget_type": "multi_choice",
+          "value": [
+            "German"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level speaking target language",
+          "widget_type": "single_choice",
+          "value": "Beginner",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred format",
+          "widget_type": "single_choice",
+          "value": "In person",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-09-27",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Topics you enjoy discussing",
+          "widget_type": "multi_choice",
+          "value": [
+            "Daily life"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Casey Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "casey.patel.3@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Native language",
+          "widget_type": "short_text",
+          "value": "alpha-03-91",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Language(s) you want to practice",
+          "widget_type": "multi_choice",
+          "value": [
+            "German",
+            "Hindi"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level speaking target language",
+          "widget_type": "single_choice",
+          "value": "Intermediate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred format",
+          "widget_type": "single_choice",
+          "value": "Online",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-08-24",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Topics you enjoy discussing",
+          "widget_type": "multi_choice",
+          "value": [
+            "Technology"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "riley.kim.4@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Native language",
+          "widget_type": "short_text",
+          "value": "gamma-04-89",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Language(s) you want to practice",
+          "widget_type": "multi_choice",
+          "value": [
+            "French",
+            "Spanish"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level speaking target language",
+          "widget_type": "single_choice",
+          "value": "Beginner",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred format",
+          "widget_type": "single_choice",
+          "value": "Either",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-09-25",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Topics you enjoy discussing",
+          "widget_type": "multi_choice",
+          "value": [
+            "Food",
+            "Daily life"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "priya.bauer.5@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Native language",
+          "widget_type": "short_text",
+          "value": "omega-05-92",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Language(s) you want to practice",
+          "widget_type": "multi_choice",
+          "value": [
+            "English",
+            "Spanish",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level speaking target language",
+          "widget_type": "single_choice",
+          "value": "Advanced",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred format",
+          "widget_type": "single_choice",
+          "value": "In person",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-09-08",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Topics you enjoy discussing",
+          "widget_type": "multi_choice",
+          "value": [
+            "Daily life"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "lena.nguyen.6@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Native language",
+          "widget_type": "short_text",
+          "value": "delta-06-51",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Language(s) you want to practice",
+          "widget_type": "multi_choice",
+          "value": [
+            "French"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level speaking target language",
+          "widget_type": "single_choice",
+          "value": "Advanced",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred format",
+          "widget_type": "single_choice",
+          "value": "Online",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-06-19",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Topics you enjoy discussing",
+          "widget_type": "multi_choice",
+          "value": [
+            "Travel",
+            "Food"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "noah.ortiz.7@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Native language",
+          "widget_type": "short_text",
+          "value": "delta-07-09",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Language(s) you want to practice",
+          "widget_type": "multi_choice",
+          "value": [
+            "English",
+            "French"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level speaking target language",
+          "widget_type": "single_choice",
+          "value": "Intermediate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred format",
+          "widget_type": "single_choice",
+          "value": "Online",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-09-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Topics you enjoy discussing",
+          "widget_type": "multi_choice",
+          "value": [
+            "Daily life"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "lena.ortiz.8@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Native language",
+          "widget_type": "short_text",
+          "value": "beta-08-22",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Language(s) you want to practice",
+          "widget_type": "multi_choice",
+          "value": [
+            "German",
+            "French",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level speaking target language",
+          "widget_type": "single_choice",
+          "value": "Beginner",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred format",
+          "widget_type": "single_choice",
+          "value": "In person",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-06-21",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Topics you enjoy discussing",
+          "widget_type": "multi_choice",
+          "value": [
+            "Travel",
+            "Culture"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Sam Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "sam.ortiz.9@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Native language",
+          "widget_type": "short_text",
+          "value": "beta-09-87",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Language(s) you want to practice",
+          "widget_type": "multi_choice",
+          "value": [
+            "English"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level speaking target language",
+          "widget_type": "single_choice",
+          "value": "Advanced",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred format",
+          "widget_type": "single_choice",
+          "value": "Online",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-06-11",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Topics you enjoy discussing",
+          "widget_type": "multi_choice",
+          "value": [
+            "Travel",
+            "Culture"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Morgan Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "morgan.khan.10@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Native language",
+          "widget_type": "short_text",
+          "value": "alpha-10-64",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Language(s) you want to practice",
+          "widget_type": "multi_choice",
+          "value": [
+            "English",
+            "German",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Comfort level speaking target language",
+          "widget_type": "single_choice",
+          "value": "Beginner",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred format",
+          "widget_type": "single_choice",
+          "value": "Either",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-11-24",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Topics you enjoy discussing",
+          "widget_type": "multi_choice",
+          "value": [
+            "Travel",
+            "Food",
+            "Daily life"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "form_id": "study_group_match",
+  "form_title": "Study Group Matching Form",
+  "form_description": "Matches students into study groups based on course and schedule preferences.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1QPAYLaPnrL3gSzRc5du_01Em5FHcQV1MLsEUCr62NmQ/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSfCE5xFrf_ReAKVWgbB7_wmUO-RHiuOg-y7-Bs3zuvJ4LGK9Q/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSfCE5xFrf_ReAKVWgbB7_wmUO-RHiuOg-y7-Bs3zuvJ4LGK9Q/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Student profile",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Student profile",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Student profile",
+      "q_order": 3,
+      "q_title": "Course or subject",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Student profile",
+      "q_order": 4,
+      "q_title": "Current level",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Beginner;Intermediate;Advanced",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Student profile",
+      "q_order": 5,
+      "q_title": "Preferred study format",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "In person;Online;Either",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Student profile",
+      "q_order": 6,
+      "q_title": "Topics you want help with",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Theory review;Exercises;Exam prep;Projects;Assignments",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Student profile",
+      "q_order": 7,
+      "q_title": "Preferred meeting time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -78,6 +79,7 @@ class OpenAICompatAdapter:
         if not self.model:
             raise RuntimeError("openai_compat_missing_model: set openai_model in config or OPENAI_MODEL env")
         self.api_key = str(os.environ.get("OPENAI_API_KEY") or self.model_cfg.get("openai_api_key") or "EMPTY")
+        self.last_infer_meta: Dict[str, Any] = {}
 
     def infer(
         self,
@@ -112,10 +114,17 @@ class OpenAICompatAdapter:
             "max_tokens": max(1, int(max_new_tokens)),
             "messages": messages,
         }
+        started = time.perf_counter()
         response = _http_post_json(
             url=f"{self.base_url}/chat/completions",
             headers={"Authorization": f"Bearer {self.api_key}"},
             payload=payload,
             timeout_s=self.api_timeout_s,
         )
+        self.last_infer_meta = {
+            "roundtrip_s": round(time.perf_counter() - started, 3),
+            "server_backend": str(self.model_cfg.get("server_backend") or "openai_compat").strip() or "openai_compat",
+            "serving_mode": str(os.environ.get("BASELINE_SERVING_MODE") or "").strip() or None,
+            "server_warm_state": str(os.environ.get("BASELINE_SERVER_WARM_STATE") or "").strip() or None,
+        }
         return _extract_openai_text(response)

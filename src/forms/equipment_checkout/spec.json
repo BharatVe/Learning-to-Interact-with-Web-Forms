@@ -1,0 +1,103 @@
+{
+  "form_id": "equipment_checkout",
+  "form_title": "Equipment Checkout Request",
+  "form_description": "Request form for borrowing university or lab equipment with pickup and return details.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1mqgfdZw4MrJjFLb8N_Nh116BUtfRGcJjpFAAkC9tk1Q/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSffAnjNQaLjryYvRsR8WVWrVo3c1qRc3WzOBiLhq4j5kIGUMA/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSffAnjNQaLjryYvRsR8WVWrVo3c1qRc3WzOBiLhq4j5kIGUMA/viewform",
+  "question_count": 9,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 3,
+      "q_title": "Department or group",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 4,
+      "q_title": "Equipment category",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "Laptop;Camera;Microphone;Sensor kit;Projector;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 5,
+      "q_title": "Specific item requested",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": "Example: DSLR camera kit or laptop charger"
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 6,
+      "q_title": "Pickup date",
+      "q_type": "DATE",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 7,
+      "q_title": "Pickup time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 8,
+      "q_title": "Expected return date",
+      "q_type": "DATE",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Requester details",
+      "q_order": 9,
+      "q_title": "Purpose of checkout",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": "Briefly describe how the item will be used."
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

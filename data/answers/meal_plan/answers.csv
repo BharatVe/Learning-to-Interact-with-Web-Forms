@@ -1,0 +1,71 @@
+form_id,run_id,q_title,q_type,answer
+meal_plan,run_0001,Full name,SHORT_TEXT,Avery Nguyen
+meal_plan,run_0001,Meal preference,SINGLE_CHOICE,Chicken
+meal_plan,run_0001,Allergies or intolerances,MULTI_CHOICE,Nuts;Dairy;Other
+meal_plan,run_0001,Preferred dining date,DATE,2025-11-02
+meal_plan,run_0001,Preferred dining time,TIME,15:30
+meal_plan,run_0001,Would you like dessert?,SINGLE_CHOICE,Yes
+meal_plan,run_0001,Additional notes,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 1)"
+meal_plan,run_0002,Full name,SHORT_TEXT,Priya Ortiz
+meal_plan,run_0002,Meal preference,SINGLE_CHOICE,Vegan
+meal_plan,run_0002,Allergies or intolerances,MULTI_CHOICE,Nuts
+meal_plan,run_0002,Preferred dining date,DATE,2025-07-28
+meal_plan,run_0002,Preferred dining time,TIME,10:15
+meal_plan,run_0002,Would you like dessert?,SINGLE_CHOICE,Yes
+meal_plan,run_0002,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 2)
+meal_plan,run_0003,Full name,SHORT_TEXT,Morgan Patel
+meal_plan,run_0003,Meal preference,SINGLE_CHOICE,Vegan
+meal_plan,run_0003,Allergies or intolerances,MULTI_CHOICE,Dairy;None
+meal_plan,run_0003,Preferred dining date,DATE,2025-07-19
+meal_plan,run_0003,Preferred dining time,TIME,11:30
+meal_plan,run_0003,Would you like dessert?,SINGLE_CHOICE,No
+meal_plan,run_0003,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 3)
+meal_plan,run_0004,Full name,SHORT_TEXT,Morgan Bauer
+meal_plan,run_0004,Meal preference,SINGLE_CHOICE,Vegan
+meal_plan,run_0004,Allergies or intolerances,MULTI_CHOICE,Dairy;Other
+meal_plan,run_0004,Preferred dining date,DATE,2025-09-30
+meal_plan,run_0004,Preferred dining time,TIME,09:00
+meal_plan,run_0004,Would you like dessert?,SINGLE_CHOICE,No
+meal_plan,run_0004,Additional notes,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 4)"
+meal_plan,run_0005,Full name,SHORT_TEXT,Casey Bauer
+meal_plan,run_0005,Meal preference,SINGLE_CHOICE,Vegan
+meal_plan,run_0005,Allergies or intolerances,MULTI_CHOICE,Gluten;None;Other
+meal_plan,run_0005,Preferred dining date,DATE,2025-07-31
+meal_plan,run_0005,Preferred dining time,TIME,15:30
+meal_plan,run_0005,Would you like dessert?,SINGLE_CHOICE,Maybe
+meal_plan,run_0005,Additional notes,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 5)"
+meal_plan,run_0006,Full name,SHORT_TEXT,Lena Singh
+meal_plan,run_0006,Meal preference,SINGLE_CHOICE,Vegan
+meal_plan,run_0006,Allergies or intolerances,MULTI_CHOICE,Gluten;Dairy
+meal_plan,run_0006,Preferred dining date,DATE,2025-09-05
+meal_plan,run_0006,Preferred dining time,TIME,13:00
+meal_plan,run_0006,Would you like dessert?,SINGLE_CHOICE,Yes
+meal_plan,run_0006,Additional notes,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 6)"
+meal_plan,run_0007,Full name,SHORT_TEXT,Jordan Nguyen
+meal_plan,run_0007,Meal preference,SINGLE_CHOICE,Fish
+meal_plan,run_0007,Allergies or intolerances,MULTI_CHOICE,Nuts;Other
+meal_plan,run_0007,Preferred dining date,DATE,2025-10-19
+meal_plan,run_0007,Preferred dining time,TIME,10:15
+meal_plan,run_0007,Would you like dessert?,SINGLE_CHOICE,No
+meal_plan,run_0007,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 7)
+meal_plan,run_0008,Full name,SHORT_TEXT,Avery Patel
+meal_plan,run_0008,Meal preference,SINGLE_CHOICE,Beef
+meal_plan,run_0008,Allergies or intolerances,MULTI_CHOICE,Gluten;Dairy;Other
+meal_plan,run_0008,Preferred dining date,DATE,2025-10-17
+meal_plan,run_0008,Preferred dining time,TIME,16:45
+meal_plan,run_0008,Would you like dessert?,SINGLE_CHOICE,Maybe
+meal_plan,run_0008,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 8)
+meal_plan,run_0009,Full name,SHORT_TEXT,Lena Singh
+meal_plan,run_0009,Meal preference,SINGLE_CHOICE,Fish
+meal_plan,run_0009,Allergies or intolerances,MULTI_CHOICE,Other
+meal_plan,run_0009,Preferred dining date,DATE,2025-09-07
+meal_plan,run_0009,Preferred dining time,TIME,10:15
+meal_plan,run_0009,Would you like dessert?,SINGLE_CHOICE,Maybe
+meal_plan,run_0009,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 9)
+meal_plan,run_0010,Full name,SHORT_TEXT,Lena Bauer
+meal_plan,run_0010,Meal preference,SINGLE_CHOICE,Vegan
+meal_plan,run_0010,Allergies or intolerances,MULTI_CHOICE,Gluten;Soy;Other
+meal_plan,run_0010,Preferred dining date,DATE,2025-06-14
+meal_plan,run_0010,Preferred dining time,TIME,11:30
+meal_plan,run_0010,Would you like dessert?,SINGLE_CHOICE,Maybe
+meal_plan,run_0010,Additional notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional notes; run 10)

@@ -30,20 +30,22 @@ source .venv/bin/activate
 
 Configured baseline models live in:
 
-- `configs/baselines/minimal_models.json`
+- `configs/baselines/track_baseline_models.json`
 
 Install or verify them with:
 
 ```bash
 source .venv/bin/activate
-python3 scripts/install_minimal_models.py
-python3 scripts/verify_runtime_setup.py --skip-playwright-smoke
+python3 scripts/install_minimal_models.py --config configs/baselines/track_baseline_models.json
+python3 scripts/verify_runtime_setup.py --config configs/baselines/track_baseline_models.json --skip-playwright-smoke
 ```
 
 Expected local model directories:
 
-- `models/text_qwen25_3b_instruct`
-- `models/vlm_qwen25_vl_3b_instruct`
+- `models/text_qwen3_30b_a3b_instruct_2507`
+- `models/vlm_qwen3_vl_30b_a3b_instruct`
+
+Computer-use track uses local `vLLM` serving and does not install weights into `models/` through the baseline installer.
 
 ## MCP Runtime Requirements
 
@@ -87,51 +89,78 @@ Each experiment also gets:
 
 The runner never uses `--overwrite-existing`. Repeated trials create new `trial_id` directories.
 
-## Pilot Baseline Matrix
+## Canonical Track Baseline Matrix
 
-Current v1 pilot matrix:
+Canonical thesis-primary setup now separates two benchmark families:
 
-- `text_qwen25_3b_instruct` × `conf_interest` × `run_0001`
-- `text_qwen25_3b_instruct` × `event_rsvp` × `run_0001`
-- `vlm_qwen25_vl_3b_instruct` × `conf_interest` × `run_0001`
-- `vlm_qwen25_vl_3b_instruct` × `event_rsvp` × `run_0001`
+- Family A: direct Playwright MCP tool use
+  - `text_qwen3_30b_a3b_instruct_2507`
+  - `vlm_qwen3_vl_30b_a3b_instruct`
+- Family B: native computer-use
+  - `computer_use_opencua_32b` (`OpenCUA-32B` over local `vLLM` + MCP-backed browser execution)
 
 Protocol defaults:
 
 - execution backend: `mcp_server`
 - inputs before interaction: form URL + answer entries (`label`, `widget_type`, `value`)
 - no full form spec
-- no upfront DOM dump
-- per-step observations: screenshot + compact page text + last action result
-- one strict JSON action per turn
-- `max_steps=20`
-- `timeout_s=900`
+- no helper-assisted fill path in the thesis-primary comparison
+- Family A uses raw Playwright MCP tool calls rather than the legacy benchmark action schema
+- Family B uses native screenshot-to-action prediction
+- OpenCUA direct pilot defaults to `max_steps=64`, `timeout_s=5400`
 - invalid action budget: `0` (`0` means unlimited until `max_steps`)
-- default `max_new_tokens=160` for baseline action generation
+- OpenCUA direct pilot defaults to `max_new_tokens=384`
 - partial success metrics:
   - `attempted_correctness`
   - `verified_correctness` as headline metric
+- efficiency baseline:
+  - the matching scripted Playwright reference run in `data/forms/<form_id>/runs/run_XXXX/`
+  - same `form_id` and same `answer_run_id`
+  - action count is defined as the count of valid browser/tool events in `tool_trace.jsonl`
 
 ## Baseline Commands
 
-Run the MCP-backed model baseline matrix directly:
+Run the canonical 3-track baseline orchestrator directly:
 
 ```bash
-bash scripts/run_model_baseline_matrix.sh
+CONFIG_PATH=configs/baselines/track_baseline_models.json \
+DIRECT_PROVIDER=opencua_local \
+bash scripts/run_track_baseline_matrix.sh
 ```
 
-Useful overrides:
+Pilot example (`5 forms x runs 1..3 x 3 models`):
 
 ```bash
-EXPERIMENT_ID=baseline_mcp_trial2 bash scripts/run_model_baseline_matrix.sh
-MAX_STEPS=25 TIMEOUT_S=1200 bash scripts/run_model_baseline_matrix.sh
-RUN_INDEX=1 MAX_NEW_TOKENS=160 INVALID_ACTION_BUDGET=0 bash scripts/run_model_baseline_matrix.sh
+CONFIG_PATH=configs/baselines/track_baseline_models.json \
+FORM_IDS=conf_interest,event_rsvp,course_feedback,internship_app,workshop_signup \
+RUN_INDEXES=1,2,3 \
+DIRECT_MCP_EXPERIMENT_ID=track_baseline_qwen_direct_mcp_pilot \
+NATIVE_EXPERIMENT_ID=track_baseline_opencua_native_pilot \
+DIRECT_PROVIDER=opencua_local \
+bash scripts/run_track_baseline_matrix.sh
 ```
 
-Submit the same matrix through Slurm:
+Full run example (`20 forms x runs 1..10 x 3 models`):
 
 ```bash
-sbatch scripts/slurm_baseline_mcp.sbatch
+CONFIG_PATH=configs/baselines/track_baseline_models.json \
+FORM_IDS=all \
+RUN_INDEXES=1,2,3,4,5,6,7,8,9,10 \
+DIRECT_MCP_EXPERIMENT_ID=track_baseline_qwen_direct_mcp_all20 \
+NATIVE_EXPERIMENT_ID=track_baseline_opencua_native_all20 \
+DIRECT_PROVIDER=opencua_local \
+bash scripts/run_track_baseline_matrix.sh
+```
+
+Submit through Slurm:
+
+```bash
+FORM_IDS=all \
+RUN_INDEXES=1,2,3,4,5,6,7,8,9,10 \
+DIRECT_MCP_EXPERIMENT_ID=track_baseline_qwen_direct_mcp_all20 \
+NATIVE_EXPERIMENT_ID=track_baseline_opencua_native_all20 \
+DIRECT_PROVIDER=opencua_local \
+sbatch scripts/slurm_track_baseline.sbatch
 ```
 
 Check status and logs:
@@ -139,18 +168,52 @@ Check status and logs:
 ```bash
 squeue -u "$USER"
 sacct -j <job_id> --format=JobID,JobName,Partition,State,Elapsed,ExitCode -P
-tail -f logs/slurm/model-baseline-mcp-<job_id>.out
+tail -f logs/slurm/track-baseline-<job_id>.out
 ```
 
 ## Validation Before Submission
 
+For OpenCUA validation, make sure `vllm` is available on `PATH` and that the local endpoint is started before running the computer-use smoke check.
+
 ```bash
 python3 scripts/verify_baseline_integrity.py
-python3 scripts/verify_runtime_setup.py --skip-playwright-smoke
-python3 scripts/eval_model_baseline_smoke.py --include-kinds text_llm,vlm --exclude-providers api_over_mcp --strict
+python3 scripts/verify_runtime_setup.py --config configs/baselines/track_baseline_models.json --skip-playwright-smoke
+python3 scripts/eval_model_baseline_smoke.py --config configs/baselines/track_baseline_models.json --include-kinds text_llm,vlm --strict
+python3 scripts/eval_model_baseline_smoke.py --config configs/baselines/track_baseline_models.json --include-kinds computer_use_agent --strict
 python3 -m py_compile src/baselines/run_baseline_eval.py src/engine/form_engine.py src/engine/mcp_browser_engine.py
-bash -n scripts/run_model_baseline_matrix.sh scripts/slurm_baseline_mcp.sbatch
+bash -n scripts/run_track_baseline_matrix.sh scripts/slurm_track_baseline.sbatch
 ```
+
+Legacy size-based and benchmark-action mediated scripts remain available for historical analysis, but they are no longer the thesis-primary runbook.
+
+## Cache Policy
+
+To avoid `/home` quota lockouts, batch scripts now relocate reproducible caches to `/data/horse/ws/bhve224e-thesis-draft-20260224/cache` via:
+
+- `XDG_CACHE_HOME`
+- `HF_HOME`
+- `TRANSFORMERS_CACHE`
+- `PIP_CACHE_DIR`
+- `UV_CACHE_DIR`
+- `PLAYWRIGHT_BROWSERS_PATH`
+
+## Reference Efficiency Reporting
+
+Use the scripted reference runs as the efficiency baseline for model trials:
+
+```bash
+python3 scripts/summarize_reference_efficiency.py \
+  --experiment-id track_baseline_qwen_direct_mcp_pilot \
+  --experiment-id track_baseline_opencua_native_pilot \
+  --output logs/reference_efficiency_summary.json
+```
+
+This reports raw and normalized efficiency:
+
+- model action count and duration
+- matching reference action count and duration
+- `action_overhead_ratio`
+- `time_overhead_ratio`
 
 ## Workspace Cleanup
 

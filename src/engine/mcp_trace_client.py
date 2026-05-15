@@ -36,6 +36,7 @@ class MCPClient:
         self.server_info: Dict[str, Any] = {}
         self.protocol_version: Optional[str] = None
         self.available_tools: List[str] = []
+        self.tool_definitions: List[Dict[str, Any]] = []
 
         self._proc = subprocess.Popen(
             self.command,
@@ -153,12 +154,15 @@ class MCPClient:
             raise MCPClientError("MCP tools/list missing tools array")
 
         names: List[str] = []
+        tool_defs: List[Dict[str, Any]] = []
         for tool in tools:
             if isinstance(tool, dict):
                 name = tool.get("name")
                 if isinstance(name, str):
                     names.append(name)
+                    tool_defs.append(dict(tool))
         self.available_tools = sorted(set(names))
+        self.tool_definitions = tool_defs
         missing = [tool for tool in self.required_tools if tool not in self.available_tools]
         if missing:
             missing_joined = ", ".join(missing)
@@ -221,6 +225,9 @@ class MCPClient:
             "server_info": self.server_info,
             "available_tools": self.available_tools,
         }
+
+    def get_tool_definitions(self) -> List[Dict[str, Any]]:
+        return [dict(item) for item in self.tool_definitions]
 
     def close(self) -> None:
         if self._closed:

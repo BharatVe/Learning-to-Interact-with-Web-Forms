@@ -15,6 +15,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from engine.form_engine import FormEngine  # noqa: E402
+from engine.browser_language import english_context_options, force_english_google_forms_url, write_playwright_mcp_english_config  # noqa: E402
 from engine.mcp_browser_engine import MCPBrowserEngine  # noqa: E402
 from engine.mcp_trace_client import MCPClient  # noqa: E402
 from engine.mcp_trace_client import MCPTraceClient  # noqa: E402
@@ -43,7 +44,8 @@ def _default_mcp_server_command() -> List[str]:
 
 
 def _default_browser_mcp_command(args: argparse.Namespace, run_dir: Path) -> List[str]:
-    python_playwright_executable = _detect_python_playwright_chromium_executable()
+    explicit_executable = os.environ.get("PLAYWRIGHT_MCP_CHROMIUM_EXECUTABLE", "").strip()
+    python_playwright_executable = "" if explicit_executable else _detect_python_playwright_chromium_executable()
     mcp_bin = shutil.which("playwright-mcp")
     timeout_ms = max(15000, int(getattr(args, "browser_mcp_timeout_ms", DEFAULT_BROWSER_MCP_TIMEOUT_MS)))
     command = (
@@ -51,6 +53,8 @@ def _default_browser_mcp_command(args: argparse.Namespace, run_dir: Path) -> Lis
         if mcp_bin
         else ["npx", "-y", "@playwright/mcp@latest"]
     ) + [
+        "--config",
+        str(write_playwright_mcp_english_config(run_dir)),
         "--browser",
         "chromium",
         "--isolated",
@@ -69,7 +73,9 @@ def _default_browser_mcp_command(args: argparse.Namespace, run_dir: Path) -> Lis
         "--timeout-navigation",
         str(max(60000, timeout_ms)),
     ]
-    if python_playwright_executable:
+    if explicit_executable:
+        command.extend(["--executable-path", explicit_executable])
+    elif python_playwright_executable:
         command.extend(["--executable-path", python_playwright_executable])
     if args.headless:
         command.append("--headless")
@@ -784,6 +790,7 @@ def _run_single_local(
                     viewport={"width": args.viewport_width, "height": args.viewport_height},
                     record_video_dir=str(run_dir),
                     record_video_size={"width": args.viewport_width, "height": args.viewport_height},
+                    **english_context_options(),
                 )
                 page = context.new_page()
                 page.set_default_timeout(args.timeout_ms)
@@ -1108,7 +1115,7 @@ def run_for_form(
     num_runs_limit: Optional[int] = None,
 ) -> None:
     form_spec = load_form_spec(form_id, specs_root)
-    form_url = args.form_url or form_spec.get("form_url")
+    form_url = force_english_google_forms_url(args.form_url or form_spec.get("form_url"))
     if not form_url:
         raise ValueError(f"Form URL not provided and not found in spec for form_id={form_id}")
 

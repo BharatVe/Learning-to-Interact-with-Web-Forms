@@ -1,0 +1,103 @@
+{
+  "form_id": "room_booking",
+  "form_title": "Room Booking Request (2 pages)",
+  "form_description": "Booking form for study rooms, meeting rooms, and event spaces.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1WY8p-K2sqEWxhocyBa1CG7jy2fnPz2MH0kST5rMXhsE/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSesy6M6weHS8ciGOXUyzWORNNl7msS4nN9DtUKDwLp2W9zKyA/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSesy6M6weHS8ciGOXUyzWORNNl7msS4nN9DtUKDwLp2W9zKyA/viewform",
+  "question_count": 9,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Booking details",
+      "q_order": 1,
+      "q_title": "Requester name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Booking details",
+      "q_order": 2,
+      "q_title": "Contact email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Booking details",
+      "q_order": 3,
+      "q_title": "Room type requested",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Small study room;Meeting room;Seminar room;Computer lab",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Booking details",
+      "q_order": 4,
+      "q_title": "Number of participants",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": "Enter a number only."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Booking details",
+      "q_order": 5,
+      "q_title": "Preferred booking date",
+      "q_type": "DATE",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Booking details",
+      "q_order": 6,
+      "q_title": "Preferred start time",
+      "q_type": "TIME",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Room requirements",
+      "q_order": 1,
+      "q_title": "Equipment needed",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Projector;Whiteboard;Video conferencing;Power outlets;None",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Room requirements",
+      "q_order": 2,
+      "q_title": "Catering or food planned?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No;Not sure",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Room requirements",
+      "q_order": 3,
+      "q_title": "Purpose of booking",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

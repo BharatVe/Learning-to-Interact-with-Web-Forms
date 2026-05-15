@@ -1,0 +1,103 @@
+{
+  "form_id": "sports_tournament",
+  "form_title": "Sports Tournament Registration (2 pages)",
+  "form_description": "Registration form for tournament participants, teams, and scheduling preferences.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1vD9zXJZbROBFSqh0aU5rbJgCqLQ4yXOnUqqqIPaDRWM/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLScMUbP44Yml9xFptYMdJghPeI7c46jb2UNXwaJcninxp2s2dw/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScMUbP44Yml9xFptYMdJghPeI7c46jb2UNXwaJcninxp2s2dw/viewform",
+  "question_count": 9,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 2,
+      "q_title": "Contact email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 3,
+      "q_title": "Sport",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "Football;Basketball;Badminton;Table tennis;Volleyball;Running",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 4,
+      "q_title": "Registration type",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Individual;Team captain;Team member",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Team and schedule",
+      "q_order": 1,
+      "q_title": "Team name",
+      "q_type": "SHORT_TEXT",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Team and schedule",
+      "q_order": 2,
+      "q_title": "Skill level",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Beginner;Intermediate;Advanced",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Team and schedule",
+      "q_order": 3,
+      "q_title": "Available match days",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Monday;Tuesday;Wednesday;Thursday;Friday;Weekend",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Team and schedule",
+      "q_order": 4,
+      "q_title": "Preferred first match date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Team and schedule",
+      "q_order": 5,
+      "q_title": "Preferred match time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

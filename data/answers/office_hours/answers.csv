@@ -1,0 +1,81 @@
+form_id,run_id,q_title,q_type,answer
+office_hours,run_0001,Student name,SHORT_TEXT,Lena Bauer
+office_hours,run_0001,Email address,SHORT_TEXT,lena.bauer.1@example.com
+office_hours,run_0001,Course or project,SHORT_TEXT,delta-01-07
+office_hours,run_0001,Topic category,DROPDOWN,Exam preparation
+office_hours,run_0001,Preferred meeting mode,SINGLE_CHOICE,In person
+office_hours,run_0001,Preferred date,DATE,2025-07-04
+office_hours,run_0001,Preferred time,TIME,13:00
+office_hours,run_0001,Question or context,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Question or context; run 1)
+office_hours,run_0002,Student name,SHORT_TEXT,Casey Bauer
+office_hours,run_0002,Email address,SHORT_TEXT,casey.bauer.2@mail.test
+office_hours,run_0002,Course or project,SHORT_TEXT,gamma-02-30
+office_hours,run_0002,Topic category,DROPDOWN,Exam preparation
+office_hours,run_0002,Preferred meeting mode,SINGLE_CHOICE,Either
+office_hours,run_0002,Preferred date,DATE,2025-09-25
+office_hours,run_0002,Preferred time,TIME,08:30
+office_hours,run_0002,Question or context,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Question or context; run 2)
+office_hours,run_0003,Student name,SHORT_TEXT,Priya Patel
+office_hours,run_0003,Email address,SHORT_TEXT,priya.patel.3@mail.test
+office_hours,run_0003,Course or project,SHORT_TEXT,alpha-03-78
+office_hours,run_0003,Topic category,DROPDOWN,Project feedback
+office_hours,run_0003,Preferred meeting mode,SINGLE_CHOICE,Either
+office_hours,run_0003,Preferred date,DATE,2025-07-11
+office_hours,run_0003,Preferred time,TIME,10:15
+office_hours,run_0003,Question or context,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Question or context; run 3)
+office_hours,run_0004,Student name,SHORT_TEXT,Taylor Singh
+office_hours,run_0004,Email address,SHORT_TEXT,taylor.singh.4@example.com
+office_hours,run_0004,Course or project,SHORT_TEXT,beta-04-90
+office_hours,run_0004,Topic category,DROPDOWN,Lecture content
+office_hours,run_0004,Preferred meeting mode,SINGLE_CHOICE,In person
+office_hours,run_0004,Preferred date,DATE,2025-11-14
+office_hours,run_0004,Preferred time,TIME,13:00
+office_hours,run_0004,Question or context,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Question or context; run 4)
+office_hours,run_0005,Student name,SHORT_TEXT,Casey Bauer
+office_hours,run_0005,Email address,SHORT_TEXT,casey.bauer.5@mail.test
+office_hours,run_0005,Course or project,SHORT_TEXT,sigma-05-73
+office_hours,run_0005,Topic category,DROPDOWN,Lecture content
+office_hours,run_0005,Preferred meeting mode,SINGLE_CHOICE,Online
+office_hours,run_0005,Preferred date,DATE,2025-09-16
+office_hours,run_0005,Preferred time,TIME,09:00
+office_hours,run_0005,Question or context,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Question or context; run 5)
+office_hours,run_0006,Student name,SHORT_TEXT,Lena Singh
+office_hours,run_0006,Email address,SHORT_TEXT,lena.singh.6@mail.test
+office_hours,run_0006,Course or project,SHORT_TEXT,alpha-06-10
+office_hours,run_0006,Topic category,DROPDOWN,Lecture content
+office_hours,run_0006,Preferred meeting mode,SINGLE_CHOICE,In person
+office_hours,run_0006,Preferred date,DATE,2025-10-03
+office_hours,run_0006,Preferred time,TIME,16:45
+office_hours,run_0006,Question or context,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Question or context; run 6)
+office_hours,run_0007,Student name,SHORT_TEXT,Taylor Kim
+office_hours,run_0007,Email address,SHORT_TEXT,taylor.kim.7@demo.org
+office_hours,run_0007,Course or project,SHORT_TEXT,delta-07-82
+office_hours,run_0007,Topic category,DROPDOWN,Other
+office_hours,run_0007,Preferred meeting mode,SINGLE_CHOICE,Either
+office_hours,run_0007,Preferred date,DATE,2025-07-14
+office_hours,run_0007,Preferred time,TIME,15:30
+office_hours,run_0007,Question or context,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Question or context; run 7)
+office_hours,run_0008,Student name,SHORT_TEXT,Jordan Nguyen
+office_hours,run_0008,Email address,SHORT_TEXT,jordan.nguyen.8@demo.org
+office_hours,run_0008,Course or project,SHORT_TEXT,beta-08-92
+office_hours,run_0008,Topic category,DROPDOWN,Assignment
+office_hours,run_0008,Preferred meeting mode,SINGLE_CHOICE,Online
+office_hours,run_0008,Preferred date,DATE,2025-11-11
+office_hours,run_0008,Preferred time,TIME,10:15
+office_hours,run_0008,Question or context,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Question or context; run 8)
+office_hours,run_0009,Student name,SHORT_TEXT,Sam Patel
+office_hours,run_0009,Email address,SHORT_TEXT,sam.patel.9@demo.org
+office_hours,run_0009,Course or project,SHORT_TEXT,delta-09-63
+office_hours,run_0009,Topic category,DROPDOWN,Other
+office_hours,run_0009,Preferred meeting mode,SINGLE_CHOICE,Online
+office_hours,run_0009,Preferred date,DATE,2025-09-20
+office_hours,run_0009,Preferred time,TIME,10:15
+office_hours,run_0009,Question or context,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Question or context; run 9)
+office_hours,run_0010,Student name,SHORT_TEXT,Taylor Meyer
+office_hours,run_0010,Email address,SHORT_TEXT,taylor.meyer.10@research.edu
+office_hours,run_0010,Course or project,SHORT_TEXT,gamma-10-70
+office_hours,run_0010,Topic category,DROPDOWN,Project feedback
+office_hours,run_0010,Preferred meeting mode,SINGLE_CHOICE,In person
+office_hours,run_0010,Preferred date,DATE,2025-09-30
+office_hours,run_0010,Preferred time,TIME,13:00
+office_hours,run_0010,Question or context,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Question or context; run 10)

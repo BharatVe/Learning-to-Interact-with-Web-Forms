@@ -1,0 +1,722 @@
+{
+  "form_id": "research_interest",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "riley.rivera.1@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current degree level",
+          "widget_type": "single_choice",
+          "value": "Bachelor\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Research areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Robotics"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Previous research experience",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Previous research experience; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-09-08",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Taylor Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "taylor.singh.2@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current degree level",
+          "widget_type": "single_choice",
+          "value": "Master\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Research areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Previous research experience",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Previous research experience; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-11-22",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "avery.khan.3@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current degree level",
+          "widget_type": "single_choice",
+          "value": "Master\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Research areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Previous research experience",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Previous research experience; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-06-16",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "riley.chen.4@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current degree level",
+          "widget_type": "single_choice",
+          "value": "PhD",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Research areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Robotics"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Previous research experience",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Previous research experience; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-08-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "noah.rivera.5@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current degree level",
+          "widget_type": "single_choice",
+          "value": "Bachelor\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Research areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Computer Vision",
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Previous research experience",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Previous research experience; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-08-23",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "riley.kim.6@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current degree level",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Research areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Computer Vision",
+            "Robotics"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Previous research experience",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Previous research experience; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-07-13",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "riley.kim.7@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current degree level",
+          "widget_type": "single_choice",
+          "value": "PhD",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Research areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Computer Vision",
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Previous research experience",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Previous research experience; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-07-19",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "priya.ortiz.8@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current degree level",
+          "widget_type": "single_choice",
+          "value": "Master\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Research areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "NLP"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Previous research experience",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Previous research experience; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-07-28",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Taylor Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "taylor.khan.9@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current degree level",
+          "widget_type": "single_choice",
+          "value": "PhD",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Research areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Robotics",
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Previous research experience",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Previous research experience; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-08-05",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Taylor Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "taylor.chen.10@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Current degree level",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Research areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Computer Vision",
+            "NLP",
+            "Robotics"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Previous research experience",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Previous research experience; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-06-15",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    }
+  ]
+}

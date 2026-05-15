@@ -1,0 +1,83 @@
+{
+  "form_id": "volunteer_shift",
+  "form_title": "Volunteer Shift Signup",
+  "form_description": "Signup form for volunteers with role and shift preferences.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1ZB2YTc0SR_fN7GFxgRPdnw0fEJfrrb3M19dUhTnhELM/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLScGZHwLyxuU0jJN4XQW0WzYLoZk9S6GIlX9a6fP7bC4vqJOLA/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScGZHwLyxuU0jJN4XQW0WzYLoZk9S6GIlX9a6fP7bC4vqJOLA/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Volunteer details",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Volunteer details",
+      "q_order": 2,
+      "q_title": "Contact email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Volunteer details",
+      "q_order": 3,
+      "q_title": "Preferred volunteer role",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Registration desk;Technical support;Logistics;Guest assistance",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Volunteer details",
+      "q_order": 4,
+      "q_title": "Available shift(s)",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Morning;Afternoon;Evening",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Volunteer details",
+      "q_order": 5,
+      "q_title": "Previous volunteering experience",
+      "q_type": "SINGLE_CHOICE",
+      "required": false,
+      "options": "Yes;No",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Volunteer details",
+      "q_order": 6,
+      "q_title": "Preferred volunteer date",
+      "q_type": "DATE",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Volunteer details",
+      "q_order": 7,
+      "q_title": "Comments or restrictions",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

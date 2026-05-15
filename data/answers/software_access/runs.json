@@ -1,0 +1,786 @@
+{
+  "form_id": "software_access",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Meyer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Institutional email",
+          "widget_type": "short_text",
+          "value": "riley.meyer.1@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Software or platform requested",
+          "widget_type": "dropdown",
+          "value": "GitHub",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Access level needed",
+          "widget_type": "single_choice",
+          "value": "Admin",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of access",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Purpose of access; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Requested start date",
+          "widget_type": "date",
+          "value": "2025-07-27",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Expected duration",
+          "widget_type": "single_choice",
+          "value": "Less than 1 week",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Related project or course",
+          "widget_type": "short_text",
+          "value": "delta-01-97",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Morgan Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Institutional email",
+          "widget_type": "short_text",
+          "value": "morgan.kim.2@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Software or platform requested",
+          "widget_type": "dropdown",
+          "value": "Internal server",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Access level needed",
+          "widget_type": "single_choice",
+          "value": "Temporary guest access",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of access",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of access; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Requested start date",
+          "widget_type": "date",
+          "value": "2025-11-09",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Expected duration",
+          "widget_type": "single_choice",
+          "value": "Long term",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Related project or course",
+          "widget_type": "short_text",
+          "value": "delta-02-99",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Lena Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Institutional email",
+          "widget_type": "short_text",
+          "value": "lena.bauer.3@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Software or platform requested",
+          "widget_type": "dropdown",
+          "value": "Internal server",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Access level needed",
+          "widget_type": "single_choice",
+          "value": "Editor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of access",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of access; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Requested start date",
+          "widget_type": "date",
+          "value": "2025-11-14",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Expected duration",
+          "widget_type": "single_choice",
+          "value": "Less than 1 week",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Related project or course",
+          "widget_type": "short_text",
+          "value": "omega-03-53",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Institutional email",
+          "widget_type": "short_text",
+          "value": "riley.rivera.4@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Software or platform requested",
+          "widget_type": "dropdown",
+          "value": "JetBrains",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Access level needed",
+          "widget_type": "single_choice",
+          "value": "Editor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of access",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of access; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Requested start date",
+          "widget_type": "date",
+          "value": "2025-07-16",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Expected duration",
+          "widget_type": "single_choice",
+          "value": "Long term",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Related project or course",
+          "widget_type": "short_text",
+          "value": "beta-04-18",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Institutional email",
+          "widget_type": "short_text",
+          "value": "avery.patel.5@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Software or platform requested",
+          "widget_type": "dropdown",
+          "value": "Internal server",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Access level needed",
+          "widget_type": "single_choice",
+          "value": "Admin",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of access",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of access; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Requested start date",
+          "widget_type": "date",
+          "value": "2025-06-12",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Expected duration",
+          "widget_type": "single_choice",
+          "value": "1 month",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Related project or course",
+          "widget_type": "short_text",
+          "value": "omega-05-30",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Institutional email",
+          "widget_type": "short_text",
+          "value": "avery.singh.6@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Software or platform requested",
+          "widget_type": "dropdown",
+          "value": "Overleaf",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Access level needed",
+          "widget_type": "single_choice",
+          "value": "Temporary guest access",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of access",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of access; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Requested start date",
+          "widget_type": "date",
+          "value": "2025-10-09",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Expected duration",
+          "widget_type": "single_choice",
+          "value": "1 semester",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Related project or course",
+          "widget_type": "short_text",
+          "value": "alpha-06-25",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Institutional email",
+          "widget_type": "short_text",
+          "value": "noah.rivera.7@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Software or platform requested",
+          "widget_type": "dropdown",
+          "value": "MATLAB",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Access level needed",
+          "widget_type": "single_choice",
+          "value": "Viewer",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of access",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Purpose of access; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Requested start date",
+          "widget_type": "date",
+          "value": "2025-06-29",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Expected duration",
+          "widget_type": "single_choice",
+          "value": "Less than 1 week",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Related project or course",
+          "widget_type": "short_text",
+          "value": "omega-07-27",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Morgan Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Institutional email",
+          "widget_type": "short_text",
+          "value": "morgan.chen.8@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Software or platform requested",
+          "widget_type": "dropdown",
+          "value": "Internal server",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Access level needed",
+          "widget_type": "single_choice",
+          "value": "Viewer",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of access",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of access; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Requested start date",
+          "widget_type": "date",
+          "value": "2025-09-12",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Expected duration",
+          "widget_type": "single_choice",
+          "value": "Less than 1 week",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Related project or course",
+          "widget_type": "short_text",
+          "value": "sigma-08-33",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Taylor Meyer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Institutional email",
+          "widget_type": "short_text",
+          "value": "taylor.meyer.9@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Software or platform requested",
+          "widget_type": "dropdown",
+          "value": "GitHub",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Access level needed",
+          "widget_type": "single_choice",
+          "value": "Temporary guest access",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of access",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Purpose of access; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Requested start date",
+          "widget_type": "date",
+          "value": "2025-06-27",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Expected duration",
+          "widget_type": "single_choice",
+          "value": "Less than 1 week",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Related project or course",
+          "widget_type": "short_text",
+          "value": "alpha-09-86",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Institutional email",
+          "widget_type": "short_text",
+          "value": "noah.ortiz.10@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Software or platform requested",
+          "widget_type": "dropdown",
+          "value": "Overleaf",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Access level needed",
+          "widget_type": "single_choice",
+          "value": "Admin",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Purpose of access",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Purpose of access; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Requested start date",
+          "widget_type": "date",
+          "value": "2025-07-13",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Expected duration",
+          "widget_type": "single_choice",
+          "value": "Long term",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Related project or course",
+          "widget_type": "short_text",
+          "value": "alpha-10-19",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    }
+  ]
+}

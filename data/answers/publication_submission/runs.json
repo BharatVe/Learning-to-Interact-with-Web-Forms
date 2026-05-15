@@ -1,0 +1,999 @@
+{
+  "form_id": "publication_submission",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Publication title",
+          "widget_type": "short_text",
+          "value": "beta-01-72",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Author name",
+          "widget_type": "short_text",
+          "value": "Riley Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "riley.ortiz.1@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Publication type",
+          "widget_type": "dropdown",
+          "value": "Book chapter",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Publication date",
+          "widget_type": "date",
+          "value": "2025-10-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "DOI or URL",
+          "widget_type": "short_text",
+          "value": "gamma-01-14",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Keywords",
+          "widget_type": "short_text",
+          "value": "delta-01-53",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Research area",
+          "widget_type": "multi_choice",
+          "value": [
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Abstract or short summary",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Abstract or short summary; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Should this be shown publicly?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Publication title",
+          "widget_type": "short_text",
+          "value": "sigma-02-00",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Author name",
+          "widget_type": "short_text",
+          "value": "Avery Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "avery.chen.2@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Publication type",
+          "widget_type": "dropdown",
+          "value": "Journal article",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Publication date",
+          "widget_type": "date",
+          "value": "2025-09-02",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "DOI or URL",
+          "widget_type": "short_text",
+          "value": "beta-02-69",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Keywords",
+          "widget_type": "short_text",
+          "value": "beta-02-93",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Research area",
+          "widget_type": "multi_choice",
+          "value": [
+            "GIS",
+            "Data engineering",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Abstract or short summary",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Abstract or short summary; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Should this be shown publicly?",
+          "widget_type": "single_choice",
+          "value": "Needs review",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Publication title",
+          "widget_type": "short_text",
+          "value": "gamma-03-71",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Author name",
+          "widget_type": "short_text",
+          "value": "Sam Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "sam.kim.3@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Publication type",
+          "widget_type": "dropdown",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Publication date",
+          "widget_type": "date",
+          "value": "2025-06-27",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "DOI or URL",
+          "widget_type": "short_text",
+          "value": "sigma-03-43",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Keywords",
+          "widget_type": "short_text",
+          "value": "beta-03-07",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Research area",
+          "widget_type": "multi_choice",
+          "value": [
+            "AI/ML",
+            "Data engineering",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Abstract or short summary",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Abstract or short summary; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Should this be shown publicly?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Publication title",
+          "widget_type": "short_text",
+          "value": "beta-04-81",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Author name",
+          "widget_type": "short_text",
+          "value": "Priya Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "priya.nguyen.4@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Publication type",
+          "widget_type": "dropdown",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Publication date",
+          "widget_type": "date",
+          "value": "2025-07-15",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "DOI or URL",
+          "widget_type": "short_text",
+          "value": "delta-04-83",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Keywords",
+          "widget_type": "short_text",
+          "value": "omega-04-57",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Research area",
+          "widget_type": "multi_choice",
+          "value": [
+            "Human-computer interaction",
+            "Visualization"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Abstract or short summary",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Abstract or short summary; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Should this be shown publicly?",
+          "widget_type": "single_choice",
+          "value": "Needs review",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Publication title",
+          "widget_type": "short_text",
+          "value": "alpha-05-10",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Author name",
+          "widget_type": "short_text",
+          "value": "Sam Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "sam.nguyen.5@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Publication type",
+          "widget_type": "dropdown",
+          "value": "Conference paper",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Publication date",
+          "widget_type": "date",
+          "value": "2025-08-15",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "DOI or URL",
+          "widget_type": "short_text",
+          "value": "beta-05-27",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Keywords",
+          "widget_type": "short_text",
+          "value": "beta-05-32",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Research area",
+          "widget_type": "multi_choice",
+          "value": [
+            "AI/ML",
+            "Human-computer interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Abstract or short summary",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Abstract or short summary; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Should this be shown publicly?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Publication title",
+          "widget_type": "short_text",
+          "value": "delta-06-09",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Author name",
+          "widget_type": "short_text",
+          "value": "Avery Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "avery.patel.6@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Publication type",
+          "widget_type": "dropdown",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Publication date",
+          "widget_type": "date",
+          "value": "2025-11-21",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "DOI or URL",
+          "widget_type": "short_text",
+          "value": "delta-06-85",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Keywords",
+          "widget_type": "short_text",
+          "value": "delta-06-11",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Research area",
+          "widget_type": "multi_choice",
+          "value": [
+            "AI/ML",
+            "Visualization",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Abstract or short summary",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Abstract or short summary; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Should this be shown publicly?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Publication title",
+          "widget_type": "short_text",
+          "value": "gamma-07-57",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Author name",
+          "widget_type": "short_text",
+          "value": "Riley Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "riley.khan.7@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Publication type",
+          "widget_type": "dropdown",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Publication date",
+          "widget_type": "date",
+          "value": "2025-11-02",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "DOI or URL",
+          "widget_type": "short_text",
+          "value": "beta-07-24",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Keywords",
+          "widget_type": "short_text",
+          "value": "delta-07-35",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Research area",
+          "widget_type": "multi_choice",
+          "value": [
+            "GIS",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Abstract or short summary",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Abstract or short summary; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Should this be shown publicly?",
+          "widget_type": "single_choice",
+          "value": "Needs review",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Publication title",
+          "widget_type": "short_text",
+          "value": "omega-08-75",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Author name",
+          "widget_type": "short_text",
+          "value": "Priya Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "priya.khan.8@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Publication type",
+          "widget_type": "dropdown",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Publication date",
+          "widget_type": "date",
+          "value": "2025-07-08",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "DOI or URL",
+          "widget_type": "short_text",
+          "value": "delta-08-85",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Keywords",
+          "widget_type": "short_text",
+          "value": "alpha-08-78",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Research area",
+          "widget_type": "multi_choice",
+          "value": [
+            "AI/ML",
+            "GIS",
+            "Human-computer interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Abstract or short summary",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Abstract or short summary; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Should this be shown publicly?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Publication title",
+          "widget_type": "short_text",
+          "value": "alpha-09-86",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Author name",
+          "widget_type": "short_text",
+          "value": "Avery Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "avery.ortiz.9@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Publication type",
+          "widget_type": "dropdown",
+          "value": "Dataset",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Publication date",
+          "widget_type": "date",
+          "value": "2025-11-07",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "DOI or URL",
+          "widget_type": "short_text",
+          "value": "delta-09-97",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Keywords",
+          "widget_type": "short_text",
+          "value": "beta-09-82",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Research area",
+          "widget_type": "multi_choice",
+          "value": [
+            "Visualization",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Abstract or short summary",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Abstract or short summary; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Should this be shown publicly?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Publication title",
+          "widget_type": "short_text",
+          "value": "delta-10-56",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Author name",
+          "widget_type": "short_text",
+          "value": "Sam Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "sam.ortiz.10@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Publication type",
+          "widget_type": "dropdown",
+          "value": "Preprint",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Publication date",
+          "widget_type": "date",
+          "value": "2025-07-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "DOI or URL",
+          "widget_type": "short_text",
+          "value": "alpha-10-54",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Keywords",
+          "widget_type": "short_text",
+          "value": "delta-10-40",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Research area",
+          "widget_type": "multi_choice",
+          "value": [
+            "Human-computer interaction",
+            "Other"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Abstract or short summary",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Abstract or short summary; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Should this be shown publicly?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    }
+  ]
+}

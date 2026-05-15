@@ -1,0 +1,101 @@
+form_id,run_id,q_title,q_type,answer
+purchase_request,run_0001,Requester name,SHORT_TEXT,Riley Rivera
+purchase_request,run_0001,Email address,SHORT_TEXT,riley.rivera.1@demo.org
+purchase_request,run_0001,Department or project,SHORT_TEXT,alpha-01-74
+purchase_request,run_0001,Purchase category,DROPDOWN,Cloud credits
+purchase_request,run_0001,Item name,SHORT_TEXT,Riley Rivera
+purchase_request,run_0001,Estimated cost,SHORT_TEXT,alpha-01-38
+purchase_request,run_0001,Reason for purchase,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Reason for purchase; run 1)
+purchase_request,run_0001,Needed by date,DATE,2025-08-30
+purchase_request,run_0001,Budget source known?,SINGLE_CHOICE,Not sure
+purchase_request,run_0001,Urgency level,SINGLE_CHOICE,Low
+purchase_request,run_0002,Requester name,SHORT_TEXT,Noah Kim
+purchase_request,run_0002,Email address,SHORT_TEXT,noah.kim.2@research.edu
+purchase_request,run_0002,Department or project,SHORT_TEXT,delta-02-93
+purchase_request,run_0002,Purchase category,DROPDOWN,Books
+purchase_request,run_0002,Item name,SHORT_TEXT,Noah Kim
+purchase_request,run_0002,Estimated cost,SHORT_TEXT,gamma-02-30
+purchase_request,run_0002,Reason for purchase,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Reason for purchase; run 2)
+purchase_request,run_0002,Needed by date,DATE,2025-11-21
+purchase_request,run_0002,Budget source known?,SINGLE_CHOICE,No
+purchase_request,run_0002,Urgency level,SINGLE_CHOICE,Normal
+purchase_request,run_0003,Requester name,SHORT_TEXT,Noah Bauer
+purchase_request,run_0003,Email address,SHORT_TEXT,noah.bauer.3@research.edu
+purchase_request,run_0003,Department or project,SHORT_TEXT,beta-03-23
+purchase_request,run_0003,Purchase category,DROPDOWN,Cloud credits
+purchase_request,run_0003,Item name,SHORT_TEXT,Noah Bauer
+purchase_request,run_0003,Estimated cost,SHORT_TEXT,omega-03-76
+purchase_request,run_0003,Reason for purchase,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Reason for purchase; run 3)
+purchase_request,run_0003,Needed by date,DATE,2025-10-19
+purchase_request,run_0003,Budget source known?,SINGLE_CHOICE,No
+purchase_request,run_0003,Urgency level,SINGLE_CHOICE,High
+purchase_request,run_0004,Requester name,SHORT_TEXT,Noah Ortiz
+purchase_request,run_0004,Email address,SHORT_TEXT,noah.ortiz.4@mail.test
+purchase_request,run_0004,Department or project,SHORT_TEXT,omega-04-41
+purchase_request,run_0004,Purchase category,DROPDOWN,Other
+purchase_request,run_0004,Item name,SHORT_TEXT,Noah Ortiz
+purchase_request,run_0004,Estimated cost,SHORT_TEXT,gamma-04-00
+purchase_request,run_0004,Reason for purchase,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Reason for purchase; run 4)
+purchase_request,run_0004,Needed by date,DATE,2025-10-19
+purchase_request,run_0004,Budget source known?,SINGLE_CHOICE,No
+purchase_request,run_0004,Urgency level,SINGLE_CHOICE,Low
+purchase_request,run_0005,Requester name,SHORT_TEXT,Taylor Bauer
+purchase_request,run_0005,Email address,SHORT_TEXT,taylor.bauer.5@example.com
+purchase_request,run_0005,Department or project,SHORT_TEXT,omega-05-29
+purchase_request,run_0005,Purchase category,DROPDOWN,Lab materials
+purchase_request,run_0005,Item name,SHORT_TEXT,Taylor Bauer
+purchase_request,run_0005,Estimated cost,SHORT_TEXT,beta-05-66
+purchase_request,run_0005,Reason for purchase,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Reason for purchase; run 5)
+purchase_request,run_0005,Needed by date,DATE,2025-07-31
+purchase_request,run_0005,Budget source known?,SINGLE_CHOICE,Yes
+purchase_request,run_0005,Urgency level,SINGLE_CHOICE,Low
+purchase_request,run_0006,Requester name,SHORT_TEXT,Jordan Rivera
+purchase_request,run_0006,Email address,SHORT_TEXT,jordan.rivera.6@demo.org
+purchase_request,run_0006,Department or project,SHORT_TEXT,sigma-06-01
+purchase_request,run_0006,Purchase category,DROPDOWN,Other
+purchase_request,run_0006,Item name,SHORT_TEXT,Jordan Rivera
+purchase_request,run_0006,Estimated cost,SHORT_TEXT,delta-06-42
+purchase_request,run_0006,Reason for purchase,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Reason for purchase; run 6)
+purchase_request,run_0006,Needed by date,DATE,2025-07-18
+purchase_request,run_0006,Budget source known?,SINGLE_CHOICE,No
+purchase_request,run_0006,Urgency level,SINGLE_CHOICE,High
+purchase_request,run_0007,Requester name,SHORT_TEXT,Lena Singh
+purchase_request,run_0007,Email address,SHORT_TEXT,lena.singh.7@demo.org
+purchase_request,run_0007,Department or project,SHORT_TEXT,omega-07-12
+purchase_request,run_0007,Purchase category,DROPDOWN,Books
+purchase_request,run_0007,Item name,SHORT_TEXT,Lena Singh
+purchase_request,run_0007,Estimated cost,SHORT_TEXT,delta-07-55
+purchase_request,run_0007,Reason for purchase,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Reason for purchase; run 7)
+purchase_request,run_0007,Needed by date,DATE,2025-10-20
+purchase_request,run_0007,Budget source known?,SINGLE_CHOICE,No
+purchase_request,run_0007,Urgency level,SINGLE_CHOICE,High
+purchase_request,run_0008,Requester name,SHORT_TEXT,Riley Meyer
+purchase_request,run_0008,Email address,SHORT_TEXT,riley.meyer.8@research.edu
+purchase_request,run_0008,Department or project,SHORT_TEXT,sigma-08-47
+purchase_request,run_0008,Purchase category,DROPDOWN,Lab materials
+purchase_request,run_0008,Item name,SHORT_TEXT,Riley Meyer
+purchase_request,run_0008,Estimated cost,SHORT_TEXT,gamma-08-37
+purchase_request,run_0008,Reason for purchase,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Reason for purchase; run 8)"
+purchase_request,run_0008,Needed by date,DATE,2025-07-24
+purchase_request,run_0008,Budget source known?,SINGLE_CHOICE,No
+purchase_request,run_0008,Urgency level,SINGLE_CHOICE,Low
+purchase_request,run_0009,Requester name,SHORT_TEXT,Noah Kim
+purchase_request,run_0009,Email address,SHORT_TEXT,noah.kim.9@demo.org
+purchase_request,run_0009,Department or project,SHORT_TEXT,omega-09-75
+purchase_request,run_0009,Purchase category,DROPDOWN,Software
+purchase_request,run_0009,Item name,SHORT_TEXT,Noah Kim
+purchase_request,run_0009,Estimated cost,SHORT_TEXT,gamma-09-56
+purchase_request,run_0009,Reason for purchase,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Reason for purchase; run 9)
+purchase_request,run_0009,Needed by date,DATE,2025-06-26
+purchase_request,run_0009,Budget source known?,SINGLE_CHOICE,No
+purchase_request,run_0009,Urgency level,SINGLE_CHOICE,Normal
+purchase_request,run_0010,Requester name,SHORT_TEXT,Morgan Bauer
+purchase_request,run_0010,Email address,SHORT_TEXT,morgan.bauer.10@research.edu
+purchase_request,run_0010,Department or project,SHORT_TEXT,gamma-10-93
+purchase_request,run_0010,Purchase category,DROPDOWN,Hardware
+purchase_request,run_0010,Item name,SHORT_TEXT,Morgan Bauer
+purchase_request,run_0010,Estimated cost,SHORT_TEXT,delta-10-12
+purchase_request,run_0010,Reason for purchase,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Reason for purchase; run 10)
+purchase_request,run_0010,Needed by date,DATE,2025-09-25
+purchase_request,run_0010,Budget source known?,SINGLE_CHOICE,Yes
+purchase_request,run_0010,Urgency level,SINGLE_CHOICE,Normal

@@ -1,211 +1,83 @@
 {
   "form_id": "conf_interest",
-  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqORY5x1MgpgVXcuqrSuwIQD7dEKDJarVqZ1Qat7fAjcWMRg/viewform",
-  "description": "Answer variations for the Conference Interest form. Each run tweaks the profile, interests, and scheduling preferences so multiple submissions can be captured with unique recordings.",
-  "runs": [
+  "form_title": "Conference Interest Survey",
+  "form_description": "Collects background and topic preferences for conference meetups.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1n7yFn4XtUMZRIEvkXTr89CCc2rA0ot8NbRTA5fN9M_Y/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSegYcgI3KK5C-wzLmbP0NHXuZeC5G80jHF4uVFVuZkWdAD6Jw/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSegYcgI3KK5C-wzLmbP0NHXuZeC5G80jHF4uVFVuZkWdAD6Jw/viewform",
+  "question_count": 7,
+  "questions": [
     {
-      "suffix": "mlsys",
-      "notes": "Graduate researcher focused on ML systems.",
-      "answers": [
-        {
-          "label": "Full Name",
-          "widget_type": "short_text",
-          "value": "Jordan Rivera",
-          "tags": [
-            "profile",
-            "identity"
-          ]
-        },
-        {
-          "label": "Preferred contact email",
-          "widget_type": "short_text",
-          "value": "jordan.rivera@example.com",
-          "tags": [
-            "profile",
-            "contact"
-          ]
-        },
-        {
-          "label": "Brief bio",
-          "widget_type": "paragraph_text",
-          "value": "Graduate researcher focused on distributed training and edge inference.",
-          "tags": [
-            "summary"
-          ]
-        },
-        {
-          "label": "Primary role",
-          "widget_type": "single_choice",
-          "value": "PhD student",
-          "tags": [
-            "role"
-          ]
-        },
-        {
-          "label": "Topics you're interested in",
-          "widget_type": "multi_choice",
-          "value": [
-            "AI/ML",
-            "Systems"
-          ],
-          "tags": [
-            "topics",
-            "interests"
-          ]
-        },
-        {
-          "label": "Preferred meeting date",
-          "widget_type": "date",
-          "value": "2025-06-15",
-          "tags": [
-            "scheduling"
-          ]
-        },
-        {
-          "label": "Preferred meeting time",
-          "widget_type": "time",
-          "value": "10:30",
-          "tags": [
-            "scheduling"
-          ]
-        }
-      ]
+      "section_order": 1,
+      "section_title": "About you",
+      "q_order": 1,
+      "q_title": "Full Name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
     },
     {
-      "suffix": "industry",
-      "notes": "Industry professional with applied ML interests.",
-      "answers": [
-        {
-          "label": "Full Name",
-          "widget_type": "short_text",
-          "value": "Avery Chen",
-          "tags": [
-            "profile",
-            "identity"
-          ]
-        },
-        {
-          "label": "Preferred contact email",
-          "widget_type": "short_text",
-          "value": "avery.chen@streamforge.io",
-          "tags": [
-            "profile",
-            "contact"
-          ]
-        },
-        {
-          "label": "Brief bio",
-          "widget_type": "paragraph_text",
-          "value": "Industry professional leading applied ML work for collaboration tools.",
-          "tags": [
-            "summary"
-          ]
-        },
-        {
-          "label": "Primary role",
-          "widget_type": "single_choice",
-          "value": "Industry Professional",
-          "tags": [
-            "role"
-          ]
-        },
-        {
-          "label": "Topics you're interested in",
-          "widget_type": "multi_choice",
-          "value": [
-            "AI/ML",
-            "Security"
-          ],
-          "tags": [
-            "topics",
-            "interests"
-          ]
-        },
-        {
-          "label": "Preferred meeting date",
-          "widget_type": "date",
-          "value": "2025-06-17",
-          "tags": [
-            "scheduling"
-          ]
-        },
-        {
-          "label": "Preferred meeting time",
-          "widget_type": "time",
-          "value": "14:00",
-          "tags": [
-            "scheduling"
-          ]
-        }
-      ]
+      "section_order": 1,
+      "section_title": "About you",
+      "q_order": 2,
+      "q_title": "Preferred contact email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
     },
     {
-      "suffix": "hci",
-      "notes": "Masters student focused on human-computer interaction.",
-      "answers": [
-        {
-          "label": "Full Name",
-          "widget_type": "short_text",
-          "value": "Noah Whitaker",
-          "tags": [
-            "profile",
-            "identity"
-          ]
-        },
-        {
-          "label": "Preferred contact email",
-          "widget_type": "short_text",
-          "value": "noah.whitaker@chipfoundry.ai",
-          "tags": [
-            "profile",
-            "contact"
-          ]
-        },
-        {
-          "label": "Brief bio",
-          "widget_type": "paragraph_text",
-          "value": "Masters student studying human centered AI and interface design.",
-          "tags": [
-            "summary"
-          ]
-        },
-        {
-          "label": "Primary role",
-          "widget_type": "single_choice",
-          "value": "Master's student",
-          "tags": [
-            "role"
-          ]
-        },
-        {
-          "label": "Topics you're interested in",
-          "widget_type": "multi_choice",
-          "value": [
-            "Human-Computer Interaction",
-            "AI/ML"
-          ],
-          "tags": [
-            "topics",
-            "interests"
-          ]
-        },
-        {
-          "label": "Preferred meeting date",
-          "widget_type": "date",
-          "value": "2025-06-20",
-          "tags": [
-            "scheduling"
-          ]
-        },
-        {
-          "label": "Preferred meeting time",
-          "widget_type": "time",
-          "value": "09:00",
-          "tags": [
-            "scheduling"
-          ]
-        }
-      ]
+      "section_order": 1,
+      "section_title": "About you",
+      "q_order": 3,
+      "q_title": "Brief bio",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": "2\u20133 sentences about your background."
+    },
+    {
+      "section_order": 1,
+      "section_title": "About you",
+      "q_order": 4,
+      "q_title": "Primary role",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Undergraduate student;Master\u2019s student;PhD student;Industry Professional",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "About you",
+      "q_order": 5,
+      "q_title": "Topics you\u2019re interested in",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "AI/ML;Security;Systems;Human-Computer Interaction",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "About you",
+      "q_order": 6,
+      "q_title": "Preferred meeting date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "About you",
+      "q_order": 7,
+      "q_title": "Preferred meeting time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
     }
-  ]
+  ],
+  "source": "From Generator CSV sync"
 }

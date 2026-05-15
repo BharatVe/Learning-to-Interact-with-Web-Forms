@@ -1,0 +1,103 @@
+{
+  "form_id": "bug_report",
+  "form_title": "Software Bug Report",
+  "form_description": "Collects reproducible bug reports, environment details, and severity information.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1lfejoxhTwTCyaGzBIPCIBEJ7hsueerA9qs7GFOlVAt8/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSeGjTzAwZV9zeACA1CJbXmhF2RQ04f92mPAYaa7fVpedsMxAA/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeGjTzAwZV9zeACA1CJbXmhF2RQ04f92mPAYaa7fVpedsMxAA/viewform",
+  "question_count": 9,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Issue details",
+      "q_order": 1,
+      "q_title": "Reporter name",
+      "q_type": "SHORT_TEXT",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Issue details",
+      "q_order": 2,
+      "q_title": "Contact email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Issue details",
+      "q_order": 3,
+      "q_title": "Application or module name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Issue details",
+      "q_order": 4,
+      "q_title": "Bug severity",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Low;Medium;High;Critical",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Issue details",
+      "q_order": 5,
+      "q_title": "Device or browser used",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "Chrome;Firefox;Edge;Safari;Android app;iOS app;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Issue details",
+      "q_order": 6,
+      "q_title": "Steps to reproduce",
+      "q_type": "PARAGRAPH",
+      "required": true,
+      "options": "",
+      "help_text": "List the actions that caused the issue."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Issue details",
+      "q_order": 7,
+      "q_title": "Expected behavior",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Issue details",
+      "q_order": 8,
+      "q_title": "Observed behavior",
+      "q_type": "PARAGRAPH",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Issue details",
+      "q_order": 9,
+      "q_title": "Date when issue occurred",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

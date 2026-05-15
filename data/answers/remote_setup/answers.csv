@@ -1,0 +1,71 @@
+form_id,run_id,q_title,q_type,answer
+remote_setup,run_0001,Full name,SHORT_TEXT,Casey Bauer
+remote_setup,run_0001,Email address,SHORT_TEXT,casey.bauer.1@research.edu
+remote_setup,run_0001,Remote work start date,DATE,2025-10-08
+remote_setup,run_0001,Expected remote work duration,DROPDOWN,Full semester
+remote_setup,run_0001,Equipment needed,MULTI_CHOICE,Monitor;Headset
+remote_setup,run_0001,Primary work location,SINGLE_CHOICE,Home
+remote_setup,run_0001,Technical constraints,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Technical constraints; run 1)
+remote_setup,run_0002,Full name,SHORT_TEXT,Sam Meyer
+remote_setup,run_0002,Email address,SHORT_TEXT,sam.meyer.2@mail.test
+remote_setup,run_0002,Remote work start date,DATE,2025-06-04
+remote_setup,run_0002,Expected remote work duration,DROPDOWN,Long term
+remote_setup,run_0002,Equipment needed,MULTI_CHOICE,Mouse
+remote_setup,run_0002,Primary work location,SINGLE_CHOICE,Traveling
+remote_setup,run_0002,Technical constraints,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Technical constraints; run 2)"
+remote_setup,run_0003,Full name,SHORT_TEXT,Lena Patel
+remote_setup,run_0003,Email address,SHORT_TEXT,lena.patel.3@research.edu
+remote_setup,run_0003,Remote work start date,DATE,2025-09-27
+remote_setup,run_0003,Expected remote work duration,DROPDOWN,1 month
+remote_setup,run_0003,Equipment needed,MULTI_CHOICE,Laptop;Mouse
+remote_setup,run_0003,Primary work location,SINGLE_CHOICE,Home
+remote_setup,run_0003,Technical constraints,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Technical constraints; run 3)
+remote_setup,run_0004,Full name,SHORT_TEXT,Morgan Khan
+remote_setup,run_0004,Email address,SHORT_TEXT,morgan.khan.4@example.com
+remote_setup,run_0004,Remote work start date,DATE,2025-10-25
+remote_setup,run_0004,Expected remote work duration,DROPDOWN,1 day
+remote_setup,run_0004,Equipment needed,MULTI_CHOICE,Monitor;Keyboard;VPN access
+remote_setup,run_0004,Primary work location,SINGLE_CHOICE,Traveling
+remote_setup,run_0004,Technical constraints,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Technical constraints; run 4)
+remote_setup,run_0005,Full name,SHORT_TEXT,Morgan Chen
+remote_setup,run_0005,Email address,SHORT_TEXT,morgan.chen.5@demo.org
+remote_setup,run_0005,Remote work start date,DATE,2025-09-16
+remote_setup,run_0005,Expected remote work duration,DROPDOWN,1 day
+remote_setup,run_0005,Equipment needed,MULTI_CHOICE,Mouse
+remote_setup,run_0005,Primary work location,SINGLE_CHOICE,Traveling
+remote_setup,run_0005,Technical constraints,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Technical constraints; run 5)
+remote_setup,run_0006,Full name,SHORT_TEXT,Sam Bauer
+remote_setup,run_0006,Email address,SHORT_TEXT,sam.bauer.6@research.edu
+remote_setup,run_0006,Remote work start date,DATE,2025-11-14
+remote_setup,run_0006,Expected remote work duration,DROPDOWN,Full semester
+remote_setup,run_0006,Equipment needed,MULTI_CHOICE,Laptop;Keyboard;Headset
+remote_setup,run_0006,Primary work location,SINGLE_CHOICE,Other
+remote_setup,run_0006,Technical constraints,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Technical constraints; run 6)"
+remote_setup,run_0007,Full name,SHORT_TEXT,Priya Patel
+remote_setup,run_0007,Email address,SHORT_TEXT,priya.patel.7@mail.test
+remote_setup,run_0007,Remote work start date,DATE,2025-07-11
+remote_setup,run_0007,Expected remote work duration,DROPDOWN,Long term
+remote_setup,run_0007,Equipment needed,MULTI_CHOICE,Headset
+remote_setup,run_0007,Primary work location,SINGLE_CHOICE,Traveling
+remote_setup,run_0007,Technical constraints,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Technical constraints; run 7)
+remote_setup,run_0008,Full name,SHORT_TEXT,Jordan Kim
+remote_setup,run_0008,Email address,SHORT_TEXT,jordan.kim.8@demo.org
+remote_setup,run_0008,Remote work start date,DATE,2025-10-19
+remote_setup,run_0008,Expected remote work duration,DROPDOWN,Full semester
+remote_setup,run_0008,Equipment needed,MULTI_CHOICE,Laptop;Headset;None
+remote_setup,run_0008,Primary work location,SINGLE_CHOICE,Other
+remote_setup,run_0008,Technical constraints,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Technical constraints; run 8)"
+remote_setup,run_0009,Full name,SHORT_TEXT,Lena Patel
+remote_setup,run_0009,Email address,SHORT_TEXT,lena.patel.9@mail.test
+remote_setup,run_0009,Remote work start date,DATE,2025-09-20
+remote_setup,run_0009,Expected remote work duration,DROPDOWN,Full semester
+remote_setup,run_0009,Equipment needed,MULTI_CHOICE,Mouse;VPN access
+remote_setup,run_0009,Primary work location,SINGLE_CHOICE,Co-working space
+remote_setup,run_0009,Technical constraints,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Technical constraints; run 9)
+remote_setup,run_0010,Full name,SHORT_TEXT,Riley Singh
+remote_setup,run_0010,Email address,SHORT_TEXT,riley.singh.10@example.com
+remote_setup,run_0010,Remote work start date,DATE,2025-07-05
+remote_setup,run_0010,Expected remote work duration,DROPDOWN,Long term
+remote_setup,run_0010,Equipment needed,MULTI_CHOICE,Mouse
+remote_setup,run_0010,Primary work location,SINGLE_CHOICE,Co-working space
+remote_setup,run_0010,Technical constraints,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Technical constraints; run 10)

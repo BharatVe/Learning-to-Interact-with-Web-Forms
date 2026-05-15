@@ -1,184 +1,906 @@
 {
   "form_id": "course_feedback",
-  "description": "Run variations for Course Feedback submissions.",
+  "description": "Deterministically generated answer sets.",
   "runs": [
     {
-      "suffix": "ml_bootcamp",
-      "notes": "Strongly positive feedback for an applied ML course.",
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
       "answers": [
         {
           "label": "Course name",
           "widget_type": "short_text",
-          "value": "Machine Learning Bootcamp",
-          "tags": ["course"]
+          "value": "Avery Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Your program level",
           "widget_type": "single_choice",
-          "value": "Master's",
-          "tags": ["program"]
-        },
-        {
-          "label": "Did you attend most sessions?",
-          "widget_type": "single_choice",
-          "value": "Yes",
-          "tags": ["attendance"]
-        },
-        {
-          "label": "Overall satisfaction",
-          "widget_type": "single_choice",
-          "value": "5 - Very satisfied",
-          "tags": ["rating"]
-        },
-        {
-          "label": "Workload felt",
-          "widget_type": "single_choice",
-          "value": "About right",
-          "tags": ["workload"]
-        },
-        {
-          "label": "What did you like most?",
-          "widget_type": "paragraph_text",
-          "value": "Hands on labs and clear weekly goals.",
-          "tags": ["feedback"]
-        },
-        {
-          "label": "What should be improved?",
-          "widget_type": "paragraph_text",
-          "value": "More time for project demos.",
-          "tags": ["feedback"]
-        },
-        {
-          "label": "Most useful aspects",
-          "widget_type": "multi_choice",
-          "value": ["Practical labs", "Project work"],
-          "tags": ["highlights"]
-        },
-        {
-          "label": "Would you recommend this course?",
-          "widget_type": "single_choice",
-          "value": "Yes",
-          "tags": ["recommendation"]
-        }
-      ]
-    },
-    {
-      "suffix": "distributed",
-      "notes": "Mixed feedback for a rigorous systems course.",
-      "answers": [
-        {
-          "label": "Course name",
-          "widget_type": "short_text",
-          "value": "Distributed Systems",
-          "tags": ["course"]
-        },
-        {
-          "label": "Your program level",
-          "widget_type": "single_choice",
-          "value": "Bachelor's",
-          "tags": ["program"]
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
           "label": "Did you attend most sessions?",
           "widget_type": "single_choice",
           "value": "Partially",
-          "tags": ["attendance"]
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
           "label": "Overall satisfaction",
           "widget_type": "single_choice",
-          "value": "3",
-          "tags": ["rating"]
+          "value": "1 \u2013 Very dissatisfied",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
           "label": "Workload felt",
           "widget_type": "single_choice",
-          "value": "Too high",
-          "tags": ["workload"]
+          "value": "Too low",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
           "label": "What did you like most?",
           "widget_type": "paragraph_text",
-          "value": "Case studies from real deployments.",
-          "tags": ["feedback"]
+          "value": "I would like to participate and contribute with structured feedback and observations. (What did you like most?; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
         },
         {
           "label": "What should be improved?",
           "widget_type": "paragraph_text",
-          "value": "More guided review sessions.",
-          "tags": ["feedback"]
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (What should be improved?; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
         },
         {
           "label": "Most useful aspects",
           "widget_type": "multi_choice",
-          "value": ["Theory", "Assignments"],
-          "tags": ["highlights"]
+          "value": [
+            "Project work"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
         },
         {
           "label": "Would you recommend this course?",
           "widget_type": "single_choice",
-          "value": "Maybe",
-          "tags": ["recommendation"]
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         }
       ]
     },
     {
-      "suffix": "ai_ethics",
-      "notes": "Positive feedback for an ethics seminar.",
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
       "answers": [
         {
           "label": "Course name",
           "widget_type": "short_text",
-          "value": "AI Ethics",
-          "tags": ["course"]
+          "value": "Priya Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Your program level",
           "widget_type": "single_choice",
-          "value": "PhD",
-          "tags": ["program"]
+          "value": "Master\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
           "label": "Did you attend most sessions?",
           "widget_type": "single_choice",
-          "value": "Yes",
-          "tags": ["attendance"]
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Overall satisfaction",
+          "widget_type": "single_choice",
+          "value": "5 \u2013 Very satisfied",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Workload felt",
+          "widget_type": "single_choice",
+          "value": "Too low",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "What did you like most?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (What did you like most?; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "What should be improved?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (What should be improved?; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Most useful aspects",
+          "widget_type": "multi_choice",
+          "value": [
+            "Assignments",
+            "Project work"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Would you recommend this course?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Course name",
+          "widget_type": "short_text",
+          "value": "Avery Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Your program level",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Did you attend most sessions?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
           "label": "Overall satisfaction",
           "widget_type": "single_choice",
           "value": "4",
-          "tags": ["rating"]
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
           "label": "Workload felt",
           "widget_type": "single_choice",
           "value": "About right",
-          "tags": ["workload"]
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
           "label": "What did you like most?",
           "widget_type": "paragraph_text",
-          "value": "Debates and applied policy examples.",
-          "tags": ["feedback"]
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (What did you like most?; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
         },
         {
           "label": "What should be improved?",
           "widget_type": "paragraph_text",
-          "value": "Add more guest speakers.",
-          "tags": ["feedback"]
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (What should be improved?; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
         },
         {
           "label": "Most useful aspects",
           "widget_type": "multi_choice",
-          "value": ["Theory", "Practical labs"],
-          "tags": ["highlights"]
+          "value": [
+            "Theory",
+            "Practical labs",
+            "Project work"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Would you recommend this course?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Course name",
+          "widget_type": "short_text",
+          "value": "Lena Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Your program level",
+          "widget_type": "single_choice",
+          "value": "PhD",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Did you attend most sessions?",
+          "widget_type": "single_choice",
+          "value": "Partially",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Overall satisfaction",
+          "widget_type": "single_choice",
+          "value": "3",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Workload felt",
+          "widget_type": "single_choice",
+          "value": "Too low",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "What did you like most?",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (What did you like most?; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "What should be improved?",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (What should be improved?; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Most useful aspects",
+          "widget_type": "multi_choice",
+          "value": [
+            "Theory",
+            "Practical labs",
+            "Assignments"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Would you recommend this course?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Course name",
+          "widget_type": "short_text",
+          "value": "Taylor Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Your program level",
+          "widget_type": "single_choice",
+          "value": "Bachelor\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Did you attend most sessions?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Overall satisfaction",
+          "widget_type": "single_choice",
+          "value": "3",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Workload felt",
+          "widget_type": "single_choice",
+          "value": "Too low",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "What did you like most?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (What did you like most?; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "What should be improved?",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (What should be improved?; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Most useful aspects",
+          "widget_type": "multi_choice",
+          "value": [
+            "Assignments"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Would you recommend this course?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Course name",
+          "widget_type": "short_text",
+          "value": "Morgan Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Your program level",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Did you attend most sessions?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Overall satisfaction",
+          "widget_type": "single_choice",
+          "value": "3",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Workload felt",
+          "widget_type": "single_choice",
+          "value": "Too high",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "What did you like most?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (What did you like most?; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "What should be improved?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (What should be improved?; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Most useful aspects",
+          "widget_type": "multi_choice",
+          "value": [
+            "Theory",
+            "Practical labs",
+            "Assignments"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
         },
         {
           "label": "Would you recommend this course?",
           "widget_type": "single_choice",
           "value": "Yes",
-          "tags": ["recommendation"]
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Course name",
+          "widget_type": "short_text",
+          "value": "Jordan Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Your program level",
+          "widget_type": "single_choice",
+          "value": "PhD",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Did you attend most sessions?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Overall satisfaction",
+          "widget_type": "single_choice",
+          "value": "5 \u2013 Very satisfied",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Workload felt",
+          "widget_type": "single_choice",
+          "value": "About right",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "What did you like most?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (What did you like most?; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "What should be improved?",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (What should be improved?; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Most useful aspects",
+          "widget_type": "multi_choice",
+          "value": [
+            "Theory",
+            "Practical labs",
+            "Project work"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Would you recommend this course?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Course name",
+          "widget_type": "short_text",
+          "value": "Jordan Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Your program level",
+          "widget_type": "single_choice",
+          "value": "PhD",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Did you attend most sessions?",
+          "widget_type": "single_choice",
+          "value": "Partially",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Overall satisfaction",
+          "widget_type": "single_choice",
+          "value": "2",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Workload felt",
+          "widget_type": "single_choice",
+          "value": "Too high",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "What did you like most?",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (What did you like most?; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "What should be improved?",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (What should be improved?; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Most useful aspects",
+          "widget_type": "multi_choice",
+          "value": [
+            "Theory",
+            "Assignments"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Would you recommend this course?",
+          "widget_type": "single_choice",
+          "value": "Yes",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Course name",
+          "widget_type": "short_text",
+          "value": "Riley Meyer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Your program level",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Did you attend most sessions?",
+          "widget_type": "single_choice",
+          "value": "Partially",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Overall satisfaction",
+          "widget_type": "single_choice",
+          "value": "4",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Workload felt",
+          "widget_type": "single_choice",
+          "value": "About right",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "What did you like most?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (What did you like most?; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "What should be improved?",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (What should be improved?; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Most useful aspects",
+          "widget_type": "multi_choice",
+          "value": [
+            "Theory"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Would you recommend this course?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Course name",
+          "widget_type": "short_text",
+          "value": "Casey Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Your program level",
+          "widget_type": "single_choice",
+          "value": "Bachelor\u2019s",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Did you attend most sessions?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Overall satisfaction",
+          "widget_type": "single_choice",
+          "value": "5 \u2013 Very satisfied",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Workload felt",
+          "widget_type": "single_choice",
+          "value": "About right",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "What did you like most?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (What did you like most?; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "What should be improved?",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (What should be improved?; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Most useful aspects",
+          "widget_type": "multi_choice",
+          "value": [
+            "Practical labs",
+            "Assignments",
+            "Project work"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Would you recommend this course?",
+          "widget_type": "single_choice",
+          "value": "No",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         }
       ]
     }

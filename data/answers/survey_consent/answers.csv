@@ -1,0 +1,81 @@
+form_id,run_id,q_title,q_type,answer
+survey_consent,run_0001,Participant code or name,SHORT_TEXT,Noah Kim
+survey_consent,run_0001,Contact email,SHORT_TEXT,noah.kim.1@mail.test
+survey_consent,run_0001,I have read the study information,SINGLE_CHOICE,Yes
+survey_consent,run_0001,I agree to participate,SINGLE_CHOICE,No
+survey_consent,run_0001,Participation mode preferred,DROPDOWN,Either
+survey_consent,run_0001,Available dates,MULTI_CHOICE,Monday;Thursday
+survey_consent,run_0001,Preferred session date,DATE,2025-10-26
+survey_consent,run_0001,Preferred session time,TIME,14:15
+survey_consent,run_0002,Participant code or name,SHORT_TEXT,Morgan Chen
+survey_consent,run_0002,Contact email,SHORT_TEXT,morgan.chen.2@demo.org
+survey_consent,run_0002,I have read the study information,SINGLE_CHOICE,Yes
+survey_consent,run_0002,I agree to participate,SINGLE_CHOICE,No
+survey_consent,run_0002,Participation mode preferred,DROPDOWN,In person
+survey_consent,run_0002,Available dates,MULTI_CHOICE,Wednesday;Thursday
+survey_consent,run_0002,Preferred session date,DATE,2025-06-24
+survey_consent,run_0002,Preferred session time,TIME,13:00
+survey_consent,run_0003,Participant code or name,SHORT_TEXT,Avery Patel
+survey_consent,run_0003,Contact email,SHORT_TEXT,avery.patel.3@example.com
+survey_consent,run_0003,I have read the study information,SINGLE_CHOICE,No
+survey_consent,run_0003,I agree to participate,SINGLE_CHOICE,No
+survey_consent,run_0003,Participation mode preferred,DROPDOWN,In person
+survey_consent,run_0003,Available dates,MULTI_CHOICE,Tuesday;Friday
+survey_consent,run_0003,Preferred session date,DATE,2025-06-22
+survey_consent,run_0003,Preferred session time,TIME,14:15
+survey_consent,run_0004,Participant code or name,SHORT_TEXT,Jordan Chen
+survey_consent,run_0004,Contact email,SHORT_TEXT,jordan.chen.4@demo.org
+survey_consent,run_0004,I have read the study information,SINGLE_CHOICE,Yes
+survey_consent,run_0004,I agree to participate,SINGLE_CHOICE,Yes
+survey_consent,run_0004,Participation mode preferred,DROPDOWN,Either
+survey_consent,run_0004,Available dates,MULTI_CHOICE,Monday;Wednesday;Thursday
+survey_consent,run_0004,Preferred session date,DATE,2025-09-08
+survey_consent,run_0004,Preferred session time,TIME,16:45
+survey_consent,run_0005,Participant code or name,SHORT_TEXT,Morgan Bauer
+survey_consent,run_0005,Contact email,SHORT_TEXT,morgan.bauer.5@demo.org
+survey_consent,run_0005,I have read the study information,SINGLE_CHOICE,No
+survey_consent,run_0005,I agree to participate,SINGLE_CHOICE,Yes
+survey_consent,run_0005,Participation mode preferred,DROPDOWN,In person
+survey_consent,run_0005,Available dates,MULTI_CHOICE,Tuesday;Wednesday;Friday
+survey_consent,run_0005,Preferred session date,DATE,2025-10-17
+survey_consent,run_0005,Preferred session time,TIME,09:00
+survey_consent,run_0006,Participant code or name,SHORT_TEXT,Noah Nguyen
+survey_consent,run_0006,Contact email,SHORT_TEXT,noah.nguyen.6@mail.test
+survey_consent,run_0006,I have read the study information,SINGLE_CHOICE,No
+survey_consent,run_0006,I agree to participate,SINGLE_CHOICE,No
+survey_consent,run_0006,Participation mode preferred,DROPDOWN,Online
+survey_consent,run_0006,Available dates,MULTI_CHOICE,Thursday
+survey_consent,run_0006,Preferred session date,DATE,2025-09-16
+survey_consent,run_0006,Preferred session time,TIME,15:30
+survey_consent,run_0007,Participant code or name,SHORT_TEXT,Priya Nguyen
+survey_consent,run_0007,Contact email,SHORT_TEXT,priya.nguyen.7@mail.test
+survey_consent,run_0007,I have read the study information,SINGLE_CHOICE,Yes
+survey_consent,run_0007,I agree to participate,SINGLE_CHOICE,No
+survey_consent,run_0007,Participation mode preferred,DROPDOWN,Online
+survey_consent,run_0007,Available dates,MULTI_CHOICE,Tuesday;Thursday
+survey_consent,run_0007,Preferred session date,DATE,2025-08-07
+survey_consent,run_0007,Preferred session time,TIME,13:00
+survey_consent,run_0008,Participant code or name,SHORT_TEXT,Riley Khan
+survey_consent,run_0008,Contact email,SHORT_TEXT,riley.khan.8@example.com
+survey_consent,run_0008,I have read the study information,SINGLE_CHOICE,No
+survey_consent,run_0008,I agree to participate,SINGLE_CHOICE,No
+survey_consent,run_0008,Participation mode preferred,DROPDOWN,Online
+survey_consent,run_0008,Available dates,MULTI_CHOICE,Monday;Friday
+survey_consent,run_0008,Preferred session date,DATE,2025-07-31
+survey_consent,run_0008,Preferred session time,TIME,10:15
+survey_consent,run_0009,Participant code or name,SHORT_TEXT,Avery Rivera
+survey_consent,run_0009,Contact email,SHORT_TEXT,avery.rivera.9@example.com
+survey_consent,run_0009,I have read the study information,SINGLE_CHOICE,Yes
+survey_consent,run_0009,I agree to participate,SINGLE_CHOICE,No
+survey_consent,run_0009,Participation mode preferred,DROPDOWN,Online
+survey_consent,run_0009,Available dates,MULTI_CHOICE,Tuesday
+survey_consent,run_0009,Preferred session date,DATE,2025-11-27
+survey_consent,run_0009,Preferred session time,TIME,10:15
+survey_consent,run_0010,Participant code or name,SHORT_TEXT,Priya Khan
+survey_consent,run_0010,Contact email,SHORT_TEXT,priya.khan.10@research.edu
+survey_consent,run_0010,I have read the study information,SINGLE_CHOICE,Yes
+survey_consent,run_0010,I agree to participate,SINGLE_CHOICE,No
+survey_consent,run_0010,Participation mode preferred,DROPDOWN,Either
+survey_consent,run_0010,Available dates,MULTI_CHOICE,Wednesday;Friday
+survey_consent,run_0010,Preferred session date,DATE,2025-10-18
+survey_consent,run_0010,Preferred session time,TIME,08:30

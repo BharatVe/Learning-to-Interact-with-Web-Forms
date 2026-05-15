@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "description": "Dedicated text model-size comparison (7B vs 30B) for human_ui_v1 benchmark runs.",
+  "models": [
+    {
+      "id": "text_qwen25_7b_instruct",
+      "kind": "text_llm",
+      "provider": "local_hf",
+      "hf_repo": "Qwen/Qwen2.5-7B-Instruct",
+      "track": "mediated",
+      "requires_gpu": true,
+      "notes": "7B text model for size-controlled comparison."
+    },
+    {
+      "id": "text_qwen3_30b_a3b_instruct_2507",
+      "kind": "text_llm",
+      "provider": "local_hf",
+      "hf_repo": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "track": "mediated",
+      "requires_gpu": true,
+      "notes": "30B text model for size-controlled comparison."
+    }
+  ]
+}

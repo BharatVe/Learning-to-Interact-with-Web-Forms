@@ -1,0 +1,103 @@
+{
+  "form_id": "data_annotation",
+  "form_title": "Data Annotation Task Signup (2 pages)",
+  "form_description": "Signup form for annotation tasks including availability and annotation background.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1WYyskhPWIPP7D5fqs8UZQRddmAp416bR8wOoD0XbCNI/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSc1T8L9htxxHWNYjXXO2Mm5Jd_3nJ4QhUaggOoKnG4z_-_7oA/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSc1T8L9htxxHWNYjXXO2Mm5Jd_3nJ4QhUaggOoKnG4z_-_7oA/viewform",
+  "question_count": 9,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Annotator profile",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Annotator profile",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Annotator profile",
+      "q_order": 3,
+      "q_title": "Annotation experience",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "None;Some experience;Experienced",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Annotator profile",
+      "q_order": 4,
+      "q_title": "Languages comfortable with",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "English;German;French;Spanish;Hindi;Other",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Task preferences",
+      "q_order": 1,
+      "q_title": "Preferred annotation task",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "Bounding boxes;Action labels;Text transcription;Quality checking;Metadata cleanup",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Task preferences",
+      "q_order": 2,
+      "q_title": "Available start date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Task preferences",
+      "q_order": 3,
+      "q_title": "Preferred work time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Task preferences",
+      "q_order": 4,
+      "q_title": "Weekly availability",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": "Example: 5, 10, 15"
+    },
+    {
+      "section_order": 2,
+      "section_title": "Task preferences",
+      "q_order": 5,
+      "q_title": "Comments about task preference",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

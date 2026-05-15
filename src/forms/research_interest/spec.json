@@ -1,0 +1,83 @@
+{
+  "form_id": "research_interest",
+  "form_title": "Research Interest Intake",
+  "form_description": "Collects research interests, experience, and preferred supervision topics.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1PdMPPa9GjJoUBI9gY1hoTxOWh15ilBVTLA2CzW02_BU/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSeVAnti3Wi-hpG3DNR6S6pJx1DuMBCLvKRTjm-kszHkfaqscg/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeVAnti3Wi-hpG3DNR6S6pJx1DuMBCLvKRTjm-kszHkfaqscg/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 2,
+      "q_title": "Contact email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 3,
+      "q_title": "Current degree level",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Bachelor\u2019s;Master\u2019s;PhD;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 4,
+      "q_title": "Research areas of interest",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Machine Learning;Computer Vision;NLP;Robotics;Human-Computer Interaction",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 5,
+      "q_title": "Previous research experience",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": "2\u20134 sentences."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 6,
+      "q_title": "Preferred meeting date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 7,
+      "q_title": "Preferred meeting time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

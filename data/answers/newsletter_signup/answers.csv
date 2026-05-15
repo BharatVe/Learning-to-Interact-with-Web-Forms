@@ -1,0 +1,71 @@
+form_id,run_id,q_title,q_type,answer
+newsletter_signup,run_0001,Full name,SHORT_TEXT,Noah Patel
+newsletter_signup,run_0001,Email address,SHORT_TEXT,noah.patel.1@research.edu
+newsletter_signup,run_0001,Newsletter topics,MULTI_CHOICE,Research news;Job opportunities;Funding calls
+newsletter_signup,run_0001,Email frequency,DROPDOWN,Only major announcements
+newsletter_signup,run_0001,Preferred language,SINGLE_CHOICE,German
+newsletter_signup,run_0001,Would you like event reminders?,SINGLE_CHOICE,No
+newsletter_signup,run_0001,Additional interests,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional interests; run 1)
+newsletter_signup,run_0002,Full name,SHORT_TEXT,Priya Ortiz
+newsletter_signup,run_0002,Email address,SHORT_TEXT,priya.ortiz.2@demo.org
+newsletter_signup,run_0002,Newsletter topics,MULTI_CHOICE,Student projects
+newsletter_signup,run_0002,Email frequency,DROPDOWN,Weekly
+newsletter_signup,run_0002,Preferred language,SINGLE_CHOICE,English
+newsletter_signup,run_0002,Would you like event reminders?,SINGLE_CHOICE,Yes
+newsletter_signup,run_0002,Additional interests,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Additional interests; run 2)
+newsletter_signup,run_0003,Full name,SHORT_TEXT,Lena Singh
+newsletter_signup,run_0003,Email address,SHORT_TEXT,lena.singh.3@demo.org
+newsletter_signup,run_0003,Newsletter topics,MULTI_CHOICE,Job opportunities;Student projects;Funding calls
+newsletter_signup,run_0003,Email frequency,DROPDOWN,Monthly
+newsletter_signup,run_0003,Preferred language,SINGLE_CHOICE,English
+newsletter_signup,run_0003,Would you like event reminders?,SINGLE_CHOICE,Yes
+newsletter_signup,run_0003,Additional interests,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional interests; run 3)
+newsletter_signup,run_0004,Full name,SHORT_TEXT,Riley Kim
+newsletter_signup,run_0004,Email address,SHORT_TEXT,riley.kim.4@demo.org
+newsletter_signup,run_0004,Newsletter topics,MULTI_CHOICE,Events
+newsletter_signup,run_0004,Email frequency,DROPDOWN,Monthly
+newsletter_signup,run_0004,Preferred language,SINGLE_CHOICE,English
+newsletter_signup,run_0004,Would you like event reminders?,SINGLE_CHOICE,No
+newsletter_signup,run_0004,Additional interests,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional interests; run 4)"
+newsletter_signup,run_0005,Full name,SHORT_TEXT,Taylor Rivera
+newsletter_signup,run_0005,Email address,SHORT_TEXT,taylor.rivera.5@example.com
+newsletter_signup,run_0005,Newsletter topics,MULTI_CHOICE,Job opportunities;Student projects
+newsletter_signup,run_0005,Email frequency,DROPDOWN,Monthly
+newsletter_signup,run_0005,Preferred language,SINGLE_CHOICE,German
+newsletter_signup,run_0005,Would you like event reminders?,SINGLE_CHOICE,No
+newsletter_signup,run_0005,Additional interests,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional interests; run 5)
+newsletter_signup,run_0006,Full name,SHORT_TEXT,Taylor Singh
+newsletter_signup,run_0006,Email address,SHORT_TEXT,taylor.singh.6@mail.test
+newsletter_signup,run_0006,Newsletter topics,MULTI_CHOICE,Job opportunities;Funding calls
+newsletter_signup,run_0006,Email frequency,DROPDOWN,Monthly
+newsletter_signup,run_0006,Preferred language,SINGLE_CHOICE,German
+newsletter_signup,run_0006,Would you like event reminders?,SINGLE_CHOICE,Yes
+newsletter_signup,run_0006,Additional interests,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional interests; run 6)
+newsletter_signup,run_0007,Full name,SHORT_TEXT,Morgan Nguyen
+newsletter_signup,run_0007,Email address,SHORT_TEXT,morgan.nguyen.7@mail.test
+newsletter_signup,run_0007,Newsletter topics,MULTI_CHOICE,Job opportunities;Student projects;Funding calls
+newsletter_signup,run_0007,Email frequency,DROPDOWN,Biweekly
+newsletter_signup,run_0007,Preferred language,SINGLE_CHOICE,German
+newsletter_signup,run_0007,Would you like event reminders?,SINGLE_CHOICE,Yes
+newsletter_signup,run_0007,Additional interests,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional interests; run 7)"
+newsletter_signup,run_0008,Full name,SHORT_TEXT,Casey Singh
+newsletter_signup,run_0008,Email address,SHORT_TEXT,casey.singh.8@example.com
+newsletter_signup,run_0008,Newsletter topics,MULTI_CHOICE,Job opportunities
+newsletter_signup,run_0008,Email frequency,DROPDOWN,Weekly
+newsletter_signup,run_0008,Preferred language,SINGLE_CHOICE,English
+newsletter_signup,run_0008,Would you like event reminders?,SINGLE_CHOICE,Yes
+newsletter_signup,run_0008,Additional interests,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional interests; run 8)"
+newsletter_signup,run_0009,Full name,SHORT_TEXT,Priya Ortiz
+newsletter_signup,run_0009,Email address,SHORT_TEXT,priya.ortiz.9@example.com
+newsletter_signup,run_0009,Newsletter topics,MULTI_CHOICE,Research news;Events
+newsletter_signup,run_0009,Email frequency,DROPDOWN,Weekly
+newsletter_signup,run_0009,Preferred language,SINGLE_CHOICE,English
+newsletter_signup,run_0009,Would you like event reminders?,SINGLE_CHOICE,No
+newsletter_signup,run_0009,Additional interests,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional interests; run 9)"
+newsletter_signup,run_0010,Full name,SHORT_TEXT,Noah Meyer
+newsletter_signup,run_0010,Email address,SHORT_TEXT,noah.meyer.10@demo.org
+newsletter_signup,run_0010,Newsletter topics,MULTI_CHOICE,Research news;Events;Funding calls
+newsletter_signup,run_0010,Email frequency,DROPDOWN,Only major announcements
+newsletter_signup,run_0010,Preferred language,SINGLE_CHOICE,No preference
+newsletter_signup,run_0010,Would you like event reminders?,SINGLE_CHOICE,Yes
+newsletter_signup,run_0010,Additional interests,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional interests; run 10)

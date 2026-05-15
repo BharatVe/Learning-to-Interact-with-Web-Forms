@@ -1,0 +1,71 @@
+form_id,run_id,q_title,q_type,answer
+wellbeing_check,run_0001,Name or nickname,SHORT_TEXT,Taylor Singh
+wellbeing_check,run_0001,How are you feeling today?,SINGLE_CHOICE,Very low
+wellbeing_check,run_0001,Hours of sleep last night,SHORT_TEXT,sigma-01-07
+wellbeing_check,run_0001,Habits completed today,MULTI_CHOICE,Study session
+wellbeing_check,run_0001,Do you feel stressed this week?,SINGLE_CHOICE,No
+wellbeing_check,run_0001,Preferred time for a check-in call,TIME,09:00
+wellbeing_check,run_0001,Anything you want to note?,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Anything you want to note?; run 1)
+wellbeing_check,run_0002,Name or nickname,SHORT_TEXT,Noah Rivera
+wellbeing_check,run_0002,How are you feeling today?,SINGLE_CHOICE,Very low
+wellbeing_check,run_0002,Hours of sleep last night,SHORT_TEXT,gamma-02-97
+wellbeing_check,run_0002,Habits completed today,MULTI_CHOICE,Meditation
+wellbeing_check,run_0002,Do you feel stressed this week?,SINGLE_CHOICE,Somewhat
+wellbeing_check,run_0002,Preferred time for a check-in call,TIME,13:00
+wellbeing_check,run_0002,Anything you want to note?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Anything you want to note?; run 2)"
+wellbeing_check,run_0003,Name or nickname,SHORT_TEXT,Lena Bauer
+wellbeing_check,run_0003,How are you feeling today?,SINGLE_CHOICE,Good
+wellbeing_check,run_0003,Hours of sleep last night,SHORT_TEXT,beta-03-23
+wellbeing_check,run_0003,Habits completed today,MULTI_CHOICE,Exercise;Study session
+wellbeing_check,run_0003,Do you feel stressed this week?,SINGLE_CHOICE,Yes
+wellbeing_check,run_0003,Preferred time for a check-in call,TIME,16:45
+wellbeing_check,run_0003,Anything you want to note?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Anything you want to note?; run 3)"
+wellbeing_check,run_0004,Name or nickname,SHORT_TEXT,Casey Singh
+wellbeing_check,run_0004,How are you feeling today?,SINGLE_CHOICE,Very low
+wellbeing_check,run_0004,Hours of sleep last night,SHORT_TEXT,omega-04-67
+wellbeing_check,run_0004,Habits completed today,MULTI_CHOICE,Meditation
+wellbeing_check,run_0004,Do you feel stressed this week?,SINGLE_CHOICE,Yes
+wellbeing_check,run_0004,Preferred time for a check-in call,TIME,14:15
+wellbeing_check,run_0004,Anything you want to note?,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Anything you want to note?; run 4)
+wellbeing_check,run_0005,Name or nickname,SHORT_TEXT,Avery Ortiz
+wellbeing_check,run_0005,How are you feeling today?,SINGLE_CHOICE,Very good
+wellbeing_check,run_0005,Hours of sleep last night,SHORT_TEXT,omega-05-49
+wellbeing_check,run_0005,Habits completed today,MULTI_CHOICE,Study session;Break outdoors;Meditation
+wellbeing_check,run_0005,Do you feel stressed this week?,SINGLE_CHOICE,No
+wellbeing_check,run_0005,Preferred time for a check-in call,TIME,09:00
+wellbeing_check,run_0005,Anything you want to note?,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Anything you want to note?; run 5)
+wellbeing_check,run_0006,Name or nickname,SHORT_TEXT,Noah Rivera
+wellbeing_check,run_0006,How are you feeling today?,SINGLE_CHOICE,Okay
+wellbeing_check,run_0006,Hours of sleep last night,SHORT_TEXT,gamma-06-67
+wellbeing_check,run_0006,Habits completed today,MULTI_CHOICE,Exercise;Healthy meal
+wellbeing_check,run_0006,Do you feel stressed this week?,SINGLE_CHOICE,No
+wellbeing_check,run_0006,Preferred time for a check-in call,TIME,13:00
+wellbeing_check,run_0006,Anything you want to note?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Anything you want to note?; run 6)"
+wellbeing_check,run_0007,Name or nickname,SHORT_TEXT,Taylor Singh
+wellbeing_check,run_0007,How are you feeling today?,SINGLE_CHOICE,Very low
+wellbeing_check,run_0007,Hours of sleep last night,SHORT_TEXT,sigma-07-15
+wellbeing_check,run_0007,Habits completed today,MULTI_CHOICE,Meditation
+wellbeing_check,run_0007,Do you feel stressed this week?,SINGLE_CHOICE,Somewhat
+wellbeing_check,run_0007,Preferred time for a check-in call,TIME,16:45
+wellbeing_check,run_0007,Anything you want to note?,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Anything you want to note?; run 7)
+wellbeing_check,run_0008,Name or nickname,SHORT_TEXT,Sam Bauer
+wellbeing_check,run_0008,How are you feeling today?,SINGLE_CHOICE,Okay
+wellbeing_check,run_0008,Hours of sleep last night,SHORT_TEXT,alpha-08-84
+wellbeing_check,run_0008,Habits completed today,MULTI_CHOICE,Exercise;Meditation
+wellbeing_check,run_0008,Do you feel stressed this week?,SINGLE_CHOICE,No
+wellbeing_check,run_0008,Preferred time for a check-in call,TIME,09:00
+wellbeing_check,run_0008,Anything you want to note?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Anything you want to note?; run 8)"
+wellbeing_check,run_0009,Name or nickname,SHORT_TEXT,Morgan Kim
+wellbeing_check,run_0009,How are you feeling today?,SINGLE_CHOICE,Very good
+wellbeing_check,run_0009,Hours of sleep last night,SHORT_TEXT,delta-09-21
+wellbeing_check,run_0009,Habits completed today,MULTI_CHOICE,Healthy meal
+wellbeing_check,run_0009,Do you feel stressed this week?,SINGLE_CHOICE,Yes
+wellbeing_check,run_0009,Preferred time for a check-in call,TIME,11:30
+wellbeing_check,run_0009,Anything you want to note?,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Anything you want to note?; run 9)
+wellbeing_check,run_0010,Name or nickname,SHORT_TEXT,Morgan Kim
+wellbeing_check,run_0010,How are you feeling today?,SINGLE_CHOICE,Low
+wellbeing_check,run_0010,Hours of sleep last night,SHORT_TEXT,delta-10-62
+wellbeing_check,run_0010,Habits completed today,MULTI_CHOICE,Healthy meal
+wellbeing_check,run_0010,Do you feel stressed this week?,SINGLE_CHOICE,Somewhat
+wellbeing_check,run_0010,Preferred time for a check-in call,TIME,10:15
+wellbeing_check,run_0010,Anything you want to note?,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Anything you want to note?; run 10)

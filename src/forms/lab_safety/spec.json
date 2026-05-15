@@ -1,0 +1,93 @@
+{
+  "form_id": "lab_safety",
+  "form_title": "Lab Safety Training Registration",
+  "form_description": "Registration form for laboratory safety training and access preparation.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1o5WoJlL33HlHMV2H0LdnWCi0BSxeb672uy3YnsYFuzU/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLScWpz1AaPnyBpA0dhuUlGWVA9pbFxX3MhG_olqg1wYYY4asRA/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScWpz1AaPnyBpA0dhuUlGWVA9pbFxX3MhG_olqg1wYYY4asRA/viewform",
+  "question_count": 8,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 2,
+      "q_title": "University email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 3,
+      "q_title": "Role",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Bachelor's student;Master's student;PhD student;Research staff;Visitor",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 4,
+      "q_title": "Lab area you need access to",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "Wet lab;Electronics lab;Robotics lab;Computer lab;Workshop",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 5,
+      "q_title": "Previous safety training completed",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No;Not sure",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 6,
+      "q_title": "Training topics needed",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "General safety;Chemical handling;Electrical safety;Machine safety;Emergency procedures",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 7,
+      "q_title": "Preferred training date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant details",
+      "q_order": 8,
+      "q_title": "Questions for the trainer",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

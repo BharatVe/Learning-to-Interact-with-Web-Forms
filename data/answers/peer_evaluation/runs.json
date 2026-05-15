@@ -1,0 +1,730 @@
+{
+  "form_id": "peer_evaluation",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Your name",
+          "widget_type": "short_text",
+          "value": "Avery Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Project group name",
+          "widget_type": "short_text",
+          "value": "Avery Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Peer being evaluated",
+          "widget_type": "short_text",
+          "value": "beta-01-38",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contribution level",
+          "widget_type": "single_choice",
+          "value": "Low",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Strengths observed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Technical work",
+            "Writing"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Collaboration rating",
+          "widget_type": "dropdown",
+          "value": "2",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Constructive feedback",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Constructive feedback; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Your name",
+          "widget_type": "short_text",
+          "value": "Sam Meyer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Project group name",
+          "widget_type": "short_text",
+          "value": "Sam Meyer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Peer being evaluated",
+          "widget_type": "short_text",
+          "value": "sigma-02-04",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contribution level",
+          "widget_type": "single_choice",
+          "value": "Moderate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Strengths observed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Writing",
+            "Presentation",
+            "Problem solving"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Collaboration rating",
+          "widget_type": "dropdown",
+          "value": "3",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Constructive feedback",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Constructive feedback; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Your name",
+          "widget_type": "short_text",
+          "value": "Sam Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Project group name",
+          "widget_type": "short_text",
+          "value": "Sam Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Peer being evaluated",
+          "widget_type": "short_text",
+          "value": "alpha-03-59",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contribution level",
+          "widget_type": "single_choice",
+          "value": "Very low",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Strengths observed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Communication",
+            "Technical work",
+            "Organization"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Collaboration rating",
+          "widget_type": "dropdown",
+          "value": "1",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Constructive feedback",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Constructive feedback; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Your name",
+          "widget_type": "short_text",
+          "value": "Riley Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Project group name",
+          "widget_type": "short_text",
+          "value": "Riley Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Peer being evaluated",
+          "widget_type": "short_text",
+          "value": "beta-04-18",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contribution level",
+          "widget_type": "single_choice",
+          "value": "Moderate",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Strengths observed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Problem solving"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Collaboration rating",
+          "widget_type": "dropdown",
+          "value": "2",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Constructive feedback",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Constructive feedback; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Your name",
+          "widget_type": "short_text",
+          "value": "Noah Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Project group name",
+          "widget_type": "short_text",
+          "value": "Noah Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Peer being evaluated",
+          "widget_type": "short_text",
+          "value": "omega-05-07",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contribution level",
+          "widget_type": "single_choice",
+          "value": "High",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Strengths observed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Writing",
+            "Organization"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Collaboration rating",
+          "widget_type": "dropdown",
+          "value": "3",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Constructive feedback",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Constructive feedback; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Your name",
+          "widget_type": "short_text",
+          "value": "Taylor Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Project group name",
+          "widget_type": "short_text",
+          "value": "Taylor Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Peer being evaluated",
+          "widget_type": "short_text",
+          "value": "gamma-06-59",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contribution level",
+          "widget_type": "single_choice",
+          "value": "Very high",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Strengths observed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Presentation",
+            "Organization"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Collaboration rating",
+          "widget_type": "dropdown",
+          "value": "3",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Constructive feedback",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Constructive feedback; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Your name",
+          "widget_type": "short_text",
+          "value": "Noah Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Project group name",
+          "widget_type": "short_text",
+          "value": "Noah Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Peer being evaluated",
+          "widget_type": "short_text",
+          "value": "beta-07-56",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contribution level",
+          "widget_type": "single_choice",
+          "value": "High",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Strengths observed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Communication",
+            "Technical work",
+            "Presentation"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Collaboration rating",
+          "widget_type": "dropdown",
+          "value": "1",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Constructive feedback",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Constructive feedback; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Your name",
+          "widget_type": "short_text",
+          "value": "Avery Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Project group name",
+          "widget_type": "short_text",
+          "value": "Avery Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Peer being evaluated",
+          "widget_type": "short_text",
+          "value": "beta-08-59",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contribution level",
+          "widget_type": "single_choice",
+          "value": "Very high",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Strengths observed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Presentation",
+            "Organization"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Collaboration rating",
+          "widget_type": "dropdown",
+          "value": "4",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Constructive feedback",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Constructive feedback; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Your name",
+          "widget_type": "short_text",
+          "value": "Jordan Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Project group name",
+          "widget_type": "short_text",
+          "value": "Jordan Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Peer being evaluated",
+          "widget_type": "short_text",
+          "value": "beta-09-92",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contribution level",
+          "widget_type": "single_choice",
+          "value": "Very low",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Strengths observed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Technical work",
+            "Organization",
+            "Problem solving"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Collaboration rating",
+          "widget_type": "dropdown",
+          "value": "4",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Constructive feedback",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Constructive feedback; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Your name",
+          "widget_type": "short_text",
+          "value": "Sam Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Project group name",
+          "widget_type": "short_text",
+          "value": "Sam Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Peer being evaluated",
+          "widget_type": "short_text",
+          "value": "gamma-10-52",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contribution level",
+          "widget_type": "single_choice",
+          "value": "High",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Strengths observed",
+          "widget_type": "multi_choice",
+          "value": [
+            "Technical work",
+            "Writing",
+            "Problem solving"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Collaboration rating",
+          "widget_type": "dropdown",
+          "value": "3",
+          "tags": [
+            "generated",
+            "dropdown"
+          ]
+        },
+        {
+          "label": "Constructive feedback",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Constructive feedback; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    }
+  ]
+}

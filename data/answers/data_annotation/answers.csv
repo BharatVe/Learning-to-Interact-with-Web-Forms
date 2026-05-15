@@ -1,0 +1,91 @@
+form_id,run_id,q_title,q_type,answer
+data_annotation,run_0001,Full name,SHORT_TEXT,Priya Ortiz
+data_annotation,run_0001,Email address,SHORT_TEXT,priya.ortiz.1@research.edu
+data_annotation,run_0001,Annotation experience,SINGLE_CHOICE,Some experience
+data_annotation,run_0001,Languages comfortable with,MULTI_CHOICE,German;French;Spanish
+data_annotation,run_0001,Preferred annotation task,DROPDOWN,Text transcription
+data_annotation,run_0001,Available start date,DATE,2025-09-16
+data_annotation,run_0001,Preferred work time,TIME,13:00
+data_annotation,run_0001,Weekly availability,SHORT_TEXT,gamma-01-05
+data_annotation,run_0001,Comments about task preference,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Comments about task preference; run 1)
+data_annotation,run_0002,Full name,SHORT_TEXT,Morgan Bauer
+data_annotation,run_0002,Email address,SHORT_TEXT,morgan.bauer.2@demo.org
+data_annotation,run_0002,Annotation experience,SINGLE_CHOICE,None
+data_annotation,run_0002,Languages comfortable with,MULTI_CHOICE,Spanish
+data_annotation,run_0002,Preferred annotation task,DROPDOWN,Quality checking
+data_annotation,run_0002,Available start date,DATE,2025-10-04
+data_annotation,run_0002,Preferred work time,TIME,09:00
+data_annotation,run_0002,Weekly availability,SHORT_TEXT,alpha-02-14
+data_annotation,run_0002,Comments about task preference,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Comments about task preference; run 2)
+data_annotation,run_0003,Full name,SHORT_TEXT,Casey Kim
+data_annotation,run_0003,Email address,SHORT_TEXT,casey.kim.3@demo.org
+data_annotation,run_0003,Annotation experience,SINGLE_CHOICE,None
+data_annotation,run_0003,Languages comfortable with,MULTI_CHOICE,French
+data_annotation,run_0003,Preferred annotation task,DROPDOWN,Action labels
+data_annotation,run_0003,Available start date,DATE,2025-10-04
+data_annotation,run_0003,Preferred work time,TIME,15:30
+data_annotation,run_0003,Weekly availability,SHORT_TEXT,gamma-03-04
+data_annotation,run_0003,Comments about task preference,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Comments about task preference; run 3)"
+data_annotation,run_0004,Full name,SHORT_TEXT,Jordan Nguyen
+data_annotation,run_0004,Email address,SHORT_TEXT,jordan.nguyen.4@research.edu
+data_annotation,run_0004,Annotation experience,SINGLE_CHOICE,Experienced
+data_annotation,run_0004,Languages comfortable with,MULTI_CHOICE,French;Spanish;Hindi
+data_annotation,run_0004,Preferred annotation task,DROPDOWN,Quality checking
+data_annotation,run_0004,Available start date,DATE,2025-06-18
+data_annotation,run_0004,Preferred work time,TIME,09:00
+data_annotation,run_0004,Weekly availability,SHORT_TEXT,alpha-04-96
+data_annotation,run_0004,Comments about task preference,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Comments about task preference; run 4)
+data_annotation,run_0005,Full name,SHORT_TEXT,Lena Meyer
+data_annotation,run_0005,Email address,SHORT_TEXT,lena.meyer.5@demo.org
+data_annotation,run_0005,Annotation experience,SINGLE_CHOICE,Experienced
+data_annotation,run_0005,Languages comfortable with,MULTI_CHOICE,English;French;Hindi
+data_annotation,run_0005,Preferred annotation task,DROPDOWN,Quality checking
+data_annotation,run_0005,Available start date,DATE,2025-08-13
+data_annotation,run_0005,Preferred work time,TIME,14:15
+data_annotation,run_0005,Weekly availability,SHORT_TEXT,alpha-05-91
+data_annotation,run_0005,Comments about task preference,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Comments about task preference; run 5)
+data_annotation,run_0006,Full name,SHORT_TEXT,Lena Nguyen
+data_annotation,run_0006,Email address,SHORT_TEXT,lena.nguyen.6@demo.org
+data_annotation,run_0006,Annotation experience,SINGLE_CHOICE,Some experience
+data_annotation,run_0006,Languages comfortable with,MULTI_CHOICE,German
+data_annotation,run_0006,Preferred annotation task,DROPDOWN,Bounding boxes
+data_annotation,run_0006,Available start date,DATE,2025-08-14
+data_annotation,run_0006,Preferred work time,TIME,13:00
+data_annotation,run_0006,Weekly availability,SHORT_TEXT,delta-06-70
+data_annotation,run_0006,Comments about task preference,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Comments about task preference; run 6)"
+data_annotation,run_0007,Full name,SHORT_TEXT,Avery Ortiz
+data_annotation,run_0007,Email address,SHORT_TEXT,avery.ortiz.7@research.edu
+data_annotation,run_0007,Annotation experience,SINGLE_CHOICE,Some experience
+data_annotation,run_0007,Languages comfortable with,MULTI_CHOICE,English
+data_annotation,run_0007,Preferred annotation task,DROPDOWN,Metadata cleanup
+data_annotation,run_0007,Available start date,DATE,2025-08-26
+data_annotation,run_0007,Preferred work time,TIME,14:15
+data_annotation,run_0007,Weekly availability,SHORT_TEXT,omega-07-88
+data_annotation,run_0007,Comments about task preference,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Comments about task preference; run 7)"
+data_annotation,run_0008,Full name,SHORT_TEXT,Sam Kim
+data_annotation,run_0008,Email address,SHORT_TEXT,sam.kim.8@example.com
+data_annotation,run_0008,Annotation experience,SINGLE_CHOICE,Experienced
+data_annotation,run_0008,Languages comfortable with,MULTI_CHOICE,German;Spanish;Hindi
+data_annotation,run_0008,Preferred annotation task,DROPDOWN,Text transcription
+data_annotation,run_0008,Available start date,DATE,2025-08-30
+data_annotation,run_0008,Preferred work time,TIME,13:00
+data_annotation,run_0008,Weekly availability,SHORT_TEXT,gamma-08-96
+data_annotation,run_0008,Comments about task preference,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Comments about task preference; run 8)
+data_annotation,run_0009,Full name,SHORT_TEXT,Noah Rivera
+data_annotation,run_0009,Email address,SHORT_TEXT,noah.rivera.9@example.com
+data_annotation,run_0009,Annotation experience,SINGLE_CHOICE,Some experience
+data_annotation,run_0009,Languages comfortable with,MULTI_CHOICE,German;Hindi
+data_annotation,run_0009,Preferred annotation task,DROPDOWN,Text transcription
+data_annotation,run_0009,Available start date,DATE,2025-10-29
+data_annotation,run_0009,Preferred work time,TIME,13:00
+data_annotation,run_0009,Weekly availability,SHORT_TEXT,alpha-09-39
+data_annotation,run_0009,Comments about task preference,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Comments about task preference; run 9)
+data_annotation,run_0010,Full name,SHORT_TEXT,Priya Ortiz
+data_annotation,run_0010,Email address,SHORT_TEXT,priya.ortiz.10@mail.test
+data_annotation,run_0010,Annotation experience,SINGLE_CHOICE,Experienced
+data_annotation,run_0010,Languages comfortable with,MULTI_CHOICE,German;Hindi
+data_annotation,run_0010,Preferred annotation task,DROPDOWN,Action labels
+data_annotation,run_0010,Available start date,DATE,2025-10-31
+data_annotation,run_0010,Preferred work time,TIME,09:00
+data_annotation,run_0010,Weekly availability,SHORT_TEXT,omega-10-15
+data_annotation,run_0010,Comments about task preference,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Comments about task preference; run 10)

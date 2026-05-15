@@ -19,6 +19,25 @@ ACTION_SCHEMA_TEXT = json.dumps(
     indent=2,
 )
 
+LOW_LEVEL_ACTION_SCHEMA_TEXT = json.dumps(
+    {
+        "tool": "browser_mouse_move_xy|browser_mouse_click_xy|browser_type|browser_press_key|browser_mouse_wheel|browser_wait_for|done",
+        "args": {
+            "x": "required for browser_mouse_move_xy/browser_mouse_click_xy, normalized integer [0,999]",
+            "y": "required for browser_mouse_move_xy/browser_mouse_click_xy, normalized integer [0,999]",
+            "text": "required for browser_type",
+            "key": "required for browser_press_key, e.g. Tab, Enter, Control+A, Backspace",
+            "deltaX": "required for browser_mouse_wheel, usually 0",
+            "deltaY": "required for browser_mouse_wheel, positive scrolls down",
+            "time": "required seconds for browser_wait_for",
+            "question_id": "optional grounding id from remaining answers",
+            "label": "optional grounding label",
+        },
+        "reason": "short optional string",
+    },
+    indent=2,
+)
+
 PROMPT_PROFILES = {"legacy", "detailed_v1", "runtime_safe_v1"}
 CONTEXT_PACKAGE_VERSION = "context_package.v1"
 
@@ -30,7 +49,24 @@ WIDGET_ACTION_POLICY_TEXT = json.dumps(
         "time": ["type"],
         "single_choice": ["select_option", "click"],
         "multi_choice": ["select_option", "click"],
+        "dropdown": ["select_option", "click"],
         "global_actions": ["wait", "scroll", "press_key", "submit", "done"],
+    },
+    indent=2,
+)
+
+LOW_LEVEL_CONTROL_POLICY_TEXT = json.dumps(
+    {
+        "notes": [
+            "In direct tool-call mode, the model must choose explicit browser pointer/keyboard tools.",
+            "Do not rely on helper actions such as fill_question/type/select_option/click with label matching.",
+            "Use the interaction map coordinates when available.",
+            "The runtime reports observational state only and does not prescribe the next action.",
+            "Stall telemetry reports repeated non-progress signatures and neutral state summaries.",
+            "To submit, click the visible Google Forms submit button using browser_mouse_click_xy when it appears in the interaction map.",
+            "Use done only after the form is submitted or no further useful browser tool call is possible.",
+        ],
+        "coordinate_system": "x,y are normalized integers in [0,999] relative to viewport",
     },
     indent=2,
 )
@@ -120,7 +156,7 @@ def _legacy_shared_instruction_block(
             "Pick a DIFFERENT target.question_id from allowed IDs and do not repeat stale IDs.\n"
         )
     if behavior_nudge:
-        extra += f"Recovery nudge: {str(behavior_nudge).strip()}\n"
+        extra += f"Stall telemetry: {str(behavior_nudge).strip()}\n"
     return (
         "Return exactly one compact JSON object and nothing else.\n"
         "Choose one remaining answer to act on next.\n"
@@ -129,7 +165,7 @@ def _legacy_shared_instruction_block(
         "Never use a question_id that is not in Allowed target.question_id values.\n"
         "Never choose submit while Remaining answers is non-empty.\n"
         "Use action type for short_text, paragraph_text, date, and time widgets.\n"
-        "Use action select_option for single_choice and multi_choice widgets.\n"
+        "Use action select_option for single_choice, multi_choice, and dropdown widgets.\n"
         "Use submit only after the remaining answers are already filled or no answerable fields remain on the current form flow.\n"
         "Keep reason short or omit it.\n"
         "Do not explain your reasoning.\n"
@@ -142,7 +178,7 @@ def _detailed_instruction_block(
     behavior_nudge: Optional[str] = None,
 ) -> str:
     allowed_ids = _remaining_question_ids(remaining_answers)
-    nudge_block = f"Recovery nudge: {str(behavior_nudge).strip()}\n" if behavior_nudge else ""
+    nudge_block = f"Stall telemetry: {str(behavior_nudge).strip()}\n" if behavior_nudge else ""
     return (
         "Return exactly one compact JSON object and nothing else.\n"
         "Use this exact output schema and key names.\n"
@@ -155,6 +191,29 @@ def _detailed_instruction_block(
         "- Use submit only after all answerable fields are filled or form flow is complete.\n"
         "- Keep reason short (or omit it).\n"
         "- Never include explanations outside JSON.\n"
+        f"{nudge_block}"
+    )
+
+
+def _low_level_instruction_block(remaining_answers: List[Dict[str, Any]], behavior_nudge: Optional[str] = None) -> str:
+    allowed_ids = _remaining_question_ids(remaining_answers)
+    nudge_block = f"Stall telemetry: {str(behavior_nudge).strip()}\n" if behavior_nudge else ""
+    return (
+        "Return exactly one compact JSON object and nothing else.\n"
+        "Control level: direct browser tool calls.\n"
+        f"- Allowed args.question_id values for grounding/verification: {json.dumps(allowed_ids, ensure_ascii=True)}\n"
+        "- Output the exact tool name in the tool field.\n"
+        "- For any tool call aimed at a form question, include args.question_id and args.label from Remaining answers; these are metadata for logging/verification, while x/y/text/key/delta/time drive the browser.\n"
+        "- Use browser_mouse_move_xy/browser_mouse_click_xy with args.x and args.y in [0,999].\n"
+        "- Use browser_type only for the currently focused element; it sends keystrokes to focus and may append existing text.\n"
+        "- For text inputs, focus the intended field with browser_mouse_click_xy before browser_type.\n"
+        "- Use browser_mouse_wheel with args.deltaX=0 and integer args.deltaY to scroll.\n"
+        "- Use browser_press_key for keyboard keys such as Tab, Enter, Control+A, Backspace.\n"
+        "- Use browser_wait_for with args.time in seconds only when waiting is necessary.\n"
+        "- Do not submit while Remaining answers is non-empty.\n"
+        "- When Remaining answers is empty, submit by clicking the visible submit button with browser_mouse_click_xy.\n"
+        "- Prefer coordinates from Interaction map when available.\n"
+        "- The model must choose direct browser tool calls on its own from the observed state.\n"
         f"{nudge_block}"
     )
 
@@ -184,7 +243,31 @@ def build_text_prompt(
     validation_feedback: Optional[Dict[str, Any]] = None,
     fewshot_enabled: bool = True,
     fewshot_count: int = 3,
+    control_level: str = "high_level",
+    observation_mode: str = "vision_coords",
+    interaction_map: Optional[List[Dict[str, Any]]] = None,
 ) -> str:
+    low_level = str(control_level or "").strip().lower() == "low_level"
+    vision_coords_only = str(observation_mode or "").strip().lower() == "vision_coords"
+    if low_level:
+        page_text_block = ""
+        if not vision_coords_only:
+            page_text_block = f"Current page text:\n{compact_page_text(page_text, max_chars=int(compact_page_text_max_chars))}\n\n"
+        return (
+            "You are controlling a Google Form filling agent.\n"
+            f"{_low_level_instruction_block(remaining_answers, behavior_nudge)}\n"
+            f"Context package version: {CONTEXT_PACKAGE_VERSION}\n\n"
+            f"Current URL:\n{form_url}\n\n"
+            f"Output schema:\n{LOW_LEVEL_ACTION_SCHEMA_TEXT}\n\n"
+            f"Low-level control policy:\n{LOW_LEVEL_CONTROL_POLICY_TEXT}\n\n"
+            f"Remaining answers:\n{json.dumps(remaining_answers, indent=2, ensure_ascii=True)}\n\n"
+            f"Interaction map:\n{json.dumps(interaction_map or [], indent=2, ensure_ascii=True)}\n\n"
+            f"Recent step history:\n{json.dumps(recent_history or [], indent=2, ensure_ascii=True)}\n\n"
+            f"Validation feedback:\n{json.dumps(validation_feedback or {}, indent=2, ensure_ascii=True)}\n\n"
+            f"Recent action result:\n{json.dumps(last_result or {}, indent=2, ensure_ascii=True)}\n\n"
+            f"{page_text_block}"
+        )
+
     profile = _resolve_prompt_profile(prompt_profile)
     if profile == "legacy":
         return (
@@ -235,7 +318,32 @@ def build_vlm_prompt(
     validation_feedback: Optional[Dict[str, Any]] = None,
     fewshot_enabled: bool = True,
     fewshot_count: int = 3,
+    control_level: str = "high_level",
+    observation_mode: str = "vision_coords",
+    interaction_map: Optional[List[Dict[str, Any]]] = None,
 ) -> str:
+    low_level = str(control_level or "").strip().lower() == "low_level"
+    vision_coords_only = str(observation_mode or "").strip().lower() == "vision_coords"
+    if low_level:
+        page_text_block = ""
+        if not vision_coords_only:
+            page_text_block = f"Compact page text:\n{compact_page_text(page_text, max_chars=int(compact_page_text_max_chars))}\n\n"
+        return (
+            "You are controlling a Google Form filling agent from a screenshot.\n"
+            f"{_low_level_instruction_block(remaining_answers, behavior_nudge)}\n"
+            f"Context package version: {CONTEXT_PACKAGE_VERSION}\n\n"
+            f"Current URL:\n{form_url}\n\n"
+            f"Screenshot path:\n{str(screenshot_path)}\n\n"
+            f"Output schema:\n{LOW_LEVEL_ACTION_SCHEMA_TEXT}\n\n"
+            f"Low-level control policy:\n{LOW_LEVEL_CONTROL_POLICY_TEXT}\n\n"
+            f"Remaining answers:\n{json.dumps(remaining_answers, indent=2, ensure_ascii=True)}\n\n"
+            f"Interaction map:\n{json.dumps(interaction_map or [], indent=2, ensure_ascii=True)}\n\n"
+            f"Recent step history:\n{json.dumps(recent_history or [], indent=2, ensure_ascii=True)}\n\n"
+            f"Validation feedback:\n{json.dumps(validation_feedback or {}, indent=2, ensure_ascii=True)}\n\n"
+            f"Recent action result:\n{json.dumps(last_result or {}, indent=2, ensure_ascii=True)}\n\n"
+            f"{page_text_block}"
+        )
+
     profile = _resolve_prompt_profile(prompt_profile)
     if profile == "legacy":
         return (

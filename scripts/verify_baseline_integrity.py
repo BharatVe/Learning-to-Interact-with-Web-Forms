@@ -19,7 +19,7 @@ def load_supported_actions(contract_path: Path) -> List[str]:
     return [str(x) for x in actions]
 
 
-def validate_answers_runs(repo_root: Path, form_ids: List[str], errors: List[str]) -> None:
+def validate_answers_runs(repo_root: Path, form_ids: List[str], errors: List[str], min_runs_per_form: int = 1) -> None:
     answers_root = repo_root / "data" / "answers"
     for form_id in form_ids:
         runs_path = answers_root / form_id / "runs.json"
@@ -35,6 +35,8 @@ def validate_answers_runs(repo_root: Path, form_ids: List[str], errors: List[str
         if not isinstance(runs, list) or not runs:
             errors.append(f"'runs' missing/invalid/empty in {runs_path}")
             continue
+        if len(runs) < int(min_runs_per_form):
+            errors.append(f"{runs_path}: requires at least {min_runs_per_form} runs, found {len(runs)}")
         for i, run in enumerate(runs):
             answers = run.get("answers") if isinstance(run, dict) else None
             if not isinstance(answers, list):
@@ -100,6 +102,14 @@ def validate_existing_artifacts(repo_root: Path, supported_actions: List[str], e
 
 
 def main() -> int:
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Verify baseline dataset/config/runtime integrity.")
+    parser.add_argument("--min-runs-per-form", type=int, default=1)
+    args = parser.parse_args()
+    if args.min_runs_per_form <= 0:
+        raise SystemExit("--min-runs-per-form must be positive")
+
     repo_root = Path(__file__).resolve().parents[1]
     errors: List[str] = []
 
@@ -108,7 +118,7 @@ def main() -> int:
     if not form_ids:
         errors.append(f"No form specs found under {forms_root}")
 
-    validate_answers_runs(repo_root, form_ids, errors)
+    validate_answers_runs(repo_root, form_ids, errors, min_runs_per_form=int(args.min_runs_per_form))
     validate_forms_master(repo_root, form_ids, errors)
     supported_actions = load_supported_actions(repo_root / "src" / "engine" / "trace_contract.py")
     run_count, action_count = validate_existing_artifacts(repo_root, supported_actions, errors)

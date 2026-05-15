@@ -1,0 +1,71 @@
+form_id,run_id,q_title,q_type,answer
+alumni_checkin,run_0001,Full name,SHORT_TEXT,Lena Nguyen
+alumni_checkin,run_0001,Graduation year,SHORT_TEXT,alpha-01-43
+alumni_checkin,run_0001,Current city,SHORT_TEXT,beta-01-04
+alumni_checkin,run_0001,Current role,SINGLE_CHOICE,Student
+alumni_checkin,run_0001,Areas you would like to stay connected to,MULTI_CHOICE,Alumni events
+alumni_checkin,run_0001,Preferred contact email,SHORT_TEXT,lena.nguyen.1@mail.test
+alumni_checkin,run_0001,Would you attend an alumni meetup?,SINGLE_CHOICE,No
+alumni_checkin,run_0002,Full name,SHORT_TEXT,Avery Nguyen
+alumni_checkin,run_0002,Graduation year,SHORT_TEXT,sigma-02-96
+alumni_checkin,run_0002,Current city,SHORT_TEXT,omega-02-43
+alumni_checkin,run_0002,Current role,SINGLE_CHOICE,Researcher
+alumni_checkin,run_0002,Areas you would like to stay connected to,MULTI_CHOICE,Job opportunities
+alumni_checkin,run_0002,Preferred contact email,SHORT_TEXT,avery.nguyen.2@mail.test
+alumni_checkin,run_0002,Would you attend an alumni meetup?,SINGLE_CHOICE,No
+alumni_checkin,run_0003,Full name,SHORT_TEXT,Lena Rivera
+alumni_checkin,run_0003,Graduation year,SHORT_TEXT,delta-03-37
+alumni_checkin,run_0003,Current city,SHORT_TEXT,alpha-03-34
+alumni_checkin,run_0003,Current role,SINGLE_CHOICE,Researcher
+alumni_checkin,run_0003,Areas you would like to stay connected to,MULTI_CHOICE,Mentoring;Research talks;Alumni events
+alumni_checkin,run_0003,Preferred contact email,SHORT_TEXT,lena.rivera.3@mail.test
+alumni_checkin,run_0003,Would you attend an alumni meetup?,SINGLE_CHOICE,Maybe
+alumni_checkin,run_0004,Full name,SHORT_TEXT,Sam Chen
+alumni_checkin,run_0004,Graduation year,SHORT_TEXT,alpha-04-36
+alumni_checkin,run_0004,Current city,SHORT_TEXT,omega-04-27
+alumni_checkin,run_0004,Current role,SINGLE_CHOICE,Industry Professional
+alumni_checkin,run_0004,Areas you would like to stay connected to,MULTI_CHOICE,Networking;Job opportunities;Alumni events
+alumni_checkin,run_0004,Preferred contact email,SHORT_TEXT,sam.chen.4@demo.org
+alumni_checkin,run_0004,Would you attend an alumni meetup?,SINGLE_CHOICE,Maybe
+alumni_checkin,run_0005,Full name,SHORT_TEXT,Noah Rivera
+alumni_checkin,run_0005,Graduation year,SHORT_TEXT,gamma-05-71
+alumni_checkin,run_0005,Current city,SHORT_TEXT,beta-05-96
+alumni_checkin,run_0005,Current role,SINGLE_CHOICE,Researcher
+alumni_checkin,run_0005,Areas you would like to stay connected to,MULTI_CHOICE,Mentoring
+alumni_checkin,run_0005,Preferred contact email,SHORT_TEXT,noah.rivera.5@example.com
+alumni_checkin,run_0005,Would you attend an alumni meetup?,SINGLE_CHOICE,Yes
+alumni_checkin,run_0006,Full name,SHORT_TEXT,Lena Meyer
+alumni_checkin,run_0006,Graduation year,SHORT_TEXT,delta-06-19
+alumni_checkin,run_0006,Current city,SHORT_TEXT,omega-06-00
+alumni_checkin,run_0006,Current role,SINGLE_CHOICE,Industry Professional
+alumni_checkin,run_0006,Areas you would like to stay connected to,MULTI_CHOICE,Mentoring;Job opportunities;Alumni events
+alumni_checkin,run_0006,Preferred contact email,SHORT_TEXT,lena.meyer.6@mail.test
+alumni_checkin,run_0006,Would you attend an alumni meetup?,SINGLE_CHOICE,No
+alumni_checkin,run_0007,Full name,SHORT_TEXT,Lena Nguyen
+alumni_checkin,run_0007,Graduation year,SHORT_TEXT,delta-07-99
+alumni_checkin,run_0007,Current city,SHORT_TEXT,sigma-07-42
+alumni_checkin,run_0007,Current role,SINGLE_CHOICE,Student
+alumni_checkin,run_0007,Areas you would like to stay connected to,MULTI_CHOICE,Job opportunities;Alumni events
+alumni_checkin,run_0007,Preferred contact email,SHORT_TEXT,lena.nguyen.7@research.edu
+alumni_checkin,run_0007,Would you attend an alumni meetup?,SINGLE_CHOICE,Maybe
+alumni_checkin,run_0008,Full name,SHORT_TEXT,Avery Chen
+alumni_checkin,run_0008,Graduation year,SHORT_TEXT,omega-08-70
+alumni_checkin,run_0008,Current city,SHORT_TEXT,sigma-08-37
+alumni_checkin,run_0008,Current role,SINGLE_CHOICE,Industry Professional
+alumni_checkin,run_0008,Areas you would like to stay connected to,MULTI_CHOICE,Networking
+alumni_checkin,run_0008,Preferred contact email,SHORT_TEXT,avery.chen.8@demo.org
+alumni_checkin,run_0008,Would you attend an alumni meetup?,SINGLE_CHOICE,Yes
+alumni_checkin,run_0009,Full name,SHORT_TEXT,Noah Ortiz
+alumni_checkin,run_0009,Graduation year,SHORT_TEXT,omega-09-43
+alumni_checkin,run_0009,Current city,SHORT_TEXT,alpha-09-81
+alumni_checkin,run_0009,Current role,SINGLE_CHOICE,Student
+alumni_checkin,run_0009,Areas you would like to stay connected to,MULTI_CHOICE,Networking;Research talks
+alumni_checkin,run_0009,Preferred contact email,SHORT_TEXT,noah.ortiz.9@demo.org
+alumni_checkin,run_0009,Would you attend an alumni meetup?,SINGLE_CHOICE,Maybe
+alumni_checkin,run_0010,Full name,SHORT_TEXT,Jordan Khan
+alumni_checkin,run_0010,Graduation year,SHORT_TEXT,beta-10-55
+alumni_checkin,run_0010,Current city,SHORT_TEXT,sigma-10-06
+alumni_checkin,run_0010,Current role,SINGLE_CHOICE,Entrepreneur
+alumni_checkin,run_0010,Areas you would like to stay connected to,MULTI_CHOICE,Networking;Job opportunities;Alumni events
+alumni_checkin,run_0010,Preferred contact email,SHORT_TEXT,jordan.khan.10@mail.test
+alumni_checkin,run_0010,Would you attend an alumni meetup?,SINGLE_CHOICE,Maybe

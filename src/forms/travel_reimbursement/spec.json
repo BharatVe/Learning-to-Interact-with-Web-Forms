@@ -1,0 +1,123 @@
+{
+  "form_id": "travel_reimbursement",
+  "form_title": "Travel Reimbursement Request (3 pages)",
+  "form_description": "Collects trip, expense, and payment information for reimbursement.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1a6TEEjslJg7KDC2c4lWUUUvPAxCWrsfihPlH-qJMb3w/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSc_SwTUya0v09aRkLh2lPwYnLjQV7HTud0JFM8gAXVPevptxQ/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSc_SwTUya0v09aRkLh2lPwYnLjQV7HTud0JFM8gAXVPevptxQ/viewform",
+  "question_count": 11,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Trip details",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Trip details",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Trip details",
+      "q_order": 3,
+      "q_title": "Purpose of travel",
+      "q_type": "PARAGRAPH",
+      "required": true,
+      "options": "",
+      "help_text": "Briefly describe the event or reason."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Trip details",
+      "q_order": 4,
+      "q_title": "Departure date",
+      "q_type": "DATE",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Trip details",
+      "q_order": 5,
+      "q_title": "Return date",
+      "q_type": "DATE",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Expenses",
+      "q_order": 1,
+      "q_title": "Transport mode",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Train;Flight;Bus;Car;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Expenses",
+      "q_order": 2,
+      "q_title": "Expense categories claimed",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Transport;Accommodation;Meals;Conference fee;Local travel",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Expenses",
+      "q_order": 3,
+      "q_title": "Approximate total amount",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": "Enter a number only."
+    },
+    {
+      "section_order": 3,
+      "section_title": "Payment details",
+      "q_order": 1,
+      "q_title": "Bank account holder name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 3,
+      "section_title": "Payment details",
+      "q_order": 2,
+      "q_title": "IBAN",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 3,
+      "section_title": "Payment details",
+      "q_order": 3,
+      "q_title": "Preferred contact time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

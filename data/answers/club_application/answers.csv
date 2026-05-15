@@ -1,0 +1,101 @@
+form_id,run_id,q_title,q_type,answer
+club_application,run_0001,Full name,SHORT_TEXT,Noah Bauer
+club_application,run_0001,Student email,SHORT_TEXT,noah.bauer.1@research.edu
+club_application,run_0001,Study program,SHORT_TEXT,alpha-01-48
+club_application,run_0001,Year of study,SINGLE_CHOICE,4th year
+club_application,run_0001,Why do you want to join?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Why do you want to join?; run 1)"
+club_application,run_0001,Activities you are interested in,MULTI_CHOICE,Social media
+club_application,run_0001,Previous club experience,SINGLE_CHOICE,No
+club_application,run_0001,Available start date,DATE,2025-07-28
+club_application,run_0001,Weekly time you can contribute,SHORT_TEXT,gamma-01-68
+club_application,run_0001,Preferred meeting time,TIME,09:00
+club_application,run_0002,Full name,SHORT_TEXT,Jordan Ortiz
+club_application,run_0002,Student email,SHORT_TEXT,jordan.ortiz.2@research.edu
+club_application,run_0002,Study program,SHORT_TEXT,delta-02-72
+club_application,run_0002,Year of study,SINGLE_CHOICE,Other
+club_application,run_0002,Why do you want to join?,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Why do you want to join?; run 2)
+club_application,run_0002,Activities you are interested in,MULTI_CHOICE,Events;Social media;Sponsorship
+club_application,run_0002,Previous club experience,SINGLE_CHOICE,Yes
+club_application,run_0002,Available start date,DATE,2025-06-29
+club_application,run_0002,Weekly time you can contribute,SHORT_TEXT,gamma-02-63
+club_application,run_0002,Preferred meeting time,TIME,09:00
+club_application,run_0003,Full name,SHORT_TEXT,Morgan Kim
+club_application,run_0003,Student email,SHORT_TEXT,morgan.kim.3@example.com
+club_application,run_0003,Study program,SHORT_TEXT,omega-03-30
+club_application,run_0003,Year of study,SINGLE_CHOICE,Master’s
+club_application,run_0003,Why do you want to join?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Why do you want to join?; run 3)"
+club_application,run_0003,Activities you are interested in,MULTI_CHOICE,Workshops
+club_application,run_0003,Previous club experience,SINGLE_CHOICE,No
+club_application,run_0003,Available start date,DATE,2025-07-19
+club_application,run_0003,Weekly time you can contribute,SHORT_TEXT,gamma-03-29
+club_application,run_0003,Preferred meeting time,TIME,11:30
+club_application,run_0004,Full name,SHORT_TEXT,Riley Ortiz
+club_application,run_0004,Student email,SHORT_TEXT,riley.ortiz.4@mail.test
+club_application,run_0004,Study program,SHORT_TEXT,beta-04-56
+club_application,run_0004,Year of study,SINGLE_CHOICE,1st year
+club_application,run_0004,Why do you want to join?,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Why do you want to join?; run 4)
+club_application,run_0004,Activities you are interested in,MULTI_CHOICE,Workshops;Technical projects
+club_application,run_0004,Previous club experience,SINGLE_CHOICE,Yes
+club_application,run_0004,Available start date,DATE,2025-11-06
+club_application,run_0004,Weekly time you can contribute,SHORT_TEXT,gamma-04-34
+club_application,run_0004,Preferred meeting time,TIME,08:30
+club_application,run_0005,Full name,SHORT_TEXT,Sam Ortiz
+club_application,run_0005,Student email,SHORT_TEXT,sam.ortiz.5@research.edu
+club_application,run_0005,Study program,SHORT_TEXT,omega-05-98
+club_application,run_0005,Year of study,SINGLE_CHOICE,3rd year
+club_application,run_0005,Why do you want to join?,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Why do you want to join?; run 5)
+club_application,run_0005,Activities you are interested in,MULTI_CHOICE,Events;Workshops;Sponsorship
+club_application,run_0005,Previous club experience,SINGLE_CHOICE,Yes
+club_application,run_0005,Available start date,DATE,2025-08-02
+club_application,run_0005,Weekly time you can contribute,SHORT_TEXT,alpha-05-02
+club_application,run_0005,Preferred meeting time,TIME,13:00
+club_application,run_0006,Full name,SHORT_TEXT,Jordan Ortiz
+club_application,run_0006,Student email,SHORT_TEXT,jordan.ortiz.6@research.edu
+club_application,run_0006,Study program,SHORT_TEXT,omega-06-42
+club_application,run_0006,Year of study,SINGLE_CHOICE,1st year
+club_application,run_0006,Why do you want to join?,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Why do you want to join?; run 6)
+club_application,run_0006,Activities you are interested in,MULTI_CHOICE,Workshops;Technical projects
+club_application,run_0006,Previous club experience,SINGLE_CHOICE,No
+club_application,run_0006,Available start date,DATE,2025-07-22
+club_application,run_0006,Weekly time you can contribute,SHORT_TEXT,beta-06-42
+club_application,run_0006,Preferred meeting time,TIME,09:00
+club_application,run_0007,Full name,SHORT_TEXT,Taylor Kim
+club_application,run_0007,Student email,SHORT_TEXT,taylor.kim.7@example.com
+club_application,run_0007,Study program,SHORT_TEXT,delta-07-15
+club_application,run_0007,Year of study,SINGLE_CHOICE,1st year
+club_application,run_0007,Why do you want to join?,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Why do you want to join?; run 7)
+club_application,run_0007,Activities you are interested in,MULTI_CHOICE,Events;Technical projects
+club_application,run_0007,Previous club experience,SINGLE_CHOICE,Yes
+club_application,run_0007,Available start date,DATE,2025-09-19
+club_application,run_0007,Weekly time you can contribute,SHORT_TEXT,delta-07-18
+club_application,run_0007,Preferred meeting time,TIME,10:15
+club_application,run_0008,Full name,SHORT_TEXT,Noah Patel
+club_application,run_0008,Student email,SHORT_TEXT,noah.patel.8@demo.org
+club_application,run_0008,Study program,SHORT_TEXT,beta-08-09
+club_application,run_0008,Year of study,SINGLE_CHOICE,Other
+club_application,run_0008,Why do you want to join?,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Why do you want to join?; run 8)
+club_application,run_0008,Activities you are interested in,MULTI_CHOICE,Workshops
+club_application,run_0008,Previous club experience,SINGLE_CHOICE,No
+club_application,run_0008,Available start date,DATE,2025-09-04
+club_application,run_0008,Weekly time you can contribute,SHORT_TEXT,beta-08-14
+club_application,run_0008,Preferred meeting time,TIME,15:30
+club_application,run_0009,Full name,SHORT_TEXT,Avery Khan
+club_application,run_0009,Student email,SHORT_TEXT,avery.khan.9@example.com
+club_application,run_0009,Study program,SHORT_TEXT,gamma-09-07
+club_application,run_0009,Year of study,SINGLE_CHOICE,3rd year
+club_application,run_0009,Why do you want to join?,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Why do you want to join?; run 9)
+club_application,run_0009,Activities you are interested in,MULTI_CHOICE,Sponsorship
+club_application,run_0009,Previous club experience,SINGLE_CHOICE,No
+club_application,run_0009,Available start date,DATE,2025-10-29
+club_application,run_0009,Weekly time you can contribute,SHORT_TEXT,sigma-09-14
+club_application,run_0009,Preferred meeting time,TIME,16:45
+club_application,run_0010,Full name,SHORT_TEXT,Morgan Kim
+club_application,run_0010,Student email,SHORT_TEXT,morgan.kim.10@example.com
+club_application,run_0010,Study program,SHORT_TEXT,omega-10-85
+club_application,run_0010,Year of study,SINGLE_CHOICE,2nd year
+club_application,run_0010,Why do you want to join?,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Why do you want to join?; run 10)"
+club_application,run_0010,Activities you are interested in,MULTI_CHOICE,Workshops
+club_application,run_0010,Previous club experience,SINGLE_CHOICE,No
+club_application,run_0010,Available start date,DATE,2025-08-06
+club_application,run_0010,Weekly time you can contribute,SHORT_TEXT,beta-10-73
+club_application,run_0010,Preferred meeting time,TIME,10:15

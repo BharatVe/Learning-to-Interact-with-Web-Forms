@@ -1,0 +1,71 @@
+form_id,run_id,q_title,q_type,answer
+research_interest,run_0001,Full name,SHORT_TEXT,Riley Rivera
+research_interest,run_0001,Contact email,SHORT_TEXT,riley.rivera.1@demo.org
+research_interest,run_0001,Current degree level,SINGLE_CHOICE,Bachelor’s
+research_interest,run_0001,Research areas of interest,MULTI_CHOICE,Robotics
+research_interest,run_0001,Previous research experience,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Previous research experience; run 1)"
+research_interest,run_0001,Preferred meeting date,DATE,2025-09-08
+research_interest,run_0001,Preferred meeting time,TIME,16:45
+research_interest,run_0002,Full name,SHORT_TEXT,Taylor Singh
+research_interest,run_0002,Contact email,SHORT_TEXT,taylor.singh.2@research.edu
+research_interest,run_0002,Current degree level,SINGLE_CHOICE,Master’s
+research_interest,run_0002,Research areas of interest,MULTI_CHOICE,Human-Computer Interaction
+research_interest,run_0002,Previous research experience,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Previous research experience; run 2)
+research_interest,run_0002,Preferred meeting date,DATE,2025-11-22
+research_interest,run_0002,Preferred meeting time,TIME,13:00
+research_interest,run_0003,Full name,SHORT_TEXT,Avery Khan
+research_interest,run_0003,Contact email,SHORT_TEXT,avery.khan.3@demo.org
+research_interest,run_0003,Current degree level,SINGLE_CHOICE,Master’s
+research_interest,run_0003,Research areas of interest,MULTI_CHOICE,Human-Computer Interaction
+research_interest,run_0003,Previous research experience,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Previous research experience; run 3)
+research_interest,run_0003,Preferred meeting date,DATE,2025-06-16
+research_interest,run_0003,Preferred meeting time,TIME,15:30
+research_interest,run_0004,Full name,SHORT_TEXT,Riley Chen
+research_interest,run_0004,Contact email,SHORT_TEXT,riley.chen.4@mail.test
+research_interest,run_0004,Current degree level,SINGLE_CHOICE,PhD
+research_interest,run_0004,Research areas of interest,MULTI_CHOICE,Robotics
+research_interest,run_0004,Previous research experience,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Previous research experience; run 4)
+research_interest,run_0004,Preferred meeting date,DATE,2025-08-01
+research_interest,run_0004,Preferred meeting time,TIME,08:30
+research_interest,run_0005,Full name,SHORT_TEXT,Noah Rivera
+research_interest,run_0005,Contact email,SHORT_TEXT,noah.rivera.5@demo.org
+research_interest,run_0005,Current degree level,SINGLE_CHOICE,Bachelor’s
+research_interest,run_0005,Research areas of interest,MULTI_CHOICE,Computer Vision;Human-Computer Interaction
+research_interest,run_0005,Previous research experience,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Previous research experience; run 5)"
+research_interest,run_0005,Preferred meeting date,DATE,2025-08-23
+research_interest,run_0005,Preferred meeting time,TIME,13:00
+research_interest,run_0006,Full name,SHORT_TEXT,Riley Kim
+research_interest,run_0006,Contact email,SHORT_TEXT,riley.kim.6@example.com
+research_interest,run_0006,Current degree level,SINGLE_CHOICE,Other
+research_interest,run_0006,Research areas of interest,MULTI_CHOICE,Computer Vision;Robotics
+research_interest,run_0006,Previous research experience,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Previous research experience; run 6)"
+research_interest,run_0006,Preferred meeting date,DATE,2025-07-13
+research_interest,run_0006,Preferred meeting time,TIME,16:45
+research_interest,run_0007,Full name,SHORT_TEXT,Riley Kim
+research_interest,run_0007,Contact email,SHORT_TEXT,riley.kim.7@example.com
+research_interest,run_0007,Current degree level,SINGLE_CHOICE,PhD
+research_interest,run_0007,Research areas of interest,MULTI_CHOICE,Computer Vision;Human-Computer Interaction
+research_interest,run_0007,Previous research experience,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Previous research experience; run 7)
+research_interest,run_0007,Preferred meeting date,DATE,2025-07-19
+research_interest,run_0007,Preferred meeting time,TIME,13:00
+research_interest,run_0008,Full name,SHORT_TEXT,Priya Ortiz
+research_interest,run_0008,Contact email,SHORT_TEXT,priya.ortiz.8@research.edu
+research_interest,run_0008,Current degree level,SINGLE_CHOICE,Master’s
+research_interest,run_0008,Research areas of interest,MULTI_CHOICE,NLP
+research_interest,run_0008,Previous research experience,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Previous research experience; run 8)"
+research_interest,run_0008,Preferred meeting date,DATE,2025-07-28
+research_interest,run_0008,Preferred meeting time,TIME,08:30
+research_interest,run_0009,Full name,SHORT_TEXT,Taylor Khan
+research_interest,run_0009,Contact email,SHORT_TEXT,taylor.khan.9@mail.test
+research_interest,run_0009,Current degree level,SINGLE_CHOICE,PhD
+research_interest,run_0009,Research areas of interest,MULTI_CHOICE,Robotics;Human-Computer Interaction
+research_interest,run_0009,Previous research experience,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Previous research experience; run 9)
+research_interest,run_0009,Preferred meeting date,DATE,2025-08-05
+research_interest,run_0009,Preferred meeting time,TIME,14:15
+research_interest,run_0010,Full name,SHORT_TEXT,Taylor Chen
+research_interest,run_0010,Contact email,SHORT_TEXT,taylor.chen.10@demo.org
+research_interest,run_0010,Current degree level,SINGLE_CHOICE,Other
+research_interest,run_0010,Research areas of interest,MULTI_CHOICE,Computer Vision;NLP;Robotics
+research_interest,run_0010,Previous research experience,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Previous research experience; run 10)
+research_interest,run_0010,Preferred meeting date,DATE,2025-06-15
+research_interest,run_0010,Preferred meeting time,TIME,16:45

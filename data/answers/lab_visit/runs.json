@@ -1,0 +1,816 @@
+{
+  "form_id": "lab_visit",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Visitor name",
+          "widget_type": "short_text",
+          "value": "Sam Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "sam.patel.1@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organization or school",
+          "widget_type": "short_text",
+          "value": "DataWorks Institute",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Visitor type",
+          "widget_type": "single_choice",
+          "value": "Industry visitor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Robotics",
+            "Data science"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-10-16",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "11:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Group size",
+          "widget_type": "short_text",
+          "value": "sigma-01-29",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Visitor name",
+          "widget_type": "short_text",
+          "value": "Taylor Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "taylor.kim.2@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organization or school",
+          "widget_type": "short_text",
+          "value": "Stanford University",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Visitor type",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Data science"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-11-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Group size",
+          "widget_type": "short_text",
+          "value": "omega-02-86",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Visitor name",
+          "widget_type": "short_text",
+          "value": "Sam Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "sam.nguyen.3@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organization or school",
+          "widget_type": "short_text",
+          "value": "TU Dresden",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Visitor type",
+          "widget_type": "single_choice",
+          "value": "School group",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Robotics",
+            "Visualization lab",
+            "Data science"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-08-08",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Group size",
+          "widget_type": "short_text",
+          "value": "omega-03-86",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Visitor name",
+          "widget_type": "short_text",
+          "value": "Noah Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "noah.nguyen.4@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organization or school",
+          "widget_type": "short_text",
+          "value": "Acme Labs",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Visitor type",
+          "widget_type": "single_choice",
+          "value": "Student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Visualization lab",
+            "Data science"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-11-20",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Group size",
+          "widget_type": "short_text",
+          "value": "omega-04-65",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Visitor name",
+          "widget_type": "short_text",
+          "value": "Riley Meyer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "riley.meyer.5@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organization or school",
+          "widget_type": "short_text",
+          "value": "TU Dresden",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Visitor type",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Robotics",
+            "Visualization lab",
+            "Data science"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-07-25",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Group size",
+          "widget_type": "short_text",
+          "value": "beta-05-40",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Visitor name",
+          "widget_type": "short_text",
+          "value": "Lena Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "lena.bauer.6@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organization or school",
+          "widget_type": "short_text",
+          "value": "DataWorks Institute",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Visitor type",
+          "widget_type": "single_choice",
+          "value": "School group",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Robotics",
+            "AI demos",
+            "Data science"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-08-28",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Group size",
+          "widget_type": "short_text",
+          "value": "sigma-06-50",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Visitor name",
+          "widget_type": "short_text",
+          "value": "Morgan Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "morgan.chen.7@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organization or school",
+          "widget_type": "short_text",
+          "value": "Acme Labs",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Visitor type",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Robotics",
+            "Human-computer interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-09-27",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Group size",
+          "widget_type": "short_text",
+          "value": "gamma-07-49",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Visitor name",
+          "widget_type": "short_text",
+          "value": "Avery Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "avery.rivera.8@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organization or school",
+          "widget_type": "short_text",
+          "value": "TU Dresden",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Visitor type",
+          "widget_type": "single_choice",
+          "value": "Industry visitor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Robotics"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-10-25",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "09:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Group size",
+          "widget_type": "short_text",
+          "value": "gamma-08-38",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Visitor name",
+          "widget_type": "short_text",
+          "value": "Taylor Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "taylor.singh.9@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organization or school",
+          "widget_type": "short_text",
+          "value": "DataWorks Institute",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Visitor type",
+          "widget_type": "single_choice",
+          "value": "Student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "AI demos"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-07-26",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Group size",
+          "widget_type": "short_text",
+          "value": "alpha-09-87",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Visitor name",
+          "widget_type": "short_text",
+          "value": "Noah Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Contact email",
+          "widget_type": "short_text",
+          "value": "noah.patel.10@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Organization or school",
+          "widget_type": "short_text",
+          "value": "TU Dresden",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Visitor type",
+          "widget_type": "single_choice",
+          "value": "Other",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Areas of interest",
+          "widget_type": "multi_choice",
+          "value": [
+            "Robotics",
+            "Human-computer interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-06-29",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred arrival time",
+          "widget_type": "time",
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        },
+        {
+          "label": "Group size",
+          "widget_type": "short_text",
+          "value": "gamma-10-76",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        }
+      ]
+    }
+  ]
+}

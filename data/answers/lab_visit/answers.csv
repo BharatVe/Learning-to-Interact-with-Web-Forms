@@ -1,0 +1,81 @@
+form_id,run_id,q_title,q_type,answer
+lab_visit,run_0001,Visitor name,SHORT_TEXT,Sam Patel
+lab_visit,run_0001,Contact email,SHORT_TEXT,sam.patel.1@mail.test
+lab_visit,run_0001,Organization or school,SHORT_TEXT,DataWorks Institute
+lab_visit,run_0001,Visitor type,SINGLE_CHOICE,Industry visitor
+lab_visit,run_0001,Areas of interest,MULTI_CHOICE,Robotics;Data science
+lab_visit,run_0001,Preferred visit date,DATE,2025-10-16
+lab_visit,run_0001,Preferred arrival time,TIME,11:30
+lab_visit,run_0001,Group size,SHORT_TEXT,sigma-01-29
+lab_visit,run_0002,Visitor name,SHORT_TEXT,Taylor Kim
+lab_visit,run_0002,Contact email,SHORT_TEXT,taylor.kim.2@research.edu
+lab_visit,run_0002,Organization or school,SHORT_TEXT,Stanford University
+lab_visit,run_0002,Visitor type,SINGLE_CHOICE,Other
+lab_visit,run_0002,Areas of interest,MULTI_CHOICE,Data science
+lab_visit,run_0002,Preferred visit date,DATE,2025-11-01
+lab_visit,run_0002,Preferred arrival time,TIME,08:30
+lab_visit,run_0002,Group size,SHORT_TEXT,omega-02-86
+lab_visit,run_0003,Visitor name,SHORT_TEXT,Sam Nguyen
+lab_visit,run_0003,Contact email,SHORT_TEXT,sam.nguyen.3@example.com
+lab_visit,run_0003,Organization or school,SHORT_TEXT,TU Dresden
+lab_visit,run_0003,Visitor type,SINGLE_CHOICE,School group
+lab_visit,run_0003,Areas of interest,MULTI_CHOICE,Robotics;Visualization lab;Data science
+lab_visit,run_0003,Preferred visit date,DATE,2025-08-08
+lab_visit,run_0003,Preferred arrival time,TIME,15:30
+lab_visit,run_0003,Group size,SHORT_TEXT,omega-03-86
+lab_visit,run_0004,Visitor name,SHORT_TEXT,Noah Nguyen
+lab_visit,run_0004,Contact email,SHORT_TEXT,noah.nguyen.4@demo.org
+lab_visit,run_0004,Organization or school,SHORT_TEXT,Acme Labs
+lab_visit,run_0004,Visitor type,SINGLE_CHOICE,Student
+lab_visit,run_0004,Areas of interest,MULTI_CHOICE,Visualization lab;Data science
+lab_visit,run_0004,Preferred visit date,DATE,2025-11-20
+lab_visit,run_0004,Preferred arrival time,TIME,15:30
+lab_visit,run_0004,Group size,SHORT_TEXT,omega-04-65
+lab_visit,run_0005,Visitor name,SHORT_TEXT,Riley Meyer
+lab_visit,run_0005,Contact email,SHORT_TEXT,riley.meyer.5@research.edu
+lab_visit,run_0005,Organization or school,SHORT_TEXT,TU Dresden
+lab_visit,run_0005,Visitor type,SINGLE_CHOICE,Other
+lab_visit,run_0005,Areas of interest,MULTI_CHOICE,Robotics;Visualization lab;Data science
+lab_visit,run_0005,Preferred visit date,DATE,2025-07-25
+lab_visit,run_0005,Preferred arrival time,TIME,14:15
+lab_visit,run_0005,Group size,SHORT_TEXT,beta-05-40
+lab_visit,run_0006,Visitor name,SHORT_TEXT,Lena Bauer
+lab_visit,run_0006,Contact email,SHORT_TEXT,lena.bauer.6@mail.test
+lab_visit,run_0006,Organization or school,SHORT_TEXT,DataWorks Institute
+lab_visit,run_0006,Visitor type,SINGLE_CHOICE,School group
+lab_visit,run_0006,Areas of interest,MULTI_CHOICE,Robotics;AI demos;Data science
+lab_visit,run_0006,Preferred visit date,DATE,2025-08-28
+lab_visit,run_0006,Preferred arrival time,TIME,14:15
+lab_visit,run_0006,Group size,SHORT_TEXT,sigma-06-50
+lab_visit,run_0007,Visitor name,SHORT_TEXT,Morgan Chen
+lab_visit,run_0007,Contact email,SHORT_TEXT,morgan.chen.7@example.com
+lab_visit,run_0007,Organization or school,SHORT_TEXT,Acme Labs
+lab_visit,run_0007,Visitor type,SINGLE_CHOICE,Other
+lab_visit,run_0007,Areas of interest,MULTI_CHOICE,Robotics;Human-computer interaction
+lab_visit,run_0007,Preferred visit date,DATE,2025-09-27
+lab_visit,run_0007,Preferred arrival time,TIME,10:15
+lab_visit,run_0007,Group size,SHORT_TEXT,gamma-07-49
+lab_visit,run_0008,Visitor name,SHORT_TEXT,Avery Rivera
+lab_visit,run_0008,Contact email,SHORT_TEXT,avery.rivera.8@mail.test
+lab_visit,run_0008,Organization or school,SHORT_TEXT,TU Dresden
+lab_visit,run_0008,Visitor type,SINGLE_CHOICE,Industry visitor
+lab_visit,run_0008,Areas of interest,MULTI_CHOICE,Robotics
+lab_visit,run_0008,Preferred visit date,DATE,2025-10-25
+lab_visit,run_0008,Preferred arrival time,TIME,09:00
+lab_visit,run_0008,Group size,SHORT_TEXT,gamma-08-38
+lab_visit,run_0009,Visitor name,SHORT_TEXT,Taylor Singh
+lab_visit,run_0009,Contact email,SHORT_TEXT,taylor.singh.9@example.com
+lab_visit,run_0009,Organization or school,SHORT_TEXT,DataWorks Institute
+lab_visit,run_0009,Visitor type,SINGLE_CHOICE,Student
+lab_visit,run_0009,Areas of interest,MULTI_CHOICE,AI demos
+lab_visit,run_0009,Preferred visit date,DATE,2025-07-26
+lab_visit,run_0009,Preferred arrival time,TIME,14:15
+lab_visit,run_0009,Group size,SHORT_TEXT,alpha-09-87
+lab_visit,run_0010,Visitor name,SHORT_TEXT,Noah Patel
+lab_visit,run_0010,Contact email,SHORT_TEXT,noah.patel.10@mail.test
+lab_visit,run_0010,Organization or school,SHORT_TEXT,TU Dresden
+lab_visit,run_0010,Visitor type,SINGLE_CHOICE,Other
+lab_visit,run_0010,Areas of interest,MULTI_CHOICE,Robotics;Human-computer interaction
+lab_visit,run_0010,Preferred visit date,DATE,2025-06-29
+lab_visit,run_0010,Preferred arrival time,TIME,10:15
+lab_visit,run_0010,Group size,SHORT_TEXT,gamma-10-76

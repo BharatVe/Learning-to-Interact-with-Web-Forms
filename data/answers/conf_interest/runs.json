@@ -1,148 +1,723 @@
 {
   "form_id": "conf_interest",
-  "description": "Run variations for Conference Interest form submissions.",
+  "description": "Deterministically generated answer sets.",
   "runs": [
     {
-      "suffix": "mlsys",
-      "notes": "Graduate researcher focused on ML systems.",
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
       "answers": [
         {
           "label": "Full Name",
           "widget_type": "short_text",
-          "value": "Jordan Rivera",
-          "tags": ["profile", "identity"]
+          "value": "Sam Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Preferred contact email",
           "widget_type": "short_text",
-          "value": "jordan.rivera@example.com",
-          "tags": ["profile", "contact"]
+          "value": "sam.bauer.1@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Brief bio",
           "widget_type": "paragraph_text",
-          "value": "Graduate researcher focused on distributed training and edge inference.",
-          "tags": ["summary"]
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief bio; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
         },
         {
           "label": "Primary role",
           "widget_type": "single_choice",
-          "value": "PhD student",
-          "tags": ["role"]
+          "value": "Master\u2019s student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
-          "label": "Topics you're interested in",
+          "label": "Topics you\u2019re interested in",
           "widget_type": "multi_choice",
-          "value": ["AI/ML", "Systems"],
-          "tags": ["topics", "interests"]
+          "value": [
+            "Security",
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
         },
         {
           "label": "Preferred meeting date",
           "widget_type": "date",
-          "value": "2025-06-15",
-          "tags": ["scheduling"]
+          "value": "2025-11-06",
+          "tags": [
+            "generated",
+            "date"
+          ]
         },
         {
           "label": "Preferred meeting time",
           "widget_type": "time",
-          "value": "10:30",
-          "tags": ["scheduling"]
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
         }
       ]
     },
     {
-      "suffix": "industry",
-      "notes": "Industry professional with applied ML interests.",
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
       "answers": [
         {
           "label": "Full Name",
           "widget_type": "short_text",
-          "value": "Avery Chen",
-          "tags": ["profile", "identity"]
+          "value": "Morgan Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Preferred contact email",
           "widget_type": "short_text",
-          "value": "avery.chen@streamforge.io",
-          "tags": ["profile", "contact"]
+          "value": "morgan.bauer.2@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Brief bio",
           "widget_type": "paragraph_text",
-          "value": "Industry professional leading applied ML work for collaboration tools.",
-          "tags": ["summary"]
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief bio; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Primary role",
+          "widget_type": "single_choice",
+          "value": "Undergraduate student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Topics you\u2019re interested in",
+          "widget_type": "multi_choice",
+          "value": [
+            "Security",
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-11-23",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "13:00",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full Name",
+          "widget_type": "short_text",
+          "value": "Sam Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred contact email",
+          "widget_type": "short_text",
+          "value": "sam.ortiz.3@mail.test",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief bio",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief bio; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
         },
         {
           "label": "Primary role",
           "widget_type": "single_choice",
           "value": "Industry Professional",
-          "tags": ["role"]
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
-          "label": "Topics you're interested in",
+          "label": "Topics you\u2019re interested in",
           "widget_type": "multi_choice",
-          "value": ["AI/ML", "Security"],
-          "tags": ["topics", "interests"]
+          "value": [
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
         },
         {
           "label": "Preferred meeting date",
           "widget_type": "date",
-          "value": "2025-06-17",
-          "tags": ["scheduling"]
+          "value": "2025-11-01",
+          "tags": [
+            "generated",
+            "date"
+          ]
         },
         {
           "label": "Preferred meeting time",
           "widget_type": "time",
-          "value": "14:00",
-          "tags": ["scheduling"]
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
         }
       ]
     },
     {
-      "suffix": "hci",
-      "notes": "Masters student focused on human-computer interaction.",
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
       "answers": [
         {
           "label": "Full Name",
           "widget_type": "short_text",
-          "value": "Noah Whitaker",
-          "tags": ["profile", "identity"]
+          "value": "Jordan Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Preferred contact email",
           "widget_type": "short_text",
-          "value": "noah.whitaker@chipfoundry.ai",
-          "tags": ["profile", "contact"]
+          "value": "jordan.chen.4@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
         },
         {
           "label": "Brief bio",
           "widget_type": "paragraph_text",
-          "value": "Masters student studying human centered AI and interface design.",
-          "tags": ["summary"]
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief bio; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
         },
         {
           "label": "Primary role",
           "widget_type": "single_choice",
-          "value": "Master's student",
-          "tags": ["role"]
+          "value": "PhD student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
         },
         {
-          "label": "Topics you're interested in",
+          "label": "Topics you\u2019re interested in",
           "widget_type": "multi_choice",
-          "value": ["Human-Computer Interaction", "AI/ML"],
-          "tags": ["topics", "interests"]
+          "value": [
+            "AI/ML",
+            "Security",
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
         },
         {
           "label": "Preferred meeting date",
           "widget_type": "date",
-          "value": "2025-06-20",
-          "tags": ["scheduling"]
+          "value": "2025-07-12",
+          "tags": [
+            "generated",
+            "date"
+          ]
         },
         {
           "label": "Preferred meeting time",
           "widget_type": "time",
-          "value": "09:00",
-          "tags": ["scheduling"]
+          "value": "10:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full Name",
+          "widget_type": "short_text",
+          "value": "Noah Bauer",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred contact email",
+          "widget_type": "short_text",
+          "value": "noah.bauer.5@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief bio",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief bio; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Primary role",
+          "widget_type": "single_choice",
+          "value": "PhD student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Topics you\u2019re interested in",
+          "widget_type": "multi_choice",
+          "value": [
+            "AI/ML",
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-06-10",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "11:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full Name",
+          "widget_type": "short_text",
+          "value": "Lena Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred contact email",
+          "widget_type": "short_text",
+          "value": "lena.rivera.6@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief bio",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief bio; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Primary role",
+          "widget_type": "single_choice",
+          "value": "Undergraduate student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Topics you\u2019re interested in",
+          "widget_type": "multi_choice",
+          "value": [
+            "Security"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-09-15",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "14:15",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full Name",
+          "widget_type": "short_text",
+          "value": "Morgan Chen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred contact email",
+          "widget_type": "short_text",
+          "value": "morgan.chen.7@demo.org",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief bio",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief bio; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Primary role",
+          "widget_type": "single_choice",
+          "value": "Undergraduate student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Topics you\u2019re interested in",
+          "widget_type": "multi_choice",
+          "value": [
+            "AI/ML",
+            "Systems"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-07-20",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full Name",
+          "widget_type": "short_text",
+          "value": "Jordan Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred contact email",
+          "widget_type": "short_text",
+          "value": "jordan.khan.8@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief bio",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Brief bio; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Primary role",
+          "widget_type": "single_choice",
+          "value": "Undergraduate student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Topics you\u2019re interested in",
+          "widget_type": "multi_choice",
+          "value": [
+            "Systems",
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-07-14",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "16:45",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full Name",
+          "widget_type": "short_text",
+          "value": "Avery Khan",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred contact email",
+          "widget_type": "short_text",
+          "value": "avery.khan.9@research.edu",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief bio",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief bio; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Primary role",
+          "widget_type": "single_choice",
+          "value": "Industry Professional",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Topics you\u2019re interested in",
+          "widget_type": "multi_choice",
+          "value": [
+            "AI/ML",
+            "Security",
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-11-12",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "15:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full Name",
+          "widget_type": "short_text",
+          "value": "Lena Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Preferred contact email",
+          "widget_type": "short_text",
+          "value": "lena.nguyen.10@example.com",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Brief bio",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief bio; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        },
+        {
+          "label": "Primary role",
+          "widget_type": "single_choice",
+          "value": "Master\u2019s student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Topics you\u2019re interested in",
+          "widget_type": "multi_choice",
+          "value": [
+            "Human-Computer Interaction"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred meeting date",
+          "widget_type": "date",
+          "value": "2025-08-20",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Preferred meeting time",
+          "widget_type": "time",
+          "value": "08:30",
+          "tags": [
+            "generated",
+            "time"
+          ]
         }
       ]
     }

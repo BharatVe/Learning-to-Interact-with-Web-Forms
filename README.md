@@ -36,6 +36,21 @@ bash scripts/run_baselines_headless.sh --smoke-test-all-forms --overwrite-existi
 For cluster workflow (canonical directory policy, model install, Slurm/headless usage), see:
 `README_HPC.md`
 
+Canonical thesis-primary runbook now separates two benchmark families:
+
+- Family A: direct Playwright MCP tool use for Qwen `text_llm` and `vlm`
+- Family B: native computer-use for `OpenCUA-32B`
+
+The combined orchestrator runs both families sequentially:
+
+```bash
+CONFIG_PATH=configs/baselines/track_baseline_models.json \
+DIRECT_PROVIDER=opencua_local \
+bash scripts/run_track_baseline_matrix.sh
+```
+
+Reference efficiency is compared against the matching scripted Playwright run for the same `form_id` and `run_XXXX`, using `tool_trace.jsonl` event counts and structured run annotations rather than video parsing.
+
 If `PLAYWRIGHT_SKIP_FFMPEG_INSTALL` is set, video recording may fail.
 `mcp_server` interaction mode also requires `node` + `npx` to run the official Playwright MCP server.
 The default MCP command now forces `--browser chromium` to avoid system Chrome dependency.

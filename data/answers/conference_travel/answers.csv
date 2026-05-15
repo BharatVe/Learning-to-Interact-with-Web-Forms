@@ -1,0 +1,101 @@
+form_id,run_id,q_title,q_type,answer
+conference_travel,run_0001,Full name,SHORT_TEXT,Casey Kim
+conference_travel,run_0001,Email address,SHORT_TEXT,casey.kim.1@demo.org
+conference_travel,run_0001,Conference name,SHORT_TEXT,Casey Kim
+conference_travel,run_0001,Conference role,SINGLE_CHOICE,Volunteer
+conference_travel,run_0001,Conference start date,DATE,2025-10-03
+conference_travel,run_0001,Conference end date,DATE,2025-11-14
+conference_travel,run_0001,Preferred travel mode,DROPDOWN,Flight
+conference_travel,run_0001,Accommodation preferences,MULTI_CHOICE,Near venue
+conference_travel,run_0001,Preferred departure time,TIME,10:15
+conference_travel,run_0001,Additional travel notes,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Additional travel notes; run 1)
+conference_travel,run_0002,Full name,SHORT_TEXT,Priya Rivera
+conference_travel,run_0002,Email address,SHORT_TEXT,priya.rivera.2@example.com
+conference_travel,run_0002,Conference name,SHORT_TEXT,Priya Rivera
+conference_travel,run_0002,Conference role,SINGLE_CHOICE,Poster presenter
+conference_travel,run_0002,Conference start date,DATE,2025-07-25
+conference_travel,run_0002,Conference end date,DATE,2025-10-22
+conference_travel,run_0002,Preferred travel mode,DROPDOWN,Car
+conference_travel,run_0002,Accommodation preferences,MULTI_CHOICE,Shared room;Near venue;Budget option
+conference_travel,run_0002,Preferred departure time,TIME,11:30
+conference_travel,run_0002,Additional travel notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional travel notes; run 2)
+conference_travel,run_0003,Full name,SHORT_TEXT,Taylor Rivera
+conference_travel,run_0003,Email address,SHORT_TEXT,taylor.rivera.3@research.edu
+conference_travel,run_0003,Conference name,SHORT_TEXT,Taylor Rivera
+conference_travel,run_0003,Conference role,SINGLE_CHOICE,Volunteer
+conference_travel,run_0003,Conference start date,DATE,2025-06-08
+conference_travel,run_0003,Conference end date,DATE,2025-10-14
+conference_travel,run_0003,Preferred travel mode,DROPDOWN,Bus
+conference_travel,run_0003,Accommodation preferences,MULTI_CHOICE,Near venue
+conference_travel,run_0003,Preferred departure time,TIME,15:30
+conference_travel,run_0003,Additional travel notes,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional travel notes; run 3)"
+conference_travel,run_0004,Full name,SHORT_TEXT,Casey Bauer
+conference_travel,run_0004,Email address,SHORT_TEXT,casey.bauer.4@demo.org
+conference_travel,run_0004,Conference name,SHORT_TEXT,Casey Bauer
+conference_travel,run_0004,Conference role,SINGLE_CHOICE,Attendee
+conference_travel,run_0004,Conference start date,DATE,2025-10-13
+conference_travel,run_0004,Conference end date,DATE,2025-09-04
+conference_travel,run_0004,Preferred travel mode,DROPDOWN,Train
+conference_travel,run_0004,Accommodation preferences,MULTI_CHOICE,Single room
+conference_travel,run_0004,Preferred departure time,TIME,11:30
+conference_travel,run_0004,Additional travel notes,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Additional travel notes; run 4)
+conference_travel,run_0005,Full name,SHORT_TEXT,Riley Kim
+conference_travel,run_0005,Email address,SHORT_TEXT,riley.kim.5@research.edu
+conference_travel,run_0005,Conference name,SHORT_TEXT,Riley Kim
+conference_travel,run_0005,Conference role,SINGLE_CHOICE,Presenter
+conference_travel,run_0005,Conference start date,DATE,2025-10-10
+conference_travel,run_0005,Conference end date,DATE,2025-10-17
+conference_travel,run_0005,Preferred travel mode,DROPDOWN,Flight
+conference_travel,run_0005,Accommodation preferences,MULTI_CHOICE,Single room;Near venue;No accommodation needed
+conference_travel,run_0005,Preferred departure time,TIME,15:30
+conference_travel,run_0005,Additional travel notes,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Additional travel notes; run 5)
+conference_travel,run_0006,Full name,SHORT_TEXT,Riley Chen
+conference_travel,run_0006,Email address,SHORT_TEXT,riley.chen.6@mail.test
+conference_travel,run_0006,Conference name,SHORT_TEXT,Riley Chen
+conference_travel,run_0006,Conference role,SINGLE_CHOICE,Volunteer
+conference_travel,run_0006,Conference start date,DATE,2025-06-29
+conference_travel,run_0006,Conference end date,DATE,2025-06-21
+conference_travel,run_0006,Preferred travel mode,DROPDOWN,Bus
+conference_travel,run_0006,Accommodation preferences,MULTI_CHOICE,Shared room;Budget option;No accommodation needed
+conference_travel,run_0006,Preferred departure time,TIME,14:15
+conference_travel,run_0006,Additional travel notes,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Additional travel notes; run 6)
+conference_travel,run_0007,Full name,SHORT_TEXT,Avery Chen
+conference_travel,run_0007,Email address,SHORT_TEXT,avery.chen.7@example.com
+conference_travel,run_0007,Conference name,SHORT_TEXT,Avery Chen
+conference_travel,run_0007,Conference role,SINGLE_CHOICE,Attendee
+conference_travel,run_0007,Conference start date,DATE,2025-10-27
+conference_travel,run_0007,Conference end date,DATE,2025-10-07
+conference_travel,run_0007,Preferred travel mode,DROPDOWN,Car
+conference_travel,run_0007,Accommodation preferences,MULTI_CHOICE,Shared room;Near venue;Budget option
+conference_travel,run_0007,Preferred departure time,TIME,09:00
+conference_travel,run_0007,Additional travel notes,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional travel notes; run 7)"
+conference_travel,run_0008,Full name,SHORT_TEXT,Morgan Bauer
+conference_travel,run_0008,Email address,SHORT_TEXT,morgan.bauer.8@example.com
+conference_travel,run_0008,Conference name,SHORT_TEXT,Morgan Bauer
+conference_travel,run_0008,Conference role,SINGLE_CHOICE,Poster presenter
+conference_travel,run_0008,Conference start date,DATE,2025-07-19
+conference_travel,run_0008,Conference end date,DATE,2025-06-22
+conference_travel,run_0008,Preferred travel mode,DROPDOWN,Train
+conference_travel,run_0008,Accommodation preferences,MULTI_CHOICE,Shared room
+conference_travel,run_0008,Preferred departure time,TIME,16:45
+conference_travel,run_0008,Additional travel notes,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Additional travel notes; run 8)"
+conference_travel,run_0009,Full name,SHORT_TEXT,Casey Patel
+conference_travel,run_0009,Email address,SHORT_TEXT,casey.patel.9@mail.test
+conference_travel,run_0009,Conference name,SHORT_TEXT,Casey Patel
+conference_travel,run_0009,Conference role,SINGLE_CHOICE,Presenter
+conference_travel,run_0009,Conference start date,DATE,2025-07-31
+conference_travel,run_0009,Conference end date,DATE,2025-08-14
+conference_travel,run_0009,Preferred travel mode,DROPDOWN,Not decided
+conference_travel,run_0009,Accommodation preferences,MULTI_CHOICE,Single room;Budget option
+conference_travel,run_0009,Preferred departure time,TIME,11:30
+conference_travel,run_0009,Additional travel notes,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Additional travel notes; run 9)
+conference_travel,run_0010,Full name,SHORT_TEXT,Taylor Meyer
+conference_travel,run_0010,Email address,SHORT_TEXT,taylor.meyer.10@mail.test
+conference_travel,run_0010,Conference name,SHORT_TEXT,Taylor Meyer
+conference_travel,run_0010,Conference role,SINGLE_CHOICE,Volunteer
+conference_travel,run_0010,Conference start date,DATE,2025-08-30
+conference_travel,run_0010,Conference end date,DATE,2025-11-06
+conference_travel,run_0010,Preferred travel mode,DROPDOWN,Not decided
+conference_travel,run_0010,Accommodation preferences,MULTI_CHOICE,Budget option;No accommodation needed
+conference_travel,run_0010,Preferred departure time,TIME,16:45
+conference_travel,run_0010,Additional travel notes,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Additional travel notes; run 10)

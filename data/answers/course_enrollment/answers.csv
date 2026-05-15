@@ -1,0 +1,81 @@
+form_id,run_id,q_title,q_type,answer
+course_enrollment,run_0001,Full name,SHORT_TEXT,Priya Bauer
+course_enrollment,run_0001,Student ID,SHORT_TEXT,delta-01-79
+course_enrollment,run_0001,Email address,SHORT_TEXT,priya.bauer.1@research.edu
+course_enrollment,run_0001,Preferred course,DROPDOWN,Human-Computer Interaction
+course_enrollment,run_0001,Prior knowledge,SINGLE_CHOICE,Advanced
+course_enrollment,run_0001,Reasons for enrolling,MULTI_CHOICE,Degree requirement;Career preparation;Project topic
+course_enrollment,run_0001,Schedule constraints,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Schedule constraints; run 1)
+course_enrollment,run_0001,Preferred lab session time,TIME,11:30
+course_enrollment,run_0002,Full name,SHORT_TEXT,Avery Nguyen
+course_enrollment,run_0002,Student ID,SHORT_TEXT,omega-02-33
+course_enrollment,run_0002,Email address,SHORT_TEXT,avery.nguyen.2@mail.test
+course_enrollment,run_0002,Preferred course,DROPDOWN,Human-Computer Interaction
+course_enrollment,run_0002,Prior knowledge,SINGLE_CHOICE,Basic
+course_enrollment,run_0002,Reasons for enrolling,MULTI_CHOICE,Research interest
+course_enrollment,run_0002,Schedule constraints,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Schedule constraints; run 2)
+course_enrollment,run_0002,Preferred lab session time,TIME,14:15
+course_enrollment,run_0003,Full name,SHORT_TEXT,Lena Rivera
+course_enrollment,run_0003,Student ID,SHORT_TEXT,gamma-03-12
+course_enrollment,run_0003,Email address,SHORT_TEXT,lena.rivera.3@demo.org
+course_enrollment,run_0003,Preferred course,DROPDOWN,Scalable Data Engineering
+course_enrollment,run_0003,Prior knowledge,SINGLE_CHOICE,None
+course_enrollment,run_0003,Reasons for enrolling,MULTI_CHOICE,Project topic;General interest
+course_enrollment,run_0003,Schedule constraints,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Schedule constraints; run 3)"
+course_enrollment,run_0003,Preferred lab session time,TIME,13:00
+course_enrollment,run_0004,Full name,SHORT_TEXT,Jordan Ortiz
+course_enrollment,run_0004,Student ID,SHORT_TEXT,sigma-04-62
+course_enrollment,run_0004,Email address,SHORT_TEXT,jordan.ortiz.4@demo.org
+course_enrollment,run_0004,Preferred course,DROPDOWN,Data Visualization
+course_enrollment,run_0004,Prior knowledge,SINGLE_CHOICE,None
+course_enrollment,run_0004,Reasons for enrolling,MULTI_CHOICE,Degree requirement;Research interest
+course_enrollment,run_0004,Schedule constraints,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Schedule constraints; run 4)"
+course_enrollment,run_0004,Preferred lab session time,TIME,08:30
+course_enrollment,run_0005,Full name,SHORT_TEXT,Taylor Rivera
+course_enrollment,run_0005,Student ID,SHORT_TEXT,omega-05-53
+course_enrollment,run_0005,Email address,SHORT_TEXT,taylor.rivera.5@mail.test
+course_enrollment,run_0005,Preferred course,DROPDOWN,Machine Learning
+course_enrollment,run_0005,Prior knowledge,SINGLE_CHOICE,Basic
+course_enrollment,run_0005,Reasons for enrolling,MULTI_CHOICE,Project topic;General interest
+course_enrollment,run_0005,Schedule constraints,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Schedule constraints; run 5)
+course_enrollment,run_0005,Preferred lab session time,TIME,16:45
+course_enrollment,run_0006,Full name,SHORT_TEXT,Taylor Kim
+course_enrollment,run_0006,Student ID,SHORT_TEXT,omega-06-78
+course_enrollment,run_0006,Email address,SHORT_TEXT,taylor.kim.6@research.edu
+course_enrollment,run_0006,Preferred course,DROPDOWN,Machine Learning
+course_enrollment,run_0006,Prior knowledge,SINGLE_CHOICE,None
+course_enrollment,run_0006,Reasons for enrolling,MULTI_CHOICE,Degree requirement
+course_enrollment,run_0006,Schedule constraints,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Schedule constraints; run 6)
+course_enrollment,run_0006,Preferred lab session time,TIME,15:30
+course_enrollment,run_0007,Full name,SHORT_TEXT,Morgan Bauer
+course_enrollment,run_0007,Student ID,SHORT_TEXT,delta-07-06
+course_enrollment,run_0007,Email address,SHORT_TEXT,morgan.bauer.7@example.com
+course_enrollment,run_0007,Preferred course,DROPDOWN,Computer Vision
+course_enrollment,run_0007,Prior knowledge,SINGLE_CHOICE,Advanced
+course_enrollment,run_0007,Reasons for enrolling,MULTI_CHOICE,Degree requirement;Research interest;Project topic
+course_enrollment,run_0007,Schedule constraints,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Schedule constraints; run 7)
+course_enrollment,run_0007,Preferred lab session time,TIME,10:15
+course_enrollment,run_0008,Full name,SHORT_TEXT,Avery Nguyen
+course_enrollment,run_0008,Student ID,SHORT_TEXT,gamma-08-07
+course_enrollment,run_0008,Email address,SHORT_TEXT,avery.nguyen.8@research.edu
+course_enrollment,run_0008,Preferred course,DROPDOWN,Human-Computer Interaction
+course_enrollment,run_0008,Prior knowledge,SINGLE_CHOICE,Basic
+course_enrollment,run_0008,Reasons for enrolling,MULTI_CHOICE,Degree requirement;General interest
+course_enrollment,run_0008,Schedule constraints,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Schedule constraints; run 8)
+course_enrollment,run_0008,Preferred lab session time,TIME,08:30
+course_enrollment,run_0009,Full name,SHORT_TEXT,Casey Singh
+course_enrollment,run_0009,Student ID,SHORT_TEXT,omega-09-21
+course_enrollment,run_0009,Email address,SHORT_TEXT,casey.singh.9@demo.org
+course_enrollment,run_0009,Preferred course,DROPDOWN,Machine Learning
+course_enrollment,run_0009,Prior knowledge,SINGLE_CHOICE,Basic
+course_enrollment,run_0009,Reasons for enrolling,MULTI_CHOICE,Research interest
+course_enrollment,run_0009,Schedule constraints,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Schedule constraints; run 9)
+course_enrollment,run_0009,Preferred lab session time,TIME,16:45
+course_enrollment,run_0010,Full name,SHORT_TEXT,Avery Khan
+course_enrollment,run_0010,Student ID,SHORT_TEXT,delta-10-95
+course_enrollment,run_0010,Email address,SHORT_TEXT,avery.khan.10@mail.test
+course_enrollment,run_0010,Preferred course,DROPDOWN,Machine Learning
+course_enrollment,run_0010,Prior knowledge,SINGLE_CHOICE,Intermediate
+course_enrollment,run_0010,Reasons for enrolling,MULTI_CHOICE,Project topic
+course_enrollment,run_0010,Schedule constraints,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Schedule constraints; run 10)
+course_enrollment,run_0010,Preferred lab session time,TIME,08:30

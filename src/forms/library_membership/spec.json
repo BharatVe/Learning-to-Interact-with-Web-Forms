@@ -1,0 +1,83 @@
+{
+  "form_id": "library_membership",
+  "form_title": "Library Membership Request",
+  "form_description": "Collects details for campus library membership and reading preferences.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1Els4NeLf_2QGsWCc8QxMfgGWhJgaSbY-vmanDAhtA8I/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSceOZeKd5ZKfAaYeE_ts9n-7cY1JmPvA0Ml7qhuL6cKVRoYOA/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSceOZeKd5ZKfAaYeE_ts9n-7cY1JmPvA0Ml7qhuL6cKVRoYOA/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Member details",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Member details",
+      "q_order": 2,
+      "q_title": "University ID",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Member details",
+      "q_order": 3,
+      "q_title": "Department or program",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Member details",
+      "q_order": 4,
+      "q_title": "Membership type",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Student;Research staff;Faculty;External visitor",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Member details",
+      "q_order": 5,
+      "q_title": "Resources you use most",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Books;E-books;Study rooms;Journals;Computers",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Member details",
+      "q_order": 6,
+      "q_title": "Preferred visit date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Member details",
+      "q_order": 7,
+      "q_title": "Any additional access needs?",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

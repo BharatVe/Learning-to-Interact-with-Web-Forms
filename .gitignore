@@ -106,6 +106,7 @@ celerybeat.pid
 .env.*
 .venv
 .venv/
+.venv-opencua/
 env/
 venv/
 ENV/
@@ -145,6 +146,7 @@ data/forms/**/runs/**/*.webm
 # Playwright/browser cache and local model storage
 .playwright-browsers/
 .playwright-browsers-node/
+.runtime-cache/
 models/
 .node-tools/
 data/model_baselines/
@@ -165,3 +167,6 @@ logs/*.json
 logs/*.log
 tmp/
 tmp_*/
+
+# Repo-local editor state
+.codex/

@@ -83,6 +83,7 @@ class FormEngine:
             "paragraph_text": self._handle_text,
             "single_choice": self._handle_single_choice,
             "multi_choice": self._handle_multi_choice,
+            "dropdown": self._handle_dropdown,
             "date": self._handle_date,
             "time": self._handle_time,
         }
@@ -648,6 +649,45 @@ class FormEngine:
                 raise RuntimeError(f"option_not_found: {entry}")
             self._assert_option_selected(container, str(entry), "checkbox")
 
+    def _handle_dropdown(self, label: str, value: Any, step_idx: int, action: Dict[str, Any]) -> None:
+        container = self._find_container_with_pagination(label, step_idx)
+        if container is None:
+            raise RuntimeError("container_not_found")
+        action["bbox"] = self._bbox(container)
+        action["scroll_y"] = self._get_scroll_state().get("scroll_y")
+        self._attach_required_info(action, container)
+        self._scroll_into_view(container, step_idx)
+
+        trigger = container.locator("[role='listbox'], [role='combobox'], select, div[aria-haspopup='listbox']").first
+        if trigger.count() == 0:
+            trigger = container.get_by_text("Choose", exact=False).first
+        if trigger.count() == 0:
+            raise RuntimeError("dropdown_trigger_not_found")
+        self._set_action_target(action, trigger)
+        self._hover(trigger, step_idx)
+
+        target = str(value)
+        tag_name = str(trigger.evaluate("el => el.tagName || ''")).lower()
+        if tag_name == "select":
+            try:
+                trigger.select_option(label=target)
+            except Exception:
+                try:
+                    trigger.select_option(value=target)
+                except Exception as exc:
+                    raise RuntimeError(f"dropdown_option_not_found: {target}") from exc
+            return
+
+        self._click(trigger, step_idx)
+        option = self.page.locator("[role='option']").filter(has_text=target).first
+        if option.count() == 0:
+            option = self.page.get_by_text(target, exact=False).first
+        if option.count() == 0:
+            raise RuntimeError(f"dropdown_option_not_found: {target}")
+        self._set_action_target(action, option)
+        self._hover(option, step_idx)
+        self._click(option, step_idx)
+
     def _handle_date(self, label: str, value: Any, step_idx: int, action: Dict[str, Any]) -> None:
         parsed = self._normalize_date(value)
         container = self._find_container_with_pagination(label, step_idx)
@@ -893,6 +933,19 @@ class FormEngine:
                 labels = self._selected_option_labels(container, "checkbox")
                 result["actual_value"] = labels
                 result["verified"] = True
+            elif widget == "dropdown":
+                dropdown = container.locator("[role='listbox'], [role='combobox'], select, div[aria-haspopup='listbox']").first
+                if dropdown.count() == 0:
+                    raise RuntimeError("dropdown_not_found")
+                tag_name = str(dropdown.evaluate("el => el.tagName || ''")).lower()
+                if tag_name == "select":
+                    text = dropdown.evaluate(
+                        "el => el.options && el.selectedIndex >= 0 ? (el.options[el.selectedIndex].textContent || '') : ''"
+                    )
+                else:
+                    text = dropdown.inner_text(timeout=1000)
+                result["actual_value"] = re.sub(r"\s+", " ", str(text or "")).strip()
+                result["verified"] = bool(result["actual_value"])
             elif widget == "date":
                 result["actual_value"] = self._read_date_value(container)
                 result["verified"] = result["actual_value"] is not None
@@ -915,7 +968,7 @@ class FormEngine:
         widget = entry.get("widget_type", "")
         value = entry.get("value")
 
-        if label and widget in {"single_choice", "multi_choice"}:
+        if label and widget in {"single_choice", "multi_choice", "dropdown"}:
             value_text = ", ".join(str(v) for v in value) if isinstance(value, list) else str(value)
             intent = f"Select {value_text} for {label}"
         elif label:
@@ -1021,6 +1074,7 @@ class FormEngine:
                 "Response has been recorded",
                 "Thanks for submitting",
                 "Your response has been recorded",
+                "Ihre Antwort wurde gesendet",
             ]
             for text_value in confirmation_texts:
                 try:
@@ -1047,6 +1101,8 @@ class FormEngine:
                         "response recorded",
                         "response has been recorded",
                         "your response has been recorded",
+                        "ihre antwort wurde gesendet",
+                        "antwort wurde gesendet",
                         "response submitted",
                         "submit another response",
                         "edit your response",

@@ -1,0 +1,728 @@
+{
+  "form_id": "library_membership",
+  "description": "Deterministically generated answer sets.",
+  "runs": [
+    {
+      "suffix": "run_0001",
+      "notes": "generated_run_0001",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Jordan Singh",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University ID",
+          "widget_type": "short_text",
+          "value": "Open Systems Group",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Department or program",
+          "widget_type": "short_text",
+          "value": "gamma-01-42",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Membership type",
+          "widget_type": "single_choice",
+          "value": "Research staff",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Resources you use most",
+          "widget_type": "multi_choice",
+          "value": [
+            "Books",
+            "Journals",
+            "Computers"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-10-29",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Any additional access needs?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 1)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0002",
+      "notes": "generated_run_0002",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University ID",
+          "widget_type": "short_text",
+          "value": "Open Systems Group",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Department or program",
+          "widget_type": "short_text",
+          "value": "gamma-02-28",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Membership type",
+          "widget_type": "single_choice",
+          "value": "External visitor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Resources you use most",
+          "widget_type": "multi_choice",
+          "value": [
+            "Study rooms"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-06-08",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Any additional access needs?",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Any additional access needs?; run 2)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0003",
+      "notes": "generated_run_0003",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Ortiz",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University ID",
+          "widget_type": "short_text",
+          "value": "Acme Labs",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Department or program",
+          "widget_type": "short_text",
+          "value": "delta-03-24",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Membership type",
+          "widget_type": "single_choice",
+          "value": "Student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Resources you use most",
+          "widget_type": "multi_choice",
+          "value": [
+            "Journals",
+            "Computers"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-07-21",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Any additional access needs?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 3)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0004",
+      "notes": "generated_run_0004",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University ID",
+          "widget_type": "short_text",
+          "value": "Open Systems Group",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Department or program",
+          "widget_type": "short_text",
+          "value": "gamma-04-00",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Membership type",
+          "widget_type": "single_choice",
+          "value": "External visitor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Resources you use most",
+          "widget_type": "multi_choice",
+          "value": [
+            "Journals"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-06-30",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Any additional access needs?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 4)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0005",
+      "notes": "generated_run_0005",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Priya Nguyen",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University ID",
+          "widget_type": "short_text",
+          "value": "DataWorks Institute",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Department or program",
+          "widget_type": "short_text",
+          "value": "gamma-05-85",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Membership type",
+          "widget_type": "single_choice",
+          "value": "Faculty",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Resources you use most",
+          "widget_type": "multi_choice",
+          "value": [
+            "E-books",
+            "Study rooms",
+            "Journals"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-11-24",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Any additional access needs?",
+          "widget_type": "paragraph_text",
+          "value": "I would like to participate and contribute with structured feedback and observations. (Any additional access needs?; run 5)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0006",
+      "notes": "generated_run_0006",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Riley Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University ID",
+          "widget_type": "short_text",
+          "value": "Open Systems Group",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Department or program",
+          "widget_type": "short_text",
+          "value": "delta-06-32",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Membership type",
+          "widget_type": "single_choice",
+          "value": "Student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Resources you use most",
+          "widget_type": "multi_choice",
+          "value": [
+            "Study rooms",
+            "Journals",
+            "Computers"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-08-29",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Any additional access needs?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 6)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0007",
+      "notes": "generated_run_0007",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Casey Kim",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University ID",
+          "widget_type": "short_text",
+          "value": "Open Systems Group",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Department or program",
+          "widget_type": "short_text",
+          "value": "sigma-07-04",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Membership type",
+          "widget_type": "single_choice",
+          "value": "External visitor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Resources you use most",
+          "widget_type": "multi_choice",
+          "value": [
+            "Books",
+            "E-books",
+            "Journals"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-10-24",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Any additional access needs?",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Any additional access needs?; run 7)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0008",
+      "notes": "generated_run_0008",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Noah Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University ID",
+          "widget_type": "short_text",
+          "value": "Stanford University",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Department or program",
+          "widget_type": "short_text",
+          "value": "omega-08-01",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Membership type",
+          "widget_type": "single_choice",
+          "value": "Faculty",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Resources you use most",
+          "widget_type": "multi_choice",
+          "value": [
+            "Journals"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-10-24",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Any additional access needs?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 8)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0009",
+      "notes": "generated_run_0009",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Sam Patel",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University ID",
+          "widget_type": "short_text",
+          "value": "Stanford University",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Department or program",
+          "widget_type": "short_text",
+          "value": "beta-09-73",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Membership type",
+          "widget_type": "single_choice",
+          "value": "Student",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Resources you use most",
+          "widget_type": "multi_choice",
+          "value": [
+            "Study rooms",
+            "Journals"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-08-31",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Any additional access needs?",
+          "widget_type": "paragraph_text",
+          "value": "I am interested in this topic and can provide practical insights from recent projects. (Any additional access needs?; run 9)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    },
+    {
+      "suffix": "run_0010",
+      "notes": "generated_run_0010",
+      "answers": [
+        {
+          "label": "Full name",
+          "widget_type": "short_text",
+          "value": "Avery Rivera",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "University ID",
+          "widget_type": "short_text",
+          "value": "Open Systems Group",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Department or program",
+          "widget_type": "short_text",
+          "value": "alpha-10-41",
+          "tags": [
+            "generated",
+            "short_text"
+          ]
+        },
+        {
+          "label": "Membership type",
+          "widget_type": "single_choice",
+          "value": "External visitor",
+          "tags": [
+            "generated",
+            "single_choice"
+          ]
+        },
+        {
+          "label": "Resources you use most",
+          "widget_type": "multi_choice",
+          "value": [
+            "E-books",
+            "Study rooms",
+            "Computers"
+          ],
+          "tags": [
+            "generated",
+            "multi_choice"
+          ]
+        },
+        {
+          "label": "Preferred visit date",
+          "widget_type": "date",
+          "value": "2025-08-03",
+          "tags": [
+            "generated",
+            "date"
+          ]
+        },
+        {
+          "label": "Any additional access needs?",
+          "widget_type": "paragraph_text",
+          "value": "My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 10)",
+          "tags": [
+            "generated",
+            "paragraph"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "form_id": "job_fair",
+  "form_title": "Job Fair Registration (2 pages)",
+  "form_description": "Registration form for job fair attendees, career interests, and availability.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1P3orZMgbh9DoqllGKv4qDmlgsTERkezDfPBYoaRMH6s/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSfeTqv-4eV4SgRVjdnBuM8aQGjtKgBGVkuhCLEvoSLgJK9haQ/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSfeTqv-4eV4SgRVjdnBuM8aQGjtKgBGVkuhCLEvoSLgJK9haQ/viewform",
+  "question_count": 9,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Attendee profile",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Attendee profile",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Attendee profile",
+      "q_order": 3,
+      "q_title": "Current study level",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Bachelor's;Master's;PhD;Graduate;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Attendee profile",
+      "q_order": 4,
+      "q_title": "Career interests",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Software Engineering;Data Engineering;AI/ML;Product Management;Research;Consulting",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Attendee profile",
+      "q_order": 5,
+      "q_title": "Are you currently looking for a job?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No;Maybe soon",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Event preferences",
+      "q_order": 1,
+      "q_title": "Preferred attendance date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Event preferences",
+      "q_order": 2,
+      "q_title": "Preferred arrival time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Event preferences",
+      "q_order": 3,
+      "q_title": "Sessions you want to attend",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Company booths;CV review;Mock interviews;Tech talks;Networking",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Event preferences",
+      "q_order": 4,
+      "q_title": "Questions for recruiters",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

@@ -1,0 +1,83 @@
+{
+  "form_id": "housing_preference",
+  "form_title": "Housing Preference Survey",
+  "form_description": "Collects accommodation preferences, budget, and move-in details.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1hvxGHoivS2zqad4DTtodlH6kWQuY4Q8vII9Zf98cN-4/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSeuFmJrvEngNmQJU4Ss5sjPoCC4HQJBBxpYlloFI_xgBFh48g/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeuFmJrvEngNmQJU4Ss5sjPoCC4HQJBBxpYlloFI_xgBFh48g/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Housing details",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Housing details",
+      "q_order": 2,
+      "q_title": "Contact email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Housing details",
+      "q_order": 3,
+      "q_title": "Preferred accommodation type",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Studio;Shared flat;Single room in dorm;Private apartment",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Housing details",
+      "q_order": 4,
+      "q_title": "Preferred budget range",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Below 300 EUR;300\u2013500 EUR;500\u2013700 EUR;Above 700 EUR",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Housing details",
+      "q_order": 5,
+      "q_title": "Preferred move-in date",
+      "q_type": "DATE",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Housing details",
+      "q_order": 6,
+      "q_title": "Important features",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Furnished;Near campus;Private bathroom;Quiet area;Good public transport",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Housing details",
+      "q_order": 7,
+      "q_title": "Additional notes",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

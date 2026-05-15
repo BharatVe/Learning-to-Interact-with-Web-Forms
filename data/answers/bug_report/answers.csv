@@ -1,0 +1,91 @@
+form_id,run_id,q_title,q_type,answer
+bug_report,run_0001,Reporter name,SHORT_TEXT,Morgan Chen
+bug_report,run_0001,Contact email,SHORT_TEXT,morgan.chen.1@example.com
+bug_report,run_0001,Application or module name,SHORT_TEXT,Morgan Chen
+bug_report,run_0001,Bug severity,SINGLE_CHOICE,Critical
+bug_report,run_0001,Device or browser used,DROPDOWN,Chrome
+bug_report,run_0001,Steps to reproduce,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Steps to reproduce; run 1)
+bug_report,run_0001,Expected behavior,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Expected behavior; run 1)
+bug_report,run_0001,Observed behavior,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Observed behavior; run 1)"
+bug_report,run_0001,Date when issue occurred,DATE,2025-09-11
+bug_report,run_0002,Reporter name,SHORT_TEXT,Morgan Khan
+bug_report,run_0002,Contact email,SHORT_TEXT,morgan.khan.2@example.com
+bug_report,run_0002,Application or module name,SHORT_TEXT,Morgan Khan
+bug_report,run_0002,Bug severity,SINGLE_CHOICE,High
+bug_report,run_0002,Device or browser used,DROPDOWN,Safari
+bug_report,run_0002,Steps to reproduce,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Steps to reproduce; run 2)"
+bug_report,run_0002,Expected behavior,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Expected behavior; run 2)
+bug_report,run_0002,Observed behavior,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Observed behavior; run 2)
+bug_report,run_0002,Date when issue occurred,DATE,2025-06-24
+bug_report,run_0003,Reporter name,SHORT_TEXT,Avery Nguyen
+bug_report,run_0003,Contact email,SHORT_TEXT,avery.nguyen.3@demo.org
+bug_report,run_0003,Application or module name,SHORT_TEXT,Avery Nguyen
+bug_report,run_0003,Bug severity,SINGLE_CHOICE,Low
+bug_report,run_0003,Device or browser used,DROPDOWN,Safari
+bug_report,run_0003,Steps to reproduce,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Steps to reproduce; run 3)
+bug_report,run_0003,Expected behavior,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Expected behavior; run 3)"
+bug_report,run_0003,Observed behavior,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Observed behavior; run 3)
+bug_report,run_0003,Date when issue occurred,DATE,2025-11-19
+bug_report,run_0004,Reporter name,SHORT_TEXT,Jordan Kim
+bug_report,run_0004,Contact email,SHORT_TEXT,jordan.kim.4@mail.test
+bug_report,run_0004,Application or module name,SHORT_TEXT,Jordan Kim
+bug_report,run_0004,Bug severity,SINGLE_CHOICE,Medium
+bug_report,run_0004,Device or browser used,DROPDOWN,Chrome
+bug_report,run_0004,Steps to reproduce,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Steps to reproduce; run 4)
+bug_report,run_0004,Expected behavior,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Expected behavior; run 4)
+bug_report,run_0004,Observed behavior,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Observed behavior; run 4)
+bug_report,run_0004,Date when issue occurred,DATE,2025-11-02
+bug_report,run_0005,Reporter name,SHORT_TEXT,Avery Khan
+bug_report,run_0005,Contact email,SHORT_TEXT,avery.khan.5@mail.test
+bug_report,run_0005,Application or module name,SHORT_TEXT,Avery Khan
+bug_report,run_0005,Bug severity,SINGLE_CHOICE,Critical
+bug_report,run_0005,Device or browser used,DROPDOWN,Edge
+bug_report,run_0005,Steps to reproduce,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Steps to reproduce; run 5)
+bug_report,run_0005,Expected behavior,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Expected behavior; run 5)
+bug_report,run_0005,Observed behavior,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Observed behavior; run 5)
+bug_report,run_0005,Date when issue occurred,DATE,2025-06-16
+bug_report,run_0006,Reporter name,SHORT_TEXT,Jordan Rivera
+bug_report,run_0006,Contact email,SHORT_TEXT,jordan.rivera.6@mail.test
+bug_report,run_0006,Application or module name,SHORT_TEXT,Jordan Rivera
+bug_report,run_0006,Bug severity,SINGLE_CHOICE,Critical
+bug_report,run_0006,Device or browser used,DROPDOWN,Firefox
+bug_report,run_0006,Steps to reproduce,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Steps to reproduce; run 6)
+bug_report,run_0006,Expected behavior,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Expected behavior; run 6)
+bug_report,run_0006,Observed behavior,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Observed behavior; run 6)
+bug_report,run_0006,Date when issue occurred,DATE,2025-09-06
+bug_report,run_0007,Reporter name,SHORT_TEXT,Avery Singh
+bug_report,run_0007,Contact email,SHORT_TEXT,avery.singh.7@example.com
+bug_report,run_0007,Application or module name,SHORT_TEXT,Avery Singh
+bug_report,run_0007,Bug severity,SINGLE_CHOICE,High
+bug_report,run_0007,Device or browser used,DROPDOWN,Chrome
+bug_report,run_0007,Steps to reproduce,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Steps to reproduce; run 7)
+bug_report,run_0007,Expected behavior,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Expected behavior; run 7)"
+bug_report,run_0007,Observed behavior,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Observed behavior; run 7)
+bug_report,run_0007,Date when issue occurred,DATE,2025-07-29
+bug_report,run_0008,Reporter name,SHORT_TEXT,Avery Ortiz
+bug_report,run_0008,Contact email,SHORT_TEXT,avery.ortiz.8@demo.org
+bug_report,run_0008,Application or module name,SHORT_TEXT,Avery Ortiz
+bug_report,run_0008,Bug severity,SINGLE_CHOICE,Low
+bug_report,run_0008,Device or browser used,DROPDOWN,iOS app
+bug_report,run_0008,Steps to reproduce,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Steps to reproduce; run 8)"
+bug_report,run_0008,Expected behavior,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Expected behavior; run 8)
+bug_report,run_0008,Observed behavior,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Observed behavior; run 8)
+bug_report,run_0008,Date when issue occurred,DATE,2025-10-23
+bug_report,run_0009,Reporter name,SHORT_TEXT,Riley Rivera
+bug_report,run_0009,Contact email,SHORT_TEXT,riley.rivera.9@mail.test
+bug_report,run_0009,Application or module name,SHORT_TEXT,Riley Rivera
+bug_report,run_0009,Bug severity,SINGLE_CHOICE,Low
+bug_report,run_0009,Device or browser used,DROPDOWN,Chrome
+bug_report,run_0009,Steps to reproduce,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Steps to reproduce; run 9)"
+bug_report,run_0009,Expected behavior,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Expected behavior; run 9)
+bug_report,run_0009,Observed behavior,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Observed behavior; run 9)
+bug_report,run_0009,Date when issue occurred,DATE,2025-11-17
+bug_report,run_0010,Reporter name,SHORT_TEXT,Morgan Bauer
+bug_report,run_0010,Contact email,SHORT_TEXT,morgan.bauer.10@research.edu
+bug_report,run_0010,Application or module name,SHORT_TEXT,Morgan Bauer
+bug_report,run_0010,Bug severity,SINGLE_CHOICE,High
+bug_report,run_0010,Device or browser used,DROPDOWN,Android app
+bug_report,run_0010,Steps to reproduce,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Steps to reproduce; run 10)
+bug_report,run_0010,Expected behavior,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Expected behavior; run 10)"
+bug_report,run_0010,Observed behavior,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Observed behavior; run 10)
+bug_report,run_0010,Date when issue occurred,DATE,2025-07-05

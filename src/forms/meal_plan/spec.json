@@ -1,0 +1,83 @@
+{
+  "form_id": "meal_plan",
+  "form_title": "Meal Preference Poll",
+  "form_description": "Collects meal choices, allergies, and preferred dining time.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1Dpja8xcGk3JOJ0X19M5ty1vczQ9jQupEmlSxI9SfwGw/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSd1s4uvY7lxPBfYgBHGJUauzyquNG4-7PzaK9xrP0_mz58MRA/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSd1s4uvY7lxPBfYgBHGJUauzyquNG4-7PzaK9xrP0_mz58MRA/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Food preferences",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Food preferences",
+      "q_order": 2,
+      "q_title": "Meal preference",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Vegetarian;Vegan;Chicken;Fish;Beef",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Food preferences",
+      "q_order": 3,
+      "q_title": "Allergies or intolerances",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Gluten;Nuts;Dairy;Soy;None;Other",
+      "help_text": "Select all that apply."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Food preferences",
+      "q_order": 4,
+      "q_title": "Preferred dining date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Food preferences",
+      "q_order": 5,
+      "q_title": "Preferred dining time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Food preferences",
+      "q_order": 6,
+      "q_title": "Would you like dessert?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No;Maybe",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Food preferences",
+      "q_order": 7,
+      "q_title": "Additional notes",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

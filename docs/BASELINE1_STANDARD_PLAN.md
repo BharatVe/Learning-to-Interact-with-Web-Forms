@@ -1,5 +1,9 @@
 # Baseline-1 Standard Plan (UI-based, Answers + Link Only)
 
+> Legacy planning document. Thesis-primary workflow now separates:
+> direct Playwright MCP tool use for Qwen `text_llm`/`vlm`, and native computer-use for `OpenCUA-32B`.
+> See `README_HPC.md` and `configs/baselines/track_baseline_models.json`.
+
 ## Objective
 
 Establish the first standardized baseline where each model starts with only:

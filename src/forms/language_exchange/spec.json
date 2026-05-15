@@ -1,0 +1,103 @@
+{
+  "form_id": "language_exchange",
+  "form_title": "Language Exchange Signup (2 pages)",
+  "form_description": "Matches participants for language exchange based on interests and availability.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/1nK-5S-r-aUt9MYVoDseo2HN6zTJkAS-ELwuVq1wlGUo/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSeh7sTwzrZURRgp_SfRLv9D4cWWlSvsOw7-t_Ev8L06TxVg5g/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSeh7sTwzrZURRgp_SfRLv9D4cWWlSvsOw7-t_Ev8L06TxVg5g/viewform",
+  "question_count": 9,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Participant profile",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant profile",
+      "q_order": 2,
+      "q_title": "Contact email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant profile",
+      "q_order": 3,
+      "q_title": "Native language",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant profile",
+      "q_order": 4,
+      "q_title": "Language(s) you want to practice",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "English;German;French;Spanish;Hindi;Other",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 2,
+      "section_title": "Availability and format",
+      "q_order": 1,
+      "q_title": "Comfort level speaking target language",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Beginner;Intermediate;Advanced",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Availability and format",
+      "q_order": 2,
+      "q_title": "Preferred format",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "In person;Online;Either",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Availability and format",
+      "q_order": 3,
+      "q_title": "Preferred meeting date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Availability and format",
+      "q_order": 4,
+      "q_title": "Preferred meeting time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 2,
+      "section_title": "Availability and format",
+      "q_order": 5,
+      "q_title": "Topics you enjoy discussing",
+      "q_type": "MULTI_CHOICE",
+      "required": false,
+      "options": "Travel;Culture;Technology;Food;Daily life",
+      "help_text": "Select one or more."
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

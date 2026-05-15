@@ -1,0 +1,83 @@
+{
+  "form_id": "scholarship_interest",
+  "form_title": "Scholarship Interest Form",
+  "form_description": "Collects scholarship interests, eligibility information, and contact preferences.",
+  "active": true,
+  "edit_url": "https://docs.google.com/forms/d/17Bf5QVibsCsD20LEAe_eDBLVS4t-K4BQHciib8KHG2s/edit",
+  "published_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqb4-FE08X-wDBGgMTj-YegPgT2v7LAeUDCmzISV-Sb6-a6g/viewform",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdqb4-FE08X-wDBGgMTj-YegPgT2v7LAeUDCmzISV-Sb6-a6g/viewform",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Applicant profile",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Applicant profile",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Applicant profile",
+      "q_order": 3,
+      "q_title": "Current study level",
+      "q_type": "DROPDOWN",
+      "required": true,
+      "options": "Bachelor's;Master's;PhD;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Applicant profile",
+      "q_order": 4,
+      "q_title": "Scholarship type of interest",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Merit-based;Need-based;Research funding;Travel grant;Emergency support",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Applicant profile",
+      "q_order": 5,
+      "q_title": "Expected application date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Applicant profile",
+      "q_order": 6,
+      "q_title": "Do you need help reviewing documents?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No;Maybe",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Applicant profile",
+      "q_order": 7,
+      "q_title": "Brief background or question",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "From Generator CSV sync"
+}

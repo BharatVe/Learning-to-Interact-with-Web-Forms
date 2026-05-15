@@ -1,0 +1,81 @@
+form_id,run_id,q_title,q_type,answer
+thesis_meeting,run_0001,Student name,SHORT_TEXT,Riley Singh
+thesis_meeting,run_0001,Email address,SHORT_TEXT,riley.singh.1@research.edu
+thesis_meeting,run_0001,Thesis stage,DROPDOWN,Final review
+thesis_meeting,run_0001,Main topics to discuss,MULTI_CHOICE,Research question;Dataset design;Timeline
+thesis_meeting,run_0001,Current progress summary,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Current progress summary; run 1)
+thesis_meeting,run_0001,Preferred meeting date,DATE,2025-09-20
+thesis_meeting,run_0001,Preferred meeting time,TIME,10:15
+thesis_meeting,run_0001,Urgency,SINGLE_CHOICE,High
+thesis_meeting,run_0002,Student name,SHORT_TEXT,Priya Rivera
+thesis_meeting,run_0002,Email address,SHORT_TEXT,priya.rivera.2@example.com
+thesis_meeting,run_0002,Thesis stage,DROPDOWN,Implementation
+thesis_meeting,run_0002,Main topics to discuss,MULTI_CHOICE,Timeline
+thesis_meeting,run_0002,Current progress summary,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Current progress summary; run 2)"
+thesis_meeting,run_0002,Preferred meeting date,DATE,2025-08-23
+thesis_meeting,run_0002,Preferred meeting time,TIME,09:00
+thesis_meeting,run_0002,Urgency,SINGLE_CHOICE,High
+thesis_meeting,run_0003,Student name,SHORT_TEXT,Riley Chen
+thesis_meeting,run_0003,Email address,SHORT_TEXT,riley.chen.3@demo.org
+thesis_meeting,run_0003,Thesis stage,DROPDOWN,Final review
+thesis_meeting,run_0003,Main topics to discuss,MULTI_CHOICE,Evaluation;Writing structure
+thesis_meeting,run_0003,Current progress summary,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Current progress summary; run 3)"
+thesis_meeting,run_0003,Preferred meeting date,DATE,2025-10-10
+thesis_meeting,run_0003,Preferred meeting time,TIME,16:45
+thesis_meeting,run_0003,Urgency,SINGLE_CHOICE,High
+thesis_meeting,run_0004,Student name,SHORT_TEXT,Sam Nguyen
+thesis_meeting,run_0004,Email address,SHORT_TEXT,sam.nguyen.4@mail.test
+thesis_meeting,run_0004,Thesis stage,DROPDOWN,Final review
+thesis_meeting,run_0004,Main topics to discuss,MULTI_CHOICE,Implementation;Evaluation;Timeline
+thesis_meeting,run_0004,Current progress summary,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Current progress summary; run 4)
+thesis_meeting,run_0004,Preferred meeting date,DATE,2025-09-06
+thesis_meeting,run_0004,Preferred meeting time,TIME,14:15
+thesis_meeting,run_0004,Urgency,SINGLE_CHOICE,Low
+thesis_meeting,run_0005,Student name,SHORT_TEXT,Taylor Bauer
+thesis_meeting,run_0005,Email address,SHORT_TEXT,taylor.bauer.5@demo.org
+thesis_meeting,run_0005,Thesis stage,DROPDOWN,Topic planning
+thesis_meeting,run_0005,Main topics to discuss,MULTI_CHOICE,Implementation;Dataset design
+thesis_meeting,run_0005,Current progress summary,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Current progress summary; run 5)
+thesis_meeting,run_0005,Preferred meeting date,DATE,2025-08-19
+thesis_meeting,run_0005,Preferred meeting time,TIME,08:30
+thesis_meeting,run_0005,Urgency,SINGLE_CHOICE,Normal
+thesis_meeting,run_0006,Student name,SHORT_TEXT,Noah Ortiz
+thesis_meeting,run_0006,Email address,SHORT_TEXT,noah.ortiz.6@demo.org
+thesis_meeting,run_0006,Thesis stage,DROPDOWN,Evaluation
+thesis_meeting,run_0006,Main topics to discuss,MULTI_CHOICE,Research question;Implementation;Writing structure
+thesis_meeting,run_0006,Current progress summary,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Current progress summary; run 6)
+thesis_meeting,run_0006,Preferred meeting date,DATE,2025-06-02
+thesis_meeting,run_0006,Preferred meeting time,TIME,15:30
+thesis_meeting,run_0006,Urgency,SINGLE_CHOICE,Normal
+thesis_meeting,run_0007,Student name,SHORT_TEXT,Taylor Chen
+thesis_meeting,run_0007,Email address,SHORT_TEXT,taylor.chen.7@mail.test
+thesis_meeting,run_0007,Thesis stage,DROPDOWN,Writing
+thesis_meeting,run_0007,Main topics to discuss,MULTI_CHOICE,Dataset design
+thesis_meeting,run_0007,Current progress summary,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Current progress summary; run 7)
+thesis_meeting,run_0007,Preferred meeting date,DATE,2025-10-31
+thesis_meeting,run_0007,Preferred meeting time,TIME,14:15
+thesis_meeting,run_0007,Urgency,SINGLE_CHOICE,High
+thesis_meeting,run_0008,Student name,SHORT_TEXT,Casey Khan
+thesis_meeting,run_0008,Email address,SHORT_TEXT,casey.khan.8@example.com
+thesis_meeting,run_0008,Thesis stage,DROPDOWN,Evaluation
+thesis_meeting,run_0008,Main topics to discuss,MULTI_CHOICE,Implementation;Evaluation;Timeline
+thesis_meeting,run_0008,Current progress summary,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Current progress summary; run 8)"
+thesis_meeting,run_0008,Preferred meeting date,DATE,2025-08-15
+thesis_meeting,run_0008,Preferred meeting time,TIME,08:30
+thesis_meeting,run_0008,Urgency,SINGLE_CHOICE,High
+thesis_meeting,run_0009,Student name,SHORT_TEXT,Morgan Patel
+thesis_meeting,run_0009,Email address,SHORT_TEXT,morgan.patel.9@research.edu
+thesis_meeting,run_0009,Thesis stage,DROPDOWN,Evaluation
+thesis_meeting,run_0009,Main topics to discuss,MULTI_CHOICE,Timeline
+thesis_meeting,run_0009,Current progress summary,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Current progress summary; run 9)
+thesis_meeting,run_0009,Preferred meeting date,DATE,2025-10-28
+thesis_meeting,run_0009,Preferred meeting time,TIME,13:00
+thesis_meeting,run_0009,Urgency,SINGLE_CHOICE,High
+thesis_meeting,run_0010,Student name,SHORT_TEXT,Morgan Nguyen
+thesis_meeting,run_0010,Email address,SHORT_TEXT,morgan.nguyen.10@mail.test
+thesis_meeting,run_0010,Thesis stage,DROPDOWN,Writing
+thesis_meeting,run_0010,Main topics to discuss,MULTI_CHOICE,Implementation;Writing structure;Timeline
+thesis_meeting,run_0010,Current progress summary,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Current progress summary; run 10)"
+thesis_meeting,run_0010,Preferred meeting date,DATE,2025-06-25
+thesis_meeting,run_0010,Preferred meeting time,TIME,15:30
+thesis_meeting,run_0010,Urgency,SINGLE_CHOICE,Normal

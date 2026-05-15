@@ -1,0 +1,81 @@
+form_id,run_id,q_title,q_type,answer
+accessibility_feedback,run_0001,Name,SHORT_TEXT,Riley Rivera
+accessibility_feedback,run_0001,Email address,SHORT_TEXT,riley.rivera.1@research.edu
+accessibility_feedback,run_0001,Feedback area,DROPDOWN,Other
+accessibility_feedback,run_0001,Type of issue noticed,MULTI_CHOICE,Navigation;Physical access;Timing
+accessibility_feedback,run_0001,How severe was the issue?,SINGLE_CHOICE,Blocking
+accessibility_feedback,run_0001,Date of experience,DATE,2025-07-12
+accessibility_feedback,run_0001,Detailed feedback,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Detailed feedback; run 1)"
+accessibility_feedback,run_0001,May we contact you for follow-up?,SINGLE_CHOICE,No
+accessibility_feedback,run_0002,Name,SHORT_TEXT,Casey Chen
+accessibility_feedback,run_0002,Email address,SHORT_TEXT,casey.chen.2@mail.test
+accessibility_feedback,run_0002,Feedback area,DROPDOWN,Student service
+accessibility_feedback,run_0002,Type of issue noticed,MULTI_CHOICE,Navigation;Communication
+accessibility_feedback,run_0002,How severe was the issue?,SINGLE_CHOICE,Major
+accessibility_feedback,run_0002,Date of experience,DATE,2025-08-01
+accessibility_feedback,run_0002,Detailed feedback,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Detailed feedback; run 2)"
+accessibility_feedback,run_0002,May we contact you for follow-up?,SINGLE_CHOICE,No
+accessibility_feedback,run_0003,Name,SHORT_TEXT,Jordan Khan
+accessibility_feedback,run_0003,Email address,SHORT_TEXT,jordan.khan.3@mail.test
+accessibility_feedback,run_0003,Feedback area,DROPDOWN,Student service
+accessibility_feedback,run_0003,Type of issue noticed,MULTI_CHOICE,Visual readability;Audio;Physical access
+accessibility_feedback,run_0003,How severe was the issue?,SINGLE_CHOICE,Major
+accessibility_feedback,run_0003,Date of experience,DATE,2025-06-19
+accessibility_feedback,run_0003,Detailed feedback,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Detailed feedback; run 3)
+accessibility_feedback,run_0003,May we contact you for follow-up?,SINGLE_CHOICE,No
+accessibility_feedback,run_0004,Name,SHORT_TEXT,Sam Nguyen
+accessibility_feedback,run_0004,Email address,SHORT_TEXT,sam.nguyen.4@example.com
+accessibility_feedback,run_0004,Feedback area,DROPDOWN,Website
+accessibility_feedback,run_0004,Type of issue noticed,MULTI_CHOICE,Audio;Physical access;Timing
+accessibility_feedback,run_0004,How severe was the issue?,SINGLE_CHOICE,Major
+accessibility_feedback,run_0004,Date of experience,DATE,2025-11-07
+accessibility_feedback,run_0004,Detailed feedback,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Detailed feedback; run 4)
+accessibility_feedback,run_0004,May we contact you for follow-up?,SINGLE_CHOICE,Yes
+accessibility_feedback,run_0005,Name,SHORT_TEXT,Priya Singh
+accessibility_feedback,run_0005,Email address,SHORT_TEXT,priya.singh.5@research.edu
+accessibility_feedback,run_0005,Feedback area,DROPDOWN,Event
+accessibility_feedback,run_0005,Type of issue noticed,MULTI_CHOICE,Navigation
+accessibility_feedback,run_0005,How severe was the issue?,SINGLE_CHOICE,Major
+accessibility_feedback,run_0005,Date of experience,DATE,2025-08-12
+accessibility_feedback,run_0005,Detailed feedback,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Detailed feedback; run 5)
+accessibility_feedback,run_0005,May we contact you for follow-up?,SINGLE_CHOICE,No
+accessibility_feedback,run_0006,Name,SHORT_TEXT,Morgan Chen
+accessibility_feedback,run_0006,Email address,SHORT_TEXT,morgan.chen.6@example.com
+accessibility_feedback,run_0006,Feedback area,DROPDOWN,Event
+accessibility_feedback,run_0006,Type of issue noticed,MULTI_CHOICE,Timing
+accessibility_feedback,run_0006,How severe was the issue?,SINGLE_CHOICE,Moderate
+accessibility_feedback,run_0006,Date of experience,DATE,2025-07-01
+accessibility_feedback,run_0006,Detailed feedback,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Detailed feedback; run 6)
+accessibility_feedback,run_0006,May we contact you for follow-up?,SINGLE_CHOICE,Yes
+accessibility_feedback,run_0007,Name,SHORT_TEXT,Jordan Kim
+accessibility_feedback,run_0007,Email address,SHORT_TEXT,jordan.kim.7@demo.org
+accessibility_feedback,run_0007,Feedback area,DROPDOWN,Website
+accessibility_feedback,run_0007,Type of issue noticed,MULTI_CHOICE,Communication
+accessibility_feedback,run_0007,How severe was the issue?,SINGLE_CHOICE,Moderate
+accessibility_feedback,run_0007,Date of experience,DATE,2025-10-29
+accessibility_feedback,run_0007,Detailed feedback,PARAGRAPH,"My background combines research and implementation, with a focus on reproducible workflows. (Detailed feedback; run 7)"
+accessibility_feedback,run_0007,May we contact you for follow-up?,SINGLE_CHOICE,No
+accessibility_feedback,run_0008,Name,SHORT_TEXT,Jordan Nguyen
+accessibility_feedback,run_0008,Email address,SHORT_TEXT,jordan.nguyen.8@demo.org
+accessibility_feedback,run_0008,Feedback area,DROPDOWN,Website
+accessibility_feedback,run_0008,Type of issue noticed,MULTI_CHOICE,Navigation;Communication
+accessibility_feedback,run_0008,How severe was the issue?,SINGLE_CHOICE,Moderate
+accessibility_feedback,run_0008,Date of experience,DATE,2025-10-11
+accessibility_feedback,run_0008,Detailed feedback,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Detailed feedback; run 8)
+accessibility_feedback,run_0008,May we contact you for follow-up?,SINGLE_CHOICE,Yes
+accessibility_feedback,run_0009,Name,SHORT_TEXT,Riley Ortiz
+accessibility_feedback,run_0009,Email address,SHORT_TEXT,riley.ortiz.9@example.com
+accessibility_feedback,run_0009,Feedback area,DROPDOWN,Other
+accessibility_feedback,run_0009,Type of issue noticed,MULTI_CHOICE,Navigation;Physical access;Timing
+accessibility_feedback,run_0009,How severe was the issue?,SINGLE_CHOICE,Blocking
+accessibility_feedback,run_0009,Date of experience,DATE,2025-08-27
+accessibility_feedback,run_0009,Detailed feedback,PARAGRAPH,I am interested in this topic and can provide practical insights from recent projects. (Detailed feedback; run 9)
+accessibility_feedback,run_0009,May we contact you for follow-up?,SINGLE_CHOICE,Yes
+accessibility_feedback,run_0010,Name,SHORT_TEXT,Taylor Chen
+accessibility_feedback,run_0010,Email address,SHORT_TEXT,taylor.chen.10@mail.test
+accessibility_feedback,run_0010,Feedback area,DROPDOWN,Other
+accessibility_feedback,run_0010,Type of issue noticed,MULTI_CHOICE,Navigation;Audio;Timing
+accessibility_feedback,run_0010,How severe was the issue?,SINGLE_CHOICE,Moderate
+accessibility_feedback,run_0010,Date of experience,DATE,2025-06-10
+accessibility_feedback,run_0010,Detailed feedback,PARAGRAPH,I would like to participate and contribute with structured feedback and observations. (Detailed feedback; run 10)
+accessibility_feedback,run_0010,May we contact you for follow-up?,SINGLE_CHOICE,No

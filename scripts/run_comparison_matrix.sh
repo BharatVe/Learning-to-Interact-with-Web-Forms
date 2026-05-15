@@ -4,6 +4,8 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
+echo "[WARN] scripts/run_comparison_matrix.sh is legacy; use scripts/run_track_baseline_matrix.sh for thesis-primary baseline runs."
+
 PYTHON_BIN="$ROOT_DIR/.venv/bin/python"
 if [ ! -x "$PYTHON_BIN" ]; then
   echo "[FAIL] missing virtualenv interpreter: $PYTHON_BIN" >&2
@@ -19,6 +21,7 @@ export PYTHONUNBUFFERED=1
 CONFIG_PATH="${CONFIG_PATH:-configs/baselines/minimal_models.json}"
 FORM_IDS="${FORM_IDS:-conf_interest,event_rsvp}"
 RUN_INDEX="${RUN_INDEX:-1}"
+RUN_INDEXES="${RUN_INDEXES:-$RUN_INDEX}"
 
 MEDIATED_EXPERIMENT_ID="${MEDIATED_EXPERIMENT_ID:-comparison_mediated_v1}"
 DIRECT_EXPERIMENT_ID="${DIRECT_EXPERIMENT_ID:-comparison_direct_api_v1}"
@@ -86,7 +89,47 @@ MEDIATED_STEP_RETRY_MAX_NEW_TOKENS="${MEDIATED_STEP_RETRY_MAX_NEW_TOKENS:-$PROFI
 MEDIATED_COMPACT_PAGE_TEXT_MAX_CHARS="${MEDIATED_COMPACT_PAGE_TEXT_MAX_CHARS:-$PROFILE_MEDIATED_COMPACT_PAGE_TEXT_MAX_CHARS}"
 MEDIATED_BROWSER_MCP_TIMEOUT_MS="${MEDIATED_BROWSER_MCP_TIMEOUT_MS:-$PROFILE_MEDIATED_BROWSER_MCP_TIMEOUT_MS}"
 PROMPT_PROFILE="${PROMPT_PROFILE:-$PROFILE_PROMPT_PROFILE}"
+MEDIATED_CONTROL_LEVEL="${MEDIATED_CONTROL_LEVEL:-high_level}"
+INTERACTION_PROTOCOL="${INTERACTION_PROTOCOL:-human_ui_v1}"
+OBSERVATION_MODE="${OBSERVATION_MODE:-vision_coords}"
+SCORING_MODE="${SCORING_MODE:-soft_quality_v1}"
 RETENTION_WINDOW="${RETENTION_WINDOW:-5}"
+
+case "$MEDIATED_CONTROL_LEVEL" in
+  high_level|low_level)
+    ;;
+  *)
+    echo "[FAIL] unsupported MEDIATED_CONTROL_LEVEL=$MEDIATED_CONTROL_LEVEL (expected high_level|low_level)" >&2
+    exit 1
+    ;;
+esac
+
+case "$INTERACTION_PROTOCOL" in
+  legacy_semantic_v1|human_ui_v1)
+    ;;
+  *)
+    echo "[FAIL] unsupported INTERACTION_PROTOCOL=$INTERACTION_PROTOCOL (expected legacy_semantic_v1|human_ui_v1)" >&2
+    exit 1
+    ;;
+esac
+
+case "$OBSERVATION_MODE" in
+  vision_coords|vision_coords_text)
+    ;;
+  *)
+    echo "[FAIL] unsupported OBSERVATION_MODE=$OBSERVATION_MODE (expected vision_coords|vision_coords_text)" >&2
+    exit 1
+    ;;
+esac
+
+case "$SCORING_MODE" in
+  soft_quality_v1|legacy_binary_v1)
+    ;;
+  *)
+    echo "[FAIL] unsupported SCORING_MODE=$SCORING_MODE (expected soft_quality_v1|legacy_binary_v1)" >&2
+    exit 1
+    ;;
+esac
 
 DIRECT_TRACK="${DIRECT_TRACK:-direct_api_tool_use}"
 DIRECT_MODEL_ID="${DIRECT_MODEL_ID:-}"
@@ -134,20 +177,21 @@ if [ -z "${OPENAI_API_KEY:-}" ] && [ -z "${ANTHROPIC_API_KEY:-}" ]; then
   exit 1
 fi
 
-echo "[INFO] comparison forms=$FORM_IDS run_index=$RUN_INDEX"
+echo "[INFO] comparison forms=$FORM_IDS run_indexes=$RUN_INDEXES"
 echo "[INFO] mediated_experiment_id=$MEDIATED_EXPERIMENT_ID"
 echo "[INFO] direct_experiment_id=$DIRECT_EXPERIMENT_ID"
 echo "[INFO] direct_model_id=$DIRECT_MODEL_ID"
 echo "[INFO] mediated_budget_profile=$MEDIATED_BUDGET_PROFILE"
 echo "[INFO] resource_profile=$RESOURCE_PROFILE inference_backend=$INFERENCE_BACKEND api_timeout_s=$API_TIMEOUT_S"
 echo "[INFO] mediated_budgets max_steps=$MEDIATED_MAX_STEPS timeout_s=$MEDIATED_TIMEOUT_S max_new_tokens=$MEDIATED_MAX_NEW_TOKENS step_soft_timeout_s=$MEDIATED_STEP_SOFT_TIMEOUT_S step_retry_max_new_tokens=$MEDIATED_STEP_RETRY_MAX_NEW_TOKENS compact_page_text_max_chars=$MEDIATED_COMPACT_PAGE_TEXT_MAX_CHARS browser_mcp_timeout_ms=$MEDIATED_BROWSER_MCP_TIMEOUT_MS"
+echo "[INFO] mediated_control_level=$MEDIATED_CONTROL_LEVEL interaction_protocol=$INTERACTION_PROTOCOL observation_mode=$OBSERVATION_MODE scoring_mode=$SCORING_MODE"
 
 mediated_status=0
 if ! EXPERIMENT_ID="$MEDIATED_EXPERIMENT_ID" \
   CONFIG_PATH="$CONFIG_PATH" \
   TRACK_FILTER="mediated" \
   FORM_IDS="$FORM_IDS" \
-  RUN_INDEX="$RUN_INDEX" \
+  RUN_INDEXES="$RUN_INDEXES" \
   RESOURCE_PROFILE="$RESOURCE_PROFILE" \
   INFERENCE_BACKEND="$INFERENCE_BACKEND" \
   API_TIMEOUT_S="$API_TIMEOUT_S" \
@@ -161,6 +205,10 @@ if ! EXPERIMENT_ID="$MEDIATED_EXPERIMENT_ID" \
   COMPACT_PAGE_TEXT_MAX_CHARS="$MEDIATED_COMPACT_PAGE_TEXT_MAX_CHARS" \
   BROWSER_MCP_TIMEOUT_MS="$MEDIATED_BROWSER_MCP_TIMEOUT_MS" \
   PROMPT_PROFILE="$PROMPT_PROFILE" \
+  CONTROL_LEVEL="$MEDIATED_CONTROL_LEVEL" \
+  INTERACTION_PROTOCOL="$INTERACTION_PROTOCOL" \
+  OBSERVATION_MODE="$OBSERVATION_MODE" \
+  SCORING_MODE="$SCORING_MODE" \
   RETENTION_WINDOW="$RETENTION_WINDOW" \
   DISABLE_ACTION_COERCION=1 \
   bash scripts/run_model_baseline_matrix.sh; then
@@ -199,38 +247,41 @@ direct_failed=0
 declare -a direct_failed_summaries=()
 
 IFS=',' read -r -a FORMS <<<"$FORM_IDS"
+IFS=',' read -r -a RUN_INDEX_LIST <<<"$RUN_INDEXES"
 for form_id in "${FORMS[@]}"; do
-  trial_id="$(make_trial_id)"
-  run_label="$(make_run_label)"
-  summary_path="$(summary_path_for "$form_id" "$RUN_INDEX" "$trial_id")"
-  direct_total=$((direct_total + 1))
-  echo "[INFO] direct_eval model_id=${DIRECT_MODEL_ID} form_id=${form_id} run_index=${RUN_INDEX} trial_id=${trial_id}"
+  for run_idx in "${RUN_INDEX_LIST[@]}"; do
+    trial_id="$(make_trial_id)"
+    run_label="$(make_run_label)"
+    summary_path="$(summary_path_for "$form_id" "$run_idx" "$trial_id")"
+    direct_total=$((direct_total + 1))
+    echo "[INFO] direct_eval model_id=${DIRECT_MODEL_ID} form_id=${form_id} run_index=${run_idx} trial_id=${trial_id}"
 
-  if "$PYTHON_BIN" src/baselines/run_direct_api_eval.py \
-    --config "$CONFIG_PATH" \
-    --model-id "$DIRECT_MODEL_ID" \
-    --form-id "$form_id" \
-    --run-index "$RUN_INDEX" \
-    --trial-id "$trial_id" \
-    --experiment-id "$DIRECT_EXPERIMENT_ID" \
-    --provider "$DIRECT_PROVIDER" \
-    --api-timeout-s "$DIRECT_API_TIMEOUT_S" \
-    --execution-backend mcp_server \
-    --headless \
-    --max-new-tokens "$DIRECT_MAX_NEW_TOKENS" \
-    --max-steps "$DIRECT_MAX_STEPS" \
-    --timeout-s "$DIRECT_TIMEOUT_S" \
-    --compact-page-text-max-chars "$MEDIATED_COMPACT_PAGE_TEXT_MAX_CHARS" \
-    --browser-mcp-timeout-ms "$MEDIATED_BROWSER_MCP_TIMEOUT_MS" \
-    --retention-window "$RETENTION_WINDOW" \
-    --run-label "$run_label" \
-    --disable-action-coercion; then
-    direct_passed=$((direct_passed + 1))
-  else
-    echo "[WARN] direct eval failed for form_id=${form_id} run_index=${RUN_INDEX}" >&2
-    direct_failed=$((direct_failed + 1))
-    direct_failed_summaries+=("$summary_path")
-  fi
+    if "$PYTHON_BIN" src/baselines/run_direct_api_eval.py \
+      --config "$CONFIG_PATH" \
+      --model-id "$DIRECT_MODEL_ID" \
+      --form-id "$form_id" \
+      --run-index "$run_idx" \
+      --trial-id "$trial_id" \
+      --experiment-id "$DIRECT_EXPERIMENT_ID" \
+      --provider "$DIRECT_PROVIDER" \
+      --api-timeout-s "$DIRECT_API_TIMEOUT_S" \
+      --execution-backend mcp_server \
+      --headless \
+      --max-new-tokens "$DIRECT_MAX_NEW_TOKENS" \
+      --max-steps "$DIRECT_MAX_STEPS" \
+      --timeout-s "$DIRECT_TIMEOUT_S" \
+      --compact-page-text-max-chars "$MEDIATED_COMPACT_PAGE_TEXT_MAX_CHARS" \
+      --browser-mcp-timeout-ms "$MEDIATED_BROWSER_MCP_TIMEOUT_MS" \
+      --retention-window "$RETENTION_WINDOW" \
+      --run-label "$run_label" \
+      --disable-action-coercion; then
+      direct_passed=$((direct_passed + 1))
+    else
+      echo "[WARN] direct eval failed for form_id=${form_id} run_index=${run_idx}" >&2
+      direct_failed=$((direct_failed + 1))
+      direct_failed_summaries+=("$summary_path")
+    fi
+  done
 done
 
 echo "[INFO] direct_eval_total=$direct_total"
@@ -244,6 +295,11 @@ fi
   --mediated-experiment-id "$MEDIATED_EXPERIMENT_ID" \
   --direct-experiment-id "$DIRECT_EXPERIMENT_ID" \
   --output "$COMPARISON_OUTPUT"
+
+"$PYTHON_BIN" scripts/summarize_human_ui_attribution.py \
+  --experiment-id "$MEDIATED_EXPERIMENT_ID" \
+  --interaction-protocol "$INTERACTION_PROTOCOL" \
+  --output "logs/${MEDIATED_EXPERIMENT_ID}_human_ui_attribution.json" || true
 
 overall_status=0
 if [ "$mediated_status" -ne 0 ] || [ "$direct_failed" -gt 0 ]; then
