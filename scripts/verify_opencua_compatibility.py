@@ -168,7 +168,13 @@ def _verify_prompt_contract(errors: List[str]) -> None:
         errors.append("OpenCUA symbolic-support ablation prompt did not include interaction map")
 
 
-def _verify_runtime(base_url: str, require_endpoint: bool, errors: List[str], warnings: List[str]) -> None:
+def _verify_runtime(
+    base_url: str,
+    expected_model: str,
+    require_endpoint: bool,
+    errors: List[str],
+    warnings: List[str],
+) -> None:
     for command in ("vllm", "playwright-mcp"):
         if not _check_command(command):
             message = f"required command not found on PATH: {command}"
@@ -201,6 +207,20 @@ def _verify_runtime(base_url: str, require_endpoint: bool, errors: List[str], wa
             errors.append("OpenCUA endpoint /models returned no model list")
         else:
             warnings.append("OpenCUA endpoint /models returned no model list")
+        return
+
+    advertised = [
+        str(item.get("id") or "").strip()
+        for item in models
+        if isinstance(item, dict) and str(item.get("id") or "").strip()
+    ]
+    print(f"[INFO] advertised_models={json.dumps(advertised, ensure_ascii=True)}")
+    if expected_model and expected_model not in advertised:
+        message = f"OpenCUA endpoint model mismatch: expected {expected_model!r}, advertised {advertised!r}"
+        if require_endpoint:
+            errors.append(message)
+        else:
+            warnings.append(message)
 
 
 def main() -> int:
@@ -233,7 +253,8 @@ def main() -> int:
     _verify_forms_and_answers(form_ids, run_indexes, errors)
     _verify_parser_and_coords(errors)
     _verify_prompt_contract(errors)
-    _verify_runtime(args.base_url, bool(args.require_endpoint), errors, warnings)
+    expected_model = str(model_cfg.get("served_model_name") or model_cfg.get("openai_model") or "").strip()
+    _verify_runtime(args.base_url, expected_model, bool(args.require_endpoint), errors, warnings)
 
     print(f"[INFO] config_path={config_path}")
     print(f"[INFO] model_id={args.model_id}")

@@ -29,10 +29,10 @@ DEFAULT_ANSWERS_ROOT = "data/answers"
 DEFAULT_DATASET_ROOT = "data/model_baselines"
 DEFAULT_CONFIG = "configs/baselines/track_baseline_models.json"
 DEFAULT_EXPERIMENT_ID = "track_baseline_opencua_native_v1"
-DEFAULT_MAX_STEPS = 64
+DEFAULT_MAX_STEPS = 128
 DEFAULT_TIMEOUT_S = 5400
 DEFAULT_API_TIMEOUT_S = 180
-DEFAULT_MAX_NEW_TOKENS = 384
+DEFAULT_MAX_NEW_TOKENS = 96
 DEFAULT_PROMPT_MODE = "opencua_qwen25_screenshot_v1"
 DEFAULT_INTERACTION_PROTOCOL = "human_ui_v1"
 DEFAULT_OBSERVATION_MODE = "vision_coords"
@@ -383,8 +383,10 @@ def _build_goal_prompt(
     return (
         "You are a GUI agent. You are given a task and screenshots of the browser. "
         "You need to perform the next browser action to fill and submit the form.\n"
-        "Return the next action only. Prefer a single pyautogui-style statement, or output SUBMIT or DONE. "
-        "One or two pyautogui-style action lines are accepted when the model naturally emits a compound action.\n"
+        "Return only the next GUI action to execute now. Do not describe your reasoning. "
+        "Do not output a script, plan, loop, code block, or a list of future actions.\n"
+        "Use exactly one action line, except text entry may use exactly two lines: first click the field, then write the value. "
+        "Never include extra Enter presses after writing unless Enter is the intended next GUI action.\n"
         "Allowed action styles:\n"
         "- pyautogui.click(x=..., y=...)\n"
         "- pyautogui.doubleClick(x=..., y=...)\n"
@@ -398,6 +400,11 @@ def _build_goal_prompt(
         "- DONE\n"
         "Rules:\n"
         "- Use coordinates from the screenshot, not from the interaction map.\n"
+        "- Choose the coordinate for the visible control itself: text box, radio button, checkbox, time field, or Submit button.\n"
+        "- If the target answer is not visible, scroll instead of clicking an unrelated area.\n"
+        "- If an action does not change the visible state, choose a different strategy on the next step.\n"
+        "- For checkboxes and radio buttons, click the visible option circle/box or its label once.\n"
+        "- For text, paragraph, date, and time fields, click the field and write the exact target value.\n"
         "- Do not output explanations outside the action text.\n"
         "- Before submitting, double-check the visible form state against the target answers as well as the current screenshot allows.\n"
         "- If the form appears correct and you intend to submit, click the visible Submit button or output SUBMIT.\n"

@@ -933,8 +933,10 @@ def main(argv: Optional[List[str]] = None) -> int:
                 control = _control_by_ref(control_contract, _coerce_ref(arguments.get("ref")))
                 is_submit_attempt = name == "browser_click" and _control_looks_like_submit(control, arguments)
                 submit_attempt: Optional[Dict[str, Any]] = None
-                if is_submit_attempt and engine is not None:
-                    pre_snapshot = _verification_snapshot(engine, question_states, step_ref=(step_idx * 1000) + 100)
+                pre_click_snapshot: Optional[Dict[str, Any]] = None
+                if name == "browser_click" and engine is not None:
+                    pre_click_snapshot = _verification_snapshot(engine, question_states, step_ref=(step_idx * 1000) + 100)
+                if is_submit_attempt and engine is not None and pre_click_snapshot is not None:
                     submit_attempt = {
                         "step_index": step_idx,
                         "tool_call_index": tool_call_count,
@@ -942,9 +944,9 @@ def main(argv: Optional[List[str]] = None) -> int:
                         "arguments": arguments,
                         "ref": arguments.get("ref"),
                         "control": control,
-                        "pre_submit_verified_correctness": pre_snapshot["correct"],
-                        "pre_submit_attempted_count": pre_snapshot["attempted"],
-                        "pre_submit_question_total": pre_snapshot["total"],
+                        "pre_submit_verified_correctness": pre_click_snapshot["correct"],
+                        "pre_submit_attempted_count": pre_click_snapshot["attempted"],
+                        "pre_submit_question_total": pre_click_snapshot["total"],
                     }
                 if name not in step_tool_names or name not in DIRECT_MCP_MODEL_TOOLS or name not in mcp.available_tools:
                     tool_error_count += 1
@@ -1008,8 +1010,24 @@ def main(argv: Optional[List[str]] = None) -> int:
                     result = mcp.call_tool(name, arguments)
                     trace.log_event(name, arguments, step_ref=step_idx, extra={"backend": "mcp_server"})
                     history.append({"role": "tool", "tool_call_id": call["id"], "content": _tool_result_to_message_content(result)})
-                    if submit_attempt is not None and engine is not None:
+                    post_submit_success = False
+                    post_submit_probe: Dict[str, Any] = {}
+                    if name == "browser_click" and engine is not None:
                         post_submit_success, post_submit_probe = _detect_submit_success(engine, step_ref=step_idx)
+                        if post_submit_success and submit_attempt is None and pre_click_snapshot is not None:
+                            submit_attempt = {
+                                "step_index": step_idx,
+                                "tool_call_index": tool_call_count,
+                                "tool": name,
+                                "arguments": arguments,
+                                "ref": arguments.get("ref"),
+                                "control": control,
+                                "submit_detected_by": "post_click_confirmation_probe",
+                                "pre_submit_verified_correctness": pre_click_snapshot["correct"],
+                                "pre_submit_attempted_count": pre_click_snapshot["attempted"],
+                                "pre_submit_question_total": pre_click_snapshot["total"],
+                            }
+                    if submit_attempt is not None and engine is not None:
                         post_snapshot = _verification_snapshot(engine, question_states, step_ref=(step_idx * 1000) + 500)
                         submit_attempt.update(
                             {

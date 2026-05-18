@@ -37,7 +37,7 @@ FORM_OFFSET="${FORM_OFFSET:-0}"
 FORM_LIMIT="${FORM_LIMIT:-0}"
 API_TIMEOUT_S="${API_TIMEOUT_S:-300}"
 DIRECT_MCP_TIMEOUT_S="${DIRECT_MCP_TIMEOUT_S:-1800}"
-DIRECT_MCP_MAX_STEPS="${DIRECT_MCP_MAX_STEPS:-32}"
+DIRECT_MCP_MAX_STEPS="${DIRECT_MCP_MAX_STEPS:-128}"
 DIRECT_MCP_TEXT_MAX_NEW_TOKENS="${DIRECT_MCP_TEXT_MAX_NEW_TOKENS:-1024}"
 DIRECT_MCP_VLM_MAX_NEW_TOKENS="${DIRECT_MCP_VLM_MAX_NEW_TOKENS:-1024}"
 BROWSER_MCP_TIMEOUT_MS="${BROWSER_MCP_TIMEOUT_MS:-600000}"
@@ -222,6 +222,8 @@ write_progress_summary() {
   "$PYTHON_BIN" scripts/summarize_reference_efficiency.py \
     --experiment-id "$EXPERIMENT_ID" \
     --output "$SUMMARY_OUTPUT" || true
+  "$PYTHON_BIN" scripts/update_eval_results_tracker.py \
+    --experiment-id "$EXPERIMENT_ID" || true
 }
 
 echo "[INFO] qwen_direct_mcp_experiment_id=$EXPERIMENT_ID"

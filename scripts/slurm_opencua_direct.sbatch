@@ -20,10 +20,13 @@ module load release/25.06 GCCcore/13.3.0 Python/3.12.3 nodejs/20.13.1
 
 export PYTHONUNBUFFERED=1
 export CONFIG_PATH="${CONFIG_PATH:-configs/baselines/track_baseline_models.json}"
-export OPENCUA_VLLM_PORT="${OPENCUA_VLLM_PORT:-8000}"
 export OPENCUA_VLLM_HOST="${OPENCUA_VLLM_HOST:-127.0.0.1}"
+if [ -z "${OPENCUA_VLLM_PORT:-}" ]; then
+  export OPENCUA_VLLM_PORT="$((18000 + (SLURM_JOB_ID % 20000)))"
+fi
 export OPENAI_BASE_URL="${OPENAI_BASE_URL:-http://${OPENCUA_VLLM_HOST}:${OPENCUA_VLLM_PORT}/v1}"
 export OPENAI_API_KEY="${OPENAI_API_KEY:-EMPTY}"
+export OPENCUA_SERVED_MODEL_NAME="${OPENCUA_SERVED_MODEL_NAME:-${OPENAI_MODEL:-opencua-32b}}"
 export OPENCUA_PYTHON_BIN="${OPENCUA_PYTHON_BIN:-$ROOT_DIR/.venv-opencua/bin/python}"
 export PATH="$ROOT_DIR/.venv-opencua/bin:$ROOT_DIR/.node-tools/node_modules/.bin:$PATH"
 export CACHE_ROOT="${CACHE_ROOT:-$ROOT_DIR/.runtime-cache}"
@@ -65,7 +68,13 @@ READY_ATTEMPTS="${OPENCUA_READY_ATTEMPTS:-180}"
 READY_SLEEP_S="${OPENCUA_READY_SLEEP_S:-10}"
 READY_STARTED="$(date +%s)"
 for attempt in $(seq 1 "$READY_ATTEMPTS"); do
-  if curl -fsS "${OPENAI_BASE_URL}/models" >/dev/null 2>&1; then
+  if "$OPENCUA_PYTHON_BIN" scripts/check_openai_compat_server.py \
+    --base-url "$OPENAI_BASE_URL" \
+    --model "${OPENAI_MODEL:-opencua-32b}" \
+    --api-key "$OPENAI_API_KEY" \
+    --timeout-s "${OPENCUA_READY_TIMEOUT_S:-10}" \
+    --print-models >/tmp/opencua-ready-${SLURM_JOB_ID:-na}.log 2>&1; then
+    cat /tmp/opencua-ready-${SLURM_JOB_ID:-na}.log
     echo "[INFO] vllm_ready attempt=$attempt elapsed_s=$(( $(date +%s) - READY_STARTED ))"
     break
   fi
@@ -75,10 +84,19 @@ for attempt in $(seq 1 "$READY_ATTEMPTS"); do
   sleep "$READY_SLEEP_S"
   if [ "$attempt" -eq "$READY_ATTEMPTS" ]; then
     echo "[FAIL] OpenCUA vLLM server did not become ready" >&2
+    cat /tmp/opencua-ready-${SLURM_JOB_ID:-na}.log >&2 || true
     tail -n 120 "$SERVER_LOG" >&2 || true
     exit 1
   fi
 done
+
+"$OPENCUA_PYTHON_BIN" scripts/check_openai_compat_server.py \
+  --base-url "$OPENAI_BASE_URL" \
+  --model "${OPENAI_MODEL:-opencua-32b}" \
+  --api-key "$OPENAI_API_KEY" \
+  --timeout-s "${OPENCUA_SMOKE_TIMEOUT_S:-60}" \
+  --print-models \
+  --smoke-chat
 
 srun --ntasks=1 --cpus-per-task="${SLURM_CPUS_PER_TASK:-1}" bash scripts/run_opencua_direct_matrix.sh
 

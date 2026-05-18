@@ -42,16 +42,22 @@ DIRECT_PROVIDER="${DIRECT_PROVIDER:-opencua_local}"
 DIRECT_TRACK="${DIRECT_TRACK:-computer_use_native}"
 DIRECT_MODEL_ID="${DIRECT_MODEL_ID:-}"
 DIRECT_MODEL_PROVIDER="${DIRECT_MODEL_PROVIDER:-}"
-DIRECT_MAX_STEPS="${DIRECT_MAX_STEPS:-64}"
+DIRECT_MAX_STEPS="${DIRECT_MAX_STEPS:-128}"
 DIRECT_TIMEOUT_S="${DIRECT_TIMEOUT_S:-5400}"
-DIRECT_MAX_NEW_TOKENS="${DIRECT_MAX_NEW_TOKENS:-384}"
+DIRECT_MAX_NEW_TOKENS="${DIRECT_MAX_NEW_TOKENS:-96}"
 DIRECT_API_TIMEOUT_S="${DIRECT_API_TIMEOUT_S:-180}"
 DIRECT_BROWSER_MCP_TIMEOUT_MS="${DIRECT_BROWSER_MCP_TIMEOUT_MS:-600000}"
 GEMINI_MIN_REQUEST_INTERVAL_S="${GEMINI_MIN_REQUEST_INTERVAL_S:-8.0}"
 GEMINI_MAX_INFER_RETRIES="${GEMINI_MAX_INFER_RETRIES:-2}"
 GEMINI_MAX_RETRY_DELAY_S="${GEMINI_MAX_RETRY_DELAY_S:-75}"
-OPENCUA_VLLM_PORT="${OPENCUA_VLLM_PORT:-8000}"
 OPENCUA_VLLM_HOST="${OPENCUA_VLLM_HOST:-127.0.0.1}"
+if [ -z "${OPENCUA_VLLM_PORT:-}" ]; then
+  if [ -n "${SLURM_JOB_ID:-}" ]; then
+    OPENCUA_VLLM_PORT="$((18000 + (SLURM_JOB_ID % 20000)))"
+  else
+    OPENCUA_VLLM_PORT="8000"
+  fi
+fi
 OPENAI_BASE_URL="${OPENAI_BASE_URL:-http://${OPENCUA_VLLM_HOST}:${OPENCUA_VLLM_PORT}/v1}"
 OPENAI_API_KEY="${OPENAI_API_KEY:-EMPTY}"
 OPEN_CUA_MIN_REQUEST_INTERVAL_S="${OPEN_CUA_MIN_REQUEST_INTERVAL_S:-2.0}"
@@ -264,6 +270,8 @@ for model in cfg.get('models', []):
 PY_OPENAI_MODEL
 )"
   export OPENAI_MODEL
+  export OPENCUA_SERVED_MODEL_NAME="$OPENAI_MODEL"
+  export OPENCUA_VLLM_HOST OPENCUA_VLLM_PORT OPENAI_BASE_URL
   OPENCUA_VLLM_LOG="${OPENCUA_VLLM_LOG:-logs/slurm/opencua-vllm-track-${SLURM_JOB_ID:-na}.log}"
   bash scripts/run_opencua_vllm_server.sh >"$OPENCUA_VLLM_LOG" 2>&1 &
   SERVER_PID=$!
@@ -273,7 +281,13 @@ PY_OPENAI_MODEL
   READY_SLEEP_S="${OPENCUA_READY_SLEEP_S:-10}"
   READY_STARTED="$(date +%s)"
   for attempt in $(seq 1 "$READY_ATTEMPTS"); do
-    if curl -fsS "${OPENAI_BASE_URL}/models" >/dev/null 2>&1; then
+    if "$OPENCUA_PYTHON_BIN" scripts/check_openai_compat_server.py \
+      --base-url "$OPENAI_BASE_URL" \
+      --model "$OPENAI_MODEL" \
+      --api-key "$OPENAI_API_KEY" \
+      --timeout-s "${OPENCUA_READY_TIMEOUT_S:-10}" \
+      --print-models >/tmp/opencua-ready-${SLURM_JOB_ID:-na}.log 2>&1; then
+      cat /tmp/opencua-ready-${SLURM_JOB_ID:-na}.log
       echo "[INFO] opencua_vllm_ready attempt=$attempt elapsed_s=$(( $(date +%s) - READY_STARTED ))"
       break
     fi
@@ -283,10 +297,18 @@ PY_OPENAI_MODEL
     sleep "$READY_SLEEP_S"
     if [ "$attempt" -eq "$READY_ATTEMPTS" ]; then
       echo "[FAIL] OpenCUA vLLM server did not become ready" >&2
+      cat /tmp/opencua-ready-${SLURM_JOB_ID:-na}.log >&2 || true
       tail -n 120 "$OPENCUA_VLLM_LOG" >&2 || true
       exit 1
     fi
   done
+  "$OPENCUA_PYTHON_BIN" scripts/check_openai_compat_server.py \
+    --base-url "$OPENAI_BASE_URL" \
+    --model "$OPENAI_MODEL" \
+    --api-key "$OPENAI_API_KEY" \
+    --timeout-s "${OPENCUA_SMOKE_TIMEOUT_S:-60}" \
+    --print-models \
+    --smoke-chat
 fi
 
 if [ "$DIRECT_PROVIDER" = "gemini_native" ]; then
