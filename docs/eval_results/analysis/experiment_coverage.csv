@@ -1,0 +1,14 @@
+experiment_id,status,observed_trials,expected_trials,models,forms,runs,first_completed_utc,last_completed_utc
+opencua_control_guidance_30form_20260526,historical_or_open_scope,30,,computer_use_opencua_32b,30,run_0001,2026-05-26T12:33:55Z,2026-05-26T16:54:21Z
+opencua_control_guidance_all50_run2_20260528,complete,50,50,computer_use_opencua_32b,50,run_0002,2026-05-28T14:15:06Z,2026-05-28T22:18:38Z
+opencua_control_guidance_remaining20_20260527,historical_or_open_scope,20,,computer_use_opencua_32b,20,run_0001,2026-05-27T09:30:37Z,2026-05-27T13:06:38Z
+opencua_control_guidance_target10_run3_20260601,historical_or_open_scope,50,,computer_use_opencua_32b,50,run_0003,2026-06-01T20:00:42Z,2026-06-02T01:36:41Z
+opencua_generic_strategy_prompt_smoke_20260518,historical_or_open_scope,1,,computer_use_opencua_32b,1,run_0001,2026-05-18T19:23:35Z,2026-05-18T19:23:35Z
+opencua_loopdetector_30form_retry_20260526,historical_or_open_scope,4,,computer_use_opencua_32b,4,run_0001,2026-05-26T12:08:00Z,2026-05-26T12:17:06Z
+opencua_loopdetector_smoke_retry_20260526,historical_or_open_scope,1,,computer_use_opencua_32b,1,run_0001,2026-05-26T11:58:15Z,2026-05-26T11:58:15Z
+opencua_native_serving_fix_smoke_20260517,historical_or_open_scope,1,,computer_use_opencua_32b,1,run_0001,2026-05-17T18:49:25Z,2026-05-17T18:49:25Z
+opencua_tight_prompt_smoke_20260518,historical_or_open_scope,1,,computer_use_opencua_32b,1,run_0001,2026-05-18T18:59:56Z,2026-05-18T18:59:56Z
+opencua_topdown_prompt_20form_20260519,historical_or_open_scope,20,,computer_use_opencua_32b,20,run_0001,2026-05-19T22:58:49Z,2026-05-20T12:38:37Z
+qwen_direct_mcp_all50_run2_20260528,complete,100,100,"text_qwen3_30b_a3b_instruct_2507, vlm_qwen3_vl_30b_a3b_instruct",50,run_0002,2026-05-28T14:10:10Z,2026-05-29T13:49:58Z
+qwen_direct_mcp_english_stepcap128_5form_20260515,historical_or_open_scope,188,,"text_qwen3_30b_a3b_instruct_2507, vlm_qwen3_vl_30b_a3b_instruct",49,"run_0001, run_0002, run_0003, run_0004, run_0005, run_0006, run_0007, run_0008, run_0009, run_0010",2026-05-15T14:24:29Z,2026-05-27T09:35:28Z
+qwen_direct_mcp_target10_run3_20260601,historical_or_open_scope,75,,"text_qwen3_30b_a3b_instruct_2507, vlm_qwen3_vl_30b_a3b_instruct",45,run_0003,2026-06-01T18:39:23Z,2026-06-02T16:29:26Z

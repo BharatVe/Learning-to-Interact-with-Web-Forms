@@ -35,7 +35,7 @@ DEFAULT_VLM_MAX_NEW_TOKENS = 1024
 DEFAULT_BROWSER_MCP_TIMEOUT_MS = 180000
 SCHEMA_VERSION = "baseline_eval.v5"
 SUMMARY_SCHEMA_VERSION = "baseline_summary.v5"
-RAW_TOOL_CALL_RE = re.compile(r"<tool_call>\s*(?P<payload>\{.*?\})\s*</tool_call>", re.DOTALL | re.IGNORECASE)
+RAW_TOOL_CALL_RE = re.compile(r"<tool_call>\s*(?P<payload>.*?)\s*</tool_call>", re.DOTALL | re.IGNORECASE)
 DIRECT_MCP_MODEL_TOOLS = {
     "browser_snapshot",
     "browser_click",
@@ -115,6 +115,10 @@ DIRECT_MCP_TOOL_SCHEMAS: Dict[str, Dict[str, Any]] = {
 }
 
 
+def _log_progress(message: str) -> None:
+    print(f"[INFO] direct_mcp_{message}", flush=True)
+
+
 def _http_post_json(url: str, headers: Dict[str, str], payload: Dict[str, Any], timeout_s: int) -> Dict[str, Any]:
     body = json.dumps(payload).encode("utf-8")
     request = urllib.request.Request(url=url, data=body, method="POST")
@@ -180,12 +184,16 @@ def _parse_openai_response(payload: Dict[str, Any]) -> Dict[str, Any]:
                     "raw_arguments": arguments,
                 }
             )
+    tool_call_transport = "native_tool_calls" if parsed_tool_calls else "none"
     if not parsed_tool_calls:
         text = "\n".join([part for part in text_parts if part]).strip()
         parsed_tool_calls.extend(_parse_raw_mcp_tool_calls(text))
+        if parsed_tool_calls:
+            tool_call_transport = "text_tool_call_fallback"
     return {
         "text": "\n".join([part for part in text_parts if part]).strip(),
         "tool_calls": parsed_tool_calls,
+        "tool_call_transport": tool_call_transport,
         "finish_reason": choice.get("finish_reason"),
         "usage": payload.get("usage") if isinstance(payload.get("usage"), dict) else {},
     }
@@ -196,12 +204,8 @@ def _parse_raw_mcp_tool_calls(text: str) -> List[Dict[str, Any]]:
     out: List[Dict[str, Any]] = []
     raw = str(text or "")
     for match in RAW_TOOL_CALL_RE.finditer(raw):
-        payload_text = match.group("payload")
-        try:
-            payload = json.loads(payload_text)
-        except Exception:
-            continue
-        if not isinstance(payload, dict):
+        payload = _parse_text_tool_call_payload(match.group("payload"))
+        if payload is None:
             continue
         name = payload.get("name")
         arguments = payload.get("arguments")
@@ -232,6 +236,23 @@ def _parse_raw_mcp_tool_calls(text: str) -> List[Dict[str, Any]]:
     return out
 
 
+def _parse_text_tool_call_payload(payload_text: str) -> Optional[Dict[str, Any]]:
+    raw = str(payload_text or "").strip()
+    if not raw:
+        return None
+    candidates = [raw]
+    if not raw.startswith("{"):
+        candidates.append("{" + raw.strip().strip(",") + "}")
+    for candidate in candidates:
+        try:
+            parsed = json.loads(candidate)
+        except Exception:
+            continue
+        if isinstance(parsed, dict):
+            return parsed
+    return None
+
+
 def _mcp_tools_to_openai_tools(tool_defs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     out: List[Dict[str, Any]] = []
     for tool in tool_defs:
@@ -252,7 +273,7 @@ def _mcp_tools_to_openai_tools(tool_defs: List[Dict[str, Any]]) -> List[Dict[str
                 },
             }
         )
-    return out
+    return [tool for tool in out if str(((tool.get("function") or {}).get("name")) or "") in DIRECT_MCP_MODEL_TOOLS]
 
 
 def _filter_tools_for_visible_controls(openai_tools: List[Dict[str, Any]], control_contract: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -271,6 +292,42 @@ def _filter_tools_for_visible_controls(openai_tools: List[Dict[str, Any]], contr
     if any("browser_select_option" in (control.get("valid_mcp_tools") or []) for control in control_contract if isinstance(control, dict)):
         visible_names.add("browser_select_option")
     return [tool for tool in openai_tools if str(((tool.get("function") or {}).get("name")) or "") in visible_names]
+
+
+def _filter_control_contract_tools(control_contract: List[Dict[str, Any]], visible_tool_names: set[str]) -> List[Dict[str, Any]]:
+    out: List[Dict[str, Any]] = []
+    for control in control_contract:
+        if not isinstance(control, dict):
+            continue
+        item = dict(control)
+        item["valid_mcp_tools"] = [
+            tool for tool in (control.get("valid_mcp_tools") or []) if isinstance(tool, str) and tool in visible_tool_names
+        ]
+        out.append(item)
+    return out
+
+
+def _tool_use_guidance(visible_tool_names: set[str]) -> str:
+    lines = [
+        "Use the official Playwright MCP ref-first workflow: inspect browser_snapshot refs, then call tools with those refs.",
+    ]
+    if {"browser_type", "browser_fill_form"}.issubset(visible_tool_names):
+        lines.append("For editable fields use browser_type or browser_fill_form with refs.")
+    elif "browser_type" in visible_tool_names:
+        lines.append("For editable fields use browser_type with refs.")
+    elif "browser_fill_form" in visible_tool_names:
+        lines.append("For editable fields use browser_fill_form with refs.")
+    if "browser_check" in visible_tool_names:
+        lines.append("For checkboxes and radio buttons prefer browser_click with refs; browser_check is also available when the visible ref supports it.")
+    else:
+        lines.append("For checkboxes and radio buttons use browser_click with refs.")
+    if "browser_select_option" in visible_tool_names:
+        lines.append(
+            "For real HTML select elements use browser_select_option; for custom Google Forms dropdowns, click the visible ref, inspect the next snapshot, then choose the visible option ref."
+        )
+    else:
+        lines.append("For custom Google Forms dropdowns, click the visible ref, inspect the next snapshot, then choose the visible option ref.")
+    return "\n".join(lines)
 
 
 def _coerce_ref(value: Any) -> Optional[str]:
@@ -410,6 +467,7 @@ def _observation_prompt(
     step_idx: int,
     accessibility_snapshot: str = "",
     control_contract: Optional[List[Dict[str, Any]]] = None,
+    model_visible_tool_names: Optional[List[str]] = None,
 ) -> str:
     answers_json = json.dumps(remaining_answers, ensure_ascii=True, indent=2)
     page_excerpt = page_text[:8000]
@@ -430,13 +488,17 @@ def _observation_prompt(
             "This metadata describes which documented Playwright MCP tools are compatible with each visible ref. "
             "It does not choose answers or prescribe an action sequence.\n\n"
         )
+    visible_tools = ", ".join(sorted(set(model_visible_tool_names or DIRECT_MCP_MODEL_TOOLS)))
+    visible_tool_set = set(model_visible_tool_names or DIRECT_MCP_MODEL_TOOLS)
+    tool_guidance = _tool_use_guidance(visible_tool_set)
     return (
         "You are controlling a browser only through Playwright MCP tools.\n"
         "Use the provided Playwright MCP tools directly. Do not invent custom actions or JSON schemas.\n"
-        "Use the official Playwright MCP ref-first workflow: inspect browser_snapshot refs, then call tools with those refs.\n"
-        "For editable fields use browser_type or browser_fill_form with refs. For checkboxes and radio buttons use browser_check or browser_click with refs. "
-        "For real HTML select elements use browser_select_option; for custom Google Forms dropdowns, click the visible ref, inspect the next snapshot, then choose the visible option ref.\n"
-        "Use only the Playwright MCP tools provided in this chat.\n"
+        "Do not output pyautogui, mouse coordinates, scripts, plans, or native computer-use actions in this condition.\n"
+        "If your serving backend cannot emit native tool_calls, output exactly one textual fallback call as "
+        "<tool_call>{\"name\":\"browser_click\",\"arguments\":{\"ref\":\"...\"}}</tool_call> using one provided tool name.\n"
+        f"{tool_guidance}\n"
+        f"Use only these Playwright MCP tool names in this step: {visible_tools}.\n"
         "Benchmark terminal condition: DONE means you have observed a form submission confirmation page, not merely that fields appear filled.\n"
         "Before submitting, double-check the visible form state against the target answers as well as the current observation allows.\n"
         "Do not use DONE to say the form is ready to submit. If the form appears correct and you intend to submit, call a Playwright MCP tool on the visible Submit button ref.\n"
@@ -664,9 +726,9 @@ def _build_messages(
         }
     ]
     messages.extend(history)
-    if model_kind == "vlm":
+    if model_kind in {"vlm", "computer_use_agent"}:
         if screenshot_path is None or not screenshot_path.exists():
-            raise RuntimeError("vlm_observation_requires_screenshot")
+            raise RuntimeError(f"{model_kind}_observation_requires_screenshot")
         import base64
 
         data_url = "data:image/png;base64," + base64.b64encode(screenshot_path.read_bytes()).decode("ascii")
@@ -702,6 +764,25 @@ def _assistant_history_message(model_reply: Dict[str, Any]) -> Dict[str, Any]:
     return message
 
 
+def _text_tool_call_payload(call: Dict[str, Any]) -> str:
+    return "<tool_call>" + json.dumps({"name": call.get("name"), "arguments": call.get("arguments") or {}}, ensure_ascii=True) + "</tool_call>"
+
+
+def _assistant_history_message_for_transport(model_reply: Dict[str, Any], *, native_tool_call_history: bool) -> Dict[str, Any]:
+    if native_tool_call_history:
+        return _assistant_history_message(model_reply)
+    text = str(model_reply.get("text") or "").strip()
+    if not text and (model_reply.get("tool_calls") or []):
+        text = "\n".join(_text_tool_call_payload(call) for call in model_reply.get("tool_calls") or [])
+    return {"role": "assistant", "content": text}
+
+
+def _tool_result_history_message(content: str, *, native_tool_call_history: bool, tool_call_id: str) -> Dict[str, Any]:
+    if native_tool_call_history:
+        return {"role": "tool", "tool_call_id": tool_call_id, "content": content}
+    return {"role": "user", "content": f"Tool result for {tool_call_id}:\n{content}"}
+
+
 def _call_model(
     *,
     base_url: str,
@@ -709,6 +790,7 @@ def _call_model(
     model: str,
     messages: List[Dict[str, Any]],
     tools: List[Dict[str, Any]],
+    native_tool_calls: bool,
     max_new_tokens: int,
     timeout_s: int,
 ) -> Dict[str, Any]:
@@ -718,9 +800,10 @@ def _call_model(
         "temperature": 0,
         "max_tokens": int(max_new_tokens),
         "messages": messages,
-        "tools": tools,
-        "tool_choice": "auto",
     }
+    if native_tool_calls:
+        payload["tools"] = tools
+        payload["tool_choice"] = "auto"
     response = _http_post_json(
         url=base_url.rstrip("/") + "/chat/completions",
         headers={"Authorization": f"Bearer {api_key}"},
@@ -733,10 +816,10 @@ def _call_model(
 
 
 def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run direct Playwright MCP evaluation for one Qwen model/form/run.")
+    parser = argparse.ArgumentParser(description="Run direct Playwright MCP evaluation for one model/form/run.")
     parser.add_argument("--config", default=DEFAULT_CONFIG)
     parser.add_argument("--model-id", required=True)
-    parser.add_argument("--model-kind", choices=["text_llm", "vlm"], required=True)
+    parser.add_argument("--model-kind", choices=["text_llm", "vlm", "computer_use_agent"], required=True)
     parser.add_argument("--form-id", required=True)
     parser.add_argument("--run-index", type=int, required=True)
     parser.add_argument("--answers-root", default=DEFAULT_ANSWERS_ROOT)
@@ -762,7 +845,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     max_new_tokens = int(
         args.max_new_tokens
         if args.max_new_tokens is not None
-        else (DEFAULT_VLM_MAX_NEW_TOKENS if args.model_kind == "vlm" else DEFAULT_TEXT_MAX_NEW_TOKENS)
+        else (DEFAULT_VLM_MAX_NEW_TOKENS if args.model_kind in {"vlm", "computer_use_agent"} else DEFAULT_TEXT_MAX_NEW_TOKENS)
     )
 
     config_path = (ROOT_DIR / args.config).resolve()
@@ -777,6 +860,18 @@ def main(argv: Optional[List[str]] = None) -> int:
     api_key = str(os.environ.get("OPENAI_API_KEY") or model_cfg.get("openai_api_key") or "EMPTY")
     if not base_url or not model_name:
         raise RuntimeError("direct_mcp_openai_compat_missing_base_url_or_model")
+    native_tool_calls_env = str(os.environ.get("DIRECT_MCP_NATIVE_TOOL_CALLS") or "").strip().lower()
+    if native_tool_calls_env:
+        native_tool_calls_enabled = native_tool_calls_env in {"1", "true", "yes", "on"}
+    else:
+        native_tool_calls_enabled = args.model_kind != "computer_use_agent"
+
+    _log_progress(
+        "trial_start "
+        f"model_id={args.model_id} model_kind={args.model_kind} form_id={args.form_id} "
+        f"run_index={args.run_index} experiment_id={args.experiment_id} "
+        f"api_model={model_name} base_url={base_url} native_tool_calls={native_tool_calls_enabled}"
+    )
 
     form_spec = load_form_spec(args.form_id, ROOT_DIR / "src" / "forms")
     form_url = force_english_google_forms_url(str(form_spec.get("form_url") or form_spec.get("url") or ""))
@@ -797,6 +892,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     trace = TraceLogger(path=paths["trace_path"], start_time=start_time, validate_mcp_actions=False, strict_mcp_validation=False, mcp_client=None)
     tool_call_count = 0
     tool_error_count = 0
+    tool_call_transport_counts: Dict[str, int] = {}
     accessibility_snapshot_count = 0
     inference_roundtrip_s: Optional[float] = None
     terminal_screenshot_path: Optional[str] = None
@@ -812,7 +908,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     submit_attempts: List[Dict[str, Any]] = []
 
     required_tools = ["browser_navigate", "browser_run_code", "browser_wait_for", "browser_close", "browser_snapshot"]
-    if args.model_kind == "vlm":
+    if args.model_kind in {"vlm", "computer_use_agent"}:
         required_tools.append("browser_take_screenshot")
     command: Any = args.browser_mcp_cmd or _default_mcp_server_command(args, paths)
 
@@ -839,6 +935,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         openai_tools = _mcp_tools_to_openai_tools(tool_defs)
         if not openai_tools:
             raise RuntimeError("playwright_mcp_exposed_no_tools")
+        _log_progress(
+            "model_visible_tool_contract "
+            f"model_id={args.model_id} tools={','.join(sorted(str(((tool.get('function') or {}).get('name')) or '') for tool in openai_tools))}"
+        )
 
         for step_idx in range(args.max_steps):
             elapsed = time.perf_counter() - start_time
@@ -854,12 +954,13 @@ def main(argv: Optional[List[str]] = None) -> int:
             control_contract = _collect_control_contract(engine, step_idx)
             current_url = str((env or {}).get("url") or form_url)
             screenshot_path: Optional[Path] = None
-            if args.model_kind == "vlm":
+            if args.model_kind in {"vlm", "computer_use_agent"}:
                 screenshot = engine.take_observation_screenshot(f"step_{step_idx:04d}_vlm.png", step_ref=step_idx)
                 screenshot_path = Path(screenshot) if screenshot else None
             remaining_answers = rbe._serialize_remaining_answers(question_states)
             step_tools = _filter_tools_for_visible_controls(openai_tools, control_contract)
             step_tool_names = {str(((tool.get("function") or {}).get("name")) or "") for tool in step_tools}
+            control_contract = _filter_control_contract_tools(control_contract, step_tool_names)
             observation_text = _observation_prompt(
                 form_url=form_url,
                 remaining_answers=remaining_answers,
@@ -868,6 +969,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                 step_idx=step_idx,
                 accessibility_snapshot=snapshot_text,
                 control_contract=control_contract,
+                model_visible_tool_names=sorted(step_tool_names),
             )
             messages = _build_messages(
                 model_kind=args.model_kind,
@@ -891,6 +993,11 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "model_visible_tools": sorted(step_tool_names),
             }
             rbe._append_jsonl(paths["step_inputs_path"], step_input)
+            _log_progress(
+                "step_start "
+                f"model_id={args.model_id} form_id={args.form_id} run_index={args.run_index} "
+                f"step_index={step_idx} visible_tools={','.join(sorted(step_tool_names))}"
+            )
 
             model_reply = _call_model(
                 base_url=base_url,
@@ -898,10 +1005,13 @@ def main(argv: Optional[List[str]] = None) -> int:
                 model=model_name,
                 messages=messages,
                 tools=step_tools,
+                native_tool_calls=native_tool_calls_enabled,
                 max_new_tokens=max_new_tokens,
                 timeout_s=args.api_timeout_s,
             )
             inference_roundtrip_s = model_reply.get("duration_s")
+            transport = str(model_reply.get("tool_call_transport") or "none")
+            tool_call_transport_counts[transport] = tool_call_transport_counts.get(transport, 0) + 1
             rbe._append_jsonl(
                 paths["model_io_path"],
                 {
@@ -911,10 +1021,11 @@ def main(argv: Optional[List[str]] = None) -> int:
                     "mcp_server": "playwright",
                     "assistant_text": model_reply.get("text"),
                     "tool_calls": model_reply.get("tool_calls"),
+                    "tool_call_transport": model_reply.get("tool_call_transport"),
                     "model_inference": {"duration_s": model_reply.get("duration_s"), "usage": model_reply.get("usage")},
                 },
             )
-            history.append(_assistant_history_message(model_reply))
+            history.append(_assistant_history_message_for_transport(model_reply, native_tool_call_history=native_tool_calls_enabled))
             tool_calls = model_reply.get("tool_calls") or []
             if not tool_calls:
                 if _done_text(model_reply.get("text") or ""):
@@ -924,6 +1035,11 @@ def main(argv: Optional[List[str]] = None) -> int:
                 failure_category = "model_no_tool_calls"
                 failure_detail = "assistant returned no tool calls and no DONE/STOP text"
                 break
+            _log_progress(
+                "step_tool_calls "
+                f"model_id={args.model_id} form_id={args.form_id} run_index={args.run_index} "
+                f"step_index={step_idx} count={len(tool_calls)} transport={transport}"
+            )
 
             for call in tool_calls:
                 tool_call_count += 1
@@ -954,7 +1070,13 @@ def main(argv: Optional[List[str]] = None) -> int:
                         "error": f"unsupported_or_hidden_tool:{name}",
                         "available_tools": sorted(set(mcp.available_tools).intersection(step_tool_names)),
                     }
-                    history.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(error_payload, ensure_ascii=True)})
+                    history.append(
+                        _tool_result_history_message(
+                            json.dumps(error_payload, ensure_ascii=True),
+                            native_tool_call_history=native_tool_calls_enabled,
+                            tool_call_id=call["id"],
+                        )
+                    )
                     rbe._append_jsonl(
                         paths["model_io_path"],
                         {
@@ -985,7 +1107,13 @@ def main(argv: Optional[List[str]] = None) -> int:
                     )
                     invalid_tool_signature_counts[signature] = invalid_tool_signature_counts.get(signature, 0) + 1
                     trace.log_event(name, arguments, step_ref=step_idx, ok=False, error=json.dumps(validation_error, ensure_ascii=True), extra={"backend": "mcp_contract_guard"})
-                    history.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(validation_error, ensure_ascii=True)})
+                    history.append(
+                        _tool_result_history_message(
+                            json.dumps(validation_error, ensure_ascii=True),
+                            native_tool_call_history=native_tool_calls_enabled,
+                            tool_call_id=call["id"],
+                        )
+                    )
                     rbe._append_jsonl(
                         paths["model_io_path"],
                         {
@@ -1009,7 +1137,13 @@ def main(argv: Optional[List[str]] = None) -> int:
                 try:
                     result = mcp.call_tool(name, arguments)
                     trace.log_event(name, arguments, step_ref=step_idx, extra={"backend": "mcp_server"})
-                    history.append({"role": "tool", "tool_call_id": call["id"], "content": _tool_result_to_message_content(result)})
+                    history.append(
+                        _tool_result_history_message(
+                            _tool_result_to_message_content(result),
+                            native_tool_call_history=native_tool_calls_enabled,
+                            tool_call_id=call["id"],
+                        )
+                    )
                     post_submit_success = False
                     post_submit_probe: Dict[str, Any] = {}
                     if name == "browser_click" and engine is not None:
@@ -1055,7 +1189,13 @@ def main(argv: Optional[List[str]] = None) -> int:
                 except Exception as exc:
                     tool_error_count += 1
                     trace.log_event(name, arguments, step_ref=step_idx, ok=False, error=str(exc), extra={"backend": "mcp_server"})
-                    history.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps({"error": str(exc)}, ensure_ascii=True)})
+                    history.append(
+                        _tool_result_history_message(
+                            json.dumps({"error": str(exc)}, ensure_ascii=True),
+                            native_tool_call_history=native_tool_calls_enabled,
+                            tool_call_id=call["id"],
+                        )
+                    )
                     if submit_attempt is not None:
                         submit_attempt.update({"tool_call_ok": False, "tool_error": str(exc), "post_submit_success": False})
                         submit_attempts.append(submit_attempt)
@@ -1131,6 +1271,13 @@ def main(argv: Optional[List[str]] = None) -> int:
         None,
     )
     premature_done_without_submit = stop_reason == "premature_done_without_submit"
+    nonempty_transports = {key: value for key, value in tool_call_transport_counts.items() if key != "none" and value > 0}
+    if len(nonempty_transports) == 1:
+        tool_call_transport = next(iter(nonempty_transports))
+    elif len(nonempty_transports) > 1:
+        tool_call_transport = "mixed"
+    else:
+        tool_call_transport = "none"
     done_step: Optional[int] = None
     if premature_done_without_submit:
         try:
@@ -1164,6 +1311,9 @@ def main(argv: Optional[List[str]] = None) -> int:
         "tool_protocol": "mcp",
         "mcp_server": "playwright",
         "tool_contract": "playwright_mcp_documented_forms_interaction_v1",
+        "native_tool_calls_enabled": native_tool_calls_enabled,
+        "tool_call_transport": tool_call_transport,
+        "tool_call_transport_counts": tool_call_transport_counts,
         "model_visible_tools": [tool["function"]["name"] for tool in openai_tools] if "openai_tools" in locals() else [],
         "serving_mode": "openai_compat_persistent",
         "server_backend": model_cfg.get("server_backend"),
@@ -1220,6 +1370,9 @@ def main(argv: Optional[List[str]] = None) -> int:
         "tool_protocol": "mcp",
         "mcp_server": "playwright",
         "tool_contract": "playwright_mcp_documented_forms_interaction_v1",
+        "native_tool_calls_enabled": native_tool_calls_enabled,
+        "tool_call_transport": tool_call_transport,
+        "tool_call_transport_counts": tool_call_transport_counts,
         "server_backend": model_cfg.get("server_backend"),
         "form_id": args.form_id,
         "answer_run_id": answer_run_id,
@@ -1268,6 +1421,12 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     rbe._write_json(paths["annotations_path"], annotations)
     rbe._write_json(paths["summary_path"], summary)
+    _log_progress(
+        "trial_complete "
+        f"model_id={args.model_id} form_id={args.form_id} run_index={args.run_index} "
+        f"success={bool(success)} submit_success={bool(submit_success)} stop_reason={stop_reason} "
+        f"tool_calls={tool_call_count} invalid_tool_calls={invalid_tool_call_count} duration_s={duration_s}"
+    )
     manifest_entry = {
         "experiment_id": args.experiment_id,
         "trial_id": trial_id,
@@ -1281,6 +1440,9 @@ def main(argv: Optional[List[str]] = None) -> int:
         "tool_protocol": "mcp",
         "mcp_server": "playwright",
         "tool_contract": "playwright_mcp_documented_forms_interaction_v1",
+        "native_tool_calls_enabled": native_tool_calls_enabled,
+        "tool_call_transport": tool_call_transport,
+        "tool_call_transport_counts": tool_call_transport_counts,
         "server_backend": model_cfg.get("server_backend"),
         "form_id": args.form_id,
         "answer_run_id": answer_run_id,

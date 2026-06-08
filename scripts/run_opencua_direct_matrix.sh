@@ -27,6 +27,8 @@ CONFIG_PATH="${CONFIG_PATH:-configs/baselines/track_baseline_models.json}"
 FORM_IDS="${FORM_IDS:-conf_interest,event_rsvp,course_feedback,internship_app,workshop_signup}"
 RUN_INDEX="${RUN_INDEX:-1}"
 RUN_INDEXES="${RUN_INDEXES:-$RUN_INDEX}"
+FORM_OFFSET="${FORM_OFFSET:-0}"
+FORM_LIMIT="${FORM_LIMIT:-0}"
 DIRECT_EXPERIMENT_ID="${DIRECT_EXPERIMENT_ID:-${EXPERIMENT_ID:-track_baseline_opencua_native_pilot}}"
 DIRECT_TRACK="${DIRECT_TRACK:-computer_use_native}"
 DIRECT_MODEL_ID="${DIRECT_MODEL_ID:-}"
@@ -40,6 +42,7 @@ OBSERVATION_MODE="${OBSERVATION_MODE:-vision_coords}"
 SCORING_MODE="${SCORING_MODE:-soft_quality_v1}"
 RETENTION_WINDOW="${RETENTION_WINDOW:-5}"
 FAIL_ON_TRIAL_FAILURE="${FAIL_ON_TRIAL_FAILURE:-0}"
+SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 OPEN_CUA_MIN_REQUEST_INTERVAL_S="${OPEN_CUA_MIN_REQUEST_INTERVAL_S:-2.0}"
 OPEN_CUA_HISTORY_IMAGES="${OPEN_CUA_HISTORY_IMAGES:-3}"
 OPENCUA_VLLM_HOST="${OPENCUA_VLLM_HOST:-127.0.0.1}"
@@ -75,10 +78,17 @@ export PLAYWRIGHT_MCP_CHROMIUM_EXECUTABLE="$(cat "$PLAYWRIGHT_BROWSERS_PATH/.mcp
 echo "[INFO] playwright_mcp_chromium_executable=$PLAYWRIGHT_MCP_CHROMIUM_EXECUTABLE"
 
 if [ "$FORM_IDS" = "all" ]; then
-  RESOLVED_FORM_IDS="$($PYTHON_BIN - <<'PY_FORMS'
+  RESOLVED_FORM_IDS="$($PYTHON_BIN - "$FORM_OFFSET" "$FORM_LIMIT" <<'PY_FORMS'
+import sys
 from pathlib import Path
+offset = max(0, int(sys.argv[1]))
+limit = max(0, int(sys.argv[2]))
 root = Path('src/forms')
 form_ids = sorted(entry.name for entry in root.iterdir() if entry.is_dir() and (entry / 'spec.json').exists())
+if offset:
+    form_ids = form_ids[offset:]
+if limit:
+    form_ids = form_ids[:limit]
 print(','.join(form_ids))
 PY_FORMS
 )"
@@ -179,6 +189,17 @@ print(datetime.utcnow().strftime('%Y%m%dT%H%M%SZ') + f'_job{job_id}')
 PY_LABEL
 }
 
+trial_completed() {
+  local form_id="$1"
+  local run_idx="$2"
+  local answer_run_id
+  answer_run_id="$(printf 'run_%04d' "$run_idx")"
+  if compgen -G "$ROOT_DIR/data/model_baselines/*/$DIRECT_MODEL_ID/$form_id/$answer_run_id/*/summary.json" >/dev/null; then
+    return 0
+  fi
+  compgen -G "$ROOT_DIR/data/model_baselines/$DIRECT_EXPERIMENT_ID/$DIRECT_MODEL_ID/$form_id/$answer_run_id/*/summary.json" >/dev/null
+}
+
 direct_total=0
 direct_passed=0
 direct_failed=0
@@ -186,15 +207,22 @@ direct_failed=0
 echo "[INFO] config_path=$CONFIG_PATH"
 echo "[INFO] forms=$RESOLVED_FORM_IDS"
 echo "[INFO] run_indexes=$RUN_INDEXES"
+echo "[INFO] form_offset=$FORM_OFFSET"
+echo "[INFO] form_limit=$FORM_LIMIT"
 echo "[INFO] direct_experiment_id=$DIRECT_EXPERIMENT_ID"
 echo "[INFO] direct_model_id=$DIRECT_MODEL_ID"
 echo "[INFO] direct_provider=opencua_local"
 echo "[INFO] served_model_name=$OPENAI_MODEL"
 echo "[INFO] base_url=$OPENAI_BASE_URL"
+echo "[INFO] skip_completed=$SKIP_COMPLETED"
 
 IFS=',' read -r -a FORMS <<<"$RESOLVED_FORM_IDS"
 for form_id in "${FORMS[@]}"; do
   for run_idx in "${RUN_INDEX_LIST[@]}"; do
+    if [ "$SKIP_COMPLETED" = "1" ] && trial_completed "$form_id" "$run_idx"; then
+      echo "[INFO] opencua_direct_skip_completed model_id=${DIRECT_MODEL_ID} form_id=${form_id} run_index=${run_idx}"
+      continue
+    fi
     trial_id="$(make_trial_id)"
     run_label="$(make_run_label)"
     direct_total=$((direct_total + 1))

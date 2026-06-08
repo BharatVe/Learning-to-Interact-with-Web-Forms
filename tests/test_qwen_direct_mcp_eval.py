@@ -8,6 +8,7 @@ SRC_ROOT = REPO_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
+from baselines import run_opencua_direct_mcp_eval as opencua_direct_mcp_eval
 from baselines import run_qwen_direct_mcp_eval as qwen_direct_mcp_eval
 
 
@@ -36,6 +37,30 @@ class QwenDirectMCPEvalTests(TestCase):
         self.assertEqual(tools[0]["function"]["name"], "browser_click")
         self.assertEqual(tools[0]["function"]["parameters"]["required"], ["ref"])
         self.assertEqual(set(tools[0]["function"]["parameters"]["properties"]), {"ref"})
+
+    def test_model_visible_tools_exclude_internal_playwright_tools(self):
+        exposed = [
+            {"name": "browser_snapshot", "description": "Snapshot", "inputSchema": {}},
+            {"name": "browser_click", "description": "Click", "inputSchema": {}},
+            {"name": "browser_type", "description": "Type", "inputSchema": {}},
+            {"name": "browser_fill_form", "description": "Fill", "inputSchema": {}},
+            {"name": "browser_check", "description": "Check", "inputSchema": {}},
+            {"name": "browser_uncheck", "description": "Uncheck", "inputSchema": {}},
+            {"name": "browser_select_option", "description": "Select", "inputSchema": {}},
+            {"name": "browser_wait_for", "description": "Wait", "inputSchema": {}},
+            {"name": "browser_press_key", "description": "Press", "inputSchema": {}},
+            {"name": "browser_navigate", "description": "Navigate", "inputSchema": {}},
+            {"name": "browser_run_code", "description": "Run arbitrary page code", "inputSchema": {}},
+            {"name": "browser_close", "description": "Close", "inputSchema": {}},
+            {"name": "browser_take_screenshot", "description": "Screenshot", "inputSchema": {}},
+        ]
+        tools = qwen_direct_mcp_eval._mcp_tools_to_openai_tools(exposed)
+        visible_names = {tool["function"]["name"] for tool in tools}
+        self.assertEqual(visible_names, qwen_direct_mcp_eval.DIRECT_MCP_MODEL_TOOLS)
+        self.assertNotIn("browser_run_code", visible_names)
+        self.assertNotIn("browser_navigate", visible_names)
+        self.assertNotIn("browser_close", visible_names)
+        self.assertNotIn("browser_take_screenshot", visible_names)
 
     def test_select_option_is_hidden_without_real_select_control(self):
         tools = qwen_direct_mcp_eval._mcp_tools_to_openai_tools(
@@ -88,6 +113,7 @@ class QwenDirectMCPEvalTests(TestCase):
         parsed = qwen_direct_mcp_eval._parse_openai_response(payload)
         self.assertEqual(parsed["text"], "Using tools.")
         self.assertEqual(parsed["finish_reason"], "tool_calls")
+        self.assertEqual(parsed["tool_call_transport"], "native_tool_calls")
         self.assertEqual(parsed["tool_calls"][0]["name"], "browser_click")
         self.assertEqual(parsed["tool_calls"][0]["arguments"], {"x": 12, "y": 30})
 
@@ -107,9 +133,46 @@ class QwenDirectMCPEvalTests(TestCase):
             ]
         }
         parsed = qwen_direct_mcp_eval._parse_openai_response(payload)
+        self.assertEqual(parsed["tool_call_transport"], "text_tool_call_fallback")
         self.assertEqual(parsed["tool_calls"][0]["name"], "browser_click")
         self.assertEqual(parsed["tool_calls"][0]["arguments"], {"x": 12, "y": 30})
         self.assertEqual(parsed["tool_calls"][0]["source"], "assistant_text_tool_call")
+
+    def test_parse_openai_response_recovers_relaxed_opencua_text_tool_call(self):
+        payload = {
+            "choices": [
+                {
+                    "finish_reason": "stop",
+                    "message": {
+                        "content": (
+                            "<tool_call>\n"
+                            '  "name": "browser_type",\n'
+                            '  "arguments": {\n'
+                            '    "text": "Morgan Bauer",\n'
+                            '    "ref": "e36"\n'
+                            "  }\n"
+                            "</tool_call>"
+                        ),
+                    },
+                }
+            ]
+        }
+        parsed = qwen_direct_mcp_eval._parse_openai_response(payload)
+        self.assertEqual(parsed["tool_call_transport"], "text_tool_call_fallback")
+        self.assertEqual(parsed["tool_calls"][0]["name"], "browser_type")
+        self.assertEqual(parsed["tool_calls"][0]["arguments"], {"text": "Morgan Bauer", "ref": "e36"})
+        self.assertEqual(parsed["tool_calls"][0]["source"], "assistant_text_tool_call")
+
+    def test_relaxed_opencua_tool_call_normalizes_to_documented_arguments(self):
+        parsed = qwen_direct_mcp_eval._parse_raw_mcp_tool_calls(
+            "<tool_call>\n"
+            '  "name": "browser_type",\n'
+            '  "arguments": {"text": "Morgan Bauer", "ref": "e36", "x": 100, "y": 200}\n'
+            "</tool_call>"
+        )
+        self.assertEqual(len(parsed), 1)
+        normalized = qwen_direct_mcp_eval._normalize_tool_arguments(parsed[0]["name"], parsed[0]["arguments"])
+        self.assertEqual(normalized, {"ref": "e36", "text": "Morgan Bauer"})
 
     def test_parse_openai_response_ignores_malformed_text_tool_call(self):
         payload = {
@@ -122,6 +185,100 @@ class QwenDirectMCPEvalTests(TestCase):
         }
         parsed = qwen_direct_mcp_eval._parse_openai_response(payload)
         self.assertEqual(parsed["tool_calls"], [])
+        self.assertEqual(parsed["tool_call_transport"], "none")
+
+    def test_parse_openai_response_ignores_malformed_relaxed_text_tool_call(self):
+        payload = {
+            "choices": [
+                {
+                    "finish_reason": "stop",
+                    "message": {
+                        "content": (
+                            "<tool_call>\n"
+                            '  "name": "browser_type",\n'
+                            '  "arguments": {"text": "Morgan Bauer", "ref": "e36"\n'
+                            "</tool_call>"
+                        ),
+                    },
+                }
+            ]
+        }
+        parsed = qwen_direct_mcp_eval._parse_openai_response(payload)
+        self.assertEqual(parsed["tool_calls"], [])
+        self.assertEqual(parsed["tool_call_transport"], "none")
+
+    def test_call_model_can_disable_native_openai_tools(self):
+        captured = {}
+
+        def fake_post(url, headers, payload, timeout_s):
+            captured["payload"] = payload
+            return {"choices": [{"message": {"content": "STOP"}}]}
+
+        original = qwen_direct_mcp_eval._http_post_json
+        qwen_direct_mcp_eval._http_post_json = fake_post
+        try:
+            parsed = qwen_direct_mcp_eval._call_model(
+                base_url="http://localhost:8000/v1",
+                api_key="EMPTY",
+                model="opencua-32b",
+                messages=[{"role": "user", "content": "use tools"}],
+                tools=[{"type": "function", "function": {"name": "browser_click", "parameters": {}}}],
+                native_tool_calls=False,
+                max_new_tokens=16,
+                timeout_s=1,
+            )
+        finally:
+            qwen_direct_mcp_eval._http_post_json = original
+        self.assertEqual(parsed["text"], "STOP")
+        self.assertNotIn("tools", captured["payload"])
+        self.assertNotIn("tool_choice", captured["payload"])
+
+    def test_call_model_sends_native_tools_when_enabled(self):
+        captured = {}
+
+        def fake_post(url, headers, payload, timeout_s):
+            captured["payload"] = payload
+            return {"choices": [{"message": {"content": "STOP"}}]}
+
+        original = qwen_direct_mcp_eval._http_post_json
+        qwen_direct_mcp_eval._http_post_json = fake_post
+        try:
+            qwen_direct_mcp_eval._call_model(
+                base_url="http://localhost:8000/v1",
+                api_key="EMPTY",
+                model="qwen",
+                messages=[{"role": "user", "content": "use tools"}],
+                tools=[{"type": "function", "function": {"name": "browser_click", "parameters": {}}}],
+                native_tool_calls=True,
+                max_new_tokens=16,
+                timeout_s=1,
+            )
+        finally:
+            qwen_direct_mcp_eval._http_post_json = original
+        self.assertIn("tools", captured["payload"])
+        self.assertEqual(captured["payload"]["tool_choice"], "auto")
+
+    def test_strict_direct_mcp_does_not_parse_pyautogui_as_tool(self):
+        payload = {"choices": [{"message": {"content": "pyautogui.click(x=10, y=20)"}}]}
+        parsed = qwen_direct_mcp_eval._parse_openai_response(payload)
+        self.assertEqual(parsed["tool_calls"], [])
+        self.assertEqual(parsed["tool_call_transport"], "none")
+
+    def test_computer_use_agent_messages_include_screenshot(self):
+        image_path = REPO_ROOT / "tests" / "fixtures_opencua_direct_mcp.png"
+        image_path.write_bytes(b"png")
+        try:
+            messages = qwen_direct_mcp_eval._build_messages(
+                model_kind="computer_use_agent",
+                observation_text="snapshot",
+                screenshot_path=image_path,
+                history=[],
+            )
+        finally:
+            image_path.unlink(missing_ok=True)
+        self.assertIsInstance(messages[-1]["content"], list)
+        self.assertEqual(messages[-1]["content"][0]["type"], "text")
+        self.assertEqual(messages[-1]["content"][1]["type"], "image_url")
 
     def test_done_text_accepts_done_and_stop(self):
         self.assertTrue(qwen_direct_mcp_eval._done_text("DONE finished"))
@@ -144,6 +301,24 @@ class QwenDirectMCPEvalTests(TestCase):
         self.assertIn("DONE means you have observed a form submission confirmation page", prompt)
         self.assertIn("Before submitting, double-check the visible form state", prompt)
         self.assertIn("Do not use DONE to say the form is ready to submit", prompt)
+        self.assertIn("Do not output pyautogui", prompt)
+        self.assertIn("textual fallback call", prompt)
+
+    def test_opencua_direct_mcp_wrapper_sets_computer_use_kind(self):
+        captured = {}
+
+        def fake_main(argv):
+            captured["argv"] = argv
+            return 0
+
+        original = opencua_direct_mcp_eval.run_qwen_direct_mcp_eval.main
+        opencua_direct_mcp_eval.run_qwen_direct_mcp_eval.main = fake_main
+        try:
+            status = opencua_direct_mcp_eval.main(["--model-id", "computer_use_opencua_32b_direct_mcp"])
+        finally:
+            opencua_direct_mcp_eval.run_qwen_direct_mcp_eval.main = original
+        self.assertEqual(status, 0)
+        self.assertEqual(captured["argv"][:2], ["--model-kind", "computer_use_agent"])
 
     def test_observation_prompt_includes_control_contract(self):
         prompt = qwen_direct_mcp_eval._observation_prompt(
@@ -167,6 +342,40 @@ class QwenDirectMCPEvalTests(TestCase):
         self.assertIn('"ref": "e198"', prompt)
         self.assertIn('"browser_type"', prompt)
         self.assertIn("does not choose answers", prompt)
+
+    def test_observation_prompt_omits_browser_check_when_not_visible(self):
+        prompt = qwen_direct_mcp_eval._observation_prompt(
+            form_url="https://example.test/form",
+            remaining_answers=[{"question_id": "q1", "label": "Choice", "value": "A"}],
+            page_text="Choice",
+            url="https://example.test/form",
+            step_idx=0,
+            model_visible_tool_names=["browser_snapshot", "browser_click", "browser_type"],
+            control_contract=[
+                {
+                    "ref": "e1",
+                    "label": "A",
+                    "tag": "div",
+                    "role": "radio",
+                    "valid_mcp_tools": ["browser_click"],
+                }
+            ],
+        )
+        self.assertNotIn("browser_check", prompt)
+        self.assertIn("For checkboxes and radio buttons use browser_click", prompt)
+
+    def test_filter_control_contract_tools_intersects_visible_tools(self):
+        filtered = qwen_direct_mcp_eval._filter_control_contract_tools(
+            [
+                {
+                    "ref": "e1",
+                    "label": "A",
+                    "valid_mcp_tools": ["browser_click", "browser_check"],
+                }
+            ],
+            {"browser_click"},
+        )
+        self.assertEqual(filtered[0]["valid_mcp_tools"], ["browser_click"])
 
     def test_assistant_history_omits_null_tool_calls(self):
         message = qwen_direct_mcp_eval._assistant_history_message({"text": "DONE", "tool_calls": []})

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="550" viewBox="0 0 980 550">
+<style>text{font-family:Arial,sans-serif;font-size:12px;fill:#202124}.title{font-size:17px;font-weight:700}.axis{fill:#5f6368}.small{font-size:10px;fill:#5f6368}</style>
+<rect width="100%" height="100%" fill="#fff"/>
+<text class="title" x="24" y="30">Model Performance</text>
+<text class="axis" x="24" y="52">Submit success, strict success, and scored correctness accuracy</text>
+<text x="24" y="98">text_qwen3_30b_a3b_instruct_2507 / qwen_all_completed</text>
+<rect x="255" y="82" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="82" width="269.0" height="13" fill="#1a73e8"/>
+<text class="small" x="201" y="93">submit</text>
+<text class="small" x="883" y="93">43.4%</text>
+<rect x="255" y="102" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="102" width="269.0" height="13" fill="#34a853"/>
+<text class="small" x="201" y="113">success</text>
+<text class="small" x="883" y="113">43.4%</text>
+<rect x="255" y="122" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="122" width="366.9" height="13" fill="#fbbc04"/>
+<text class="small" x="201" y="133">score</text>
+<text class="small" x="883" y="133">59.2%</text>
+<text x="24" y="186">vlm_qwen3_vl_30b_a3b_instruct / qwen_all_completed</text>
+<rect x="255" y="170" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="170" width="427.6" height="13" fill="#1a73e8"/>
+<text class="small" x="201" y="181">submit</text>
+<text class="small" x="883" y="181">69.0%</text>
+<rect x="255" y="190" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="190" width="427.6" height="13" fill="#34a853"/>
+<text class="small" x="201" y="201">success</text>
+<text class="small" x="883" y="201">69.0%</text>
+<rect x="255" y="210" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="210" width="360.3" height="13" fill="#fbbc04"/>
+<text class="small" x="201" y="221">score</text>
+<text class="small" x="883" y="221">58.1%</text>
+<text x="24" y="274">computer_use_opencua_32b / opencua_control_guidance_completed</text>
+<rect x="255" y="258" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="258" width="1.0" height="13" fill="#1a73e8"/>
+<text class="small" x="201" y="269">submit</text>
+<text class="small" x="883" y="269">0.0%</text>
+<rect x="255" y="278" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="278" width="1.0" height="13" fill="#34a853"/>
+<text class="small" x="201" y="289">success</text>
+<text class="small" x="883" y="289">0.0%</text>
+<rect x="255" y="298" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="298" width="236.5" height="13" fill="#fbbc04"/>
+<text class="small" x="201" y="309">score</text>
+<text class="small" x="883" y="309">38.1%</text>
+<text x="24" y="362">text_qwen3_30b_a3b_instruct_2507 / qwen_latest_completed</text>
+<rect x="255" y="346" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="346" width="620.0" height="13" fill="#1a73e8"/>
+<text class="small" x="201" y="357">submit</text>
+<text class="small" x="883" y="357">100.0%</text>
+<rect x="255" y="366" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="366" width="620.0" height="13" fill="#34a853"/>
+<text class="small" x="201" y="377">success</text>
+<text class="small" x="883" y="377">100.0%</text>
+<rect x="255" y="386" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="386" width="329.4" height="13" fill="#fbbc04"/>
+<text class="small" x="201" y="397">score</text>
+<text class="small" x="883" y="397">53.1%</text>
+<text x="24" y="450">vlm_qwen3_vl_30b_a3b_instruct / qwen_latest_completed</text>
+<rect x="255" y="434" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="434" width="465.0" height="13" fill="#1a73e8"/>
+<text class="small" x="201" y="445">submit</text>
+<text class="small" x="883" y="445">75.0%</text>
+<rect x="255" y="454" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="454" width="465.0" height="13" fill="#34a853"/>
+<text class="small" x="201" y="465">success</text>
+<text class="small" x="883" y="465">75.0%</text>
+<rect x="255" y="474" width="620" height="13" fill="#eef1f4"/>
+<rect x="255" y="474" width="368.1" height="13" fill="#fbbc04"/>
+<text class="small" x="201" y="485">score</text>
+<text class="small" x="883" y="485">59.4%</text>
+</svg>

@@ -1,0 +1,14 @@
+model_id,model_kind,track,widget_type,analysis_scope,questions,attempted,attempted_correct,verified,verified_correct,failed,not_attempted,container_not_visible,attempt_rate,verified_accuracy,failure_rate,reliability
+computer_use_opencua_32b,computer_use_agent,computer_use_native,date,opencua_control_guidance_completed,132,1,0,1,0,132,131,33,0.007575757575757576,0.0,1.0,final_verification
+computer_use_opencua_32b,computer_use_agent,computer_use_native,dropdown,opencua_control_guidance_completed,75,63,0,60,0,75,12,15,0.84,0.0,1.0,final_verification
+computer_use_opencua_32b,computer_use_agent,computer_use_native,multi_choice,opencua_control_guidance_completed,144,93,12,93,2,142,51,51,0.6458333333333334,0.013888888888888888,0.9861111111111112,final_verification
+computer_use_opencua_32b,computer_use_agent,computer_use_native,paragraph_text,opencua_control_guidance_completed,135,99,12,96,7,128,36,39,0.7333333333333333,0.05185185185185185,0.9481481481481482,final_verification
+computer_use_opencua_32b,computer_use_agent,computer_use_native,short_text,opencua_control_guidance_completed,423,387,369,369,349,74,36,54,0.9148936170212766,0.8250591016548463,0.17494089834515367,final_verification
+computer_use_opencua_32b,computer_use_agent,computer_use_native,single_choice,opencua_control_guidance_completed,231,134,122,128,110,121,97,39,0.5800865800865801,0.47619047619047616,0.5238095238095238,final_verification
+computer_use_opencua_32b,computer_use_agent,computer_use_native,time,opencua_control_guidance_completed,87,0,0,0,0,87,87,36,0.0,0.0,1.0,final_verification
+vlm_qwen3_vl_30b_a3b_instruct,vlm,direct_mcp_tool_use,date,qwen_latest_partial_only,2,0,0,0,0,2,0,2,0.0,0.0,1.0,final_verification
+vlm_qwen3_vl_30b_a3b_instruct,vlm,direct_mcp_tool_use,multi_choice,qwen_latest_partial_only,1,0,0,0,0,1,0,1,0.0,0.0,1.0,final_verification
+vlm_qwen3_vl_30b_a3b_instruct,vlm,direct_mcp_tool_use,paragraph_text,qwen_latest_partial_only,1,0,0,0,0,1,0,1,0.0,0.0,1.0,final_verification
+vlm_qwen3_vl_30b_a3b_instruct,vlm,direct_mcp_tool_use,short_text,qwen_latest_partial_only,5,2,2,2,2,3,0,3,0.4,0.4,0.6,final_verification
+vlm_qwen3_vl_30b_a3b_instruct,vlm,direct_mcp_tool_use,single_choice,qwen_latest_partial_only,1,0,0,0,0,1,0,1,0.0,0.0,1.0,final_verification
+vlm_qwen3_vl_30b_a3b_instruct,vlm,direct_mcp_tool_use,time,qwen_latest_partial_only,1,1,1,1,1,0,0,0,1.0,1.0,0.0,final_verification

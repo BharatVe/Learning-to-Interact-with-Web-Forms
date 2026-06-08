@@ -45,6 +45,7 @@ FAIL_ON_TRIAL_FAILURE="${FAIL_ON_TRIAL_FAILURE:-0}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 SUMMARY_OUTPUT="${SUMMARY_OUTPUT:-logs/${EXPERIMENT_ID}_reference_efficiency_summary.json}"
 GPU_COUNT="${GPU_COUNT:-2}"
+CUDA_PREFLIGHT_PYTHON_BIN="${CUDA_PREFLIGHT_PYTHON_BIN:-$ROOT_DIR/.venv-opencua/bin/python}"
 MEDIATED_VLLM_HOST="${MEDIATED_VLLM_HOST:-127.0.0.1}"
 MEDIATED_TEXT_VLLM_PORT="${MEDIATED_TEXT_VLLM_PORT:-8010}"
 MEDIATED_VLM_VLLM_PORT="${MEDIATED_VLM_VLLM_PORT:-8011}"
@@ -120,6 +121,28 @@ SERVER_LOG=""
 OPENAI_BASE_URL=""
 OPENAI_MODEL=""
 
+cuda_preflight() {
+  if [ ! -x "$CUDA_PREFLIGHT_PYTHON_BIN" ]; then
+    echo "[FAIL] cuda preflight interpreter missing: $CUDA_PREFLIGHT_PYTHON_BIN" >&2
+    exit 1
+  fi
+  "$CUDA_PREFLIGHT_PYTHON_BIN" - "$GPU_COUNT" <<'PY_CUDA'
+import sys
+expected = max(1, int(sys.argv[1]))
+try:
+    import torch
+except Exception as exc:
+    print(f"[FAIL] cuda_preflight_import_torch_failed: {exc}", file=sys.stderr)
+    raise SystemExit(1)
+count = torch.cuda.device_count()
+print(f"[INFO] cuda_preflight torch_cuda_available={torch.cuda.is_available()} device_count={count} expected_min={expected}")
+if not torch.cuda.is_available() or count < expected:
+    raise SystemExit("[FAIL] cuda_preflight_insufficient_cuda_devices")
+for idx in range(count):
+    print(f"[INFO] cuda_preflight device_{idx}={torch.cuda.get_device_name(idx)}")
+PY_CUDA
+}
+
 cleanup_server() {
   if [ -n "$SERVER_PID" ] && kill -0 "$SERVER_PID" >/dev/null 2>&1; then
     kill "$SERVER_PID" >/dev/null 2>&1 || true
@@ -155,6 +178,7 @@ start_server() {
   OPENAI_MODEL="$served_model_name"
   SERVER_LOG="logs/slurm/${model_id}-direct-mcp-vllm-${SLURM_JOB_ID:-na}.log"
   echo "[INFO] starting_qwen_direct_mcp_server model_id=${model_id} model_kind=${model_kind} base_url=${OPENAI_BASE_URL}"
+  cuda_preflight
   QWEN_VLLM_PORT="$port" \
     QWEN_VLLM_HOST="$MEDIATED_VLLM_HOST" \
     QWEN_MODEL_SPEC="$model_spec" \
@@ -213,6 +237,12 @@ trial_completed() {
   local form_id="$2"
   local run_idx="$3"
   local glob
+  local answer_run_id
+  answer_run_id="$(printf 'run_%04d' "$run_idx")"
+  glob="$ROOT_DIR/data/model_baselines/*/$model_id/$form_id/$answer_run_id/*/summary.json"
+  if compgen -G "$glob" >/dev/null; then
+    return 0
+  fi
   glob="$(trial_summary_glob "$model_id" "$form_id" "$run_idx")"
   compgen -G "$glob" >/dev/null
 }

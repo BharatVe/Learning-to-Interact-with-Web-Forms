@@ -57,6 +57,7 @@ SCROLL_RE = re.compile(r"pyautogui\.scroll\s*\(\s*(?P<delta>-?\d+)\s*\)", re.IGN
 WAIT_RE = re.compile(r"(?:time\.)?sleep\s*\(\s*(?P<secs>\d+(?:\.\d+)?)\s*\)", re.IGNORECASE)
 SUBMIT_RE = re.compile(r"^(?:submit|finish_and_submit|click_submit)\s*$", re.IGNORECASE)
 DONE_RE = re.compile(r"^(?:done|stop|terminate)\s*$", re.IGNORECASE)
+REPEATED_ACTION_LOOP_THRESHOLD = 4
 
 
 def _load_run_answers(answers_path: Path, run_index: int) -> List[Dict[str, Any]]:
@@ -313,6 +314,23 @@ def _parse_opencua_action(raw_text: str, viewport_width: int, viewport_height: i
     raise ValueError(f"unrecognized_opencua_action:{joined[:400]}")
 
 
+def _recent_same_action_signature_count(recent_history: List[Dict[str, Any]]) -> int:
+    count = 0
+    last_signature: Optional[str] = None
+    for row in reversed(recent_history):
+        signature = rbe._action_signature(row)
+        if not signature:
+            break
+        if last_signature is None:
+            last_signature = signature
+            count = 1
+            continue
+        if signature != last_signature:
+            break
+        count += 1
+    return count
+
+
 class OpenCUAAdapter:
     def __init__(self, model_cfg: Dict[str, Any], api_timeout_s: int, base_url: str, served_model_name: str, min_request_interval_s: float) -> None:
         self.model_cfg = dict(model_cfg)
@@ -400,11 +418,16 @@ def _build_goal_prompt(
         "- DONE\n"
         "Rules:\n"
         "- Use coordinates from the screenshot, not from the interaction map.\n"
+        "- Work through the remaining answers in a simple top-to-bottom order when possible.\n"
         "- Choose the coordinate for the visible control itself: text box, radio button, checkbox, time field, or Submit button.\n"
         "- If the target answer is not visible, scroll instead of clicking an unrelated area.\n"
         "- If an action does not change the visible state, choose a different strategy on the next step.\n"
-        "- For checkboxes and radio buttons, click the visible option circle/box or its label once.\n"
-        "- For text, paragraph, date, and time fields, click the field and write the exact target value.\n"
+        "- Do not type option values into radio, checkbox, or dropdown controls.\n"
+        "- For radio buttons and checkboxes, click the visible circle/box or the exact option label once. "
+        "If the mark does not appear, click a different point on the same option label or move to the next visible required control; do not repeat the same coordinate.\n"
+        "- For dropdown controls, first click the dropdown field to open the option list, then click the exact option text in the opened list. "
+        "If the target option is not visible in the opened list, scroll the page or menu instead of typing the value.\n"
+        "- For text, paragraph, date, and time fields, click the field and write the exact target value without adding extra text.\n"
         "- Do not output explanations outside the action text.\n"
         "- Before submitting, double-check the visible form state against the target answers as well as the current screenshot allows.\n"
         "- If the form appears correct and you intend to submit, click the visible Submit button or output SUBMIT.\n"
@@ -713,10 +736,10 @@ def main(argv: Optional[List[str]] = None) -> int:
                     "execution": None,
                     "verification": None,
                     "progress_made": False,
-                "interaction_map_count": len(interaction_map),
-                "interaction_map_prompt_included": bool(args.include_symbolic_support),
-                "model_inference": {"attempts": [{"attempt": 1, "error": str(exc)}]},
-            }
+                    "interaction_map_count": len(interaction_map),
+                    "interaction_map_prompt_included": bool(args.include_symbolic_support),
+                    "model_inference": {"attempts": [{"attempt": 1, "error": str(exc)}]},
+                }
                 annotations["steps"].append(step_record)
                 rbe._set_failure(annotations, "model_inference_failed", str(exc), step_idx)
                 annotations["stop_reason"] = "model_inference_failed"
@@ -948,11 +971,26 @@ def main(argv: Optional[List[str]] = None) -> int:
                         step_record["error"] = f"verification_failed: {step_verification.get('detail')}"
                         rbe._record_soft_violation(annotations, "verification_failed", str(step_verification.get("detail")), step_idx)
 
+            recent_with_current = annotations.get("steps", []) + [step_record]
+            repeat_same_action_count = _recent_same_action_signature_count(recent_with_current)
+            step_record["repeat_same_action_count"] = repeat_same_action_count
+            io_record["repeat_same_action_count"] = repeat_same_action_count
+            if action_name in {"click_mouse", "wait"} and repeat_same_action_count >= REPEATED_ACTION_LOOP_THRESHOLD:
+                step_record["stall_type"] = "repeated_action_loop"
+                io_record["stall_type"] = "repeated_action_loop"
+                annotations["stop_reason"] = "repeated_action_loop"
+                rbe._set_failure(
+                    annotations,
+                    "repeated_action_loop",
+                    rbe._action_signature(step_record),
+                    step_idx,
+                )
+
             annotations["steps"].append(step_record)
             rbe._append_jsonl(paths["model_io_path"], io_record)
             last_result = {"status": step_record["status"], "error": step_record["error"], "remaining_answers": len(rbe._serialize_remaining_answers(question_states))}
 
-            if annotations["stop_reason"] in {"submitted", "submission_failed", "model_output_invalid", "model_inference_failed", "done"}:
+            if annotations["stop_reason"] in {"submitted", "submission_failed", "model_output_invalid", "model_inference_failed", "done", "repeated_action_loop"}:
                 break
 
         if annotations["stop_reason"] is None:
@@ -993,6 +1031,10 @@ def main(argv: Optional[List[str]] = None) -> int:
     if str(args.scoring_mode or "") == "soft_quality_v1":
         soft_metrics = rbe._calculate_soft_quality_metrics(annotations.get("steps", []), annotations, bool(annotations.get("submit_success")))
         annotations.update(soft_metrics)
+    annotations["repeat_action_loop_count"] = sum(
+        1 for item in annotations.get("steps", []) if str(item.get("stall_type") or "") == "repeated_action_loop"
+    )
+    annotations["termination_due_to_repeated_action_loop"] = annotations.get("stop_reason") == "repeated_action_loop"
     annotations["duration_s"] = round(time.perf_counter() - start_time, 3)
     annotations.update(
         rbe._resolve_reference_efficiency(
@@ -1046,6 +1088,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         "successful_submit_attempt_count": sum(1 for item in (annotations.get("submit_attempts") or []) if item.get("success")),
         "failed_submit_attempt_count": sum(1 for item in (annotations.get("submit_attempts") or []) if not item.get("success")),
         "submitted_while_incomplete_count": sum(1 for item in (annotations.get("submit_attempts") or []) if item.get("submitted_while_incomplete")),
+        "repeat_action_loop_count": annotations.get("repeat_action_loop_count"),
+        "termination_due_to_repeated_action_loop": annotations.get("termination_due_to_repeated_action_loop"),
         "duration_s": annotations["duration_s"],
         "reference_available": annotations.get("reference_available"),
         "reference_run_path": annotations.get("reference_run_path"),
@@ -1083,6 +1127,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             "attempted_correctness": summary["attempted_correctness"],
             "verified_correctness": summary["verified_correctness"],
             "trace_action_count": summary.get("trace_action_count"),
+            "repeat_action_loop_count": summary.get("repeat_action_loop_count"),
+            "termination_due_to_repeated_action_loop": summary.get("termination_due_to_repeated_action_loop"),
             "reference_available": summary.get("reference_available"),
             "reference_action_count": summary.get("reference_action_count"),
             "reference_duration_s": summary.get("reference_duration_s"),

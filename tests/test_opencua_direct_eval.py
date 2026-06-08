@@ -86,6 +86,27 @@ class OpenCUACoordinateTests(TestCase):
         self.assertEqual(coords["y"], 999)
 
 
+class OpenCUALoopDetectionTests(TestCase):
+    def test_recent_same_action_signature_count_counts_trailing_repeats(self):
+        repeated = {"action": {"action": "click_mouse", "target": {"x": 330, "y": 987}}}
+        history = [
+            {"action": {"action": "type_text", "target": {"x": 343, "y": 353}, "value": "Taylor"}},
+            repeated,
+            repeated,
+            repeated,
+            repeated,
+        ]
+        self.assertEqual(opencua_eval._recent_same_action_signature_count(history), 4)
+
+    def test_recent_same_action_signature_count_stops_at_different_action(self):
+        history = [
+            {"action": {"action": "click_mouse", "target": {"x": 330, "y": 987}}},
+            {"action": {"action": "click_mouse", "target": {"x": 345, "y": 885}}},
+            {"action": {"action": "click_mouse", "target": {"x": 330, "y": 987}}},
+        ]
+        self.assertEqual(opencua_eval._recent_same_action_signature_count(history), 1)
+
+
 class OpenCUAPromptContractTests(TestCase):
     def test_prompt_is_screenshot_native_by_default(self):
         prompt = opencua_eval._build_goal_prompt(
@@ -102,6 +123,7 @@ class OpenCUAPromptContractTests(TestCase):
         self.assertIn("pyautogui.click", prompt)
         self.assertIn("Return only the next GUI action", prompt)
         self.assertIn("Do not output a script", prompt)
+        self.assertIn("top-to-bottom order", prompt)
         self.assertIn("If an action does not change the visible state", prompt)
         self.assertIn("scroll instead of clicking an unrelated area", prompt)
         self.assertIn("Before submitting, double-check the visible form state", prompt)

@@ -20,6 +20,7 @@ ENABLE_AUTO_TOOL_CHOICE="${QWEN_ENABLE_AUTO_TOOL_CHOICE:-1}"
 TOOL_CALL_PARSER="${QWEN_TOOL_CALL_PARSER:-hermes}"
 CHAT_TEMPLATE="${QWEN_CHAT_TEMPLATE:-}"
 GENERATION_CONFIG="${QWEN_GENERATION_CONFIG:-vllm}"
+VLLM_PYTHON_BIN="${QWEN_PYTHON_BIN:-${OPENCUA_PYTHON_BIN:-$ROOT_DIR/.venv-opencua/bin/python}}"
 
 export NCCL_DEBUG="${NCCL_DEBUG:-WARN}"
 export NCCL_P2P_DISABLE="${NCCL_P2P_DISABLE:-1}"
@@ -35,13 +36,14 @@ if [ -z "$SERVED_MODEL_NAME" ]; then
   echo "[FAIL] QWEN_SERVED_MODEL_NAME is required" >&2
   exit 1
 fi
-if ! command -v vllm >/dev/null 2>&1; then
-  echo "[FAIL] vllm not found on PATH" >&2
+if [ ! -x "$VLLM_PYTHON_BIN" ]; then
+  echo "[FAIL] vllm python interpreter missing: $VLLM_PYTHON_BIN" >&2
   exit 1
 fi
 
 CMD=(
-  vllm serve "$MODEL_SPEC"
+  "$VLLM_PYTHON_BIN" -m vllm.entrypoints.openai.api_server
+  --model "$MODEL_SPEC"
   --served-model-name "$SERVED_MODEL_NAME"
   --host "$HOST"
   --port "$PORT"

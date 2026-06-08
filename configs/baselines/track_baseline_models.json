@@ -40,6 +40,19 @@
       "server_backend": "vllm",
       "coordinate_type": "qwen25",
       "notes": "Primary native computer-use baseline model served locally through vLLM."
+    },
+    {
+      "id": "computer_use_opencua_32b_direct_mcp",
+      "kind": "computer_use_agent",
+      "provider": "openai_compat",
+      "hf_repo": "xlangai/OpenCUA-32B",
+      "track": "direct_mcp_tool_use",
+      "requires_gpu": true,
+      "openai_model": "opencua-32b",
+      "served_model_name": "opencua-32b",
+      "server_backend": "vllm",
+      "coordinate_type": "qwen25",
+      "notes": "Strict Playwright MCP ref/tool interface ablation for OpenCUA-32B."
     }
   ]
 }
