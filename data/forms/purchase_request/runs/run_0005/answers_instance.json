@@ -1,0 +1,92 @@
+[
+  {
+    "label": "Requester name",
+    "widget_type": "short_text",
+    "value": "Taylor Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "taylor.bauer.5@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Department or project",
+    "widget_type": "short_text",
+    "value": "omega-05-29",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Purchase category",
+    "widget_type": "dropdown",
+    "value": "Lab materials",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Item name",
+    "widget_type": "short_text",
+    "value": "Taylor Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Estimated cost",
+    "widget_type": "short_text",
+    "value": "beta-05-66",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Reason for purchase",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Reason for purchase; run 5)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Needed by date",
+    "widget_type": "date",
+    "value": "2025-07-31",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Budget source known?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Urgency level",
+    "widget_type": "single_choice",
+    "value": "Low",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

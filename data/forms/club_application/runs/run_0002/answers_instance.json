@@ -1,0 +1,96 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Jordan Ortiz",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Student email",
+    "widget_type": "short_text",
+    "value": "jordan.ortiz.2@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Study program",
+    "widget_type": "short_text",
+    "value": "delta-02-72",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Year of study",
+    "widget_type": "single_choice",
+    "value": "Other",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Why do you want to join?",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Why do you want to join?; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Activities you are interested in",
+    "widget_type": "multi_choice",
+    "value": [
+      "Events",
+      "Social media",
+      "Sponsorship"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Previous club experience",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Available start date",
+    "widget_type": "date",
+    "value": "2025-06-29",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Weekly time you can contribute",
+    "widget_type": "short_text",
+    "value": "gamma-02-63",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "09:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

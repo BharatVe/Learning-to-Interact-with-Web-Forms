@@ -1,0 +1,92 @@
+[
+  {
+    "label": "Requester name",
+    "widget_type": "short_text",
+    "value": "Riley Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "riley.rivera.1@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Department or project",
+    "widget_type": "short_text",
+    "value": "alpha-01-74",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Purchase category",
+    "widget_type": "dropdown",
+    "value": "Cloud credits",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Item name",
+    "widget_type": "short_text",
+    "value": "Riley Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Estimated cost",
+    "widget_type": "short_text",
+    "value": "alpha-01-38",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Reason for purchase",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Reason for purchase; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Needed by date",
+    "widget_type": "date",
+    "value": "2025-08-30",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Budget source known?",
+    "widget_type": "single_choice",
+    "value": "Not sure",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Urgency level",
+    "widget_type": "single_choice",
+    "value": "Low",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

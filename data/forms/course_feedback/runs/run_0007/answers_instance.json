@@ -1,0 +1,87 @@
+[
+  {
+    "label": "Course name",
+    "widget_type": "short_text",
+    "value": "Jordan Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Your program level",
+    "widget_type": "single_choice",
+    "value": "PhD",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Did you attend most sessions?",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Overall satisfaction",
+    "widget_type": "single_choice",
+    "value": "5 \u2013 Very satisfied",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Workload felt",
+    "widget_type": "single_choice",
+    "value": "About right",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "What did you like most?",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (What did you like most?; run 7)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "What should be improved?",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (What should be improved?; run 7)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Most useful aspects",
+    "widget_type": "multi_choice",
+    "value": [
+      "Theory",
+      "Practical labs",
+      "Project work"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Would you recommend this course?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

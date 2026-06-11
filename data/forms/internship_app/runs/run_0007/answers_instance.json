@@ -1,0 +1,115 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Casey Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "casey.bauer.7@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current city",
+    "widget_type": "short_text",
+    "value": "beta-07-75",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Degree program",
+    "widget_type": "single_choice",
+    "value": "Master\u2019s",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Primary area of interest",
+    "widget_type": "multi_choice",
+    "value": [
+      "Frontend"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Programming languages you use",
+    "widget_type": "multi_choice",
+    "value": [
+      "Java",
+      "C/C++"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Link to GitHub or portfolio",
+    "widget_type": "short_text",
+    "value": "alpha-07-53",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Brief motivation statement",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief motivation statement; run 7)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Earliest start date",
+    "widget_type": "date",
+    "value": "2025-08-02",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Weekly availability (hours)",
+    "widget_type": "short_text",
+    "value": "delta-07-73",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred meeting time for interview",
+    "widget_type": "time",
+    "value": "16:45",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Are you open to remote work?",
+    "widget_type": "single_choice",
+    "value": "Hybrid",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

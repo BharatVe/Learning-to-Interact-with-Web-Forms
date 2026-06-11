@@ -1,0 +1,87 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Sam Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "sam.patel.2@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University or organization",
+    "widget_type": "short_text",
+    "value": "DataWorks Institute",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Participation type",
+    "widget_type": "single_choice",
+    "value": "Looking for a team",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred challenge track",
+    "widget_type": "single_choice",
+    "value": "Open Innovation",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Skills you can contribute",
+    "widget_type": "multi_choice",
+    "value": [
+      "Data Analysis"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Dietary restrictions",
+    "widget_type": "multi_choice",
+    "value": [
+      "Vegan"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Arrival date",
+    "widget_type": "date",
+    "value": "2025-09-30",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Emergency contact number",
+    "widget_type": "short_text",
+    "value": "1",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  }
+]

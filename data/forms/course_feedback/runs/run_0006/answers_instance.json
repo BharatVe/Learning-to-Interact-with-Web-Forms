@@ -1,0 +1,87 @@
+[
+  {
+    "label": "Course name",
+    "widget_type": "short_text",
+    "value": "Morgan Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Your program level",
+    "widget_type": "single_choice",
+    "value": "Other",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Did you attend most sessions?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Overall satisfaction",
+    "widget_type": "single_choice",
+    "value": "3",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Workload felt",
+    "widget_type": "single_choice",
+    "value": "Too high",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "What did you like most?",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (What did you like most?; run 6)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "What should be improved?",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (What should be improved?; run 6)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Most useful aspects",
+    "widget_type": "multi_choice",
+    "value": [
+      "Theory",
+      "Practical labs",
+      "Assignments"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Would you recommend this course?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

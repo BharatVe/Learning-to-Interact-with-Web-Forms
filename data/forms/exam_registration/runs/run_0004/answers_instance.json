@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Sam Ortiz",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Student ID",
+    "widget_type": "short_text",
+    "value": "alpha-04-34",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "sam.ortiz.4@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Program level",
+    "widget_type": "single_choice",
+    "value": "Bachelor's",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Exam or module name",
+    "widget_type": "short_text",
+    "value": "Sam Ortiz",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Issue type",
+    "widget_type": "dropdown",
+    "value": "Registration not visible",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Exam date",
+    "widget_type": "date",
+    "value": "2025-11-27",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Describe the issue",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Describe the issue; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

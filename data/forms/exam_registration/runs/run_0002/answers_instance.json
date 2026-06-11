@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Riley Chen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Student ID",
+    "widget_type": "short_text",
+    "value": "omega-02-88",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "riley.chen.2@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Program level",
+    "widget_type": "single_choice",
+    "value": "Exchange student",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Exam or module name",
+    "widget_type": "short_text",
+    "value": "Riley Chen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Issue type",
+    "widget_type": "dropdown",
+    "value": "Other",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Exam date",
+    "widget_type": "date",
+    "value": "2025-11-26",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Describe the issue",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Describe the issue; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

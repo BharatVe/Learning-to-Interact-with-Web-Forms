@@ -1,0 +1,87 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Avery Khan",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "avery.khan.2@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Native language",
+    "widget_type": "short_text",
+    "value": "gamma-02-94",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Language(s) you want to practice",
+    "widget_type": "multi_choice",
+    "value": [
+      "German"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Comfort level speaking target language",
+    "widget_type": "single_choice",
+    "value": "Beginner",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred format",
+    "widget_type": "single_choice",
+    "value": "In person",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred meeting date",
+    "widget_type": "date",
+    "value": "2025-09-27",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "08:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Topics you enjoy discussing",
+    "widget_type": "multi_choice",
+    "value": [
+      "Daily life"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  }
+]

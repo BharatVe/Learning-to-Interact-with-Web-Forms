@@ -1,0 +1,85 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Lena Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "lena.nguyen.6@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Annotation experience",
+    "widget_type": "single_choice",
+    "value": "Some experience",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Languages comfortable with",
+    "widget_type": "multi_choice",
+    "value": [
+      "German"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred annotation task",
+    "widget_type": "dropdown",
+    "value": "Bounding boxes",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Available start date",
+    "widget_type": "date",
+    "value": "2025-08-14",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred work time",
+    "widget_type": "time",
+    "value": "13:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Weekly availability",
+    "widget_type": "short_text",
+    "value": "delta-06-70",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Comments about task preference",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Comments about task preference; run 6)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

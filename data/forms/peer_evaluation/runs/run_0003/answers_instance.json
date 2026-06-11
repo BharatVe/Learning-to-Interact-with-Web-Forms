@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Your name",
+    "widget_type": "short_text",
+    "value": "Sam Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Project group name",
+    "widget_type": "short_text",
+    "value": "Sam Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Peer being evaluated",
+    "widget_type": "short_text",
+    "value": "alpha-03-59",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contribution level",
+    "widget_type": "single_choice",
+    "value": "Very low",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Strengths observed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Communication",
+      "Technical work",
+      "Organization"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Collaboration rating",
+    "widget_type": "dropdown",
+    "value": "1",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Constructive feedback",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Constructive feedback; run 3)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

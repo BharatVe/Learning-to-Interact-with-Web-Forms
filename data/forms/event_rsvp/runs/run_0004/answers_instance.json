@@ -1,0 +1,58 @@
+[
+  {
+    "label": "Name",
+    "widget_type": "short_text",
+    "value": "Sam Chen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Will you attend?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Number of guests (including yourself)",
+    "widget_type": "short_text",
+    "value": "2",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred arrival time",
+    "widget_type": "time",
+    "value": "10:15",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Activities you\u2019re interested in",
+    "widget_type": "multi_choice",
+    "value": [
+      "Talks"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Accessibility needs or comments",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Accessibility needs or comments; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

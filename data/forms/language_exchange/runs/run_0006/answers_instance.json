@@ -1,0 +1,88 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Lena Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "lena.nguyen.6@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Native language",
+    "widget_type": "short_text",
+    "value": "delta-06-51",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Language(s) you want to practice",
+    "widget_type": "multi_choice",
+    "value": [
+      "French"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Comfort level speaking target language",
+    "widget_type": "single_choice",
+    "value": "Advanced",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred format",
+    "widget_type": "single_choice",
+    "value": "Online",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred meeting date",
+    "widget_type": "date",
+    "value": "2025-06-19",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "15:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Topics you enjoy discussing",
+    "widget_type": "multi_choice",
+    "value": [
+      "Travel",
+      "Food"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  }
+]

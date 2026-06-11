@@ -1,0 +1,68 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Morgan Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Meal preference",
+    "widget_type": "single_choice",
+    "value": "Vegan",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Allergies or intolerances",
+    "widget_type": "multi_choice",
+    "value": [
+      "Dairy",
+      "None"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred dining date",
+    "widget_type": "date",
+    "value": "2025-07-19",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred dining time",
+    "widget_type": "time",
+    "value": "11:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Would you like dessert?",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Additional notes",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Additional notes; run 3)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

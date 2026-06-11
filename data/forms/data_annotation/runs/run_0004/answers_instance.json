@@ -1,0 +1,87 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Jordan Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "jordan.nguyen.4@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Annotation experience",
+    "widget_type": "single_choice",
+    "value": "Experienced",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Languages comfortable with",
+    "widget_type": "multi_choice",
+    "value": [
+      "French",
+      "Spanish",
+      "Hindi"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred annotation task",
+    "widget_type": "dropdown",
+    "value": "Quality checking",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Available start date",
+    "widget_type": "date",
+    "value": "2025-06-18",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred work time",
+    "widget_type": "time",
+    "value": "09:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Weekly availability",
+    "widget_type": "short_text",
+    "value": "alpha-04-96",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Comments about task preference",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Comments about task preference; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Casey Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "casey.bauer.1@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Remote work start date",
+    "widget_type": "date",
+    "value": "2025-10-08",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Expected remote work duration",
+    "widget_type": "dropdown",
+    "value": "Full semester",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Equipment needed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Monitor",
+      "Headset"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Primary work location",
+    "widget_type": "single_choice",
+    "value": "Home",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Technical constraints",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Technical constraints; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

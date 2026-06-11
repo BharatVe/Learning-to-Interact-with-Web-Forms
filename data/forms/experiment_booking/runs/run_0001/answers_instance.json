@@ -1,0 +1,86 @@
+[
+  {
+    "label": "Participant name",
+    "widget_type": "short_text",
+    "value": "Morgan Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "morgan.nguyen.1@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Participant group",
+    "widget_type": "single_choice",
+    "value": "Student",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Prior participation in similar studies",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Experiment type",
+    "widget_type": "dropdown",
+    "value": "Interview",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Preferred session date",
+    "widget_type": "date",
+    "value": "2025-08-16",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred start time",
+    "widget_type": "time",
+    "value": "16:45",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Session constraints",
+    "widget_type": "multi_choice",
+    "value": [
+      "Needs quiet room",
+      "Flexible schedule"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Additional comments",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Additional comments; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

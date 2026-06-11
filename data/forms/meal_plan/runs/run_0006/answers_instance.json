@@ -1,0 +1,68 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Lena Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Meal preference",
+    "widget_type": "single_choice",
+    "value": "Vegan",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Allergies or intolerances",
+    "widget_type": "multi_choice",
+    "value": [
+      "Gluten",
+      "Dairy"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred dining date",
+    "widget_type": "date",
+    "value": "2025-09-05",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred dining time",
+    "widget_type": "time",
+    "value": "13:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Would you like dessert?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Additional notes",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 6)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

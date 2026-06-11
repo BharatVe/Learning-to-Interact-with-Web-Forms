@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Avery Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Graduation year",
+    "widget_type": "short_text",
+    "value": "sigma-02-96",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current city",
+    "widget_type": "short_text",
+    "value": "omega-02-43",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current role",
+    "widget_type": "single_choice",
+    "value": "Researcher",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Areas you would like to stay connected to",
+    "widget_type": "multi_choice",
+    "value": [
+      "Job opportunities"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred contact email",
+    "widget_type": "short_text",
+    "value": "avery.nguyen.2@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Would you attend an alumni meetup?",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

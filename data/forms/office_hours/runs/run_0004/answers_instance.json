@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Student name",
+    "widget_type": "short_text",
+    "value": "Taylor Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "taylor.singh.4@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Course or project",
+    "widget_type": "short_text",
+    "value": "beta-04-90",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Topic category",
+    "widget_type": "dropdown",
+    "value": "Lecture content",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Preferred meeting mode",
+    "widget_type": "single_choice",
+    "value": "In person",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred date",
+    "widget_type": "date",
+    "value": "2025-11-14",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred time",
+    "widget_type": "time",
+    "value": "13:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Question or context",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Question or context; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

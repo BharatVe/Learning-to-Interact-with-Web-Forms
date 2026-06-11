@@ -1,0 +1,95 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Taylor Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Student email",
+    "widget_type": "short_text",
+    "value": "taylor.kim.7@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Study program",
+    "widget_type": "short_text",
+    "value": "delta-07-15",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Year of study",
+    "widget_type": "single_choice",
+    "value": "1st year",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Why do you want to join?",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Why do you want to join?; run 7)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Activities you are interested in",
+    "widget_type": "multi_choice",
+    "value": [
+      "Events",
+      "Technical projects"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Previous club experience",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Available start date",
+    "widget_type": "date",
+    "value": "2025-09-19",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Weekly time you can contribute",
+    "widget_type": "short_text",
+    "value": "delta-07-18",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "10:15",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

@@ -1,0 +1,96 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Riley Chen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "riley.chen.6@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Conference name",
+    "widget_type": "short_text",
+    "value": "Riley Chen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Conference role",
+    "widget_type": "single_choice",
+    "value": "Volunteer",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Conference start date",
+    "widget_type": "date",
+    "value": "2025-06-29",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Conference end date",
+    "widget_type": "date",
+    "value": "2025-06-21",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred travel mode",
+    "widget_type": "dropdown",
+    "value": "Bus",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Accommodation preferences",
+    "widget_type": "multi_choice",
+    "value": [
+      "Shared room",
+      "Budget option",
+      "No accommodation needed"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred departure time",
+    "widget_type": "time",
+    "value": "14:15",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Additional travel notes",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Additional travel notes; run 6)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

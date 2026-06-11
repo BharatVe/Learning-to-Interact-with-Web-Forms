@@ -1,0 +1,89 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Avery Chen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "avery.chen.3@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current study level",
+    "widget_type": "single_choice",
+    "value": "Master's",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Career interests",
+    "widget_type": "multi_choice",
+    "value": [
+      "Consulting"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Are you currently looking for a job?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred attendance date",
+    "widget_type": "date",
+    "value": "2025-09-12",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred arrival time",
+    "widget_type": "time",
+    "value": "10:15",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Sessions you want to attend",
+    "widget_type": "multi_choice",
+    "value": [
+      "Company booths",
+      "CV review",
+      "Networking"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Questions for recruiters",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Questions for recruiters; run 3)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

@@ -1,0 +1,96 @@
+[
+  {
+    "label": "Organizer name",
+    "widget_type": "short_text",
+    "value": "Priya Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Organizer email",
+    "widget_type": "short_text",
+    "value": "priya.singh.2@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Event title",
+    "widget_type": "short_text",
+    "value": "alpha-02-99",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Event type",
+    "widget_type": "dropdown",
+    "value": "Guest talk",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Preferred event date",
+    "widget_type": "date",
+    "value": "2025-06-02",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred start time",
+    "widget_type": "time",
+    "value": "08:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Expected number of attendees",
+    "widget_type": "short_text",
+    "value": "4",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Venue needs",
+    "widget_type": "multi_choice",
+    "value": [
+      "Open space"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Promotion channels",
+    "widget_type": "multi_choice",
+    "value": [
+      "Posters"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Short event description",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Short event description; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

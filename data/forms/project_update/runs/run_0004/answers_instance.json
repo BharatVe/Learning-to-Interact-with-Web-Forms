@@ -1,0 +1,78 @@
+[
+  {
+    "label": "Name",
+    "widget_type": "short_text",
+    "value": "Taylor Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Project name",
+    "widget_type": "short_text",
+    "value": "Taylor Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Reporting week start date",
+    "widget_type": "date",
+    "value": "2025-10-30",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Current project status",
+    "widget_type": "single_choice",
+    "value": "On track",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Tasks completed this week",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Tasks completed this week; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Blockers or risks",
+    "widget_type": "multi_choice",
+    "value": [
+      "Technical issue",
+      "Waiting for feedback",
+      "Scheduling conflict"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Next planned task",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Next planned task; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Preferred sync time",
+    "widget_type": "time",
+    "value": "14:15",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

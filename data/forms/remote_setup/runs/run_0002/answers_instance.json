@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Sam Meyer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "sam.meyer.2@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Remote work start date",
+    "widget_type": "date",
+    "value": "2025-06-04",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Expected remote work duration",
+    "widget_type": "dropdown",
+    "value": "Long term",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Equipment needed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Mouse"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Primary work location",
+    "widget_type": "single_choice",
+    "value": "Traveling",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Technical constraints",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Technical constraints; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

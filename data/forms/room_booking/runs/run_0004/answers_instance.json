@@ -1,0 +1,87 @@
+[
+  {
+    "label": "Requester name",
+    "widget_type": "short_text",
+    "value": "Sam Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "sam.nguyen.4@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Room type requested",
+    "widget_type": "single_choice",
+    "value": "Meeting room",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Number of participants",
+    "widget_type": "short_text",
+    "value": "3",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred booking date",
+    "widget_type": "date",
+    "value": "2025-07-22",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred start time",
+    "widget_type": "time",
+    "value": "13:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Equipment needed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Projector",
+      "Power outlets",
+      "None"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Catering or food planned?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Purpose of booking",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Purpose of booking; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

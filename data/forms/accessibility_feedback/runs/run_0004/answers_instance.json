@@ -1,0 +1,78 @@
+[
+  {
+    "label": "Name",
+    "widget_type": "short_text",
+    "value": "Sam Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "sam.nguyen.4@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Feedback area",
+    "widget_type": "dropdown",
+    "value": "Website",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Type of issue noticed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Audio",
+      "Physical access",
+      "Timing"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "How severe was the issue?",
+    "widget_type": "single_choice",
+    "value": "Major",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Date of experience",
+    "widget_type": "date",
+    "value": "2025-11-07",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Detailed feedback",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Detailed feedback; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "May we contact you for follow-up?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

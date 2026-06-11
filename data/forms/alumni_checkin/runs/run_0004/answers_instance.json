@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Sam Chen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Graduation year",
+    "widget_type": "short_text",
+    "value": "alpha-04-36",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current city",
+    "widget_type": "short_text",
+    "value": "omega-04-27",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current role",
+    "widget_type": "single_choice",
+    "value": "Industry Professional",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Areas you would like to stay connected to",
+    "widget_type": "multi_choice",
+    "value": [
+      "Networking",
+      "Job opportunities",
+      "Alumni events"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred contact email",
+    "widget_type": "short_text",
+    "value": "sam.chen.4@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Would you attend an alumni meetup?",
+    "widget_type": "single_choice",
+    "value": "Maybe",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

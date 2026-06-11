@@ -1,0 +1,83 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Riley Khan",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "riley.khan.4@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Department or group",
+    "widget_type": "short_text",
+    "value": "delta-04-24",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Equipment category",
+    "widget_type": "dropdown",
+    "value": "Projector",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Specific item requested",
+    "widget_type": "short_text",
+    "value": "beta-04-30",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Pickup date",
+    "widget_type": "date",
+    "value": "2025-09-15",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Pickup time",
+    "widget_type": "time",
+    "value": "13:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Expected return date",
+    "widget_type": "date",
+    "value": "2025-09-06",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Purpose of checkout",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of checkout; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

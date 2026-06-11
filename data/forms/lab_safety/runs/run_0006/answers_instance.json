@@ -1,0 +1,77 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Taylor Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University email",
+    "widget_type": "short_text",
+    "value": "taylor.bauer.6@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Role",
+    "widget_type": "single_choice",
+    "value": "Master's student",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Lab area you need access to",
+    "widget_type": "dropdown",
+    "value": "Robotics lab",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Previous safety training completed",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Training topics needed",
+    "widget_type": "multi_choice",
+    "value": [
+      "General safety",
+      "Emergency procedures"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred training date",
+    "widget_type": "date",
+    "value": "2025-09-19",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Questions for the trainer",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Questions for the trainer; run 6)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

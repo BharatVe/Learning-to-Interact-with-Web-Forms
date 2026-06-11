@@ -1,0 +1,68 @@
+[
+  {
+    "label": "Reviewer name",
+    "widget_type": "short_text",
+    "value": "Noah Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "noah.rivera.3@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred paper topic",
+    "widget_type": "multi_choice",
+    "value": [
+      "Computer use agents",
+      "Evaluation metrics"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Comfort level with reviewing",
+    "widget_type": "single_choice",
+    "value": "Intermediate",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Number of papers you can review",
+    "widget_type": "dropdown",
+    "value": "3",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Review deadline preference",
+    "widget_type": "date",
+    "value": "2025-09-15",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Conflicts of interest",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Conflicts of interest; run 3)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

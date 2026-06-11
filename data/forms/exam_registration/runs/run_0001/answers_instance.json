@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Lena Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Student ID",
+    "widget_type": "short_text",
+    "value": "beta-01-20",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "lena.singh.1@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Program level",
+    "widget_type": "single_choice",
+    "value": "Bachelor's",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Exam or module name",
+    "widget_type": "short_text",
+    "value": "Lena Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Issue type",
+    "widget_type": "dropdown",
+    "value": "Wrong exam listed",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Exam date",
+    "widget_type": "date",
+    "value": "2025-08-31",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Describe the issue",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Describe the issue; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

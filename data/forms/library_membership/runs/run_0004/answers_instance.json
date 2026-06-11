@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Avery Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University ID",
+    "widget_type": "short_text",
+    "value": "Open Systems Group",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Department or program",
+    "widget_type": "short_text",
+    "value": "gamma-04-00",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Membership type",
+    "widget_type": "single_choice",
+    "value": "External visitor",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Resources you use most",
+    "widget_type": "multi_choice",
+    "value": [
+      "Journals"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred visit date",
+    "widget_type": "date",
+    "value": "2025-06-30",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Any additional access needs?",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Any additional access needs?; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

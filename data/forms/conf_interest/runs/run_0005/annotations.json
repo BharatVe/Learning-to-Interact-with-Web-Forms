@@ -1,0 +1,543 @@
+{
+  "schema_version": "4.0",
+  "form_id": "conf_interest",
+  "run_name": "run_0005",
+  "run_label": "conf_interest_run_0005",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSegYcgI3KK5C-wzLmbP0NHXuZeC5G80jHF4uVFVuZkWdAD6Jw/viewform?hl=en",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "device_pixel_ratio": 1,
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36",
+  "locale": "en-US",
+  "timezone": "Europe/Berlin",
+  "video_path": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/conf_interest_run_0005.webm",
+  "run_params": {
+    "headless": true,
+    "slow_mo": 200,
+    "timeout_ms": 15000,
+    "type_delay_ms": 120,
+    "action_delay_ms": 220,
+    "post_submit_delay_seconds": 0.0,
+    "screenshots": true,
+    "mouse_overlay": true,
+    "interaction_mode": "mcp_server",
+    "trace_mode": "mcp",
+    "mcp_server_cmd": "bundled_default",
+    "mcp_tool_name": "record_action",
+    "mcp_timeout_ms": 5000,
+    "browser_mcp_cmd": [
+      "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/.node-tools/node_modules/.bin/playwright-mcp",
+      "--config",
+      "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/playwright_mcp_english_config.json",
+      "--browser",
+      "chromium",
+      "--isolated",
+      "--host",
+      "127.0.0.1",
+      "--output-dir",
+      "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005",
+      "--save-video",
+      "1280x720",
+      "--viewport-size",
+      "1280,720",
+      "--snapshot-mode",
+      "none",
+      "--timeout-action",
+      "120000",
+      "--timeout-navigation",
+      "120000",
+      "--headless"
+    ],
+    "browser_mcp_timeout_ms": 120000,
+    "mcp_verify_trace": true,
+    "mcp_strict": true,
+    "browser_mcp_env": {
+      "PLAYWRIGHT_BROWSERS_PATH": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/.playwright-browsers-node"
+    }
+  },
+  "actions": [
+    {
+      "step": 0,
+      "label": "Full Name",
+      "widget_type": "short_text",
+      "value": "Noah Bauer",
+      "intent": "Fill Full Name",
+      "success": true,
+      "t_start_s": 8.67798365605995,
+      "t_end_s": 12.793750614160672,
+      "bbox": {
+        "x": 320,
+        "y": 227.203125,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 306.203125,
+        "width": 295,
+        "height": 24
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0000_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0000_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 1,
+      "label": "Preferred contact email",
+      "widget_type": "short_text",
+      "value": "noah.bauer.5@demo.org",
+      "intent": "Fill Preferred contact email",
+      "success": true,
+      "t_start_s": 12.793950733961537,
+      "t_end_s": 17.131368829170242,
+      "bbox": {
+        "x": 320,
+        "y": 377.203125,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 456.203125,
+        "width": 295,
+        "height": 24
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0001_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0001_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 2,
+      "label": "Brief bio",
+      "widget_type": "paragraph_text",
+      "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief bio; run 5)",
+      "intent": "Fill Brief bio",
+      "success": true,
+      "t_start_s": 17.131693138042465,
+      "t_end_s": 32.97460010019131,
+      "bbox": {
+        "x": 320,
+        "y": 527.203125,
+        "width": 640,
+        "height": 160
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 630.203125,
+        "width": 590,
+        "height": 40
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0002_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0002_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 3,
+      "label": "Primary role",
+      "widget_type": "single_choice",
+      "value": "PhD student",
+      "intent": "Select PhD student for Primary role",
+      "success": true,
+      "t_start_s": 32.974801840027794,
+      "t_end_s": 35.71781287016347,
+      "bbox": {
+        "x": 320,
+        "y": 715.203125,
+        "width": 640,
+        "height": 250
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 350.203125,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0003_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0003_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 4,
+      "label": "Topics you\u2019re interested in",
+      "widget_type": "multi_choice",
+      "value": [
+        "AI/ML",
+        "Human-Computer Interaction"
+      ],
+      "intent": "Select AI/ML, Human-Computer Interaction for Topics you\u2019re interested in",
+      "success": true,
+      "t_start_s": 35.71808330016211,
+      "t_end_s": 37.6203947509639,
+      "bbox": {
+        "x": 320,
+        "y": 457.203125,
+        "width": 640,
+        "height": 258
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 662.203125,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0004_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0004_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": true,
+      "required_attr": false,
+      "required_marker": true,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 5,
+      "label": "Preferred meeting date",
+      "widget_type": "date",
+      "value": "2025-06-10",
+      "intent": "Fill Preferred meeting date",
+      "success": true,
+      "t_start_s": 37.620574780972674,
+      "t_end_s": 40.91358733503148,
+      "bbox": {
+        "x": 320,
+        "y": 727.203125,
+        "width": 640,
+        "height": 153
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 348.203125,
+        "width": 127,
+        "height": 24
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0005_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0005_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 6,
+      "label": "Preferred meeting time",
+      "widget_type": "time",
+      "value": "11:30",
+      "intent": "Fill Preferred meeting time",
+      "success": true,
+      "t_start_s": 40.91380748501979,
+      "t_end_s": 45.21848960011266,
+      "bbox": {
+        "x": 320,
+        "y": 419.203125,
+        "width": 640,
+        "height": 164
+      },
+      "target_bbox": {
+        "x": 374,
+        "y": 522.203125,
+        "width": 17,
+        "height": 24
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0006_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/step_0006_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    }
+  ],
+  "submit": {
+    "success": true,
+    "t_start_s": 45.218759439187124,
+    "t_end_s": 55.5618743551895,
+    "bbox": {
+      "x": 320,
+      "y": 595.203125,
+      "width": 97.40625,
+      "height": 38
+    },
+    "submit_clicked": true,
+    "confirmation_method": "text",
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSegYcgI3KK5C-wzLmbP0NHXuZeC5G80jHF4uVFVuZkWdAD6Jw/formResponse?hl=en",
+    "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/submit_pre.png",
+    "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/observations/submit_post.png",
+    "metadata_status": "complete",
+    "metadata_missing_keys": [],
+    "pagination_hops": 0,
+    "submit_label": "Submit"
+  },
+  "trace": {
+    "tool_trace_path": "tool_trace.jsonl",
+    "screenshot_dir": "observations",
+    "mcp": {
+      "format": "mcp_computer_use_compatible",
+      "mode": "mcp_server",
+      "validate_mcp_actions": true,
+      "strict_mcp_validation": true,
+      "event_count": 37,
+      "validation_error_count": 0,
+      "events_by_name": {
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_take_screenshot": 16,
+        "browser_wait_for": 9
+      },
+      "supported_actions": [
+        "browser_close",
+        "browser_mouse_click_xy",
+        "browser_mouse_move_xy",
+        "browser_mouse_wheel",
+        "browser_navigate",
+        "browser_press_key",
+        "browser_run_code",
+        "browser_take_screenshot",
+        "browser_type",
+        "browser_wait_for"
+      ],
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/.venv/bin/python",
+          "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/src/engine/mcp_trace_server.py"
+        ],
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ],
+        "tool_name": "record_action"
+      }
+    }
+  },
+  "submitted": true,
+  "failure_reason": null,
+  "run_metadata": {
+    "suffix": "run_0005",
+    "notes": "generated_run_0005"
+  },
+  "information_layers": {
+    "level_0_run": {
+      "form_id": "conf_interest",
+      "run_name": "run_0005",
+      "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSegYcgI3KK5C-wzLmbP0NHXuZeC5G80jHF4uVFVuZkWdAD6Jw/viewform?hl=en",
+      "submitted": true,
+      "failure_reason": null,
+      "total_steps": 7,
+      "trace_event_count": 37,
+      "video_path": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0005/conf_interest_run_0005.webm"
+    },
+    "level_1_steps": [
+      {
+        "step": 0,
+        "label": "Full Name",
+        "widget_type": "short_text",
+        "intent": "Fill Full Name",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 8.67798365605995,
+        "t_end_s": 12.793750614160672,
+        "trace_event_count": 4
+      },
+      {
+        "step": 1,
+        "label": "Preferred contact email",
+        "widget_type": "short_text",
+        "intent": "Fill Preferred contact email",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 12.793950733961537,
+        "t_end_s": 17.131368829170242,
+        "trace_event_count": 4
+      },
+      {
+        "step": 2,
+        "label": "Brief bio",
+        "widget_type": "paragraph_text",
+        "intent": "Fill Brief bio",
+        "success": true,
+        "error": null,
+        "required": false,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 17.131693138042465,
+        "t_end_s": 32.97460010019131,
+        "trace_event_count": 4
+      },
+      {
+        "step": 3,
+        "label": "Primary role",
+        "widget_type": "single_choice",
+        "intent": "Select PhD student for Primary role",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 32.974801840027794,
+        "t_end_s": 35.71781287016347,
+        "trace_event_count": 4
+      },
+      {
+        "step": 4,
+        "label": "Topics you\u2019re interested in",
+        "widget_type": "multi_choice",
+        "intent": "Select AI/ML, Human-Computer Interaction for Topics you\u2019re interested in",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 35.71808330016211,
+        "t_end_s": 37.6203947509639,
+        "trace_event_count": 4
+      },
+      {
+        "step": 5,
+        "label": "Preferred meeting date",
+        "widget_type": "date",
+        "intent": "Fill Preferred meeting date",
+        "success": true,
+        "error": null,
+        "required": false,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 37.620574780972674,
+        "t_end_s": 40.91358733503148,
+        "trace_event_count": 4
+      },
+      {
+        "step": 6,
+        "label": "Preferred meeting time",
+        "widget_type": "time",
+        "intent": "Fill Preferred meeting time",
+        "success": true,
+        "error": null,
+        "required": false,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 40.91380748501979,
+        "t_end_s": 45.21848960011266,
+        "trace_event_count": 4
+      }
+    ],
+    "level_2_trace": {
+      "trace_path": "tool_trace.jsonl",
+      "event_count": 37,
+      "events_by_name": {
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_take_screenshot": 16,
+        "browser_wait_for": 9
+      },
+      "step_event_counts": {
+        "0": 4,
+        "1": 4,
+        "2": 4,
+        "3": 4,
+        "4": 4,
+        "5": 4,
+        "6": 4
+      },
+      "trace_actions": [
+        "browser_close",
+        "browser_navigate",
+        "browser_run_code",
+        "browser_take_screenshot",
+        "browser_wait_for"
+      ]
+    }
+  }
+}

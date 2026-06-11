@@ -1,0 +1,89 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Riley Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "riley.kim.4@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Native language",
+    "widget_type": "short_text",
+    "value": "gamma-04-89",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Language(s) you want to practice",
+    "widget_type": "multi_choice",
+    "value": [
+      "French",
+      "Spanish"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Comfort level speaking target language",
+    "widget_type": "single_choice",
+    "value": "Beginner",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred format",
+    "widget_type": "single_choice",
+    "value": "Either",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred meeting date",
+    "widget_type": "date",
+    "value": "2025-09-25",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "15:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Topics you enjoy discussing",
+    "widget_type": "multi_choice",
+    "value": [
+      "Food",
+      "Daily life"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  }
+]

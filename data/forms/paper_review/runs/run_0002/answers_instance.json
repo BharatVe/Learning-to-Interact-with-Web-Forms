@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Reviewer name",
+    "widget_type": "short_text",
+    "value": "Avery Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "avery.patel.2@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred paper topic",
+    "widget_type": "multi_choice",
+    "value": [
+      "Computer use agents",
+      "Vision-language models",
+      "Evaluation metrics"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Comfort level with reviewing",
+    "widget_type": "single_choice",
+    "value": "Intermediate",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Number of papers you can review",
+    "widget_type": "dropdown",
+    "value": "5",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Review deadline preference",
+    "widget_type": "date",
+    "value": "2025-10-28",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Conflicts of interest",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Conflicts of interest; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

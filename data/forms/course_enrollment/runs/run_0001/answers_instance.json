@@ -1,0 +1,78 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Priya Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Student ID",
+    "widget_type": "short_text",
+    "value": "delta-01-79",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "priya.bauer.1@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred course",
+    "widget_type": "dropdown",
+    "value": "Human-Computer Interaction",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Prior knowledge",
+    "widget_type": "single_choice",
+    "value": "Advanced",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Reasons for enrolling",
+    "widget_type": "multi_choice",
+    "value": [
+      "Degree requirement",
+      "Career preparation",
+      "Project topic"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Schedule constraints",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Schedule constraints; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Preferred lab session time",
+    "widget_type": "time",
+    "value": "11:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Casey Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "casey.patel.6@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Department or group",
+    "widget_type": "short_text",
+    "value": "sigma-06-06",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Equipment category",
+    "widget_type": "dropdown",
+    "value": "Camera",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Specific item requested",
+    "widget_type": "short_text",
+    "value": "delta-06-12",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Pickup date",
+    "widget_type": "date",
+    "value": "2025-11-14",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Pickup time",
+    "widget_type": "time",
+    "value": "16:45",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Expected return date",
+    "widget_type": "date",
+    "value": "2025-06-15",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Purpose of checkout",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Purpose of checkout; run 6)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

@@ -151,8 +151,12 @@ models/
 .node-tools/
 data/model_baselines/
 
-# Generated run artifacts (keep sample tracked files as-is, ignore new ones)
-data/forms/**/runs/run_*/
+# Generated run artifacts (keep lightweight reference metadata trackable)
+data/forms/**/runs/run_*/*
+!data/forms/**/runs/run_*/annotations.json
+!data/forms/**/runs/run_*/answers_instance.json
+!data/forms/**/runs/run_*/tool_trace.jsonl
+!data/forms/**/runs/run_*/failure_manifest.json
 data/baseline_eval/
 
 # Cluster / batch logs and scratch files

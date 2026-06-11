@@ -1,0 +1,68 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Noah Ortiz",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Graduation year",
+    "widget_type": "short_text",
+    "value": "omega-09-43",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current city",
+    "widget_type": "short_text",
+    "value": "alpha-09-81",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current role",
+    "widget_type": "single_choice",
+    "value": "Student",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Areas you would like to stay connected to",
+    "widget_type": "multi_choice",
+    "value": [
+      "Networking",
+      "Research talks"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred contact email",
+    "widget_type": "short_text",
+    "value": "noah.ortiz.9@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Would you attend an alumni meetup?",
+    "widget_type": "single_choice",
+    "value": "Maybe",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

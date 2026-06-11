@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Reviewer name",
+    "widget_type": "short_text",
+    "value": "Taylor Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "taylor.bauer.1@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred paper topic",
+    "widget_type": "multi_choice",
+    "value": [
+      "Web automation"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Comfort level with reviewing",
+    "widget_type": "single_choice",
+    "value": "Beginner",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Number of papers you can review",
+    "widget_type": "dropdown",
+    "value": "4",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Review deadline preference",
+    "widget_type": "date",
+    "value": "2025-06-03",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Conflicts of interest",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Conflicts of interest; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

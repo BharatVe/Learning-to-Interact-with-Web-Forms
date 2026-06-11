@@ -1,0 +1,116 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Jordan Khan",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "jordan.khan.5@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current city",
+    "widget_type": "short_text",
+    "value": "delta-05-34",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Degree program",
+    "widget_type": "single_choice",
+    "value": "Master\u2019s",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Primary area of interest",
+    "widget_type": "multi_choice",
+    "value": [
+      "Frontend",
+      "Data and Machine Learning",
+      "UI/UX"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Programming languages you use",
+    "widget_type": "multi_choice",
+    "value": [
+      "Other"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Link to GitHub or portfolio",
+    "widget_type": "short_text",
+    "value": "beta-05-75",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Brief motivation statement",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Brief motivation statement; run 5)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Earliest start date",
+    "widget_type": "date",
+    "value": "2025-07-06",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Weekly availability (hours)",
+    "widget_type": "short_text",
+    "value": "gamma-05-49",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred meeting time for interview",
+    "widget_type": "time",
+    "value": "09:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Are you open to remote work?",
+    "widget_type": "single_choice",
+    "value": "Hybrid",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

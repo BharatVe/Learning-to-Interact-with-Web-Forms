@@ -1,0 +1,85 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Casey Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "casey.kim.3@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Annotation experience",
+    "widget_type": "single_choice",
+    "value": "None",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Languages comfortable with",
+    "widget_type": "multi_choice",
+    "value": [
+      "French"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred annotation task",
+    "widget_type": "dropdown",
+    "value": "Action labels",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Available start date",
+    "widget_type": "date",
+    "value": "2025-10-04",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred work time",
+    "widget_type": "time",
+    "value": "15:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Weekly availability",
+    "widget_type": "short_text",
+    "value": "gamma-03-04",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Comments about task preference",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Comments about task preference; run 3)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

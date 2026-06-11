@@ -1,0 +1,89 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Taylor Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "taylor.bauer.5@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University or organization",
+    "widget_type": "short_text",
+    "value": "Open Systems Group",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Participation type",
+    "widget_type": "single_choice",
+    "value": "Already in a team",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred challenge track",
+    "widget_type": "single_choice",
+    "value": "AI for Education",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Skills you can contribute",
+    "widget_type": "multi_choice",
+    "value": [
+      "Design",
+      "Data Analysis"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Dietary restrictions",
+    "widget_type": "multi_choice",
+    "value": [
+      "Vegan",
+      "Other"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Arrival date",
+    "widget_type": "date",
+    "value": "2025-08-15",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Emergency contact number",
+    "widget_type": "short_text",
+    "value": "1",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  }
+]

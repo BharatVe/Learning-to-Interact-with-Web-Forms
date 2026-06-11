@@ -1,0 +1,543 @@
+{
+  "schema_version": "4.0",
+  "form_id": "newsletter_signup",
+  "run_name": "run_0006",
+  "run_label": "newsletter_signup_run_0006",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSfrAjZHTmB-1Tqku0-rQDr35T0-SMHoBt_XYE06D2A2PLzq4Q/viewform?hl=en",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "device_pixel_ratio": 1,
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36",
+  "locale": "en-US",
+  "timezone": "Europe/Berlin",
+  "video_path": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/newsletter_signup_run_0006.webm",
+  "run_params": {
+    "headless": true,
+    "slow_mo": 200,
+    "timeout_ms": 15000,
+    "type_delay_ms": 120,
+    "action_delay_ms": 220,
+    "post_submit_delay_seconds": 0.0,
+    "screenshots": true,
+    "mouse_overlay": true,
+    "interaction_mode": "mcp_server",
+    "trace_mode": "mcp",
+    "mcp_server_cmd": "bundled_default",
+    "mcp_tool_name": "record_action",
+    "mcp_timeout_ms": 5000,
+    "browser_mcp_cmd": [
+      "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/.node-tools/node_modules/.bin/playwright-mcp",
+      "--config",
+      "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/playwright_mcp_english_config.json",
+      "--browser",
+      "chromium",
+      "--isolated",
+      "--host",
+      "127.0.0.1",
+      "--output-dir",
+      "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006",
+      "--save-video",
+      "1280x720",
+      "--viewport-size",
+      "1280,720",
+      "--snapshot-mode",
+      "none",
+      "--timeout-action",
+      "120000",
+      "--timeout-navigation",
+      "120000",
+      "--headless"
+    ],
+    "browser_mcp_timeout_ms": 120000,
+    "mcp_verify_trace": true,
+    "mcp_strict": true,
+    "browser_mcp_env": {
+      "PLAYWRIGHT_BROWSERS_PATH": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/.playwright-browsers-node"
+    }
+  },
+  "actions": [
+    {
+      "step": 0,
+      "label": "Full name",
+      "widget_type": "short_text",
+      "value": "Taylor Singh",
+      "intent": "Fill Full name",
+      "success": true,
+      "t_start_s": 9.441383267985657,
+      "t_end_s": 13.882467601913959,
+      "bbox": {
+        "x": 320,
+        "y": 227.203125,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 306.203125,
+        "width": 295,
+        "height": 24
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0000_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0000_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 1,
+      "label": "Email address",
+      "widget_type": "short_text",
+      "value": "taylor.singh.6@mail.test",
+      "intent": "Fill Email address",
+      "success": true,
+      "t_start_s": 13.882659332128242,
+      "t_end_s": 18.69443478807807,
+      "bbox": {
+        "x": 320,
+        "y": 377.203125,
+        "width": 640,
+        "height": 138
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 456.203125,
+        "width": 295,
+        "height": 24
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0001_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0001_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 2,
+      "label": "Newsletter topics",
+      "widget_type": "multi_choice",
+      "value": [
+        "Job opportunities",
+        "Funding calls"
+      ],
+      "intent": "Select Job opportunities, Funding calls for Newsletter topics",
+      "success": true,
+      "t_start_s": 18.694636547006667,
+      "t_end_s": 21.65078097791411,
+      "bbox": {
+        "x": 320,
+        "y": 527.203125,
+        "width": 640,
+        "height": 294
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 350.203125,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0002_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0002_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": true,
+      "required_attr": false,
+      "required_marker": true,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 3,
+      "label": "Email frequency",
+      "widget_type": "dropdown",
+      "value": "Monthly",
+      "intent": "Select Monthly for Email frequency",
+      "success": true,
+      "t_start_s": 21.650991427944973,
+      "t_end_s": 24.68173164012842,
+      "bbox": {
+        "x": 320,
+        "y": 415.203125,
+        "width": 640,
+        "height": 151
+      },
+      "target_bbox": {
+        "x": 346,
+        "y": 592,
+        "width": 245,
+        "height": 48
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0003_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0003_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 4,
+      "label": "Preferred language",
+      "widget_type": "single_choice",
+      "value": "German",
+      "intent": "Select German for Preferred language",
+      "success": true,
+      "t_start_s": 24.68207209999673,
+      "t_end_s": 26.41757042496465,
+      "bbox": {
+        "x": 320,
+        "y": 578.203125,
+        "width": 640,
+        "height": 210
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 693.203125,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0004_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0004_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 5,
+      "label": "Would you like event reminders?",
+      "widget_type": "single_choice",
+      "value": "Yes",
+      "intent": "Select Yes for Would you like event reminders?",
+      "success": true,
+      "t_start_s": 26.417812975123525,
+      "t_end_s": 28.10755380196497,
+      "bbox": {
+        "x": 320,
+        "y": 800.203125,
+        "width": 640,
+        "height": 170
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 350.203125,
+        "width": 20,
+        "height": 20
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0005_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0005_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": true,
+      "required_attr": true,
+      "required_marker": true,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    },
+    {
+      "step": 6,
+      "label": "Additional interests",
+      "widget_type": "paragraph_text",
+      "value": "I would like to participate and contribute with structured feedback and observations. (Additional interests; run 6)",
+      "intent": "Fill Additional interests",
+      "success": true,
+      "t_start_s": 28.107720670988783,
+      "t_end_s": 45.188892123056576,
+      "bbox": {
+        "x": 320,
+        "y": 457.203125,
+        "width": 640,
+        "height": 136
+      },
+      "target_bbox": {
+        "x": 345,
+        "y": 536.203125,
+        "width": 590,
+        "height": 40
+      },
+      "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0006_pre.png",
+      "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/step_0006_post.png",
+      "target_role": null,
+      "target_name": null,
+      "target_selector": null,
+      "scroll_y": null,
+      "required": false,
+      "required_attr": false,
+      "required_marker": false,
+      "metadata_status": "complete",
+      "metadata_missing_keys": [],
+      "pagination_hops": 0,
+      "submit_label": null,
+      "error": null
+    }
+  ],
+  "submit": {
+    "success": true,
+    "t_start_s": 45.189173913095146,
+    "t_end_s": 55.156676129903644,
+    "bbox": {
+      "x": 320,
+      "y": 621.203125,
+      "width": 97.40625,
+      "height": 38
+    },
+    "submit_clicked": true,
+    "confirmation_method": "text",
+    "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSfrAjZHTmB-1Tqku0-rQDr35T0-SMHoBt_XYE06D2A2PLzq4Q/formResponse?hl=en",
+    "pre_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/submit_pre.png",
+    "post_screenshot": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/observations/submit_post.png",
+    "metadata_status": "complete",
+    "metadata_missing_keys": [],
+    "pagination_hops": 0,
+    "submit_label": "Submit"
+  },
+  "trace": {
+    "tool_trace_path": "tool_trace.jsonl",
+    "screenshot_dir": "observations",
+    "mcp": {
+      "format": "mcp_computer_use_compatible",
+      "mode": "mcp_server",
+      "validate_mcp_actions": true,
+      "strict_mcp_validation": true,
+      "event_count": 37,
+      "validation_error_count": 0,
+      "events_by_name": {
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_take_screenshot": 16,
+        "browser_wait_for": 9
+      },
+      "supported_actions": [
+        "browser_close",
+        "browser_mouse_click_xy",
+        "browser_mouse_move_xy",
+        "browser_mouse_wheel",
+        "browser_navigate",
+        "browser_press_key",
+        "browser_run_code",
+        "browser_take_screenshot",
+        "browser_type",
+        "browser_wait_for"
+      ],
+      "mcp": {
+        "mode": "mcp_server",
+        "command": [
+          "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/.venv/bin/python",
+          "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/src/engine/mcp_trace_server.py"
+        ],
+        "protocol_version": "2024-11-05",
+        "server_info": {
+          "name": "thesis-trace-mcp",
+          "version": "1.0.0"
+        },
+        "available_tools": [
+          "record_action"
+        ],
+        "tool_name": "record_action"
+      }
+    }
+  },
+  "submitted": true,
+  "failure_reason": null,
+  "run_metadata": {
+    "suffix": "run_0006",
+    "notes": "generated_run_0006"
+  },
+  "information_layers": {
+    "level_0_run": {
+      "form_id": "newsletter_signup",
+      "run_name": "run_0006",
+      "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSfrAjZHTmB-1Tqku0-rQDr35T0-SMHoBt_XYE06D2A2PLzq4Q/viewform?hl=en",
+      "submitted": true,
+      "failure_reason": null,
+      "total_steps": 7,
+      "trace_event_count": 37,
+      "video_path": "/data/horse/ws/bhve224e-thesis-draft/bhve224e-thesis-draft-20260224-1780614321/Learning-to-Interact-with-Web-Forms/data/forms/newsletter_signup/runs/run_0006/newsletter_signup_run_0006.webm"
+    },
+    "level_1_steps": [
+      {
+        "step": 0,
+        "label": "Full name",
+        "widget_type": "short_text",
+        "intent": "Fill Full name",
+        "success": true,
+        "error": null,
+        "required": false,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 9.441383267985657,
+        "t_end_s": 13.882467601913959,
+        "trace_event_count": 4
+      },
+      {
+        "step": 1,
+        "label": "Email address",
+        "widget_type": "short_text",
+        "intent": "Fill Email address",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 13.882659332128242,
+        "t_end_s": 18.69443478807807,
+        "trace_event_count": 4
+      },
+      {
+        "step": 2,
+        "label": "Newsletter topics",
+        "widget_type": "multi_choice",
+        "intent": "Select Job opportunities, Funding calls for Newsletter topics",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 18.694636547006667,
+        "t_end_s": 21.65078097791411,
+        "trace_event_count": 4
+      },
+      {
+        "step": 3,
+        "label": "Email frequency",
+        "widget_type": "dropdown",
+        "intent": "Select Monthly for Email frequency",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 21.650991427944973,
+        "t_end_s": 24.68173164012842,
+        "trace_event_count": 4
+      },
+      {
+        "step": 4,
+        "label": "Preferred language",
+        "widget_type": "single_choice",
+        "intent": "Select German for Preferred language",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 24.68207209999673,
+        "t_end_s": 26.41757042496465,
+        "trace_event_count": 4
+      },
+      {
+        "step": 5,
+        "label": "Would you like event reminders?",
+        "widget_type": "single_choice",
+        "intent": "Select Yes for Would you like event reminders?",
+        "success": true,
+        "error": null,
+        "required": true,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 26.417812975123525,
+        "t_end_s": 28.10755380196497,
+        "trace_event_count": 4
+      },
+      {
+        "step": 6,
+        "label": "Additional interests",
+        "widget_type": "paragraph_text",
+        "intent": "Fill Additional interests",
+        "success": true,
+        "error": null,
+        "required": false,
+        "target_role": null,
+        "target_selector": null,
+        "metadata_status": "complete",
+        "metadata_missing_keys": [],
+        "t_start_s": 28.107720670988783,
+        "t_end_s": 45.188892123056576,
+        "trace_event_count": 4
+      }
+    ],
+    "level_2_trace": {
+      "trace_path": "tool_trace.jsonl",
+      "event_count": 37,
+      "events_by_name": {
+        "browser_close": 1,
+        "browser_navigate": 1,
+        "browser_run_code": 10,
+        "browser_take_screenshot": 16,
+        "browser_wait_for": 9
+      },
+      "step_event_counts": {
+        "0": 4,
+        "1": 4,
+        "2": 4,
+        "3": 4,
+        "4": 4,
+        "5": 4,
+        "6": 4
+      },
+      "trace_actions": [
+        "browser_close",
+        "browser_navigate",
+        "browser_run_code",
+        "browser_take_screenshot",
+        "browser_wait_for"
+      ]
+    }
+  }
+}

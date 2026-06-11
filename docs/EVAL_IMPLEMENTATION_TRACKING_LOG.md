@@ -1,6 +1,6 @@
 # Evaluation Implementation Tracking Log
 
-Last updated: 2026-06-10
+Last updated: 2026-06-11
 
 Use this file as the current source of truth before rerunning evaluation jobs. It records the active evaluation design, implementation status, latest outputs, known issues, and next actions.
 
@@ -32,6 +32,39 @@ The serving and basic orchestration problems are mostly solved. The remaining bl
 - Final post-submit verification can read as `0/N` on submitted direct-MCP trials because the browser is on the Google Forms confirmation page. For submitted direct-MCP trials, use `scored_correctness` from `pre_successful_submit_verified_correctness`.
 - Latest reruns add CUDA preflight checks before vLLM startup, better OpenCUA vLLM launch diagnostics, and `FORM_OFFSET`/`FORM_LIMIT` support for `FORM_IDS=all`.
 - Latest analysis artifacts live under `docs/eval_results/analysis/`.
+
+## 2026-06-11 Proprietary Computer-Use Comparison Notes
+
+Goal:
+
+- Add a small proprietary-model comparison suitable for thesis discussion, using the same sampled form-run interactions across all compared models.
+- Initial target should be a controlled 30-50 `(form_id, answer_run_id)` subset, not a full 300-trial condition.
+- The subset must be reused for Gemini/OpenAI/Claude and the current thesis models to avoid invalid comparisons caused by different form difficulty.
+
+Current understanding:
+
+- Gemini 2.5 Computer Use is a relevant comparator for OpenCUA Native because both are native/browser computer-use agents using screenshots and low-level UI actions.
+- Gemini is less directly comparable to Qwen Text/Qwen VLM direct-MCP because those models use symbolic Playwright MCP tools rather than native computer-use actions.
+- Results should therefore be grouped by interface condition: native computer use, direct MCP tool use, and proprietary API computer use.
+
+Main issue with Google/Gemini:
+
+- Google Cloud advertises a $300/90-day free trial credit, but Gemini API billing details are not simple enough to assume this covers a serious Gemini Computer Use run.
+- Gemini API pricing indicates no free tier for Gemini 2.5 Computer Use Preview.
+- Before submitting jobs, billing/quota must be verified in the actual Google Cloud/Vertex project.
+
+Candidate proprietary comparators:
+
+- OpenAI Computer Use: likely strongest proprietary comparator because its screenshot/action loop is close to OpenCUA Native.
+- Gemini 2.5 Computer Use: relevant browser-computer-use comparator, especially if supervisor wants a Google-backed model, but billing/quota risk must be resolved.
+- Anthropic Claude Computer Use: also relevant, but likely requires a new native computer-use integration path.
+- Amazon Nova Act: possible browser-agent comparator, but lower priority unless access and documentation are straightforward.
+
+Recommended next step:
+
+- Build a deterministic sample manifest for 30-50 shared form-run pairs.
+- Run a 5-form proprietary smoke first.
+- Only then run the sampled comparison and analyze paired results against the current thesis conditions.
 
 ## 2026-06-09 Target-300 Chain Update
 

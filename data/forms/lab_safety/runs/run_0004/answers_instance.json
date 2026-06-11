@@ -1,0 +1,78 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Priya Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University email",
+    "widget_type": "short_text",
+    "value": "priya.singh.4@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Role",
+    "widget_type": "single_choice",
+    "value": "Bachelor's student",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Lab area you need access to",
+    "widget_type": "dropdown",
+    "value": "Robotics lab",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Previous safety training completed",
+    "widget_type": "single_choice",
+    "value": "Not sure",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Training topics needed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Chemical handling",
+      "Machine safety",
+      "Emergency procedures"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred training date",
+    "widget_type": "date",
+    "value": "2025-08-25",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Questions for the trainer",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Questions for the trainer; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

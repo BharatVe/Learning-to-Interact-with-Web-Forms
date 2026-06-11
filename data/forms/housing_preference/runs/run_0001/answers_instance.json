@@ -1,0 +1,68 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Casey Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "casey.singh.1@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred accommodation type",
+    "widget_type": "single_choice",
+    "value": "Studio",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred budget range",
+    "widget_type": "single_choice",
+    "value": "Above 700 EUR",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred move-in date",
+    "widget_type": "date",
+    "value": "2025-09-20",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Important features",
+    "widget_type": "multi_choice",
+    "value": [
+      "Private bathroom",
+      "Quiet area"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Additional notes",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "label": "Organizer name",
+    "widget_type": "short_text",
+    "value": "Jordan Ortiz",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Organizer email",
+    "widget_type": "short_text",
+    "value": "jordan.ortiz.1@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Event title",
+    "widget_type": "short_text",
+    "value": "delta-01-39",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Event type",
+    "widget_type": "dropdown",
+    "value": "Social event",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Preferred event date",
+    "widget_type": "date",
+    "value": "2025-06-14",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred start time",
+    "widget_type": "time",
+    "value": "08:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Expected number of attendees",
+    "widget_type": "short_text",
+    "value": "3",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Venue needs",
+    "widget_type": "multi_choice",
+    "value": [
+      "Microphone",
+      "Tables",
+      "No special needs"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Promotion channels",
+    "widget_type": "multi_choice",
+    "value": [
+      "Instagram",
+      "Email",
+      "Posters"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Short event description",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Short event description; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

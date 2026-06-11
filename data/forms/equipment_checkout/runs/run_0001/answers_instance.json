@@ -1,0 +1,83 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Noah Meyer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "noah.meyer.1@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Department or group",
+    "widget_type": "short_text",
+    "value": "delta-01-71",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Equipment category",
+    "widget_type": "dropdown",
+    "value": "Sensor kit",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Specific item requested",
+    "widget_type": "short_text",
+    "value": "alpha-01-88",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Pickup date",
+    "widget_type": "date",
+    "value": "2025-06-05",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Pickup time",
+    "widget_type": "time",
+    "value": "09:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Expected return date",
+    "widget_type": "date",
+    "value": "2025-11-12",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Purpose of checkout",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Purpose of checkout; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

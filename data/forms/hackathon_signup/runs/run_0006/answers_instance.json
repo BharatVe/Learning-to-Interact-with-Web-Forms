@@ -1,0 +1,88 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Noah Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "noah.kim.6@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University or organization",
+    "widget_type": "short_text",
+    "value": "DataWorks Institute",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Participation type",
+    "widget_type": "single_choice",
+    "value": "Looking for a team",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred challenge track",
+    "widget_type": "single_choice",
+    "value": "Open Innovation",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Skills you can contribute",
+    "widget_type": "multi_choice",
+    "value": [
+      "Data Analysis"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Dietary restrictions",
+    "widget_type": "multi_choice",
+    "value": [
+      "Vegetarian",
+      "Other"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Arrival date",
+    "widget_type": "date",
+    "value": "2025-08-17",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Emergency contact number",
+    "widget_type": "short_text",
+    "value": "3",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  }
+]

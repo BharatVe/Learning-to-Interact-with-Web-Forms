@@ -1,0 +1,87 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Morgan Khan",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "morgan.khan.2@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current study level",
+    "widget_type": "single_choice",
+    "value": "Bachelor's",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Career interests",
+    "widget_type": "multi_choice",
+    "value": [
+      "Product Management"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Are you currently looking for a job?",
+    "widget_type": "single_choice",
+    "value": "Maybe soon",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred attendance date",
+    "widget_type": "date",
+    "value": "2025-10-20",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred arrival time",
+    "widget_type": "time",
+    "value": "16:45",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Sessions you want to attend",
+    "widget_type": "multi_choice",
+    "value": [
+      "Company booths"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Questions for recruiters",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Questions for recruiters; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

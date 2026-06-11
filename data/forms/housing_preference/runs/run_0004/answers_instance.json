@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Jordan Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "jordan.nguyen.4@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred accommodation type",
+    "widget_type": "single_choice",
+    "value": "Studio",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred budget range",
+    "widget_type": "single_choice",
+    "value": "500\u2013700 EUR",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred move-in date",
+    "widget_type": "date",
+    "value": "2025-07-17",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Important features",
+    "widget_type": "multi_choice",
+    "value": [
+      "Furnished"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Additional notes",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Additional notes; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

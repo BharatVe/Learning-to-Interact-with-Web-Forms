@@ -1,0 +1,77 @@
+[
+  {
+    "label": "Name",
+    "widget_type": "short_text",
+    "value": "Sam Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Project name",
+    "widget_type": "short_text",
+    "value": "Sam Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Reporting week start date",
+    "widget_type": "date",
+    "value": "2025-08-07",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Current project status",
+    "widget_type": "single_choice",
+    "value": "On track",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Tasks completed this week",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Tasks completed this week; run 3)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Blockers or risks",
+    "widget_type": "multi_choice",
+    "value": [
+      "Missing data",
+      "Scheduling conflict"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Next planned task",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Next planned task; run 3)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Preferred sync time",
+    "widget_type": "time",
+    "value": "16:45",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

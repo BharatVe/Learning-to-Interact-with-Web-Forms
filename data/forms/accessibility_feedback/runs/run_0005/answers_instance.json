@@ -1,0 +1,76 @@
+[
+  {
+    "label": "Name",
+    "widget_type": "short_text",
+    "value": "Priya Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "priya.singh.5@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Feedback area",
+    "widget_type": "dropdown",
+    "value": "Event",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Type of issue noticed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Navigation"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "How severe was the issue?",
+    "widget_type": "single_choice",
+    "value": "Major",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Date of experience",
+    "widget_type": "date",
+    "value": "2025-08-12",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Detailed feedback",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Detailed feedback; run 5)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "May we contact you for follow-up?",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

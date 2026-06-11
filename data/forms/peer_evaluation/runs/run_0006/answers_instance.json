@@ -1,0 +1,68 @@
+[
+  {
+    "label": "Your name",
+    "widget_type": "short_text",
+    "value": "Taylor Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Project group name",
+    "widget_type": "short_text",
+    "value": "Taylor Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Peer being evaluated",
+    "widget_type": "short_text",
+    "value": "gamma-06-59",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contribution level",
+    "widget_type": "single_choice",
+    "value": "Very high",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Strengths observed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Presentation",
+      "Organization"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Collaboration rating",
+    "widget_type": "dropdown",
+    "value": "3",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Constructive feedback",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Constructive feedback; run 6)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

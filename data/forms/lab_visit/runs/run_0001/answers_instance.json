@@ -1,0 +1,77 @@
+[
+  {
+    "label": "Visitor name",
+    "widget_type": "short_text",
+    "value": "Sam Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "sam.patel.1@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Organization or school",
+    "widget_type": "short_text",
+    "value": "DataWorks Institute",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Visitor type",
+    "widget_type": "single_choice",
+    "value": "Industry visitor",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Areas of interest",
+    "widget_type": "multi_choice",
+    "value": [
+      "Robotics",
+      "Data science"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred visit date",
+    "widget_type": "date",
+    "value": "2025-10-16",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred arrival time",
+    "widget_type": "time",
+    "value": "11:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Group size",
+    "widget_type": "short_text",
+    "value": "sigma-01-29",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  }
+]

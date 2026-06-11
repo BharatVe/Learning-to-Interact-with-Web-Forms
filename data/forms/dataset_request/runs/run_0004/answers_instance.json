@@ -1,0 +1,86 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Taylor Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Institutional email",
+    "widget_type": "short_text",
+    "value": "taylor.kim.4@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Affiliation",
+    "widget_type": "short_text",
+    "value": "omega-04-09",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Requester type",
+    "widget_type": "single_choice",
+    "value": "Industry partner",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Dataset requested",
+    "widget_type": "dropdown",
+    "value": "Evaluation logs",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Intended use",
+    "widget_type": "multi_choice",
+    "value": [
+      "Course project",
+      "Benchmark evaluation"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Short project description",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Short project description; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Requested access start date",
+    "widget_type": "date",
+    "value": "2025-06-28",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Do you agree to cite the dataset if used?",
+    "widget_type": "single_choice",
+    "value": "Need clarification",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

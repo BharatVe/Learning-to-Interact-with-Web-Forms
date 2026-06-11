@@ -1,0 +1,76 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Priya Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University email",
+    "widget_type": "short_text",
+    "value": "priya.patel.2@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Role",
+    "widget_type": "single_choice",
+    "value": "Visitor",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Lab area you need access to",
+    "widget_type": "dropdown",
+    "value": "Wet lab",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Previous safety training completed",
+    "widget_type": "single_choice",
+    "value": "Not sure",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Training topics needed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Machine safety"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred training date",
+    "widget_type": "date",
+    "value": "2025-11-22",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Questions for the trainer",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Questions for the trainer; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

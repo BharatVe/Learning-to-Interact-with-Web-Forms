@@ -1,0 +1,94 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Morgan Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Student email",
+    "widget_type": "short_text",
+    "value": "morgan.kim.10@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Study program",
+    "widget_type": "short_text",
+    "value": "omega-10-85",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Year of study",
+    "widget_type": "single_choice",
+    "value": "2nd year",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Why do you want to join?",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Why do you want to join?; run 10)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Activities you are interested in",
+    "widget_type": "multi_choice",
+    "value": [
+      "Workshops"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Previous club experience",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Available start date",
+    "widget_type": "date",
+    "value": "2025-08-06",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Weekly time you can contribute",
+    "widget_type": "short_text",
+    "value": "beta-10-73",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "10:15",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

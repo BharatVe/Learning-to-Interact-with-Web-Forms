@@ -1,0 +1,76 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Taylor Chen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "taylor.chen.4@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Emergency contact name",
+    "widget_type": "short_text",
+    "value": "Taylor Chen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Emergency contact phone",
+    "widget_type": "short_text",
+    "value": "alpha-04-56",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Trip option",
+    "widget_type": "dropdown",
+    "value": "Company visit",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Preferred trip date",
+    "widget_type": "date",
+    "value": "2025-06-23",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Dietary restrictions",
+    "widget_type": "multi_choice",
+    "value": [
+      "Other"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Mobility or accessibility notes",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Mobility or accessibility notes; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

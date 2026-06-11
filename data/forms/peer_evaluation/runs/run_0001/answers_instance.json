@@ -1,0 +1,68 @@
+[
+  {
+    "label": "Your name",
+    "widget_type": "short_text",
+    "value": "Avery Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Project group name",
+    "widget_type": "short_text",
+    "value": "Avery Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Peer being evaluated",
+    "widget_type": "short_text",
+    "value": "beta-01-38",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contribution level",
+    "widget_type": "single_choice",
+    "value": "Low",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Strengths observed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Technical work",
+      "Writing"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Collaboration rating",
+    "widget_type": "dropdown",
+    "value": "2",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Constructive feedback",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Constructive feedback; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

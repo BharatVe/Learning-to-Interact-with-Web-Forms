@@ -1,0 +1,90 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Taylor Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "taylor.bauer.1@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University or organization",
+    "widget_type": "short_text",
+    "value": "DataWorks Institute",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Participation type",
+    "widget_type": "single_choice",
+    "value": "Solo participant",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred challenge track",
+    "widget_type": "single_choice",
+    "value": "Health Tech",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Skills you can contribute",
+    "widget_type": "multi_choice",
+    "value": [
+      "Design",
+      "Data Analysis",
+      "Presentation"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Dietary restrictions",
+    "widget_type": "multi_choice",
+    "value": [
+      "Vegan",
+      "Halal"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Arrival date",
+    "widget_type": "date",
+    "value": "2025-06-03",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Emergency contact number",
+    "widget_type": "short_text",
+    "value": "3",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  }
+]

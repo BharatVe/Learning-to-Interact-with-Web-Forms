@@ -1,0 +1,83 @@
+[
+  {
+    "label": "Reporter name",
+    "widget_type": "short_text",
+    "value": "Avery Ortiz",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "avery.ortiz.8@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Application or module name",
+    "widget_type": "short_text",
+    "value": "Avery Ortiz",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Bug severity",
+    "widget_type": "single_choice",
+    "value": "Low",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Device or browser used",
+    "widget_type": "dropdown",
+    "value": "iOS app",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Steps to reproduce",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Steps to reproduce; run 8)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Expected behavior",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Expected behavior; run 8)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Observed behavior",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Observed behavior; run 8)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Date when issue occurred",
+    "widget_type": "date",
+    "value": "2025-10-23",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  }
+]

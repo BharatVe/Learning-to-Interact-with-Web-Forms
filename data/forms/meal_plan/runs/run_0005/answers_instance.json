@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Casey Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Meal preference",
+    "widget_type": "single_choice",
+    "value": "Vegan",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Allergies or intolerances",
+    "widget_type": "multi_choice",
+    "value": [
+      "Gluten",
+      "None",
+      "Other"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred dining date",
+    "widget_type": "date",
+    "value": "2025-07-31",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred dining time",
+    "widget_type": "time",
+    "value": "15:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Would you like dessert?",
+    "widget_type": "single_choice",
+    "value": "Maybe",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Additional notes",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Additional notes; run 5)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

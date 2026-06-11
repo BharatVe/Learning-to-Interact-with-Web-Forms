@@ -1,0 +1,96 @@
+[
+  {
+    "label": "Publication title",
+    "widget_type": "short_text",
+    "value": "sigma-02-00",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Author name",
+    "widget_type": "short_text",
+    "value": "Avery Chen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "avery.chen.2@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Publication type",
+    "widget_type": "dropdown",
+    "value": "Journal article",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Publication date",
+    "widget_type": "date",
+    "value": "2025-09-02",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "DOI or URL",
+    "widget_type": "short_text",
+    "value": "beta-02-69",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Keywords",
+    "widget_type": "short_text",
+    "value": "beta-02-93",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Research area",
+    "widget_type": "multi_choice",
+    "value": [
+      "GIS",
+      "Data engineering",
+      "Other"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Abstract or short summary",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Abstract or short summary; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Should this be shown publicly?",
+    "widget_type": "single_choice",
+    "value": "Needs review",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

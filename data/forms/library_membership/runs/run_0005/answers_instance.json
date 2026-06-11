@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Priya Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University ID",
+    "widget_type": "short_text",
+    "value": "DataWorks Institute",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Department or program",
+    "widget_type": "short_text",
+    "value": "gamma-05-85",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Membership type",
+    "widget_type": "single_choice",
+    "value": "Faculty",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Resources you use most",
+    "widget_type": "multi_choice",
+    "value": [
+      "E-books",
+      "Study rooms",
+      "Journals"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred visit date",
+    "widget_type": "date",
+    "value": "2025-11-24",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Any additional access needs?",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Any additional access needs?; run 5)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

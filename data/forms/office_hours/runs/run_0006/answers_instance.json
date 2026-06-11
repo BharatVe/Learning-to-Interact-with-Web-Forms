@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Student name",
+    "widget_type": "short_text",
+    "value": "Lena Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "lena.singh.6@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Course or project",
+    "widget_type": "short_text",
+    "value": "alpha-06-10",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Topic category",
+    "widget_type": "dropdown",
+    "value": "Lecture content",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Preferred meeting mode",
+    "widget_type": "single_choice",
+    "value": "In person",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred date",
+    "widget_type": "date",
+    "value": "2025-10-03",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred time",
+    "widget_type": "time",
+    "value": "16:45",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Question or context",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Question or context; run 6)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "label": "Course name",
+    "widget_type": "short_text",
+    "value": "Lena Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Your program level",
+    "widget_type": "single_choice",
+    "value": "PhD",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Did you attend most sessions?",
+    "widget_type": "single_choice",
+    "value": "Partially",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Overall satisfaction",
+    "widget_type": "single_choice",
+    "value": "3",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Workload felt",
+    "widget_type": "single_choice",
+    "value": "Too low",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "What did you like most?",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (What did you like most?; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "What should be improved?",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (What should be improved?; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Most useful aspects",
+    "widget_type": "multi_choice",
+    "value": [
+      "Theory",
+      "Practical labs",
+      "Assignments"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Would you recommend this course?",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

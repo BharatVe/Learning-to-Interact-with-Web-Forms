@@ -1,0 +1,78 @@
+[
+  {
+    "label": "Name",
+    "widget_type": "short_text",
+    "value": "Riley Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "riley.rivera.1@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Feedback area",
+    "widget_type": "dropdown",
+    "value": "Other",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Type of issue noticed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Navigation",
+      "Physical access",
+      "Timing"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "How severe was the issue?",
+    "widget_type": "single_choice",
+    "value": "Blocking",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Date of experience",
+    "widget_type": "date",
+    "value": "2025-07-12",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Detailed feedback",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Detailed feedback; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "May we contact you for follow-up?",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

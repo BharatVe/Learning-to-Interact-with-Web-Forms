@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Riley Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "riley.rivera.5@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred accommodation type",
+    "widget_type": "single_choice",
+    "value": "Studio",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred budget range",
+    "widget_type": "single_choice",
+    "value": "Below 300 EUR",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred move-in date",
+    "widget_type": "date",
+    "value": "2025-11-17",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Important features",
+    "widget_type": "multi_choice",
+    "value": [
+      "Near campus",
+      "Quiet area",
+      "Good public transport"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Additional notes",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Additional notes; run 5)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

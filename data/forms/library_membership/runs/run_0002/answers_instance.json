@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Noah Ortiz",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University ID",
+    "widget_type": "short_text",
+    "value": "Open Systems Group",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Department or program",
+    "widget_type": "short_text",
+    "value": "gamma-02-28",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Membership type",
+    "widget_type": "single_choice",
+    "value": "External visitor",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Resources you use most",
+    "widget_type": "multi_choice",
+    "value": [
+      "Study rooms"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred visit date",
+    "widget_type": "date",
+    "value": "2025-06-08",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Any additional access needs?",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Any additional access needs?; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

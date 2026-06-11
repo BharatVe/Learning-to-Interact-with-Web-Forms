@@ -1,0 +1,95 @@
+[
+  {
+    "label": "Publication title",
+    "widget_type": "short_text",
+    "value": "beta-04-81",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Author name",
+    "widget_type": "short_text",
+    "value": "Priya Nguyen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "priya.nguyen.4@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Publication type",
+    "widget_type": "dropdown",
+    "value": "Other",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Publication date",
+    "widget_type": "date",
+    "value": "2025-07-15",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "DOI or URL",
+    "widget_type": "short_text",
+    "value": "delta-04-83",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Keywords",
+    "widget_type": "short_text",
+    "value": "omega-04-57",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Research area",
+    "widget_type": "multi_choice",
+    "value": [
+      "Human-computer interaction",
+      "Visualization"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Abstract or short summary",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Abstract or short summary; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Should this be shown publicly?",
+    "widget_type": "single_choice",
+    "value": "Needs review",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]
