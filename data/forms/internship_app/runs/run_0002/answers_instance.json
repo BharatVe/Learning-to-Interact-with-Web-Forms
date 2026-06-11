@@ -2,106 +2,114 @@
   {
     "label": "Full name",
     "widget_type": "short_text",
-    "value": "Elliot Park",
+    "value": "Jordan Kim",
     "tags": [
-      "profile",
-      "identity"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Contact email",
     "widget_type": "short_text",
-    "value": "elliot.park@example.com",
+    "value": "jordan.kim.2@research.edu",
     "tags": [
-      "profile",
-      "contact"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Current city",
     "widget_type": "short_text",
-    "value": "Toronto",
+    "value": "omega-02-37",
     "tags": [
-      "profile",
-      "location"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Degree program",
     "widget_type": "single_choice",
-    "value": "Bachelor's",
+    "value": "Other",
     "tags": [
-      "education"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "Primary area of interest",
     "widget_type": "multi_choice",
     "value": [
-      "UI/UX",
-      "Frontend"
+      "Backend",
+      "DevOps"
     ],
     "tags": [
-      "interests"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Programming languages you use",
     "widget_type": "multi_choice",
     "value": [
-      "JavaScript/TypeScript",
-      "Python"
+      "Java"
     ],
     "tags": [
-      "skills"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Link to GitHub or portfolio",
     "widget_type": "short_text",
-    "value": "https://portfolio.elliotpark.design",
+    "value": "sigma-02-64",
     "tags": [
-      "portfolio"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Brief motivation statement",
     "widget_type": "paragraph_text",
-    "value": "I focus on user workflows and interface clarity. I want to work with a team that ships iterative design. The role fits my interest in UI automation and prototyping. I am excited to collaborate across disciplines.",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief motivation statement; run 2)",
     "tags": [
-      "statement"
+      "generated",
+      "paragraph"
     ]
   },
   {
     "label": "Earliest start date",
     "widget_type": "date",
-    "value": "2025-05-20",
+    "value": "2025-08-03",
     "tags": [
-      "availability"
+      "generated",
+      "date"
     ]
   },
   {
     "label": "Weekly availability (hours)",
     "widget_type": "short_text",
-    "value": "15",
+    "value": "sigma-02-84",
     "tags": [
-      "availability"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Preferred meeting time for interview",
     "widget_type": "time",
-    "value": "09:30",
+    "value": "09:00",
     "tags": [
-      "scheduling"
+      "generated",
+      "time"
     ]
   },
   {
     "label": "Are you open to remote work?",
     "widget_type": "single_choice",
-    "value": "Hybrid",
+    "value": "No",
     "tags": [
-      "preferences"
+      "generated",
+      "single_choice"
     ]
   }
 ]

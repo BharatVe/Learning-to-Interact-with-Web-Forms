@@ -2,51 +2,57 @@
   {
     "label": "Name",
     "widget_type": "short_text",
-    "value": "Harper Singh",
+    "value": "Morgan Bauer",
     "tags": [
-      "identity"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Will you attend?",
     "widget_type": "single_choice",
-    "value": "No",
+    "value": "Maybe",
     "tags": [
-      "attendance"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "Number of guests (including yourself)",
     "widget_type": "short_text",
-    "value": "0",
+    "value": "1",
     "tags": [
-      "attendance"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Preferred arrival time",
     "widget_type": "time",
-    "value": "18:00",
+    "value": "14:15",
     "tags": [
-      "scheduling"
+      "generated",
+      "time"
     ]
   },
   {
-    "label": "Activities you're interested in",
+    "label": "Activities you\u2019re interested in",
     "widget_type": "multi_choice",
     "value": [
-      "Networking"
+      "Demo booths"
     ],
     "tags": [
-      "interests"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Accessibility needs or comments",
     "widget_type": "paragraph_text",
-    "value": "Cannot attend this time.",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Accessibility needs or comments; run 3)",
     "tags": [
-      "notes"
+      "generated",
+      "paragraph"
     ]
   }
 ]

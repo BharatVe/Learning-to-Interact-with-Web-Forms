@@ -2,63 +2,67 @@
   {
     "label": "Full Name",
     "widget_type": "short_text",
-    "value": "Avery Chen",
+    "value": "Morgan Bauer",
     "tags": [
-      "profile",
-      "identity"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Preferred contact email",
     "widget_type": "short_text",
-    "value": "avery.chen@streamforge.io",
+    "value": "morgan.bauer.2@example.com",
     "tags": [
-      "profile",
-      "contact"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Brief bio",
     "widget_type": "paragraph_text",
-    "value": "Industry professional leading applied ML work for collaboration tools.",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Brief bio; run 2)",
     "tags": [
-      "summary"
+      "generated",
+      "paragraph"
     ]
   },
   {
     "label": "Primary role",
     "widget_type": "single_choice",
-    "value": "Industry Professional",
+    "value": "Undergraduate student",
     "tags": [
-      "role"
+      "generated",
+      "single_choice"
     ]
   },
   {
-    "label": "Topics you're interested in",
+    "label": "Topics you\u2019re interested in",
     "widget_type": "multi_choice",
     "value": [
-      "AI/ML",
-      "Security"
+      "Security",
+      "Human-Computer Interaction"
     ],
     "tags": [
-      "topics",
-      "interests"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Preferred meeting date",
     "widget_type": "date",
-    "value": "2025-06-17",
+    "value": "2025-11-23",
     "tags": [
-      "scheduling"
+      "generated",
+      "date"
     ]
   },
   {
     "label": "Preferred meeting time",
     "widget_type": "time",
-    "value": "14:00",
+    "value": "13:00",
     "tags": [
-      "scheduling"
+      "generated",
+      "time"
     ]
   }
 ]

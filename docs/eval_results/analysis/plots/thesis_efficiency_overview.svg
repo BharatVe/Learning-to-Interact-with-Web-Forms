@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="598" viewBox="0 0 1120 598">
+<style>text{font-family:Arial,sans-serif;font-size:12px;fill:#202124}.title{font-size:17px;font-weight:700}.axis{fill:#5f6368}.small{font-size:10px;fill:#5f6368}.label{font-size:12px;font-weight:700}.legend{font-size:11px;fill:#3c4043}</style>
+<rect width="100%" height="100%" fill="#fff"/>
+<text class="title" x="24" y="30">Thesis Efficiency Overview</text>
+<text class="axis" x="24" y="52">Median costs; bars are independently scaled by metric and labels show actual values</text>
+<rect x="205" y="70" width="12" height="12" fill="#7c3aed"/>
+<text class="legend" x="223" y="81">Action x</text>
+<rect x="317" y="70" width="12" height="12" fill="#0f766e"/>
+<text class="legend" x="335" y="81">Time x</text>
+<rect x="429" y="70" width="12" height="12" fill="#2563eb"/>
+<text class="legend" x="447" y="81">Actions</text>
+<rect x="541" y="70" width="12" height="12" fill="#f97316"/>
+<text class="legend" x="559" y="81">Seconds</text>
+<text class="label" x="24.0" y="116.0">Qwen Text</text>
+<text class="small" x="24" y="134">refs=21/249</text>
+<text class="small" x="141" y="109">Action x</text>
+<rect x="205" y="98" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="98" width="167.6" height="13" fill="#7c3aed"/>
+<text class="small" x="850" y="109">0.27x</text>
+<text class="small" x="141" y="129">Time x</text>
+<rect x="205" y="118" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="118" width="210.1" height="13" fill="#0f766e"/>
+<text class="small" x="850" y="129">2.17x</text>
+<text class="small" x="141" y="149">Actions</text>
+<rect x="205" y="138" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="138" width="539.1" height="13" fill="#2563eb"/>
+<text class="small" x="850" y="149">12.0</text>
+<text class="small" x="141" y="169">Seconds</text>
+<rect x="205" y="158" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="158" width="231.3" height="13" fill="#f97316"/>
+<text class="small" x="850" y="169">136.6s</text>
+<text class="label" x="24.0" y="218.0">Qwen VLM</text>
+<text class="small" x="24" y="236">refs=21/219</text>
+<text class="small" x="141" y="211">Action x</text>
+<rect x="205" y="200" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="200" width="166.3" height="13" fill="#7c3aed"/>
+<text class="small" x="850" y="211">0.27x</text>
+<text class="small" x="141" y="231">Time x</text>
+<rect x="205" y="220" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="220" width="262.0" height="13" fill="#0f766e"/>
+<text class="small" x="850" y="231">2.70x</text>
+<text class="small" x="141" y="251">Actions</text>
+<rect x="205" y="240" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="240" width="539.1" height="13" fill="#2563eb"/>
+<text class="small" x="850" y="251">12.0</text>
+<text class="small" x="141" y="271">Seconds</text>
+<rect x="205" y="260" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="260" width="284.6" height="13" fill="#f97316"/>
+<text class="small" x="850" y="271">168.1s</text>
+<text class="label" x="24.0" y="320.0">OpenCUA Native</text>
+<text class="small" x="24" y="338">refs=21/200</text>
+<text class="small" x="141" y="313">Action x</text>
+<rect x="205" y="302" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="302" width="136.1" height="13" fill="#7c3aed"/>
+<text class="small" x="850" y="313">0.22x</text>
+<text class="small" x="141" y="333">Time x</text>
+<rect x="205" y="322" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="322" width="333.0" height="13" fill="#0f766e"/>
+<text class="small" x="850" y="333">3.44x</text>
+<text class="small" x="141" y="353">Actions</text>
+<rect x="205" y="342" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="342" width="359.4" height="13" fill="#2563eb"/>
+<text class="small" x="850" y="353">8.0</text>
+<text class="small" x="141" y="373">Seconds</text>
+<rect x="205" y="362" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="362" width="334.8" height="13" fill="#f97316"/>
+<text class="small" x="850" y="373">197.7s</text>
+<text class="label" x="24.0" y="422.0">OpenCUA MCP</text>
+<text class="small" x="24" y="440">refs=17/130</text>
+<text class="small" x="141" y="415">Action x</text>
+<rect x="205" y="404" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="404" width="181.5" height="13" fill="#7c3aed"/>
+<text class="small" x="850" y="415">0.29x</text>
+<text class="small" x="141" y="435">Time x</text>
+<rect x="205" y="424" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="424" width="539.1" height="13" fill="#0f766e"/>
+<text class="small" x="850" y="435">5.57x</text>
+<text class="small" x="141" y="455">Actions</text>
+<rect x="205" y="444" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="444" width="539.1" height="13" fill="#2563eb"/>
+<text class="small" x="850" y="455">12.0</text>
+<text class="small" x="141" y="475">Seconds</text>
+<rect x="205" y="464" width="620" height="13" fill="#eef1f4"/>
+<rect x="205" y="464" width="539.1" height="13" fill="#f97316"/>
+<text class="small" x="850" y="475">318.4s</text>
+</svg>

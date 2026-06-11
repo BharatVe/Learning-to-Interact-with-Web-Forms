@@ -508,6 +508,51 @@ async (page) => {
     }
   };
 
+  const clickRobust = async (locator) => {
+    await locator.scrollIntoViewIfNeeded().catch(() => {});
+    try {
+      await locator.click({ timeout: step.timeoutMs });
+      return true;
+    } catch (firstError) {
+      try {
+        await locator.click({ timeout: step.timeoutMs, force: true });
+        return true;
+      } catch (secondError) {
+        const clicked = await locator.evaluate((el) => {
+          if (el instanceof HTMLElement) {
+            el.click();
+            return true;
+          }
+          return false;
+        }).catch(() => false);
+        if (clicked) return true;
+        throw secondError;
+      }
+    }
+  };
+
+  const setMeridiem = async (container, meridiem) => {
+    const wanted = norm(meridiem);
+    const candidates = container.locator("[role='option'], [role='radio'], [aria-label], [data-value], span, div");
+    const count = await candidates.count();
+    for (let i = 0; i < count; i++) {
+      const candidate = candidates.nth(i);
+      const dataValue = await candidate.getAttribute("data-value").catch(() => "");
+      const aria = await candidate.getAttribute("aria-label").catch(() => "");
+      const text = await candidate.innerText({ timeout: 500 }).catch(() => "");
+      if ([dataValue, aria, text].some((value) => norm(value) === wanted)) {
+        await clickRobust(candidate);
+        return candidate;
+      }
+    }
+    const marker = container.getByText(meridiem, { exact: true }).first();
+    if (await marker.count() > 0) {
+      await clickRobust(marker);
+      return marker;
+    }
+    return null;
+  };
+
   const isSelected = async (option) => {
     return await option.evaluate((el) => {
       const aria = el.getAttribute("aria-checked");
@@ -754,7 +799,8 @@ async (page) => {
       await typeInto(minuteInput, minute);
       await verifyInput(minuteInput, minute, "time_segment_mismatch");
       if (hasMeridiem) {
-        await marker.first().click({ timeout: step.timeoutMs });
+        const meridiemTarget = await setMeridiem(container, meridiem);
+        if (!meridiemTarget) throw new Error(`time_meridiem_not_found: ${meridiem}`);
       }
       result.target_bbox = await bbox(minuteInput);
       Object.assign(result, await getTargetMeta(minuteInput));

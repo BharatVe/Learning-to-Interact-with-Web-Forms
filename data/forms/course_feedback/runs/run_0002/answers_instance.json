@@ -2,76 +2,85 @@
   {
     "label": "Course name",
     "widget_type": "short_text",
-    "value": "Distributed Systems",
+    "value": "Priya Khan",
     "tags": [
-      "course"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Your program level",
     "widget_type": "single_choice",
-    "value": "Bachelor's",
+    "value": "Master\u2019s",
     "tags": [
-      "program"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "Did you attend most sessions?",
     "widget_type": "single_choice",
-    "value": "Partially",
+    "value": "No",
     "tags": [
-      "attendance"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "Overall satisfaction",
     "widget_type": "single_choice",
-    "value": "3",
+    "value": "5 \u2013 Very satisfied",
     "tags": [
-      "rating"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "Workload felt",
     "widget_type": "single_choice",
-    "value": "Too high",
+    "value": "Too low",
     "tags": [
-      "workload"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "What did you like most?",
     "widget_type": "paragraph_text",
-    "value": "Case studies from real deployments.",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (What did you like most?; run 2)",
     "tags": [
-      "feedback"
+      "generated",
+      "paragraph"
     ]
   },
   {
     "label": "What should be improved?",
     "widget_type": "paragraph_text",
-    "value": "More guided review sessions.",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (What should be improved?; run 2)",
     "tags": [
-      "feedback"
+      "generated",
+      "paragraph"
     ]
   },
   {
     "label": "Most useful aspects",
     "widget_type": "multi_choice",
     "value": [
-      "Theory",
-      "Assignments"
+      "Assignments",
+      "Project work"
     ],
     "tags": [
-      "highlights"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Would you recommend this course?",
     "widget_type": "single_choice",
-    "value": "Maybe",
+    "value": "No",
     "tags": [
-      "recommendation"
+      "generated",
+      "single_choice"
     ]
   }
 ]

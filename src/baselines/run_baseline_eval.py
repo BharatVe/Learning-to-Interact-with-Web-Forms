@@ -2271,26 +2271,15 @@ def _load_json_file(path: Path) -> Dict[str, Any]:
 
 
 def _count_valid_trace_events(trace_path: Path) -> int:
+    return _trace_event_stats(trace_path)["action_count"]
+
+
+def _trace_event_stats(trace_path: Path) -> Dict[str, Any]:
     if not trace_path.exists():
-        return 0
+        return {"action_count": 0, "first_event_time_s": None, "last_event_time_s": None, "duration_s": None}
+    first_t: Optional[float] = None
+    last_t: Optional[float] = None
     count = 0
-    for line in trace_path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        try:
-            payload = json.loads(line)
-        except Exception:
-            continue
-        if isinstance(payload, dict) and isinstance(payload.get("name"), str) and str(payload.get("name")).strip():
-            count += 1
-    return count
-
-
-def _max_trace_time_s(trace_path: Path) -> Optional[float]:
-    if not trace_path.exists():
-        return None
-    max_t: Optional[float] = None
     for line in trace_path.read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if not line:
@@ -2301,37 +2290,28 @@ def _max_trace_time_s(trace_path: Path) -> Optional[float]:
             continue
         if not isinstance(payload, dict):
             continue
-        raw = payload.get("t_s")
+        name = payload.get("name")
+        if not isinstance(name, str) or not name.strip():
+            continue
+        count += 1
         try:
-            value = float(raw)
+            value = float(payload.get("t_s"))
         except Exception:
             continue
-        max_t = value if max_t is None or value > max_t else max_t
-    return max_t
+        first_t = value if first_t is None else min(first_t, value)
+        last_t = value if last_t is None else max(last_t, value)
+    duration = None if first_t is None or last_t is None else round(last_t - first_t, 6)
+    return {
+        "action_count": count,
+        "first_event_time_s": first_t,
+        "last_event_time_s": last_t,
+        "duration_s": duration,
+    }
 
 
 def _derive_reference_duration_s(reference_annotations: Dict[str, Any], reference_trace_path: Path) -> Optional[float]:
-    actions = reference_annotations.get("actions")
-    if isinstance(actions, list):
-        max_t: Optional[float] = None
-        for action in actions:
-            if not isinstance(action, dict):
-                continue
-            try:
-                value = float(action.get("t_end_s"))
-            except Exception:
-                continue
-            max_t = value if max_t is None or value > max_t else max_t
-        if max_t is not None:
-            return round(max_t, 6)
-    submit = reference_annotations.get("submit")
-    if isinstance(submit, dict):
-        try:
-            return round(float(submit.get("t_end_s")), 6)
-        except Exception:
-            pass
-    trace_max = _max_trace_time_s(reference_trace_path)
-    return round(trace_max, 6) if trace_max is not None else None
+    value = _trace_event_stats(reference_trace_path).get("duration_s")
+    return round(float(value), 6) if value is not None else None
 
 
 def _reference_run_paths(form_id: str, answer_run_id: str) -> Dict[str, Path]:
@@ -2355,9 +2335,9 @@ def _resolve_reference_efficiency(
     ref_paths = _reference_run_paths(form_id, answer_run_id)
     reference_annotations = _load_json_file(ref_paths["annotations_path"]) if ref_paths["annotations_path"].exists() else {}
     reference_trace_path = ref_paths["trace_path"]
-    reference_available = ref_paths["run_root"].exists() and ref_paths["annotations_path"].exists() and reference_trace_path.exists()
+    raw_reference_available = ref_paths["run_root"].exists() and ref_paths["annotations_path"].exists() and reference_trace_path.exists()
     reference_video_path = None
-    if reference_available:
+    if raw_reference_available:
         raw_video = reference_annotations.get("video_path")
         if isinstance(raw_video, str) and raw_video.strip():
             reference_video_path = raw_video.strip()
@@ -2365,6 +2345,20 @@ def _resolve_reference_efficiency(
             candidates = sorted(ref_paths["run_root"].glob("*.webm"))
             if candidates:
                 reference_video_path = str(candidates[0])
+    reference_trace_stats = _trace_event_stats(reference_trace_path)
+    reference_submit = reference_annotations.get("submit") if isinstance(reference_annotations.get("submit"), dict) else {}
+    reference_video_available = bool(
+        reference_video_path
+        and Path(reference_video_path).exists()
+        and Path(reference_video_path).stat().st_size > 0
+    )
+    reference_available = bool(
+        raw_reference_available
+        and reference_video_available
+        and reference_trace_stats.get("action_count", 0) > 0
+        and reference_trace_stats.get("duration_s") is not None
+        and reference_submit.get("success")
+    )
 
     trace_action_count = _count_valid_trace_events(model_trace_path)
     preferred_count = None
@@ -2392,7 +2386,7 @@ def _resolve_reference_efficiency(
         resolved_model_action_count = preferred_count
         model_action_count_source = "summary_field" if preferred_count is not None else "unavailable"
 
-    reference_action_count = _count_valid_trace_events(reference_trace_path) if reference_available else None
+    reference_action_count = int(reference_trace_stats.get("action_count") or 0) if reference_available else None
     reference_duration_s = _derive_reference_duration_s(reference_annotations, reference_trace_path) if reference_available else None
 
     action_overhead_ratio = None

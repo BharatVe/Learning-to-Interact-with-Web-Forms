@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="452" viewBox="0 0 1120 452">
+<style>text{font-family:Arial,sans-serif;font-size:12px;fill:#202124}.title{font-size:17px;font-weight:700}.axis{fill:#5f6368}.small{font-size:10px;fill:#5f6368}.label{font-size:12px;font-weight:700}.legend{font-size:11px;fill:#3c4043}</style>
+<rect width="100%" height="100%" fill="#fff"/>
+<text class="title" x="24" y="30">Thesis Failure Mix</text>
+<text class="axis" x="24" y="52">Trial stop reasons by model; each row sums to 100%</text>
+<text class="label" x="24.0" y="98.0">Qwen Text</text>
+<text class="small" x="24" y="116">n=249</text>
+<rect x="205.0" y="82" width="270.4" height="20" fill="#2563eb"/>
+<rect x="475.4" y="82" width="2.7" height="20" fill="#dc2626"/>
+<rect x="478.0" y="82" width="13.3" height="20" fill="#f59e0b"/>
+<rect x="491.3" y="82" width="2.7" height="20" fill="#16a34a"/>
+<rect x="493.9" y="82" width="341.9" height="20" fill="#7c3aed"/>
+<rect x="835.8" y="82" width="29.2" height="20" fill="#f97316"/>
+<rect x="205" y="82" width="660" height="20" fill="none" stroke="#dadce0"/>
+<text class="small" x="890" y="97">premature_done_without_su...</text>
+<text class="label" x="24.0" y="160.0">Qwen VLM</text>
+<text class="small" x="24" y="178">n=219</text>
+<rect x="205.0" y="144" width="467.1" height="20" fill="#2563eb"/>
+<rect x="672.1" y="144" width="30.1" height="20" fill="#dc2626"/>
+<rect x="702.3" y="144" width="24.1" height="20" fill="#f59e0b"/>
+<rect x="726.4" y="144" width="99.5" height="20" fill="#7c3aed"/>
+<rect x="825.8" y="144" width="39.2" height="20" fill="#f97316"/>
+<rect x="205" y="144" width="660" height="20" fill="none" stroke="#dadce0"/>
+<text class="small" x="890" y="159">done</text>
+<text class="label" x="24.0" y="222.0">OpenCUA Native</text>
+<text class="small" x="24" y="240">n=200</text>
+<rect x="205.0" y="206" width="92.4" height="20" fill="#f59e0b"/>
+<rect x="297.4" y="206" width="567.6" height="20" fill="#64748b"/>
+<rect x="205" y="206" width="660" height="20" fill="none" stroke="#dadce0"/>
+<text class="small" x="890" y="221">repeated_action_loop</text>
+<text class="label" x="24.0" y="284.0">OpenCUA MCP</text>
+<text class="small" x="24" y="302">n=130</text>
+<rect x="205.0" y="268" width="538.2" height="20" fill="#2563eb"/>
+<rect x="743.2" y="268" width="50.8" height="20" fill="#dc2626"/>
+<rect x="793.9" y="268" width="15.2" height="20" fill="#f59e0b"/>
+<rect x="809.2" y="268" width="30.5" height="20" fill="#16a34a"/>
+<rect x="839.6" y="268" width="5.1" height="20" fill="#0891b2"/>
+<rect x="844.7" y="268" width="20.3" height="20" fill="#f97316"/>
+<rect x="205" y="268" width="660" height="20" fill="none" stroke="#dadce0"/>
+<text class="small" x="890" y="283">done</text>
+<rect x="24" y="342" width="10" height="10" fill="#2563eb"/>
+<text class="legend" x="42.0" y="352.0">done</text>
+<rect x="454" y="342" width="10" height="10" fill="#dc2626"/>
+<text class="legend" x="472.0" y="352.0">environment_error</text>
+<rect x="24" y="362" width="10" height="10" fill="#f59e0b"/>
+<text class="legend" x="42.0" y="372.0">max_steps_exceeded</text>
+<rect x="454" y="362" width="10" height="10" fill="#16a34a"/>
+<text class="legend" x="472.0" y="372.0">model_no_tool_calls</text>
+<rect x="24" y="382" width="10" height="10" fill="#7c3aed"/>
+<text class="legend" x="42.0" y="392.0">premature_done_without_submit</text>
+<rect x="454" y="382" width="10" height="10" fill="#0891b2"/>
+<text class="legend" x="472.0" y="392.0">repeat_invalid_tool_call</text>
+<rect x="24" y="402" width="10" height="10" fill="#64748b"/>
+<text class="legend" x="42.0" y="412.0">repeated_action_loop</text>
+<rect x="454" y="402" width="10" height="10" fill="#f97316"/>
+<text class="legend" x="472.0" y="412.0">timeout</text>
+</svg>

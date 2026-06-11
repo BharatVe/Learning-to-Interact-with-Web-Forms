@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="260" viewBox="0 0 920 260">
+<style>text{font-family:Arial,sans-serif;font-size:12px;fill:#202124}.title{font-size:17px;font-weight:700}.small{font-size:10px;fill:#5f6368}.label{font-weight:700}</style>
+<rect width="100%" height="100%" fill="#fff"/>
+<text class="title" x="24" y="30">Reference Action Counts</text>
+<rect x="70.0" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
+<rect x="133.3" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
+<rect x="196.7" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
+<rect x="260.0" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
+<rect x="323.3" y="179.1" width="59.3" height="10.9" fill="#2563eb"/>
+<rect x="386.7" y="168.2" width="59.3" height="21.8" fill="#2563eb"/>
+<rect x="450.0" y="179.1" width="59.3" height="10.9" fill="#2563eb"/>
+<rect x="513.3" y="179.1" width="59.3" height="10.9" fill="#2563eb"/>
+<rect x="576.7" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
+<rect x="640.0" y="124.5" width="59.3" height="65.5" fill="#2563eb"/>
+<rect x="703.3" y="124.5" width="59.3" height="65.5" fill="#2563eb"/>
+<rect x="766.7" y="70.0" width="59.3" height="120.0" fill="#2563eb"/>
+<line x1="70" y1="190" x2="830" y2="190" stroke="#dadce0"/>
+<text class="small" x="70" y="214">0</text>
+<text class="small" x="786" y="214">49.0</text>
+<text class="small" x="24" y="230">n=28, median=41.0</text>
+</svg>

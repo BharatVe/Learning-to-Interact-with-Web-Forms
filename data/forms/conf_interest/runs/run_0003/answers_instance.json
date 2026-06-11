@@ -2,63 +2,66 @@
   {
     "label": "Full Name",
     "widget_type": "short_text",
-    "value": "Noah Whitaker",
+    "value": "Sam Ortiz",
     "tags": [
-      "profile",
-      "identity"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Preferred contact email",
     "widget_type": "short_text",
-    "value": "noah.whitaker@chipfoundry.ai",
+    "value": "sam.ortiz.3@mail.test",
     "tags": [
-      "profile",
-      "contact"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Brief bio",
     "widget_type": "paragraph_text",
-    "value": "Masters student studying human centered AI and interface design.",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Brief bio; run 3)",
     "tags": [
-      "summary"
+      "generated",
+      "paragraph"
     ]
   },
   {
     "label": "Primary role",
     "widget_type": "single_choice",
-    "value": "Master's student",
+    "value": "Industry Professional",
     "tags": [
-      "role"
+      "generated",
+      "single_choice"
     ]
   },
   {
-    "label": "Topics you're interested in",
+    "label": "Topics you\u2019re interested in",
     "widget_type": "multi_choice",
     "value": [
-      "Human-Computer Interaction",
-      "AI/ML"
+      "Human-Computer Interaction"
     ],
     "tags": [
-      "topics",
-      "interests"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Preferred meeting date",
     "widget_type": "date",
-    "value": "2025-06-20",
+    "value": "2025-11-01",
     "tags": [
-      "scheduling"
+      "generated",
+      "date"
     ]
   },
   {
     "label": "Preferred meeting time",
     "widget_type": "time",
-    "value": "09:00",
+    "value": "16:45",
     "tags": [
-      "scheduling"
+      "generated",
+      "time"
     ]
   }
 ]

@@ -2,17 +2,19 @@
   {
     "label": "Name",
     "widget_type": "short_text",
-    "value": "Kai Mendoza",
+    "value": "Priya Rivera",
     "tags": [
-      "identity"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Will you attend?",
     "widget_type": "single_choice",
-    "value": "Maybe",
+    "value": "No",
     "tags": [
-      "attendance"
+      "generated",
+      "single_choice"
     ]
   },
   {
@@ -20,34 +22,37 @@
     "widget_type": "short_text",
     "value": "2",
     "tags": [
-      "attendance"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Preferred arrival time",
     "widget_type": "time",
-    "value": "19:00",
+    "value": "10:15",
     "tags": [
-      "scheduling"
+      "generated",
+      "time"
     ]
   },
   {
-    "label": "Activities you're interested in",
+    "label": "Activities you\u2019re interested in",
     "widget_type": "multi_choice",
     "value": [
-      "Poster session",
-      "Demo booths"
+      "Poster session"
     ],
     "tags": [
-      "interests"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Accessibility needs or comments",
     "widget_type": "paragraph_text",
-    "value": "No accessibility needs.",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Accessibility needs or comments; run 2)",
     "tags": [
-      "notes"
+      "generated",
+      "paragraph"
     ]
   }
 ]

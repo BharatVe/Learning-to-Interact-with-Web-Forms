@@ -9,10 +9,13 @@ from unittest.mock import patch
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = REPO_ROOT / "src"
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 from baselines import run_baseline_eval as rbe
+from scripts import analyze_reference_dataset as ard
 
 
 class ReferenceEfficiencyHelperTests(TestCase):
@@ -25,6 +28,7 @@ class ReferenceEfficiencyHelperTests(TestCase):
                 json.dumps(
                     {
                         "video_path": str(reference_root / "ref.webm"),
+                        "submit": {"success": True},
                         "actions": [
                             {"t_end_s": 3.0},
                             {"t_end_s": 7.5},
@@ -33,6 +37,7 @@ class ReferenceEfficiencyHelperTests(TestCase):
                 ),
                 encoding="utf-8",
             )
+            (reference_root / "ref.webm").write_bytes(b"video")
             (reference_root / "tool_trace.jsonl").write_text(
                 "\n".join(
                     [
@@ -69,20 +74,24 @@ class ReferenceEfficiencyHelperTests(TestCase):
                 )
             self.assertTrue(payload["reference_available"])
             self.assertEqual(payload["reference_action_count"], 3)
-            self.assertEqual(payload["reference_duration_s"], 7.5)
+            self.assertEqual(payload["reference_duration_s"], 2.0)
             self.assertEqual(payload["trace_action_count"], 5)
             self.assertEqual(payload["trace_action_count_source"], "trace_overrides_summary_field")
             self.assertEqual(payload["action_count_delta"], 2)
-            self.assertEqual(payload["duration_delta_s"], 7.5)
+            self.assertEqual(payload["duration_delta_s"], 13.0)
             self.assertAlmostEqual(payload["action_overhead_ratio"], 5 / 3, places=6)
-            self.assertEqual(payload["time_overhead_ratio"], 2.0)
+            self.assertEqual(payload["time_overhead_ratio"], 7.5)
 
     def test_resolve_reference_efficiency_can_prefer_model_action_count(self):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             reference_root = root / "data/forms/conf_interest/runs/run_0001"
             reference_root.mkdir(parents=True, exist_ok=True)
-            (reference_root / "annotations.json").write_text(json.dumps({"actions": [{"t_end_s": 2.0}]}), encoding="utf-8")
+            (reference_root / "ref.webm").write_bytes(b"video")
+            (reference_root / "annotations.json").write_text(
+                json.dumps({"video_path": str(reference_root / "ref.webm"), "submit": {"success": True}, "actions": [{"t_end_s": 2.0}]}),
+                encoding="utf-8",
+            )
             (reference_root / "tool_trace.jsonl").write_text(
                 "\n".join([json.dumps({"name": "browser_click", "t_s": 1.0}), json.dumps({"name": "browser_type", "t_s": 2.0})]) + "\n",
                 encoding="utf-8",
@@ -125,6 +134,90 @@ class ReferenceEfficiencyHelperTests(TestCase):
             self.assertIsNone(payload["reference_action_count"])
             self.assertIsNone(payload["reference_duration_s"])
             self.assertIsNone(payload["action_overhead_ratio"])
+
+
+class ReferenceDatasetAnalysisTests(TestCase):
+    def test_trace_stats_rejects_empty_trace(self):
+        with TemporaryDirectory() as tmp:
+            trace = Path(tmp) / "tool_trace.jsonl"
+            trace.write_text("", encoding="utf-8")
+            stats = ard.trace_stats(trace)
+        self.assertTrue(stats["trace_exists"])
+        self.assertFalse(stats["trace_valid"])
+        self.assertEqual(stats["trace_error"], "no_valid_events")
+        self.assertEqual(stats["action_count"], 0)
+
+    def test_trace_stats_reports_malformed_json(self):
+        with TemporaryDirectory() as tmp:
+            trace = Path(tmp) / "tool_trace.jsonl"
+            trace.write_text('{"name":"browser_click","t_s":1.0}\nnot json\n', encoding="utf-8")
+            stats = ard.trace_stats(trace)
+        self.assertFalse(stats["trace_valid"])
+        self.assertTrue(str(stats["trace_error"]).startswith("invalid_json_line_2"))
+        self.assertEqual(stats["action_count"], 1)
+
+    def test_trace_stats_counts_valid_events_and_elapsed_duration(self):
+        with TemporaryDirectory() as tmp:
+            trace = Path(tmp) / "tool_trace.jsonl"
+            trace.write_text(
+                "\n".join(
+                    [
+                        json.dumps({"name": "browser_navigate", "t_s": 2.0}),
+                        json.dumps({"name": "browser_run_code", "t_s": 5.5}),
+                        json.dumps({"name": "browser_wait_for", "t_s": 9.25}),
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            stats = ard.trace_stats(trace)
+        self.assertTrue(stats["trace_valid"])
+        self.assertEqual(stats["action_count"], 3)
+        self.assertEqual(stats["first_event_time_s"], 2.0)
+        self.assertEqual(stats["last_event_time_s"], 9.25)
+        self.assertEqual(stats["duration_s"], 7.25)
+
+    def test_analyze_reference_run_complete_and_missing_video(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            run = root / "data/forms/conf_interest/runs/run_0001"
+            run.mkdir(parents=True)
+            video = run / "ref.webm"
+            video.write_bytes(b"video")
+            (run / "answers_instance.json").write_text("[]", encoding="utf-8")
+            (run / "annotations.json").write_text(
+                json.dumps({"submit": {"success": True}, "video_path": str(video)}),
+                encoding="utf-8",
+            )
+            (run / "tool_trace.jsonl").write_text(
+                json.dumps({"name": "browser_navigate", "t_s": 1.0}) + "\n"
+                + json.dumps({"name": "browser_close", "t_s": 4.0}) + "\n",
+                encoding="utf-8",
+            )
+            row, breakdown = ard.analyze_reference_run(root / "data/forms", "conf_interest", "run_0001")
+            self.assertTrue(row["usable"])
+            self.assertEqual(row["action_count"], 2)
+            self.assertEqual(row["duration_s"], 3.0)
+            self.assertEqual({item["tool_name"] for item in breakdown}, {"browser_navigate", "browser_close"})
+
+            video.unlink()
+            row, _ = ard.analyze_reference_run(root / "data/forms", "conf_interest", "run_0001")
+            self.assertFalse(row["usable"])
+            self.assertEqual(row["failure_reason"], "missing_video")
+
+    def test_analyze_reference_run_failure_manifest(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            run = root / "data/forms/conf_interest/runs/run_0001"
+            run.mkdir(parents=True)
+            (run / "failure_manifest.json").write_text(
+                json.dumps({"error_type": "RuntimeError", "message": "broken dropdown"}),
+                encoding="utf-8",
+            )
+            row, _ = ard.analyze_reference_run(root / "data/forms", "conf_interest", "run_0001")
+        self.assertFalse(row["usable"])
+        self.assertTrue(row["failure_manifest_available"])
+        self.assertEqual(row["failure_reason"], "broken dropdown")
 
 
 class ReferenceEfficiencySummaryTests(TestCase):

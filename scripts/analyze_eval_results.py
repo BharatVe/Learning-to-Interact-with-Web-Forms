@@ -11,6 +11,8 @@ import argparse
 import csv
 import html
 import json
+import math
+import random
 import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass
@@ -18,14 +20,19 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
+from analyze_reference_dataset import trace_stats
+
 
 DEFAULT_DATASET_ROOT = Path("data/model_baselines")
 DEFAULT_OUTPUT_DIR = Path("docs/eval_results/analysis")
 DEFAULT_ANSWERS_ROOT = Path("data/answers")
 DEFAULT_FORMS_ROOT = Path("src/forms")
+DEFAULT_REFERENCE_ROOT = Path("data/forms")
 TARGET_RUN_COUNT = 6
 TARGET_TRIAL_COUNT = 300
 TARGET_RUN_IDS = tuple(f"run_{idx:04d}" for idx in range(1, TARGET_RUN_COUNT + 1))
+BOOTSTRAP_SAMPLES = 1000
+BOOTSTRAP_SEED = 20260609
 QWEN_MODEL_IDS = {
     "text_qwen3_30b_a3b_instruct_2507",
     "vlm_qwen3_vl_30b_a3b_instruct",
@@ -36,6 +43,24 @@ TARGET_MODEL_IDS = {
     *QWEN_MODEL_IDS,
     OPENCUA_NATIVE_MODEL_ID,
     OPENCUA_DIRECT_MCP_MODEL_ID,
+}
+THESIS_MODEL_ORDER = (
+    "text_qwen3_30b_a3b_instruct_2507",
+    "vlm_qwen3_vl_30b_a3b_instruct",
+    OPENCUA_NATIVE_MODEL_ID,
+    OPENCUA_DIRECT_MCP_MODEL_ID,
+)
+THESIS_MODEL_LABELS = {
+    "text_qwen3_30b_a3b_instruct_2507": "Qwen Text",
+    "vlm_qwen3_vl_30b_a3b_instruct": "Qwen VLM",
+    OPENCUA_NATIVE_MODEL_ID: "OpenCUA Native",
+    OPENCUA_DIRECT_MCP_MODEL_ID: "OpenCUA MCP",
+}
+THESIS_COLORS = {
+    "Qwen Text": "#2563eb",
+    "Qwen VLM": "#059669",
+    "OpenCUA Native": "#dc2626",
+    "OpenCUA MCP": "#7c3aed",
 }
 QWEN_EXPERIMENT = "qwen_direct_mcp_english_stepcap128_5form_20260515"
 OPENCUA_CONTROL_EXPERIMENT = "opencua_control_guidance_30form_20260526"
@@ -88,6 +113,17 @@ class Trial:
     submitted_while_incomplete_count: int
     action_count: int
     duration_s: float
+    reference_available: bool
+    reference_action_count: Optional[int]
+    reference_duration_s: Optional[float]
+    action_overhead_ratio: Optional[float]
+    time_overhead_ratio: Optional[float]
+    action_count_delta: Optional[int]
+    duration_delta_s: Optional[float]
+    reference_run_path: str
+    reference_trace_path: str
+    reference_video_path: str
+    wasted_interaction_rate: Optional[float]
     run_completed_utc: str
     summary_path: Path
 
@@ -120,12 +156,157 @@ def _as_float(value: Any) -> float:
         return 0.0
 
 
+def _optional_int(value: Any) -> Optional[int]:
+    if value is None or value == "":
+        return None
+    try:
+        return int(value)
+    except Exception:
+        return None
+
+
+def _optional_float(value: Any) -> Optional[float]:
+    if value is None or value == "":
+        return None
+    try:
+        value_float = float(value)
+    except Exception:
+        return None
+    if math.isnan(value_float) or math.isinf(value_float):
+        return None
+    return value_float
+
+
 def _score(summary: Dict[str, Any]) -> Tuple[int, str]:
     if summary.get("pre_successful_submit_verified_correctness") is not None:
         return _as_int(summary.get("pre_successful_submit_verified_correctness")), "pre_successful_submit"
     if summary.get("pre_first_submit_verified_correctness") is not None:
         return _as_int(summary.get("pre_first_submit_verified_correctness")), "pre_first_submit"
     return _as_int(summary.get("verified_correctness")), "final_verification"
+
+
+def _count_valid_trace_events(path: Path) -> Optional[int]:
+    stats = trace_stats(path)
+    if not stats.get("trace_exists"):
+        return None
+    if not stats.get("trace_valid"):
+        return None
+    return int(stats.get("action_count") or 0)
+
+
+def _max_trace_time_s(trace_path: Path) -> Optional[float]:
+    stats = trace_stats(trace_path)
+    value = _optional_float(stats.get("last_event_time_s"))
+    return value
+
+
+def _derive_reference_duration_s(reference_annotations: Dict[str, Any], reference_trace_path: Path) -> Optional[float]:
+    stats = trace_stats(reference_trace_path)
+    value = _optional_float(stats.get("duration_s"))
+    return round(value, 6) if value is not None else None
+
+
+def _reference_run_paths(form_id: str, answer_run_id: str, reference_root: Path = DEFAULT_REFERENCE_ROOT) -> Dict[str, Path]:
+    run_root = reference_root / form_id / "runs" / answer_run_id
+    return {
+        "run_root": run_root,
+        "annotations_path": run_root / "annotations.json",
+        "trace_path": run_root / "tool_trace.jsonl",
+    }
+
+
+def _reference_metrics(form_id: str, answer_run_id: str, reference_root: Path = DEFAULT_REFERENCE_ROOT) -> Dict[str, Any]:
+    paths = _reference_run_paths(form_id, answer_run_id, reference_root)
+    annotations = _read_json(paths["annotations_path"]) if paths["annotations_path"].exists() else {}
+    trace_path = paths["trace_path"]
+    run_root = paths["run_root"]
+    webm_candidates = sorted(run_root.glob("*.webm")) if run_root.exists() else []
+    raw_video = annotations.get("video_path") if isinstance(annotations, dict) else None
+    video_path = str(raw_video).strip() if isinstance(raw_video, str) and raw_video.strip() else ""
+    raw_video_exists = bool(video_path and Path(video_path).exists() and Path(video_path).stat().st_size > 0)
+    if (not raw_video_exists) and webm_candidates:
+        video_path = str(webm_candidates[0])
+        raw_video_exists = bool(webm_candidates[0].stat().st_size > 0)
+    action_count = _count_valid_trace_events(trace_path)
+    duration_s = _derive_reference_duration_s(annotations, trace_path) if trace_path.exists() else None
+    run_params = annotations.get("run_params") if isinstance(annotations, dict) else {}
+    submit = annotations.get("submit") if isinstance(annotations, dict) else {}
+    raw_available = bool(run_root.exists() and paths["annotations_path"].exists() and trace_path.exists())
+    submit_success = bool(submit.get("success")) if isinstance(submit, dict) else False
+    usable = bool(raw_available and raw_video_exists and action_count is not None and action_count > 0 and duration_s is not None and duration_s > 0 and submit_success)
+    return {
+        "reference_available": usable,
+        "reference_artifacts_present": raw_available,
+        "reference_run_path": str(run_root),
+        "reference_trace_path": str(trace_path),
+        "reference_video_path": video_path,
+        "reference_video_available": raw_video_exists,
+        "reference_action_count": action_count,
+        "reference_duration_s": duration_s,
+        "reference_interaction_mode": str(run_params.get("interaction_mode") or "") if isinstance(run_params, dict) else "",
+        "reference_trace_mode": str(run_params.get("trace_mode") or "") if isinstance(run_params, dict) else "",
+        "reference_submit_success": submit_success,
+    }
+
+
+def _resolve_efficiency_for_trial(summary: Dict[str, Any], form_id: str, answer_run_id: str) -> Dict[str, Any]:
+    reference = _reference_metrics(form_id, answer_run_id)
+    action_count = _optional_int(summary.get("action_count") or summary.get("trace_action_count"))
+    duration_s = _optional_float(summary.get("duration_s"))
+    reference_action_count = _optional_int(summary.get("reference_action_count"))
+    if reference["reference_available"] and reference["reference_action_count"] is not None:
+        reference_action_count = int(reference["reference_action_count"])
+    reference_duration_s = _optional_float(summary.get("reference_duration_s"))
+    if reference["reference_available"] and reference["reference_duration_s"] is not None:
+        reference_duration_s = float(reference["reference_duration_s"])
+
+    action_overhead_ratio = _optional_float(summary.get("action_overhead_ratio"))
+    action_count_delta = _optional_int(summary.get("action_count_delta"))
+    if reference.get("reference_artifacts_present") and not reference.get("reference_available"):
+        reference_action_count = None
+        reference_duration_s = None
+        action_overhead_ratio = None
+        action_count_delta = None
+    if action_count is not None and reference_action_count is not None and reference_action_count > 0:
+        action_overhead_ratio = round(float(action_count) / float(reference_action_count), 6)
+        action_count_delta = int(action_count) - int(reference_action_count)
+
+    time_overhead_ratio = _optional_float(summary.get("time_overhead_ratio"))
+    duration_delta_s = _optional_float(summary.get("duration_delta_s"))
+    if reference.get("reference_artifacts_present") and not reference.get("reference_available"):
+        time_overhead_ratio = None
+        duration_delta_s = None
+    if duration_s is not None and reference_duration_s is not None and reference_duration_s > 0:
+        time_overhead_ratio = round(float(duration_s) / float(reference_duration_s), 6)
+        duration_delta_s = round(float(duration_s) - float(reference_duration_s), 6)
+
+    return {
+        **reference,
+        "reference_action_count": reference_action_count,
+        "reference_duration_s": reference_duration_s,
+        "action_overhead_ratio": action_overhead_ratio,
+        "time_overhead_ratio": time_overhead_ratio,
+        "action_count_delta": action_count_delta,
+        "duration_delta_s": duration_delta_s,
+    }
+
+
+def _wasted_interaction_rate(path: Path) -> Optional[float]:
+    annotations = _read_json(_annotation_path(path))
+    steps = annotations.get("steps")
+    if not isinstance(steps, list):
+        return None
+    action_rows = [row for row in steps if isinstance(row, dict)]
+    if not action_rows:
+        return None
+    wasted = 0
+    for row in action_rows:
+        status = str(row.get("status") or "").lower()
+        stall_type = str(row.get("stall_type") or "").lower()
+        repeated = _as_int(row.get("repeat_same_signature_count") or row.get("repeat_same_target_count") or row.get("repeat_same_action_count"))
+        if status in {"failed", "filled_unverified"} or not bool(row.get("progress_made")) or stall_type or repeated >= 3:
+            wasted += 1
+    return round(wasted / len(action_rows), 6)
 
 
 def _trial_from_summary(path: Path, dataset_root: Path) -> Optional[Trial]:
@@ -142,6 +323,7 @@ def _trial_from_summary(path: Path, dataset_root: Path) -> Optional[Trial]:
     answer_run_id = str(summary.get("answer_run_id") or parts[3])
     trial_id = str(summary.get("trial_id") or parts[4])
     scored, source = _score(summary)
+    efficiency = _resolve_efficiency_for_trial(summary, form_id, answer_run_id)
     return Trial(
         experiment_id=experiment_id,
         model_id=model_id,
@@ -173,6 +355,17 @@ def _trial_from_summary(path: Path, dataset_root: Path) -> Optional[Trial]:
         submitted_while_incomplete_count=_as_int(summary.get("submitted_while_incomplete_count")),
         action_count=_as_int(summary.get("action_count") or summary.get("trace_action_count")),
         duration_s=_as_float(summary.get("duration_s")),
+        reference_available=bool(efficiency.get("reference_available")),
+        reference_action_count=_optional_int(efficiency.get("reference_action_count")),
+        reference_duration_s=_optional_float(efficiency.get("reference_duration_s")),
+        action_overhead_ratio=_optional_float(efficiency.get("action_overhead_ratio")),
+        time_overhead_ratio=_optional_float(efficiency.get("time_overhead_ratio")),
+        action_count_delta=_optional_int(efficiency.get("action_count_delta")),
+        duration_delta_s=_optional_float(efficiency.get("duration_delta_s")),
+        reference_run_path=str(efficiency.get("reference_run_path") or ""),
+        reference_trace_path=str(efficiency.get("reference_trace_path") or ""),
+        reference_video_path=str(efficiency.get("reference_video_path") or ""),
+        wasted_interaction_rate=_wasted_interaction_rate(path),
         run_completed_utc=str(summary.get("run_completed_utc") or ""),
         summary_path=path,
     )
@@ -339,6 +532,131 @@ def _safe_rate(num: float, den: float) -> float:
     return num / den if den else 0.0
 
 
+def _mean(values: Sequence[float]) -> Optional[float]:
+    return sum(values) / len(values) if values else None
+
+
+def _median(values: Sequence[float]) -> Optional[float]:
+    if not values:
+        return None
+    sorted_values = sorted(values)
+    mid = len(sorted_values) // 2
+    if len(sorted_values) % 2:
+        return sorted_values[mid]
+    return (sorted_values[mid - 1] + sorted_values[mid]) / 2
+
+
+def _quantile(values: Sequence[float], q: float) -> Optional[float]:
+    if not values:
+        return None
+    sorted_values = sorted(values)
+    pos = (len(sorted_values) - 1) * q
+    low = math.floor(pos)
+    high = math.ceil(pos)
+    if low == high:
+        return sorted_values[int(pos)]
+    return sorted_values[low] * (high - pos) + sorted_values[high] * (pos - low)
+
+
+def _fmt_optional(value: Any, digits: int = 3) -> str:
+    numeric = _optional_float(value)
+    if numeric is None:
+        return "n/a"
+    return f"{numeric:.{digits}f}"
+
+
+def _model_label(model_id: str) -> str:
+    return THESIS_MODEL_LABELS.get(model_id, model_id[:24])
+
+
+def _dominant_stop_reason(row: Dict[str, Any]) -> str:
+    stop_reasons = row.get("stop_reasons") or Counter()
+    if isinstance(stop_reasons, Counter):
+        return stop_reasons.most_common(1)[0][0] if stop_reasons else ""
+    if isinstance(stop_reasons, dict):
+        return max(stop_reasons.items(), key=lambda item: int(item[1]))[0] if stop_reasons else ""
+    return ""
+
+
+def _target_row_by_model(target_coverage: Sequence[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    return {str(row.get("model_id") or ""): row for row in target_coverage}
+
+
+def _efficiency_row_by_scope(efficiency_summary: Sequence[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    return {
+        str(row.get("analysis_scope") or ""): row
+        for row in efficiency_summary
+        if row.get("efficiency_subset") == "all_trials"
+    }
+
+
+def thesis_model_summary_rows(
+    model_rows: Sequence[Dict[str, Any]],
+    efficiency_summary: Sequence[Dict[str, Any]],
+    target_coverage: Sequence[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    by_model = {str(row.get("model_id") or ""): row for row in model_rows}
+    by_scope = _efficiency_row_by_scope(efficiency_summary)
+    targets = _target_row_by_model(target_coverage)
+    rows: List[Dict[str, Any]] = []
+    for model_id in THESIS_MODEL_ORDER:
+        row = by_model.get(model_id)
+        if not row:
+            continue
+        efficiency = by_scope.get(str(row.get("analysis_scope") or ""), {})
+        target = targets.get(model_id, {})
+        target_form_runs = _as_int(target.get("target_form_runs"))
+        observed_unique = _as_int(target.get("observed_unique_form_runs"))
+        trials = _as_int(row.get("trials"))
+        reference_trials = _as_int(efficiency.get("reference_available_trials") or row.get("reference_available_trials"))
+        rows.append(
+            {
+                "display_label": _model_label(model_id),
+                "model_id": model_id,
+                "interface_condition": row.get("interface_condition", ""),
+                "analysis_scope": row.get("analysis_scope", ""),
+                "trials": trials,
+                "forms": row.get("forms", 0),
+                "target_form_runs": target_form_runs,
+                "observed_unique_form_runs": observed_unique,
+                "target_coverage_rate": round(_safe_rate(observed_unique, target_form_runs), 6),
+                "submit_rate": round(float(row.get("submit_rate") or 0.0), 6),
+                "exact_success_rate": round(float(row.get("exact_success_rate") or 0.0), 6),
+                "scored_accuracy": round(float(row.get("scored_accuracy") or 0.0), 6),
+                "median_action_count": efficiency.get("median_model_action_count", ""),
+                "median_duration_s": efficiency.get("median_model_duration_s", ""),
+                "reference_available_trials": reference_trials,
+                "reference_coverage_rate": round(_safe_rate(reference_trials, trials), 6),
+                "median_action_overhead": efficiency.get("median_action_overhead_ratio", ""),
+                "median_time_overhead": efficiency.get("median_time_overhead_ratio", ""),
+                "dominant_stop_reason": _dominant_stop_reason(row),
+            }
+        )
+    return rows
+
+
+def _bootstrap_ci(values: Sequence[float], *, samples: int = BOOTSTRAP_SAMPLES, seed: int = BOOTSTRAP_SEED) -> Tuple[Optional[float], Optional[float]]:
+    if not values:
+        return None, None
+    if len(values) == 1:
+        return values[0], values[0]
+    rng = random.Random(seed + len(values))
+    means: List[float] = []
+    values_list = list(values)
+    for _idx in range(samples):
+        draw = [values_list[rng.randrange(len(values_list))] for _item in values_list]
+        means.append(sum(draw) / len(draw))
+    return _quantile(means, 0.025), _quantile(means, 0.975)
+
+
+def _trial_exact_success(trial: Trial) -> bool:
+    return bool(trial.submit_success and trial.question_total > 0 and trial.scored_correctness == trial.question_total)
+
+
+def _trial_accuracy(trial: Trial) -> float:
+    return _safe_rate(trial.scored_correctness, trial.question_total)
+
+
 def aggregate(label: str, trials: Sequence[Trial]) -> Dict[str, Any]:
     total_questions = sum(t.question_total for t in trials)
     scored = sum(t.scored_correctness for t in trials)
@@ -349,6 +667,20 @@ def aggregate(label: str, trials: Sequence[Trial]) -> Dict[str, Any]:
     kinds = sorted({str(_read_json(t.summary_path).get("model_kind") or "") for t in trials})
     tracks = sorted({str(_read_json(t.summary_path).get("track") or "") for t in trials})
     interface_conditions = sorted({_interface_condition(t) for t in trials})
+    exact_successes = sum(1 for t in trials if _trial_exact_success(t))
+    action_overheads = [float(t.action_overhead_ratio) for t in trials if t.action_overhead_ratio is not None]
+    time_overheads = [float(t.time_overhead_ratio) for t in trials if t.time_overhead_ratio is not None]
+    wasted_rates = [float(t.wasted_interaction_rate) for t in trials if t.wasted_interaction_rate is not None]
+    actions_per_correct = [
+        float(t.action_count) / float(t.scored_correctness)
+        for t in trials
+        if t.action_count > 0 and t.scored_correctness > 0
+    ]
+    correct_per_min = [
+        float(t.scored_correctness) / (float(t.duration_s) / 60.0)
+        for t in trials
+        if t.duration_s > 0 and t.scored_correctness > 0
+    ]
     return {
         "analysis_scope": label,
         "model_id": ", ".join(model_ids),
@@ -359,11 +691,14 @@ def aggregate(label: str, trials: Sequence[Trial]) -> Dict[str, Any]:
         "forms": len({t.form_id for t in trials}),
         "question_total": total_questions,
         "successes": sum(1 for t in trials if t.success),
+        "exact_successes": exact_successes,
         "submit_successes": sum(1 for t in trials if t.submit_success),
         "success_rate": _safe_rate(sum(1 for t in trials if t.success), len(trials)),
+        "exact_success_rate": _safe_rate(exact_successes, len(trials)),
         "submit_rate": _safe_rate(sum(1 for t in trials if t.submit_success), len(trials)),
         "scored_correctness": scored,
         "scored_accuracy": _safe_rate(scored, total_questions),
+        "mean_trial_accuracy": _mean([_trial_accuracy(t) for t in trials]) or 0.0,
         "pre_submit_answered": pre_success_total,
         "pre_submit_questions": pre_success_questions,
         "pre_submit_accuracy": _safe_rate(pre_success_total, pre_success_questions),
@@ -371,6 +706,19 @@ def aggregate(label: str, trials: Sequence[Trial]) -> Dict[str, Any]:
         "submitted_while_incomplete_count": sum(t.submitted_while_incomplete_count for t in trials),
         "avg_action_count": _safe_rate(sum(t.action_count for t in trials), len(trials)),
         "avg_duration_s": _safe_rate(sum(t.duration_s for t in trials), len(trials)),
+        "reference_available_trials": sum(1 for t in trials if t.reference_available),
+        "reference_availability_rate": _safe_rate(sum(1 for t in trials if t.reference_available), len(trials)),
+        "median_reference_action_count": _median([float(t.reference_action_count) for t in trials if t.reference_action_count is not None]),
+        "median_reference_duration_s": _median([float(t.reference_duration_s) for t in trials if t.reference_duration_s is not None]),
+        "median_action_overhead_ratio": _median(action_overheads),
+        "p25_action_overhead_ratio": _quantile(action_overheads, 0.25),
+        "p75_action_overhead_ratio": _quantile(action_overheads, 0.75),
+        "median_time_overhead_ratio": _median(time_overheads),
+        "p25_time_overhead_ratio": _quantile(time_overheads, 0.25),
+        "p75_time_overhead_ratio": _quantile(time_overheads, 0.75),
+        "mean_wasted_interaction_rate": _mean(wasted_rates),
+        "median_actions_per_correct_answer": _median(actions_per_correct),
+        "median_correct_answers_per_min": _median(correct_per_min),
         "stop_reasons": Counter(t.stop_reason for t in trials),
     }
 
@@ -404,6 +752,13 @@ def aggregate_by_form_run(label: str, trials: Sequence[Trial]) -> List[Dict[str,
         row["answer_run_id"] = answer_run_id
         rows.append(row)
     return rows
+
+
+def trials_by_model_scope(label: str, trials: Sequence[Trial]) -> Dict[str, Sequence[Trial]]:
+    grouped: Dict[str, List[Trial]] = defaultdict(list)
+    for trial in trials:
+        grouped[trial.model_id].append(trial)
+    return {f"{label}:{model_id}": items for model_id, items in grouped.items()}
 
 
 def failure_summary_rows(cohorts: Dict[str, List[Trial]]) -> List[Dict[str, Any]]:
@@ -672,19 +1027,33 @@ def canonical_trial_rows(trials: Sequence[Trial]) -> List[Dict[str, Any]]:
                 "question_total": trial.question_total,
                 "scored_correctness": trial.scored_correctness,
                 "scored_accuracy": _safe_rate(trial.scored_correctness, trial.question_total),
+                "exact_success": _trial_exact_success(trial),
                 "scored_source": trial.scored_source,
                 "verified_correctness": trial.verified_correctness,
                 "pre_successful_submit_correctness": "" if trial.pre_successful_submit_correctness is None else trial.pre_successful_submit_correctness,
                 "pre_first_submit_correctness": "" if trial.pre_first_submit_correctness is None else trial.pre_first_submit_correctness,
                 "submit_attempt_count": trial.submit_attempt_count,
-                "submitted_while_incomplete_count": trial.submitted_while_incomplete_count,
                 "action_count": trial.action_count,
                 "duration_s": trial.duration_s,
+                "reference_available": trial.reference_available,
+                "reference_action_count": "" if trial.reference_action_count is None else trial.reference_action_count,
+                "reference_duration_s": "" if trial.reference_duration_s is None else trial.reference_duration_s,
+                "action_overhead_ratio": "" if trial.action_overhead_ratio is None else trial.action_overhead_ratio,
+                "time_overhead_ratio": "" if trial.time_overhead_ratio is None else trial.time_overhead_ratio,
+                "action_count_delta": "" if trial.action_count_delta is None else trial.action_count_delta,
+                "duration_delta_s": "" if trial.duration_delta_s is None else trial.duration_delta_s,
+                "actions_per_correct_answer": "" if not trial.scored_correctness else round(float(trial.action_count) / float(trial.scored_correctness), 6),
+                "correct_answers_per_min": "" if not trial.duration_s else round(float(trial.scored_correctness) / (float(trial.duration_s) / 60.0), 6),
+                "wasted_interaction_rate": "" if trial.wasted_interaction_rate is None else trial.wasted_interaction_rate,
+                "reference_warning": "" if trial.reference_available else "missing_reference_run",
                 "run_completed_utc": trial.run_completed_utc,
                 "metadata_path_status": _metadata_path_status(trial),
                 **answer_validation,
                 "summary_path": _rel(trial.summary_path),
                 "annotations_path": _rel(_annotation_path(trial.summary_path)),
+                "reference_run_path": _rel(Path(trial.reference_run_path)) if trial.reference_run_path else "",
+                "reference_trace_path": _rel(Path(trial.reference_trace_path)) if trial.reference_trace_path else "",
+                "reference_video_path": trial.reference_video_path,
             }
         )
     return rows
@@ -705,6 +1074,140 @@ def answer_validation_rows(trials: Sequence[Trial]) -> List[Dict[str, Any]]:
                 "summary_path": _rel(trial.summary_path),
             }
         )
+    return rows
+
+
+def reference_coverage_rows(forms_root: Path = DEFAULT_FORMS_ROOT) -> List[Dict[str, Any]]:
+    rows: List[Dict[str, Any]] = []
+    for form_id in _all_form_ids(forms_root):
+        for run_id in TARGET_RUN_IDS:
+            metrics = _reference_metrics(form_id, run_id)
+            rows.append(
+                {
+                    "form_id": form_id,
+                    "answer_run_id": run_id,
+                    "reference_available": metrics["reference_available"],
+                    "reference_artifacts_present": metrics["reference_artifacts_present"],
+                    "reference_video_available": metrics["reference_video_available"],
+                    "reference_action_count": "" if metrics["reference_action_count"] is None else metrics["reference_action_count"],
+                    "reference_duration_s": "" if metrics["reference_duration_s"] is None else metrics["reference_duration_s"],
+                    "reference_interaction_mode": metrics["reference_interaction_mode"],
+                    "reference_trace_mode": metrics["reference_trace_mode"],
+                    "reference_submit_success": metrics["reference_submit_success"],
+                    "reference_warning": "" if metrics["reference_available"] else "missing_or_unusable_reference",
+                    "reference_run_path": _rel(Path(metrics["reference_run_path"])),
+                    "reference_trace_path": _rel(Path(metrics["reference_trace_path"])),
+                    "reference_video_path": metrics["reference_video_path"],
+                }
+            )
+    return rows
+
+
+def _ci_columns(prefix: str, values: Sequence[float]) -> Dict[str, Any]:
+    low, high = _bootstrap_ci(values)
+    return {
+        f"{prefix}_mean": "" if _mean(values) is None else round(float(_mean(values) or 0.0), 6),
+        f"{prefix}_ci95_low": "" if low is None else round(float(low), 6),
+        f"{prefix}_ci95_high": "" if high is None else round(float(high), 6),
+    }
+
+
+def efficiency_summary_rows(model_rows: Sequence[Dict[str, Any]], trials_by_scope: Dict[str, Sequence[Trial]]) -> List[Dict[str, Any]]:
+    rows: List[Dict[str, Any]] = []
+    for base_row in model_rows:
+        scope = str(base_row.get("analysis_scope") or "")
+        trials = list(trials_by_scope.get(scope, []))
+        if not trials:
+            continue
+        for subset_label, subset_trials in [
+            ("all_trials", trials),
+            ("submitted_trials", [trial for trial in trials if trial.submit_success]),
+            ("exact_success_trials", [trial for trial in trials if _trial_exact_success(trial)]),
+        ]:
+            action_overheads = [float(t.action_overhead_ratio) for t in subset_trials if t.action_overhead_ratio is not None]
+            time_overheads = [float(t.time_overhead_ratio) for t in subset_trials if t.time_overhead_ratio is not None]
+            submit_values = [1.0 if t.submit_success else 0.0 for t in subset_trials]
+            accuracy_values = [_trial_accuracy(t) for t in subset_trials]
+            exact_values = [1.0 if _trial_exact_success(t) else 0.0 for t in subset_trials]
+            wasted_rates = [float(t.wasted_interaction_rate) for t in subset_trials if t.wasted_interaction_rate is not None]
+            rows.append(
+                {
+                    "model_id": base_row.get("model_id", ""),
+                    "model_kind": base_row.get("model_kind", ""),
+                    "track": base_row.get("track", ""),
+                    "interface_condition": base_row.get("interface_condition", ""),
+                    "analysis_scope": scope,
+                    "efficiency_subset": subset_label,
+                    "trials": len(subset_trials),
+                    "reference_available_trials": sum(1 for t in subset_trials if t.reference_available),
+                    "reference_availability_rate": _safe_rate(sum(1 for t in subset_trials if t.reference_available), len(subset_trials)),
+                    "exact_success_rate": _safe_rate(sum(1 for t in subset_trials if _trial_exact_success(t)), len(subset_trials)),
+                    "submit_rate": _safe_rate(sum(1 for t in subset_trials if t.submit_success), len(subset_trials)),
+                    "scored_accuracy": _safe_rate(sum(t.scored_correctness for t in subset_trials), sum(t.question_total for t in subset_trials)),
+                    "median_model_action_count": _median([float(t.action_count) for t in subset_trials if t.action_count]),
+                    "median_reference_action_count": _median([float(t.reference_action_count) for t in subset_trials if t.reference_action_count is not None]),
+                    "median_model_duration_s": _median([float(t.duration_s) for t in subset_trials if t.duration_s]),
+                    "median_reference_duration_s": _median([float(t.reference_duration_s) for t in subset_trials if t.reference_duration_s is not None]),
+                    "median_action_overhead_ratio": _median(action_overheads),
+                    "p25_action_overhead_ratio": _quantile(action_overheads, 0.25),
+                    "p75_action_overhead_ratio": _quantile(action_overheads, 0.75),
+                    "median_time_overhead_ratio": _median(time_overheads),
+                    "p25_time_overhead_ratio": _quantile(time_overheads, 0.25),
+                    "p75_time_overhead_ratio": _quantile(time_overheads, 0.75),
+                    "mean_wasted_interaction_rate": _mean(wasted_rates),
+                    "reference_warning": "" if all(t.reference_available for t in subset_trials) else "some_trials_missing_reference",
+                    **_ci_columns("submit_rate", submit_values),
+                    **_ci_columns("exact_success_rate", exact_values),
+                    **_ci_columns("scored_accuracy", accuracy_values),
+                    **_ci_columns("action_overhead_ratio", action_overheads),
+                    **_ci_columns("time_overhead_ratio", time_overheads),
+                }
+            )
+    return rows
+
+
+def paired_efficiency_rows(trials: Sequence[Trial]) -> List[Dict[str, Any]]:
+    grouped: Dict[Tuple[str, str], Dict[str, Trial]] = defaultdict(dict)
+    for trial in trials:
+        if trial.answer_run_id not in TARGET_RUN_IDS:
+            continue
+        grouped[(trial.form_id, trial.answer_run_id)][trial.model_id] = trial
+    pairs = [
+        ("qwen_vlm_minus_text", "vlm_qwen3_vl_30b_a3b_instruct", "text_qwen3_30b_a3b_instruct_2507"),
+        ("opencua_direct_mcp_minus_native", OPENCUA_DIRECT_MCP_MODEL_ID, OPENCUA_NATIVE_MODEL_ID),
+    ]
+    rows: List[Dict[str, Any]] = []
+    for (form_id, answer_run_id), by_model in sorted(grouped.items()):
+        for comparison, treatment_id, baseline_id in pairs:
+            treatment = by_model.get(treatment_id)
+            baseline = by_model.get(baseline_id)
+            if treatment is None or baseline is None:
+                continue
+            rows.append(
+                {
+                    "comparison": comparison,
+                    "form_id": form_id,
+                    "answer_run_id": answer_run_id,
+                    "treatment_model_id": treatment_id,
+                    "baseline_model_id": baseline_id,
+                    "treatment_submit_success": treatment.submit_success,
+                    "baseline_submit_success": baseline.submit_success,
+                    "submit_success_delta": int(treatment.submit_success) - int(baseline.submit_success),
+                    "treatment_exact_success": _trial_exact_success(treatment),
+                    "baseline_exact_success": _trial_exact_success(baseline),
+                    "exact_success_delta": int(_trial_exact_success(treatment)) - int(_trial_exact_success(baseline)),
+                    "treatment_scored_accuracy": _trial_accuracy(treatment),
+                    "baseline_scored_accuracy": _trial_accuracy(baseline),
+                    "scored_accuracy_delta": _trial_accuracy(treatment) - _trial_accuracy(baseline),
+                    "treatment_action_overhead_ratio": "" if treatment.action_overhead_ratio is None else treatment.action_overhead_ratio,
+                    "baseline_action_overhead_ratio": "" if baseline.action_overhead_ratio is None else baseline.action_overhead_ratio,
+                    "action_overhead_delta": "" if treatment.action_overhead_ratio is None or baseline.action_overhead_ratio is None else treatment.action_overhead_ratio - baseline.action_overhead_ratio,
+                    "treatment_time_overhead_ratio": "" if treatment.time_overhead_ratio is None else treatment.time_overhead_ratio,
+                    "baseline_time_overhead_ratio": "" if baseline.time_overhead_ratio is None else baseline.time_overhead_ratio,
+                    "time_overhead_delta": "" if treatment.time_overhead_ratio is None or baseline.time_overhead_ratio is None else treatment.time_overhead_ratio - baseline.time_overhead_ratio,
+                    "reference_available_both": bool(treatment.reference_available and baseline.reference_available),
+                }
+            )
     return rows
 
 
@@ -729,12 +1232,15 @@ def _write_csv(rows: Sequence[Dict[str, Any]], path: Path) -> None:
         "trials",
         "forms",
         "successes",
+        "exact_successes",
         "submit_successes",
         "success_rate",
+        "exact_success_rate",
         "submit_rate",
         "scored_correctness",
         "question_total",
         "scored_accuracy",
+        "mean_trial_accuracy",
         "pre_submit_answered",
         "pre_submit_questions",
         "pre_submit_accuracy",
@@ -742,6 +1248,19 @@ def _write_csv(rows: Sequence[Dict[str, Any]], path: Path) -> None:
         "submitted_while_incomplete_count",
         "avg_action_count",
         "avg_duration_s",
+        "reference_available_trials",
+        "reference_availability_rate",
+        "median_reference_action_count",
+        "median_reference_duration_s",
+        "median_action_overhead_ratio",
+        "p25_action_overhead_ratio",
+        "p75_action_overhead_ratio",
+        "median_time_overhead_ratio",
+        "p25_time_overhead_ratio",
+        "p75_time_overhead_ratio",
+        "mean_wasted_interaction_rate",
+        "median_actions_per_correct_answer",
+        "median_correct_answers_per_min",
         "stop_reasons",
     ]
     with path.open("w", encoding="utf-8", newline="") as handle:
@@ -795,70 +1314,269 @@ def _write_dict_csv(rows: Sequence[Dict[str, Any]], path: Path) -> None:
 def _svg_header(width: int, height: int) -> List[str]:
     return [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
-        '<style>text{font-family:Arial,sans-serif;font-size:12px;fill:#202124}.title{font-size:17px;font-weight:700}.axis{fill:#5f6368}.small{font-size:10px;fill:#5f6368}</style>',
+        '<style>text{font-family:Arial,sans-serif;font-size:12px;fill:#202124}.title{font-size:17px;font-weight:700}.axis{fill:#5f6368}.small{font-size:10px;fill:#5f6368}.label{font-size:12px;font-weight:700}.legend{font-size:11px;fill:#3c4043}</style>',
         '<rect width="100%" height="100%" fill="#fff"/>',
     ]
 
 
-def write_metric_bars(rows: Sequence[Dict[str, Any]], path: Path) -> None:
-    rows = [row for row in rows if row["trials"]]
-    width = 980
-    height = 110 + len(rows) * 88
-    left = 255
-    chart_w = 620
-    colors = {"submit_rate": "#1a73e8", "success_rate": "#34a853", "scored_accuracy": "#fbbc04"}
-    labels = {"submit_rate": "submit", "success_rate": "success", "scored_accuracy": "score"}
+def _truncate_label(value: Any, limit: int = 28) -> str:
+    text = str(value or "")
+    if len(text) <= limit:
+        return text
+    return text[: max(0, limit - 1)] + "..."
+
+
+def _svg_label(x: float, y: float, value: Any, *, css_class: str = "", limit: int = 32) -> str:
+    text = _truncate_label(value, limit)
+    class_attr = f' class="{css_class}"' if css_class else ""
+    title = "" if text == str(value or "") else f"<title>{html.escape(str(value or ''))}</title>"
+    return f'<text{class_attr} x="{x:.1f}" y="{y:.1f}">{html.escape(text)}{title}</text>'
+
+
+def _pct_label(value: Any) -> str:
+    numeric = _optional_float(value)
+    return "n/a" if numeric is None else _pct(numeric)
+
+
+def _value_label(value: Any, suffix: str = "", digits: int = 1) -> str:
+    numeric = _optional_float(value)
+    if numeric is None:
+        return "n/a"
+    return f"{numeric:.{digits}f}{suffix}"
+
+
+def _scale_cap(values: Sequence[float], minimum: float = 1.0, headroom: float = 1.15) -> float:
+    max_value = max(values, default=minimum)
+    return max(minimum, max_value * headroom)
+
+
+def _clamped_bar_width(value: float, cap: float, chart_w: float) -> Tuple[float, bool]:
+    if cap <= 0:
+        return 0.0, False
+    overflow = value > cap
+    width = min(max(value, 0.0), cap) / cap * chart_w
+    return width, overflow
+
+
+def write_thesis_effectiveness_overview(rows: Sequence[Dict[str, Any]], path: Path) -> None:
+    rows = [row for row in rows if _as_int(row.get("trials"))]
+    width = 1080
+    row_h = 82
+    top = 88
+    left = 190
+    chart_w = 650
+    value_x = 865
+    height = top + len(rows) * row_h + 86
+    metrics = [
+        ("submit_rate", "Submit", "#2563eb"),
+        ("exact_success_rate", "Exact", "#16a34a"),
+        ("scored_accuracy", "Score", "#f59e0b"),
+    ]
     lines = _svg_header(width, height)
-    lines.append('<text class="title" x="24" y="30">Model Performance</text>')
-    lines.append('<text class="axis" x="24" y="52">Submit success, strict success, and scored correctness accuracy</text>')
+    lines.append('<text class="title" x="24" y="30">Thesis Effectiveness Overview</text>')
+    lines.append('<text class="axis" x="24" y="52">One averaged result per model/interface condition</text>')
+    for idx, (_key, label, color) in enumerate(metrics):
+        x = left + idx * 105
+        lines.append(f'<rect x="{x}" y="68" width="12" height="12" fill="{color}"/>')
+        lines.append(f'<text class="legend" x="{x + 18}" y="79">{label}</text>')
     for idx, row in enumerate(rows):
-        y = 82 + idx * 88
-        label = html.escape(_row_label(row))
-        lines.append(f'<text x="24" y="{y + 16}">{label}</text>')
-        for offset, key in enumerate(["submit_rate", "success_rate", "scored_accuracy"]):
+        y = top + idx * row_h
+        full_label = row.get("display_label") or row.get("model_id") or ""
+        lines.append(_svg_label(24, y + 16, full_label, css_class="label", limit=22))
+        lines.append(f'<text class="small" x="24" y="{y + 34}">n={_as_int(row.get("trials"))}, forms={_as_int(row.get("forms"))}</text>')
+        for offset, (key, label, color) in enumerate(metrics):
             bar_y = y + offset * 20
-            value = float(row[key])
-            bar_w = max(1, value * chart_w)
+            value = max(0.0, min(1.0, float(row.get(key) or 0.0)))
             lines.append(f'<rect x="{left}" y="{bar_y}" width="{chart_w}" height="13" fill="#eef1f4"/>')
-            lines.append(f'<rect x="{left}" y="{bar_y}" width="{bar_w:.1f}" height="13" fill="{colors[key]}"/>')
-            lines.append(f'<text class="small" x="{left - 54}" y="{bar_y + 11}">{labels[key]}</text>')
-            lines.append(f'<text class="small" x="{left + chart_w + 8}" y="{bar_y + 11}">{_pct(value)}</text>')
+            lines.append(f'<rect x="{left}" y="{bar_y}" width="{value * chart_w:.1f}" height="13" fill="{color}"/>')
+            lines.append(f'<text class="small" x="{left - 54}" y="{bar_y + 11}">{label}</text>')
+            lines.append(f'<text class="small" x="{value_x}" y="{bar_y + 11}">{_pct(value)}</text>')
+    axis_y = top + len(rows) * row_h + 20
+    lines.append(f'<line x1="{left}" y1="{axis_y}" x2="{left + chart_w}" y2="{axis_y}" stroke="#dadce0"/>')
+    for tick in range(0, 6):
+        x = left + chart_w * tick / 5
+        lines.append(f'<line x1="{x:.1f}" y1="{axis_y}" x2="{x:.1f}" y2="{axis_y + 5}" stroke="#dadce0"/>')
+        lines.append(f'<text class="small" x="{x - 10:.1f}" y="{axis_y + 20}">{tick * 20}%</text>')
     lines.append("</svg>")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def write_stop_reason_bars(rows: Sequence[Dict[str, Any]], path: Path) -> None:
-    rows = [row for row in rows if row["trials"]]
-    reasons = sorted({reason for row in rows for reason in row["stop_reasons"]})
-    palette = ["#1a73e8", "#ea4335", "#fbbc04", "#34a853", "#9334e6", "#00acc1", "#ff7043"]
-    color = {reason: palette[idx % len(palette)] for idx, reason in enumerate(reasons)}
-    width = 980
-    height = 115 + len(rows) * 58 + max(1, len(reasons)) * 18
-    left = 255
+def write_thesis_efficiency_overview(rows: Sequence[Dict[str, Any]], path: Path) -> None:
+    rows = [row for row in rows if _as_int(row.get("trials"))]
+    width = 1120
+    row_h = 102
+    top = 98
+    left = 205
     chart_w = 620
+    value_x = 850
+    height = top + len(rows) * row_h + 92
+    metrics = [
+        ("median_action_overhead", "Action x", "#7c3aed", "x", 2),
+        ("median_time_overhead", "Time x", "#0f766e", "x", 2),
+        ("median_action_count", "Actions", "#2563eb", "", 1),
+        ("median_duration_s", "Seconds", "#f97316", "s", 1),
+    ]
+    numeric_by_key = {
+        key: [float(v) for v in (_optional_float(row.get(key)) for row in rows) if v is not None]
+        for key, *_rest in metrics
+    }
+    caps = {key: _scale_cap(values, minimum=1.0) for key, values in numeric_by_key.items()}
     lines = _svg_header(width, height)
-    lines.append('<text class="title" x="24" y="30">Stop Reason Mix</text>')
-    lines.append('<text class="axis" x="24" y="52">Share of trials ending in each stop reason</text>')
+    lines.append('<text class="title" x="24" y="30">Thesis Efficiency Overview</text>')
+    lines.append('<text class="axis" x="24" y="52">Median costs; bars are independently scaled by metric and labels show actual values</text>')
+    legend_x = left
+    for idx, (_key, label, color, _suffix, _digits) in enumerate(metrics):
+        x = legend_x + idx * 112
+        lines.append(f'<rect x="{x}" y="70" width="12" height="12" fill="{color}"/>')
+        lines.append(f'<text class="legend" x="{x + 18}" y="81">{label}</text>')
     for idx, row in enumerate(rows):
-        y = 82 + idx * 58
-        lines.append(f'<text x="24" y="{y + 15}">{html.escape(_row_label(row))}</text>')
+        y = top + idx * row_h
+        label = row.get("display_label") or row.get("model_id") or ""
+        lines.append(_svg_label(24, y + 18, label, css_class="label", limit=22))
+        lines.append(f'<text class="small" x="24" y="{y + 36}">refs={_as_int(row.get("reference_available_trials"))}/{_as_int(row.get("trials"))}</text>')
+        for offset, (key, metric_label, color, suffix, digits) in enumerate(metrics):
+            bar_y = y + offset * 20
+            numeric = _optional_float(row.get(key))
+            lines.append(f'<text class="small" x="{left - 64}" y="{bar_y + 11}">{metric_label}</text>')
+            lines.append(f'<rect x="{left}" y="{bar_y}" width="{chart_w}" height="13" fill="#eef1f4"/>')
+            if numeric is None:
+                lines.append(f'<text class="small" x="{value_x}" y="{bar_y + 11}">n/a</text>')
+                continue
+            bar_w, overflow = _clamped_bar_width(float(numeric), caps[key], chart_w)
+            lines.append(f'<rect x="{left}" y="{bar_y}" width="{max(1.0, bar_w):.1f}" height="13" fill="{color}"/>')
+            suffix_text = "+" if overflow else ""
+            lines.append(f'<text class="small" x="{value_x}" y="{bar_y + 11}">{numeric:.{digits}f}{suffix}{suffix_text}</text>')
+    lines.append("</svg>")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def write_thesis_failure_mix(rows: Sequence[Dict[str, Any]], path: Path) -> None:
+    rows = [row for row in rows if _as_int(row.get("trials"))]
+    reasons = sorted({reason for row in rows for reason in (row.get("stop_reasons") or Counter())})
+    if not reasons:
+        reasons = ["unknown"]
+    palette = ["#2563eb", "#dc2626", "#f59e0b", "#16a34a", "#7c3aed", "#0891b2", "#64748b", "#f97316"]
+    color = {reason: palette[idx % len(palette)] for idx, reason in enumerate(reasons)}
+    width = 1120
+    row_h = 62
+    top = 82
+    left = 205
+    chart_w = 660
+    value_x = 890
+    legend_cols = 2
+    legend_rows = math.ceil(len(reasons) / legend_cols)
+    height = top + len(rows) * row_h + 42 + legend_rows * 20
+    lines = _svg_header(width, height)
+    lines.append('<text class="title" x="24" y="30">Thesis Failure Mix</text>')
+    lines.append('<text class="axis" x="24" y="52">Trial stop reasons by model; each row sums to 100%</text>')
+    for idx, row in enumerate(rows):
+        y = top + idx * row_h
+        label = row.get("display_label") or row.get("model_id") or ""
+        total = max(1, _as_int(row.get("trials")))
+        stop_reasons = row.get("stop_reasons") or Counter()
+        lines.append(_svg_label(24, y + 16, label, css_class="label", limit=22))
+        lines.append(f'<text class="small" x="24" y="{y + 34}">n={total}</text>')
         x = left
-        total = max(1, int(row["trials"]))
         for reason in reasons:
-            count = int(row["stop_reasons"].get(reason, 0))
+            count = int(stop_reasons.get(reason, 0)) if hasattr(stop_reasons, "get") else 0
             if not count:
                 continue
             w = chart_w * count / total
-            lines.append(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="18" fill="{color[reason]}"/>')
-            if w > 28:
-                lines.append(f'<text class="small" x="{x + 4:.1f}" y="{y + 13}" fill="#fff">{count}</text>')
+            lines.append(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="20" fill="{color[reason]}"/>')
             x += w
-        lines.append(f'<rect x="{left}" y="{y}" width="{chart_w}" height="18" fill="none" stroke="#dadce0"/>')
-    legend_y = 90 + len(rows) * 58
+        lines.append(f'<rect x="{left}" y="{y}" width="{chart_w}" height="20" fill="none" stroke="#dadce0"/>')
+        lines.append(f'<text class="small" x="{value_x}" y="{y + 15}">{html.escape(_truncate_label(_dominant_stop_reason(row), 26))}</text>')
+    legend_y = top + len(rows) * row_h + 22
     for idx, reason in enumerate(reasons):
-        y = legend_y + idx * 18
-        lines.append(f'<rect x="24" y="{y - 10}" width="10" height="10" fill="{color[reason]}"/>')
-        lines.append(f'<text class="small" x="42" y="{y}">{html.escape(reason)}</text>')
+        col = idx % legend_cols
+        row_idx = idx // legend_cols
+        x = 24 + col * 430
+        y = legend_y + row_idx * 20
+        lines.append(f'<rect x="{x}" y="{y - 10}" width="10" height="10" fill="{color[reason]}"/>')
+        lines.append(_svg_label(x + 18, y, reason, css_class="legend", limit=42))
+    lines.append("</svg>")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def write_thesis_efficiency_frontier(rows: Sequence[Dict[str, Any]], path: Path) -> None:
+    plot_rows = [row for row in rows if _optional_float(row.get("median_action_overhead")) is not None]
+    width = 980
+    height = 600
+    left = 92
+    top = 80
+    chart_w = 690
+    chart_h = 390
+    x_values = [float(row["median_action_overhead"]) for row in plot_rows]
+    x_cap = _scale_cap(x_values, minimum=1.0, headroom=1.2)
+    lines = _svg_header(width, height)
+    lines.append('<text class="title" x="24" y="30">Thesis Efficiency Frontier</text>')
+    lines.append('<text class="axis" x="24" y="52">Higher exact success and lower action overhead is better</text>')
+    lines.append(f'<rect x="{left}" y="{top}" width="{chart_w}" height="{chart_h}" fill="#fafafa" stroke="#dadce0"/>')
+    for tick in range(0, 6):
+        y = top + chart_h - tick * chart_h / 5
+        lines.append(f'<line x1="{left}" y1="{y:.1f}" x2="{left + chart_w}" y2="{y:.1f}" stroke="#eef1f4"/>')
+        lines.append(f'<text class="small" x="{left - 52}" y="{y + 4:.1f}">{tick * 20}%</text>')
+    for tick in range(0, 5):
+        x_value = x_cap * tick / 4
+        x = left + chart_w * tick / 4
+        lines.append(f'<line x1="{x:.1f}" y1="{top}" x2="{x:.1f}" y2="{top + chart_h}" stroke="#f1f3f4"/>')
+        lines.append(f'<text class="small" x="{x - 10:.1f}" y="{top + chart_h + 20}">{x_value:.1f}</text>')
+    for row in plot_rows:
+        x_value = float(row["median_action_overhead"])
+        y_value = max(0.0, min(1.0, float(row.get("exact_success_rate") or 0.0)))
+        x = left + min(x_value, x_cap) / x_cap * chart_w
+        y = top + chart_h - y_value * chart_h
+        label = str(row.get("display_label") or row.get("model_id") or "")
+        color = THESIS_COLORS.get(label, "#2563eb")
+        lines.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="7" fill="{color}"/>')
+        label_x = min(x + 10, width - 150)
+        label_y = max(top + 14, min(y + 4, top + chart_h - 8))
+        lines.append(_svg_label(label_x, label_y, label, css_class="small", limit=22))
+    lines.append(f'<text class="axis" x="{left + chart_w / 2 - 78:.1f}" y="{top + chart_h + 48}">Median action overhead ratio</text>')
+    lines.append(f'<text class="axis" x="24" y="{top - 18}">Exact success rate</text>')
+    lines.append("</svg>")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def write_thesis_reference_coverage(rows: Sequence[Dict[str, Any]], reference_coverage: Sequence[Dict[str, Any]], path: Path) -> None:
+    width = 1080
+    row_h = 54
+    top = 92
+    left = 205
+    chart_w = 650
+    value_x = 880
+    usable_refs = sum(1 for row in reference_coverage if str(row.get("reference_available")).lower() == "true" or row.get("reference_available") is True)
+    total_refs = len(reference_coverage)
+    plot_rows: List[Dict[str, Any]] = [
+        {
+            "display_label": "Overall Reference",
+            "coverage_rate": _safe_rate(usable_refs, total_refs),
+            "numerator": usable_refs,
+            "denominator": total_refs,
+            "color": "#475569",
+        }
+    ]
+    for row in rows:
+        plot_rows.append(
+            {
+                "display_label": row.get("display_label", ""),
+                "coverage_rate": row.get("reference_coverage_rate", 0.0),
+                "numerator": row.get("reference_available_trials", 0),
+                "denominator": row.get("trials", 0),
+                "color": THESIS_COLORS.get(str(row.get("display_label") or ""), "#2563eb"),
+            }
+        )
+    height = top + len(plot_rows) * row_h + 58
+    lines = _svg_header(width, height)
+    lines.append('<text class="title" x="24" y="30">Thesis Reference Coverage</text>')
+    lines.append('<text class="axis" x="24" y="52">Usable scripted references for efficiency comparisons</text>')
+    for idx, row in enumerate(plot_rows):
+        y = top + idx * row_h
+        value = max(0.0, min(1.0, float(row.get("coverage_rate") or 0.0)))
+        lines.append(_svg_label(24, y + 16, row.get("display_label", ""), css_class="label", limit=24))
+        lines.append(f'<rect x="{left}" y="{y}" width="{chart_w}" height="18" fill="#eef1f4"/>')
+        lines.append(f'<rect x="{left}" y="{y}" width="{value * chart_w:.1f}" height="18" fill="{row["color"]}"/>')
+        lines.append(f'<text class="small" x="{value_x}" y="{y + 14}">{row.get("numerator", 0)}/{row.get("denominator", 0)} ({_pct(value)})</text>')
     lines.append("</svg>")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -887,76 +1605,56 @@ def write_form_accuracy(rows: Sequence[Dict[str, Any]], path: Path, title: str) 
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def _row_label(row: Dict[str, Any]) -> str:
-    model = str(row.get("model_id") or "")
-    scope = str(row.get("analysis_scope") or "")
-    if ":" in scope:
-        scope = scope.split(":", 1)[0]
-    form = str(row.get("form_id") or "")
-    run = str(row.get("answer_run_id") or "")
-    parts = [part for part in [model, form, run, scope] if part]
-    return " / ".join(parts)
-
-
-def _md_table(rows: Sequence[Dict[str, Any]]) -> List[str]:
+def _thesis_effectiveness_md(rows: Sequence[Dict[str, Any]]) -> List[str]:
     lines = [
-        "| Model | Kind | Track | Scope | Forms | Trials | Questions | Submit | Success | Scored Answers | Pre-submit Answers | Incomplete Submits | Avg Actions/Form | Main Stop Reasons |",
-        "|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|",
+        "| Model | Trials | Forms | Target Coverage | Submit Rate | Exact Success | Scored Accuracy | Dominant Stop |",
+        "|---|---:|---:|---:|---:|---:|---:|---|",
     ]
     for row in rows:
-        reasons = ", ".join(f"{k}: {v}" for k, v in row["stop_reasons"].most_common())
-        pre_submit = "n/a"
-        if row.get("pre_submit_questions"):
-            pre_submit = f"{row['pre_submit_answered']}/{row['pre_submit_questions']} ({_pct(row['pre_submit_accuracy'])})"
         lines.append(
-            f"| `{row.get('model_id', '')}` | `{row.get('model_kind', '')}` | `{row.get('track', '')}` | `{row.get('analysis_scope', '')}` | "
-            f"{row['forms']} | {row['trials']} | {row['question_total']} | "
-            f"{row['submit_successes']} ({_pct(row['submit_rate'])}) | {row['successes']} ({_pct(row['success_rate'])}) | "
-            f"{row['scored_correctness']}/{row['question_total']} ({_pct(row['scored_accuracy'])}) | {pre_submit} | "
-            f"{row.get('submitted_while_incomplete_count', 0)} | {_fmt_float(row['avg_action_count'])} | {reasons} |"
+            f"| {row.get('display_label', '')} | {row.get('trials', 0)} | {row.get('forms', 0)} | "
+            f"{row.get('observed_unique_form_runs', 0)}/{row.get('target_form_runs', 0)} ({_pct(row.get('target_coverage_rate', 0.0))}) | "
+            f"{_pct(row.get('submit_rate', 0.0))} | {_pct(row.get('exact_success_rate', 0.0))} | "
+            f"{_pct(row.get('scored_accuracy', 0.0))} | `{row.get('dominant_stop_reason', '')}` |"
         )
     return lines
 
 
-def _question_type_md(rows: Sequence[Dict[str, Any]]) -> List[str]:
+def _thesis_efficiency_md(rows: Sequence[Dict[str, Any]]) -> List[str]:
     lines = [
-        "| Model | Kind | Track | Question Type | Scope | Questions | Attempted | Verified Correct | Failed/Unanswered | Notes |",
-        "|---|---|---|---|---|---:|---:|---:|---:|---|",
+        "| Model | Ref Coverage | Median Actions | Median Duration | Median Action Overhead | Median Time Overhead |",
+        "|---|---:|---:|---:|---:|---:|",
     ]
     for row in rows:
-        notes = []
-        if row.get("not_attempted"):
-            notes.append(f"not attempted: {row['not_attempted']}")
-        if row.get("container_not_visible"):
-            notes.append(f"container not visible: {row['container_not_visible']}")
-        reliability = str(row.get("reliability") or "")
-        if reliability != "final_verification":
-            notes.append(reliability)
         lines.append(
-            f"| `{row['model_id']}` | `{row.get('model_kind', '')}` | `{row.get('track', '')}` | `{row['widget_type']}` | `{row.get('analysis_scope', '')}` | {row['questions']} | "
-            f"{row['attempted']} ({_pct(row['attempt_rate'])}) | {row['verified_correct']} ({_pct(row['verified_accuracy'])}) | "
-            f"{row['failed']} ({_pct(row['failure_rate'])}) | {', '.join(notes)} |"
+            f"| {row.get('display_label', '')} | "
+            f"{row.get('reference_available_trials', 0)}/{row.get('trials', 0)} ({_pct(row.get('reference_coverage_rate', 0.0))}) | "
+            f"{_fmt_optional(row.get('median_action_count'), 1)} | {_fmt_optional(row.get('median_duration_s'), 1)}s | "
+            f"{_fmt_optional(row.get('median_action_overhead'), 2)}x | {_fmt_optional(row.get('median_time_overhead'), 2)}x |"
         )
     return lines
 
 
 def write_markdown(
     output_dir: Path,
-    cohort_rows: Sequence[Dict[str, Any]],
-    model_rows: Sequence[Dict[str, Any]],
-    latest_qwen_model_rows: Sequence[Dict[str, Any]],
-    opencua_form_rows: Sequence[Dict[str, Any]],
-    qwen_latest_form_rows: Sequence[Dict[str, Any]],
-    question_type_summary: Sequence[Dict[str, Any]],
+    thesis_rows: Sequence[Dict[str, Any]],
     canonical_rows: Sequence[Dict[str, Any]],
     answer_validation: Sequence[Dict[str, Any]],
     experiment_coverage: Sequence[Dict[str, Any]],
-    target_coverage: Sequence[Dict[str, Any]],
+    reference_coverage: Sequence[Dict[str, Any]],
+    efficiency_summary: Sequence[Dict[str, Any]],
+    paired_efficiency: Sequence[Dict[str, Any]],
+    include_diagnostic_plots: bool,
 ) -> None:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     answer_status = Counter(str(row.get("answer_set_status") or "") for row in answer_validation)
     metadata_status = Counter(str(row.get("metadata_path_status") or "") for row in answer_validation)
     partial_experiments = [row for row in experiment_coverage if row.get("status") == "in_progress_or_partial"]
+    reference_available = sum(1 for row in reference_coverage if str(row.get("reference_available")).lower() == "true" or row.get("reference_available") is True)
+    reference_video_available = sum(1 for row in reference_coverage if str(row.get("reference_video_available")).lower() == "true" or row.get("reference_video_available") is True)
+    total_references = len(reference_coverage)
+    model_reference_rates = [float(row.get("reference_coverage_rate") or 0.0) for row in thesis_rows]
+    incomplete_reference_warning = bool(total_references and reference_available < total_references) or any(rate < 0.95 for rate in model_reference_rates)
     lines = [
         "# Evaluation Analysis",
         "",
@@ -964,24 +1662,38 @@ def write_markdown(
         "",
         "Generated by `scripts/analyze_eval_results.py` from `data/model_baselines/**/summary.json`.",
         "",
-        "## Headline",
+        "## Thesis Model Effectiveness",
         "",
-        "- Raw artifacts remain under `data/model_baselines/**`; this report is the thesis-facing index organized by model, form, run, and result.",
-        "- `canonical_trials.csv` indexes every discovered summary, including rows from jobs that are still running. Main model summaries exclude known incomplete fixed-size batches until their expected trial count is reached.",
-        "- Qwen direct-MCP is now the only track with regular form submissions. VLM has the higher cumulative submit rate, while text Qwen remains limited by premature `DONE`.",
-        "- OpenCUA control-guidance completed 50 forms but did not submit any form. The model still fails mainly on native Google Forms controls.",
-        "- For Qwen submitted trials, use scored correctness, not final `verified_correctness`, because final verification can happen on the Google Forms confirmation page.",
-        "- Qwen job `2228977` added 8 new summaries; `workshop_signup` was skipped because both models already had completed summaries.",
+        *_thesis_effectiveness_md(thesis_rows),
         "",
-        "## Current Data Index",
+        "## Thesis Model Efficiency",
         "",
-        f"- Canonical trial rows: `{len(canonical_rows)}` in [canonical_trials.csv](canonical_trials.csv).",
-        f"- Answer-set validation rows: `{len(answer_validation)}` in [answer_validation.csv](answer_validation.csv); statuses: {', '.join(f'{k}: {v}' for k, v in answer_status.most_common())}.",
-        f"- Summary metadata/path validation: {', '.join(f'{k}: {v}' for k, v in metadata_status.most_common())}.",
-        f"- Experiment coverage rows: `{len(experiment_coverage)}` in [experiment_coverage.csv](experiment_coverage.csv).",
-        f"- Target coverage rows: `{len(target_coverage)}` in [target_coverage.csv](target_coverage.csv). Goal: `{TARGET_RUN_COUNT}` answer runs per form / `{TARGET_TRIAL_COUNT}` unique form-runs for each model.",
-        "- Primary summary tables: [model_summary.csv](model_summary.csv), [form_summary.csv](form_summary.csv), [question_type_summary.csv](question_type_summary.csv), [failure_summary.csv](failure_summary.csv).",
-        "- Legacy tracker files remain in `docs/eval_results/metrics.csv` and `docs/eval_results/metrics.jsonl`.",
+        "Efficiency values compare each model trial with the scripted Playwright reference sharing the same `form_id` and `answer_run_id`.",
+        "",
+        *_thesis_efficiency_md(thesis_rows),
+        "",
+        "## Reference Coverage Warning",
+        "",
+        (
+            f"Efficiency results are provisional: `{reference_available}/{total_references}` reference form-runs are currently usable, "
+            f"and model-level reference coverage is incomplete."
+            if incomplete_reference_warning
+            else f"Reference coverage is complete for the current target: `{reference_available}/{total_references}` usable reference form-runs."
+        ),
+        "",
+        "## Thesis Plots",
+        "",
+        "- [Effectiveness overview](plots/thesis_effectiveness_overview.svg)",
+        "- [Efficiency overview](plots/thesis_efficiency_overview.svg)",
+        "- [Failure mix](plots/thesis_failure_mix.svg)",
+        "- [Efficiency frontier](plots/thesis_efficiency_frontier.svg)",
+        "- [Reference coverage](plots/thesis_reference_coverage.svg)",
+        "",
+        "## Notes",
+        "",
+        "- Thesis-primary outputs exclude latest-batch duplicate rows and keep one averaged row per primary model/interface condition.",
+        "- `submitted_while_incomplete_count` stays out of headline metrics until its pre-submit logic is fixed.",
+        "- For submitted Qwen trials, use `scored_correctness` rather than final page verification.",
         "",
         "## Partial Running Batches",
         "",
@@ -1003,89 +1715,35 @@ def write_markdown(
     lines.extend(
         [
             "",
-            "## Target Coverage",
+            "## Diagnostics",
             "",
-            "| Model | Target Form-Runs | Observed Unique | Missing | Duplicate Target Pairs | Complete Forms | Forms With Any Run | Missing Examples |",
-            "|---|---:|---:|---:|---:|---:|---:|---|",
+            f"- Canonical trial rows: `{len(canonical_rows)}` in [canonical_trials.csv](canonical_trials.csv).",
+            f"- Thesis model summary: [thesis_model_summary.csv](thesis_model_summary.csv).",
+            f"- Answer-set validation: [answer_validation.csv](answer_validation.csv); statuses: {', '.join(f'{k}: {v}' for k, v in answer_status.most_common())}.",
+            f"- Metadata/path validation: {', '.join(f'{k}: {v}' for k, v in metadata_status.most_common())}.",
+            f"- Experiment coverage: [experiment_coverage.csv](experiment_coverage.csv).",
+            f"- Target coverage: [target_coverage.csv](target_coverage.csv). Goal: `{TARGET_RUN_COUNT}` answer runs per form / `{TARGET_TRIAL_COUNT}` unique form-runs per model.",
+            f"- Reference coverage: [reference_coverage.csv](reference_coverage.csv); complete references: `{reference_available}`, videos: `{reference_video_available}`.",
+            f"- Efficiency summary: [efficiency_summary.csv](efficiency_summary.csv); rows: `{len(efficiency_summary)}`.",
+            f"- Paired efficiency comparison: [paired_efficiency_comparison.csv](paired_efficiency_comparison.csv); rows: `{len(paired_efficiency)}`.",
+            "- Model summary: [model_summary.csv](model_summary.csv).",
+            "- Form summary: [form_summary.csv](form_summary.csv).",
+            "- Failure summary: [failure_summary.csv](failure_summary.csv).",
+            "- Question-type summary: [question_type_summary.csv](question_type_summary.csv).",
+            "- Legacy cohort summary: [cohort_summary.csv](cohort_summary.csv).",
+            "- Legacy per-form summary: [per_form_summary.csv](per_form_summary.csv).",
         ]
     )
-    for row in target_coverage:
-        lines.append(
-            f"| `{row['model_id']}` | {row['target_form_runs']} | {row['observed_unique_form_runs']} | "
-            f"{row['missing_form_runs']} | {row['duplicate_target_form_runs']} | {row['forms_complete_target_runs']} | "
-            f"{row['forms_with_any_run']} | `{row['missing_examples']}` |"
+    if include_diagnostic_plots:
+        lines.extend(
+            [
+                "",
+                "## Diagnostic Plots",
+                "",
+                "- [OpenCUA form accuracy](plots/diagnostic_opencua_forms.svg)",
+                "- [Qwen latest-batch form accuracy](plots/diagnostic_qwen_latest_forms.svg)",
+            ]
         )
-    lines.extend(
-        [
-            "",
-            "## Model Summary",
-            "",
-            *_md_table(model_rows),
-            "",
-            "## Latest Qwen Batch By Model",
-            "",
-            *_md_table(latest_qwen_model_rows),
-            "",
-            "## Latest Qwen Batch By Form And Run",
-            "",
-            "| Model | Kind | Track | Form | Run | Submit | Success | Scored Answers | Submit Attempts | Incomplete Submits | Actions | Stop |",
-            "|---|---|---|---|---|---:|---:|---:|---:|---:|---:|---|",
-        ]
-    )
-    for row in qwen_latest_form_rows:
-        reasons = ", ".join(f"{k}: {v}" for k, v in row["stop_reasons"].most_common())
-        lines.append(
-            f"| `{row['model_id']}` | `{row.get('model_kind', '')}` | `{row.get('track', '')}` | `{row['form_id']}` | `{row.get('answer_run_id', '')}` | {row['submit_successes']}/{row['trials']} | "
-            f"{row['successes']}/{row['trials']} | {row['scored_correctness']}/{row['question_total']} ({_pct(row['scored_accuracy'])}) | "
-            f"{row.get('submit_attempt_count', 0)} | {row.get('submitted_while_incomplete_count', 0)} | "
-            f"{_fmt_float(row['avg_action_count'])} | {reasons} |"
-        )
-    lines.extend(
-        [
-            "",
-            "## OpenCUA Control-Guidance By Form And Run, All 50 Forms",
-            "",
-            "| Model | Kind | Track | Form | Run | Submit | Success | Questions | Answered Correctly | Actions | Stop |",
-            "|---|---|---|---|---|---:|---:|---:|---:|---:|---|",
-        ]
-    )
-    for row in opencua_form_rows:
-        reasons = ", ".join(f"{k}: {v}" for k, v in row["stop_reasons"].most_common())
-        lines.append(
-            f"| `{row['model_id']}` | `{row.get('model_kind', '')}` | `{row.get('track', '')}` | `{row['form_id']}` | `{row.get('answer_run_id', '')}` | {row['submit_successes']}/{row['trials']} | {row['successes']}/{row['trials']} | "
-            f"{row['question_total']} | {row['scored_correctness']}/{row['question_total']} ({_pct(row['scored_accuracy'])}) | "
-            f"{_fmt_float(row['avg_action_count'])} | {reasons} |"
-        )
-    lines.extend(
-        [
-            "",
-            "## Question-Type Success And Failure",
-            "",
-            "For submitted Qwen trials, final per-question verification can occur on the confirmation page. The Qwen rows below therefore use only non-submitted partial-state trials for reliable type-level diagnosis. OpenCUA did not submit, so its rows are direct final-state verification.",
-            "",
-            *_question_type_md(question_type_summary),
-            "",
-            "## Plots",
-            "",
-            "- [Model performance](plots/model_overview.svg)",
-            "- [Stop reason mix](plots/stop_reasons.svg)",
-            "- [OpenCUA control-guidance form accuracy](plots/opencua_control_forms.svg)",
-            "- [Qwen latest-batch form accuracy](plots/qwen_latest_forms.svg)",
-            "",
-            "## Generated Tables",
-            "",
-            "- [Canonical trial CSV](canonical_trials.csv)",
-            "- [Answer validation CSV](answer_validation.csv)",
-            "- [Experiment coverage CSV](experiment_coverage.csv)",
-            "- [Target coverage CSV](target_coverage.csv)",
-            "- [Model summary CSV](model_summary.csv)",
-            "- [Form summary CSV](form_summary.csv)",
-            "- [Failure summary CSV](failure_summary.csv)",
-            "- [Question-type summary CSV](question_type_summary.csv)",
-            "- [Legacy cohort summary CSV](cohort_summary.csv)",
-            "- [Legacy per-form summary CSV](per_form_summary.csv)",
-        ]
-    )
     (output_dir / "latest_analysis.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -1093,6 +1751,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Analyze model evaluation summaries and write CSV/Markdown/SVG outputs.")
     parser.add_argument("--dataset-root", default=str(DEFAULT_DATASET_ROOT))
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
+    parser.add_argument(
+        "--include-diagnostic-plots",
+        action="store_true",
+        help="Also generate granular per-form diagnostic SVGs. Default output is thesis model-level plots only.",
+    )
     args = parser.parse_args()
 
     dataset_root = Path(args.dataset_root)
@@ -1122,33 +1785,65 @@ def main() -> int:
         + question_type_rows(cohorts["qwen_latest_completed"], "qwen_latest_partial_only", reliable_only=True)
     )
     failure_rows = failure_summary_rows(cohorts)
+    reference_coverage = reference_coverage_rows()
+    trials_by_scope: Dict[str, Sequence[Trial]] = {}
+    trials_by_scope.update(trials_by_model_scope("qwen_all_completed", cohorts["qwen_all_completed"]))
+    trials_by_scope.update(trials_by_model_scope("opencua_control_guidance_completed", cohorts["opencua_control_guidance_completed"]))
+    trials_by_scope.update(trials_by_model_scope("opencua_direct_mcp_completed", cohorts["opencua_direct_mcp_completed"]))
+    trials_by_scope.update(trials_by_model_scope("qwen_latest_completed", cohorts["qwen_latest_completed"]))
+    efficiency_summary = efficiency_summary_rows(model_rows + latest_qwen_model_rows, trials_by_scope)
+    thesis_rows = thesis_model_summary_rows(model_rows, efficiency_summary, target_coverage)
+    thesis_plot_model_rows = [
+        {**row, "display_label": _model_label(str(row.get("model_id") or ""))}
+        for row in model_rows
+        if str(row.get("model_id") or "") in THESIS_MODEL_LABELS
+    ]
+    paired_efficiency = paired_efficiency_rows(
+        cohorts["qwen_all_completed"]
+        + cohorts["opencua_control_guidance_completed"]
+        + cohorts["opencua_direct_mcp_completed"]
+    )
 
     _write_dict_csv(canonical_rows, output_dir / "canonical_trials.csv")
     _write_dict_csv(answer_validation, output_dir / "answer_validation.csv")
     _write_dict_csv(experiment_coverage, output_dir / "experiment_coverage.csv")
     _write_dict_csv(target_coverage, output_dir / "target_coverage.csv")
+    _write_dict_csv(reference_coverage, output_dir / "reference_coverage.csv")
     _write_csv(cohort_rows + qwen_model_rows + latest_qwen_model_rows, output_dir / "cohort_summary.csv")
     _write_csv(model_rows + latest_qwen_model_rows, output_dir / "model_summary.csv")
+    _write_dict_csv(thesis_rows, output_dir / "thesis_model_summary.csv")
+    _write_dict_csv(efficiency_summary, output_dir / "efficiency_summary.csv")
+    _write_dict_csv(paired_efficiency, output_dir / "paired_efficiency_comparison.csv")
     _write_csv(opencua_form_rows + opencua_direct_mcp_form_rows + qwen_latest_form_rows, output_dir / "form_summary.csv")
     _write_csv(opencua_form_rows + opencua_direct_mcp_form_rows + qwen_latest_form_rows, output_dir / "per_form_summary.csv")
     _write_question_type_csv(question_type_summary, output_dir / "question_type_summary.csv")
     _write_dict_csv(failure_rows, output_dir / "failure_summary.csv")
-    write_metric_bars(model_rows + latest_qwen_model_rows, plots_dir / "model_overview.svg")
-    write_stop_reason_bars(model_rows + latest_qwen_model_rows, plots_dir / "stop_reasons.svg")
-    write_form_accuracy(opencua_form_rows, plots_dir / "opencua_control_forms.svg", "OpenCUA Control-Guidance Form Accuracy")
-    write_form_accuracy(qwen_latest_form_rows, plots_dir / "qwen_latest_forms.svg", "Qwen Latest-Batch Form Accuracy")
+    write_thesis_effectiveness_overview(thesis_rows, plots_dir / "thesis_effectiveness_overview.svg")
+    write_thesis_efficiency_overview(thesis_rows, plots_dir / "thesis_efficiency_overview.svg")
+    write_thesis_failure_mix(thesis_plot_model_rows, plots_dir / "thesis_failure_mix.svg")
+    write_thesis_efficiency_frontier(thesis_rows, plots_dir / "thesis_efficiency_frontier.svg")
+    write_thesis_reference_coverage(thesis_rows, reference_coverage, plots_dir / "thesis_reference_coverage.svg")
+    if args.include_diagnostic_plots:
+        write_form_accuracy(
+            opencua_form_rows + opencua_direct_mcp_form_rows,
+            plots_dir / "diagnostic_opencua_forms.svg",
+            "OpenCUA Form Accuracy Diagnostics",
+        )
+        write_form_accuracy(
+            qwen_latest_form_rows,
+            plots_dir / "diagnostic_qwen_latest_forms.svg",
+            "Qwen Latest-Batch Form Accuracy Diagnostics",
+        )
     write_markdown(
         output_dir,
-        cohort_rows,
-        model_rows,
-        latest_qwen_model_rows,
-        opencua_form_rows + opencua_direct_mcp_form_rows,
-        qwen_latest_form_rows,
-        question_type_summary,
+        thesis_rows,
         canonical_rows,
         answer_validation,
         experiment_coverage,
-        target_coverage,
+        reference_coverage,
+        efficiency_summary,
+        paired_efficiency,
+        args.include_diagnostic_plots,
     )
     print(f"[INFO] wrote analysis to {output_dir}")
     print(f"[INFO] cohorts={len(cohort_rows)} total_trials={len(trials)}")

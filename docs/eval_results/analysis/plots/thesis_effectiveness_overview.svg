@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="502" viewBox="0 0 1080 502">
+<style>text{font-family:Arial,sans-serif;font-size:12px;fill:#202124}.title{font-size:17px;font-weight:700}.axis{fill:#5f6368}.small{font-size:10px;fill:#5f6368}.label{font-size:12px;font-weight:700}.legend{font-size:11px;fill:#3c4043}</style>
+<rect width="100%" height="100%" fill="#fff"/>
+<text class="title" x="24" y="30">Thesis Effectiveness Overview</text>
+<text class="axis" x="24" y="52">One averaged result per model/interface condition</text>
+<rect x="190" y="68" width="12" height="12" fill="#2563eb"/>
+<text class="legend" x="208" y="79">Submit</text>
+<rect x="295" y="68" width="12" height="12" fill="#16a34a"/>
+<text class="legend" x="313" y="79">Exact</text>
+<rect x="400" y="68" width="12" height="12" fill="#f59e0b"/>
+<text class="legend" x="418" y="79">Score</text>
+<text class="label" x="24.0" y="104.0">Qwen Text</text>
+<text class="small" x="24" y="122">n=249, forms=50</text>
+<rect x="190" y="88" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="88" width="266.3" height="13" fill="#2563eb"/>
+<text class="small" x="136" y="99">Submit</text>
+<text class="small" x="865" y="99">41.0%</text>
+<rect x="190" y="108" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="108" width="114.9" height="13" fill="#16a34a"/>
+<text class="small" x="136" y="119">Exact</text>
+<text class="small" x="865" y="119">17.7%</text>
+<rect x="190" y="128" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="128" width="385.4" height="13" fill="#f59e0b"/>
+<text class="small" x="136" y="139">Score</text>
+<text class="small" x="865" y="139">59.3%</text>
+<text class="label" x="24.0" y="186.0">Qwen VLM</text>
+<text class="small" x="24" y="204">n=219, forms=50</text>
+<rect x="190" y="170" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="170" width="460.0" height="13" fill="#2563eb"/>
+<text class="small" x="136" y="181">Submit</text>
+<text class="small" x="865" y="181">70.8%</text>
+<rect x="190" y="190" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="190" width="89.0" height="13" fill="#16a34a"/>
+<text class="small" x="136" y="201">Exact</text>
+<text class="small" x="865" y="201">13.7%</text>
+<rect x="190" y="210" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="210" width="379.9" height="13" fill="#f59e0b"/>
+<text class="small" x="136" y="221">Score</text>
+<text class="small" x="865" y="221">58.5%</text>
+<text class="label" x="24.0" y="268.0">OpenCUA Native</text>
+<text class="small" x="24" y="286">n=200, forms=50</text>
+<rect x="190" y="252" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="252" width="0.0" height="13" fill="#2563eb"/>
+<text class="small" x="136" y="263">Submit</text>
+<text class="small" x="865" y="263">0.0%</text>
+<rect x="190" y="272" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="272" width="0.0" height="13" fill="#16a34a"/>
+<text class="small" x="136" y="283">Exact</text>
+<text class="small" x="865" y="283">0.0%</text>
+<rect x="190" y="292" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="292" width="247.1" height="13" fill="#f59e0b"/>
+<text class="small" x="136" y="303">Score</text>
+<text class="small" x="865" y="303">38.0%</text>
+<text class="label" x="24.0" y="350.0">OpenCUA MCP</text>
+<text class="small" x="24" y="368">n=130, forms=50</text>
+<rect x="190" y="334" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="334" width="530.0" height="13" fill="#2563eb"/>
+<text class="small" x="136" y="345">Submit</text>
+<text class="small" x="865" y="345">81.5%</text>
+<rect x="190" y="354" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="354" width="155.0" height="13" fill="#16a34a"/>
+<text class="small" x="136" y="365">Exact</text>
+<text class="small" x="865" y="365">23.8%</text>
+<rect x="190" y="374" width="650" height="13" fill="#eef1f4"/>
+<rect x="190" y="374" width="391.0" height="13" fill="#f59e0b"/>
+<text class="small" x="136" y="385">Score</text>
+<text class="small" x="865" y="385">60.1%</text>
+<line x1="190" y1="436" x2="840" y2="436" stroke="#dadce0"/>
+<line x1="190.0" y1="436" x2="190.0" y2="441" stroke="#dadce0"/>
+<text class="small" x="180.0" y="456">0%</text>
+<line x1="320.0" y1="436" x2="320.0" y2="441" stroke="#dadce0"/>
+<text class="small" x="310.0" y="456">20%</text>
+<line x1="450.0" y1="436" x2="450.0" y2="441" stroke="#dadce0"/>
+<text class="small" x="440.0" y="456">40%</text>
+<line x1="580.0" y1="436" x2="580.0" y2="441" stroke="#dadce0"/>
+<text class="small" x="570.0" y="456">60%</text>
+<line x1="710.0" y1="436" x2="710.0" y2="441" stroke="#dadce0"/>
+<text class="small" x="700.0" y="456">80%</text>
+<line x1="840.0" y1="436" x2="840.0" y2="441" stroke="#dadce0"/>
+<text class="small" x="830.0" y="456">100%</text>
+</svg>

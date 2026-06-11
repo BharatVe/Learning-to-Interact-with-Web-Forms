@@ -2,25 +2,28 @@
   {
     "label": "Course name",
     "widget_type": "short_text",
-    "value": "AI Ethics",
+    "value": "Avery Patel",
     "tags": [
-      "course"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Your program level",
     "widget_type": "single_choice",
-    "value": "PhD",
+    "value": "Other",
     "tags": [
-      "program"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "Did you attend most sessions?",
     "widget_type": "single_choice",
-    "value": "Yes",
+    "value": "No",
     "tags": [
-      "attendance"
+      "generated",
+      "single_choice"
     ]
   },
   {
@@ -28,7 +31,8 @@
     "widget_type": "single_choice",
     "value": "4",
     "tags": [
-      "rating"
+      "generated",
+      "single_choice"
     ]
   },
   {
@@ -36,23 +40,26 @@
     "widget_type": "single_choice",
     "value": "About right",
     "tags": [
-      "workload"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "What did you like most?",
     "widget_type": "paragraph_text",
-    "value": "Debates and applied policy examples.",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (What did you like most?; run 3)",
     "tags": [
-      "feedback"
+      "generated",
+      "paragraph"
     ]
   },
   {
     "label": "What should be improved?",
     "widget_type": "paragraph_text",
-    "value": "Add more guest speakers.",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (What should be improved?; run 3)",
     "tags": [
-      "feedback"
+      "generated",
+      "paragraph"
     ]
   },
   {
@@ -60,18 +67,21 @@
     "widget_type": "multi_choice",
     "value": [
       "Theory",
-      "Practical labs"
+      "Practical labs",
+      "Project work"
     ],
     "tags": [
-      "highlights"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Would you recommend this course?",
     "widget_type": "single_choice",
-    "value": "Yes",
+    "value": "No",
     "tags": [
-      "recommendation"
+      "generated",
+      "single_choice"
     ]
   }
 ]

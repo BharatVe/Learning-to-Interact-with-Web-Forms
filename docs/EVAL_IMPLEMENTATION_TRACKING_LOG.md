@@ -1,29 +1,256 @@
 # Evaluation Implementation Tracking Log
 
-Last updated: 2026-05-28
+Last updated: 2026-06-10
 
 Use this file as the current source of truth before rerunning evaluation jobs. It records the active evaluation design, implementation status, latest outputs, known issues, and next actions.
 
 ## Current Decision
 
-- Qwen text/VLM thesis track: `direct_mcp_tool_use`.
-- Qwen models interact through documented Playwright MCP tools, using `browser_snapshot` refs as the primary UI substrate.
-- OpenCUA thesis track: `computer_use_native`.
-- OpenCUA remains screenshot-native with pyautogui/action-output style and Qwen2.5-VL coordinate conversion.
-- Do not aggregate Qwen direct-MCP and OpenCUA native as one interface condition; report them as different web-form completion systems.
+- Active thesis comparison is now four interface/model conditions capped at `300` unique form-run trials per condition:
+  - `text_qwen3_30b_a3b_instruct_2507` with direct Playwright MCP tools.
+  - `vlm_qwen3_vl_30b_a3b_instruct` with direct Playwright MCP tools.
+  - `computer_use_opencua_32b` with native screenshot/coordinate computer use.
+  - `computer_use_opencua_32b_direct_mcp` with the same direct Playwright MCP tool contract used for Qwen.
+- Target progress is counted by unique `(model_id, form_id, answer_run_id)` pairs under `data/model_baselines/**/summary.json`, not by raw duplicate summaries.
+- With 50 forms and `target_trials=300`, the active target is runs `1-6` for every condition.
+- Do not aggregate Qwen direct-MCP, OpenCUA native, and OpenCUA direct-MCP as one interface condition; report them as separate conditions.
 - Scripted Playwright generation runs remain the efficiency reference baseline for matching `form_id + run_XXXX`.
 
 ## Current State
 
 The serving and basic orchestration problems are mostly solved. The remaining blockers are agent behavior and metric interpretation.
 
+- Four-way target-chain scheduling is implemented in `scripts/submit_eval_target_chain.py`.
+- Global unique-pair skip behavior is implemented for Qwen direct-MCP, OpenCUA native, and OpenCUA direct-MCP matrix runners.
+- OpenCUA direct-MCP is now a first-class target using `scripts/slurm_opencua_direct_mcp.sbatch` and `MODEL_ID=computer_use_opencua_32b_direct_mcp`.
+- OpenCUA direct-MCP smoke validation completed 5/5 trials with no hidden-tool errors and no invalid tool calls.
+- A finite dependency chain for the remaining OpenCUA direct-MCP target-300 work was submitted on 2026-06-09 as jobs `2248104` through `2248109`.
 - Qwen direct-MCP now produces usable submitted trials and pre-submit scoring snapshots.
 - Qwen still frequently stops with `DONE` before submission, especially the text model.
 - Qwen VLM can time out on some longer forms despite making partial progress.
 - OpenCUA serving is working, but the native screenshot agent still fails to submit and usually loops on repeated clicks around Google Forms controls.
-- Final post-submit verification still reads as `0/N` on submitted Qwen trials because the browser is on the Google Forms confirmation page. For submitted Qwen trials, use `scored_correctness` from `pre_successful_submit_verified_correctness`.
+- Final post-submit verification can read as `0/N` on submitted direct-MCP trials because the browser is on the Google Forms confirmation page. For submitted direct-MCP trials, use `scored_correctness` from `pre_successful_submit_verified_correctness`.
 - Latest reruns add CUDA preflight checks before vLLM startup, better OpenCUA vLLM launch diagnostics, and `FORM_OFFSET`/`FORM_LIMIT` support for `FORM_IDS=all`.
 - Latest analysis artifacts live under `docs/eval_results/analysis/`.
+
+## 2026-06-09 Target-300 Chain Update
+
+Implementation changes:
+
+- `scripts/submit_eval_target_chain.py` now derives the active run indexes from `--target-trials`; `300 / 50` forms means runs `1-6`.
+- The scheduler now targets all four conditions independently:
+  - Qwen text direct-MCP.
+  - Qwen VLM direct-MCP.
+  - OpenCUA native screenshot.
+  - OpenCUA direct-MCP tools.
+- The scheduler scans `data/model_baselines/**/summary.json` globally and treats each model independently, so completed Qwen text pairs do not hide missing Qwen VLM or OpenCUA pairs.
+- `scripts/run_qwen_direct_mcp_matrix.sh`, `scripts/run_opencua_direct_matrix.sh`, and `scripts/run_opencua_direct_mcp_matrix.sh` now use global unique-pair skip behavior when `SKIP_COMPLETED=1`.
+- `src/baselines/run_qwen_direct_mcp_eval.py` now filters visible control metadata and prompt text against the actual Playwright MCP tools visible to the model. The prompt no longer advertises `browser_check` unless the active MCP server exposes it.
+- Radio/checkbox controls use `browser_click` as the compatible default direct-MCP action.
+- `scripts/analyze_eval_results.py` now reports target coverage against `300` unique form-runs, not the earlier `500` target.
+
+Validation:
+
+- Unit tests passed for the direct-MCP prompt/tool visibility and target-chain counting:
+
+```bash
+python -m unittest tests.test_qwen_direct_mcp_eval tests.test_submit_eval_target_chain
+```
+
+- Syntax checks passed for the updated Python and shell entrypoints.
+- First OpenCUA direct-MCP smoke submission `2247425` failed before trials because `.venv-opencua/bin/vllm` had a stale shebang. The vLLM launchers were updated to call `python -m vllm.entrypoints.openai.api_server` through the active virtualenv interpreter.
+- Follow-up OpenCUA direct-MCP smoke job `2247451` completed all five forms:
+  - Experiment ID: `opencua_direct_mcp_tools_toolcontract_smoke_v2_20260608`
+  - Forms: `conf_interest`, `event_rsvp`, `course_feedback`, `internship_app`, `workshop_signup`
+  - Run index: `2`
+  - Result: `5/5` direct-MCP trials completed and submitted.
+  - Tool transport: `text_tool_call_fallback`.
+  - Invalid tool calls: `0`.
+  - Hidden `browser_check` errors: `0`.
+  - Scored correctness: `conf_interest 7/7`, `event_rsvp 6/6`, `course_feedback 6/9`, `internship_app 3/12`, `workshop_signup 7/7`.
+
+New submitted chain:
+
+- Attempted helper submission:
+
+```bash
+CHAIN_TARGET_TRIALS=300 CHAIN_TRACKS=opencua-direct-mcp CHAIN_DATE_STAMP=20260609 sbatch scripts/slurm_submit_eval_target_chain.sbatch
+```
+
+- Result: rejected by cluster policy because the helper job requested no GPU resources (`QOSMinGRES`). No evaluation work was queued by this failed helper submission.
+- Direct local submission was then used:
+
+```bash
+.venv/bin/python scripts/submit_eval_target_chain.py --target-trials 300 --tracks opencua-direct-mcp --date-stamp 20260609 --submit
+```
+
+- Submitted dependency chain:
+  - `2248104`: `opencua_direct_mcp_tools_target300_run1_20260609`, pending on priority at submission check.
+  - `2248105`: `opencua_direct_mcp_tools_target300_run2_20260609`, dependency `afterok:2248104`.
+  - `2248106`: `opencua_direct_mcp_tools_target300_run3_20260609`, dependency `afterok:2248105`.
+  - `2248107`: `opencua_direct_mcp_tools_target300_run4_20260609`, dependency `afterok:2248106`.
+  - `2248108`: `opencua_direct_mcp_tools_target300_run5_20260609`, dependency `afterok:2248107`.
+  - `2248109`: `opencua_direct_mcp_tools_target300_run6_20260609`, dependency `afterok:2248108`.
+- Queue state at submission check:
+  - `2248104`: `PD (Priority)`.
+  - `2248105`-`2248109`: `PD (Dependency)`.
+- This is finite, dependency-chained work toward the 300-trial cap, not an infinite resubmission loop.
+
+Additional remaining-condition backfill submitted after resource check:
+
+- Resource requests checked before submitting:
+  - Qwen direct-MCP jobs request `2` GPUs, `12` CPUs, `120G` memory, and `24:00:00`.
+  - OpenCUA native jobs request `4` GPUs, `16` CPUs, `180G` memory, and `24:00:00`.
+  - OpenCUA direct-MCP jobs request `4` GPUs, `16` CPUs, `180G` memory, and `24:00:00`.
+- Full user queue check before adding the remaining jobs showed only the existing OpenCUA direct-MCP chain (`2248104`-`2248109`), with `2248104` pending on priority and the rest dependency-held.
+- To avoid simultaneous heavy GPU demand, the remaining jobs were submitted as one serial dependency chain:
+  - OpenCUA direct-MCP target chain first: `2248104` -> `2248105` -> `2248106` -> `2248107` -> `2248108` -> `2248109`.
+  - Qwen backfill after OpenCUA direct-MCP: `2248111` -> `2248112` -> `2248113` -> `2248114`.
+  - OpenCUA native backfill after Qwen: `2248115` -> `2248116`.
+- Qwen submitted jobs:
+  - `2248111`: `qwen_direct_mcp_target300_run1_20260609`, dependency `afterok:2248109`, missing `remote_setup` run `1`.
+  - `2248112`: `qwen_direct_mcp_target300_run4_20260609`, dependency `afterok:2248111`, remaining run-4 forms.
+  - `2248113`: `qwen_direct_mcp_target300_run5_20260609`, dependency `afterok:2248112`, remaining run-5 forms.
+  - `2248114`: `qwen_direct_mcp_target300_run6_20260609`, dependency `afterok:2248113`, remaining run-6 forms.
+- OpenCUA native submitted jobs:
+  - `2248115`: `opencua_control_guidance_target300_run5_20260609`, dependency `afterok:2248114`, all 50 run-5 forms.
+  - `2248116`: `opencua_control_guidance_target300_run6_20260609`, dependency `afterok:2248115`, all 50 run-6 forms.
+- Queue state after adding the remaining jobs:
+  - `2248104`: `PD (Priority)`, `gres/gpu:4`, `16` CPUs, `180G`, `24:00:00`.
+  - `2248105`-`2248109`: `PD (Dependency)`, each `gres/gpu:4`, `16` CPUs, `180G`, `24:00:00`.
+  - `2248111`-`2248114`: `PD (Dependency)`, each `gres/gpu:2`, `12` CPUs, `120G`, `24:00:00`.
+  - `2248115`-`2248116`: `PD (Dependency)`, each `gres/gpu:4`, `16` CPUs, `180G`, `24:00:00`.
+- This should keep the active load to one evaluation batch at a time and avoid a burst of parallel 4-GPU jobs.
+
+## 2026-06-10 Job Status Check
+
+Checked SLURM accounting and refreshed `docs/eval_results/analysis/` on 2026-06-10.
+
+Evaluation chain status:
+
+- `2248104` (`opencua-mcp`, experiment `opencua_direct_mcp_tools_target300_run1_20260609`) completed successfully:
+  - SLURM state: `COMPLETED`, exit code `0:0`.
+  - Runtime: `13:01:40`, started `2026-06-09T17:54:22`, ended `2026-06-10T06:56:02`.
+  - Matrix output: `direct_eval_total=50`, `direct_eval_passed=46`, `direct_eval_failed=4`.
+  - Failed form-level statuses in stderr: `course_enrollment`, `field_trip`, `publication_submission`, `sports_tournament`.
+  - The run still wrote `50` `summary.json` files under `data/model_baselines/opencua_direct_mcp_tools_target300_run1_20260609/...`.
+- The next chain job `2248105` is pending on cluster priority:
+  - `2248105`: `PENDING (Priority)`.
+  - `2248106`-`2248109`: `PENDING (Dependency)`.
+  - `2248111`-`2248114`: `PENDING (Dependency)`.
+  - `2248115`-`2248116`: `PENDING (Dependency)`.
+- No submitted target-chain job is currently running at this check.
+
+Refreshed thesis analysis status after `2248104`:
+
+- `scripts/analyze_eval_results.py` completed and wrote updated outputs to `docs/eval_results/analysis/`.
+- Canonical discovered trials increased from `716` to `766`.
+- OpenCUA MCP thesis row now shows:
+  - `70` trials across `50` forms.
+  - `55/300` unique target form-runs (`18.3%` target coverage).
+  - Submit rate `78.6%`.
+  - Exact success rate `27.1%`.
+  - Scored accuracy `57.8%`.
+  - Reference coverage `29/70` (`41.4%`).
+- `paired_efficiency_comparison.csv` now has `249` rows.
+
+Reference generation status:
+
+- Reference jobs submitted on 2026-06-09 all failed:
+  - `2248123`: `FAILED`, exit code `1:0`, failed after `00:00:14`.
+  - `2248128`: `FAILED`, exit code `1:0`, failed after `00:00:02`.
+  - `2248140`: `FAILED`, exit code `1:0`, failed after `00:24:46`.
+- `2248123` and `2248128` failed before useful generation because the Playwright Chromium executable was missing:
+  - `2248123` looked under `/home/bhve224e/.cache/ms-playwright/...`.
+  - `2248128` looked under the workspace `.playwright-browsers/...`.
+- `2248140` generated partial reference artifacts, then failed on a Google Forms time dropdown:
+  - Failure: `TimeoutError: locator.click` while clicking `PM`.
+  - Cause in Playwright log: Google Forms overlay/options intercepted pointer events.
+- Current reference coverage after refresh:
+  - `reference_coverage.csv`: `300` target form-runs, `38` usable references, `38` artifact-present rows, `38` video-available rows.
+  - Local `data/forms` currently has `89` `run_000*` directories and `28` `.webm` files under those run directories.
+- Efficiency plots and summaries remain provisional until the reference-generation job is fixed and rerun for the missing form-runs.
+
+## 2026-06-10 Reference Generation Fix
+
+Implementation changes:
+
+- `src/engine/runner.py` now has `--continue-on-run-error` for all-form/batch reference generation.
+- Failed reference runs write `failure_manifest.json` with form/run identity, error type/message, and artifact presence.
+- The runner now defaults Node Playwright browser binaries to the workspace cache `.playwright-browsers-node`, avoiding ambiguity between home-cache and workspace-cache Chromium paths.
+- Browser preflight now checks for an actual executable Chromium binary, not just a cache directory name.
+- `src/engine/mcp_browser_engine.py` now uses a robust meridiem setter for Google Forms time controls:
+  - normal click,
+  - forced click,
+  - DOM click fallback.
+- `scripts/analyze_reference_dataset.py` was added to compute reference coverage and efficiency inputs from `tool_trace.jsonl`.
+- Reference action count is now the number of valid tool-trace events with a non-empty `name`.
+- Reference duration is now `last_valid_trace_event.t_s - first_valid_trace_event.t_s`, not annotation max time.
+- `scripts/analyze_eval_results.py` and the baseline efficiency helper now use the same tool-trace action/duration semantics.
+
+Validation:
+
+```bash
+.venv/bin/python -m py_compile src/engine/runner.py src/engine/mcp_browser_engine.py scripts/analyze_eval_results.py scripts/analyze_reference_dataset.py src/baselines/run_baseline_eval.py
+.venv/bin/python -m unittest tests.test_reference_efficiency
+.venv/bin/python -m unittest tests.test_mcp_browser_engine
+.venv/bin/python scripts/analyze_reference_dataset.py
+.venv/bin/python scripts/analyze_eval_results.py
+```
+
+Current refreshed reference state:
+
+- `docs/eval_results/reference_analysis/reference_coverage_summary.csv`: `28/300` usable references.
+- `docs/eval_results/analysis/reference_coverage.csv`: `28/300` usable references and `28` video-available references.
+- The lower count compared with the previous `38/300` is intentional: references with stale `annotations.video_path` values but no actual `.webm` file are no longer counted as usable.
+
+Recommended rerun command:
+
+```bash
+sbatch \
+  --nodes=1 \
+  --gres=gpu:1 \
+  --job-name=reference-forms-runs1-6 \
+  --output=logs/slurm/reference-forms-runs1-6-%j.out \
+  --error=logs/slurm/reference-forms-runs1-6-%j.err \
+  --time=12:00:00 \
+  --cpus-per-task=4 \
+  --mem=8G \
+  --wrap='.venv/bin/python src/engine/runner.py --all-forms --dataset-root data/forms --num-runs 6 --start-index 1 --skip-existing-video --overwrite-missing-video --continue-on-run-error --trace-mode mcp --interaction-mode mcp_server --headless --screenshots'
+```
+
+Rerun submission:
+
+- First submission attempt without node/GRES flags was rejected by cluster policy (`QOSMinGRES` and missing node count).
+- Resubmitted with `--nodes=1 --gres=gpu:1`.
+- New reference-generation job: `2248236`.
+- Result: `2248236` failed after `00:00:24` because the bare `sbatch --wrap` environment did not load Node.js, so `npx` was not available.
+- Fix: resubmit through `scripts/run_baselines_mcp.sh`, which loads `nodejs/20.13.1`, adds `.node-tools/node_modules/.bin` to `PATH`, and sets `PLAYWRIGHT_BROWSERS_PATH`.
+- Additional code fix: Chromium cache detection now recognizes both `chrome-linux/chrome` and `chrome-linux64/chrome`; the current workspace cache uses `.playwright-browsers-node/chromium-1212/chrome-linux64/chrome`.
+- Replacement reference-generation job: `2248565`.
+- Initial queue state: `PENDING (Priority)` on 2026-06-11.
+- Replacement command:
+
+```bash
+sbatch \
+  --nodes=1 \
+  --gres=gpu:1 \
+  --job-name=reference-forms-runs1-6 \
+  --output=logs/slurm/reference-forms-runs1-6-%j.out \
+  --error=logs/slurm/reference-forms-runs1-6-%j.err \
+  --time=12:00:00 \
+  --cpus-per-task=4 \
+  --mem=8G \
+  --wrap='bash scripts/run_baselines_mcp.sh --all-forms --num-runs 6 --start-index 1 --skip-existing-video --overwrite-missing-video --continue-on-run-error --screenshots'
+```
+
+Integrity verification after resubmission:
+
+- `.venv/bin/python -m py_compile src/engine/runner.py src/engine/mcp_browser_engine.py scripts/analyze_eval_results.py scripts/analyze_reference_dataset.py src/baselines/run_baseline_eval.py` passed.
+- `.venv/bin/python -m unittest tests.test_reference_efficiency tests.test_mcp_browser_engine` passed (`10` tests).
+- `.venv/bin/python scripts/analyze_reference_dataset.py` passed and still reports `28/300` usable references, as expected before `2248565` runs.
+- `.venv/bin/python scripts/analyze_eval_results.py` passed and refreshed thesis outputs.
+- Current thesis analysis now sees `826` total model trials; OpenCUA MCP is at `130` trials and `115/300` unique target form-runs.
 
 ## Implementation Map
 
@@ -63,7 +290,8 @@ Current behavior:
 
 - Uses Playwright MCP directly instead of the legacy mediated `human_ui_v1` path.
 - Prompts the model to inspect `browser_snapshot` and call documented browser tools with snapshot refs.
-- Exposes `browser_check` for radio/checkbox controls.
+- Filters advertised control tools against the actual model-visible Playwright MCP tools.
+- Uses `browser_click` for radio/checkbox controls unless a future MCP server exposes a more specific compatible tool.
 - Hides `browser_select_option` unless a visible control is a real HTML `select`.
 - Tracks submit attempts and stores:
   - `submit_attempt_count`

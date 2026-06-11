@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="180" viewBox="0 0 760 180">
+<style>text{font-family:Arial,sans-serif;font-size:12px;fill:#202124}.title{font-size:17px;font-weight:700}.small{font-size:10px;fill:#5f6368}.label{font-weight:700}</style>
+<rect width="100%" height="100%" fill="#fff"/>
+<text class="title" x="24" y="30">Reference Coverage</text>
+<text class="small" x="24" y="52">Usable scripted references for efficiency comparisons</text>
+<text class="label" x="24" y="94">Usable runs</text>
+<rect x="190" y="80" width="420" height="22" fill="#eef1f4"/>
+<rect x="190" y="80" width="39.2" height="22" fill="#2563eb"/>
+<text x="626" y="96">28/300 (9.3%)</text>
+</svg>

@@ -88,7 +88,7 @@ def _default_playwright_browsers_path() -> str:
     env_value = os.environ.get("PLAYWRIGHT_BROWSERS_PATH")
     if env_value:
         return env_value
-    return str(Path.home() / ".cache" / "ms-playwright")
+    return str(ROOT_DIR / ".playwright-browsers-node")
 
 
 def _is_wsl() -> bool:
@@ -116,13 +116,26 @@ def _detect_python_playwright_chromium_executable() -> Optional[str]:
 
 
 def _has_any_chromium_cache() -> bool:
+    return _find_cached_chromium_executable() is not None
+
+
+def _find_cached_chromium_executable() -> Optional[Path]:
     cache_dir = Path(_default_playwright_browsers_path())
     if not cache_dir.exists():
-        return False
+        return None
     for entry in cache_dir.iterdir():
-        if entry.is_dir() and entry.name.startswith("chromium-"):
-            return True
-    return False
+        if not entry.is_dir() or not entry.name.startswith("chromium-"):
+            continue
+        candidates = [
+            entry / "chrome-linux" / "chrome",
+            entry / "chrome-linux64" / "chrome",
+            entry / "chrome-linux" / "headless_shell",
+            entry / "chrome-linux64" / "headless_shell",
+        ]
+        for candidate in candidates:
+            if candidate.exists() and os.access(candidate, os.X_OK):
+                return candidate
+    return None
 
 
 def ensure_playwright_mcp_package(timeout_seconds: int) -> None:
@@ -174,7 +187,8 @@ def ensure_node_playwright_browser(browser_name: str, timeout_seconds: int) -> N
         return
     raise RuntimeError(
         f"Failed to install Node Playwright browser '{browser_name}' for MCP. "
-        f"Command: {' '.join(cmd)}. Details: {details}"
+        f"Command: {' '.join(cmd)}. PLAYWRIGHT_BROWSERS_PATH={env.get('PLAYWRIGHT_BROWSERS_PATH')}. "
+        f"Details: {details}"
     )
 
 
@@ -193,7 +207,14 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--skip-existing", action="store_true")
     parser.add_argument("--skip-existing-video", action="store_true")
+    parser.add_argument("--overwrite-missing-video", action="store_true")
     parser.add_argument("--overwrite-existing", action="store_true")
+    parser.add_argument(
+        "--continue-on-run-error",
+        action="store_true",
+        default=False,
+        help="Continue all-form/batch generation after an individual run fails; failed runs write failure_manifest.json.",
+    )
     parser.add_argument("--headless", action="store_true", default=False)
     parser.add_argument("--slow-mo", type=int, default=DEFAULT_SLOW_MO)
     parser.add_argument("--viewport-width", type=int, default=1280)
@@ -386,6 +407,7 @@ def ensure_run_dir(
     skip_existing: bool,
     existing_indices: set,
     skip_existing_video: bool,
+    overwrite_missing_video: bool,
     overwrite_existing: bool,
 ) -> Tuple[Optional[Path], str, int]:
     run_name = f"run_{run_index:04d}"
@@ -396,8 +418,13 @@ def ensure_run_dir(
             shutil.rmtree(run_dir)
             run_dir.mkdir(parents=True, exist_ok=False)
             return run_dir, run_name, run_index
-        if skip_existing_video and any(run_dir.rglob("*.webm")):
+        has_video = any(run_dir.rglob("*.webm"))
+        if skip_existing_video and has_video:
             return None, run_name, run_index
+        if overwrite_missing_video and not has_video:
+            shutil.rmtree(run_dir)
+            run_dir.mkdir(parents=True, exist_ok=False)
+            return run_dir, run_name, run_index
         if skip_existing:
             return ensure_run_dir(
                 runs_dir,
@@ -405,6 +432,7 @@ def ensure_run_dir(
                 skip_existing,
                 existing_indices,
                 skip_existing_video,
+                overwrite_missing_video,
                 overwrite_existing,
             )
         raise FileExistsError(f"Run directory already exists: {run_dir}")
@@ -649,6 +677,41 @@ def validate_run_artifacts(
             detail_parts.append(f"errors={' ; '.join(execution_errors)}")
         details = f" Details: {' | '.join(detail_parts)}" if detail_parts else ""
         raise RuntimeError(f"Missing required artifacts in {run_dir}: {joined}.{details}")
+
+
+def _artifact_presence(run_dir: Path) -> Dict[str, Any]:
+    trace_path = run_dir / "tool_trace.jsonl"
+    annotations_path = run_dir / "annotations.json"
+    answers_path = run_dir / "answers_instance.json"
+    videos = sorted(str(path) for path in run_dir.glob("*.webm"))
+    return {
+        "answers_instance_json": answers_path.exists() and answers_path.stat().st_size > 0,
+        "annotations_json": annotations_path.exists() and annotations_path.stat().st_size > 0,
+        "tool_trace_jsonl": trace_path.exists() and trace_path.stat().st_size > 0,
+        "webm_count": len(videos),
+        "webm_files": videos,
+    }
+
+
+def write_failure_manifest(
+    run_dir: Path,
+    *,
+    form_id: str,
+    run_name: str,
+    run_label: str,
+    error: BaseException,
+) -> None:
+    payload = {
+        "schema_version": "1.0",
+        "form_id": form_id,
+        "run_name": run_name,
+        "run_label": run_label,
+        "error_type": type(error).__name__,
+        "message": str(error),
+        "artifacts": _artifact_presence(run_dir),
+        "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
+    (run_dir / "failure_manifest.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
 def _playwright_import_error() -> RuntimeError:
@@ -1113,7 +1176,7 @@ def run_for_form(
     dataset_root: Path,
     form_id: str,
     num_runs_limit: Optional[int] = None,
-) -> None:
+) -> List[Dict[str, Any]]:
     form_spec = load_form_spec(form_id, specs_root)
     form_url = force_english_google_forms_url(args.form_url or form_spec.get("form_url"))
     if not form_url:
@@ -1135,6 +1198,7 @@ def run_for_form(
 
     generated = 0
     current_index = start_index
+    failures: List[Dict[str, Any]] = []
 
     print(f"[INFO] form_id={form_id}, answers={answers_path}")
     for spec in run_specs_iter:
@@ -1150,6 +1214,7 @@ def run_for_form(
             skip_existing,
             existing_indices,
             args.skip_existing_video,
+            args.overwrite_missing_video,
             args.overwrite_existing,
         )
         if run_dir is None:
@@ -1163,18 +1228,43 @@ def run_for_form(
             raise ValueError("Run answers must be a list")
         run_metadata = spec.get("metadata", {})
 
-        run_single(
-            form_id=form_id,
-            form_url=form_url,
-            answers=answers,
-            run_dir=run_dir,
-            run_name=run_name,
-            run_label=run_label,
-            args=args,
-            run_metadata=run_metadata,
-        )
+        try:
+            run_single(
+                form_id=form_id,
+                form_url=form_url,
+                answers=answers,
+                run_dir=run_dir,
+                run_name=run_name,
+                run_label=run_label,
+                args=args,
+                run_metadata=run_metadata,
+            )
+        except Exception as exc:
+            write_failure_manifest(
+                run_dir,
+                form_id=form_id,
+                run_name=run_name,
+                run_label=run_label,
+                error=exc,
+            )
+            failure = {
+                "form_id": form_id,
+                "run_name": run_name,
+                "run_index": run_index,
+                "error_type": type(exc).__name__,
+                "message": str(exc),
+                "failure_manifest_path": str(run_dir / "failure_manifest.json"),
+            }
+            failures.append(failure)
+            print(
+                f"[WARN] reference_run_failed form_id={form_id} run_name={run_name} error={exc}",
+                file=sys.stderr,
+            )
+            if not args.continue_on_run_error:
+                raise
         generated += 1
         current_index = run_index + 1
+    return failures
 
 
 def main(argv: Optional[List[str]] = None) -> bool:
@@ -1232,7 +1322,9 @@ def main(argv: Optional[List[str]] = None) -> bool:
         for form_id in form_ids:
             print(f"[SMOKE] Running one test run for form_id={form_id}")
             try:
-                run_for_form(args, specs_root, dataset_root, form_id, num_runs_limit=1)
+                form_failures = run_for_form(args, specs_root, dataset_root, form_id, num_runs_limit=1)
+                if form_failures:
+                    raise RuntimeError(form_failures[0]["message"])
                 print(f"[SMOKE] PASS form_id={form_id}")
             except Exception as exc:  # noqa: BLE001
                 message = str(exc)
@@ -1250,8 +1342,18 @@ def main(argv: Optional[List[str]] = None) -> bool:
     if not form_ids:
         raise ValueError(f"No forms found in specs root: {specs_root}")
 
+    failures: List[Dict[str, Any]] = []
     for form_id in form_ids:
-        run_for_form(args, specs_root, dataset_root, form_id)
+        failures.extend(run_for_form(args, specs_root, dataset_root, form_id))
+
+    if failures:
+        summary_path = dataset_root / "reference_generation_failures.json"
+        summary_path.parent.mkdir(parents=True, exist_ok=True)
+        summary_path.write_text(json.dumps({"failures": failures}, indent=2), encoding="utf-8")
+        print(
+            f"[WARN] reference_generation_failures={len(failures)} summary={summary_path}",
+            file=sys.stderr,
+        )
 
     return True
 

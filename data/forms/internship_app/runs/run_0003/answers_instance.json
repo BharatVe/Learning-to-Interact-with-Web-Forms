@@ -2,98 +2,105 @@
   {
     "label": "Full name",
     "widget_type": "short_text",
-    "value": "Samira Ortiz",
+    "value": "Avery Chen",
     "tags": [
-      "profile",
-      "identity"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Contact email",
     "widget_type": "short_text",
-    "value": "samira.ortiz@example.com",
+    "value": "avery.chen.3@example.com",
     "tags": [
-      "profile",
-      "contact"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Current city",
     "widget_type": "short_text",
-    "value": "Berlin",
+    "value": "delta-03-39",
     "tags": [
-      "profile",
-      "location"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Degree program",
     "widget_type": "single_choice",
-    "value": "PhD",
+    "value": "Other",
     "tags": [
-      "education"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "Primary area of interest",
     "widget_type": "multi_choice",
     "value": [
-      "DevOps"
+      "Data and Machine Learning",
+      "UI/UX"
     ],
     "tags": [
-      "interests"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Programming languages you use",
     "widget_type": "multi_choice",
     "value": [
-      "Python",
-      "C/C++",
-      "SQL"
+      "Python"
     ],
     "tags": [
-      "skills"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Link to GitHub or portfolio",
     "widget_type": "short_text",
-    "value": "https://github.com/samira-ortiz",
+    "value": "beta-03-71",
     "tags": [
-      "portfolio"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Brief motivation statement",
     "widget_type": "paragraph_text",
-    "value": "I work on automation for build and deployment systems. I want to apply my research on reliability to production pipelines. The internship offers hands on exposure to real infrastructure. I can contribute to tooling and monitoring.",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Brief motivation statement; run 3)",
     "tags": [
-      "statement"
+      "generated",
+      "paragraph"
     ]
   },
   {
     "label": "Earliest start date",
     "widget_type": "date",
-    "value": "2025-07-01",
+    "value": "2025-09-12",
     "tags": [
-      "availability"
+      "generated",
+      "date"
     ]
   },
   {
     "label": "Weekly availability (hours)",
     "widget_type": "short_text",
-    "value": "25",
+    "value": "sigma-03-88",
     "tags": [
-      "availability"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Preferred meeting time for interview",
     "widget_type": "time",
-    "value": "11:00",
+    "value": "14:15",
     "tags": [
-      "scheduling"
+      "generated",
+      "time"
     ]
   },
   {
@@ -101,7 +108,8 @@
     "widget_type": "single_choice",
     "value": "No",
     "tags": [
-      "preferences"
+      "generated",
+      "single_choice"
     ]
   }
 ]
