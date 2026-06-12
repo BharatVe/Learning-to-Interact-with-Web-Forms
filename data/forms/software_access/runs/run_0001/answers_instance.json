@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Riley Meyer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Institutional email",
+    "widget_type": "short_text",
+    "value": "riley.meyer.1@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Software or platform requested",
+    "widget_type": "dropdown",
+    "value": "GitHub",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Access level needed",
+    "widget_type": "single_choice",
+    "value": "Admin",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Purpose of access",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Purpose of access; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Requested start date",
+    "widget_type": "date",
+    "value": "2025-07-27",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Expected duration",
+    "widget_type": "single_choice",
+    "value": "Less than 1 week",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Related project or course",
+    "widget_type": "short_text",
+    "value": "delta-01-97",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  }
+]

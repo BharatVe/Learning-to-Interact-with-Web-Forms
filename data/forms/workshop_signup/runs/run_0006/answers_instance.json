@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Jordan Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University or organization",
+    "widget_type": "short_text",
+    "value": "DataWorks Institute",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Which workshop track are you registering for?",
+    "widget_type": "single_choice",
+    "value": "Advanced Data Engineering",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Experience level",
+    "widget_type": "single_choice",
+    "value": "Intermediate",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Dietary restrictions",
+    "widget_type": "multi_choice",
+    "value": [
+      "Vegetarian"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred session date",
+    "widget_type": "date",
+    "value": "2025-09-10",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "May we email you updates?",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

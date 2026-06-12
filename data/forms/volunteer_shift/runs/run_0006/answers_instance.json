@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Jordan Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "jordan.kim.6@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred volunteer role",
+    "widget_type": "single_choice",
+    "value": "Technical support",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Available shift(s)",
+    "widget_type": "multi_choice",
+    "value": [
+      "Morning",
+      "Afternoon",
+      "Evening"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Previous volunteering experience",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred volunteer date",
+    "widget_type": "date",
+    "value": "2025-07-31",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Comments or restrictions",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Comments or restrictions; run 6)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

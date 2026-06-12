@@ -1,0 +1,105 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Casey Khan",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "casey.khan.3@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Purpose of travel",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of travel; run 3)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Departure date",
+    "widget_type": "date",
+    "value": "2025-10-04",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Return date",
+    "widget_type": "date",
+    "value": "2025-08-30",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Transport mode",
+    "widget_type": "single_choice",
+    "value": "Bus",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Expense categories claimed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Accommodation",
+      "Meals",
+      "Conference fee"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Approximate total amount",
+    "widget_type": "short_text",
+    "value": "beta-03-43",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Bank account holder name",
+    "widget_type": "short_text",
+    "value": "Casey Khan",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "IBAN",
+    "widget_type": "short_text",
+    "value": "omega-03-03",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred contact time",
+    "widget_type": "time",
+    "value": "11:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

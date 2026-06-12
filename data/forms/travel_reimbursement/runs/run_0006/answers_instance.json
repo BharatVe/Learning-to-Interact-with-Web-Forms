@@ -1,0 +1,103 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Jordan Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "jordan.rivera.6@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Purpose of travel",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Purpose of travel; run 6)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Departure date",
+    "widget_type": "date",
+    "value": "2025-10-02",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Return date",
+    "widget_type": "date",
+    "value": "2025-10-05",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Transport mode",
+    "widget_type": "single_choice",
+    "value": "Other",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Expense categories claimed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Local travel"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Approximate total amount",
+    "widget_type": "short_text",
+    "value": "gamma-06-96",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Bank account holder name",
+    "widget_type": "short_text",
+    "value": "Jordan Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "IBAN",
+    "widget_type": "short_text",
+    "value": "beta-06-28",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred contact time",
+    "widget_type": "time",
+    "value": "11:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

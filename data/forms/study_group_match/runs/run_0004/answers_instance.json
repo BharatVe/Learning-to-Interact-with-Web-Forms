@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Morgan Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "morgan.patel.4@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Course or subject",
+    "widget_type": "short_text",
+    "value": "gamma-04-71",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current level",
+    "widget_type": "single_choice",
+    "value": "Intermediate",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred study format",
+    "widget_type": "single_choice",
+    "value": "Either",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Topics you want help with",
+    "widget_type": "multi_choice",
+    "value": [
+      "Projects"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "09:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

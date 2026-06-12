@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Casey Meyer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "casey.meyer.1@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred volunteer role",
+    "widget_type": "single_choice",
+    "value": "Registration desk",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Available shift(s)",
+    "widget_type": "multi_choice",
+    "value": [
+      "Morning",
+      "Afternoon",
+      "Evening"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Previous volunteering experience",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred volunteer date",
+    "widget_type": "date",
+    "value": "2025-10-21",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Comments or restrictions",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Comments or restrictions; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

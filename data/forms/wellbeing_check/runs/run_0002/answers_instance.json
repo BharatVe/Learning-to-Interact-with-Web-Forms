@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Name or nickname",
+    "widget_type": "short_text",
+    "value": "Noah Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "How are you feeling today?",
+    "widget_type": "single_choice",
+    "value": "Very low",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Hours of sleep last night",
+    "widget_type": "short_text",
+    "value": "gamma-02-97",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Habits completed today",
+    "widget_type": "multi_choice",
+    "value": [
+      "Meditation"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Do you feel stressed this week?",
+    "widget_type": "single_choice",
+    "value": "Somewhat",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred time for a check-in call",
+    "widget_type": "time",
+    "value": "13:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Anything you want to note?",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Anything you want to note?; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Morgan Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Institutional email",
+    "widget_type": "short_text",
+    "value": "morgan.kim.2@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Software or platform requested",
+    "widget_type": "dropdown",
+    "value": "Internal server",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Access level needed",
+    "widget_type": "single_choice",
+    "value": "Temporary guest access",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Purpose of access",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of access; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Requested start date",
+    "widget_type": "date",
+    "value": "2025-11-09",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Expected duration",
+    "widget_type": "single_choice",
+    "value": "Long term",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Related project or course",
+    "widget_type": "short_text",
+    "value": "delta-02-99",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  }
+]

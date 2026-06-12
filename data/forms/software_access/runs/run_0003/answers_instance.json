@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Lena Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Institutional email",
+    "widget_type": "short_text",
+    "value": "lena.bauer.3@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Software or platform requested",
+    "widget_type": "dropdown",
+    "value": "Internal server",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Access level needed",
+    "widget_type": "single_choice",
+    "value": "Editor",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Purpose of access",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of access; run 3)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Requested start date",
+    "widget_type": "date",
+    "value": "2025-11-14",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Expected duration",
+    "widget_type": "single_choice",
+    "value": "Less than 1 week",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Related project or course",
+    "widget_type": "short_text",
+    "value": "omega-03-53",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  }
+]

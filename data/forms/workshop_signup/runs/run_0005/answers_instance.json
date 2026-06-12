@@ -1,0 +1,68 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Sam Meyer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University or organization",
+    "widget_type": "short_text",
+    "value": "Stanford University",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Which workshop track are you registering for?",
+    "widget_type": "single_choice",
+    "value": "UI Agents and Automation",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Experience level",
+    "widget_type": "single_choice",
+    "value": "Advanced",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Dietary restrictions",
+    "widget_type": "multi_choice",
+    "value": [
+      "Halal",
+      "Other"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred session date",
+    "widget_type": "date",
+    "value": "2025-08-24",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "May we email you updates?",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

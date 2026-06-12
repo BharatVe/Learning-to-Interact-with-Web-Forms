@@ -2,53 +2,59 @@
   {
     "label": "Full name",
     "widget_type": "short_text",
-    "value": "Morgan Lee",
+    "value": "Lena Patel",
     "tags": [
-      "profile",
-      "identity"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "University or organization",
     "widget_type": "short_text",
-    "value": "UX Collective",
+    "value": "TU Dresden",
     "tags": [
-      "profile",
-      "organization"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Which workshop track are you registering for?",
     "widget_type": "single_choice",
-    "value": "UI Agents and Automation",
+    "value": "Advanced Data Engineering",
     "tags": [
-      "track"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "Experience level",
     "widget_type": "single_choice",
-    "value": "Intermediate",
+    "value": "Beginner",
     "tags": [
-      "experience"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "Dietary restrictions",
     "widget_type": "multi_choice",
     "value": [
-      "Vegetarian"
+      "Vegetarian",
+      "Vegan",
+      "None"
     ],
     "tags": [
-      "diet"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Preferred session date",
     "widget_type": "date",
-    "value": "2025-07-07",
+    "value": "2025-06-23",
     "tags": [
-      "scheduling"
+      "generated",
+      "date"
     ]
   },
   {
@@ -56,7 +62,8 @@
     "widget_type": "single_choice",
     "value": "No",
     "tags": [
-      "consent"
+      "generated",
+      "single_choice"
     ]
   }
 ]

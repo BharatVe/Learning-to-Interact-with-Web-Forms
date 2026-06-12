@@ -1,0 +1,77 @@
+[
+  {
+    "label": "Student name",
+    "widget_type": "short_text",
+    "value": "Riley Chen",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "riley.chen.3@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Thesis stage",
+    "widget_type": "dropdown",
+    "value": "Final review",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Main topics to discuss",
+    "widget_type": "multi_choice",
+    "value": [
+      "Evaluation",
+      "Writing structure"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Current progress summary",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Current progress summary; run 3)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Preferred meeting date",
+    "widget_type": "date",
+    "value": "2025-10-10",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "16:45",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Urgency",
+    "widget_type": "single_choice",
+    "value": "High",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

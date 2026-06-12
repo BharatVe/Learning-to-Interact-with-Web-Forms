@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Name or nickname",
+    "widget_type": "short_text",
+    "value": "Taylor Singh",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "How are you feeling today?",
+    "widget_type": "single_choice",
+    "value": "Very low",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Hours of sleep last night",
+    "widget_type": "short_text",
+    "value": "sigma-01-07",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Habits completed today",
+    "widget_type": "multi_choice",
+    "value": [
+      "Study session"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Do you feel stressed this week?",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred time for a check-in call",
+    "widget_type": "time",
+    "value": "09:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Anything you want to note?",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Anything you want to note?; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

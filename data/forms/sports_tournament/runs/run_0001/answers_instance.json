@@ -1,0 +1,87 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Jordan Ortiz",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "jordan.ortiz.1@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Sport",
+    "widget_type": "dropdown",
+    "value": "Badminton",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Registration type",
+    "widget_type": "single_choice",
+    "value": "Team captain",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Team name",
+    "widget_type": "short_text",
+    "value": "Jordan Ortiz",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Skill level",
+    "widget_type": "single_choice",
+    "value": "Intermediate",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Available match days",
+    "widget_type": "multi_choice",
+    "value": [
+      "Monday",
+      "Tuesday",
+      "Friday"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred first match date",
+    "widget_type": "date",
+    "value": "2025-11-18",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred match time",
+    "widget_type": "time",
+    "value": "13:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

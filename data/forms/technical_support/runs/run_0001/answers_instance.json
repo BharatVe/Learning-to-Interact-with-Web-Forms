@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Jordan Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "jordan.kim.1@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Issue category",
+    "widget_type": "dropdown",
+    "value": "Network",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Affected device",
+    "widget_type": "single_choice",
+    "value": "Tablet",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "When did the issue start?",
+    "widget_type": "date",
+    "value": "2025-07-17",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Best time to contact you",
+    "widget_type": "time",
+    "value": "13:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Impact level",
+    "widget_type": "single_choice",
+    "value": "Low",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Description of the issue",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Description of the issue; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

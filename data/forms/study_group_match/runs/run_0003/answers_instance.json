@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Priya Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "priya.rivera.3@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Course or subject",
+    "widget_type": "short_text",
+    "value": "sigma-03-79",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current level",
+    "widget_type": "single_choice",
+    "value": "Beginner",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred study format",
+    "widget_type": "single_choice",
+    "value": "Online",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Topics you want help with",
+    "widget_type": "multi_choice",
+    "value": [
+      "Theory review"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "08:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

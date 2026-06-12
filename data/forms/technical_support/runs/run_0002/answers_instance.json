@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Noah Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "noah.rivera.2@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Issue category",
+    "widget_type": "dropdown",
+    "value": "Printing",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Affected device",
+    "widget_type": "single_choice",
+    "value": "Laptop",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "When did the issue start?",
+    "widget_type": "date",
+    "value": "2025-09-28",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Best time to contact you",
+    "widget_type": "time",
+    "value": "14:15",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Impact level",
+    "widget_type": "single_choice",
+    "value": "High",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Description of the issue",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Description of the issue; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

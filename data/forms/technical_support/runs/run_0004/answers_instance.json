@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Noah Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "noah.kim.4@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Issue category",
+    "widget_type": "dropdown",
+    "value": "Other",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Affected device",
+    "widget_type": "single_choice",
+    "value": "Lab workstation",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "When did the issue start?",
+    "widget_type": "date",
+    "value": "2025-10-13",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Best time to contact you",
+    "widget_type": "time",
+    "value": "08:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Impact level",
+    "widget_type": "single_choice",
+    "value": "Medium",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Description of the issue",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Description of the issue; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

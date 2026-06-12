@@ -5,17 +5,17 @@
 <rect x="70.0" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
 <rect x="133.3" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
 <rect x="196.7" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
-<rect x="260.0" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
-<rect x="323.3" y="70.0" width="59.3" height="120.0" fill="#2563eb"/>
-<rect x="386.7" y="90.0" width="59.3" height="100.0" fill="#2563eb"/>
-<rect x="450.0" y="110.0" width="59.3" height="80.0" fill="#2563eb"/>
-<rect x="513.3" y="130.0" width="59.3" height="60.0" fill="#2563eb"/>
-<rect x="576.7" y="130.0" width="59.3" height="60.0" fill="#2563eb"/>
-<rect x="640.0" y="70.0" width="59.3" height="120.0" fill="#2563eb"/>
+<rect x="260.0" y="183.5" width="59.3" height="6.5" fill="#2563eb"/>
+<rect x="323.3" y="159.0" width="59.3" height="31.0" fill="#2563eb"/>
+<rect x="386.7" y="70.0" width="59.3" height="120.0" fill="#2563eb"/>
+<rect x="450.0" y="93.2" width="59.3" height="96.8" fill="#2563eb"/>
+<rect x="513.3" y="110.0" width="59.3" height="80.0" fill="#2563eb"/>
+<rect x="576.7" y="155.2" width="59.3" height="34.8" fill="#2563eb"/>
+<rect x="640.0" y="173.2" width="59.3" height="16.8" fill="#2563eb"/>
 <rect x="703.3" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
-<rect x="766.7" y="170.0" width="59.3" height="20.0" fill="#2563eb"/>
+<rect x="766.7" y="188.7" width="59.3" height="1.3" fill="#2563eb"/>
 <line x1="70" y1="190" x2="830" y2="190" stroke="#dadce0"/>
 <text class="small" x="70" y="214">0s</text>
 <text class="small" x="786" y="214">106.9s</text>
-<text class="small" x="24" y="230">n=28, median=61.8s</text>
+<text class="small" x="24" y="230">n=300, median=56.5s</text>
 </svg>

@@ -1,0 +1,67 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Casey Khan",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "casey.khan.2@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current study level",
+    "widget_type": "dropdown",
+    "value": "PhD",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Scholarship type of interest",
+    "widget_type": "multi_choice",
+    "value": [
+      "Research funding"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Expected application date",
+    "widget_type": "date",
+    "value": "2025-10-20",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Do you need help reviewing documents?",
+    "widget_type": "single_choice",
+    "value": "Maybe",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Brief background or question",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Brief background or question; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

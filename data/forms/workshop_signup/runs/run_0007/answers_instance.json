@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Lena Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "University or organization",
+    "widget_type": "short_text",
+    "value": "TU Dresden",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Which workshop track are you registering for?",
+    "widget_type": "single_choice",
+    "value": "UI Agents and Automation",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Experience level",
+    "widget_type": "single_choice",
+    "value": "Intermediate",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Dietary restrictions",
+    "widget_type": "multi_choice",
+    "value": [
+      "Vegan",
+      "Halal",
+      "None"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred session date",
+    "widget_type": "date",
+    "value": "2025-07-28",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "May we email you updates?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

@@ -1,0 +1,85 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Morgan Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "morgan.kim.2@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Sport",
+    "widget_type": "dropdown",
+    "value": "Football",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Registration type",
+    "widget_type": "single_choice",
+    "value": "Individual",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Team name",
+    "widget_type": "short_text",
+    "value": "Morgan Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Skill level",
+    "widget_type": "single_choice",
+    "value": "Beginner",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Available match days",
+    "widget_type": "multi_choice",
+    "value": [
+      "Wednesday"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred first match date",
+    "widget_type": "date",
+    "value": "2025-07-11",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred match time",
+    "widget_type": "time",
+    "value": "14:15",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

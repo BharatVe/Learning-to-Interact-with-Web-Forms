@@ -6,13 +6,13 @@ Use this file as the current source of truth before rerunning evaluation jobs. I
 
 ## Current Decision
 
-- Active thesis comparison is now four interface/model conditions capped at `300` unique form-run trials per condition:
+- Active thesis comparison is now four interface/model conditions. The original full target remains `300` unique form-run trials per condition, but the current interim thesis target is capped at `200` unique form-run trials per condition because the remaining OpenCUA/Qwen batches are slow.
   - `text_qwen3_30b_a3b_instruct_2507` with direct Playwright MCP tools.
   - `vlm_qwen3_vl_30b_a3b_instruct` with direct Playwright MCP tools.
   - `computer_use_opencua_32b` with native screenshot/coordinate computer use.
   - `computer_use_opencua_32b_direct_mcp` with the same direct Playwright MCP tool contract used for Qwen.
 - Target progress is counted by unique `(model_id, form_id, answer_run_id)` pairs under `data/model_baselines/**/summary.json`, not by raw duplicate summaries.
-- With 50 forms and `target_trials=300`, the active target is runs `1-6` for every condition.
+- With 50 forms and the interim `target_trials=200`, the active thesis-ready target is runs `1-4` for every condition. Runs `5-6` remain useful for the full target-300 extension but are no longer blocking the next thesis analysis pass.
 - Do not aggregate Qwen direct-MCP, OpenCUA native, and OpenCUA direct-MCP as one interface condition; report them as separate conditions.
 - Scripted Playwright generation runs remain the efficiency reference baseline for matching `form_id + run_XXXX`.
 
@@ -32,6 +32,44 @@ The serving and basic orchestration problems are mostly solved. The remaining bl
 - Final post-submit verification can read as `0/N` on submitted direct-MCP trials because the browser is on the Google Forms confirmation page. For submitted direct-MCP trials, use `scored_correctness` from `pre_successful_submit_verified_correctness`.
 - Latest reruns add CUDA preflight checks before vLLM startup, better OpenCUA vLLM launch diagnostics, and `FORM_OFFSET`/`FORM_LIMIT` support for `FORM_IDS=all`.
 - Latest analysis artifacts live under `docs/eval_results/analysis/`.
+
+## 2026-06-11 Interim Target-200 Top-Up
+
+Decision:
+
+- Because full target-300 generation is taking too long, use an interim thesis analysis target of `200` unique form-runs per primary model condition.
+- This corresponds to 50 forms x runs `1-4`.
+- Do not submit more OpenCUA Native jobs for this interim target: the saved analysis already has `200/200` unique form-runs for `computer_use_opencua_32b`.
+
+Submitted top-up jobs:
+
+- `2248660`: OpenCUA direct-MCP run-4 top-up, experiment `opencua_direct_mcp_tools_target200_run4_20260611`, `FORM_IDS=all`, `FORM_OFFSET=0`, `FORM_LIMIT=50`, `RUN_INDEXES=4`, no dependency.
+- `2248661`: Qwen direct-MCP run-1 top-up for missing `remote_setup`, experiment `qwen_direct_mcp_target300_run1_20260611_target200`, no dependency.
+- `2248662`: Qwen direct-MCP run-4 top-up for remaining 15 run-4 forms, experiment `qwen_direct_mcp_target300_run4_20260611_target200`, dependency `afterok:2248661`.
+
+Queue state immediately after submission:
+
+- `2248661`: `PENDING (None)`.
+- `2248662`: `PENDING (Dependency)`, `afterok:2248661`.
+- `2248660`: `PENDING (Priority)`.
+- Existing full target-300 chain remains queued separately:
+  - `2248106`: OpenCUA direct-MCP run-3 running.
+  - `2248107`: OpenCUA direct-MCP run-4 dependency-held after `2248106`.
+  - `2248108`-`2248109`: OpenCUA direct-MCP runs `5-6`, no longer blocking interim target-200.
+  - `2248111`-`2248114`: older Qwen backfill jobs, no longer the fastest path to interim target-200.
+  - `2248115`-`2248116`: OpenCUA Native runs `5-6`, no longer needed for interim target-200.
+
+Follow-up on 2026-06-12:
+
+- Qwen top-up jobs `2248661` and `2248662` completed successfully.
+- Interim target-200 coverage is reached for Qwen Text, Qwen VLM, and OpenCUA Native: each has `200/200` unique form-runs across runs `1-4`.
+- OpenCUA direct-MCP is still short: `170/200`, with run `0004` at `20/50`.
+- Duplicate OpenCUA direct-MCP run-4 work was found between:
+  - `2248107`: original target-300 run-4 chain job.
+  - `2248660`: extra target-200 run-4 top-up job.
+- `2248660` was cancelled to reduce overlap and free resources. `2248107` remains running because it is the original chain job and keeps downstream dependencies coherent.
+- Reference/ideal dataset generation job `2248565` completed successfully.
+- `scripts/analyze_reference_dataset.py` reports `300/300` usable ideal references for 50 forms x runs `1-6`: no missing annotations, answers instances, traces, videos, invalid traces, failed runs, or submit failures.
 
 ## 2026-06-11 Proprietary Computer-Use Comparison Notes
 

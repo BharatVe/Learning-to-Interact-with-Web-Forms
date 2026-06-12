@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Lena Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Contact email",
+    "widget_type": "short_text",
+    "value": "lena.patel.3@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred volunteer role",
+    "widget_type": "single_choice",
+    "value": "Technical support",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Available shift(s)",
+    "widget_type": "multi_choice",
+    "value": [
+      "Morning",
+      "Afternoon",
+      "Evening"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Previous volunteering experience",
+    "widget_type": "single_choice",
+    "value": "No",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred volunteer date",
+    "widget_type": "date",
+    "value": "2025-09-06",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Comments or restrictions",
+    "widget_type": "paragraph_text",
+    "value": "I am interested in this topic and can provide practical insights from recent projects. (Comments or restrictions; run 3)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  }
+]

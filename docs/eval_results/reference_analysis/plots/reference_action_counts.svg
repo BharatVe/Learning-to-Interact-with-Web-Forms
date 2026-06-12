@@ -6,16 +6,16 @@
 <rect x="133.3" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
 <rect x="196.7" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
 <rect x="260.0" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
-<rect x="323.3" y="179.1" width="59.3" height="10.9" fill="#2563eb"/>
-<rect x="386.7" y="168.2" width="59.3" height="21.8" fill="#2563eb"/>
-<rect x="450.0" y="179.1" width="59.3" height="10.9" fill="#2563eb"/>
-<rect x="513.3" y="179.1" width="59.3" height="10.9" fill="#2563eb"/>
-<rect x="576.7" y="190.0" width="59.3" height="0.0" fill="#2563eb"/>
-<rect x="640.0" y="124.5" width="59.3" height="65.5" fill="#2563eb"/>
-<rect x="703.3" y="124.5" width="59.3" height="65.5" fill="#2563eb"/>
-<rect x="766.7" y="70.0" width="59.3" height="120.0" fill="#2563eb"/>
+<rect x="323.3" y="186.4" width="59.3" height="3.6" fill="#2563eb"/>
+<rect x="386.7" y="188.8" width="59.3" height="1.2" fill="#2563eb"/>
+<rect x="450.0" y="182.8" width="59.3" height="7.2" fill="#2563eb"/>
+<rect x="513.3" y="70.0" width="59.3" height="120.0" fill="#2563eb"/>
+<rect x="576.7" y="89.2" width="59.3" height="100.8" fill="#2563eb"/>
+<rect x="640.0" y="112.0" width="59.3" height="78.0" fill="#2563eb"/>
+<rect x="703.3" y="154.0" width="59.3" height="36.0" fill="#2563eb"/>
+<rect x="766.7" y="176.8" width="59.3" height="13.2" fill="#2563eb"/>
 <line x1="70" y1="190" x2="830" y2="190" stroke="#dadce0"/>
 <text class="small" x="70" y="214">0</text>
-<text class="small" x="786" y="214">49.0</text>
-<text class="small" x="24" y="230">n=28, median=41.0</text>
+<text class="small" x="786" y="214">57.0</text>
+<text class="small" x="24" y="230">n=300, median=41.0</text>
 </svg>

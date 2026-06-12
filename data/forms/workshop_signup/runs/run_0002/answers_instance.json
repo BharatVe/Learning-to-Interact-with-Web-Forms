@@ -2,27 +2,28 @@
   {
     "label": "Full name",
     "widget_type": "short_text",
-    "value": "Riley Patel",
+    "value": "Casey Patel",
     "tags": [
-      "profile",
-      "identity"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "University or organization",
     "widget_type": "short_text",
-    "value": "DataFlux Labs",
+    "value": "Stanford University",
     "tags": [
-      "profile",
-      "organization"
+      "generated",
+      "short_text"
     ]
   },
   {
     "label": "Which workshop track are you registering for?",
     "widget_type": "single_choice",
-    "value": "Advanced Data Engineering",
+    "value": "Intro to Machine Learning",
     "tags": [
-      "track"
+      "generated",
+      "single_choice"
     ]
   },
   {
@@ -30,33 +31,37 @@
     "widget_type": "single_choice",
     "value": "Advanced",
     "tags": [
-      "experience"
+      "generated",
+      "single_choice"
     ]
   },
   {
     "label": "Dietary restrictions",
     "widget_type": "multi_choice",
     "value": [
-      "Vegan"
+      "Other"
     ],
     "tags": [
-      "diet"
+      "generated",
+      "multi_choice"
     ]
   },
   {
     "label": "Preferred session date",
     "widget_type": "date",
-    "value": "2025-07-06",
+    "value": "2025-07-02",
     "tags": [
-      "scheduling"
+      "generated",
+      "date"
     ]
   },
   {
     "label": "May we email you updates?",
     "widget_type": "single_choice",
-    "value": "Yes",
+    "value": "No",
     "tags": [
-      "consent"
+      "generated",
+      "single_choice"
     ]
   }
 ]

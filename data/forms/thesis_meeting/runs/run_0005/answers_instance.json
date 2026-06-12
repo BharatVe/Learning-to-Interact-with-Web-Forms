@@ -1,0 +1,77 @@
+[
+  {
+    "label": "Student name",
+    "widget_type": "short_text",
+    "value": "Taylor Bauer",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "taylor.bauer.5@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Thesis stage",
+    "widget_type": "dropdown",
+    "value": "Topic planning",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Main topics to discuss",
+    "widget_type": "multi_choice",
+    "value": [
+      "Implementation",
+      "Dataset design"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Current progress summary",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Current progress summary; run 5)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Preferred meeting date",
+    "widget_type": "date",
+    "value": "2025-08-19",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "08:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Urgency",
+    "widget_type": "single_choice",
+    "value": "Normal",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

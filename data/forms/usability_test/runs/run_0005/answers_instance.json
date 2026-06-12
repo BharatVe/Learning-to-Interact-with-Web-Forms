@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Avery Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "avery.patel.5@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Age group",
+    "widget_type": "single_choice",
+    "value": "25\u201334",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Devices available",
+    "widget_type": "multi_choice",
+    "value": [
+      "Desktop",
+      "Tablet",
+      "Android phone"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Have you used similar tools before?",
+    "widget_type": "single_choice",
+    "value": "Yes",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred session date",
+    "widget_type": "date",
+    "value": "2025-08-27",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred session time",
+    "widget_type": "time",
+    "value": "14:15",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

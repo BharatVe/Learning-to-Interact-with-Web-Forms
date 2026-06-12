@@ -1,0 +1,104 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Lena Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "lena.patel.1@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Purpose of travel",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of travel; run 1)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Departure date",
+    "widget_type": "date",
+    "value": "2025-06-28",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Return date",
+    "widget_type": "date",
+    "value": "2025-06-16",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Transport mode",
+    "widget_type": "single_choice",
+    "value": "Bus",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Expense categories claimed",
+    "widget_type": "multi_choice",
+    "value": [
+      "Accommodation",
+      "Local travel"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Approximate total amount",
+    "widget_type": "short_text",
+    "value": "beta-01-83",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Bank account holder name",
+    "widget_type": "short_text",
+    "value": "Lena Patel",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "IBAN",
+    "widget_type": "short_text",
+    "value": "sigma-01-71",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Preferred contact time",
+    "widget_type": "time",
+    "value": "14:15",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

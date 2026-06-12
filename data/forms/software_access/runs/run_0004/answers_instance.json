@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Riley Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Institutional email",
+    "widget_type": "short_text",
+    "value": "riley.rivera.4@mail.test",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Software or platform requested",
+    "widget_type": "dropdown",
+    "value": "JetBrains",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Access level needed",
+    "widget_type": "single_choice",
+    "value": "Editor",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Purpose of access",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Purpose of access; run 4)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Requested start date",
+    "widget_type": "date",
+    "value": "2025-07-16",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Expected duration",
+    "widget_type": "single_choice",
+    "value": "Long term",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Related project or course",
+    "widget_type": "short_text",
+    "value": "beta-04-18",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  }
+]

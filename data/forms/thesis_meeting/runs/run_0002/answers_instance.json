@@ -1,0 +1,76 @@
+[
+  {
+    "label": "Student name",
+    "widget_type": "short_text",
+    "value": "Priya Rivera",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "priya.rivera.2@example.com",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Thesis stage",
+    "widget_type": "dropdown",
+    "value": "Implementation",
+    "tags": [
+      "generated",
+      "dropdown"
+    ]
+  },
+  {
+    "label": "Main topics to discuss",
+    "widget_type": "multi_choice",
+    "value": [
+      "Timeline"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Current progress summary",
+    "widget_type": "paragraph_text",
+    "value": "My background combines research and implementation, with a focus on reproducible workflows. (Current progress summary; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Preferred meeting date",
+    "widget_type": "date",
+    "value": "2025-08-23",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "09:00",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Urgency",
+    "widget_type": "single_choice",
+    "value": "High",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  }
+]

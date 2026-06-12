@@ -1,0 +1,69 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Riley Ortiz",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "riley.ortiz.5@demo.org",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Course or subject",
+    "widget_type": "short_text",
+    "value": "alpha-05-25",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Current level",
+    "widget_type": "single_choice",
+    "value": "Advanced",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Preferred study format",
+    "widget_type": "single_choice",
+    "value": "Online",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Topics you want help with",
+    "widget_type": "multi_choice",
+    "value": [
+      "Theory review",
+      "Exercises",
+      "Projects"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  },
+  {
+    "label": "Preferred meeting time",
+    "widget_type": "time",
+    "value": "15:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  }
+]

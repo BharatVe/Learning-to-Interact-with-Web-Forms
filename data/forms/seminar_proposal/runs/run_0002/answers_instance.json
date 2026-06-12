@@ -1,0 +1,76 @@
+[
+  {
+    "label": "Full name",
+    "widget_type": "short_text",
+    "value": "Riley Kim",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Email address",
+    "widget_type": "short_text",
+    "value": "riley.kim.2@research.edu",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Proposed seminar title",
+    "widget_type": "short_text",
+    "value": "beta-02-19",
+    "tags": [
+      "generated",
+      "short_text"
+    ]
+  },
+  {
+    "label": "Topic area",
+    "widget_type": "single_choice",
+    "value": "Systems",
+    "tags": [
+      "generated",
+      "single_choice"
+    ]
+  },
+  {
+    "label": "Short abstract",
+    "widget_type": "paragraph_text",
+    "value": "I would like to participate and contribute with structured feedback and observations. (Short abstract; run 2)",
+    "tags": [
+      "generated",
+      "paragraph"
+    ]
+  },
+  {
+    "label": "Preferred presentation date",
+    "widget_type": "date",
+    "value": "2025-08-20",
+    "tags": [
+      "generated",
+      "date"
+    ]
+  },
+  {
+    "label": "Preferred presentation time",
+    "widget_type": "time",
+    "value": "15:30",
+    "tags": [
+      "generated",
+      "time"
+    ]
+  },
+  {
+    "label": "Resources needed",
+    "widget_type": "multi_choice",
+    "value": [
+      "None"
+    ],
+    "tags": [
+      "generated",
+      "multi_choice"
+    ]
+  }
+]
