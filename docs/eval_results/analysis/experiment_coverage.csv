@@ -7,9 +7,13 @@ opencua_control_guidance_target10_run4_20260602,historical_or_open_scope,50,,com
 opencua_direct_mcp_tools_smoke_20260602,historical_or_open_scope,5,,computer_use_opencua_32b_direct_mcp,5,run_0002,2026-06-02T20:23:06Z,2026-06-02T20:23:43Z
 opencua_direct_mcp_tools_smoke_relaxedparser_20260603,historical_or_open_scope,5,,computer_use_opencua_32b_direct_mcp,5,run_0002,2026-06-03T20:04:16Z,2026-06-03T20:21:04Z
 opencua_direct_mcp_tools_smoke_textfallback_20260602,historical_or_open_scope,5,,computer_use_opencua_32b_direct_mcp,5,run_0002,2026-06-02T20:37:48Z,2026-06-02T20:39:54Z
+opencua_direct_mcp_tools_target200_run4_20260611,historical_or_open_scope,17,,computer_use_opencua_32b_direct_mcp,17,run_0004,2026-06-12T10:56:33Z,2026-06-12T12:45:09Z
 opencua_direct_mcp_tools_target300_run1_20260609,historical_or_open_scope,50,,computer_use_opencua_32b_direct_mcp,50,run_0001,2026-06-09T16:16:34Z,2026-06-10T04:55:12Z
 opencua_direct_mcp_tools_target300_run2_20260609,historical_or_open_scope,45,,computer_use_opencua_32b_direct_mcp,45,run_0002,2026-06-10T15:09:42Z,2026-06-11T03:58:59Z
-opencua_direct_mcp_tools_target300_run3_20260609,historical_or_open_scope,15,,computer_use_opencua_32b_direct_mcp,15,run_0003,2026-06-11T04:23:25Z,2026-06-11T09:05:44Z
+opencua_direct_mcp_tools_target300_run3_20260609,historical_or_open_scope,50,,computer_use_opencua_32b_direct_mcp,50,run_0003,2026-06-11T04:23:25Z,2026-06-11T21:54:38Z
+opencua_direct_mcp_tools_target300_run4_20260609,historical_or_open_scope,48,,computer_use_opencua_32b_direct_mcp,48,run_0004,2026-06-12T10:56:18Z,2026-06-12T18:08:53Z
+opencua_direct_mcp_tools_target300_run5_20260609,historical_or_open_scope,50,,computer_use_opencua_32b_direct_mcp,50,run_0005,2026-06-12T18:30:49Z,2026-06-13T06:31:07Z
+opencua_direct_mcp_tools_target300_run6_20260609,historical_or_open_scope,13,,computer_use_opencua_32b_direct_mcp,13,run_0006,2026-06-13T11:49:46Z,2026-06-13T15:06:31Z
 opencua_direct_mcp_tools_toolcontract_smoke_v2_20260608,historical_or_open_scope,5,,computer_use_opencua_32b_direct_mcp,5,run_0002,2026-06-08T18:37:36Z,2026-06-08T18:58:36Z
 opencua_generic_strategy_prompt_smoke_20260518,historical_or_open_scope,1,,computer_use_opencua_32b,1,run_0001,2026-05-18T19:23:35Z,2026-05-18T19:23:35Z
 opencua_loopdetector_30form_retry_20260526,historical_or_open_scope,4,,computer_use_opencua_32b,4,run_0001,2026-05-26T12:08:00Z,2026-05-26T12:17:06Z
@@ -22,3 +26,5 @@ qwen_direct_mcp_english_stepcap128_5form_20260515,historical_or_open_scope,188,,
 qwen_direct_mcp_target10_run3_20260601,historical_or_open_scope,75,,"text_qwen3_30b_a3b_instruct_2507, vlm_qwen3_vl_30b_a3b_instruct",45,run_0003,2026-06-01T18:39:23Z,2026-06-02T16:29:26Z
 qwen_direct_mcp_target10_run3_20260602,historical_or_open_scope,30,,"text_qwen3_30b_a3b_instruct_2507, vlm_qwen3_vl_30b_a3b_instruct",15,run_0003,2026-06-02T20:23:54Z,2026-06-03T10:58:37Z
 qwen_direct_mcp_target10_run4_20260602,historical_or_open_scope,75,,"text_qwen3_30b_a3b_instruct_2507, vlm_qwen3_vl_30b_a3b_instruct",45,run_0004,2026-06-03T11:13:41Z,2026-06-04T09:26:28Z
+qwen_direct_mcp_target300_run1_20260611_target200,historical_or_open_scope,2,,"text_qwen3_30b_a3b_instruct_2507, vlm_qwen3_vl_30b_a3b_instruct",1,run_0001,2026-06-11T18:48:33Z,2026-06-11T21:34:39Z
+qwen_direct_mcp_target300_run4_20260611_target200,historical_or_open_scope,15,,vlm_qwen3_vl_30b_a3b_instruct,15,run_0004,2026-06-12T04:38:11Z,2026-06-12T06:50:34Z

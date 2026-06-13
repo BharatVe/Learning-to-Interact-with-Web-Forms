@@ -26,14 +26,14 @@
 <text class="small" x="599.5" y="490">0.8</text>
 <line x1="782.0" y1="80" x2="782.0" y2="470" stroke="#f1f3f4"/>
 <text class="small" x="772.0" y="490">1.0</text>
-<circle cx="278.5" cy="401.1" r="7" fill="#2563eb"/>
-<text class="small" x="288.5" y="405.1">Qwen Text</text>
-<circle cx="277.1" cy="416.6" r="7" fill="#059669"/>
-<text class="small" x="287.1" y="420.6">Qwen VLM</text>
-<circle cx="243.5" cy="470.0" r="7" fill="#dc2626"/>
-<text class="small" x="253.5" y="462.0">OpenCUA Native</text>
-<circle cx="294.0" cy="377.0" r="7" fill="#7c3aed"/>
-<text class="small" x="304.0" y="381.0">OpenCUA MCP</text>
+<circle cx="294.0" cy="401.4" r="7" fill="#2563eb"/>
+<text class="small" x="304.0" y="405.4">Qwen Text</text>
+<circle cx="294.0" cy="416.9" r="7" fill="#059669"/>
+<text class="small" x="304.0" y="420.9">Qwen VLM</text>
+<circle cx="241.2" cy="470.0" r="7" fill="#dc2626"/>
+<text class="small" x="251.2" y="462.0">OpenCUA Native</text>
+<circle cx="301.1" cy="367.5" r="7" fill="#7c3aed"/>
+<text class="small" x="311.1" y="371.5">OpenCUA MCP</text>
 <text class="axis" x="359.0" y="518">Median action overhead ratio</text>
 <text class="axis" x="24" y="62">Exact success rate</text>
 </svg>

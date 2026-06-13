@@ -4,22 +4,22 @@
 <text class="title" x="24" y="30">Thesis Failure Mix</text>
 <text class="axis" x="24" y="52">Trial stop reasons by model; each row sums to 100%</text>
 <text class="label" x="24.0" y="98.0">Qwen Text</text>
-<text class="small" x="24" y="116">n=249</text>
-<rect x="205.0" y="82" width="270.4" height="20" fill="#2563eb"/>
-<rect x="475.4" y="82" width="2.7" height="20" fill="#dc2626"/>
-<rect x="478.0" y="82" width="13.3" height="20" fill="#f59e0b"/>
-<rect x="491.3" y="82" width="2.7" height="20" fill="#16a34a"/>
-<rect x="493.9" y="82" width="341.9" height="20" fill="#7c3aed"/>
-<rect x="835.8" y="82" width="29.2" height="20" fill="#f97316"/>
+<text class="small" x="24" y="116">n=250</text>
+<rect x="205.0" y="82" width="269.3" height="20" fill="#2563eb"/>
+<rect x="474.3" y="82" width="2.6" height="20" fill="#dc2626"/>
+<rect x="476.9" y="82" width="13.2" height="20" fill="#f59e0b"/>
+<rect x="490.1" y="82" width="2.6" height="20" fill="#16a34a"/>
+<rect x="492.8" y="82" width="340.6" height="20" fill="#7c3aed"/>
+<rect x="833.3" y="82" width="31.7" height="20" fill="#f97316"/>
 <rect x="205" y="82" width="660" height="20" fill="none" stroke="#dadce0"/>
 <text class="small" x="890" y="97">premature_done_without_su...</text>
 <text class="label" x="24.0" y="160.0">Qwen VLM</text>
-<text class="small" x="24" y="178">n=219</text>
-<rect x="205.0" y="144" width="467.1" height="20" fill="#2563eb"/>
-<rect x="672.1" y="144" width="30.1" height="20" fill="#dc2626"/>
-<rect x="702.3" y="144" width="24.1" height="20" fill="#f59e0b"/>
-<rect x="726.4" y="144" width="99.5" height="20" fill="#7c3aed"/>
-<rect x="825.8" y="144" width="39.2" height="20" fill="#f97316"/>
+<text class="small" x="24" y="178">n=235</text>
+<rect x="205.0" y="144" width="466.2" height="20" fill="#2563eb"/>
+<rect x="671.2" y="144" width="28.1" height="20" fill="#dc2626"/>
+<rect x="699.3" y="144" width="30.9" height="20" fill="#f59e0b"/>
+<rect x="730.2" y="144" width="92.7" height="20" fill="#7c3aed"/>
+<rect x="822.9" y="144" width="42.1" height="20" fill="#f97316"/>
 <rect x="205" y="144" width="660" height="20" fill="none" stroke="#dadce0"/>
 <text class="small" x="890" y="159">done</text>
 <text class="label" x="24.0" y="222.0">OpenCUA Native</text>
@@ -29,13 +29,14 @@
 <rect x="205" y="206" width="660" height="20" fill="none" stroke="#dadce0"/>
 <text class="small" x="890" y="221">repeated_action_loop</text>
 <text class="label" x="24.0" y="284.0">OpenCUA MCP</text>
-<text class="small" x="24" y="302">n=130</text>
-<rect x="205.0" y="268" width="538.2" height="20" fill="#2563eb"/>
-<rect x="743.2" y="268" width="50.8" height="20" fill="#dc2626"/>
-<rect x="793.9" y="268" width="15.2" height="20" fill="#f59e0b"/>
-<rect x="809.2" y="268" width="30.5" height="20" fill="#16a34a"/>
-<rect x="839.6" y="268" width="5.1" height="20" fill="#0891b2"/>
-<rect x="844.7" y="268" width="20.3" height="20" fill="#f97316"/>
+<text class="small" x="24" y="302">n=293</text>
+<rect x="205.0" y="268" width="565.4" height="20" fill="#2563eb"/>
+<rect x="770.4" y="268" width="36.0" height="20" fill="#dc2626"/>
+<rect x="806.4" y="268" width="18.0" height="20" fill="#f59e0b"/>
+<rect x="824.5" y="268" width="13.5" height="20" fill="#16a34a"/>
+<rect x="838.0" y="268" width="2.3" height="20" fill="#7c3aed"/>
+<rect x="840.2" y="268" width="2.3" height="20" fill="#0891b2"/>
+<rect x="842.5" y="268" width="22.5" height="20" fill="#f97316"/>
 <rect x="205" y="268" width="660" height="20" fill="none" stroke="#dadce0"/>
 <text class="small" x="890" y="283">done</text>
 <rect x="24" y="342" width="10" height="10" fill="#2563eb"/>

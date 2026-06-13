@@ -71,6 +71,14 @@ Follow-up on 2026-06-12:
 - Reference/ideal dataset generation job `2248565` completed successfully.
 - `scripts/analyze_reference_dataset.py` reports `300/300` usable ideal references for 50 forms x runs `1-6`: no missing annotations, answers instances, traces, videos, invalid traces, failed runs, or submit failures.
 
+Follow-up on 2026-06-13:
+
+- OpenCUA direct-MCP reached the interim target-200 set and continued into the full target-300 chain.
+- Current OpenCUA direct-MCP unique coverage is `263/300`: runs `1-5` are complete at `50/50`, and run `0006` is `13/50`.
+- OpenCUA direct-MCP job `2248109` is still running on run `0006`; the full target-300 evaluation is not finished yet.
+- OpenCUA Native remains `200/300`: runs `1-4` complete, runs `5-6` not run.
+- `scripts/analyze_eval_results.py` was rerun and refreshed `docs/eval_results/analysis/` with `1006` total discovered trials.
+
 ## 2026-06-11 Proprietary Computer-Use Comparison Notes
 
 Goal:
