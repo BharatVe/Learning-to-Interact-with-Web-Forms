@@ -797,8 +797,247 @@ def _annotation_path(summary_path: Path) -> Path:
     return summary_path.with_name("annotations.json")
 
 
+def _model_io_path(summary_path: Path) -> Path:
+    return summary_path.with_name("model_io.jsonl")
+
+
 def _answers_instance_path(summary_path: Path) -> Path:
     return summary_path.with_name("answers_instance.json")
+
+
+def _read_jsonl(path: Path) -> List[Dict[str, Any]]:
+    rows: List[Dict[str, Any]] = []
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except Exception:
+        return rows
+    for line in lines:
+        text = line.strip()
+        if not text:
+            continue
+        try:
+            data = json.loads(text)
+        except Exception:
+            continue
+        if isinstance(data, dict):
+            rows.append(data)
+    return rows
+
+
+def _terminal_decision_type(text: Any) -> str:
+    normalized = str(text or "").strip().lower()
+    if normalized.startswith("done"):
+        return "done"
+    if normalized.startswith("stop"):
+        return "stop"
+    return ""
+
+
+def _model_io_action_records(trial: Trial) -> List[Dict[str, Any]]:
+    records: List[Dict[str, Any]] = []
+    for row in _read_jsonl(_model_io_path(trial.summary_path)):
+        if str(row.get("phase") or "") != "step":
+            continue
+        tool_calls = row.get("tool_calls")
+        if isinstance(tool_calls, list) and tool_calls:
+            for call in tool_calls:
+                if not isinstance(call, dict):
+                    continue
+                name = str(call.get("name") or "").strip()
+                if not name:
+                    continue
+                records.append(
+                    {
+                        "action_type": name,
+                        "action_group": "mcp_tool_call",
+                        "is_executable_action": True,
+                        "source": "model_io",
+                    }
+                )
+            continue
+        terminal_action = _terminal_decision_type(row.get("assistant_text"))
+        if terminal_action:
+            records.append(
+                {
+                    "action_type": terminal_action,
+                    "action_group": "terminal_decision",
+                    "is_executable_action": False,
+                    "source": "model_io",
+                }
+            )
+    return records
+
+
+def _annotation_action_records(trial: Trial) -> List[Dict[str, Any]]:
+    annotations = _read_json(_annotation_path(trial.summary_path))
+    steps = annotations.get("steps")
+    if not isinstance(steps, list):
+        return []
+    records: List[Dict[str, Any]] = []
+    for step in steps:
+        if not isinstance(step, dict):
+            continue
+        action = step.get("action")
+        action_name = ""
+        if isinstance(action, dict):
+            action_name = str(action.get("action") or action.get("type") or action.get("name") or "").strip()
+        elif isinstance(action, str):
+            action_name = action.strip()
+        if not action_name:
+            terminal_action = _terminal_decision_type(step.get("raw_output") or step.get("assistant_text"))
+            if terminal_action:
+                records.append(
+                    {
+                        "action_type": terminal_action,
+                        "action_group": "terminal_decision",
+                        "is_executable_action": False,
+                        "source": "annotations",
+                    }
+                )
+            continue
+        records.append(
+            {
+                "action_type": action_name,
+                "action_group": "native_gui_action",
+                "is_executable_action": action_name not in {"done", "stop"},
+                "source": "annotations",
+            }
+        )
+    return records
+
+
+def _trial_model_action_records(trial: Trial) -> List[Dict[str, Any]]:
+    records = _model_io_action_records(trial)
+    if records:
+        return records
+    records = _annotation_action_records(trial)
+    if records:
+        return records
+    if trial.action_count > 0:
+        return [
+            {
+                "action_type": "unknown_model_action",
+                "action_group": "fallback_summary_count",
+                "is_executable_action": True,
+                "source": "summary_action_count",
+            }
+            for _idx in range(trial.action_count)
+        ]
+    return []
+
+
+def model_action_metadata_rows(
+    trials_by_scope: Dict[str, Sequence[Trial]],
+) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]], List[Dict[str, Any]]]:
+    scope_stats: Dict[str, Dict[str, Any]] = {}
+    all_action_types: set[str] = set()
+    trial_rows: List[Dict[str, Any]] = []
+
+    for scope, trials in sorted(trials_by_scope.items()):
+        trials = list(trials)
+        if not trials:
+            continue
+        model_ids = sorted({trial.model_id for trial in trials})
+        model_id = model_ids[0] if len(model_ids) == 1 else ", ".join(model_ids)
+        display_label = _model_label(model_id)
+        type_counts: Counter[str] = Counter()
+        executable_type_counts: Counter[str] = Counter()
+        groups_by_type: Dict[str, str] = {}
+        executable_totals: List[int] = []
+        terminal_totals: List[int] = []
+        source_counts: Counter[str] = Counter()
+
+        for trial in trials:
+            records = _trial_model_action_records(trial)
+            action_counts = Counter(str(record["action_type"]) for record in records)
+            trial_sources = Counter(str(record.get("source") or "") for record in records)
+            executable_count = sum(1 for record in records if bool(record.get("is_executable_action")))
+            terminal_count = sum(1 for record in records if not bool(record.get("is_executable_action")))
+            executable_totals.append(executable_count)
+            terminal_totals.append(terminal_count)
+            type_counts.update(action_counts)
+            for record in records:
+                action_type = str(record["action_type"])
+                all_action_types.add(action_type)
+                groups_by_type.setdefault(action_type, str(record.get("action_group") or ""))
+                source_counts.update([str(record.get("source") or "")])
+                if bool(record.get("is_executable_action")):
+                    executable_type_counts.update([action_type])
+            trial_rows.append(
+                {
+                    "display_label": display_label,
+                    "model_id": model_id,
+                    "analysis_scope": scope,
+                    "experiment_id": trial.experiment_id,
+                    "form_id": trial.form_id,
+                    "answer_run_id": trial.answer_run_id,
+                    "trial_id": trial.trial_id,
+                    "executable_action_count": executable_count,
+                    "terminal_decision_count": terminal_count,
+                    "action_counts_json": json.dumps(dict(sorted(action_counts.items())), sort_keys=True),
+                    "action_source": ", ".join(k for k, v in trial_sources.items() if k and v),
+                    "summary_path": str(trial.summary_path),
+                }
+            )
+
+        scope_stats[scope] = {
+            "display_label": display_label,
+            "model_id": model_id,
+            "analysis_scope": scope,
+            "trials": len(trials),
+            "type_counts": type_counts,
+            "executable_type_counts": executable_type_counts,
+            "groups_by_type": groups_by_type,
+            "executable_totals": executable_totals,
+            "terminal_totals": terminal_totals,
+            "source_counts": source_counts,
+        }
+
+    action_type_rows: List[Dict[str, Any]] = []
+    for scope, stats in sorted(scope_stats.items()):
+        executable_total = sum(stats["executable_type_counts"].values())
+        for action_type, count in stats["type_counts"].most_common():
+            executable_count = int(stats["executable_type_counts"].get(action_type, 0))
+            action_type_rows.append(
+                {
+                    "display_label": stats["display_label"],
+                    "model_id": stats["model_id"],
+                    "analysis_scope": scope,
+                    "trials": stats["trials"],
+                    "action_type": action_type,
+                    "action_group": stats["groups_by_type"].get(action_type, ""),
+                    "count": int(count),
+                    "executable_count": executable_count,
+                    "mean_per_trial": round(float(count) / float(stats["trials"]), 6) if stats["trials"] else 0.0,
+                    "share_of_executable_actions": round(_safe_rate(executable_count, executable_total), 6),
+                }
+            )
+
+    matrix_columns = sorted(all_action_types)
+    matrix_rows: List[Dict[str, Any]] = []
+    for scope, stats in sorted(scope_stats.items()):
+        executable_total = sum(stats["executable_totals"])
+        terminal_total = sum(stats["terminal_totals"])
+        row: Dict[str, Any] = {
+            "display_label": stats["display_label"],
+            "model_id": stats["model_id"],
+            "analysis_scope": scope,
+            "trials": stats["trials"],
+            "total_executable_actions": executable_total,
+            "mean_executable_actions_per_trial": round(_safe_rate(executable_total, stats["trials"]), 6),
+            "median_executable_actions_per_trial": _median([float(value) for value in stats["executable_totals"]]),
+            "total_terminal_decisions": terminal_total,
+            "mean_terminal_decisions_per_trial": round(_safe_rate(terminal_total, stats["trials"]), 6),
+            "action_sources": ", ".join(k for k, v in stats["source_counts"].items() if k and v),
+            "top_action_types": "; ".join(
+                f"{action_type}:{count}" for action_type, count in stats["executable_type_counts"].most_common(6)
+            ),
+        }
+        for action_type in matrix_columns:
+            row[action_type] = int(stats["type_counts"].get(action_type, 0))
+        matrix_rows.append(row)
+
+    return action_type_rows, matrix_rows, trial_rows
 
 
 def _answer_run_index(answer_run_id: str) -> Optional[int]:
@@ -1635,9 +1874,25 @@ def _thesis_efficiency_md(rows: Sequence[Dict[str, Any]]) -> List[str]:
     return lines
 
 
+def _thesis_action_metadata_md(rows: Sequence[Dict[str, Any]]) -> List[str]:
+    lines = [
+        "| Model | Trials | Executable Actions | Median / Trial | Top Action Types |",
+        "|---|---:|---:|---:|---|",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row.get('display_label', '')} | {row.get('trials', 0)} | "
+            f"{row.get('total_executable_actions', 0)} | "
+            f"{_fmt_optional(row.get('median_executable_actions_per_trial'), 1)} | "
+            f"`{row.get('top_action_types', '')}` |"
+        )
+    return lines
+
+
 def write_markdown(
     output_dir: Path,
     thesis_rows: Sequence[Dict[str, Any]],
+    action_matrix_rows: Sequence[Dict[str, Any]],
     canonical_rows: Sequence[Dict[str, Any]],
     answer_validation: Sequence[Dict[str, Any]],
     experiment_coverage: Sequence[Dict[str, Any]],
@@ -1671,6 +1926,12 @@ def write_markdown(
         "Efficiency values compare each model trial with the scripted Playwright reference sharing the same `form_id` and `answer_run_id`.",
         "",
         *_thesis_efficiency_md(thesis_rows),
+        "",
+        "## Model Action Metadata",
+        "",
+        "Action counts come from model-issued `model_io.jsonl` tool calls for MCP runs and `annotations.steps` actions for native GUI runs. Automatic trace-only observations such as browser screenshots are excluded unless they appear as explicit model tool calls.",
+        "",
+        *_thesis_action_metadata_md(action_matrix_rows),
         "",
         "## Reference Coverage Warning",
         "",
@@ -1726,6 +1987,9 @@ def write_markdown(
             f"- Reference coverage: [reference_coverage.csv](reference_coverage.csv); complete references: `{reference_available}`, videos: `{reference_video_available}`.",
             f"- Efficiency summary: [efficiency_summary.csv](efficiency_summary.csv); rows: `{len(efficiency_summary)}`.",
             f"- Paired efficiency comparison: [paired_efficiency_comparison.csv](paired_efficiency_comparison.csv); rows: `{len(paired_efficiency)}`.",
+            "- Model action matrix: [model_action_matrix.csv](model_action_matrix.csv).",
+            "- Model action type summary: [model_action_type_summary.csv](model_action_type_summary.csv).",
+            "- Model trial action counts: [model_action_trial_counts.csv](model_action_trial_counts.csv).",
             "- Model summary: [model_summary.csv](model_summary.csv).",
             "- Form summary: [form_summary.csv](form_summary.csv).",
             "- Failure summary: [failure_summary.csv](failure_summary.csv).",
@@ -1791,6 +2055,17 @@ def main() -> int:
     trials_by_scope.update(trials_by_model_scope("opencua_control_guidance_completed", cohorts["opencua_control_guidance_completed"]))
     trials_by_scope.update(trials_by_model_scope("opencua_direct_mcp_completed", cohorts["opencua_direct_mcp_completed"]))
     trials_by_scope.update(trials_by_model_scope("qwen_latest_completed", cohorts["qwen_latest_completed"]))
+    primary_trials_by_scope: Dict[str, Sequence[Trial]] = {}
+    primary_trials_by_scope.update(trials_by_model_scope("qwen_all_completed", cohorts["qwen_all_completed"]))
+    primary_trials_by_scope.update(trials_by_model_scope("opencua_control_guidance_completed", cohorts["opencua_control_guidance_completed"]))
+    primary_trials_by_scope.update(trials_by_model_scope("opencua_direct_mcp_completed", cohorts["opencua_direct_mcp_completed"]))
+    action_type_rows, action_matrix_rows, action_trial_rows = model_action_metadata_rows(primary_trials_by_scope)
+    action_matrix_rows = sorted(
+        action_matrix_rows,
+        key=lambda row: THESIS_MODEL_ORDER.index(str(row.get("model_id") or ""))
+        if str(row.get("model_id") or "") in THESIS_MODEL_ORDER
+        else len(THESIS_MODEL_ORDER),
+    )
     efficiency_summary = efficiency_summary_rows(model_rows + latest_qwen_model_rows, trials_by_scope)
     thesis_rows = thesis_model_summary_rows(model_rows, efficiency_summary, target_coverage)
     thesis_plot_model_rows = [
@@ -1814,6 +2089,9 @@ def main() -> int:
     _write_dict_csv(thesis_rows, output_dir / "thesis_model_summary.csv")
     _write_dict_csv(efficiency_summary, output_dir / "efficiency_summary.csv")
     _write_dict_csv(paired_efficiency, output_dir / "paired_efficiency_comparison.csv")
+    _write_dict_csv(action_matrix_rows, output_dir / "model_action_matrix.csv")
+    _write_dict_csv(action_type_rows, output_dir / "model_action_type_summary.csv")
+    _write_dict_csv(action_trial_rows, output_dir / "model_action_trial_counts.csv")
     _write_csv(opencua_form_rows + opencua_direct_mcp_form_rows + qwen_latest_form_rows, output_dir / "form_summary.csv")
     _write_csv(opencua_form_rows + opencua_direct_mcp_form_rows + qwen_latest_form_rows, output_dir / "per_form_summary.csv")
     _write_question_type_csv(question_type_summary, output_dir / "question_type_summary.csv")
@@ -1837,6 +2115,7 @@ def main() -> int:
     write_markdown(
         output_dir,
         thesis_rows,
+        action_matrix_rows,
         canonical_rows,
         answer_validation,
         experiment_coverage,
