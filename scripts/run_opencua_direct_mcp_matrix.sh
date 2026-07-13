@@ -56,6 +56,7 @@ DIRECT_MCP_MAX_NEW_TOKENS="${DIRECT_MCP_MAX_NEW_TOKENS:-1024}"
 BROWSER_MCP_TIMEOUT_MS="${BROWSER_MCP_TIMEOUT_MS:-600000}"
 FAIL_ON_TRIAL_FAILURE="${FAIL_ON_TRIAL_FAILURE:-0}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
+FILL_ONLY_DONE="${FILL_ONLY_DONE:-0}"
 OPENAI_BASE_URL="${OPENAI_BASE_URL:-http://127.0.0.1:8000/v1}"
 OPENAI_API_KEY="${OPENAI_API_KEY:-EMPTY}"
 OPENAI_MODEL="${OPENAI_MODEL:-opencua-32b}"
@@ -137,6 +138,7 @@ echo "[INFO] api_timeout_s=$API_TIMEOUT_S"
 echo "[INFO] direct_mcp_timeout_s=$DIRECT_MCP_TIMEOUT_S"
 echo "[INFO] direct_mcp_max_steps=$DIRECT_MCP_MAX_STEPS"
 echo "[INFO] direct_mcp_max_new_tokens=$DIRECT_MCP_MAX_NEW_TOKENS"
+echo "[INFO] fill_only_done=$FILL_ONLY_DONE"
 
 direct_total=0
 direct_passed=0
@@ -153,21 +155,26 @@ for form_id in "${FORMS[@]}"; do
     direct_total=$((direct_total + 1))
     echo "[INFO] opencua_direct_mcp_eval model_id=${MODEL_ID} form_id=${form_id} run_index=${run_idx} trial_id=${trial_id}"
     echo "[INFO] opencua_direct_mcp_trial_start index=${direct_total} form_id=${form_id} run_index=${run_idx} started_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-    set +e
-    "$PYTHON_BIN" src/baselines/run_opencua_direct_mcp_eval.py \
-      --config "$CONFIG_PATH" \
-      --model-id "$MODEL_ID" \
-      --form-id "$form_id" \
-      --run-index "$run_idx" \
-      --trial-id "$trial_id" \
-      --experiment-id "$EXPERIMENT_ID" \
-      --api-timeout-s "$API_TIMEOUT_S" \
-      --timeout-s "$DIRECT_MCP_TIMEOUT_S" \
-      --max-steps "$DIRECT_MCP_MAX_STEPS" \
-      --max-new-tokens "$DIRECT_MCP_MAX_NEW_TOKENS" \
-      --browser-mcp-timeout-ms "$BROWSER_MCP_TIMEOUT_MS" \
-      --headless \
+    args=(
+      --config "$CONFIG_PATH"
+      --model-id "$MODEL_ID"
+      --form-id "$form_id"
+      --run-index "$run_idx"
+      --trial-id "$trial_id"
+      --experiment-id "$EXPERIMENT_ID"
+      --api-timeout-s "$API_TIMEOUT_S"
+      --timeout-s "$DIRECT_MCP_TIMEOUT_S"
+      --max-steps "$DIRECT_MCP_MAX_STEPS"
+      --max-new-tokens "$DIRECT_MCP_MAX_NEW_TOKENS"
+      --browser-mcp-timeout-ms "$BROWSER_MCP_TIMEOUT_MS"
+      --headless
       --run-label "$run_label"
+    )
+    if [ "$FILL_ONLY_DONE" = "1" ]; then
+      args+=(--fill-only-done)
+    fi
+    set +e
+    "$PYTHON_BIN" src/baselines/run_opencua_direct_mcp_eval.py "${args[@]}"
     trial_status=$?
     set -e
     if [ "$trial_status" -eq 0 ]; then

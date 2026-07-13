@@ -129,6 +129,7 @@ class DirectAPIAdapter:
             if not api_key:
                 raise RuntimeError("OPENAI_API_KEY missing")
             model = str(os.environ.get("OPENAI_MODEL") or self.model_cfg.get("openai_model") or "gpt-4.1-mini")
+            extra_body = self.model_cfg.get("openai_extra_body")
             payload = {
                 "model": model,
                 "temperature": 0,
@@ -138,7 +139,13 @@ class DirectAPIAdapter:
                     {"role": "user", "content": prompt},
                 ],
             }
-            base_url = os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/")
+            if isinstance(extra_body, dict):
+                payload.update(extra_body)
+            base_url = str(
+                os.environ.get("OPENAI_BASE_URL")
+                or self.model_cfg.get("openai_base_url")
+                or "https://api.openai.com/v1"
+            ).rstrip("/")
             response = _http_post_json(
                 url=f"{base_url}/chat/completions",
                 headers={"Authorization": f"Bearer {api_key}"},
@@ -146,7 +153,13 @@ class DirectAPIAdapter:
                 timeout_s=self.api_timeout_s,
             )
             text = _extract_openai_text(response)
-            meta = {"provider": "openai", "provider_model": model, "duration_s": round(time.perf_counter() - started, 3)}
+            meta = {
+                "provider": "openai",
+                "provider_model": model,
+                "response_model": response.get("model"),
+                "base_url": base_url,
+                "duration_s": round(time.perf_counter() - started, 3),
+            }
             return text, meta
 
         api_key = os.environ.get("ANTHROPIC_API_KEY")

@@ -468,6 +468,7 @@ def _observation_prompt(
     accessibility_snapshot: str = "",
     control_contract: Optional[List[Dict[str, Any]]] = None,
     model_visible_tool_names: Optional[List[str]] = None,
+    fill_only_done: bool = False,
 ) -> str:
     answers_json = json.dumps(remaining_answers, ensure_ascii=True, indent=2)
     page_excerpt = page_text[:8000]
@@ -491,6 +492,19 @@ def _observation_prompt(
     visible_tools = ", ".join(sorted(set(model_visible_tool_names or DIRECT_MCP_MODEL_TOOLS)))
     visible_tool_set = set(model_visible_tool_names or DIRECT_MCP_MODEL_TOOLS)
     tool_guidance = _tool_use_guidance(visible_tool_set)
+    if fill_only_done:
+        terminal_guidance = (
+            "Fill-only terminal condition: enter all target answers, never click Submit, and reply with plain text DONE only when the visible form values match the target answers.\n"
+            "If a Submit button is visible, do not click it in this condition. Use DONE for completion after filling.\n"
+            "Match answer values exactly; do not reformat dates, times, emails, or option text.\n"
+            "If a click does not change the form after one retry, use a different tool/action or scroll; do not repeat the same click.\n"
+        )
+    else:
+        terminal_guidance = (
+            "Benchmark terminal condition: DONE means you have observed a form submission confirmation page, not merely that fields appear filled.\n"
+            "Before submitting, double-check the visible form state against the target answers as well as the current observation allows.\n"
+            "Do not use DONE to say the form is ready to submit. If the form appears correct and you intend to submit, call a Playwright MCP tool on the visible Submit button ref.\n"
+        )
     return (
         "You are controlling a browser only through Playwright MCP tools.\n"
         "Use the provided Playwright MCP tools directly. Do not invent custom actions or JSON schemas.\n"
@@ -499,9 +513,7 @@ def _observation_prompt(
         "<tool_call>{\"name\":\"browser_click\",\"arguments\":{\"ref\":\"...\"}}</tool_call> using one provided tool name.\n"
         f"{tool_guidance}\n"
         f"Use only these Playwright MCP tool names in this step: {visible_tools}.\n"
-        "Benchmark terminal condition: DONE means you have observed a form submission confirmation page, not merely that fields appear filled.\n"
-        "Before submitting, double-check the visible form state against the target answers as well as the current observation allows.\n"
-        "Do not use DONE to say the form is ready to submit. If the form appears correct and you intend to submit, call a Playwright MCP tool on the visible Submit button ref.\n"
+        f"{terminal_guidance}"
         "When you believe that terminal condition is met, reply with plain text DONE and a brief note.\n"
         "If you cannot make further safe progress, reply with plain text STOP and a brief reason.\n\n"
         f"Form URL: {form_url}\n"
@@ -833,6 +845,7 @@ def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--headless", action="store_true", default=False)
     parser.add_argument("--max-new-tokens", type=int)
     parser.add_argument("--browser-mcp-cmd")
+    parser.add_argument("--fill-only-done", action="store_true", default=False)
     parser.add_argument("--run-label")
     parser.add_argument("--retention-window", type=int, default=rbe.DEFAULT_RETENTION_WINDOW)
     return parser.parse_args(argv)
@@ -865,12 +878,13 @@ def main(argv: Optional[List[str]] = None) -> int:
         native_tool_calls_enabled = native_tool_calls_env in {"1", "true", "yes", "on"}
     else:
         native_tool_calls_enabled = args.model_kind != "computer_use_agent"
+    task_mode = "fill_only_done" if args.fill_only_done else "fill_and_submit"
 
     _log_progress(
         "trial_start "
         f"model_id={args.model_id} model_kind={args.model_kind} form_id={args.form_id} "
         f"run_index={args.run_index} experiment_id={args.experiment_id} "
-        f"api_model={model_name} base_url={base_url} native_tool_calls={native_tool_calls_enabled}"
+        f"api_model={model_name} base_url={base_url} native_tool_calls={native_tool_calls_enabled} task_mode={task_mode}"
     )
 
     form_spec = load_form_spec(args.form_id, ROOT_DIR / "src" / "forms")
@@ -919,7 +933,14 @@ def main(argv: Optional[List[str]] = None) -> int:
             command=command,
             timeout_ms=args.browser_mcp_timeout_ms,
             required_tools=required_tools,
-            env={"PLAYWRIGHT_BROWSERS_PATH": os.environ.get("PLAYWRIGHT_BROWSERS_PATH", "")},
+            env={
+                key: value
+                for key, value in {
+                    "PLAYWRIGHT_BROWSERS_PATH": os.environ.get("PLAYWRIGHT_BROWSERS_PATH", ""),
+                    "LD_LIBRARY_PATH": os.environ.get("NODE_LD_LIBRARY_PATH_FOR_MCP", ""),
+                }.items()
+                if value
+            },
         )
         engine = MCPBrowserEngine(
             mcp_client=mcp,
@@ -970,6 +991,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                 accessibility_snapshot=snapshot_text,
                 control_contract=control_contract,
                 model_visible_tool_names=sorted(step_tool_names),
+                fill_only_done=bool(args.fill_only_done),
             )
             messages = _build_messages(
                 model_kind=args.model_kind,
@@ -1064,6 +1086,51 @@ def main(argv: Optional[List[str]] = None) -> int:
                         "pre_submit_attempted_count": pre_click_snapshot["attempted"],
                         "pre_submit_question_total": pre_click_snapshot["total"],
                     }
+                if args.fill_only_done and is_submit_attempt:
+                    tool_error_count += 1
+                    blocked_payload = {
+                        "error": "submit_disabled_in_fill_only_done",
+                        "detail": "This evaluation condition requires filling fields and returning DONE without clicking Submit.",
+                    }
+                    if submit_attempt is not None:
+                        submit_attempt.update(
+                            {
+                                "tool_call_ok": False,
+                                "tool_error": blocked_payload["error"],
+                                "post_submit_success": False,
+                                "blocked_by_harness": True,
+                            }
+                        )
+                        submit_attempts.append(submit_attempt)
+                    trace.log_event(name, arguments, step_ref=step_idx, ok=False, error=json.dumps(blocked_payload, ensure_ascii=True), extra={"backend": "fill_only_done_guard"})
+                    history.append(
+                        _tool_result_history_message(
+                            json.dumps(blocked_payload, ensure_ascii=True),
+                            native_tool_call_history=native_tool_calls_enabled,
+                            tool_call_id=call["id"],
+                        )
+                    )
+                    rbe._append_jsonl(
+                        paths["model_io_path"],
+                        {
+                            "phase": "tool_error",
+                            "step_index": step_idx,
+                            "tool_protocol": "mcp",
+                            "mcp_server": "playwright",
+                            "tool_name": name,
+                            "tool_arguments": arguments,
+                            "error": blocked_payload,
+                            "blocked_by_harness": True,
+                        },
+                    )
+                    if pre_click_snapshot is not None and pre_click_snapshot["correct"] >= pre_click_snapshot["total"]:
+                        stop_reason = "filled_without_submit"
+                        success = True
+                        submit_success = False
+                        failure_category = None
+                        failure_detail = None
+                        break
+                    continue
                 if name not in step_tool_names or name not in DIRECT_MCP_MODEL_TOOLS or name not in mcp.available_tools:
                     tool_error_count += 1
                     error_payload = {
@@ -1186,6 +1253,15 @@ def main(argv: Optional[List[str]] = None) -> int:
                                 **submit_attempt,
                             },
                         )
+                    if args.fill_only_done and engine is not None and name != "browser_snapshot":
+                        fill_snapshot = _verification_snapshot(engine, question_states, step_ref=(step_idx * 1000) + 700)
+                        if fill_snapshot["correct"] >= fill_snapshot["total"]:
+                            stop_reason = "filled_without_submit"
+                            success = True
+                            submit_success = False
+                            failure_category = None
+                            failure_detail = None
+                            break
                 except Exception as exc:
                     tool_error_count += 1
                     trace.log_event(name, arguments, step_ref=step_idx, ok=False, error=str(exc), extra={"backend": "mcp_server"})
@@ -1217,7 +1293,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             failure_category = "max_steps_exceeded"
             failure_detail = f"max_steps={args.max_steps}"
 
-        if engine is not None:
+        if engine is not None and not args.fill_only_done:
             submit_success, submit_probe = _detect_submit_success(engine, step_ref=args.max_steps)
             success = submit_success
             if stop_reason == "done" and not submit_success:
@@ -1227,22 +1303,48 @@ def main(argv: Optional[List[str]] = None) -> int:
             env = dict(env or {})
             env["submit_probe"] = submit_probe
             terminal_screenshot_path = engine.take_observation_screenshot("final.png" if success else "error.png", step_ref=None)
+        elif engine is not None:
+            submit_success = False
+            env = dict(env or {})
+            env["submit_probe"] = {"skipped": True, "reason": "fill_only_done"}
+            terminal_screenshot_path = engine.take_observation_screenshot("error.png", step_ref=None)
 
         for idx, question_state in enumerate(question_states):
             try:
                 verification = engine.verify_entry(question_state, args.max_steps + idx if engine is not None else idx) if engine is not None else {}
             except Exception as exc:
                 verification = {"verified": False, "actual_value": None, "detail": str(exc)}
+            previous_correct = bool(question_state.get("verified_correct"))
+            current_verified = bool(verification.get("verified"))
+            current_correct = current_verified and rbe._value_matches(question_state.get("value"), verification.get("actual_value"))
+            preserve_previous = bool(args.fill_only_done) and previous_correct and not current_verified
             question_state["last_verification"] = verification
-            question_state["actual_value"] = verification.get("actual_value")
-            question_state["verified"] = bool(verification.get("verified"))
-            question_state["verified_correct"] = bool(verification.get("verified")) and rbe._value_matches(
-                question_state.get("value"), verification.get("actual_value")
-            )
+            if current_verified or not preserve_previous:
+                question_state["actual_value"] = verification.get("actual_value")
+            question_state["verified"] = current_verified or preserve_previous
+            question_state["verified_correct"] = current_correct or preserve_previous
             actual_value = question_state.get("actual_value")
             question_state["attempted"] = bool(question_state.get("verified")) or actual_value not in (None, "", [])
             question_state["attempted_correct"] = bool(question_state["verified_correct"])
             question_state["final_status"] = "correct_verified" if question_state["verified_correct"] else "failed"
+        if args.fill_only_done:
+            verified_correct = sum(1 for state in question_states if bool(state.get("verified_correct")))
+            question_total = len(question_states)
+            submit_success = False
+            success = question_total > 0 and verified_correct >= question_total
+            if success:
+                failure_category = None
+                failure_detail = None
+                if stop_reason in {None, "done", "max_steps_exceeded"}:
+                    stop_reason = "filled_without_submit" if stop_reason != "done" else "done"
+            elif stop_reason == "done":
+                stop_reason = "done_incomplete_fill_only"
+                failure_category = "done_incomplete_fill_only"
+                failure_detail = f"verified_correctness={verified_correct}/{question_total}"
+            elif stop_reason == "filled_without_submit":
+                stop_reason = "fill_only_verification_mismatch"
+                failure_category = "fill_only_verification_mismatch"
+                failure_detail = f"verified_correctness={verified_correct}/{question_total}"
 
     except Exception as exc:
         stop_reason = "environment_error"
@@ -1311,6 +1413,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "tool_protocol": "mcp",
         "mcp_server": "playwright",
         "tool_contract": "playwright_mcp_documented_forms_interaction_v1",
+        "task_mode": task_mode,
         "native_tool_calls_enabled": native_tool_calls_enabled,
         "tool_call_transport": tool_call_transport,
         "tool_call_transport_counts": tool_call_transport_counts,
@@ -1370,6 +1473,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "tool_protocol": "mcp",
         "mcp_server": "playwright",
         "tool_contract": "playwright_mcp_documented_forms_interaction_v1",
+        "task_mode": task_mode,
         "native_tool_calls_enabled": native_tool_calls_enabled,
         "tool_call_transport": tool_call_transport,
         "tool_call_transport_counts": tool_call_transport_counts,
@@ -1440,6 +1544,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "tool_protocol": "mcp",
         "mcp_server": "playwright",
         "tool_contract": "playwright_mcp_documented_forms_interaction_v1",
+        "task_mode": task_mode,
         "native_tool_calls_enabled": native_tool_calls_enabled,
         "tool_call_transport": tool_call_transport,
         "tool_call_transport_counts": tool_call_transport_counts,

@@ -123,6 +123,26 @@ def eval_gemini_native(model: Dict[str, Any]) -> Tuple[bool, Dict[str, Any]]:
     return ok, detail
 
 
+def eval_gemini_low_cost(model: Dict[str, Any]) -> Tuple[bool, Dict[str, Any]]:
+    node_tools = {name: bool(shutil.which(name)) for name in ["node", "npm", "npx"]}
+    key_file = Path(os.getenv("GEMINI_API_KEY_FILE") or ".secrets/gemini_api_key")
+    api_key_present = bool(os.getenv("GEMINI_API_KEY"))
+    key_file_present = key_file.exists() and bool(key_file.read_text(encoding="utf-8").strip())
+    model_name = str(os.getenv("GEMINI_MODEL") or model.get("gemini_model") or "").strip()
+    ok = all(node_tools.values()) and (api_key_present or key_file_present) and bool(model_name)
+    detail = {
+        "node_tools": node_tools,
+        "gemini_api_key_present": api_key_present,
+        "gemini_api_key_file_present": key_file_present,
+        "gemini_model_configured": bool(model_name),
+        "gemini_model": model_name or None,
+        "detail": "runtime prerequisites detected for gemini_low_cost"
+        if ok
+        else "missing prerequisites for gemini_low_cost baseline",
+    }
+    return ok, detail
+
+
 def eval_openai_compat(model: Dict[str, Any]) -> Tuple[bool, Dict[str, Any]]:
     def endpoint_reachable(base_url: str, timeout_s: float = 3.0) -> Tuple[bool, str]:
         raw = str(base_url or "").strip()
@@ -257,6 +277,10 @@ def main() -> int:
             entry["detail"] = detail
         elif provider == "gemini_native":
             ok, detail = eval_gemini_native(model)
+            entry["status"] = "passed" if ok else "failed"
+            entry["detail"] = detail
+        elif provider == "gemini_low_cost":
+            ok, detail = eval_gemini_low_cost(model)
             entry["status"] = "passed" if ok else "failed"
             entry["detail"] = detail
         else:

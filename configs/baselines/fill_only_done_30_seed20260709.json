@@ -1,0 +1,56 @@
+{
+  "schema_version": "fill_only_done_sample.v1",
+  "description": "Fixed 30-form fill-only/DONE comparison sample for Gemini, Qwen direct-MCP, and OpenCUA direct-MCP.",
+  "seed": 20260709,
+  "run_index": 2,
+  "gemini_max_steps": 32,
+  "direct_mcp_max_steps": 32,
+  "task_mode": "fill_only_done",
+  "include_controls": false,
+  "forms": [
+    "alumni_checkin",
+    "bug_report",
+    "conference_travel",
+    "course_enrollment",
+    "course_feedback",
+    "data_annotation",
+    "dataset_request",
+    "event_rsvp",
+    "exam_registration",
+    "hackathon_signup",
+    "housing_preference",
+    "job_fair",
+    "language_exchange",
+    "library_membership",
+    "meal_plan",
+    "newsletter_signup",
+    "office_hours",
+    "orientation_signup",
+    "paper_review",
+    "project_update",
+    "publication_submission",
+    "room_booking",
+    "scholarship_interest",
+    "sports_tournament",
+    "study_group_match",
+    "survey_consent",
+    "technical_support",
+    "usability_test",
+    "volunteer_shift",
+    "workshop_signup"
+  ],
+  "experiments": {
+    "gemini": "gemini_35_flash_fill_only_done_30_seed20260709_r2_step32",
+    "qwen_direct_mcp": "qwen_direct_mcp_fill_only_done_30_seed20260709_r2_step32",
+    "opencua_direct_mcp": "opencua_direct_mcp_fill_only_done_30_seed20260709_r2_step32"
+  },
+  "models": [
+    "computer_use_gemini_35_flash_lowcost",
+    "text_qwen3_30b_a3b_instruct_2507",
+    "vlm_qwen3_vl_30b_a3b_instruct",
+    "computer_use_opencua_32b_direct_mcp"
+  ],
+  "excluded_models": [
+    "computer_use_opencua_32b"
+  ]
+}

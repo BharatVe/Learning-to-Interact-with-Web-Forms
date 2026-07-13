@@ -53,6 +53,22 @@
       "server_backend": "vllm",
       "coordinate_type": "qwen25",
       "notes": "Strict Playwright MCP ref/tool interface ablation for OpenCUA-32B."
+    },
+    {
+      "id": "computer_use_gemini_35_flash_lowcost",
+      "kind": "computer_use_agent",
+      "provider": "gemini_low_cost",
+      "hf_repo": null,
+      "track": "proprietary_computer_use_low_cost",
+      "requires_gpu": false,
+      "gemini_model": "gemini-3.5-flash",
+      "pricing": {
+        "currency": "USD",
+        "input_usd_per_1m_tokens": 1.5,
+        "output_usd_per_1m_tokens": 9.0,
+        "eur_per_usd": 0.93
+      },
+      "notes": "Gemini 3.5 Flash native Computer Use via low-token proprietary Interactions workflow."
     }
   ]
 }

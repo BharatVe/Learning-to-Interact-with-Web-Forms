@@ -304,6 +304,20 @@ class QwenDirectMCPEvalTests(TestCase):
         self.assertIn("Do not output pyautogui", prompt)
         self.assertIn("textual fallback call", prompt)
 
+    def test_fill_only_done_prompt_replaces_submit_terminal_condition(self):
+        prompt = qwen_direct_mcp_eval._observation_prompt(
+            form_url="https://example.test/form",
+            remaining_answers=[{"question_id": "q1", "label": "Name", "value": "Alice"}],
+            page_text="Name\nSubmit",
+            url="https://example.test/form",
+            step_idx=0,
+            fill_only_done=True,
+        )
+        self.assertIn("Fill-only terminal condition", prompt)
+        self.assertIn("never click Submit", prompt)
+        self.assertIn("reply with plain text DONE", prompt)
+        self.assertNotIn("observed a form submission confirmation page", prompt)
+
     def test_opencua_direct_mcp_wrapper_sets_computer_use_kind(self):
         captured = {}
 
@@ -319,6 +333,22 @@ class QwenDirectMCPEvalTests(TestCase):
             opencua_direct_mcp_eval.run_qwen_direct_mcp_eval.main = original
         self.assertEqual(status, 0)
         self.assertEqual(captured["argv"][:2], ["--model-kind", "computer_use_agent"])
+
+    def test_parse_args_accepts_fill_only_done(self):
+        args = qwen_direct_mcp_eval._parse_args(
+            [
+                "--model-id",
+                "text_qwen3_30b_a3b_instruct_2507",
+                "--model-kind",
+                "text_llm",
+                "--form-id",
+                "bug_report",
+                "--run-index",
+                "2",
+                "--fill-only-done",
+            ]
+        )
+        self.assertTrue(args.fill_only_done)
 
     def test_observation_prompt_includes_control_contract(self):
         prompt = qwen_direct_mcp_eval._observation_prompt(

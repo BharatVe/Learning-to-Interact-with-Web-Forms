@@ -10,7 +10,9 @@ if [ ! -x "$PYTHON_BIN" ]; then
   exit 1
 fi
 
+ORIGINAL_LD_LIBRARY_PATH="${LD_LIBRARY_PATH-}"
 module load release/25.06 GCCcore/13.3.0 Python/3.12.3 nodejs/20.13.1
+export NODE_LD_LIBRARY_PATH_FOR_MCP="${LD_LIBRARY_PATH-}"
 
 CACHE_ROOT="${CACHE_ROOT:-$ROOT_DIR/.runtime-cache}"
 mkdir -p "$CACHE_ROOT"/{xdg,hf,pip,uv,playwright}
@@ -22,6 +24,7 @@ export UV_CACHE_DIR="${UV_CACHE_DIR:-$CACHE_ROOT/uv}"
 export PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-$CACHE_ROOT/playwright}"
 export PATH="$ROOT_DIR/.venv-opencua/bin:$ROOT_DIR/.node-tools/node_modules/.bin:$PATH"
 export PYTHONUNBUFFERED=1
+QWEN_VLLM_LD_LIBRARY_PATH="${QWEN_VLLM_LD_LIBRARY_PATH:-$NODE_LD_LIBRARY_PATH_FOR_MCP}"
 QWEN_CUDA_VISIBLE_DEVICES="${QWEN_CUDA_VISIBLE_DEVICES:-}"
 if [ -n "$QWEN_CUDA_VISIBLE_DEVICES" ]; then
   export CUDA_VISIBLE_DEVICES="$QWEN_CUDA_VISIBLE_DEVICES"
@@ -43,6 +46,7 @@ DIRECT_MCP_VLM_MAX_NEW_TOKENS="${DIRECT_MCP_VLM_MAX_NEW_TOKENS:-1024}"
 BROWSER_MCP_TIMEOUT_MS="${BROWSER_MCP_TIMEOUT_MS:-600000}"
 FAIL_ON_TRIAL_FAILURE="${FAIL_ON_TRIAL_FAILURE:-0}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
+FILL_ONLY_DONE="${FILL_ONLY_DONE:-0}"
 SUMMARY_OUTPUT="${SUMMARY_OUTPUT:-logs/${EXPERIMENT_ID}_reference_efficiency_summary.json}"
 GPU_COUNT="${GPU_COUNT:-2}"
 CUDA_PREFLIGHT_PYTHON_BIN="${CUDA_PREFLIGHT_PYTHON_BIN:-$ROOT_DIR/.venv-opencua/bin/python}"
@@ -67,6 +71,12 @@ PLAYWRIGHT_MCP_INSTALL_LOG="${PLAYWRIGHT_MCP_INSTALL_LOG:-/tmp/playwright-mcp-in
   "$ROOT_DIR/scripts/ensure_playwright_mcp_runtime.sh"
 export PLAYWRIGHT_MCP_CHROMIUM_EXECUTABLE="$(cat "$PLAYWRIGHT_BROWSERS_PATH/.mcp-chromium-executable")"
 echo "[INFO] playwright_mcp_chromium_executable=$PLAYWRIGHT_MCP_CHROMIUM_EXECUTABLE"
+
+if [ -n "$ORIGINAL_LD_LIBRARY_PATH" ]; then
+  export LD_LIBRARY_PATH="$ORIGINAL_LD_LIBRARY_PATH"
+else
+  unset LD_LIBRARY_PATH
+fi
 
 if [ "$FORM_IDS" = "all" ]; then
   RESOLVED_FORM_IDS="$("$PYTHON_BIN" - "$FORM_OFFSET" "$FORM_LIMIT" <<'PY_FORMS'
@@ -126,7 +136,7 @@ cuda_preflight() {
     echo "[FAIL] cuda preflight interpreter missing: $CUDA_PREFLIGHT_PYTHON_BIN" >&2
     exit 1
   fi
-  "$CUDA_PREFLIGHT_PYTHON_BIN" - "$GPU_COUNT" <<'PY_CUDA'
+  LD_LIBRARY_PATH="$QWEN_VLLM_LD_LIBRARY_PATH" "$CUDA_PREFLIGHT_PYTHON_BIN" - "$GPU_COUNT" <<'PY_CUDA'
 import sys
 expected = max(1, int(sys.argv[1]))
 try:
@@ -188,7 +198,7 @@ start_server() {
     QWEN_MODEL_IMPL="$model_impl" \
     QWEN_LIMIT_MM_PER_PROMPT="$limit_mm" \
     QWEN_MM_ENCODER_TP_MODE="$mm_encoder" \
-    bash scripts/run_qwen_vllm_server.sh >"$SERVER_LOG" 2>&1 &
+    LD_LIBRARY_PATH="$QWEN_VLLM_LD_LIBRARY_PATH" bash scripts/run_qwen_vllm_server.sh >"$SERVER_LOG" 2>&1 &
   SERVER_PID=$!
   for attempt in $(seq 1 "$MEDIATED_VLLM_STARTUP_ATTEMPTS"); do
     if curl -fsS "${OPENAI_BASE_URL}/models" >/dev/null 2>&1; then
@@ -262,6 +272,7 @@ echo "[INFO] run_indexes=$RUN_INDEXES"
 echo "[INFO] form_offset=$FORM_OFFSET"
 echo "[INFO] form_limit=$FORM_LIMIT"
 echo "[INFO] skip_completed=$SKIP_COMPLETED"
+echo "[INFO] fill_only_done=$FILL_ONLY_DONE"
 echo "[INFO] summary_output=$SUMMARY_OUTPUT"
 
 IFS=',' read -r -a FORMS <<<"$RESOLVED_FORM_IDS"
@@ -298,24 +309,29 @@ PY_TRIAL
         model_tokens="$DIRECT_MCP_VLM_MAX_NEW_TOKENS"
       fi
       echo "[INFO] qwen_direct_mcp_eval model_id=${model_id} form_id=${form_id} run_index=${run_idx} trial_id=${trial_id}"
+      args=(
+        --config "$CONFIG_PATH"
+        --model-id "$model_id"
+        --model-kind "$model_kind"
+        --form-id "$form_id"
+        --run-index "$run_idx"
+        --trial-id "$trial_id"
+        --experiment-id "$EXPERIMENT_ID"
+        --api-timeout-s "$API_TIMEOUT_S"
+        --timeout-s "$DIRECT_MCP_TIMEOUT_S"
+        --max-steps "$DIRECT_MCP_MAX_STEPS"
+        --max-new-tokens "$model_tokens"
+        --browser-mcp-timeout-ms "$BROWSER_MCP_TIMEOUT_MS"
+        --headless
+      )
+      if [ "$FILL_ONLY_DONE" = "1" ]; then
+        args+=(--fill-only-done)
+      fi
       set +e
       OPENAI_BASE_URL="$OPENAI_BASE_URL" \
         OPENAI_MODEL="$OPENAI_MODEL" \
         OPENAI_API_KEY="$OPENAI_API_KEY" \
-        "$PYTHON_BIN" src/baselines/run_qwen_direct_mcp_eval.py \
-          --config "$CONFIG_PATH" \
-          --model-id "$model_id" \
-          --model-kind "$model_kind" \
-          --form-id "$form_id" \
-          --run-index "$run_idx" \
-          --trial-id "$trial_id" \
-          --experiment-id "$EXPERIMENT_ID" \
-          --api-timeout-s "$API_TIMEOUT_S" \
-          --timeout-s "$DIRECT_MCP_TIMEOUT_S" \
-          --max-steps "$DIRECT_MCP_MAX_STEPS" \
-          --max-new-tokens "$model_tokens" \
-          --browser-mcp-timeout-ms "$BROWSER_MCP_TIMEOUT_MS" \
-          --headless
+        "$PYTHON_BIN" src/baselines/run_qwen_direct_mcp_eval.py "${args[@]}"
       trial_status=$?
       set -e
       if [ "$trial_status" -ne 0 ]; then

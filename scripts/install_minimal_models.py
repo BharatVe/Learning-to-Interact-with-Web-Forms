@@ -19,6 +19,8 @@ OPTIONAL_PROVIDER_KEYS = {
     "openai_api_key",
     "anthropic_model",
     "gemini_model",
+    "interactions_endpoint",
+    "pricing",
     "served_model_name",
     "server_backend",
     "coordinate_type",

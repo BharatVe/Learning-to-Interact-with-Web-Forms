@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "description": "SCADS/TUD:AI OpenAI-compatible Gemma API pilot for the same browser-action direct API path.",
+  "models": [
+    {
+      "id": "scads_gemma4_31b_it_api",
+      "kind": "computer_use_agent",
+      "provider": "api_over_mcp",
+      "hf_repo": "google/gemma-4-31B-it",
+      "track": "direct_api_tool_use",
+      "requires_gpu": false,
+      "openai_model": "google/gemma-4-31B-it",
+      "openai_base_url": "https://llm.scads.ai/v1",
+      "openai_extra_body": {
+        "disable_fallbacks": true
+      },
+      "notes": "SCADS/TUD:AI Gemma API pilot. API key must be supplied via OPENAI_API_KEY, not stored in config."
+    }
+  ]
+}

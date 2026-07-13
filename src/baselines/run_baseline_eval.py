@@ -1778,6 +1778,9 @@ class MCPExecutionSession(ExecutionSessionBase):
             self.browser_mcp_timeout_ms,
         )
         mcp_env = {"PLAYWRIGHT_BROWSERS_PATH": os.environ.get("PLAYWRIGHT_BROWSERS_PATH", "")}
+        node_ld_library_path = os.environ.get("NODE_LD_LIBRARY_PATH_FOR_MCP", "")
+        if node_ld_library_path:
+            mcp_env["LD_LIBRARY_PATH"] = node_ld_library_path
         max_attempts = max(1, self.browser_init_retries + 1)
         last_exc: Optional[Exception] = None
         for attempt in range(1, max_attempts + 1):

@@ -31,6 +31,20 @@ echo "[INFO] forms=${FORM_IDS:-unset} run_indexes=${RUN_INDEXES:-unset}"
 
 nvidia-smi || true
 
-srun --ntasks=1 --cpus-per-task="${SLURM_CPUS_PER_TASK:-1}" bash scripts/run_gemini_direct_matrix.sh
+case "$DIRECT_PROVIDER" in
+  gemini_native)
+    matrix_script="scripts/run_gemini_direct_matrix.sh"
+    ;;
+  gemini_low_cost)
+    matrix_script="scripts/run_gemini_low_cost_matrix.sh"
+    ;;
+  *)
+    echo "[FAIL] unsupported DIRECT_PROVIDER for Gemini Slurm wrapper: $DIRECT_PROVIDER" >&2
+    exit 1
+    ;;
+esac
+
+echo "[INFO] matrix_script=$matrix_script"
+srun --ntasks=1 --cpus-per-task="${SLURM_CPUS_PER_TASK:-1}" bash "$matrix_script"
 
 echo "[INFO] end_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"

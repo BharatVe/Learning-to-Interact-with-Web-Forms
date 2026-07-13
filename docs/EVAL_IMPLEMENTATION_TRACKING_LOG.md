@@ -1,6 +1,6 @@
 # Evaluation Implementation Tracking Log
 
-Last updated: 2026-06-11
+Last updated: 2026-07-09
 
 Use this file as the current source of truth before rerunning evaluation jobs. It records the active evaluation design, implementation status, latest outputs, known issues, and next actions.
 
@@ -32,6 +32,7 @@ The serving and basic orchestration problems are mostly solved. The remaining bl
 - Final post-submit verification can read as `0/N` on submitted direct-MCP trials because the browser is on the Google Forms confirmation page. For submitted direct-MCP trials, use `scored_correctness` from `pre_successful_submit_verified_correctness`.
 - Latest reruns add CUDA preflight checks before vLLM startup, better OpenCUA vLLM launch diagnostics, and `FORM_OFFSET`/`FORM_LIMIT` support for `FORM_IDS=all`.
 - Latest analysis artifacts live under `docs/eval_results/analysis/`.
+- Gemini 3.5 Flash native Computer Use integration exists as a paid proprietary pilot path, but live Google Forms submission is blocked by Google safety/platform policy. Fill-only live Google Forms interaction is possible but expensive and not yet reliable enough for a larger run.
 
 ## 2026-06-11 Interim Target-200 Top-Up
 
@@ -79,38 +80,77 @@ Follow-up on 2026-06-13:
 - OpenCUA Native remains `200/300`: runs `1-4` complete, runs `5-6` not run.
 - `scripts/analyze_eval_results.py` was rerun and refreshed `docs/eval_results/analysis/` with `1006` total discovered trials.
 
-## 2026-06-11 Proprietary Computer-Use Comparison Notes
+## 2026-06-30 Gemini Proprietary Computer-Use Pilot
 
-Goal:
+Status:
 
-- Add a small proprietary-model comparison suitable for thesis discussion, using the same sampled form-run interactions across all compared models.
-- Initial target should be a controlled 30-50 `(form_id, answer_run_id)` subset, not a full 300-trial condition.
-- The subset must be reused for Gemini/OpenAI/Claude and the current thesis models to avoid invalid comparisons caused by different form difficulty.
+- Separate Gemini low-cost runner implemented in `src/baselines/run_gemini_low_cost_eval.py`, with wrapper `scripts/run_gemini_low_cost_matrix.sh`.
+- API key is read from `GEMINI_API_KEY`, `GEMINI_API_KEY_FILE`, or `.secrets/gemini_api_key`; do not print or commit the key.
+- Config entry `computer_use_gemini_35_flash_lowcost` uses provider `gemini_low_cost`, model `gemini-3.5-flash`, and the Gemini Interactions `computer_use` browser tool.
+- Prompt mode is intentionally concise: screenshot plus exact remaining answers plus short browser-action guidance. Full interaction maps are omitted unless `INCLUDE_CONTROLS=1`.
 
-Current understanding:
+Live Google Forms findings:
 
-- Gemini 2.5 Computer Use is a relevant comparator for OpenCUA Native because both are native/browser computer-use agents using screenshots and low-level UI actions.
-- Gemini is less directly comparable to Qwen Text/Qwen VLM direct-MCP because those models use symbolic Playwright MCP tools rather than native computer-use actions.
-- Results should therefore be grouped by interface condition: native computer use, direct MCP tool use, and proprietary API computer use.
+- Submit-enabled pilot on `bug_report/run_0002` verified API/browser/tool capability but was blocked by Google policy after partial progress. The model filled `2/9` fields over `5` actions before the provider returned an external Google Form automation block.
+- Fill-only mode was added with `--fill-only` / `FILL_ONLY=1`. The prompt says to fill fields but never submit, and the harness refuses to execute a `submit` action in this mode.
+- Fill-only pilot `gemini_35_flash_lowcost_fill_only_probe_v1`, trial `trial_20260630T113905803432Z`, ran one form only: `bug_report/run_0002`.
+  - Result: no provider policy block, `24` actions, `7/9` fields verified correct, stopped at `max_steps_exceeded`.
+  - Token metadata: `39,462` total tokens, lower-bound cost estimate `$0.059193` / `EUR 0.055049`.
+  - Projected 30-run lower bound from this run: `$1.77579` / `EUR 1.65147`.
+- Controls fallback `gemini_35_flash_lowcost_fill_only_controls_probe_v1`, trial `trial_20260630T114804827360Z`, was stopped manually after cost concern.
+  - It was still the same single form, not a multi-form job.
+  - Partial logs show `46` steps and `83,420` total tokens before interrupt, explaining the unexpectedly high spend.
 
-Main issue with Google/Gemini:
+Decision:
 
-- Google Cloud advertises a $300/90-day free trial credit, but Gemini API billing details are not simple enough to assume this covers a serious Gemini Computer Use run.
-- Gemini API pricing indicates no free tier for Gemini 2.5 Computer Use Preview.
-- Before submitting jobs, billing/quota must be verified in the actual Google Cloud/Vertex project.
+- Do not run larger paid Gemini jobs on live Google Forms yet.
+- Treat live Google Forms submission as blocked by provider/platform safety policy; do not try to bypass it.
+- Fill-only live Google Forms can be used as evidence that entry interaction may work, but it changes the task definition and must be labeled as fill-only/no-submit.
+- Best thesis-defensible route for a larger proprietary pilot is a controlled local Google-Forms-style page: Gemini still uses screenshots and browser actions, but submissions are local and do not hit Google Forms platform automation controls.
+- If any more paid live-Google-Forms probes are needed, cap at `8-12` max steps, keep `INCLUDE_CONTROLS=0` by default, and stop as soon as local verification reaches the target threshold.
 
-Candidate proprietary comparators:
+Follow-up on 2026-07-09:
 
-- OpenAI Computer Use: likely strongest proprietary comparator because its screenshot/action loop is close to OpenCUA Native.
-- Gemini 2.5 Computer Use: relevant browser-computer-use comparator, especially if supervisor wants a Google-backed model, but billing/quota risk must be resolved.
-- Anthropic Claude Computer Use: also relevant, but likely requires a new native computer-use integration path.
-- Amazon Nova Act: possible browser-agent comparator, but lower priority unless access and documentation are straightforward.
+- Additional Gemini live-Google-Forms probes confirm that waiting until off-peak reduces provider-capacity failures but does not solve form-completion quality.
+- Daytime one-form probes on `conference_travel/run_0002` repeatedly hit provider capacity or read-timeout failures:
+  - `gemini_35_flash_fill_only_done_single_step32_20260708`: `provider_capacity_error`, `0` actions, `0/10`, `0` tokens.
+  - `gemini_35_flash_fill_only_done_single_step32_retry_20260708`: `provider_capacity_error`, `0` actions, `0/10`, `0` tokens.
+  - `gemini_35_flash_fill_only_done_single_step32_retry2_20260708`: `provider_capacity_error`, `0` actions, `0/10`, `0` tokens.
+  - `gemini_35_flash_fill_only_done_step24_probe_20260702`: reached `7/10` after `21` actions and `35,845` tokens, then failed on a provider read timeout.
+  - `gemini_35_flash_fill_only_done_controls_probe_20260702`: reached `4/10` after `9` actions and `18,309` tokens, then failed on provider high demand.
+- Overnight probe `gemini_35_flash_fill_only_done_overnight_step32_20260708` avoided provider-capacity failure but still did not complete the first form:
+  - Form/run: `conference_travel/run_0002`.
+  - Result: `7/10` verified correct, `32` actions, `max_steps_exceeded`, `submit_success=false`.
+  - Token metadata: `53,634` total tokens, lower-bound cost estimate `$0.080451` / `EUR 0.074819`.
+  - Missed/incorrect fields: preferred travel mode remained the full option text rather than `Car`; preferred departure time was not filled; additional travel notes remained empty.
+- Interpretation: Gemini can fill many simple fields on live Google Forms but remains unreliable on Google Forms-specific controls and long scrolling forms. The main blocker is now UI/task performance and cost, not only provider high demand.
+- Recommendation: stop expanding live-Google-Forms Gemini runs for the thesis. Keep the Gemini evidence as a feasibility/negative pilot and, if a proprietary comparison is still needed, move it to a controlled local Google-Forms-style clone or omit the proprietary condition rather than spending more time and money on live Google Forms.
 
-Recommended next step:
+Open-source fill-only comparison status from the same follow-up:
 
-- Build a deterministic sample manifest for 30-50 shared form-run pairs.
-- Run a 5-form proprietary smoke first.
-- Only then run the sampled comparison and analyze paired results against the current thesis conditions.
+- `opencua_direct_mcp_fill_only_done_10_seed20260702_r2_step32` produced `10` summaries with `1/10` full success; average verified correctness was about `5.1` fields per form. This condition is usable as a local open-source fill-only/DONE diagnostic, but it is not directly comparable to Gemini native Computer Use without labeling the interface difference.
+- `qwen_direct_mcp_fill_only_done_10_seed20260702_r2_step32` produced no summaries because job `2269411` failed before trials with an environment/library issue: `.venv-opencua/bin/python` could not load `libpython3.12.so.1.0`. This is an execution-environment failure, not a model-result failure.
+
+Comparator framing:
+
+- Label the current condition as `Gemini 3.5 Flash native Computer Use, low-token prompt`.
+- Compare native proprietary computer use against native OpenCUA separately from direct-MCP Qwen conditions; fairness means each model receives a competent interface for its intended operating mode, not identical prompt text.
+- Use a shared 30-form sample only after the one-form local-page token/cost measurement is available.
+
+30-form fill-only/DONE comparison launch on 2026-07-09:
+
+- Added fixed 30-form sample manifest `configs/baselines/fill_only_done_30_seed20260709.json` and runner `scripts/run_fill_only_done_30form_eval.sh`.
+- Task mode: `fill_only_done`; all models fill visible fields but must not submit. Success is local field-value verification, with `submit_success=false`.
+- Seed/run: seed `20260709`, `run_0002`, step cap `32`.
+- Forms: `alumni_checkin`, `bug_report`, `conference_travel`, `course_enrollment`, `course_feedback`, `data_annotation`, `dataset_request`, `event_rsvp`, `exam_registration`, `hackathon_signup`, `housing_preference`, `job_fair`, `language_exchange`, `library_membership`, `meal_plan`, `newsletter_signup`, `office_hours`, `orientation_signup`, `paper_review`, `project_update`, `publication_submission`, `room_booking`, `scholarship_interest`, `sports_tournament`, `study_group_match`, `survey_consent`, `technical_support`, `usability_test`, `volunteer_shift`, `workshop_signup`.
+- Gemini condition: `gemini_35_flash_fill_only_done_30_seed20260709_r2_step32`, model `computer_use_gemini_35_flash_lowcost`, `FILL_ONLY=1`, `INCLUDE_CONTROLS=0`, `DIRECT_MAX_STEPS=32`. Submitted as Slurm job `2292319` with `--begin=23:00` to avoid daytime provider high-demand errors.
+- Qwen direct-MCP condition: `qwen_direct_mcp_fill_only_done_30_seed20260709_r2_step32`, models `text_qwen3_30b_a3b_instruct_2507` and `vlm_qwen3_vl_30b_a3b_instruct`, `FILL_ONLY_DONE=1`, `DIRECT_MCP_MAX_STEPS=32`. Submitted as Slurm job `2292320`.
+- OpenCUA direct-MCP condition: `opencua_direct_mcp_fill_only_done_30_seed20260709_r2_step32`, model `computer_use_opencua_32b_direct_mcp`, `FILL_ONLY_DONE=1`, `DIRECT_MCP_MAX_STEPS=32`. Submitted as Slurm job `2292321`.
+- Native OpenCUA `computer_use_opencua_32b` remains excluded because the native path is not usable for this comparison.
+- Implementation note: `scripts/run_qwen_direct_mcp_matrix.sh` now runs CUDA preflight and vLLM startup with the module `LD_LIBRARY_PATH` needed by `.venv-opencua`, while keeping the harness Python path clean. This addresses the previous `libpython3.12.so.1.0` pre-trial failure.
+- Pre-submit checks passed: shell syntax for the edited wrappers, Gemini/direct-MCP unit tests (`35` tests), and validation that all `30` sampled forms have `run_0002` answer files.
+- Initial scheduler state after submission: job `2292319` pending on `BeginTime`, job `2292320` pending on `Resources`, job `2292321` pending on `Priority`.
+- User requested immediate Gemini execution after the delayed submission. Cancelled delayed Gemini job `2292319` and resubmitted the same Gemini condition without `--begin` as job `2292504` at `2026-07-09T20:52:31Z`. Initial state after resubmission: job `2292504` pending on `Resources`; Qwen job `2292320` running on `i8015`.
 
 ## 2026-06-09 Target-300 Chain Update
 
