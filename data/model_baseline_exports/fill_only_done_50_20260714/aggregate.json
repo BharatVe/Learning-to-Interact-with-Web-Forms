@@ -1,0 +1,102 @@
+[
+  {
+    "model": "Gemini 3.5 Flash",
+    "model_id": "computer_use_gemini_35_flash_lowcost",
+    "usable_forms": 50,
+    "target_forms": 50,
+    "missing_forms": [],
+    "full_fill_successes": 12,
+    "verified_correctness": 296,
+    "question_total": 409,
+    "correctness_pct": 72.37,
+    "model_actions": 1382,
+    "average_actions": 27.64,
+    "total_tokens": 2239460,
+    "estimated_usd_lower_bound": 3.359188,
+    "stop_reasons": {
+      "done_incomplete_fill_only": 10,
+      "filled_without_submit": 12,
+      "max_steps_exceeded": 28
+    },
+    "unusable_artifacts": 0
+  },
+  {
+    "model": "OpenCUA direct-MCP",
+    "model_id": "computer_use_opencua_32b_direct_mcp",
+    "usable_forms": 50,
+    "target_forms": 50,
+    "missing_forms": [],
+    "full_fill_successes": 15,
+    "verified_correctness": 290,
+    "question_total": 409,
+    "correctness_pct": 70.9,
+    "model_actions": 684,
+    "average_actions": 13.68,
+    "total_tokens": 0,
+    "estimated_usd_lower_bound": 0.0,
+    "stop_reasons": {
+      "done_incomplete_fill_only": 29,
+      "filled_without_submit": 15,
+      "max_steps_exceeded": 5,
+      "timeout": 1
+    },
+    "unusable_artifacts": 0
+  },
+  {
+    "model": "Qwen3 Text",
+    "model_id": "text_qwen3_30b_a3b_instruct_2507",
+    "usable_forms": 50,
+    "target_forms": 50,
+    "missing_forms": [],
+    "full_fill_successes": 8,
+    "verified_correctness": 248,
+    "question_total": 409,
+    "correctness_pct": 60.64,
+    "model_actions": 577,
+    "average_actions": 11.54,
+    "total_tokens": 0,
+    "estimated_usd_lower_bound": 0.0,
+    "stop_reasons": {
+      "done_incomplete_fill_only": 33,
+      "filled_without_submit": 8,
+      "max_steps_exceeded": 2,
+      "model_no_tool_calls": 1,
+      "timeout": 6
+    },
+    "unusable_artifacts": 0
+  },
+  {
+    "model": "Qwen3-VL",
+    "model_id": "vlm_qwen3_vl_30b_a3b_instruct",
+    "usable_forms": 39,
+    "target_forms": 50,
+    "missing_forms": [
+      "conference_travel",
+      "purchase_request",
+      "seminar_proposal",
+      "survey_consent",
+      "technical_support",
+      "thesis_meeting",
+      "travel_reimbursement",
+      "usability_test",
+      "volunteer_shift",
+      "wellbeing_check",
+      "workshop_signup"
+    ],
+    "full_fill_successes": 8,
+    "verified_correctness": 222,
+    "question_total": 318,
+    "correctness_pct": 69.81,
+    "model_actions": 478,
+    "average_actions": 12.26,
+    "total_tokens": 0,
+    "estimated_usd_lower_bound": 0.0,
+    "stop_reasons": {
+      "done_incomplete_fill_only": 26,
+      "filled_without_submit": 8,
+      "max_steps_exceeded": 4,
+      "timeout": 1
+    },
+    "unusable_artifacts": 3
+  }
+]

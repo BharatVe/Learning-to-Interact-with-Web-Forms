@@ -152,6 +152,11 @@ models/
 .node-tools/
 data/model_baselines/
 
+# Compact evaluation exports are intentionally suitable for Git/GitHub.
+# Raw screenshots, videos, and model traces remain ignored above.
+!data/model_baseline_exports/
+!data/model_baseline_exports/**
+
 # Generated run artifacts (keep lightweight reference metadata trackable)
 data/forms/**/runs/run_*/*
 !data/forms/**/runs/run_*/annotations.json

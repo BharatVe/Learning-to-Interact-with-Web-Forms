@@ -152,6 +152,29 @@ Comparator framing:
 - Initial scheduler state after submission: job `2292319` pending on `BeginTime`, job `2292320` pending on `Resources`, job `2292321` pending on `Priority`.
 - User requested immediate Gemini execution after the delayed submission. Cancelled delayed Gemini job `2292319` and resubmitted the same Gemini condition without `--begin` as job `2292504` at `2026-07-09T20:52:31Z`. Initial state after resubmission: job `2292504` pending on `Resources`; Qwen job `2292320` running on `i8015`.
 
+## 2026-07-13 50-Form Fill-Only/DONE Completion
+
+- Added `configs/baselines/fill_only_done_50_completion_20260713.json` and `scripts/run_fill_only_done_50form_completion.sh` to extend the fixed run-2 comparison from 30 forms to the full 50-form corpus.
+- Existing usable work is preserved: Gemini and OpenCUA keep their earlier 30-form artifacts. OpenCUA runs only the 20 newly added forms. Gemini runs those 20 plus retries the six earlier non-usable attempts (`alumni_checkin`, `bug_report`, `conference_travel`, `hackathon_signup`, `orientation_signup`, `technical_support`).
+- Qwen must run all 50 forms for both the text and VLM conditions because job `2292320` produced zero trial summaries.
+- Qwen root-cause update: the earlier `libpython3.12.so.1.0` problem was fixed, but job `2292320` hit a readiness race. The text model became healthy after about `30m36s`, just after the launcher's `30m` readiness limit. Its vLLM children then outlived the failed launcher until Slurm's `24h` wall-time limit.
+- Qwen fix: raise the default vLLM readiness allowance from `30m` to `70m`, start vLLM in a separate process group, and terminate the whole group during cleanup.
+- Comparison contract remains `fill_only_done`, `run_0002`, maximum `32` steps, and no form submission. Gemini remains in compact mode with `INCLUDE_CONTROLS=0`.
+- Validation passed: JSON parsing, shell syntax, all 50 forms have `run_0002` answers, and `35` focused Gemini/Qwen unit tests.
+- Planned scheduler start: `2026-07-13 23:30` Europe/Berlin for Gemini completion, Qwen 50-form text+VLM, and OpenCUA direct-MCP 20-form top-up.
+- Initial submissions `2296095`, `2296096`, and `2296097` were cancelled while still pending after detecting that an intermediate shell variable could expand the inherited `FORM_IDS` value incorrectly; no trials ran.
+- Corrected delayed submissions: Gemini job `2296098`, Qwen job `2296099`, and OpenCUA direct-MCP job `2296100`. Scheduler verification showed all three `PENDING (BeginTime)` with `StartTime=2026-07-13T23:30:00`.
+
+## 2026-07-14 50-Form Results and Qwen3-VL Top-Up
+
+- Gemini job `2296098` completed all `26` completion/retry trials. Combined with the usable prior batch, Gemini has `50/50` forms, `12/50` full fills, and `296/409` verified fields.
+- OpenCUA direct-MCP job `2296100` completed all `20` top-up trials. Combined coverage is `50/50` forms, `15/50` full fills, and `290/409` verified fields.
+- Qwen job `2296099` ended as Slurm `NODE_FAIL` after Qwen Text completed `50/50` forms and Qwen3-VL produced `42` summaries. Qwen3-VL has `39` usable results, three context-limit errors, and eight forms interrupted before summary creation.
+- Added `QWEN_MODEL_IDS` filtering to `scripts/run_qwen_direct_mcp_matrix.sh` so a VLM-only top-up does not rerun Qwen Text.
+- Submitted VLM-only top-up job `2298494` for the `11` missing/unusable forms, experiment `qwen_vlm_fill_only_done_50_topup11_20260714_r2_step32`, with `DIRECT_MCP_VLM_MAX_NEW_TOKENS=768` to avoid the prior 32,768-token context overflow. Initial scheduler state: `PENDING`.
+- Added a compact, GitHub-trackable export at `data/model_baseline_exports/fill_only_done_50_20260714/`, containing `README.md`, `aggregate.json`, and `trials.csv`. Raw screenshots, videos, and model traces remain ignored because the three raw experiment directories total roughly `7 GB`.
+- Added `scripts/export_fill_only_done_50_results.py` to regenerate the compact export after the VLM top-up completes.
+
 ## 2026-06-09 Target-300 Chain Update
 
 Implementation changes:

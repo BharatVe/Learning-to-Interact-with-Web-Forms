@@ -43,6 +43,7 @@ DIRECT_MCP_TIMEOUT_S="${DIRECT_MCP_TIMEOUT_S:-1800}"
 DIRECT_MCP_MAX_STEPS="${DIRECT_MCP_MAX_STEPS:-128}"
 DIRECT_MCP_TEXT_MAX_NEW_TOKENS="${DIRECT_MCP_TEXT_MAX_NEW_TOKENS:-1024}"
 DIRECT_MCP_VLM_MAX_NEW_TOKENS="${DIRECT_MCP_VLM_MAX_NEW_TOKENS:-1024}"
+QWEN_MODEL_IDS="${QWEN_MODEL_IDS:-}"
 BROWSER_MCP_TIMEOUT_MS="${BROWSER_MCP_TIMEOUT_MS:-600000}"
 FAIL_ON_TRIAL_FAILURE="${FAIL_ON_TRIAL_FAILURE:-0}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
@@ -53,7 +54,7 @@ CUDA_PREFLIGHT_PYTHON_BIN="${CUDA_PREFLIGHT_PYTHON_BIN:-$ROOT_DIR/.venv-opencua/
 MEDIATED_VLLM_HOST="${MEDIATED_VLLM_HOST:-127.0.0.1}"
 MEDIATED_TEXT_VLLM_PORT="${MEDIATED_TEXT_VLLM_PORT:-8010}"
 MEDIATED_VLM_VLLM_PORT="${MEDIATED_VLM_VLLM_PORT:-8011}"
-MEDIATED_VLLM_STARTUP_ATTEMPTS="${MEDIATED_VLLM_STARTUP_ATTEMPTS:-180}"
+MEDIATED_VLLM_STARTUP_ATTEMPTS="${MEDIATED_VLLM_STARTUP_ATTEMPTS:-420}"
 MEDIATED_VLLM_STARTUP_SLEEP_S="${MEDIATED_VLLM_STARTUP_SLEEP_S:-10}"
 MEDIATED_VLLM_GPU_MEMORY_UTILIZATION="${MEDIATED_VLLM_GPU_MEMORY_UTILIZATION:-0.92}"
 OPENAI_API_KEY="${OPENAI_API_KEY:-EMPTY}"
@@ -98,10 +99,11 @@ else
 fi
 IFS=',' read -r -a RUN_INDEX_LIST <<<"$RUN_INDEXES"
 
-mapfile -t MODEL_ROWS < <("$PYTHON_BIN" - "$CONFIG_PATH" <<'PY_MODELS'
+mapfile -t MODEL_ROWS < <("$PYTHON_BIN" - "$CONFIG_PATH" "$QWEN_MODEL_IDS" <<'PY_MODELS'
 import json, sys
 from pathlib import Path
 cfg = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+selected = {item.strip() for item in sys.argv[2].split(",") if item.strip()}
 for model in cfg.get("models", []):
     if not isinstance(model, dict):
         continue
@@ -110,6 +112,8 @@ for model in cfg.get("models", []):
     if str(model.get("provider") or "") != "openai_compat":
         continue
     if str(model.get("kind") or "") not in {"text_llm", "vlm"}:
+        continue
+    if selected and str(model.get("id") or "").strip() not in selected:
         continue
     print("|".join([
         str(model.get("id") or "").strip(),
@@ -155,7 +159,10 @@ PY_CUDA
 
 cleanup_server() {
   if [ -n "$SERVER_PID" ] && kill -0 "$SERVER_PID" >/dev/null 2>&1; then
-    kill "$SERVER_PID" >/dev/null 2>&1 || true
+    # The vLLM API server starts worker children. Terminate the complete
+    # process group so a failed readiness check cannot leave an orphaned
+    # server holding the Slurm allocation until its wall-time limit.
+    kill -TERM -- "-$SERVER_PID" >/dev/null 2>&1 || kill "$SERVER_PID" >/dev/null 2>&1 || true
     wait "$SERVER_PID" 2>/dev/null || true
   fi
   SERVER_PID=""
@@ -189,7 +196,8 @@ start_server() {
   SERVER_LOG="logs/slurm/${model_id}-direct-mcp-vllm-${SLURM_JOB_ID:-na}.log"
   echo "[INFO] starting_qwen_direct_mcp_server model_id=${model_id} model_kind=${model_kind} base_url=${OPENAI_BASE_URL}"
   cuda_preflight
-  QWEN_VLLM_PORT="$port" \
+  setsid env \
+    QWEN_VLLM_PORT="$port" \
     QWEN_VLLM_HOST="$MEDIATED_VLLM_HOST" \
     QWEN_MODEL_SPEC="$model_spec" \
     QWEN_SERVED_MODEL_NAME="$served_model_name" \
@@ -273,6 +281,7 @@ echo "[INFO] form_offset=$FORM_OFFSET"
 echo "[INFO] form_limit=$FORM_LIMIT"
 echo "[INFO] skip_completed=$SKIP_COMPLETED"
 echo "[INFO] fill_only_done=$FILL_ONLY_DONE"
+echo "[INFO] qwen_model_ids=${QWEN_MODEL_IDS:-all}"
 echo "[INFO] summary_output=$SUMMARY_OUTPUT"
 
 IFS=',' read -r -a FORMS <<<"$RESOLVED_FORM_IDS"
