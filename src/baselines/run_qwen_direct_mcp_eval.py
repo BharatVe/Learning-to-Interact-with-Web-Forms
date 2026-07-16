@@ -758,6 +758,28 @@ def _build_messages(
     return messages
 
 
+def _compact_history(history: List[Dict[str, Any]], max_turns: int) -> List[Dict[str, Any]]:
+    """Keep complete recent assistant/tool turns without splitting tool-call pairs."""
+    limit = max(0, int(max_turns))
+    if limit == 0:
+        return list(history)
+    assistant_starts = [idx for idx, message in enumerate(history) if message.get("role") == "assistant"]
+    if len(assistant_starts) <= limit:
+        return list(history)
+    start = assistant_starts[-limit]
+    omitted_turns = len(assistant_starts) - limit
+    return [
+        {
+            "role": "user",
+            "content": (
+                f"Context note: {omitted_turns} earlier browser-action turn(s) were omitted to stay within the model context window. "
+                "Treat the current observation, screenshot, remaining answers, and recent tool results as authoritative."
+            ),
+        },
+        *history[start:],
+    ]
+
+
 def _assistant_history_message(model_reply: Dict[str, Any]) -> Dict[str, Any]:
     tool_calls = model_reply.get("tool_calls") or []
     message: Dict[str, Any] = {
@@ -844,6 +866,12 @@ def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--browser-mcp-timeout-ms", type=int, default=DEFAULT_BROWSER_MCP_TIMEOUT_MS)
     parser.add_argument("--headless", action="store_true", default=False)
     parser.add_argument("--max-new-tokens", type=int)
+    parser.add_argument(
+        "--history-turns",
+        type=int,
+        default=0,
+        help="Retain only this many complete recent assistant/tool turns; 0 keeps full history.",
+    )
     parser.add_argument("--browser-mcp-cmd")
     parser.add_argument("--fill-only-done", action="store_true", default=False)
     parser.add_argument("--run-label")
@@ -993,11 +1021,12 @@ def main(argv: Optional[List[str]] = None) -> int:
                 model_visible_tool_names=sorted(step_tool_names),
                 fill_only_done=bool(args.fill_only_done),
             )
+            compacted_history = _compact_history(history, args.history_turns)
             messages = _build_messages(
                 model_kind=args.model_kind,
                 observation_text=observation_text,
                 screenshot_path=screenshot_path,
-                history=history,
+                history=compacted_history,
             )
             step_input = {
                 "phase": "step_input",
@@ -1012,6 +1041,9 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "screenshot_path": str(screenshot_path) if screenshot_path else None,
                 "prompt_char_count": len(observation_text),
                 "prompt_token_estimate": max(1, (len(observation_text) + 3) // 4),
+                "history_message_count": len(history),
+                "retained_history_message_count": len(compacted_history),
+                "history_turn_limit": args.history_turns,
                 "model_visible_tools": sorted(step_tool_names),
             }
             rbe._append_jsonl(paths["step_inputs_path"], step_input)

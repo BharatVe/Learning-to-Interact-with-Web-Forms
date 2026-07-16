@@ -68,35 +68,23 @@
   {
     "model": "Qwen3-VL",
     "model_id": "vlm_qwen3_vl_30b_a3b_instruct",
-    "usable_forms": 39,
+    "usable_forms": 50,
     "target_forms": 50,
-    "missing_forms": [
-      "conference_travel",
-      "purchase_request",
-      "seminar_proposal",
-      "survey_consent",
-      "technical_support",
-      "thesis_meeting",
-      "travel_reimbursement",
-      "usability_test",
-      "volunteer_shift",
-      "wellbeing_check",
-      "workshop_signup"
-    ],
-    "full_fill_successes": 8,
-    "verified_correctness": 222,
-    "question_total": 318,
-    "correctness_pct": 69.81,
-    "model_actions": 478,
-    "average_actions": 12.26,
+    "missing_forms": [],
+    "full_fill_successes": 11,
+    "verified_correctness": 283,
+    "question_total": 409,
+    "correctness_pct": 69.19,
+    "model_actions": 714,
+    "average_actions": 14.28,
     "total_tokens": 0,
     "estimated_usd_lower_bound": 0.0,
     "stop_reasons": {
-      "done_incomplete_fill_only": 26,
-      "filled_without_submit": 8,
-      "max_steps_exceeded": 4,
+      "done_incomplete_fill_only": 29,
+      "filled_without_submit": 11,
+      "max_steps_exceeded": 9,
       "timeout": 1
     },
-    "unusable_artifacts": 3
+    "unusable_artifacts": 0
   }
 ]

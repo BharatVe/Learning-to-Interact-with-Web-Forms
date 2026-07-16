@@ -30,6 +30,7 @@ EXPERIMENTS = [
     "opencua_direct_mcp_fill_only_done_50_topup20_20260713_r2_step32",
     "qwen_direct_mcp_fill_only_done_50_20260713_r2_step32",
     "qwen_vlm_fill_only_done_50_topup11_20260714_r2_step32",
+    "qwen_vlm_fill_only_done_50_history2_topup4_20260715_r2_step32",
 ]
 
 INFRA_STOP_REASONS = {"provider_capacity_error", "model_inference_failed"}
@@ -181,7 +182,7 @@ def main() -> None:
     OUTPUT.mkdir(parents=True, exist_ok=True)
     csv_rows = [csv_row(row) for row in rows]
     with (OUTPUT / "trials.csv").open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(csv_rows[0]))
+        writer = csv.DictWriter(handle, fieldnames=list(csv_rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(csv_rows)
     aggregates = aggregate(rows, all_forms)

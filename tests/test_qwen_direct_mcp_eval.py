@@ -430,6 +430,24 @@ class QwenDirectMCPEvalTests(TestCase):
         self.assertEqual(message["tool_calls"][0]["function"]["name"], "browser_click")
         self.assertEqual(message["tool_calls"][0]["function"]["arguments"], "{\"x\": 12, \"y\": 30}")
 
+    def test_compact_history_keeps_complete_recent_tool_turns(self):
+        history = [
+            {"role": "assistant", "tool_calls": [{"id": "call_1"}]},
+            {"role": "tool", "tool_call_id": "call_1", "content": "old"},
+            {"role": "assistant", "tool_calls": [{"id": "call_2"}]},
+            {"role": "tool", "tool_call_id": "call_2", "content": "recent"},
+            {"role": "assistant", "tool_calls": [{"id": "call_3"}]},
+            {"role": "tool", "tool_call_id": "call_3", "content": "latest"},
+        ]
+        compacted = qwen_direct_mcp_eval._compact_history(history, 2)
+        self.assertEqual(compacted[0]["role"], "user")
+        self.assertIn("1 earlier browser-action turn", compacted[0]["content"])
+        self.assertEqual(compacted[1:], history[2:])
+
+    def test_compact_history_zero_preserves_full_history(self):
+        history = [{"role": "assistant", "content": "DONE"}]
+        self.assertEqual(qwen_direct_mcp_eval._compact_history(history, 0), history)
+
     def test_normalize_tool_arguments_removes_non_documented_click_fields(self):
         normalized = qwen_direct_mcp_eval._normalize_tool_arguments(
             "browser_click",

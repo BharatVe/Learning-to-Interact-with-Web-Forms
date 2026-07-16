@@ -44,6 +44,7 @@ DIRECT_MCP_MAX_STEPS="${DIRECT_MCP_MAX_STEPS:-128}"
 DIRECT_MCP_TEXT_MAX_NEW_TOKENS="${DIRECT_MCP_TEXT_MAX_NEW_TOKENS:-1024}"
 DIRECT_MCP_VLM_MAX_NEW_TOKENS="${DIRECT_MCP_VLM_MAX_NEW_TOKENS:-1024}"
 QWEN_MODEL_IDS="${QWEN_MODEL_IDS:-}"
+DIRECT_MCP_HISTORY_TURNS="${DIRECT_MCP_HISTORY_TURNS:-0}"
 BROWSER_MCP_TIMEOUT_MS="${BROWSER_MCP_TIMEOUT_MS:-600000}"
 FAIL_ON_TRIAL_FAILURE="${FAIL_ON_TRIAL_FAILURE:-0}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
@@ -282,6 +283,7 @@ echo "[INFO] form_limit=$FORM_LIMIT"
 echo "[INFO] skip_completed=$SKIP_COMPLETED"
 echo "[INFO] fill_only_done=$FILL_ONLY_DONE"
 echo "[INFO] qwen_model_ids=${QWEN_MODEL_IDS:-all}"
+echo "[INFO] direct_mcp_history_turns=$DIRECT_MCP_HISTORY_TURNS"
 echo "[INFO] summary_output=$SUMMARY_OUTPUT"
 
 IFS=',' read -r -a FORMS <<<"$RESOLVED_FORM_IDS"
@@ -330,6 +332,7 @@ PY_TRIAL
         --timeout-s "$DIRECT_MCP_TIMEOUT_S"
         --max-steps "$DIRECT_MCP_MAX_STEPS"
         --max-new-tokens "$model_tokens"
+        --history-turns "$DIRECT_MCP_HISTORY_TURNS"
         --browser-mcp-timeout-ms "$BROWSER_MCP_TIMEOUT_MS"
         --headless
       )

@@ -9,7 +9,7 @@ No form was submitted. `full_fill_successes` means the visible fields were verif
 | Gemini 3.5 Flash | 50/50 | 12/50 | 296/409 (72.37%) | 1382 |
 | OpenCUA direct-MCP | 50/50 | 15/50 | 290/409 (70.90%) | 684 |
 | Qwen3 Text | 50/50 | 8/50 | 248/409 (60.64%) | 577 |
-| Qwen3-VL | 39/50 | 8/39 | 222/318 (69.81%) | 478 |
+| Qwen3-VL | 50/50 | 11/50 | 283/409 (69.19%) | 714 |
 
 ## Files
 
