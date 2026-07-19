@@ -1,0 +1,13 @@
+model,position_bucket,target_fields,correct_fields,missed_fields,correctness_pct,failure_rate_pct
+Gemini 3.5 Flash,first third,134,129,5,96.27,3.73
+Gemini 3.5 Flash,middle third,141,106,35,75.18,24.82
+Gemini 3.5 Flash,final third,134,61,73,45.52,54.48
+OpenCUA direct-MCP,first third,134,82,52,61.19,38.81
+OpenCUA direct-MCP,middle third,141,86,55,60.99,39.01
+OpenCUA direct-MCP,final third,134,122,12,91.04,8.96
+Qwen3 Text,first third,134,98,36,73.13,26.87
+Qwen3 Text,middle third,141,87,54,61.7,38.3
+Qwen3 Text,final third,134,63,71,47.01,52.99
+Qwen3-VL,first third,134,96,38,71.64,28.36
+Qwen3-VL,middle third,141,97,44,68.79,31.21
+Qwen3-VL,final third,134,90,44,67.16,32.84

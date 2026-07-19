@@ -1,0 +1,5 @@
+model,form_group,forms,target_fields,correct_fields_raw,raw_field_correctness_pct,non_dropdown_targets,non_dropdown_correct,non_dropdown_field_correctness_pct,dropdown_targets_unresolved,raw_full_fills,raw_full_fill_rate_pct,non_dropdown_complete_forms,non_dropdown_complete_rate_pct
+Gemini 3.5 Flash,forms_without_dropdown,25,200,163,81.5,200,163,81.5,0,12,48.0,12,48.0
+OpenCUA direct-MCP,forms_without_dropdown,25,200,148,74.0,200,148,74.0,0,15,60.0,15,60.0
+Qwen3 Text,forms_without_dropdown,25,200,136,68.0,200,136,68.0,0,8,32.0,8,32.0
+Qwen3-VL,forms_without_dropdown,25,200,144,72.0,200,144,72.0,0,11,44.0,11,44.0

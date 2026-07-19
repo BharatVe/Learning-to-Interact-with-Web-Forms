@@ -1,0 +1,5 @@
+model,total_missed_fields,dominant_behavioral_failure,dominant_behavioral_failure_count,dominant_behavioral_share_of_misses_pct,attempted_but_blank_count,attempted_but_blank_share_pct,expected_embedded_in_wrong_value_count,expected_embedded_in_wrong_value_share_pct,not_attempted_count,not_attempted_share_pct,option_container_text_count,option_container_text_share_pct,partial_multi_choice_count,partial_multi_choice_share_pct,wrong_multi_choice_count,wrong_multi_choice_share_pct,wrong_value_count,wrong_value_share_pct
+Gemini 3.5 Flash,113,attempted_but_blank,44,38.94,44,38.94,0,0.0,43,38.05,22,19.47,0,0.0,0,0.0,4,3.54
+OpenCUA direct-MCP,119,not_attempted,94,78.99,1,0.84,0,0.0,94,78.99,22,18.49,1,0.84,0,0.0,1,0.84
+Qwen3 Text,161,not_attempted,114,70.81,20,12.42,0,0.0,114,70.81,24,14.91,1,0.62,0,0.0,2,1.24
+Qwen3-VL,126,not_attempted,97,76.98,3,2.38,1,0.79,97,76.98,21,16.67,1,0.79,1,0.79,2,1.59

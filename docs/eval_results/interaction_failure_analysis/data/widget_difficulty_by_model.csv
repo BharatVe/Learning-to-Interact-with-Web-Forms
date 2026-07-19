@@ -1,0 +1,29 @@
+model,widget_type,target_fields,correct_fields,missed_fields,correctness_pct,failure_rate_pct
+Gemini 3.5 Flash,dropdown,25,0,25,0.0,100.0
+Gemini 3.5 Flash,time,29,9,20,31.03,68.97
+Gemini 3.5 Flash,paragraph_text,45,23,22,51.11,48.89
+Gemini 3.5 Flash,multi_choice,48,38,10,79.17,20.83
+Gemini 3.5 Flash,date,44,35,9,79.55,20.45
+Gemini 3.5 Flash,single_choice,77,65,12,84.42,15.58
+Gemini 3.5 Flash,short_text,141,126,15,89.36,10.64
+OpenCUA direct-MCP,dropdown,25,0,25,0.0,100.0
+OpenCUA direct-MCP,short_text,141,91,50,64.54,35.46
+OpenCUA direct-MCP,multi_choice,48,36,12,75.0,25.0
+OpenCUA direct-MCP,single_choice,77,58,19,75.32,24.68
+OpenCUA direct-MCP,time,29,24,5,82.76,17.24
+OpenCUA direct-MCP,date,44,40,4,90.91,9.09
+OpenCUA direct-MCP,paragraph_text,45,41,4,91.11,8.89
+Qwen3 Text,dropdown,25,0,25,0.0,100.0
+Qwen3 Text,time,29,9,20,31.03,68.97
+Qwen3 Text,multi_choice,48,24,24,50.0,50.0
+Qwen3 Text,date,44,28,16,63.64,36.36
+Qwen3 Text,paragraph_text,45,29,16,64.44,35.56
+Qwen3 Text,single_choice,77,51,26,66.23,33.77
+Qwen3 Text,short_text,141,107,34,75.89,24.11
+Qwen3-VL,dropdown,25,0,25,0.0,100.0
+Qwen3-VL,time,29,12,17,41.38,58.62
+Qwen3-VL,single_choice,77,55,22,71.43,28.57
+Qwen3-VL,short_text,141,105,36,74.47,25.53
+Qwen3-VL,multi_choice,48,36,12,75.0,25.0
+Qwen3-VL,paragraph_text,45,37,8,82.22,17.78
+Qwen3-VL,date,44,38,6,86.36,13.64

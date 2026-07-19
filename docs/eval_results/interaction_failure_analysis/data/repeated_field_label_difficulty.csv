@@ -1,0 +1,313 @@
+label,widget_type,observations,missed_fields,failure_rate_pct,forms
+Full name,short_text,128,24,18.75,32
+Email address,short_text,96,20,20.83,24
+Preferred meeting time,time,28,13,46.43,7
+Preferred start time,time,16,9,56.25,4
+Contact email,short_text,44,7,15.91,11
+Abstract or short summary,paragraph_text,4,4,100.0,1
+Activities you are interested in,multi_choice,4,4,100.0,1
+Approximate total amount,short_text,4,4,100.0,1
+Collaboration rating,dropdown,4,4,100.0,1
+Current study level,dropdown,4,4,100.0,1
+DOI or URL,short_text,4,4,100.0,1
+Dataset requested,dropdown,4,4,100.0,1
+Device or browser used,dropdown,4,4,100.0,1
+Email frequency,dropdown,4,4,100.0,1
+Equipment category,dropdown,4,4,100.0,1
+Event type,dropdown,4,4,100.0,1
+Expected number of attendees,short_text,4,4,100.0,1
+Expected remote work duration,dropdown,4,4,100.0,1
+Experiment type,dropdown,4,4,100.0,1
+Feedback area,dropdown,4,4,100.0,1
+Issue category,dropdown,4,4,100.0,1
+Issue type,dropdown,4,4,100.0,1
+Keywords,short_text,4,4,100.0,1
+Lab area you need access to,dropdown,4,4,100.0,1
+Number of papers you can review,dropdown,4,4,100.0,1
+Participation mode preferred,dropdown,4,4,100.0,1
+Preferred annotation task,dropdown,4,4,100.0,1
+Preferred contact time,time,4,4,100.0,1
+Preferred course,dropdown,4,4,100.0,1
+Preferred meeting time for interview,time,4,4,100.0,1
+Preferred travel mode,dropdown,4,4,100.0,1
+Previous club experience,single_choice,4,4,100.0,1
+Publication type,dropdown,4,4,100.0,1
+Purchase category,dropdown,4,4,100.0,1
+Research area,multi_choice,4,4,100.0,1
+Should this be shown publicly?,single_choice,4,4,100.0,1
+Software or platform requested,dropdown,4,4,100.0,1
+Sport,dropdown,4,4,100.0,1
+Thesis stage,dropdown,4,4,100.0,1
+Topic category,dropdown,4,4,100.0,1
+Trip option,dropdown,4,4,100.0,1
+Venue needs,multi_choice,4,4,100.0,1
+Why do you want to join?,paragraph_text,4,4,100.0,1
+Available start date,date,8,4,50.0,2
+Requester name,short_text,8,4,50.0,2
+Preferred arrival time,time,12,4,33.33,3
+Anything you want to note?,paragraph_text,4,3,75.0,1
+Are you currently looking for a job?,single_choice,4,3,75.0,1
+Are you open to remote work?,single_choice,4,3,75.0,1
+Bank account holder name,short_text,4,3,75.0,1
+Brief motivation statement,paragraph_text,4,3,75.0,1
+Budget source known?,single_choice,4,3,75.0,1
+Career interests,multi_choice,4,3,75.0,1
+Catering or food planned?,single_choice,4,3,75.0,1
+Comments about task preference,paragraph_text,4,3,75.0,1
+Course name,short_text,4,3,75.0,1
+Current study level,single_choice,4,3,75.0,1
+Department or project,short_text,4,3,75.0,1
+Did you attend most sessions?,single_choice,4,3,75.0,1
+Earliest start date,date,4,3,75.0,1
+Expense categories claimed,multi_choice,4,3,75.0,1
+IBAN,short_text,4,3,75.0,1
+Link to GitHub or portfolio,short_text,4,3,75.0,1
+Mobility or accessibility notes,paragraph_text,4,3,75.0,1
+Needed by date,date,4,3,75.0,1
+Participant group,single_choice,4,3,75.0,1
+Participant name,short_text,4,3,75.0,1
+Participation type,single_choice,4,3,75.0,1
+Preferred departure time,time,4,3,75.0,1
+Preferred event date,date,4,3,75.0,1
+Preferred lab session time,time,4,3,75.0,1
+Preferred match time,time,4,3,75.0,1
+Preferred presentation time,time,4,3,75.0,1
+Preferred time for a check-in call,time,4,3,75.0,1
+Preferred work time,time,4,3,75.0,1
+Prior participation in similar studies,single_choice,4,3,75.0,1
+Proposed seminar title,short_text,4,3,75.0,1
+Purpose of booking,paragraph_text,4,3,75.0,1
+Reason for purchase,paragraph_text,4,3,75.0,1
+Topic area,single_choice,4,3,75.0,1
+Transport mode,single_choice,4,3,75.0,1
+Urgency level,single_choice,4,3,75.0,1
+Weekly availability,short_text,4,3,75.0,1
+Weekly availability (hours),short_text,4,3,75.0,1
+Your program level,single_choice,4,3,75.0,1
+Equipment needed,multi_choice,8,3,37.5,2
+Preferred session time,time,8,3,37.5,2
+University or organization,short_text,8,3,37.5,2
+Dietary restrictions,multi_choice,12,3,25.0,3
+Accommodation preferences,multi_choice,4,2,50.0,1
+Additional travel notes,paragraph_text,4,2,50.0,1
+Affiliation,short_text,4,2,50.0,1
+Annotation experience,single_choice,4,2,50.0,1
+Available match days,multi_choice,4,2,50.0,1
+Best time to contact you,time,4,2,50.0,1
+Conference end date,date,4,2,50.0,1
+Conference name,short_text,4,2,50.0,1
+Conference role,single_choice,4,2,50.0,1
+Conference start date,date,4,2,50.0,1
+Degree program,single_choice,4,2,50.0,1
+Description of the issue,paragraph_text,4,2,50.0,1
+Do you agree to cite the dataset if used?,single_choice,4,2,50.0,1
+Do you feel stressed this week?,single_choice,4,2,50.0,1
+Emergency contact number,short_text,4,2,50.0,1
+Estimated cost,short_text,4,2,50.0,1
+Event title,short_text,4,2,50.0,1
+Expected return date,date,4,2,50.0,1
+Impact level,single_choice,4,2,50.0,1
+Item name,short_text,4,2,50.0,1
+Language(s) you want to practice,multi_choice,4,2,50.0,1
+Languages comfortable with,multi_choice,4,2,50.0,1
+Main topics to discuss,multi_choice,4,2,50.0,1
+Most useful aspects,multi_choice,4,2,50.0,1
+Native language,short_text,4,2,50.0,1
+Organizer email,short_text,4,2,50.0,1
+Organizer name,short_text,4,2,50.0,1
+Pickup time,time,4,2,50.0,1
+Preferred first match date,date,4,2,50.0,1
+Preferred sync time,time,4,2,50.0,1
+Preferred trip date,date,4,2,50.0,1
+Primary area of interest,multi_choice,4,2,50.0,1
+Programming languages you use,multi_choice,4,2,50.0,1
+Promotion channels,multi_choice,4,2,50.0,1
+Purpose of checkout,paragraph_text,4,2,50.0,1
+Questions for the trainer,paragraph_text,4,2,50.0,1
+Registration type,single_choice,4,2,50.0,1
+Requested access start date,date,4,2,50.0,1
+Requester type,single_choice,4,2,50.0,1
+Session constraints,multi_choice,4,2,50.0,1
+Sessions you want to attend,multi_choice,4,2,50.0,1
+Short event description,paragraph_text,4,2,50.0,1
+Short project description,paragraph_text,4,2,50.0,1
+Skill level,single_choice,4,2,50.0,1
+Student email,short_text,4,2,50.0,1
+Study program,short_text,4,2,50.0,1
+Team name,short_text,4,2,50.0,1
+Technical constraints,paragraph_text,4,2,50.0,1
+Weekly time you can contribute,short_text,4,2,50.0,1
+Would you recommend this course?,single_choice,4,2,50.0,1
+Year of study,single_choice,4,2,50.0,1
+Current city,short_text,8,2,25.0,2
+Institutional email,short_text,8,2,25.0,2
+Activities you’re interested in,multi_choice,4,1,25.0,1
+Additional comments,paragraph_text,4,1,25.0,1
+Brief background or question,paragraph_text,4,1,25.0,1
+Comfort level speaking target language,single_choice,4,1,25.0,1
+Constructive feedback,paragraph_text,4,1,25.0,1
+Departure date,date,4,1,25.0,1
+Do you need help reviewing documents?,single_choice,4,1,25.0,1
+Expected application date,date,4,1,25.0,1
+Expected duration,single_choice,4,1,25.0,1
+Habits completed today,multi_choice,4,1,25.0,1
+Hours of sleep last night,short_text,4,1,25.0,1
+How are you feeling today?,single_choice,4,1,25.0,1
+Intended use,multi_choice,4,1,25.0,1
+May we contact you for follow-up?,single_choice,4,1,25.0,1
+Name or nickname,short_text,4,1,25.0,1
+Number of participants,short_text,4,1,25.0,1
+Preferred booking date,date,4,1,25.0,1
+Preferred format,single_choice,4,1,25.0,1
+Preferred meeting mode,single_choice,4,1,25.0,1
+Preferred paper topic,multi_choice,4,1,25.0,1
+Preferred presentation date,date,4,1,25.0,1
+Preferred time,time,4,1,25.0,1
+Preferred training date,date,4,1,25.0,1
+Publication date,date,4,1,25.0,1
+Purpose of travel,paragraph_text,4,1,25.0,1
+Question or context,paragraph_text,4,1,25.0,1
+Questions for recruiters,paragraph_text,4,1,25.0,1
+Reasons for enrolling,multi_choice,4,1,25.0,1
+Related project or course,short_text,4,1,25.0,1
+Requested start date,date,4,1,25.0,1
+Resources needed,multi_choice,4,1,25.0,1
+Return date,date,4,1,25.0,1
+Room type requested,single_choice,4,1,25.0,1
+Schedule constraints,paragraph_text,4,1,25.0,1
+Scholarship type of interest,multi_choice,4,1,25.0,1
+Short abstract,paragraph_text,4,1,25.0,1
+Skills you can contribute,multi_choice,4,1,25.0,1
+Topics you enjoy discussing,multi_choice,4,1,25.0,1
+Topics you’re interested in,multi_choice,4,1,25.0,1
+Training topics needed,multi_choice,4,1,25.0,1
+Type of issue noticed,multi_choice,4,1,25.0,1
+Urgency,single_choice,4,1,25.0,1
+What did you like most?,paragraph_text,4,1,25.0,1
+What should be improved?,paragraph_text,4,1,25.0,1
+When did the issue start?,date,4,1,25.0,1
+Would you like event reminders?,single_choice,4,1,25.0,1
+Preferred meeting date,date,16,1,6.25,4
+Access level needed,single_choice,4,0,0.0,1
+Accessibility needs or comments,paragraph_text,4,0,0.0,1
+Additional interests,paragraph_text,4,0,0.0,1
+Additional notes,paragraph_text,8,0,0.0,2
+Affected device,single_choice,4,0,0.0,1
+Age group,single_choice,4,0,0.0,1
+Allergies or intolerances,multi_choice,4,0,0.0,1
+Any additional access needs?,paragraph_text,4,0,0.0,1
+Application or module name,short_text,4,0,0.0,1
+Areas of interest,multi_choice,4,0,0.0,1
+Areas you would like to stay connected to,multi_choice,4,0,0.0,1
+Arrival date,date,4,0,0.0,1
+Author name,short_text,4,0,0.0,1
+Available dates,multi_choice,4,0,0.0,1
+Available shift(s),multi_choice,4,0,0.0,1
+Blockers or risks,multi_choice,4,0,0.0,1
+Brief bio,paragraph_text,4,0,0.0,1
+Brief introduction,paragraph_text,4,0,0.0,1
+Bug severity,single_choice,4,0,0.0,1
+Comfort level with reviewing,single_choice,4,0,0.0,1
+Comments or restrictions,paragraph_text,4,0,0.0,1
+Conflicts of interest,paragraph_text,4,0,0.0,1
+Contribution level,single_choice,4,0,0.0,1
+Course or project,short_text,4,0,0.0,1
+Course or subject,short_text,4,0,0.0,1
+Current degree level,single_choice,4,0,0.0,1
+Current level,single_choice,4,0,0.0,1
+Current progress summary,paragraph_text,4,0,0.0,1
+Current project status,single_choice,4,0,0.0,1
+Current role,single_choice,4,0,0.0,1
+Date of experience,date,4,0,0.0,1
+Date when issue occurred,date,4,0,0.0,1
+Department or group,short_text,4,0,0.0,1
+Department or program,short_text,4,0,0.0,1
+Describe the issue,paragraph_text,4,0,0.0,1
+Detailed feedback,paragraph_text,4,0,0.0,1
+Devices available,multi_choice,4,0,0.0,1
+Emergency contact name,short_text,4,0,0.0,1
+Emergency contact phone,short_text,4,0,0.0,1
+Exam date,date,4,0,0.0,1
+Exam or module name,short_text,4,0,0.0,1
+Expected behavior,paragraph_text,4,0,0.0,1
+Experience level,single_choice,4,0,0.0,1
+Field or area,single_choice,4,0,0.0,1
+Full Name,short_text,4,0,0.0,1
+Goals for mentorship,multi_choice,4,0,0.0,1
+Graduation year,short_text,4,0,0.0,1
+Group size,short_text,4,0,0.0,1
+Have you used similar tools before?,single_choice,4,0,0.0,1
+How severe was the issue?,single_choice,4,0,0.0,1
+I agree to participate,single_choice,4,0,0.0,1
+I have read the study information,single_choice,4,0,0.0,1
+Important features,multi_choice,4,0,0.0,1
+May we email you updates?,single_choice,4,0,0.0,1
+Meal preference,single_choice,4,0,0.0,1
+Membership type,single_choice,4,0,0.0,1
+Name,short_text,12,0,0.0,3
+Newsletter topics,multi_choice,4,0,0.0,1
+Next planned task,paragraph_text,4,0,0.0,1
+Number of guests (including yourself),short_text,4,0,0.0,1
+Observed behavior,paragraph_text,4,0,0.0,1
+Organization or school,short_text,4,0,0.0,1
+Orientation activities,multi_choice,4,0,0.0,1
+Overall satisfaction,single_choice,4,0,0.0,1
+Participant code or name,short_text,4,0,0.0,1
+Peer being evaluated,short_text,4,0,0.0,1
+Pickup date,date,4,0,0.0,1
+Preferred accommodation type,single_choice,4,0,0.0,1
+Preferred attendance date,date,4,0,0.0,1
+Preferred budget range,single_choice,4,0,0.0,1
+Preferred challenge track,single_choice,4,0,0.0,1
+Preferred contact email,short_text,8,0,0.0,2
+Preferred date,date,4,0,0.0,1
+Preferred dining date,date,4,0,0.0,1
+Preferred dining time,time,4,0,0.0,1
+Preferred language,single_choice,4,0,0.0,1
+Preferred move-in date,date,4,0,0.0,1
+Preferred orientation date,date,4,0,0.0,1
+Preferred session date,date,16,0,0.0,4
+Preferred study format,single_choice,4,0,0.0,1
+Preferred visit date,date,8,0,0.0,2
+Preferred volunteer date,date,4,0,0.0,1
+Preferred volunteer role,single_choice,4,0,0.0,1
+Previous research experience,paragraph_text,4,0,0.0,1
+Previous safety training completed,single_choice,4,0,0.0,1
+Previous volunteering experience,single_choice,4,0,0.0,1
+Primary role,single_choice,4,0,0.0,1
+Primary work location,single_choice,4,0,0.0,1
+Prior knowledge,single_choice,4,0,0.0,1
+Program,short_text,4,0,0.0,1
+Program level,single_choice,4,0,0.0,1
+Project group name,short_text,4,0,0.0,1
+Project name,short_text,4,0,0.0,1
+Publication title,short_text,4,0,0.0,1
+Purpose of access,paragraph_text,4,0,0.0,1
+Questions before orientation,paragraph_text,4,0,0.0,1
+Remote work start date,date,4,0,0.0,1
+Reporter name,short_text,4,0,0.0,1
+Reporting week start date,date,4,0,0.0,1
+Research areas of interest,multi_choice,4,0,0.0,1
+Resources you use most,multi_choice,4,0,0.0,1
+Review deadline preference,date,4,0,0.0,1
+Reviewer name,short_text,4,0,0.0,1
+Role,single_choice,4,0,0.0,1
+Role in the program,single_choice,4,0,0.0,1
+Specific item requested,short_text,4,0,0.0,1
+Steps to reproduce,paragraph_text,4,0,0.0,1
+Strengths observed,multi_choice,4,0,0.0,1
+Student ID,short_text,8,0,0.0,2
+Student name,short_text,8,0,0.0,2
+Student type,single_choice,4,0,0.0,1
+Tasks completed this week,paragraph_text,4,0,0.0,1
+Topics you want help with,multi_choice,4,0,0.0,1
+University ID,short_text,4,0,0.0,1
+University email,short_text,4,0,0.0,1
+Visitor name,short_text,4,0,0.0,1
+Visitor type,single_choice,4,0,0.0,1
+Which workshop track are you registering for?,single_choice,4,0,0.0,1
+Will you attend?,single_choice,4,0,0.0,1
+Workload felt,single_choice,4,0,0.0,1
+Would you attend an alumni meetup?,single_choice,4,0,0.0,1
+Would you like dessert?,single_choice,4,0,0.0,1
+Your name,short_text,4,0,0.0,1

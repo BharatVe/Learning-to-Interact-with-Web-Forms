@@ -1,0 +1,101 @@
+model,form_id,question_id,label,attempted,expected_value,recorded_actual_value,failure_subtype
+Gemini 3.5 Flash,accessibility_feedback,q_003,Feedback area,True,"""Student service""","""Choose Event Website Classroom Library Student service Other""",option_container_text
+Gemini 3.5 Flash,bug_report,q_005,Device or browser used,True,"""Safari""","""Choose Chrome Firefox Edge Safari Android app iOS app Other""",option_container_text
+Gemini 3.5 Flash,club_event_planning,q_004,Event type,True,"""Guest talk""",null,attempted_but_blank
+Gemini 3.5 Flash,conference_travel,q_007,Preferred travel mode,True,"""Car""","""Choose Train Flight Bus Car Not decided""",option_container_text
+Gemini 3.5 Flash,course_enrollment,q_004,Preferred course,True,"""Human-Computer Interaction""","""Choose Machine Learning Data Visualization Scalable Data Engineering Human-Computer Interaction Computer Vision""",option_container_text
+Gemini 3.5 Flash,data_annotation,q_005,Preferred annotation task,True,"""Quality checking""","""Choose Bounding boxes Action labels Text transcription Quality checking Metadata cleanup""",option_container_text
+Gemini 3.5 Flash,dataset_request,q_005,Dataset requested,True,"""Evaluation logs""","""Choose Form interaction videos Annotation traces Synthetic answers Evaluation logs All available datasets""",option_container_text
+Gemini 3.5 Flash,equipment_checkout,q_004,Equipment category,True,"""Projector""","""Choose Laptop Camera Microphone Sensor kit Projector Other""",option_container_text
+Gemini 3.5 Flash,exam_registration,q_006,Issue type,True,"""Other""","""Choose Registration not visible Deadline question Wrong exam listed Deregistration request Other""",option_container_text
+Gemini 3.5 Flash,experiment_booking,q_005,Experiment type,True,"""Interview""","""Choose Usability test Eye-tracking session Interview Annotation task Pilot session""",option_container_text
+Gemini 3.5 Flash,field_trip,q_005,Trip option,True,"""Company visit""","""Choose Museum visit Research institute tour Field site visit Company visit""",option_container_text
+Gemini 3.5 Flash,lab_safety,q_004,Lab area you need access to,True,"""Wet lab""","""Choose Wet lab Electronics lab Robotics lab Computer lab Workshop""",option_container_text
+Gemini 3.5 Flash,newsletter_signup,q_004,Email frequency,True,"""Weekly""","""Choose Weekly Biweekly Monthly Only major announcements""",option_container_text
+Gemini 3.5 Flash,office_hours,q_004,Topic category,True,"""Exam preparation""","""Choose Lecture content Assignment Exam preparation Project feedback Administrative question Other""",option_container_text
+Gemini 3.5 Flash,paper_review,q_005,Number of papers you can review,True,"""5""","""Choose 1 2 3 4 5""",option_container_text
+Gemini 3.5 Flash,peer_evaluation,q_006,Collaboration rating,True,"""3""","""Choose 1 2 3 4 5""",option_container_text
+Gemini 3.5 Flash,publication_submission,q_004,Publication type,True,"""Journal article""",null,attempted_but_blank
+Gemini 3.5 Flash,purchase_request,q_004,Purchase category,True,"""Books""","""Choose Hardware Software Books Lab materials Cloud credits Other""",option_container_text
+Gemini 3.5 Flash,remote_setup,q_004,Expected remote work duration,True,"""Long term""","""Choose 1 day 1 week 1 month Full semester Long term""",option_container_text
+Gemini 3.5 Flash,scholarship_interest,q_003,Current study level,True,"""PhD""","""Choose Bachelor's Master's PhD Other""",option_container_text
+Gemini 3.5 Flash,software_access,q_003,Software or platform requested,True,"""Internal server""","""Choose GitHub Overleaf MATLAB JetBrains Cloud platform Internal server Other""",option_container_text
+Gemini 3.5 Flash,sports_tournament,q_003,Sport,True,"""Football""",null,attempted_but_blank
+Gemini 3.5 Flash,survey_consent,q_005,Participation mode preferred,True,"""In person""","""Choose Online In person Either""",option_container_text
+Gemini 3.5 Flash,technical_support,q_003,Issue category,True,"""Printing""","""Choose Account Network Software Hardware Printing Other""",option_container_text
+Gemini 3.5 Flash,thesis_meeting,q_003,Thesis stage,True,"""Implementation""","""Choose Topic planning Implementation Data collection Evaluation Writing Final review""",option_container_text
+OpenCUA direct-MCP,accessibility_feedback,q_003,Feedback area,True,"""Student service""","""Choose Event Website Classroom Library Student service Other""",option_container_text
+OpenCUA direct-MCP,bug_report,q_005,Device or browser used,True,"""Safari""","""Choose Chrome Firefox Edge Safari Android app iOS app Other""",option_container_text
+OpenCUA direct-MCP,club_event_planning,q_004,Event type,False,"""Guest talk""",null,not_attempted
+OpenCUA direct-MCP,conference_travel,q_007,Preferred travel mode,True,"""Car""","""Choose Train Flight Bus Car Not decided""",option_container_text
+OpenCUA direct-MCP,course_enrollment,q_004,Preferred course,True,"""Human-Computer Interaction""","""Choose Machine Learning Data Visualization Scalable Data Engineering Human-Computer Interaction Computer Vision""",option_container_text
+OpenCUA direct-MCP,data_annotation,q_005,Preferred annotation task,True,"""Quality checking""","""Choose Bounding boxes Action labels Text transcription Quality checking Metadata cleanup""",option_container_text
+OpenCUA direct-MCP,dataset_request,q_005,Dataset requested,True,"""Evaluation logs""","""Choose Form interaction videos Annotation traces Synthetic answers Evaluation logs All available datasets""",option_container_text
+OpenCUA direct-MCP,equipment_checkout,q_004,Equipment category,True,"""Projector""","""Choose Laptop Camera Microphone Sensor kit Projector Other""",option_container_text
+OpenCUA direct-MCP,exam_registration,q_006,Issue type,True,"""Other""","""Choose Registration not visible Deadline question Wrong exam listed Deregistration request Other""",option_container_text
+OpenCUA direct-MCP,experiment_booking,q_005,Experiment type,True,"""Interview""","""Choose Usability test Eye-tracking session Interview Annotation task Pilot session""",option_container_text
+OpenCUA direct-MCP,field_trip,q_005,Trip option,True,"""Company visit""","""Choose Museum visit Research institute tour Field site visit Company visit""",option_container_text
+OpenCUA direct-MCP,lab_safety,q_004,Lab area you need access to,True,"""Wet lab""","""Choose Wet lab Electronics lab Robotics lab Computer lab Workshop""",option_container_text
+OpenCUA direct-MCP,newsletter_signup,q_004,Email frequency,True,"""Weekly""","""Choose Weekly Biweekly Monthly Only major announcements""",option_container_text
+OpenCUA direct-MCP,office_hours,q_004,Topic category,True,"""Exam preparation""","""Choose Lecture content Assignment Exam preparation Project feedback Administrative question Other""",option_container_text
+OpenCUA direct-MCP,paper_review,q_005,Number of papers you can review,True,"""5""","""Choose 1 2 3 4 5""",option_container_text
+OpenCUA direct-MCP,peer_evaluation,q_006,Collaboration rating,True,"""3""","""Choose 1 2 3 4 5""",option_container_text
+OpenCUA direct-MCP,publication_submission,q_004,Publication type,True,"""Journal article""","""Choose Journal article Conference paper Preprint Book chapter Dataset Other""",option_container_text
+OpenCUA direct-MCP,purchase_request,q_004,Purchase category,False,"""Books""",null,not_attempted
+OpenCUA direct-MCP,remote_setup,q_004,Expected remote work duration,True,"""Long term""","""Choose 1 day 1 week 1 month Full semester Long term""",option_container_text
+OpenCUA direct-MCP,scholarship_interest,q_003,Current study level,True,"""PhD""","""Choose Bachelor's Master's PhD Other""",option_container_text
+OpenCUA direct-MCP,software_access,q_003,Software or platform requested,True,"""Internal server""","""Choose GitHub Overleaf MATLAB JetBrains Cloud platform Internal server Other""",option_container_text
+OpenCUA direct-MCP,sports_tournament,q_003,Sport,False,"""Football""",null,not_attempted
+OpenCUA direct-MCP,survey_consent,q_005,Participation mode preferred,True,"""In person""","""Choose Online In person Either""",option_container_text
+OpenCUA direct-MCP,technical_support,q_003,Issue category,True,"""Printing""","""Choose Account Network Software Hardware Printing Other""",option_container_text
+OpenCUA direct-MCP,thesis_meeting,q_003,Thesis stage,True,"""Implementation""","""Choose Topic planning Implementation Data collection Evaluation Writing Final review""",option_container_text
+Qwen3 Text,accessibility_feedback,q_003,Feedback area,True,"""Student service""","""Choose Event Website Classroom Library Student service Other""",option_container_text
+Qwen3 Text,bug_report,q_005,Device or browser used,True,"""Safari""","""Choose Chrome Firefox Edge Safari Android app iOS app Other Choose Chrome Firefox Edge Safari Android app iOS app Other""",option_container_text
+Qwen3 Text,club_event_planning,q_004,Event type,True,"""Guest talk""","""Choose Workshop Social event Guest talk Competition Study session Other""",option_container_text
+Qwen3 Text,conference_travel,q_007,Preferred travel mode,True,"""Car""","""Choose Train Flight Bus Car Not decided Choose Train Flight Bus Car Not decided""",option_container_text
+Qwen3 Text,course_enrollment,q_004,Preferred course,True,"""Human-Computer Interaction""","""Choose Machine Learning Data Visualization Scalable Data Engineering Human-Computer Interaction Computer Vision""",option_container_text
+Qwen3 Text,data_annotation,q_005,Preferred annotation task,True,"""Quality checking""","""Choose Bounding boxes Action labels Text transcription Quality checking Metadata cleanup""",option_container_text
+Qwen3 Text,dataset_request,q_005,Dataset requested,False,"""Evaluation logs""",null,not_attempted
+Qwen3 Text,equipment_checkout,q_004,Equipment category,True,"""Projector""","""Choose Laptop Camera Microphone Sensor kit Projector Other Choose Laptop Camera Microphone Sensor kit Projector Other""",option_container_text
+Qwen3 Text,exam_registration,q_006,Issue type,True,"""Other""","""Choose Registration not visible Deadline question Wrong exam listed Deregistration request Other""",option_container_text
+Qwen3 Text,experiment_booking,q_005,Experiment type,True,"""Interview""","""Choose Usability test Eye-tracking session Interview Annotation task Pilot session""",option_container_text
+Qwen3 Text,field_trip,q_005,Trip option,True,"""Company visit""","""Choose Museum visit Research institute tour Field site visit Company visit""",option_container_text
+Qwen3 Text,lab_safety,q_004,Lab area you need access to,True,"""Wet lab""","""Choose Wet lab Electronics lab Robotics lab Computer lab Workshop""",option_container_text
+Qwen3 Text,newsletter_signup,q_004,Email frequency,True,"""Weekly""","""Choose Weekly Biweekly Monthly Only major announcements""",option_container_text
+Qwen3 Text,office_hours,q_004,Topic category,True,"""Exam preparation""","""Choose Lecture content Assignment Exam preparation Project feedback Administrative question Other Choose Lecture content Assignment Exam preparation Project feedback Administrative question Other""",option_container_text
+Qwen3 Text,paper_review,q_005,Number of papers you can review,True,"""5""","""Choose 1 2 3 4 5""",option_container_text
+Qwen3 Text,peer_evaluation,q_006,Collaboration rating,True,"""3""","""Choose 1 2 3 4 5""",option_container_text
+Qwen3 Text,publication_submission,q_004,Publication type,True,"""Journal article""","""Choose Journal article Conference paper Preprint Book chapter Dataset Other Choose Journal article Conference paper Preprint Book chapter Dataset Other""",option_container_text
+Qwen3 Text,purchase_request,q_004,Purchase category,True,"""Books""","""Choose Hardware Software Books Lab materials Cloud credits Other""",option_container_text
+Qwen3 Text,remote_setup,q_004,Expected remote work duration,True,"""Long term""","""Choose 1 day 1 week 1 month Full semester Long term""",option_container_text
+Qwen3 Text,scholarship_interest,q_003,Current study level,True,"""PhD""","""Choose Bachelor's Master's PhD Other Choose Bachelor's Master's PhD Other""",option_container_text
+Qwen3 Text,software_access,q_003,Software or platform requested,True,"""Internal server""","""Choose GitHub Overleaf MATLAB JetBrains Cloud platform Internal server Other""",option_container_text
+Qwen3 Text,sports_tournament,q_003,Sport,True,"""Football""","""Choose Football Basketball Badminton Table tennis Volleyball Running""",option_container_text
+Qwen3 Text,survey_consent,q_005,Participation mode preferred,True,"""In person""","""Choose Online In person Either Choose Online In person Either""",option_container_text
+Qwen3 Text,technical_support,q_003,Issue category,True,"""Printing""","""Choose Account Network Software Hardware Printing Other""",option_container_text
+Qwen3 Text,thesis_meeting,q_003,Thesis stage,True,"""Implementation""","""Choose Topic planning Implementation Data collection Evaluation Writing Final review""",option_container_text
+Qwen3-VL,accessibility_feedback,q_003,Feedback area,True,"""Student service""","""Choose Event Website Classroom Library Student service Other""",option_container_text
+Qwen3-VL,bug_report,q_005,Device or browser used,True,"""Safari""","""Choose Chrome Firefox Edge Safari Android app iOS app Other""",option_container_text
+Qwen3-VL,club_event_planning,q_004,Event type,False,"""Guest talk""",null,not_attempted
+Qwen3-VL,conference_travel,q_007,Preferred travel mode,False,"""Car""",null,not_attempted
+Qwen3-VL,course_enrollment,q_004,Preferred course,True,"""Human-Computer Interaction""","""Choose Machine Learning Data Visualization Scalable Data Engineering Human-Computer Interaction Computer Vision""",option_container_text
+Qwen3-VL,data_annotation,q_005,Preferred annotation task,False,"""Quality checking""",null,not_attempted
+Qwen3-VL,dataset_request,q_005,Dataset requested,True,"""Evaluation logs""","""Choose Form interaction videos Annotation traces Synthetic answers Evaluation logs All available datasets""",option_container_text
+Qwen3-VL,equipment_checkout,q_004,Equipment category,True,"""Projector""","""Choose Laptop Camera Microphone Sensor kit Projector Other""",option_container_text
+Qwen3-VL,exam_registration,q_006,Issue type,True,"""Other""","""Choose Registration not visible Deadline question Wrong exam listed Deregistration request Other""",option_container_text
+Qwen3-VL,experiment_booking,q_005,Experiment type,True,"""Interview""","""Choose Usability test Eye-tracking session Interview Annotation task Pilot session""",option_container_text
+Qwen3-VL,field_trip,q_005,Trip option,True,"""Company visit""","""Choose Museum visit Research institute tour Field site visit Company visit""",option_container_text
+Qwen3-VL,lab_safety,q_004,Lab area you need access to,True,"""Wet lab""","""Choose Wet lab Electronics lab Robotics lab Computer lab Workshop""",option_container_text
+Qwen3-VL,newsletter_signup,q_004,Email frequency,True,"""Weekly""","""Choose Weekly Biweekly Monthly Only major announcements""",option_container_text
+Qwen3-VL,office_hours,q_004,Topic category,True,"""Exam preparation""","""Choose Lecture content Assignment Exam preparation Project feedback Administrative question Other""",option_container_text
+Qwen3-VL,paper_review,q_005,Number of papers you can review,True,"""5""","""Choose 1 2 3 4 5""",option_container_text
+Qwen3-VL,peer_evaluation,q_006,Collaboration rating,True,"""3""","""Choose 1 2 3 4 5""",option_container_text
+Qwen3-VL,publication_submission,q_004,Publication type,True,"""Journal article""","""Choose Journal article Conference paper Preprint Book chapter Dataset Other""",option_container_text
+Qwen3-VL,purchase_request,q_004,Purchase category,True,"""Books""","""Choose Hardware Software Books Lab materials Cloud credits Other""",option_container_text
+Qwen3-VL,remote_setup,q_004,Expected remote work duration,True,"""Long term""","""Choose 1 day 1 week 1 month Full semester Long term""",option_container_text
+Qwen3-VL,scholarship_interest,q_003,Current study level,True,"""PhD""","""Choose Bachelor's Master's PhD Other""",option_container_text
+Qwen3-VL,software_access,q_003,Software or platform requested,True,"""Internal server""","""Choose GitHub Overleaf MATLAB JetBrains Cloud platform Internal server Other""",option_container_text
+Qwen3-VL,sports_tournament,q_003,Sport,False,"""Football""",null,not_attempted
+Qwen3-VL,survey_consent,q_005,Participation mode preferred,True,"""In person""","""Choose Online In person Either""",option_container_text
+Qwen3-VL,technical_support,q_003,Issue category,True,"""Printing""","""Choose Account Network Software Hardware Printing Other""",option_container_text
+Qwen3-VL,thesis_meeting,q_003,Thesis stage,True,"""Implementation""","""Choose Topic planning Implementation Data collection Evaluation Writing Final review""",option_container_text

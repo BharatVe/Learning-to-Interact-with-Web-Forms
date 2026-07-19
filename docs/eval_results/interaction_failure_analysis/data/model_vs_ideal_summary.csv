@@ -1,0 +1,5 @@
+model,matched_forms,full_fills,median_model_actions,median_ideal_interaction_actions,median_ideal_total_trace_events,median_ideal_script_operations,median_model_duration_s,median_ideal_duration_s,median_model_to_ideal_interaction_action_ratio,median_model_to_ideal_total_event_ratio,median_model_to_ideal_script_operation_ratio,median_model_to_ideal_time_ratio
+Gemini 3.5 Flash,50,12,32.0,10.0,41.0,11.0,767.9,55.76,2.723,0.665,2.481,11.779
+OpenCUA direct-MCP,50,15,11.0,10.0,41.0,11.0,294.83,55.76,1.091,0.267,1.0,5.209
+Qwen3 Text,50,8,10.0,10.0,41.0,11.0,202.17,55.76,1.0,0.243,0.905,3.617
+Qwen3-VL,50,11,9.0,10.0,41.0,11.0,216.38,55.76,0.9,0.22,0.818,3.855

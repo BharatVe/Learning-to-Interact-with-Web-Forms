@@ -1,0 +1,450 @@
+model,form_id,full_fill_success,stop_reason,action_type,action_count
+Gemini 3.5 Flash,accessibility_feedback,false,done_incomplete_fill_only,click,12
+Gemini 3.5 Flash,accessibility_feedback,false,done_incomplete_fill_only,type,6
+Gemini 3.5 Flash,accessibility_feedback,false,done_incomplete_fill_only,scroll,13
+Gemini 3.5 Flash,alumni_checkin,true,filled_without_submit,click,8
+Gemini 3.5 Flash,alumni_checkin,true,filled_without_submit,type,4
+Gemini 3.5 Flash,alumni_checkin,true,filled_without_submit,scroll,1
+Gemini 3.5 Flash,bug_report,false,done_incomplete_fill_only,click,16
+Gemini 3.5 Flash,bug_report,false,done_incomplete_fill_only,type,7
+Gemini 3.5 Flash,bug_report,false,done_incomplete_fill_only,scroll,3
+Gemini 3.5 Flash,club_application,false,max_steps_exceeded,click,28
+Gemini 3.5 Flash,club_application,false,max_steps_exceeded,type,3
+Gemini 3.5 Flash,club_application,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,club_event_planning,false,max_steps_exceeded,click,26
+Gemini 3.5 Flash,club_event_planning,false,max_steps_exceeded,type,5
+Gemini 3.5 Flash,club_event_planning,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,conf_interest,true,filled_without_submit,click,16
+Gemini 3.5 Flash,conf_interest,true,filled_without_submit,type,8
+Gemini 3.5 Flash,conf_interest,true,filled_without_submit,scroll,1
+Gemini 3.5 Flash,conference_travel,false,max_steps_exceeded,click,25
+Gemini 3.5 Flash,conference_travel,false,max_steps_exceeded,type,5
+Gemini 3.5 Flash,conference_travel,false,max_steps_exceeded,scroll,2
+Gemini 3.5 Flash,course_enrollment,false,max_steps_exceeded,click,15
+Gemini 3.5 Flash,course_enrollment,false,max_steps_exceeded,type,4
+Gemini 3.5 Flash,course_enrollment,false,max_steps_exceeded,scroll,13
+Gemini 3.5 Flash,course_feedback,false,max_steps_exceeded,click,30
+Gemini 3.5 Flash,course_feedback,false,max_steps_exceeded,type,1
+Gemini 3.5 Flash,course_feedback,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,data_annotation,false,max_steps_exceeded,click,26
+Gemini 3.5 Flash,data_annotation,false,max_steps_exceeded,type,3
+Gemini 3.5 Flash,data_annotation,false,max_steps_exceeded,scroll,3
+Gemini 3.5 Flash,dataset_request,false,max_steps_exceeded,click,28
+Gemini 3.5 Flash,dataset_request,false,max_steps_exceeded,type,3
+Gemini 3.5 Flash,dataset_request,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,equipment_checkout,false,max_steps_exceeded,click,24
+Gemini 3.5 Flash,equipment_checkout,false,max_steps_exceeded,type,7
+Gemini 3.5 Flash,equipment_checkout,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,event_rsvp,true,filled_without_submit,click,11
+Gemini 3.5 Flash,event_rsvp,true,filled_without_submit,type,5
+Gemini 3.5 Flash,event_rsvp,true,filled_without_submit,scroll,1
+Gemini 3.5 Flash,exam_registration,false,done_incomplete_fill_only,click,11
+Gemini 3.5 Flash,exam_registration,false,done_incomplete_fill_only,type,8
+Gemini 3.5 Flash,exam_registration,false,done_incomplete_fill_only,scroll,1
+Gemini 3.5 Flash,experiment_booking,false,max_steps_exceeded,click,28
+Gemini 3.5 Flash,experiment_booking,false,max_steps_exceeded,type,3
+Gemini 3.5 Flash,experiment_booking,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,field_trip,false,max_steps_exceeded,click,11
+Gemini 3.5 Flash,field_trip,false,max_steps_exceeded,type,7
+Gemini 3.5 Flash,field_trip,false,max_steps_exceeded,scroll,14
+Gemini 3.5 Flash,hackathon_signup,false,max_steps_exceeded,click,26
+Gemini 3.5 Flash,hackathon_signup,false,max_steps_exceeded,type,4
+Gemini 3.5 Flash,hackathon_signup,false,max_steps_exceeded,scroll,2
+Gemini 3.5 Flash,housing_preference,true,filled_without_submit,click,8
+Gemini 3.5 Flash,housing_preference,true,filled_without_submit,type,4
+Gemini 3.5 Flash,housing_preference,true,filled_without_submit,scroll,2
+Gemini 3.5 Flash,internship_app,false,max_steps_exceeded,click,27
+Gemini 3.5 Flash,internship_app,false,max_steps_exceeded,type,3
+Gemini 3.5 Flash,internship_app,false,max_steps_exceeded,scroll,2
+Gemini 3.5 Flash,job_fair,false,max_steps_exceeded,click,28
+Gemini 3.5 Flash,job_fair,false,max_steps_exceeded,type,3
+Gemini 3.5 Flash,job_fair,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,lab_safety,false,max_steps_exceeded,click,11
+Gemini 3.5 Flash,lab_safety,false,max_steps_exceeded,type,2
+Gemini 3.5 Flash,lab_safety,false,max_steps_exceeded,scroll,19
+Gemini 3.5 Flash,lab_visit,true,filled_without_submit,click,15
+Gemini 3.5 Flash,lab_visit,true,filled_without_submit,type,7
+Gemini 3.5 Flash,lab_visit,true,filled_without_submit,scroll,2
+Gemini 3.5 Flash,language_exchange,true,filled_without_submit,click,21
+Gemini 3.5 Flash,language_exchange,true,filled_without_submit,type,6
+Gemini 3.5 Flash,language_exchange,true,filled_without_submit,scroll,2
+Gemini 3.5 Flash,library_membership,true,filled_without_submit,click,8
+Gemini 3.5 Flash,library_membership,true,filled_without_submit,type,5
+Gemini 3.5 Flash,library_membership,true,filled_without_submit,scroll,1
+Gemini 3.5 Flash,meal_plan,true,filled_without_submit,click,23
+Gemini 3.5 Flash,meal_plan,true,filled_without_submit,type,5
+Gemini 3.5 Flash,meal_plan,true,filled_without_submit,scroll,2
+Gemini 3.5 Flash,mentor_match,false,done_incomplete_fill_only,click,16
+Gemini 3.5 Flash,mentor_match,false,done_incomplete_fill_only,type,5
+Gemini 3.5 Flash,mentor_match,false,done_incomplete_fill_only,scroll,2
+Gemini 3.5 Flash,newsletter_signup,false,done_incomplete_fill_only,click,8
+Gemini 3.5 Flash,newsletter_signup,false,done_incomplete_fill_only,type,3
+Gemini 3.5 Flash,newsletter_signup,false,done_incomplete_fill_only,scroll,1
+Gemini 3.5 Flash,office_hours,false,max_steps_exceeded,click,25
+Gemini 3.5 Flash,office_hours,false,max_steps_exceeded,type,6
+Gemini 3.5 Flash,office_hours,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,orientation_signup,false,done_incomplete_fill_only,click,14
+Gemini 3.5 Flash,orientation_signup,false,done_incomplete_fill_only,type,7
+Gemini 3.5 Flash,orientation_signup,false,done_incomplete_fill_only,scroll,2
+Gemini 3.5 Flash,paper_review,false,done_incomplete_fill_only,click,17
+Gemini 3.5 Flash,paper_review,false,done_incomplete_fill_only,type,4
+Gemini 3.5 Flash,paper_review,false,done_incomplete_fill_only,scroll,3
+Gemini 3.5 Flash,peer_evaluation,false,done_incomplete_fill_only,click,10
+Gemini 3.5 Flash,peer_evaluation,false,done_incomplete_fill_only,type,4
+Gemini 3.5 Flash,peer_evaluation,false,done_incomplete_fill_only,scroll,2
+Gemini 3.5 Flash,project_update,false,done_incomplete_fill_only,click,16
+Gemini 3.5 Flash,project_update,false,done_incomplete_fill_only,type,7
+Gemini 3.5 Flash,project_update,false,done_incomplete_fill_only,scroll,2
+Gemini 3.5 Flash,publication_submission,false,max_steps_exceeded,click,25
+Gemini 3.5 Flash,publication_submission,false,max_steps_exceeded,type,6
+Gemini 3.5 Flash,publication_submission,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,purchase_request,false,max_steps_exceeded,click,29
+Gemini 3.5 Flash,purchase_request,false,max_steps_exceeded,type,3
+Gemini 3.5 Flash,remote_setup,false,max_steps_exceeded,click,13
+Gemini 3.5 Flash,remote_setup,false,max_steps_exceeded,type,3
+Gemini 3.5 Flash,remote_setup,false,max_steps_exceeded,scroll,16
+Gemini 3.5 Flash,research_interest,false,done_incomplete_fill_only,click,14
+Gemini 3.5 Flash,research_interest,false,done_incomplete_fill_only,type,8
+Gemini 3.5 Flash,research_interest,false,done_incomplete_fill_only,scroll,2
+Gemini 3.5 Flash,room_booking,false,max_steps_exceeded,click,25
+Gemini 3.5 Flash,room_booking,false,max_steps_exceeded,type,6
+Gemini 3.5 Flash,room_booking,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,scholarship_interest,false,max_steps_exceeded,click,9
+Gemini 3.5 Flash,scholarship_interest,false,max_steps_exceeded,type,2
+Gemini 3.5 Flash,scholarship_interest,false,max_steps_exceeded,scroll,21
+Gemini 3.5 Flash,seminar_proposal,false,max_steps_exceeded,click,28
+Gemini 3.5 Flash,seminar_proposal,false,max_steps_exceeded,type,3
+Gemini 3.5 Flash,seminar_proposal,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,software_access,false,max_steps_exceeded,click,13
+Gemini 3.5 Flash,software_access,false,max_steps_exceeded,type,4
+Gemini 3.5 Flash,software_access,false,max_steps_exceeded,scroll,15
+Gemini 3.5 Flash,sports_tournament,false,max_steps_exceeded,click,29
+Gemini 3.5 Flash,sports_tournament,false,max_steps_exceeded,type,2
+Gemini 3.5 Flash,sports_tournament,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,study_group_match,true,filled_without_submit,click,19
+Gemini 3.5 Flash,study_group_match,true,filled_without_submit,type,5
+Gemini 3.5 Flash,study_group_match,true,filled_without_submit,scroll,1
+Gemini 3.5 Flash,survey_consent,false,max_steps_exceeded,click,12
+Gemini 3.5 Flash,survey_consent,false,max_steps_exceeded,type,3
+Gemini 3.5 Flash,survey_consent,false,max_steps_exceeded,scroll,17
+Gemini 3.5 Flash,technical_support,false,max_steps_exceeded,click,13
+Gemini 3.5 Flash,technical_support,false,max_steps_exceeded,type,4
+Gemini 3.5 Flash,technical_support,false,max_steps_exceeded,scroll,15
+Gemini 3.5 Flash,thesis_meeting,false,max_steps_exceeded,click,12
+Gemini 3.5 Flash,thesis_meeting,false,max_steps_exceeded,type,4
+Gemini 3.5 Flash,thesis_meeting,false,max_steps_exceeded,scroll,16
+Gemini 3.5 Flash,travel_reimbursement,false,max_steps_exceeded,click,25
+Gemini 3.5 Flash,travel_reimbursement,false,max_steps_exceeded,type,5
+Gemini 3.5 Flash,travel_reimbursement,false,max_steps_exceeded,scroll,2
+Gemini 3.5 Flash,usability_test,true,filled_without_submit,click,13
+Gemini 3.5 Flash,usability_test,true,filled_without_submit,type,5
+Gemini 3.5 Flash,usability_test,true,filled_without_submit,scroll,2
+Gemini 3.5 Flash,volunteer_shift,true,filled_without_submit,click,18
+Gemini 3.5 Flash,volunteer_shift,true,filled_without_submit,type,4
+Gemini 3.5 Flash,volunteer_shift,true,filled_without_submit,scroll,1
+Gemini 3.5 Flash,wellbeing_check,false,max_steps_exceeded,click,29
+Gemini 3.5 Flash,wellbeing_check,false,max_steps_exceeded,type,2
+Gemini 3.5 Flash,wellbeing_check,false,max_steps_exceeded,scroll,1
+Gemini 3.5 Flash,workshop_signup,true,filled_without_submit,click,12
+Gemini 3.5 Flash,workshop_signup,true,filled_without_submit,type,5
+Gemini 3.5 Flash,workshop_signup,true,filled_without_submit,scroll,1
+OpenCUA direct-MCP,accessibility_feedback,false,max_steps_exceeded,type,31
+OpenCUA direct-MCP,accessibility_feedback,false,max_steps_exceeded,click,10
+OpenCUA direct-MCP,alumni_checkin,true,filled_without_submit,type,4
+OpenCUA direct-MCP,alumni_checkin,true,filled_without_submit,click,3
+OpenCUA direct-MCP,bug_report,false,done_incomplete_fill_only,type,7
+OpenCUA direct-MCP,bug_report,false,done_incomplete_fill_only,click,3
+OpenCUA direct-MCP,club_application,false,done_incomplete_fill_only,type,8
+OpenCUA direct-MCP,club_application,false,done_incomplete_fill_only,click,9
+OpenCUA direct-MCP,club_event_planning,false,done_incomplete_fill_only,type,9
+OpenCUA direct-MCP,club_event_planning,false,done_incomplete_fill_only,click,6
+OpenCUA direct-MCP,conf_interest,true,filled_without_submit,type,6
+OpenCUA direct-MCP,conf_interest,true,filled_without_submit,click,3
+OpenCUA direct-MCP,conference_travel,false,max_steps_exceeded,type,24
+OpenCUA direct-MCP,conference_travel,false,max_steps_exceeded,click,8
+OpenCUA direct-MCP,course_enrollment,false,done_incomplete_fill_only,type,7
+OpenCUA direct-MCP,course_enrollment,false,done_incomplete_fill_only,click,8
+OpenCUA direct-MCP,course_feedback,false,done_incomplete_fill_only,type,3
+OpenCUA direct-MCP,course_feedback,false,done_incomplete_fill_only,click,8
+OpenCUA direct-MCP,data_annotation,false,done_incomplete_fill_only,type,7
+OpenCUA direct-MCP,data_annotation,false,done_incomplete_fill_only,click,5
+OpenCUA direct-MCP,dataset_request,false,done_incomplete_fill_only,type,5
+OpenCUA direct-MCP,dataset_request,false,done_incomplete_fill_only,click,7
+OpenCUA direct-MCP,equipment_checkout,false,done_incomplete_fill_only,type,9
+OpenCUA direct-MCP,equipment_checkout,false,done_incomplete_fill_only,click,5
+OpenCUA direct-MCP,event_rsvp,true,filled_without_submit,type,5
+OpenCUA direct-MCP,event_rsvp,true,filled_without_submit,click,4
+OpenCUA direct-MCP,exam_registration,false,done_incomplete_fill_only,type,6
+OpenCUA direct-MCP,exam_registration,false,done_incomplete_fill_only,click,3
+OpenCUA direct-MCP,experiment_booking,false,done_incomplete_fill_only,type,6
+OpenCUA direct-MCP,experiment_booking,false,done_incomplete_fill_only,click,6
+OpenCUA direct-MCP,field_trip,false,done_incomplete_fill_only,type,6
+OpenCUA direct-MCP,field_trip,false,done_incomplete_fill_only,click,3
+OpenCUA direct-MCP,hackathon_signup,false,done_incomplete_fill_only,type,6
+OpenCUA direct-MCP,hackathon_signup,false,done_incomplete_fill_only,click,5
+OpenCUA direct-MCP,housing_preference,true,filled_without_submit,type,4
+OpenCUA direct-MCP,housing_preference,true,filled_without_submit,click,3
+OpenCUA direct-MCP,internship_app,false,done_incomplete_fill_only,type,9
+OpenCUA direct-MCP,internship_app,false,done_incomplete_fill_only,click,12
+OpenCUA direct-MCP,job_fair,false,done_incomplete_fill_only,type,6
+OpenCUA direct-MCP,job_fair,false,done_incomplete_fill_only,click,7
+OpenCUA direct-MCP,lab_safety,false,done_incomplete_fill_only,type,4
+OpenCUA direct-MCP,lab_safety,false,done_incomplete_fill_only,click,6
+OpenCUA direct-MCP,lab_visit,true,filled_without_submit,type,7
+OpenCUA direct-MCP,lab_visit,true,filled_without_submit,click,3
+OpenCUA direct-MCP,language_exchange,false,done_incomplete_fill_only,type,6
+OpenCUA direct-MCP,language_exchange,false,done_incomplete_fill_only,click,5
+OpenCUA direct-MCP,library_membership,true,filled_without_submit,type,5
+OpenCUA direct-MCP,library_membership,true,filled_without_submit,click,2
+OpenCUA direct-MCP,meal_plan,true,filled_without_submit,type,5
+OpenCUA direct-MCP,meal_plan,true,filled_without_submit,click,4
+OpenCUA direct-MCP,mentor_match,true,filled_without_submit,type,5
+OpenCUA direct-MCP,mentor_match,true,filled_without_submit,click,6
+OpenCUA direct-MCP,newsletter_signup,false,done_incomplete_fill_only,type,3
+OpenCUA direct-MCP,newsletter_signup,false,done_incomplete_fill_only,click,5
+OpenCUA direct-MCP,office_hours,false,done_incomplete_fill_only,type,8
+OpenCUA direct-MCP,office_hours,false,done_incomplete_fill_only,click,4
+OpenCUA direct-MCP,orientation_signup,true,filled_without_submit,type,7
+OpenCUA direct-MCP,orientation_signup,true,filled_without_submit,click,3
+OpenCUA direct-MCP,paper_review,false,done_incomplete_fill_only,type,4
+OpenCUA direct-MCP,paper_review,false,done_incomplete_fill_only,click,6
+OpenCUA direct-MCP,peer_evaluation,false,timeout,type,4
+OpenCUA direct-MCP,peer_evaluation,false,timeout,click,20
+OpenCUA direct-MCP,project_update,true,filled_without_submit,type,7
+OpenCUA direct-MCP,project_update,true,filled_without_submit,click,3
+OpenCUA direct-MCP,publication_submission,false,max_steps_exceeded,type,25
+OpenCUA direct-MCP,publication_submission,false,max_steps_exceeded,click,7
+OpenCUA direct-MCP,purchase_request,false,done_incomplete_fill_only,type,7
+OpenCUA direct-MCP,purchase_request,false,done_incomplete_fill_only,click,7
+OpenCUA direct-MCP,remote_setup,false,done_incomplete_fill_only,type,4
+OpenCUA direct-MCP,remote_setup,false,done_incomplete_fill_only,click,4
+OpenCUA direct-MCP,research_interest,true,filled_without_submit,type,7
+OpenCUA direct-MCP,research_interest,true,filled_without_submit,click,2
+OpenCUA direct-MCP,room_booking,false,done_incomplete_fill_only,type,7
+OpenCUA direct-MCP,room_booking,false,done_incomplete_fill_only,click,4
+OpenCUA direct-MCP,scholarship_interest,false,done_incomplete_fill_only,type,4
+OpenCUA direct-MCP,scholarship_interest,false,done_incomplete_fill_only,click,4
+OpenCUA direct-MCP,seminar_proposal,false,done_incomplete_fill_only,type,7
+OpenCUA direct-MCP,seminar_proposal,false,done_incomplete_fill_only,click,4
+OpenCUA direct-MCP,software_access,false,done_incomplete_fill_only,type,5
+OpenCUA direct-MCP,software_access,false,done_incomplete_fill_only,click,4
+OpenCUA direct-MCP,sports_tournament,false,done_incomplete_fill_only,type,6
+OpenCUA direct-MCP,sports_tournament,false,done_incomplete_fill_only,click,8
+OpenCUA direct-MCP,study_group_match,true,filled_without_submit,type,5
+OpenCUA direct-MCP,study_group_match,true,filled_without_submit,click,7
+OpenCUA direct-MCP,survey_consent,false,done_incomplete_fill_only,type,5
+OpenCUA direct-MCP,survey_consent,false,done_incomplete_fill_only,click,6
+OpenCUA direct-MCP,technical_support,false,done_incomplete_fill_only,type,6
+OpenCUA direct-MCP,technical_support,false,done_incomplete_fill_only,click,6
+OpenCUA direct-MCP,thesis_meeting,false,max_steps_exceeded,type,36
+OpenCUA direct-MCP,thesis_meeting,false,max_steps_exceeded,click,11
+OpenCUA direct-MCP,travel_reimbursement,false,max_steps_exceeded,type,32
+OpenCUA direct-MCP,usability_test,true,filled_without_submit,type,5
+OpenCUA direct-MCP,usability_test,true,filled_without_submit,click,3
+OpenCUA direct-MCP,volunteer_shift,true,filled_without_submit,type,4
+OpenCUA direct-MCP,volunteer_shift,true,filled_without_submit,click,4
+OpenCUA direct-MCP,wellbeing_check,false,done_incomplete_fill_only,type,5
+OpenCUA direct-MCP,wellbeing_check,false,done_incomplete_fill_only,click,7
+OpenCUA direct-MCP,workshop_signup,true,filled_without_submit,type,3
+OpenCUA direct-MCP,workshop_signup,true,filled_without_submit,click,4
+Qwen3 Text,accessibility_feedback,false,done_incomplete_fill_only,type,4
+Qwen3 Text,accessibility_feedback,false,done_incomplete_fill_only,click,5
+Qwen3 Text,alumni_checkin,true,filled_without_submit,type,4
+Qwen3 Text,alumni_checkin,true,filled_without_submit,click,3
+Qwen3 Text,bug_report,false,done_incomplete_fill_only,type,7
+Qwen3 Text,bug_report,false,done_incomplete_fill_only,click,5
+Qwen3 Text,club_application,false,done_incomplete_fill_only,type,12
+Qwen3 Text,club_application,false,done_incomplete_fill_only,click,4
+Qwen3 Text,club_event_planning,false,done_incomplete_fill_only,type,3
+Qwen3 Text,club_event_planning,false,done_incomplete_fill_only,click,14
+Qwen3 Text,conf_interest,false,done_incomplete_fill_only,type,5
+Qwen3 Text,conf_interest,false,done_incomplete_fill_only,click,5
+Qwen3 Text,conference_travel,false,timeout,type,8
+Qwen3 Text,conference_travel,false,timeout,click,11
+Qwen3 Text,course_enrollment,false,done_incomplete_fill_only,type,3
+Qwen3 Text,course_enrollment,false,done_incomplete_fill_only,click,5
+Qwen3 Text,course_feedback,false,done_incomplete_fill_only,type,3
+Qwen3 Text,course_feedback,false,done_incomplete_fill_only,click,7
+Qwen3 Text,data_annotation,false,max_steps_exceeded,type,2
+Qwen3 Text,data_annotation,false,max_steps_exceeded,click,35
+Qwen3 Text,dataset_request,false,model_no_tool_calls,type,3
+Qwen3 Text,dataset_request,false,model_no_tool_calls,click,6
+Qwen3 Text,equipment_checkout,false,timeout,fill_form,1
+Qwen3 Text,equipment_checkout,false,timeout,click,6
+Qwen3 Text,equipment_checkout,false,timeout,type,9
+Qwen3 Text,event_rsvp,false,done_incomplete_fill_only,type,3
+Qwen3 Text,event_rsvp,false,done_incomplete_fill_only,click,8
+Qwen3 Text,exam_registration,false,done_incomplete_fill_only,type,6
+Qwen3 Text,exam_registration,false,done_incomplete_fill_only,click,4
+Qwen3 Text,experiment_booking,false,done_incomplete_fill_only,type,6
+Qwen3 Text,experiment_booking,false,done_incomplete_fill_only,click,8
+Qwen3 Text,field_trip,false,max_steps_exceeded,type,4
+Qwen3 Text,field_trip,false,max_steps_exceeded,click,32
+Qwen3 Text,hackathon_signup,false,done_incomplete_fill_only,type,4
+Qwen3 Text,hackathon_signup,false,done_incomplete_fill_only,click,11
+Qwen3 Text,housing_preference,true,filled_without_submit,type,4
+Qwen3 Text,housing_preference,true,filled_without_submit,click,3
+Qwen3 Text,internship_app,false,done_incomplete_fill_only,type,3
+Qwen3 Text,internship_app,false,done_incomplete_fill_only,click,4
+Qwen3 Text,job_fair,false,done_incomplete_fill_only,type,5
+Qwen3 Text,job_fair,false,done_incomplete_fill_only,click,9
+Qwen3 Text,lab_safety,false,done_incomplete_fill_only,type,3
+Qwen3 Text,lab_safety,false,done_incomplete_fill_only,click,7
+Qwen3 Text,lab_visit,true,filled_without_submit,type,7
+Qwen3 Text,lab_visit,true,filled_without_submit,click,2
+Qwen3 Text,language_exchange,false,done_incomplete_fill_only,type,6
+Qwen3 Text,language_exchange,false,done_incomplete_fill_only,click,5
+Qwen3 Text,library_membership,true,filled_without_submit,type,5
+Qwen3 Text,library_membership,true,filled_without_submit,click,2
+Qwen3 Text,meal_plan,true,filled_without_submit,type,5
+Qwen3 Text,meal_plan,true,filled_without_submit,click,3
+Qwen3 Text,mentor_match,false,done_incomplete_fill_only,type,3
+Qwen3 Text,mentor_match,false,done_incomplete_fill_only,click,8
+Qwen3 Text,newsletter_signup,false,done_incomplete_fill_only,type,3
+Qwen3 Text,newsletter_signup,false,done_incomplete_fill_only,click,4
+Qwen3 Text,office_hours,false,timeout,type,7
+Qwen3 Text,office_hours,false,timeout,click,6
+Qwen3 Text,orientation_signup,false,done_incomplete_fill_only,type,7
+Qwen3 Text,orientation_signup,false,done_incomplete_fill_only,click,2
+Qwen3 Text,paper_review,false,done_incomplete_fill_only,type,4
+Qwen3 Text,paper_review,false,done_incomplete_fill_only,click,10
+Qwen3 Text,peer_evaluation,false,done_incomplete_fill_only,type,3
+Qwen3 Text,peer_evaluation,false,done_incomplete_fill_only,click,8
+Qwen3 Text,project_update,false,done_incomplete_fill_only,type,5
+Qwen3 Text,project_update,false,done_incomplete_fill_only,click,5
+Qwen3 Text,publication_submission,false,timeout,type,3
+Qwen3 Text,publication_submission,false,timeout,click,8
+Qwen3 Text,purchase_request,false,done_incomplete_fill_only,type,6
+Qwen3 Text,purchase_request,false,done_incomplete_fill_only,click,4
+Qwen3 Text,remote_setup,false,done_incomplete_fill_only,type,3
+Qwen3 Text,remote_setup,false,done_incomplete_fill_only,click,4
+Qwen3 Text,research_interest,false,done_incomplete_fill_only,type,4
+Qwen3 Text,research_interest,false,done_incomplete_fill_only,click,5
+Qwen3 Text,room_booking,false,done_incomplete_fill_only,type,7
+Qwen3 Text,room_booking,false,done_incomplete_fill_only,click,10
+Qwen3 Text,scholarship_interest,false,timeout,type,4
+Qwen3 Text,scholarship_interest,false,timeout,click,7
+Qwen3 Text,seminar_proposal,false,done_incomplete_fill_only,type,6
+Qwen3 Text,seminar_proposal,false,done_incomplete_fill_only,click,3
+Qwen3 Text,software_access,false,done_incomplete_fill_only,type,4
+Qwen3 Text,software_access,false,done_incomplete_fill_only,click,3
+Qwen3 Text,sports_tournament,false,done_incomplete_fill_only,type,2
+Qwen3 Text,sports_tournament,false,done_incomplete_fill_only,click,3
+Qwen3 Text,study_group_match,false,done_incomplete_fill_only,type,4
+Qwen3 Text,study_group_match,false,done_incomplete_fill_only,click,5
+Qwen3 Text,survey_consent,false,done_incomplete_fill_only,type,3
+Qwen3 Text,survey_consent,false,done_incomplete_fill_only,click,8
+Qwen3 Text,technical_support,false,done_incomplete_fill_only,fill_form,1
+Qwen3 Text,technical_support,false,done_incomplete_fill_only,type,2
+Qwen3 Text,technical_support,false,done_incomplete_fill_only,click,3
+Qwen3 Text,thesis_meeting,false,timeout,type,6
+Qwen3 Text,thesis_meeting,false,timeout,click,8
+Qwen3 Text,travel_reimbursement,false,done_incomplete_fill_only,type,9
+Qwen3 Text,travel_reimbursement,false,done_incomplete_fill_only,click,4
+Qwen3 Text,usability_test,true,filled_without_submit,type,5
+Qwen3 Text,usability_test,true,filled_without_submit,click,3
+Qwen3 Text,volunteer_shift,true,filled_without_submit,type,4
+Qwen3 Text,volunteer_shift,true,filled_without_submit,click,4
+Qwen3 Text,wellbeing_check,false,done_incomplete_fill_only,type,2
+Qwen3 Text,wellbeing_check,false,done_incomplete_fill_only,click,5
+Qwen3 Text,workshop_signup,true,filled_without_submit,type,3
+Qwen3 Text,workshop_signup,true,filled_without_submit,click,4
+Qwen3-VL,accessibility_feedback,false,done_incomplete_fill_only,type,4
+Qwen3-VL,accessibility_feedback,false,done_incomplete_fill_only,click,6
+Qwen3-VL,alumni_checkin,true,filled_without_submit,type,4
+Qwen3-VL,alumni_checkin,true,filled_without_submit,click,3
+Qwen3-VL,bug_report,false,done_incomplete_fill_only,type,7
+Qwen3-VL,bug_report,false,done_incomplete_fill_only,click,3
+Qwen3-VL,club_application,false,max_steps_exceeded,type,7
+Qwen3-VL,club_application,false,max_steps_exceeded,click,24
+Qwen3-VL,club_event_planning,false,done_incomplete_fill_only,type,9
+Qwen3-VL,club_event_planning,false,done_incomplete_fill_only,click,6
+Qwen3-VL,conf_interest,false,done_incomplete_fill_only,type,5
+Qwen3-VL,conf_interest,false,done_incomplete_fill_only,click,3
+Qwen3-VL,conference_travel,false,max_steps_exceeded,type,7
+Qwen3-VL,conference_travel,false,max_steps_exceeded,click,2
+Qwen3-VL,course_enrollment,false,max_steps_exceeded,type,4
+Qwen3-VL,course_enrollment,false,max_steps_exceeded,click,28
+Qwen3-VL,course_feedback,false,done_incomplete_fill_only,type,3
+Qwen3-VL,course_feedback,false,done_incomplete_fill_only,click,8
+Qwen3-VL,data_annotation,false,done_incomplete_fill_only,type,9
+Qwen3-VL,data_annotation,false,done_incomplete_fill_only,click,2
+Qwen3-VL,dataset_request,false,done_incomplete_fill_only,type,5
+Qwen3-VL,dataset_request,false,done_incomplete_fill_only,click,7
+Qwen3-VL,equipment_checkout,false,done_incomplete_fill_only,type,9
+Qwen3-VL,equipment_checkout,false,done_incomplete_fill_only,click,3
+Qwen3-VL,event_rsvp,true,filled_without_submit,type,5
+Qwen3-VL,event_rsvp,true,filled_without_submit,click,2
+Qwen3-VL,exam_registration,false,done_incomplete_fill_only,type,6
+Qwen3-VL,exam_registration,false,done_incomplete_fill_only,click,3
+Qwen3-VL,experiment_booking,false,done_incomplete_fill_only,type,6
+Qwen3-VL,experiment_booking,false,done_incomplete_fill_only,click,6
+Qwen3-VL,field_trip,false,timeout,type,4
+Qwen3-VL,field_trip,false,timeout,click,3
+Qwen3-VL,hackathon_signup,false,done_incomplete_fill_only,type,5
+Qwen3-VL,hackathon_signup,false,done_incomplete_fill_only,click,4
+Qwen3-VL,housing_preference,true,filled_without_submit,type,4
+Qwen3-VL,housing_preference,true,filled_without_submit,click,3
+Qwen3-VL,internship_app,false,done_incomplete_fill_only,type,6
+Qwen3-VL,internship_app,false,done_incomplete_fill_only,click,5
+Qwen3-VL,job_fair,false,done_incomplete_fill_only,type,6
+Qwen3-VL,job_fair,false,done_incomplete_fill_only,click,5
+Qwen3-VL,lab_safety,false,done_incomplete_fill_only,type,4
+Qwen3-VL,lab_safety,false,done_incomplete_fill_only,click,5
+Qwen3-VL,lab_visit,false,done_incomplete_fill_only,type,5
+Qwen3-VL,lab_visit,false,done_incomplete_fill_only,click,2
+Qwen3-VL,language_exchange,false,done_incomplete_fill_only,type,3
+Qwen3-VL,language_exchange,false,done_incomplete_fill_only,click,1
+Qwen3-VL,library_membership,true,filled_without_submit,type,5
+Qwen3-VL,library_membership,true,filled_without_submit,click,2
+Qwen3-VL,meal_plan,true,filled_without_submit,type,5
+Qwen3-VL,meal_plan,true,filled_without_submit,click,6
+Qwen3-VL,mentor_match,false,done_incomplete_fill_only,type,5
+Qwen3-VL,mentor_match,false,done_incomplete_fill_only,click,8
+Qwen3-VL,newsletter_signup,false,done_incomplete_fill_only,type,3
+Qwen3-VL,newsletter_signup,false,done_incomplete_fill_only,click,5
+Qwen3-VL,office_hours,false,done_incomplete_fill_only,type,6
+Qwen3-VL,office_hours,false,done_incomplete_fill_only,click,3
+Qwen3-VL,orientation_signup,false,done_incomplete_fill_only,type,7
+Qwen3-VL,orientation_signup,false,done_incomplete_fill_only,click,6
+Qwen3-VL,paper_review,false,done_incomplete_fill_only,type,4
+Qwen3-VL,paper_review,false,done_incomplete_fill_only,click,5
+Qwen3-VL,peer_evaluation,false,done_incomplete_fill_only,type,4
+Qwen3-VL,peer_evaluation,false,done_incomplete_fill_only,click,6
+Qwen3-VL,project_update,true,filled_without_submit,type,7
+Qwen3-VL,project_update,true,filled_without_submit,click,2
+Qwen3-VL,publication_submission,false,max_steps_exceeded,type,30
+Qwen3-VL,publication_submission,false,max_steps_exceeded,click,2
+Qwen3-VL,purchase_request,false,max_steps_exceeded,type,31
+Qwen3-VL,purchase_request,false,max_steps_exceeded,click,3
+Qwen3-VL,remote_setup,false,done_incomplete_fill_only,type,4
+Qwen3-VL,remote_setup,false,done_incomplete_fill_only,click,4
+Qwen3-VL,research_interest,true,filled_without_submit,type,6
+Qwen3-VL,research_interest,true,filled_without_submit,click,2
+Qwen3-VL,room_booking,false,done_incomplete_fill_only,type,6
+Qwen3-VL,room_booking,false,done_incomplete_fill_only,click,2
+Qwen3-VL,scholarship_interest,false,done_incomplete_fill_only,type,4
+Qwen3-VL,scholarship_interest,false,done_incomplete_fill_only,click,4
+Qwen3-VL,seminar_proposal,false,max_steps_exceeded,type,5
+Qwen3-VL,seminar_proposal,false,max_steps_exceeded,click,5
+Qwen3-VL,software_access,false,done_incomplete_fill_only,type,5
+Qwen3-VL,software_access,false,done_incomplete_fill_only,click,4
+Qwen3-VL,sports_tournament,false,max_steps_exceeded,type,4
+Qwen3-VL,sports_tournament,false,max_steps_exceeded,click,27
+Qwen3-VL,study_group_match,true,filled_without_submit,type,5
+Qwen3-VL,study_group_match,true,filled_without_submit,click,7
+Qwen3-VL,survey_consent,false,done_incomplete_fill_only,type,3
+Qwen3-VL,survey_consent,false,done_incomplete_fill_only,click,25
+Qwen3-VL,technical_support,false,done_incomplete_fill_only,type,6
+Qwen3-VL,technical_support,false,done_incomplete_fill_only,click,4
+Qwen3-VL,thesis_meeting,false,done_incomplete_fill_only,type,6
+Qwen3-VL,thesis_meeting,false,done_incomplete_fill_only,click,5
+Qwen3-VL,travel_reimbursement,false,max_steps_exceeded,type,5
+Qwen3-VL,usability_test,true,filled_without_submit,type,5
+Qwen3-VL,usability_test,true,filled_without_submit,click,3
+Qwen3-VL,volunteer_shift,true,filled_without_submit,type,4
+Qwen3-VL,volunteer_shift,true,filled_without_submit,click,4
+Qwen3-VL,wellbeing_check,false,max_steps_exceeded,type,2
+Qwen3-VL,wellbeing_check,false,max_steps_exceeded,click,2
+Qwen3-VL,workshop_signup,true,filled_without_submit,type,3
+Qwen3-VL,workshop_signup,true,filled_without_submit,click,4

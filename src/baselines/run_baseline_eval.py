@@ -1347,8 +1347,9 @@ class ExecutionSessionBase:
         raise NotImplementedError
 
     def _coords_to_pixels(self, x_norm: int, y_norm: int) -> Tuple[float, float]:
-        x_px = (max(0, min(999, int(x_norm))) / 999.0) * float(self.viewport_width)
-        y_px = (max(0, min(999, int(y_norm))) / 999.0) * float(self.viewport_height)
+        denominator = float(getattr(self, "coordinate_denominator", 999.0) or 999.0)
+        x_px = (max(0, min(999, int(x_norm))) / denominator) * float(self.viewport_width)
+        y_px = (max(0, min(999, int(y_norm))) / denominator) * float(self.viewport_height)
         return x_px, y_px
 
     def observe(self, step_idx: int) -> Dict[str, Any]:

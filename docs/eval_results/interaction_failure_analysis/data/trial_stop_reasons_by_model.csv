@@ -1,0 +1,17 @@
+model,stop_reason,trials,share_of_model_trials_pct,incomplete_trials,share_of_model_incomplete_trials_pct
+Gemini 3.5 Flash,max_steps_exceeded,28,56.0,28,73.68
+Gemini 3.5 Flash,done_incomplete_fill_only,10,20.0,10,26.32
+Gemini 3.5 Flash,filled_without_submit,12,24.0,0,0.0
+OpenCUA direct-MCP,done_incomplete_fill_only,29,58.0,29,82.86
+OpenCUA direct-MCP,max_steps_exceeded,5,10.0,5,14.29
+OpenCUA direct-MCP,timeout,1,2.0,1,2.86
+OpenCUA direct-MCP,filled_without_submit,15,30.0,0,0.0
+Qwen3 Text,done_incomplete_fill_only,33,66.0,33,78.57
+Qwen3 Text,timeout,6,12.0,6,14.29
+Qwen3 Text,max_steps_exceeded,2,4.0,2,4.76
+Qwen3 Text,model_no_tool_calls,1,2.0,1,2.38
+Qwen3 Text,filled_without_submit,8,16.0,0,0.0
+Qwen3-VL,done_incomplete_fill_only,29,58.0,29,74.36
+Qwen3-VL,max_steps_exceeded,9,18.0,9,23.08
+Qwen3-VL,timeout,1,2.0,1,2.56
+Qwen3-VL,filled_without_submit,11,22.0,0,0.0

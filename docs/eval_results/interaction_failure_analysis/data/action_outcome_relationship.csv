@@ -1,0 +1,5 @@
+model,trials,action_correctness_pearson_r,median_actions_full_fill,median_actions_incomplete,median_correctness_full_fill,median_correctness_incomplete
+Gemini 3.5 Flash,50,-0.691,21.5,32.0,100.0,68.34
+OpenCUA direct-MCP,50,-0.4,9,12,100.0,66.67
+Qwen3 Text,50,-0.443,7.5,11.0,100.0,59.82
+Qwen3-VL,50,-0.431,8,10,100.0,71.43

@@ -1,0 +1,201 @@
+model,form_id,target_fields,correct_fields,missed_fields,correctness_pct,full_fill,difficulty_rank_within_model
+Gemini 3.5 Flash,purchase_request,10,3,7,30.0,False,1
+Gemini 3.5 Flash,sports_tournament,9,3,6,33.33,False,2
+Gemini 3.5 Flash,club_application,10,4,6,40.0,False,3
+Gemini 3.5 Flash,club_event_planning,10,4,6,40.0,False,4
+Gemini 3.5 Flash,publication_submission,10,4,6,40.0,False,5
+Gemini 3.5 Flash,scholarship_interest,7,3,4,42.86,False,6
+Gemini 3.5 Flash,internship_app,12,6,6,50.0,False,7
+Gemini 3.5 Flash,seminar_proposal,8,4,4,50.0,False,8
+Gemini 3.5 Flash,technical_support,8,4,4,50.0,False,9
+Gemini 3.5 Flash,course_feedback,9,5,4,55.56,False,10
+Gemini 3.5 Flash,data_annotation,9,5,4,55.56,False,11
+Gemini 3.5 Flash,dataset_request,9,5,4,55.56,False,12
+Gemini 3.5 Flash,equipment_checkout,9,5,4,55.56,False,13
+Gemini 3.5 Flash,experiment_booking,9,5,4,55.56,False,14
+Gemini 3.5 Flash,lab_safety,8,5,3,62.5,False,15
+Gemini 3.5 Flash,thesis_meeting,8,5,3,62.5,False,16
+Gemini 3.5 Flash,travel_reimbursement,11,7,4,63.64,False,17
+Gemini 3.5 Flash,job_fair,9,6,3,66.67,False,18
+Gemini 3.5 Flash,room_booking,9,6,3,66.67,False,19
+Gemini 3.5 Flash,conference_travel,10,7,3,70.0,False,20
+Gemini 3.5 Flash,remote_setup,7,5,2,71.43,False,21
+Gemini 3.5 Flash,wellbeing_check,7,5,2,71.43,False,22
+Gemini 3.5 Flash,course_enrollment,8,6,2,75.0,False,23
+Gemini 3.5 Flash,field_trip,8,6,2,75.0,False,24
+Gemini 3.5 Flash,office_hours,8,6,2,75.0,False,25
+Gemini 3.5 Flash,software_access,8,6,2,75.0,False,26
+Gemini 3.5 Flash,survey_consent,8,6,2,75.0,False,27
+Gemini 3.5 Flash,mentor_match,7,6,1,85.71,False,28
+Gemini 3.5 Flash,newsletter_signup,7,6,1,85.71,False,29
+Gemini 3.5 Flash,paper_review,7,6,1,85.71,False,30
+Gemini 3.5 Flash,peer_evaluation,7,6,1,85.71,False,31
+Gemini 3.5 Flash,research_interest,7,6,1,85.71,False,32
+Gemini 3.5 Flash,accessibility_feedback,8,7,1,87.5,False,33
+Gemini 3.5 Flash,exam_registration,8,7,1,87.5,False,34
+Gemini 3.5 Flash,orientation_signup,8,7,1,87.5,False,35
+Gemini 3.5 Flash,project_update,8,7,1,87.5,False,36
+Gemini 3.5 Flash,bug_report,9,8,1,88.89,False,37
+Gemini 3.5 Flash,hackathon_signup,9,8,1,88.89,False,38
+Gemini 3.5 Flash,language_exchange,9,9,0,100.0,True,39
+Gemini 3.5 Flash,lab_visit,8,8,0,100.0,True,40
+Gemini 3.5 Flash,alumni_checkin,7,7,0,100.0,True,41
+Gemini 3.5 Flash,conf_interest,7,7,0,100.0,True,42
+Gemini 3.5 Flash,housing_preference,7,7,0,100.0,True,43
+Gemini 3.5 Flash,library_membership,7,7,0,100.0,True,44
+Gemini 3.5 Flash,meal_plan,7,7,0,100.0,True,45
+Gemini 3.5 Flash,study_group_match,7,7,0,100.0,True,46
+Gemini 3.5 Flash,usability_test,7,7,0,100.0,True,47
+Gemini 3.5 Flash,volunteer_shift,7,7,0,100.0,True,48
+Gemini 3.5 Flash,workshop_signup,7,7,0,100.0,True,49
+Gemini 3.5 Flash,event_rsvp,6,6,0,100.0,True,50
+OpenCUA direct-MCP,club_event_planning,10,2,8,20.0,False,1
+OpenCUA direct-MCP,conference_travel,10,2,8,20.0,False,2
+OpenCUA direct-MCP,internship_app,12,3,9,25.0,False,3
+OpenCUA direct-MCP,club_application,10,3,7,30.0,False,4
+OpenCUA direct-MCP,purchase_request,10,3,7,30.0,False,5
+OpenCUA direct-MCP,room_booking,9,3,6,33.33,False,6
+OpenCUA direct-MCP,publication_submission,10,4,6,40.0,False,7
+OpenCUA direct-MCP,wellbeing_check,7,3,4,42.86,False,8
+OpenCUA direct-MCP,data_annotation,9,4,5,44.44,False,9
+OpenCUA direct-MCP,dataset_request,9,4,5,44.44,False,10
+OpenCUA direct-MCP,experiment_booking,9,4,5,44.44,False,11
+OpenCUA direct-MCP,job_fair,9,4,5,44.44,False,12
+OpenCUA direct-MCP,travel_reimbursement,11,5,6,45.45,False,13
+OpenCUA direct-MCP,seminar_proposal,8,4,4,50.0,False,14
+OpenCUA direct-MCP,hackathon_signup,9,5,4,55.56,False,15
+OpenCUA direct-MCP,language_exchange,9,5,4,55.56,False,16
+OpenCUA direct-MCP,sports_tournament,9,5,4,55.56,False,17
+OpenCUA direct-MCP,course_feedback,9,6,3,66.67,False,18
+OpenCUA direct-MCP,accessibility_feedback,8,6,2,75.0,False,19
+OpenCUA direct-MCP,thesis_meeting,8,6,2,75.0,False,20
+OpenCUA direct-MCP,newsletter_signup,7,6,1,85.71,False,21
+OpenCUA direct-MCP,paper_review,7,6,1,85.71,False,22
+OpenCUA direct-MCP,peer_evaluation,7,6,1,85.71,False,23
+OpenCUA direct-MCP,remote_setup,7,6,1,85.71,False,24
+OpenCUA direct-MCP,scholarship_interest,7,6,1,85.71,False,25
+OpenCUA direct-MCP,course_enrollment,8,7,1,87.5,False,26
+OpenCUA direct-MCP,exam_registration,8,7,1,87.5,False,27
+OpenCUA direct-MCP,field_trip,8,7,1,87.5,False,28
+OpenCUA direct-MCP,lab_safety,8,7,1,87.5,False,29
+OpenCUA direct-MCP,office_hours,8,7,1,87.5,False,30
+OpenCUA direct-MCP,software_access,8,7,1,87.5,False,31
+OpenCUA direct-MCP,survey_consent,8,7,1,87.5,False,32
+OpenCUA direct-MCP,technical_support,8,7,1,87.5,False,33
+OpenCUA direct-MCP,bug_report,9,8,1,88.89,False,34
+OpenCUA direct-MCP,equipment_checkout,9,8,1,88.89,False,35
+OpenCUA direct-MCP,lab_visit,8,8,0,100.0,True,36
+OpenCUA direct-MCP,orientation_signup,8,8,0,100.0,True,37
+OpenCUA direct-MCP,project_update,8,8,0,100.0,True,38
+OpenCUA direct-MCP,alumni_checkin,7,7,0,100.0,True,39
+OpenCUA direct-MCP,conf_interest,7,7,0,100.0,True,40
+OpenCUA direct-MCP,housing_preference,7,7,0,100.0,True,41
+OpenCUA direct-MCP,library_membership,7,7,0,100.0,True,42
+OpenCUA direct-MCP,meal_plan,7,7,0,100.0,True,43
+OpenCUA direct-MCP,mentor_match,7,7,0,100.0,True,44
+OpenCUA direct-MCP,research_interest,7,7,0,100.0,True,45
+OpenCUA direct-MCP,study_group_match,7,7,0,100.0,True,46
+OpenCUA direct-MCP,usability_test,7,7,0,100.0,True,47
+OpenCUA direct-MCP,volunteer_shift,7,7,0,100.0,True,48
+OpenCUA direct-MCP,workshop_signup,7,7,0,100.0,True,49
+OpenCUA direct-MCP,event_rsvp,6,6,0,100.0,True,50
+Qwen3 Text,data_annotation,9,0,9,0.0,False,1
+Qwen3 Text,travel_reimbursement,11,2,9,18.18,False,2
+Qwen3 Text,conference_travel,10,2,8,20.0,False,3
+Qwen3 Text,job_fair,9,2,7,22.22,False,4
+Qwen3 Text,club_event_planning,10,3,7,30.0,False,5
+Qwen3 Text,publication_submission,10,3,7,30.0,False,6
+Qwen3 Text,purchase_request,10,3,7,30.0,False,7
+Qwen3 Text,internship_app,12,4,8,33.33,False,8
+Qwen3 Text,experiment_booking,9,3,6,33.33,False,9
+Qwen3 Text,hackathon_signup,9,3,6,33.33,False,10
+Qwen3 Text,sports_tournament,9,3,6,33.33,False,11
+Qwen3 Text,seminar_proposal,8,3,5,37.5,False,12
+Qwen3 Text,technical_support,8,3,5,37.5,False,13
+Qwen3 Text,club_application,10,4,6,40.0,False,14
+Qwen3 Text,course_feedback,9,4,5,44.44,False,15
+Qwen3 Text,dataset_request,9,4,5,44.44,False,16
+Qwen3 Text,course_enrollment,8,4,4,50.0,False,17
+Qwen3 Text,field_trip,8,4,4,50.0,False,18
+Qwen3 Text,equipment_checkout,9,5,4,55.56,False,19
+Qwen3 Text,language_exchange,9,5,4,55.56,False,20
+Qwen3 Text,wellbeing_check,7,4,3,57.14,False,21
+Qwen3 Text,lab_safety,8,5,3,62.5,False,22
+Qwen3 Text,software_access,8,5,3,62.5,False,23
+Qwen3 Text,room_booking,9,6,3,66.67,False,24
+Qwen3 Text,event_rsvp,6,4,2,66.67,False,25
+Qwen3 Text,newsletter_signup,7,5,2,71.43,False,26
+Qwen3 Text,peer_evaluation,7,5,2,71.43,False,27
+Qwen3 Text,remote_setup,7,5,2,71.43,False,28
+Qwen3 Text,scholarship_interest,7,5,2,71.43,False,29
+Qwen3 Text,accessibility_feedback,8,6,2,75.0,False,30
+Qwen3 Text,office_hours,8,6,2,75.0,False,31
+Qwen3 Text,survey_consent,8,6,2,75.0,False,32
+Qwen3 Text,thesis_meeting,8,6,2,75.0,False,33
+Qwen3 Text,conf_interest,7,6,1,85.71,False,34
+Qwen3 Text,mentor_match,7,6,1,85.71,False,35
+Qwen3 Text,paper_review,7,6,1,85.71,False,36
+Qwen3 Text,research_interest,7,6,1,85.71,False,37
+Qwen3 Text,study_group_match,7,6,1,85.71,False,38
+Qwen3 Text,exam_registration,8,7,1,87.5,False,39
+Qwen3 Text,orientation_signup,8,7,1,87.5,False,40
+Qwen3 Text,project_update,8,7,1,87.5,False,41
+Qwen3 Text,bug_report,9,8,1,88.89,False,42
+Qwen3 Text,lab_visit,8,8,0,100.0,True,43
+Qwen3 Text,alumni_checkin,7,7,0,100.0,True,44
+Qwen3 Text,housing_preference,7,7,0,100.0,True,45
+Qwen3 Text,library_membership,7,7,0,100.0,True,46
+Qwen3 Text,meal_plan,7,7,0,100.0,True,47
+Qwen3 Text,usability_test,7,7,0,100.0,True,48
+Qwen3 Text,volunteer_shift,7,7,0,100.0,True,49
+Qwen3 Text,workshop_signup,7,7,0,100.0,True,50
+Qwen3-VL,club_application,10,2,8,20.0,False,1
+Qwen3-VL,club_event_planning,10,2,8,20.0,False,2
+Qwen3-VL,purchase_request,10,2,8,20.0,False,3
+Qwen3-VL,internship_app,12,4,8,33.33,False,4
+Qwen3-VL,seminar_proposal,8,3,5,37.5,False,5
+Qwen3-VL,publication_submission,10,4,6,40.0,False,6
+Qwen3-VL,data_annotation,9,4,5,44.44,False,7
+Qwen3-VL,dataset_request,9,4,5,44.44,False,8
+Qwen3-VL,experiment_booking,9,4,5,44.44,False,9
+Qwen3-VL,hackathon_signup,9,4,5,44.44,False,10
+Qwen3-VL,job_fair,9,4,5,44.44,False,11
+Qwen3-VL,language_exchange,9,4,5,44.44,False,12
+Qwen3-VL,sports_tournament,9,4,5,44.44,False,13
+Qwen3-VL,travel_reimbursement,11,5,6,45.45,False,14
+Qwen3-VL,field_trip,8,4,4,50.0,False,15
+Qwen3-VL,wellbeing_check,7,4,3,57.14,False,16
+Qwen3-VL,conference_travel,10,6,4,60.0,False,17
+Qwen3-VL,course_feedback,9,6,3,66.67,False,18
+Qwen3-VL,room_booking,9,6,3,66.67,False,19
+Qwen3-VL,conf_interest,7,5,2,71.43,False,20
+Qwen3-VL,paper_review,7,5,2,71.43,False,21
+Qwen3-VL,course_enrollment,8,6,2,75.0,False,22
+Qwen3-VL,office_hours,8,6,2,75.0,False,23
+Qwen3-VL,survey_consent,8,6,2,75.0,False,24
+Qwen3-VL,mentor_match,7,6,1,85.71,False,25
+Qwen3-VL,newsletter_signup,7,6,1,85.71,False,26
+Qwen3-VL,peer_evaluation,7,6,1,85.71,False,27
+Qwen3-VL,remote_setup,7,6,1,85.71,False,28
+Qwen3-VL,scholarship_interest,7,6,1,85.71,False,29
+Qwen3-VL,accessibility_feedback,8,7,1,87.5,False,30
+Qwen3-VL,exam_registration,8,7,1,87.5,False,31
+Qwen3-VL,lab_safety,8,7,1,87.5,False,32
+Qwen3-VL,lab_visit,8,7,1,87.5,False,33
+Qwen3-VL,orientation_signup,8,7,1,87.5,False,34
+Qwen3-VL,software_access,8,7,1,87.5,False,35
+Qwen3-VL,technical_support,8,7,1,87.5,False,36
+Qwen3-VL,thesis_meeting,8,7,1,87.5,False,37
+Qwen3-VL,bug_report,9,8,1,88.89,False,38
+Qwen3-VL,equipment_checkout,9,8,1,88.89,False,39
+Qwen3-VL,project_update,8,8,0,100.0,True,40
+Qwen3-VL,alumni_checkin,7,7,0,100.0,True,41
+Qwen3-VL,housing_preference,7,7,0,100.0,True,42
+Qwen3-VL,library_membership,7,7,0,100.0,True,43
+Qwen3-VL,meal_plan,7,7,0,100.0,True,44
+Qwen3-VL,research_interest,7,7,0,100.0,True,45
+Qwen3-VL,study_group_match,7,7,0,100.0,True,46
+Qwen3-VL,usability_test,7,7,0,100.0,True,47
+Qwen3-VL,volunteer_shift,7,7,0,100.0,True,48
+Qwen3-VL,workshop_signup,7,7,0,100.0,True,49
+Qwen3-VL,event_rsvp,6,6,0,100.0,True,50

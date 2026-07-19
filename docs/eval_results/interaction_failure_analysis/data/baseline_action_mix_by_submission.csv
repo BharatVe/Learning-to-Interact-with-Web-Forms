@@ -1,0 +1,26 @@
+model,outcome,action_type,action_count,share_of_actions_pct
+OpenCUA MCP,not submitted,type,1483,64.23
+OpenCUA MCP,not submitted,click,800,34.65
+OpenCUA MCP,not submitted,check,26,1.13
+OpenCUA MCP,submitted,click,1835,52.2
+OpenCUA MCP,submitted,type,1674,47.62
+OpenCUA MCP,submitted,check,5,0.14
+OpenCUA MCP,submitted,select_option,1,0.03
+OpenCUA Native,not submitted,type,2898,55.23
+OpenCUA Native,not submitted,click,2215,42.21
+OpenCUA Native,not submitted,press_key,131,2.5
+OpenCUA Native,not submitted,scroll,3,0.06
+Qwen Text,not submitted,click,3053,76.67
+Qwen Text,not submitted,type,899,22.58
+Qwen Text,not submitted,fill_form,19,0.48
+Qwen Text,not submitted,select_option,11,0.28
+Qwen Text,submitted,click,647,57.11
+Qwen Text,submitted,type,459,40.51
+Qwen Text,submitted,select_option,22,1.94
+Qwen Text,submitted,fill_form,5,0.44
+Qwen VLM,not submitted,click,2125,80.8
+Qwen VLM,not submitted,type,491,18.67
+Qwen VLM,not submitted,select_option,14,0.53
+Qwen VLM,submitted,click,1823,67.1
+Qwen VLM,submitted,type,889,32.72
+Qwen VLM,submitted,select_option,5,0.18

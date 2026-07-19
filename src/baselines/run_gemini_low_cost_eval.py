@@ -40,7 +40,7 @@ DEFAULT_OBSERVATION_MODE = "vision_coords"
 DEFAULT_SCORING_MODE = "soft_quality_v1"
 DEFAULT_GEMINI_MODEL = "gemini-3.5-flash"
 DEFAULT_KEY_FILE = ".secrets/gemini_api_key"
-PROMPT_MODE = "gemini_35_flash_lowcost_balanced_v1"
+PROMPT_MODE = "gemini_35_flash_native_interactions_v2"
 SCHEMA_VERSION = "baseline_eval.v3"
 SUMMARY_SCHEMA_VERSION = "baseline_summary.v3"
 
@@ -119,8 +119,17 @@ def _is_transient_provider_error(message: str) -> bool:
     return any(marker in text for marker in transient_markers)
 
 
+def _is_retryable_provider_error(message: str) -> bool:
+    text = str(message or "").lower()
+    return _is_transient_provider_error(text) or "malformed_tool_call" in text
+
+
 def _provider_failure_category(message: str) -> str:
-    return "provider_capacity_error" if _is_transient_provider_error(message) else "model_inference_failed"
+    if _is_transient_provider_error(message):
+        return "provider_capacity_error"
+    if "malformed_tool_call" in str(message or "").lower():
+        return "provider_tool_call_error"
+    return "model_inference_failed"
 
 
 def _image_data_for_path(path_value: Optional[str]) -> Optional[str]:
@@ -321,7 +330,12 @@ def _extract_action(payload: Dict[str, Any]) -> Tuple[Dict[str, Any], Dict[str, 
         if not name:
             name = str(args.get("action") or args.get("name") or item_type).strip()
         normalized = _normalize_action(name, args)
-        return normalized, {"source": item_type or "recursive", "name": name, "args": args}
+        return normalized, {
+            "source": item_type or "recursive",
+            "name": name,
+            "call_id": item.get("id") or item.get("call_id"),
+            "args": args,
+        }
     done_meta = _extract_done_text(payload)
     if done_meta:
         return {"action": "done"}, done_meta
@@ -346,13 +360,18 @@ def _normalize_action(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
     action: Dict[str, Any] = {"action": raw}
     x = _coord(args, "x")
     y = _coord(args, "y")
-    if raw in {"click", "click_at", "click_mouse", "double_click"}:
+    if raw in {"click", "click_at", "click_mouse"}:
         if x is None or y is None:
             raise ValueError("click_missing_coordinates")
         return {"action": "click_mouse", "target": {"x": x, "y": y}}
     if raw in {"type", "type_text", "type_text_at"}:
         text = args.get("text") if args.get("text") is not None else args.get("value")
-        action = {"action": "type_text", "value": str(text or ""), "clear_before_typing": bool(args.get("clear_before_typing", True))}
+        action = {
+            "action": "type_text",
+            "value": str(text or ""),
+            "clear_before_typing": bool(args.get("clear_before_typing", True)),
+            "press_enter": bool(args.get("press_enter", False)),
+        }
         if x is not None and y is not None:
             action["target"] = {"x": x, "y": y}
         return action
@@ -360,15 +379,25 @@ def _normalize_action(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         delta = args.get("delta") or args.get("delta_y") or args.get("scroll_delta_y")
         if delta is None:
             direction = str(args.get("direction") or "").lower()
-            delta = -700 if direction == "up" else 700
-        return {"action": "scroll", "delta": int(float(delta))}
+            magnitude = args.get("magnitude_in_pixels") or args.get("magnitude") or 300
+            magnitude = max(0, min(999, int(float(magnitude))))
+            if direction == "up":
+                delta = -magnitude
+            elif direction == "down":
+                delta = magnitude
+            else:
+                raise ValueError(f"unsupported_scroll_direction:{direction}")
+        action = {"action": "scroll", "delta": int(float(delta))}
+        if x is not None and y is not None:
+            action["target"] = {"x": x, "y": y}
+        return action
     if raw in {"wait", "wait_5_seconds"}:
         seconds = args.get("seconds")
         delta = args.get("delta")
         if delta is None:
             delta = int(float(seconds) * 1000) if seconds is not None else 1000
         return {"action": "wait", "delta": int(float(delta))}
-    if raw in {"key_combination", "press_key"}:
+    if raw in {"key_combination", "press_key", "hotkey"}:
         keys = args.get("keys")
         if isinstance(keys, list):
             value = "+".join(str(item).strip() for item in keys if str(item).strip())
@@ -377,8 +406,8 @@ def _normalize_action(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         return {"action": "press_key", "value": str(value)}
     if raw in {"submit", "done"}:
         return {"action": raw}
-    if raw in {"navigate", "open_web_browser", "go_back", "go_forward"}:
-        return {"action": "wait", "delta": 500, "reason": f"ignored_navigation_action:{raw}"}
+    if raw == "take_screenshot":
+        return {"action": "wait", "delta": 0, "reason": "provider_requested_screenshot"}
     raise ValueError(f"unsupported_gemini_action:{raw}")
 
 
@@ -408,16 +437,37 @@ class GeminiLowCostAdapter:
             float(os.environ.get("GEMINI_RETRY_MAX_DELAY_S") or model_cfg.get("gemini_retry_max_delay_s") or DEFAULT_RETRY_MAX_DELAY_S),
         )
 
-    def infer(self, prompt: str, screenshot_path: Optional[str], max_new_tokens: int) -> Tuple[Dict[str, Any], Dict[str, Any]]:
-        image_data = _image_data_for_path(screenshot_path)
-        content: List[Dict[str, Any]] = [{"type": "text", "text": prompt}]
-        if image_data:
-            content.append({"type": "image", "mime_type": "image/png", "data": image_data})
+    @staticmethod
+    def _computer_use_tool() -> Dict[str, Any]:
+        # Preserve the successful historical initial-request contract and let
+        # Gemini retain its native Computer Use capability set.
+        return {"type": "computer_use", "environment": "browser"}
+
+    def infer(
+        self,
+        prompt: str,
+        screenshot_path: Optional[str],
+        max_new_tokens: int,
+        *,
+        previous_interaction_id: Optional[str] = None,
+        function_result: Optional[Dict[str, Any]] = None,
+    ) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+        if previous_interaction_id:
+            if not isinstance(function_result, dict):
+                raise ValueError("stateful_interaction_requires_function_result")
+            content: Any = [function_result]
+        else:
+            image_data = _image_data_for_path(screenshot_path)
+            content = [{"type": "text", "text": prompt}]
+            if image_data:
+                content.append({"type": "image", "mime_type": "image/png", "data": image_data})
         payload = {
             "model": self.model,
             "input": content,
-            "tools": [{"type": "computer_use", "environment": "browser"}],
+            "tools": [self._computer_use_tool()],
         }
+        if previous_interaction_id:
+            payload["previous_interaction_id"] = previous_interaction_id
         started = time.perf_counter()
         url = f"{self.endpoint}?key={urllib.parse.quote(self.api_key)}"
         errors: List[str] = []
@@ -428,8 +478,8 @@ class GeminiLowCostAdapter:
             except RuntimeError as exc:
                 err = str(exc)
                 errors.append(err)
-                transient = _is_transient_provider_error(err)
-                if not transient or attempt_idx >= self.max_infer_retries:
+                retryable = _is_retryable_provider_error(err)
+                if not retryable or attempt_idx >= self.max_infer_retries:
                     raise
                 delay_s = min(self.retry_delay_s * (self.retry_backoff ** attempt_idx), self.retry_max_delay_s)
                 time.sleep(delay_s)
@@ -442,6 +492,9 @@ class GeminiLowCostAdapter:
             "retry_count": len(errors),
             "retry_errors": errors,
             "usage": usage,
+            "interaction_id": response.get("id"),
+            "previous_interaction_id": previous_interaction_id,
+            "stateful_continuation": bool(previous_interaction_id),
             "retry_policy": {
                 "max_infer_retries": self.max_infer_retries,
                 "retry_delay_s": self.retry_delay_s,
@@ -450,6 +503,38 @@ class GeminiLowCostAdapter:
             },
         }
         return response, meta
+
+
+def _build_function_result(
+    *,
+    call_id: str,
+    name: str,
+    screenshot_path: Optional[str],
+    execution: Dict[str, Any],
+    remaining_answers: List[Dict[str, Any]],
+) -> Dict[str, Any]:
+    result: List[Dict[str, Any]] = [
+        {
+            "type": "text",
+            "text": json.dumps(
+                {
+                    "execution": execution,
+                    "remaining_answers": remaining_answers,
+                },
+                ensure_ascii=True,
+                separators=(",", ":"),
+            ),
+        }
+    ]
+    image_data = _image_data_for_path(screenshot_path)
+    if image_data:
+        result.append({"type": "image", "mime_type": "image/png", "data": image_data})
+    return {
+        "type": "function_result",
+        "name": name,
+        "call_id": call_id,
+        "result": result,
+    }
 
 
 def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
@@ -558,6 +643,9 @@ def main(argv: Optional[List[str]] = None) -> int:
             "fill_only": bool(args.fill_only),
             "gemini_model": adapter.model,
             "api_key_source": adapter.api_key_source.split(":", 1)[0],
+            "stateful_interactions": True,
+            "coordinate_normalization": "gemini_0_999_divide_by_1000",
+            "computer_use_tool": adapter._computer_use_tool(),
         },
         "artifacts": rbe._artifact_payload(paths),
         "trace": {},
@@ -571,10 +659,16 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     execution_session = None
     last_result: Dict[str, Any] = {}
+    previous_interaction_id: Optional[str] = None
+    pending_call: Optional[Dict[str, Any]] = None
+    pending_execution: Dict[str, Any] = {}
     terminal_screenshot_path: Optional[str] = None
     observation_cache: Dict[int, Dict[str, Any]] = {}
     try:
         execution_session = rbe._make_execution_session(args, paths, trace)
+        # Gemini Computer Use defines coordinates in a normalized 1000x1000
+        # space (values 0..999). Other runners retain their historical mapping.
+        execution_session.coordinate_denominator = 1000.0
         annotations["environment"] = execution_session.start(form_url) or {}
         observation_cache[0] = execution_session.observe(0)
         for step_idx in range(args.max_steps):
@@ -620,13 +714,42 @@ def main(argv: Optional[List[str]] = None) -> int:
                 },
             )
 
+            function_result = None
+            if previous_interaction_id is not None:
+                if not isinstance(pending_call, dict):
+                    raise RuntimeError("missing_pending_function_call_for_continuation")
+                call_id = str(pending_call.get("call_id") or "").strip()
+                call_name = str(pending_call.get("name") or "").strip()
+                if not call_id or not call_name:
+                    raise RuntimeError("gemini_function_call_missing_id_or_name")
+                function_result = _build_function_result(
+                    call_id=call_id,
+                    name=call_name,
+                    screenshot_path=screenshot_path,
+                    execution=pending_execution,
+                    remaining_answers=remaining_answers,
+                )
+
+            api_payload: Optional[Dict[str, Any]] = None
+            infer_meta: Dict[str, Any] = {}
             try:
-                api_payload, infer_meta = adapter.infer(prompt, screenshot_path, max_new_tokens=args.max_new_tokens)
+                api_payload, infer_meta = adapter.infer(
+                    prompt,
+                    screenshot_path,
+                    max_new_tokens=args.max_new_tokens,
+                    previous_interaction_id=previous_interaction_id,
+                    function_result=function_result,
+                )
                 usage = infer_meta.get("usage") if isinstance(infer_meta.get("usage"), dict) else {}
                 for key in usage_total:
                     usage_total[key] += int(usage.get(key) or 0)
                 action_candidate, source_meta = _extract_action(api_payload)
                 action, warnings = validate_low_level_action(action_candidate)
+                interaction_id = str(infer_meta.get("interaction_id") or "").strip()
+                if not interaction_id and source_meta.get("source") != "text":
+                    raise ValueError("gemini_interaction_missing_id")
+                if interaction_id:
+                    previous_interaction_id = interaction_id
             except Exception as exc:
                 annotations["invalid_actions"] += 1
                 failure_category = _provider_failure_category(str(exc))
@@ -640,13 +763,24 @@ def main(argv: Optional[List[str]] = None) -> int:
                     "model_inference": {"attempts": [{"attempt": 1, "error": str(exc)}]},
                 }
                 annotations["steps"].append(step_record)
-                rbe._append_jsonl(paths["model_io_path"], {"phase": "step", "step_index": step_idx, "prompt": prompt, "error": str(exc)})
+                failure_io = {
+                    "phase": "step",
+                    "step_index": step_idx,
+                    "prompt": prompt,
+                    "error": str(exc),
+                    "model_inference": infer_meta or None,
+                    "provider_response": api_payload,
+                }
+                rbe._append_jsonl(paths["model_io_path"], failure_io)
                 rbe._set_failure(annotations, failure_category, str(exc), step_idx)
                 annotations["stop_reason"] = failure_category
                 break
 
             action_name = str(action.get("action") or "")
             annotations["action_count"] += 1
+            native_args = source_meta.get("args") if isinstance(source_meta.get("args"), dict) else {}
+            safety_decision = native_args.get("safety_decision") if isinstance(native_args.get("safety_decision"), dict) else {}
+            safety_value = str(safety_decision.get("decision") or "").strip().lower()
             step_record = {
                 "step_index": step_idx,
                 "elapsed_s": round(time.perf_counter() - start_time, 3),
@@ -662,6 +796,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "progress_made": False,
                 "model_output_source": source_meta,
                 "model_inference": {"attempts": [{"attempt": 1, **infer_meta}]},
+                "safety_decision": safety_decision or None,
             }
             io_record = {
                 "phase": "step",
@@ -677,59 +812,80 @@ def main(argv: Optional[List[str]] = None) -> int:
             exec_err: Optional[str] = None
             execution_payload: Dict[str, Any] = {}
             try:
-                target = action.get("target") if isinstance(action.get("target"), dict) else {}
-                if action_name == "click_mouse":
-                    execution_payload = execution_session.execute_click_mouse(int(target.get("x")), int(target.get("y")), step_idx)
-                    step_record["status"] = "clicked"
-                    step_record["progress_made"] = True
-                elif action_name == "type_text":
-                    if "x" in target and "y" in target:
-                        execution_session.execute_click_mouse(int(target.get("x")), int(target.get("y")), step_idx)
-                        execution_session.execute_wait(0.2, step_idx)
-                    if bool(action.get("clear_before_typing", False)):
-                        execution_session.execute_press_key("Control+A", step_idx)
-                        execution_session.execute_press_key("Backspace", step_idx)
-                    execution_payload = execution_session.execute_type_text(str(action.get("value") or ""), step_idx)
-                    step_record["status"] = "typed"
-                    step_record["progress_made"] = True
-                elif action_name == "scroll":
-                    delta = int(action.get("delta") or 700)
-                    execution_session.execute_scroll(delta, step_idx)
-                    execution_payload = {"status": "scrolled", "delta": delta}
-                    step_record["status"] = "scrolled"
-                    step_record["progress_made"] = True
-                elif action_name == "wait":
-                    wait_seconds = max(0.25, float(action.get("delta") or 1000) / 1000.0)
-                    execution_session.execute_wait(wait_seconds, step_idx)
-                    execution_payload = {"status": "waited", "seconds": wait_seconds}
-                    step_record["status"] = "waited"
-                elif action_name == "press_key":
-                    key = str(action.get("value") or "Tab")
-                    execution_session.execute_press_key(key, step_idx)
-                    execution_payload = {"status": "pressed_key", "key": key}
-                    step_record["status"] = "pressed_key"
-                    step_record["progress_made"] = True
-                elif action_name == "submit":
-                    if args.fill_only:
-                        execution_payload = {"status": "blocked_by_harness", "reason": "fill_only_no_submit"}
-                        step_record["status"] = "blocked_submit_fill_only"
-                        step_record["error"] = "submit_disabled_in_fill_only_done"
-                        rbe._record_soft_violation(annotations, "submit_disabled_in_fill_only_done", "model requested submit", step_idx)
-                    else:
-                        submit_info, submit_err = execution_session.submit()
-                        execution_payload = submit_info
-                        annotations["submit_success"] = bool(submit_info.get("success")) and not submit_err
-                        annotations["success"] = bool(annotations["submit_success"])
-                        annotations["stop_reason"] = "submitted" if annotations["success"] else "submission_failed"
-                        step_record["status"] = annotations["stop_reason"]
-                        if submit_err:
-                            step_record["error"] = submit_err
-                elif action_name == "done":
-                    execution_payload = {"status": "done"}
-                    annotations["stop_reason"] = "done"
-                    step_record["status"] = "done"
+                if safety_value in {"require_confirmation", "blocked"}:
+                    execution_payload = {
+                        "status": "not_executed",
+                        "reason": f"provider_safety_{safety_value}",
+                        "explanation": safety_decision.get("explanation"),
+                    }
+                    step_record["status"] = "provider_safety_interruption"
+                    annotations["stop_reason"] = "provider_safety_interruption"
+                    rbe._set_failure(
+                        annotations,
+                        "provider_safety_interruption",
+                        str(safety_decision.get("explanation") or safety_value),
+                        step_idx,
+                    )
                 else:
-                    raise RuntimeError(f"unsupported_action:{action_name}")
+                    target = action.get("target") if isinstance(action.get("target"), dict) else {}
+                    if action_name == "click_mouse":
+                        execution_payload = execution_session.execute_click_mouse(int(target.get("x")), int(target.get("y")), step_idx)
+                        step_record["status"] = "clicked"
+                        step_record["progress_made"] = True
+                    elif action_name == "type_text":
+                        if "x" in target and "y" in target:
+                            execution_session.execute_click_mouse(int(target.get("x")), int(target.get("y")), step_idx)
+                            execution_session.execute_wait(0.2, step_idx)
+                        if bool(action.get("clear_before_typing", False)):
+                            execution_session.execute_press_key("Control+A", step_idx)
+                            execution_session.execute_press_key("Backspace", step_idx)
+                        execution_payload = execution_session.execute_type_text(str(action.get("value") or ""), step_idx)
+                        if bool(action.get("press_enter", False)):
+                            execution_session.execute_press_key("Enter", step_idx)
+                            execution_payload["press_enter"] = True
+                        step_record["status"] = "typed"
+                        step_record["progress_made"] = True
+                    elif action_name == "scroll":
+                        if "x" in target and "y" in target:
+                            execution_session.execute_move_mouse(int(target.get("x")), int(target.get("y")), step_idx)
+                        delta = int(action.get("delta") or 300)
+                        execution_session.execute_scroll(delta, step_idx)
+                        execution_payload = {"status": "scrolled", "delta": delta, "target": target}
+                        step_record["status"] = "scrolled"
+                        step_record["progress_made"] = True
+                    elif action_name == "wait":
+                        wait_seconds = max(0.0, float(action.get("delta") or 0) / 1000.0)
+                        if wait_seconds:
+                            execution_session.execute_wait(wait_seconds, step_idx)
+                        execution_payload = {"status": "waited", "seconds": wait_seconds, "reason": action.get("reason")}
+                        step_record["status"] = "waited"
+                    elif action_name == "press_key":
+                        key = str(action.get("value") or "Tab")
+                        execution_session.execute_press_key(key, step_idx)
+                        execution_payload = {"status": "pressed_key", "key": key}
+                        step_record["status"] = "pressed_key"
+                        step_record["progress_made"] = True
+                    elif action_name == "submit":
+                        if args.fill_only:
+                            execution_payload = {"status": "blocked_by_harness", "reason": "fill_only_no_submit"}
+                            step_record["status"] = "blocked_submit_fill_only"
+                            step_record["error"] = "submit_disabled_in_fill_only_done"
+                            rbe._record_soft_violation(annotations, "submit_disabled_in_fill_only_done", "model requested submit", step_idx)
+                        else:
+                            submit_info, submit_err = execution_session.submit()
+                            execution_payload = submit_info
+                            annotations["submit_success"] = bool(submit_info.get("success")) and not submit_err
+                            annotations["success"] = bool(annotations["submit_success"])
+                            annotations["stop_reason"] = "submitted" if annotations["success"] else "submission_failed"
+                            step_record["status"] = annotations["stop_reason"]
+                            if submit_err:
+                                step_record["error"] = submit_err
+                    elif action_name == "done":
+                        execution_payload = {"status": "done"}
+                        annotations["stop_reason"] = "done"
+                        step_record["status"] = "done"
+                    else:
+                        raise RuntimeError(f"unsupported_action:{action_name}")
             except Exception as exc:
                 exec_err = str(exc)
             if exec_err:
@@ -779,6 +935,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             annotations["steps"].append(step_record)
             rbe._append_jsonl(paths["model_io_path"], io_record)
             last_result = {"status": step_record.get("status"), "error": step_record.get("error")}
+            pending_call = source_meta if source_meta.get("source") != "text" else None
+            pending_execution = execution_payload
             if annotations.get("stop_reason"):
                 break
             try:

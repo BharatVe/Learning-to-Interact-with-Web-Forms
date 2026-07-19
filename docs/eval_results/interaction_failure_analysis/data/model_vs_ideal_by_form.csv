@@ -1,0 +1,201 @@
+model,form_id,answer_run_id,model_full_fill,model_correctness_pct,model_actions,model_issued_actions,model_duration_s,ideal_total_trace_events,ideal_interaction_actions,ideal_script_operations,ideal_duration_s,model_to_ideal_interaction_action_ratio,model_to_ideal_total_event_ratio,model_to_ideal_script_operation_ratio,model_to_ideal_time_ratio
+Gemini 3.5 Flash,accessibility_feedback,run_0002,false,87.5,31,32,1401.714,41,10,11,51.062,3.1,0.756,2.818,27.451
+Gemini 3.5 Flash,alumni_checkin,run_0002,true,100.0,13,13,423.002,37,9,10,38.259,1.444,0.351,1.3,11.056
+Gemini 3.5 Flash,bug_report,run_0002,false,88.89,26,27,916.72,45,11,12,84.159,2.364,0.578,2.167,10.893
+Gemini 3.5 Flash,club_application,run_0002,false,40.0,32,32,1452.456,49,12,13,61.75,2.667,0.653,2.462,23.522
+Gemini 3.5 Flash,club_event_planning,run_0002,false,40.0,32,32,1484.153,49,12,13,63.482,2.667,0.653,2.462,23.379
+Gemini 3.5 Flash,conf_interest,run_0002,true,100.0,25,25,1288.053,37,9,10,66.394,2.778,0.676,2.5,19.4
+Gemini 3.5 Flash,conference_travel,run_0002,false,70.0,32,32,1146.533,49,12,13,59.656,2.667,0.653,2.462,19.219
+Gemini 3.5 Flash,course_enrollment,run_0002,false,75.0,32,32,566.916,41,10,11,70.495,3.2,0.78,2.909,8.042
+Gemini 3.5 Flash,course_feedback,run_0002,false,55.56,32,32,585.324,45,11,12,67.934,2.909,0.711,2.667,8.616
+Gemini 3.5 Flash,data_annotation,run_0002,false,55.56,32,32,644.151,45,11,12,59.318,2.909,0.711,2.667,10.859
+Gemini 3.5 Flash,dataset_request,run_0002,false,55.56,32,32,745.616,45,11,12,56.348,2.909,0.711,2.667,13.232
+Gemini 3.5 Flash,equipment_checkout,run_0002,false,55.56,32,32,1335.851,45,11,12,75.332,2.909,0.711,2.667,17.733
+Gemini 3.5 Flash,event_rsvp,run_0002,true,100.0,17,17,281.301,33,8,9,48.669,2.125,0.515,1.889,5.78
+Gemini 3.5 Flash,exam_registration,run_0002,false,87.5,20,21,491.449,41,10,11,53.057,2.0,0.488,1.818,9.263
+Gemini 3.5 Flash,experiment_booking,run_0002,false,55.56,32,32,1424.3,45,11,12,55.197,2.909,0.711,2.667,25.804
+Gemini 3.5 Flash,field_trip,run_0002,false,75.0,32,32,1480.265,41,10,11,57.183,3.2,0.78,2.909,25.886
+Gemini 3.5 Flash,hackathon_signup,run_0002,false,88.89,32,32,1082.229,45,11,12,42.764,2.909,0.711,2.667,25.307
+Gemini 3.5 Flash,housing_preference,run_0002,true,100.0,14,14,251.604,37,9,10,47.232,1.556,0.378,1.4,5.327
+Gemini 3.5 Flash,internship_app,run_0002,false,50.0,32,32,1555.386,57,14,15,69.452,2.286,0.561,2.133,22.395
+Gemini 3.5 Flash,job_fair,run_0002,false,66.67,32,32,607.242,45,11,12,71.772,2.909,0.711,2.667,8.461
+Gemini 3.5 Flash,lab_safety,run_0002,false,62.5,32,32,1606.728,41,10,11,52.309,3.2,0.78,2.909,30.716
+Gemini 3.5 Flash,lab_visit,run_0002,true,100.0,24,24,1313.688,41,10,11,42.057,2.4,0.585,2.182,31.236
+Gemini 3.5 Flash,language_exchange,run_0002,true,100.0,29,29,556.888,45,11,12,45.423,2.636,0.644,2.417,12.26
+Gemini 3.5 Flash,library_membership,run_0002,true,100.0,14,14,251.613,37,9,10,50.453,1.556,0.378,1.4,4.987
+Gemini 3.5 Flash,meal_plan,run_0002,true,100.0,30,30,518.446,37,9,10,46.615,3.333,0.811,3.0,11.122
+Gemini 3.5 Flash,mentor_match,run_0002,false,85.71,23,24,1242.204,37,9,10,65.651,2.556,0.622,2.3,18.921
+Gemini 3.5 Flash,newsletter_signup,run_0002,false,85.71,12,13,228.326,37,9,10,49.434,1.333,0.324,1.2,4.619
+Gemini 3.5 Flash,office_hours,run_0002,false,75.0,32,32,583.507,41,10,11,52.873,3.2,0.78,2.909,11.036
+Gemini 3.5 Flash,orientation_signup,run_0002,false,87.5,23,24,790.179,41,10,11,69.943,2.3,0.561,2.091,11.297
+Gemini 3.5 Flash,paper_review,run_0002,false,85.71,24,25,430.549,37,9,10,50.39,2.667,0.649,2.4,8.544
+Gemini 3.5 Flash,peer_evaluation,run_0002,false,85.71,16,17,790.412,37,9,10,49.153,1.778,0.432,1.6,16.081
+Gemini 3.5 Flash,project_update,run_0002,false,87.5,25,26,492.738,41,10,11,81.067,2.5,0.61,2.273,6.078
+Gemini 3.5 Flash,publication_submission,run_0002,false,40.0,32,32,643.811,49,12,13,61.905,2.667,0.653,2.462,10.4
+Gemini 3.5 Flash,purchase_request,run_0002,false,30.0,32,32,1620.377,49,12,13,58.211,2.667,0.653,2.462,27.836
+Gemini 3.5 Flash,remote_setup,run_0002,false,71.43,32,32,1598.146,37,9,10,50.533,3.556,0.865,3.2,31.626
+Gemini 3.5 Flash,research_interest,run_0002,false,85.71,24,25,1378.329,37,9,10,67.613,2.667,0.649,2.4,20.386
+Gemini 3.5 Flash,room_booking,run_0002,false,66.67,32,32,605.485,45,11,12,56.535,2.909,0.711,2.667,10.71
+Gemini 3.5 Flash,scholarship_interest,run_0002,false,42.86,32,32,512.099,37,9,10,48.556,3.556,0.865,3.2,10.547
+Gemini 3.5 Flash,seminar_proposal,run_0002,false,50.0,32,32,1810.487,41,10,11,67.775,3.2,0.78,2.909,26.713
+Gemini 3.5 Flash,software_access,run_0002,false,75.0,32,32,1200.291,41,10,11,52.087,3.2,0.78,2.909,23.044
+Gemini 3.5 Flash,sports_tournament,run_0002,false,33.33,32,32,601.216,45,11,12,56.313,2.909,0.711,2.667,10.676
+Gemini 3.5 Flash,study_group_match,run_0002,true,100.0,25,25,417.428,37,9,10,38.011,2.778,0.676,2.5,10.982
+Gemini 3.5 Flash,survey_consent,run_0002,false,75.0,32,32,590.675,41,10,11,53.504,3.2,0.78,2.909,11.04
+Gemini 3.5 Flash,technical_support,run_0002,false,50.0,32,32,1126.905,41,10,11,68.371,3.2,0.78,2.909,16.482
+Gemini 3.5 Flash,thesis_meeting,run_0002,false,62.5,32,32,1042.332,41,10,11,53.633,3.2,0.78,2.909,19.435
+Gemini 3.5 Flash,travel_reimbursement,run_0002,false,63.64,32,32,1207.572,53,13,14,79.695,2.462,0.604,2.286,15.152
+Gemini 3.5 Flash,usability_test,run_0002,true,100.0,20,20,376.507,37,9,10,35.709,2.222,0.541,2.0,10.544
+Gemini 3.5 Flash,volunteer_shift,run_0002,true,100.0,23,23,441.337,37,9,10,49.406,2.556,0.622,2.3,8.933
+Gemini 3.5 Flash,wellbeing_check,run_0002,false,71.43,32,32,972.966,37,9,10,65.459,3.556,0.865,3.2,14.864
+Gemini 3.5 Flash,workshop_signup,run_0002,true,100.0,18,18,331.304,37,9,10,33.171,2.0,0.486,1.8,9.988
+OpenCUA direct-MCP,accessibility_feedback,run_0002,false,75.0,41,41,3639.458,41,10,11,51.062,4.1,1.0,3.727,71.275
+OpenCUA direct-MCP,alumni_checkin,run_0002,true,100.0,7,7,186.83,37,9,10,38.259,0.778,0.189,0.7,4.883
+OpenCUA direct-MCP,bug_report,run_0002,false,88.89,10,10,253.94,45,11,12,84.159,0.909,0.222,0.833,3.017
+OpenCUA direct-MCP,club_application,run_0002,false,30.0,17,17,573.163,49,12,13,61.75,1.417,0.347,1.308,9.282
+OpenCUA direct-MCP,club_event_planning,run_0002,false,20.0,15,15,466.985,49,12,13,63.482,1.25,0.306,1.154,7.356
+OpenCUA direct-MCP,conf_interest,run_0002,true,100.0,9,9,229.721,37,9,10,66.394,1.0,0.243,0.9,3.46
+OpenCUA direct-MCP,conference_travel,run_0002,false,20.0,32,32,754.497,49,12,13,59.656,2.667,0.653,2.462,12.647
+OpenCUA direct-MCP,course_enrollment,run_0002,false,87.5,15,15,366.058,41,10,11,70.495,1.5,0.366,1.364,5.193
+OpenCUA direct-MCP,course_feedback,run_0002,false,66.67,11,11,327.333,45,11,12,67.934,1.0,0.244,0.917,4.818
+OpenCUA direct-MCP,data_annotation,run_0002,false,44.44,12,12,309.91,45,11,12,59.318,1.091,0.267,1.0,5.225
+OpenCUA direct-MCP,dataset_request,run_0002,false,44.44,12,12,332.735,45,11,12,56.348,1.091,0.267,1.0,5.905
+OpenCUA direct-MCP,equipment_checkout,run_0002,false,88.89,14,14,408.334,45,11,12,75.332,1.273,0.311,1.167,5.42
+OpenCUA direct-MCP,event_rsvp,run_0002,true,100.0,9,9,187.232,33,8,9,48.669,1.125,0.273,1.0,3.847
+OpenCUA direct-MCP,exam_registration,run_0002,false,87.5,9,9,211.558,41,10,11,53.057,0.9,0.22,0.818,3.987
+OpenCUA direct-MCP,experiment_booking,run_0002,false,44.44,12,12,373.41,45,11,12,55.197,1.091,0.267,1.0,6.765
+OpenCUA direct-MCP,field_trip,run_0002,false,87.5,9,9,255.668,41,10,11,57.183,0.9,0.22,0.818,4.471
+OpenCUA direct-MCP,hackathon_signup,run_0002,false,55.56,11,11,281.21,45,11,12,42.764,1.0,0.244,0.917,6.576
+OpenCUA direct-MCP,housing_preference,run_0002,true,100.0,7,7,160.839,37,9,10,47.232,0.778,0.189,0.7,3.405
+OpenCUA direct-MCP,internship_app,run_0002,false,25.0,21,21,788.54,57,14,15,69.452,1.5,0.368,1.4,11.354
+OpenCUA direct-MCP,job_fair,run_0002,false,44.44,13,13,352.789,45,11,12,71.772,1.182,0.289,1.083,4.915
+OpenCUA direct-MCP,lab_safety,run_0002,false,87.5,10,10,320.007,41,10,11,52.309,1.0,0.244,0.909,6.118
+OpenCUA direct-MCP,lab_visit,run_0002,true,100.0,10,10,266.904,41,10,11,42.057,1.0,0.244,0.909,6.346
+OpenCUA direct-MCP,language_exchange,run_0002,false,55.56,11,11,292.618,45,11,12,45.423,1.0,0.244,0.917,6.442
+OpenCUA direct-MCP,library_membership,run_0002,true,100.0,7,7,151.765,37,9,10,50.453,0.778,0.189,0.7,3.008
+OpenCUA direct-MCP,meal_plan,run_0002,true,100.0,9,9,201.274,37,9,10,46.615,1.0,0.243,0.9,4.318
+OpenCUA direct-MCP,mentor_match,run_0002,true,100.0,11,11,300.248,37,9,10,65.651,1.222,0.297,1.1,4.573
+OpenCUA direct-MCP,newsletter_signup,run_0002,false,85.71,8,8,201.439,37,9,10,49.434,0.889,0.216,0.8,4.075
+OpenCUA direct-MCP,office_hours,run_0002,false,87.5,12,12,267.455,41,10,11,52.873,1.2,0.293,1.091,5.058
+OpenCUA direct-MCP,orientation_signup,run_0002,true,100.0,10,10,758.135,41,10,11,69.943,1.0,0.244,0.909,10.839
+OpenCUA direct-MCP,paper_review,run_0002,false,85.71,10,10,247.143,37,9,10,50.39,1.111,0.27,1.0,4.905
+OpenCUA direct-MCP,peer_evaluation,run_0002,false,85.71,24,25,9542.455,37,9,10,49.153,2.667,0.649,2.4,194.138
+OpenCUA direct-MCP,project_update,run_0002,true,100.0,10,10,226.867,41,10,11,81.067,1.0,0.244,0.909,2.799
+OpenCUA direct-MCP,publication_submission,run_0002,false,40.0,32,32,4289.148,49,12,13,61.905,2.667,0.653,2.462,69.286
+OpenCUA direct-MCP,purchase_request,run_0002,false,30.0,14,14,505.383,49,12,13,58.211,1.167,0.286,1.077,8.682
+OpenCUA direct-MCP,remote_setup,run_0002,false,85.71,8,8,243.967,37,9,10,50.533,0.889,0.216,0.8,4.828
+OpenCUA direct-MCP,research_interest,run_0002,true,100.0,9,9,215.213,37,9,10,67.613,1.0,0.243,0.9,3.183
+OpenCUA direct-MCP,room_booking,run_0002,false,33.33,11,11,284.517,45,11,12,56.535,1.0,0.244,0.917,5.033
+OpenCUA direct-MCP,scholarship_interest,run_0002,false,85.71,8,8,192.31,37,9,10,48.556,0.889,0.216,0.8,3.961
+OpenCUA direct-MCP,seminar_proposal,run_0002,false,50.0,11,11,910.437,41,10,11,67.775,1.1,0.268,1.0,13.433
+OpenCUA direct-MCP,software_access,run_0002,false,87.5,9,9,273.664,41,10,11,52.087,0.9,0.22,0.818,5.254
+OpenCUA direct-MCP,sports_tournament,run_0002,false,55.56,14,14,381.872,45,11,12,56.313,1.273,0.311,1.167,6.781
+OpenCUA direct-MCP,study_group_match,run_0002,true,100.0,12,12,277.18,37,9,10,38.011,1.333,0.324,1.2,7.292
+OpenCUA direct-MCP,survey_consent,run_0002,false,87.5,11,11,1400.744,41,10,11,53.504,1.1,0.268,1.0,26.18
+OpenCUA direct-MCP,technical_support,run_0002,false,87.5,12,12,297.05,41,10,11,68.371,1.2,0.293,1.091,4.345
+OpenCUA direct-MCP,thesis_meeting,run_0002,false,75.0,47,47,2173.131,41,10,11,53.633,4.7,1.146,4.273,40.519
+OpenCUA direct-MCP,travel_reimbursement,run_0002,false,45.45,32,32,809.619,53,13,14,79.695,2.462,0.604,2.286,10.159
+OpenCUA direct-MCP,usability_test,run_0002,true,100.0,8,8,177.481,37,9,10,35.709,0.889,0.216,0.8,4.97
+OpenCUA direct-MCP,volunteer_shift,run_0002,true,100.0,8,8,184.757,37,9,10,49.406,0.889,0.216,0.8,3.74
+OpenCUA direct-MCP,wellbeing_check,run_0002,false,42.86,12,12,346.515,37,9,10,65.459,1.333,0.324,1.2,5.294
+OpenCUA direct-MCP,workshop_signup,run_0002,true,100.0,7,7,167.249,37,9,10,33.171,0.778,0.189,0.7,5.042
+Qwen3 Text,accessibility_feedback,run_0002,false,75.0,9,9,209.703,41,10,11,51.062,0.9,0.22,0.818,4.107
+Qwen3 Text,alumni_checkin,run_0002,true,100.0,7,7,107.907,37,9,10,38.259,0.778,0.189,0.7,2.82
+Qwen3 Text,bug_report,run_0002,false,88.89,12,12,1405.255,45,11,12,84.159,1.091,0.267,1.0,16.698
+Qwen3 Text,club_application,run_0002,false,40.0,16,16,275.492,49,12,13,61.75,1.333,0.327,1.231,4.461
+Qwen3 Text,club_event_planning,run_0002,false,30.0,17,17,421.923,49,12,13,63.482,1.417,0.347,1.308,6.646
+Qwen3 Text,conf_interest,run_0002,false,85.71,10,10,158.745,37,9,10,66.394,1.111,0.27,1.0,2.391
+Qwen3 Text,conference_travel,run_0002,false,20.0,19,19,2183.272,49,12,13,59.656,1.583,0.388,1.462,36.598
+Qwen3 Text,course_enrollment,run_0002,false,50.0,8,8,178.265,41,10,11,70.495,0.8,0.195,0.727,2.529
+Qwen3 Text,course_feedback,run_0002,false,44.44,10,11,222.978,45,11,12,67.934,0.909,0.222,0.833,3.282
+Qwen3 Text,data_annotation,run_0002,false,0.0,37,37,882.2,45,11,12,59.318,3.364,0.822,3.083,14.872
+Qwen3 Text,dataset_request,run_0002,false,44.44,9,9,213.208,45,11,12,56.348,0.818,0.2,0.75,3.784
+Qwen3 Text,equipment_checkout,run_0002,false,55.56,16,16,2056.093,45,11,12,75.332,1.455,0.356,1.333,27.294
+Qwen3 Text,event_rsvp,run_0002,false,66.67,11,11,193.704,33,8,9,48.669,1.375,0.333,1.222,3.98
+Qwen3 Text,exam_registration,run_0002,false,87.5,10,10,172.743,41,10,11,53.057,1.0,0.244,0.909,3.256
+Qwen3 Text,experiment_booking,run_0002,false,33.33,14,14,302.758,45,11,12,55.197,1.273,0.311,1.167,5.485
+Qwen3 Text,field_trip,run_0002,false,50.0,36,36,762.722,41,10,11,57.183,3.6,0.878,3.273,13.338
+Qwen3 Text,hackathon_signup,run_0002,false,33.33,15,15,340.371,45,11,12,42.764,1.364,0.333,1.25,7.959
+Qwen3 Text,housing_preference,run_0002,true,100.0,7,7,105.67,37,9,10,47.232,0.778,0.189,0.7,2.237
+Qwen3 Text,internship_app,run_0002,false,33.33,7,7,188.217,57,14,15,69.452,0.5,0.123,0.467,2.71
+Qwen3 Text,job_fair,run_0002,false,22.22,14,14,312.48,45,11,12,71.772,1.273,0.311,1.167,4.354
+Qwen3 Text,lab_safety,run_0002,false,62.5,10,10,217.46,41,10,11,52.309,1.0,0.244,0.909,4.157
+Qwen3 Text,lab_visit,run_0002,true,100.0,9,9,130.648,41,10,11,42.057,0.9,0.22,0.818,3.106
+Qwen3 Text,language_exchange,run_0002,false,55.56,11,11,205.394,45,11,12,45.423,1.0,0.244,0.917,4.522
+Qwen3 Text,library_membership,run_0002,true,100.0,7,7,97.769,37,9,10,50.453,0.778,0.189,0.7,1.938
+Qwen3 Text,meal_plan,run_0002,true,100.0,8,8,116.165,37,9,10,46.615,0.889,0.216,0.8,2.492
+Qwen3 Text,mentor_match,run_0002,false,85.71,11,11,203.891,37,9,10,65.651,1.222,0.297,1.1,3.106
+Qwen3 Text,newsletter_signup,run_0002,false,71.43,7,7,126.07,37,9,10,49.434,0.778,0.189,0.7,2.55
+Qwen3 Text,office_hours,run_0002,false,75.0,13,13,2003.335,41,10,11,52.873,1.3,0.317,1.182,37.89
+Qwen3 Text,orientation_signup,run_0002,false,87.5,9,10,139.985,41,10,11,69.943,0.9,0.22,0.818,2.001
+Qwen3 Text,paper_review,run_0002,false,85.71,14,14,251.995,37,9,10,50.39,1.556,0.378,1.4,5.001
+Qwen3 Text,peer_evaluation,run_0002,false,71.43,11,11,200.457,37,9,10,49.153,1.222,0.297,1.1,4.078
+Qwen3 Text,project_update,run_0002,false,87.5,10,10,178.731,41,10,11,81.067,1.0,0.244,0.909,2.205
+Qwen3 Text,publication_submission,run_0002,false,30.0,11,11,2054.307,49,12,13,61.905,0.917,0.224,0.846,33.185
+Qwen3 Text,purchase_request,run_0002,false,30.0,10,10,216.366,49,12,13,58.211,0.833,0.204,0.769,3.717
+Qwen3 Text,remote_setup,run_0002,false,71.43,7,7,127.494,37,9,10,50.533,0.778,0.189,0.7,2.523
+Qwen3 Text,research_interest,run_0002,false,85.71,9,9,150.916,37,9,10,67.613,1.0,0.243,0.9,2.232
+Qwen3 Text,room_booking,run_0002,false,66.67,17,17,324.696,45,11,12,56.535,1.545,0.378,1.417,5.743
+Qwen3 Text,scholarship_interest,run_0002,false,71.43,11,11,1975.972,37,9,10,48.556,1.222,0.297,1.1,40.695
+Qwen3 Text,seminar_proposal,run_0002,false,37.5,9,11,157.983,41,10,11,67.775,0.9,0.22,0.818,2.331
+Qwen3 Text,software_access,run_0002,false,62.5,7,7,131.837,41,10,11,52.087,0.7,0.171,0.636,2.531
+Qwen3 Text,sports_tournament,run_0002,false,33.33,5,5,116.275,45,11,12,56.313,0.455,0.111,0.417,2.065
+Qwen3 Text,study_group_match,run_0002,false,85.71,9,9,148.908,37,9,10,38.011,1.0,0.243,0.9,3.917
+Qwen3 Text,survey_consent,run_0002,false,75.0,11,11,205.739,41,10,11,53.504,1.1,0.268,1.0,3.845
+Qwen3 Text,technical_support,run_0002,false,37.5,6,6,117.1,41,10,11,68.371,0.6,0.146,0.545,1.713
+Qwen3 Text,thesis_meeting,run_0002,false,75.0,14,14,2029.458,41,10,11,53.633,1.4,0.341,1.273,37.84
+Qwen3 Text,travel_reimbursement,run_0002,false,18.18,13,13,280.181,53,13,14,79.695,1.0,0.245,0.929,3.516
+Qwen3 Text,usability_test,run_0002,true,100.0,8,8,115.754,37,9,10,35.709,0.889,0.216,0.8,3.242
+Qwen3 Text,volunteer_shift,run_0002,true,100.0,8,8,124.73,37,9,10,49.406,0.889,0.216,0.8,2.525
+Qwen3 Text,wellbeing_check,run_0002,false,57.14,7,7,136.883,37,9,10,65.459,0.778,0.189,0.7,2.091
+Qwen3 Text,workshop_signup,run_0002,true,100.0,7,7,115.922,37,9,10,33.171,0.778,0.189,0.7,3.495
+Qwen3-VL,accessibility_feedback,run_0002,false,87.5,10,10,248.2,41,10,11,51.062,1.0,0.244,0.909,4.861
+Qwen3-VL,alumni_checkin,run_0002,true,100.0,7,7,129.162,37,9,10,38.259,0.778,0.189,0.7,3.376
+Qwen3-VL,bug_report,run_0002,false,88.89,10,10,199.578,45,11,12,84.159,0.909,0.222,0.833,2.371
+Qwen3-VL,club_application,run_0002,false,20.0,31,32,763.02,49,12,13,61.75,2.583,0.633,2.385,12.357
+Qwen3-VL,club_event_planning,run_0002,false,20.0,15,16,320.441,49,12,13,63.482,1.25,0.306,1.154,5.048
+Qwen3-VL,conf_interest,run_0002,false,71.43,8,8,143.035,37,9,10,66.394,0.889,0.216,0.8,2.154
+Qwen3-VL,conference_travel,run_0002,false,60.0,9,32,310.275,49,12,13,59.656,0.75,0.184,0.692,5.201
+Qwen3-VL,course_enrollment,run_0002,false,75.0,32,32,697.787,41,10,11,70.495,3.2,0.78,2.909,9.898
+Qwen3-VL,course_feedback,run_0002,false,66.67,11,11,272.437,45,11,12,67.934,1.0,0.244,0.917,4.01
+Qwen3-VL,data_annotation,run_0002,false,44.44,11,14,234.696,45,11,12,59.318,1.0,0.244,0.917,3.957
+Qwen3-VL,dataset_request,run_0002,false,44.44,12,12,272.472,45,11,12,56.348,1.091,0.267,1.0,4.836
+Qwen3-VL,equipment_checkout,run_0002,false,88.89,12,12,225.113,45,11,12,75.332,1.091,0.267,1.0,2.988
+Qwen3-VL,event_rsvp,run_0002,true,100.0,7,7,106.612,33,8,9,48.669,0.875,0.212,0.778,2.191
+Qwen3-VL,exam_registration,run_0002,false,87.5,9,9,175.856,41,10,11,53.057,0.9,0.22,0.818,3.314
+Qwen3-VL,experiment_booking,run_0002,false,44.44,12,12,270.166,45,11,12,55.197,1.091,0.267,1.0,4.895
+Qwen3-VL,field_trip,run_0002,false,50.0,7,7,1922.213,41,10,11,57.183,0.7,0.171,0.636,33.615
+Qwen3-VL,hackathon_signup,run_0002,false,44.44,9,9,206.375,45,11,12,42.764,0.818,0.2,0.75,4.826
+Qwen3-VL,housing_preference,run_0002,true,100.0,7,7,129.667,37,9,10,47.232,0.778,0.189,0.7,2.745
+Qwen3-VL,internship_app,run_0002,false,33.33,11,13,290.034,57,14,15,69.452,0.786,0.193,0.733,4.176
+Qwen3-VL,job_fair,run_0002,false,44.44,11,12,242.538,45,11,12,71.772,1.0,0.244,0.917,3.379
+Qwen3-VL,lab_safety,run_0002,false,87.5,9,9,189.255,41,10,11,52.309,0.9,0.22,0.818,3.618
+Qwen3-VL,lab_visit,run_0002,false,87.5,7,7,133.531,41,10,11,42.057,0.7,0.171,0.636,3.175
+Qwen3-VL,language_exchange,run_0002,false,44.44,4,9,111.559,45,11,12,45.423,0.364,0.089,0.333,2.456
+Qwen3-VL,library_membership,run_0002,true,100.0,7,7,118.59,37,9,10,50.453,0.778,0.189,0.7,2.351
+Qwen3-VL,meal_plan,run_0002,true,100.0,11,12,207.652,37,9,10,46.615,1.222,0.297,1.1,4.455
+Qwen3-VL,mentor_match,run_0002,false,85.71,13,14,252.744,37,9,10,65.651,1.444,0.351,1.3,3.85
+Qwen3-VL,newsletter_signup,run_0002,false,85.71,8,8,160.0,37,9,10,49.434,0.889,0.216,0.8,3.237
+Qwen3-VL,office_hours,run_0002,false,75.0,9,9,168.896,41,10,11,52.873,0.9,0.22,0.818,3.194
+Qwen3-VL,orientation_signup,run_0002,false,87.5,13,14,270.012,41,10,11,69.943,1.3,0.317,1.182,3.86
+Qwen3-VL,paper_review,run_0002,false,71.43,9,9,171.09,37,9,10,50.39,1.0,0.243,0.9,3.395
+Qwen3-VL,peer_evaluation,run_0002,false,85.71,10,10,194.81,37,9,10,49.153,1.111,0.27,1.0,3.963
+Qwen3-VL,project_update,run_0002,true,100.0,9,9,155.478,41,10,11,81.067,0.9,0.22,0.818,1.918
+Qwen3-VL,publication_submission,run_0002,false,40.0,32,32,533.183,49,12,13,61.905,2.667,0.653,2.462,8.613
+Qwen3-VL,purchase_request,run_0002,false,20.0,34,36,610.173,49,12,13,58.211,2.833,0.694,2.615,10.482
+Qwen3-VL,remote_setup,run_0002,false,85.71,8,8,1348.211,37,9,10,50.533,0.889,0.216,0.8,26.68
+Qwen3-VL,research_interest,run_0002,true,100.0,8,9,136.624,37,9,10,67.613,0.889,0.216,0.8,2.021
+Qwen3-VL,room_booking,run_0002,false,66.67,8,10,163.848,45,11,12,56.535,0.727,0.178,0.667,2.898
+Qwen3-VL,scholarship_interest,run_0002,false,85.71,8,8,163.414,37,9,10,48.556,0.889,0.216,0.8,3.365
+Qwen3-VL,seminar_proposal,run_0002,false,37.5,10,32,321.066,41,10,11,67.775,1.0,0.244,0.909,4.737
+Qwen3-VL,software_access,run_0002,false,87.5,9,9,188.136,41,10,11,52.087,0.9,0.22,0.818,3.612
+Qwen3-VL,sports_tournament,run_0002,false,44.44,31,32,750.308,45,11,12,56.313,2.818,0.689,2.583,13.324
+Qwen3-VL,study_group_match,run_0002,true,100.0,12,13,228.363,37,9,10,38.011,1.333,0.324,1.2,6.008
+Qwen3-VL,survey_consent,run_0002,false,75.0,28,28,647.093,41,10,11,53.504,2.8,0.683,2.545,12.094
+Qwen3-VL,technical_support,run_0002,false,87.5,10,10,205.568,41,10,11,68.371,1.0,0.244,0.909,3.007
+Qwen3-VL,thesis_meeting,run_0002,false,87.5,11,11,227.621,41,10,11,53.633,1.1,0.268,1.0,4.244
+Qwen3-VL,travel_reimbursement,run_0002,false,45.45,5,32,253.931,53,13,14,79.695,0.385,0.094,0.357,3.186
+Qwen3-VL,usability_test,run_0002,true,100.0,8,8,148.204,37,9,10,35.709,0.889,0.216,0.8,4.15
+Qwen3-VL,volunteer_shift,run_0002,true,100.0,8,8,153.53,37,9,10,49.406,0.889,0.216,0.8,3.108
+Qwen3-VL,wellbeing_check,run_0002,false,57.14,4,32,232.029,37,9,10,65.459,0.444,0.108,0.4,3.545
+Qwen3-VL,workshop_signup,run_0002,true,100.0,7,7,141.719,37,9,10,33.171,0.778,0.189,0.7,4.272

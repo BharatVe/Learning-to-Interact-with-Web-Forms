@@ -1,0 +1,89 @@
+model,label,widget_type,observations,forms,missed_fields,failure_rate_pct
+Gemini 3.5 Flash,Preferred meeting time,time,7,7,4,57.14
+Gemini 3.5 Flash,Preferred start time,time,4,4,3,75.0
+Gemini 3.5 Flash,Available start date,date,2,2,1,50.0
+Gemini 3.5 Flash,Equipment needed,multi_choice,2,2,1,50.0
+Gemini 3.5 Flash,Preferred session time,time,2,2,1,50.0
+Gemini 3.5 Flash,Preferred arrival time,time,3,3,1,33.33
+Gemini 3.5 Flash,Additional notes,paragraph_text,2,2,0,0.0
+Gemini 3.5 Flash,Contact email,short_text,11,11,0,0.0
+Gemini 3.5 Flash,Current city,short_text,2,2,0,0.0
+Gemini 3.5 Flash,Dietary restrictions,multi_choice,3,3,0,0.0
+Gemini 3.5 Flash,Email address,short_text,24,24,0,0.0
+Gemini 3.5 Flash,Full name,short_text,32,32,0,0.0
+Gemini 3.5 Flash,Institutional email,short_text,2,2,0,0.0
+Gemini 3.5 Flash,Name,short_text,3,3,0,0.0
+Gemini 3.5 Flash,Preferred contact email,short_text,2,2,0,0.0
+Gemini 3.5 Flash,Preferred meeting date,date,4,4,0,0.0
+Gemini 3.5 Flash,Preferred session date,date,4,4,0,0.0
+Gemini 3.5 Flash,Preferred visit date,date,2,2,0,0.0
+Gemini 3.5 Flash,Requester name,short_text,2,2,0,0.0
+Gemini 3.5 Flash,Student ID,short_text,2,2,0,0.0
+Gemini 3.5 Flash,Student name,short_text,2,2,0,0.0
+Gemini 3.5 Flash,University or organization,short_text,2,2,0,0.0
+OpenCUA direct-MCP,Full name,short_text,32,32,10,31.25
+OpenCUA direct-MCP,Email address,short_text,24,24,7,29.17
+OpenCUA direct-MCP,Contact email,short_text,11,11,4,36.36
+OpenCUA direct-MCP,Requester name,short_text,2,2,2,100.0
+OpenCUA direct-MCP,Preferred start time,time,4,4,2,50.0
+OpenCUA direct-MCP,Current city,short_text,2,2,1,50.0
+OpenCUA direct-MCP,Institutional email,short_text,2,2,1,50.0
+OpenCUA direct-MCP,University or organization,short_text,2,2,1,50.0
+OpenCUA direct-MCP,Additional notes,paragraph_text,2,2,0,0.0
+OpenCUA direct-MCP,Available start date,date,2,2,0,0.0
+OpenCUA direct-MCP,Dietary restrictions,multi_choice,3,3,0,0.0
+OpenCUA direct-MCP,Equipment needed,multi_choice,2,2,0,0.0
+OpenCUA direct-MCP,Name,short_text,3,3,0,0.0
+OpenCUA direct-MCP,Preferred arrival time,time,3,3,0,0.0
+OpenCUA direct-MCP,Preferred contact email,short_text,2,2,0,0.0
+OpenCUA direct-MCP,Preferred meeting date,date,4,4,0,0.0
+OpenCUA direct-MCP,Preferred meeting time,time,7,7,0,0.0
+OpenCUA direct-MCP,Preferred session date,date,4,4,0,0.0
+OpenCUA direct-MCP,Preferred session time,time,2,2,0,0.0
+OpenCUA direct-MCP,Preferred visit date,date,2,2,0,0.0
+OpenCUA direct-MCP,Student ID,short_text,2,2,0,0.0
+OpenCUA direct-MCP,Student name,short_text,2,2,0,0.0
+Qwen3 Text,Email address,short_text,24,24,8,33.33
+Qwen3 Text,Full name,short_text,32,32,7,21.88
+Qwen3 Text,Preferred meeting time,time,7,7,5,71.43
+Qwen3 Text,Available start date,date,2,2,2,100.0
+Qwen3 Text,Dietary restrictions,multi_choice,3,3,2,66.67
+Qwen3 Text,Preferred arrival time,time,3,3,2,66.67
+Qwen3 Text,Preferred start time,time,4,4,2,50.0
+Qwen3 Text,Equipment needed,multi_choice,2,2,1,50.0
+Qwen3 Text,Preferred session time,time,2,2,1,50.0
+Qwen3 Text,Requester name,short_text,2,2,1,50.0
+Qwen3 Text,University or organization,short_text,2,2,1,50.0
+Qwen3 Text,Contact email,short_text,11,11,1,9.09
+Qwen3 Text,Additional notes,paragraph_text,2,2,0,0.0
+Qwen3 Text,Current city,short_text,2,2,0,0.0
+Qwen3 Text,Institutional email,short_text,2,2,0,0.0
+Qwen3 Text,Name,short_text,3,3,0,0.0
+Qwen3 Text,Preferred contact email,short_text,2,2,0,0.0
+Qwen3 Text,Preferred meeting date,date,4,4,0,0.0
+Qwen3 Text,Preferred session date,date,4,4,0,0.0
+Qwen3 Text,Preferred visit date,date,2,2,0,0.0
+Qwen3 Text,Student ID,short_text,2,2,0,0.0
+Qwen3 Text,Student name,short_text,2,2,0,0.0
+Qwen3-VL,Full name,short_text,32,32,7,21.88
+Qwen3-VL,Email address,short_text,24,24,5,20.83
+Qwen3-VL,Preferred meeting time,time,7,7,4,57.14
+Qwen3-VL,Preferred start time,time,4,4,2,50.0
+Qwen3-VL,Contact email,short_text,11,11,2,18.18
+Qwen3-VL,Available start date,date,2,2,1,50.0
+Qwen3-VL,Current city,short_text,2,2,1,50.0
+Qwen3-VL,Equipment needed,multi_choice,2,2,1,50.0
+Qwen3-VL,Institutional email,short_text,2,2,1,50.0
+Qwen3-VL,Preferred session time,time,2,2,1,50.0
+Qwen3-VL,Requester name,short_text,2,2,1,50.0
+Qwen3-VL,University or organization,short_text,2,2,1,50.0
+Qwen3-VL,Dietary restrictions,multi_choice,3,3,1,33.33
+Qwen3-VL,Preferred arrival time,time,3,3,1,33.33
+Qwen3-VL,Preferred meeting date,date,4,4,1,25.0
+Qwen3-VL,Additional notes,paragraph_text,2,2,0,0.0
+Qwen3-VL,Name,short_text,3,3,0,0.0
+Qwen3-VL,Preferred contact email,short_text,2,2,0,0.0
+Qwen3-VL,Preferred session date,date,4,4,0,0.0
+Qwen3-VL,Preferred visit date,date,2,2,0,0.0
+Qwen3-VL,Student ID,short_text,2,2,0,0.0
+Qwen3-VL,Student name,short_text,2,2,0,0.0

@@ -1,0 +1,5 @@
+model,dropdown_targets,raw_verified_correct,raw_verified_incorrect,attempted,actual_value_nonempty,expected_embedded_in_container,blank_or_not_attempted,other_mismatch,measurement_indeterminate_pct
+Gemini 3.5 Flash,25,0,25,25,22,22,3,0,88.0
+OpenCUA direct-MCP,25,0,25,22,22,22,3,0,88.0
+Qwen3 Text,25,0,25,24,24,24,1,0,96.0
+Qwen3-VL,25,0,25,21,21,21,4,0,84.0

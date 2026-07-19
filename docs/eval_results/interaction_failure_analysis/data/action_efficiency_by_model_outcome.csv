@@ -1,0 +1,9 @@
+model,outcome,trials,total_actions,median_actions,total_verified_fields,actions_per_verified_field,median_correctness_pct,click_share_pct,type_share_pct,scroll_share_pct,other_share_pct,adjacent_same_type_rate_pct,adjacent_identical_rate_pct
+Gemini 3.5 Flash,full fill,12,252,21.5,86,2.93,100.0,68.25,25.0,6.75,0.0,42.08,7.92
+Gemini 3.5 Flash,incomplete,38,1120,32.0,210,5.33,68.34,67.32,14.73,17.95,0.0,59.52,3.7
+OpenCUA direct-MCP,full fill,15,133,9,107,1.24,100.0,40.6,59.4,0.0,0.0,52.54,0.0
+OpenCUA direct-MCP,incomplete,35,550,12,183,3.01,66.67,40.55,59.45,0.0,0.0,70.1,20.19
+Qwen3 Text,full fill,8,61,7.5,57,1.07,100.0,39.34,60.66,0.0,0.0,58.49,0.0
+Qwen3 Text,incomplete,42,512,11.0,191,2.68,59.82,61.33,38.28,0.0,0.39,72.98,29.15
+Qwen3-VL,full fill,11,91,8,77,1.18,100.0,41.76,58.24,0.0,0.0,55.0,0.0
+Qwen3-VL,incomplete,39,500,10,206,2.43,71.43,49.2,50.8,0.0,0.0,73.32,28.2

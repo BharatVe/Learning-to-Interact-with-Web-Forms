@@ -183,6 +183,25 @@ Comparator framing:
 - Added a compact, GitHub-trackable export at `data/model_baseline_exports/fill_only_done_50_20260714/`, containing `README.md`, `aggregate.json`, and `trials.csv`. Raw screenshots, videos, and model traces remain ignored because the three raw experiment directories total roughly `7 GB`.
 - Added `scripts/export_fill_only_done_50_results.py` to regenerate the compact export after the VLM top-up completes.
 
+## 2026-07-16 Final 50-Form Comparison Snapshot
+
+All four evaluated conditions now have `50/50` usable `run_0002` form results under the fill-only/DONE, no-submit contract.
+
+| Condition | Usable forms | Full fills | Verified fields | Field correctness | Model-issued actions |
+|---|---:|---:|---:|---:|---:|
+| Gemini 3.5 Flash native Computer Use | 50/50 | 12/50 | 296/409 | 72.37% | 1,382 |
+| OpenCUA 32B direct-MCP | 50/50 | 15/50 | 290/409 | 70.90% | 684 |
+| Qwen3 Text direct-MCP | 50/50 | 8/50 | 248/409 | 60.64% | 577 |
+| Qwen3-VL direct-MCP | 50/50 | 11/50 | 283/409 | 69.19% | 714 |
+
+Interpretation notes:
+
+- `full fill` means every target field was locally verified before the model returned DONE; `submit_success=false` is expected because submission was disabled.
+- Automatic observation screenshots and accessibility snapshots are excluded from model-action totals unless explicitly requested by the model.
+- Provider-capacity, node, startup, and context-overflow artifacts were replaced or excluded before constructing the final 50-form canonical comparison.
+- The remaining incomplete trials are model-capability outcomes such as incomplete DONE, timeout, or maximum steps, rather than unresolved infrastructure failures.
+- GitHub-ready outputs: `data/model_baseline_exports/fill_only_done_50_20260714/README.md`, `aggregate.json`, and `trials.csv`.
+
 ## 2026-06-09 Target-300 Chain Update
 
 Implementation changes:

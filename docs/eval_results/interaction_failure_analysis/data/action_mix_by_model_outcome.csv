@@ -1,0 +1,20 @@
+model,outcome,action_type,action_count,share_of_outcome_actions_pct
+Gemini 3.5 Flash,full fill,click,172,68.25
+Gemini 3.5 Flash,full fill,type,63,25.0
+Gemini 3.5 Flash,full fill,scroll,17,6.75
+Gemini 3.5 Flash,incomplete,click,754,67.32
+Gemini 3.5 Flash,incomplete,scroll,201,17.95
+Gemini 3.5 Flash,incomplete,type,165,14.73
+OpenCUA direct-MCP,full fill,type,79,59.4
+OpenCUA direct-MCP,full fill,click,54,40.6
+OpenCUA direct-MCP,incomplete,type,327,59.45
+OpenCUA direct-MCP,incomplete,click,223,40.55
+Qwen3 Text,full fill,type,37,60.66
+Qwen3 Text,full fill,click,24,39.34
+Qwen3 Text,incomplete,click,314,61.33
+Qwen3 Text,incomplete,type,196,38.28
+Qwen3 Text,incomplete,fill_form,2,0.39
+Qwen3-VL,full fill,type,53,58.24
+Qwen3-VL,full fill,click,38,41.76
+Qwen3-VL,incomplete,type,254,50.8
+Qwen3-VL,incomplete,click,246,49.2

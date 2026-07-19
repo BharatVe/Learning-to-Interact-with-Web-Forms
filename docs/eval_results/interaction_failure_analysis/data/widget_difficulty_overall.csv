@@ -1,0 +1,8 @@
+widget_type,target_fields,correct_fields,missed_fields,correctness_pct,failure_rate_pct
+dropdown,100,0,100,0.0,100.0
+time,116,54,62,46.55,53.45
+multi_choice,192,134,58,69.79,30.21
+paragraph_text,180,130,50,72.22,27.78
+single_choice,308,229,79,74.35,25.65
+short_text,564,429,135,76.06,23.94
+date,176,141,35,80.11,19.89

@@ -1,0 +1,11 @@
+model,action_type,action_count,share_of_actions_pct
+Gemini 3.5 Flash,click,926,67.49
+Gemini 3.5 Flash,type,228,16.62
+Gemini 3.5 Flash,scroll,218,15.89
+OpenCUA direct-MCP,type,406,59.44
+OpenCUA direct-MCP,click,277,40.56
+Qwen3 Text,click,338,58.99
+Qwen3 Text,type,233,40.66
+Qwen3 Text,fill_form,2,0.35
+Qwen3-VL,type,307,51.95
+Qwen3-VL,click,284,48.05

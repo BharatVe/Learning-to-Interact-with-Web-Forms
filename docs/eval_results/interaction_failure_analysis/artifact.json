@@ -1,0 +1,2181 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Where Web-Form Models Fail",
+    "description": "Task- and action-level failure analysis for primary baselines and the 50-form Gemini comparison.",
+    "generatedAt": "2026-07-19T16:26:14.206303Z",
+    "cards": [],
+    "charts": [
+      {
+        "id": "widget_failure_chart",
+        "title": "Failure rate by widget type",
+        "subtitle": "All four fill-only conditions combined; dropdown omitted because selection verification is ambiguous.",
+        "type": "bar",
+        "dataset": "widget_overall",
+        "sourceId": "widget_failures",
+        "valueFormat": "number",
+        "encodings": {
+          "x": {
+            "field": "widget_type",
+            "type": "nominal",
+            "label": "Widget type"
+          },
+          "y": {
+            "field": "failure_rate_pct",
+            "type": "quantitative",
+            "label": "Failure rate (%)"
+          },
+          "tooltip": [
+            {
+              "field": "target_fields",
+              "type": "quantitative",
+              "label": "Target fields"
+            },
+            {
+              "field": "missed_fields",
+              "type": "quantitative",
+              "label": "Missed fields"
+            }
+          ]
+        }
+      },
+      {
+        "id": "action_repeat_chart",
+        "title": "Exact adjacent interaction repetition by outcome",
+        "subtitle": "State-changing interactions only in the canonical 50-form comparison; full fills versus incomplete trials.",
+        "type": "bar",
+        "dataset": "action_efficiency",
+        "sourceId": "canonical_action_behavior",
+        "valueFormat": "number",
+        "encodings": {
+          "x": {
+            "field": "model",
+            "type": "nominal",
+            "label": "Model condition"
+          },
+          "y": {
+            "field": "adjacent_identical_rate_pct",
+            "type": "quantitative",
+            "label": "Exact adjacent repetition (%)"
+          },
+          "color": {
+            "field": "outcome",
+            "type": "nominal",
+            "label": "Trial outcome"
+          },
+          "tooltip": [
+            {
+              "field": "trials",
+              "type": "quantitative",
+              "label": "Trials"
+            },
+            {
+              "field": "median_actions",
+              "type": "quantitative",
+              "label": "Median interactions"
+            },
+            {
+              "field": "actions_per_verified_field",
+              "type": "quantitative",
+              "label": "Interactions per verified field"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ideal_time_ratio_chart",
+        "title": "Model completion time relative to scripted ideal",
+        "subtitle": "Median of matched per-form time ratios across the 50 canonical run-2 forms.",
+        "type": "bar",
+        "dataset": "model_vs_ideal",
+        "sourceId": "model_vs_ideal",
+        "valueFormat": "number",
+        "encodings": {
+          "x": {
+            "field": "model",
+            "type": "nominal",
+            "label": "Model condition"
+          },
+          "y": {
+            "field": "median_model_to_ideal_time_ratio",
+            "type": "quantitative",
+            "label": "Median time ratio (× ideal)"
+          },
+          "tooltip": [
+            {
+              "field": "matched_forms",
+              "type": "quantitative",
+              "label": "Matched forms"
+            },
+            {
+              "field": "median_model_duration_s",
+              "type": "quantitative",
+              "label": "Model median duration (s)"
+            },
+            {
+              "field": "median_ideal_duration_s",
+              "type": "quantitative",
+              "label": "Ideal median duration (s)"
+            }
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "dropdown_audit_table",
+        "title": "Dropdown verifier audit",
+        "subtitle": "Twenty-five dropdown targets per model; expected-in-container readings are unresolved, not corrected successes.",
+        "dataset": "dropdown_audit",
+        "sourceId": "dropdown_verifier_audit",
+        "defaultSort": {
+          "field": "measurement_indeterminate_pct",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "model",
+            "label": "Model",
+            "type": "text"
+          },
+          {
+            "field": "dropdown_targets",
+            "label": "Targets",
+            "type": "number"
+          },
+          {
+            "field": "raw_verified_correct",
+            "label": "Raw correct",
+            "type": "number"
+          },
+          {
+            "field": "expected_embedded_in_container",
+            "label": "Expected in container",
+            "type": "number"
+          },
+          {
+            "field": "blank_or_not_attempted",
+            "label": "Blank / not attempted",
+            "type": "number"
+          },
+          {
+            "field": "measurement_indeterminate_pct",
+            "label": "Indeterminate (%)",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "forms_without_dropdown_table",
+        "title": "Performance on forms without dropdowns",
+        "subtitle": "Twenty-five forms per model; field correctness and exact full-fill rates are directly scoreable.",
+        "dataset": "forms_without_dropdown",
+        "sourceId": "dropdown_form_groups",
+        "defaultSort": {
+          "field": "raw_full_fill_rate_pct",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "model",
+            "label": "Model",
+            "type": "text"
+          },
+          {
+            "field": "forms",
+            "label": "Forms",
+            "type": "number"
+          },
+          {
+            "field": "raw_field_correctness_pct",
+            "label": "Field correct (%)",
+            "type": "number"
+          },
+          {
+            "field": "raw_full_fills",
+            "label": "Full fills",
+            "type": "number"
+          },
+          {
+            "field": "raw_full_fill_rate_pct",
+            "label": "Full-fill rate (%)",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "forms_with_dropdown_table",
+        "title": "Performance on forms containing dropdowns",
+        "subtitle": "Twenty-five forms per model; dropdown targets remain unresolved, so non-dropdown completion is the defensible comparison.",
+        "dataset": "forms_with_dropdown",
+        "sourceId": "dropdown_form_groups",
+        "defaultSort": {
+          "field": "non_dropdown_complete_rate_pct",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "model",
+            "label": "Model",
+            "type": "text"
+          },
+          {
+            "field": "forms",
+            "label": "Forms",
+            "type": "number"
+          },
+          {
+            "field": "dropdown_targets_unresolved",
+            "label": "Unresolved dropdowns",
+            "type": "number"
+          },
+          {
+            "field": "non_dropdown_field_correctness_pct",
+            "label": "Non-dropdown correct (%)",
+            "type": "number"
+          },
+          {
+            "field": "non_dropdown_complete_forms",
+            "label": "Non-dropdown-complete forms",
+            "type": "number"
+          },
+          {
+            "field": "non_dropdown_complete_rate_pct",
+            "label": "Non-dropdown-complete (%)",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "widget_model_table",
+        "title": "Widget failure rates by model",
+        "subtitle": "Fill-only run 2; dropdown omitted; sorted by model and failure rate.",
+        "dataset": "widget_by_model",
+        "sourceId": "widget_failures",
+        "defaultSort": {
+          "field": "failure_rate_pct",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "model",
+            "label": "Model",
+            "type": "text"
+          },
+          {
+            "field": "widget_type",
+            "label": "Widget",
+            "type": "text"
+          },
+          {
+            "field": "target_fields",
+            "label": "Targets",
+            "type": "number"
+          },
+          {
+            "field": "missed_fields",
+            "label": "Misses",
+            "type": "number"
+          },
+          {
+            "field": "failure_rate_pct",
+            "label": "Failure rate (%)",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "hard_forms_table",
+        "title": "Hardest forms across all four models",
+        "subtitle": "Lowest cross-model field correctness; widget mix shown per form.",
+        "dataset": "hardest_forms",
+        "sourceId": "hard_forms",
+        "defaultSort": {
+          "field": "cross_model_correctness_pct",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "form_id",
+            "label": "Form",
+            "type": "text"
+          },
+          {
+            "field": "fields",
+            "label": "Fields",
+            "type": "number"
+          },
+          {
+            "field": "complex_widgets",
+            "label": "Structured widgets",
+            "type": "number"
+          },
+          {
+            "field": "widget_mix",
+            "label": "Widget mix",
+            "type": "text"
+          },
+          {
+            "field": "models_full",
+            "label": "Models full",
+            "type": "number"
+          },
+          {
+            "field": "cross_model_correctness_pct",
+            "label": "Correctness (%)",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "failure_matrix_table",
+        "title": "Field-failure matrix by model",
+        "subtitle": "Counts among final incorrect fields; ambiguous option-container text is shown separately.",
+        "dataset": "failure_matrix",
+        "sourceId": "failure_matrix",
+        "defaultSort": {
+          "field": "total_missed_fields",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "model",
+            "label": "Model",
+            "type": "text"
+          },
+          {
+            "field": "total_missed_fields",
+            "label": "All misses",
+            "type": "number"
+          },
+          {
+            "field": "dominant_behavioral_failure",
+            "label": "Most common behavioral failure",
+            "type": "text"
+          },
+          {
+            "field": "dominant_behavioral_failure_count",
+            "label": "Dominant count",
+            "type": "number"
+          },
+          {
+            "field": "dominant_behavioral_share_of_misses_pct",
+            "label": "Share of misses (%)",
+            "type": "number"
+          },
+          {
+            "field": "not_attempted_count",
+            "label": "Not attempted",
+            "type": "number"
+          },
+          {
+            "field": "attempted_but_blank_count",
+            "label": "Attempted, blank",
+            "type": "number"
+          },
+          {
+            "field": "wrong_value_count",
+            "label": "Wrong value",
+            "type": "number"
+          },
+          {
+            "field": "multi_choice_error_count",
+            "label": "Multi-choice error",
+            "type": "number"
+          },
+          {
+            "field": "ambiguous_option_text_count",
+            "label": "Ambiguous option text",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "stop_reason_table",
+        "title": "Incomplete-trial stop reasons",
+        "subtitle": "Canonical fill-only run 2; successful filled-without-submit trials omitted.",
+        "dataset": "stop_reasons",
+        "sourceId": "trial_stop_reasons",
+        "defaultSort": {
+          "field": "incomplete_trials",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "model",
+            "label": "Model",
+            "type": "text"
+          },
+          {
+            "field": "stop_reason",
+            "label": "Stop reason",
+            "type": "text"
+          },
+          {
+            "field": "incomplete_trials",
+            "label": "Incomplete trials",
+            "type": "number"
+          },
+          {
+            "field": "share_of_model_incomplete_trials_pct",
+            "label": "Share of incomplete trials (%)",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "consensus_question_table",
+        "title": "Questions missed by all four model-interface conditions",
+        "subtitle": "Non-dropdown items only; one canonical observation per condition and question.",
+        "dataset": "consensus_questions",
+        "sourceId": "question_item_consensus",
+        "defaultSort": {
+          "field": "form_id",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "form_id",
+            "label": "Form",
+            "type": "text"
+          },
+          {
+            "field": "question_index",
+            "label": "Question",
+            "type": "number"
+          },
+          {
+            "field": "label",
+            "label": "Question label",
+            "type": "text"
+          },
+          {
+            "field": "widget_type",
+            "label": "Widget",
+            "type": "text"
+          },
+          {
+            "field": "position_bucket",
+            "label": "Position",
+            "type": "text"
+          },
+          {
+            "field": "models_not_attempted",
+            "label": "Models not attempting",
+            "type": "number"
+          },
+          {
+            "field": "models_attempted_but_failed",
+            "label": "Models attempting but failing",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "action_efficiency_table",
+        "title": "Interaction behavior by model and trial outcome",
+        "subtitle": "Canonical fill-only trials; screenshots, snapshots, waits, DONE, setup, and close excluded before computing totals and repeats.",
+        "dataset": "action_efficiency",
+        "sourceId": "canonical_action_behavior",
+        "defaultSort": {
+          "field": "adjacent_identical_rate_pct",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "model",
+            "label": "Model",
+            "type": "text"
+          },
+          {
+            "field": "outcome",
+            "label": "Outcome",
+            "type": "text"
+          },
+          {
+            "field": "trials",
+            "label": "Trials",
+            "type": "number"
+          },
+          {
+            "field": "median_actions",
+            "label": "Median interactions",
+            "type": "number"
+          },
+          {
+            "field": "actions_per_verified_field",
+            "label": "Interactions / verified field",
+            "type": "number"
+          },
+          {
+            "field": "click_share_pct",
+            "label": "Click share (%)",
+            "type": "number"
+          },
+          {
+            "field": "type_share_pct",
+            "label": "Type share (%)",
+            "type": "number"
+          },
+          {
+            "field": "scroll_share_pct",
+            "label": "Scroll share (%)",
+            "type": "number"
+          },
+          {
+            "field": "other_share_pct",
+            "label": "Other share (%)",
+            "type": "number"
+          },
+          {
+            "field": "adjacent_identical_rate_pct",
+            "label": "Exact adjacent repeats (%)",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "action_correction_table",
+        "title": "Raw calls reconciled to task interactions",
+        "subtitle": "Fifty canonical trials per model; observation and terminal overhead shown explicitly.",
+        "dataset": "action_correction",
+        "sourceId": "action_count_correction",
+        "defaultSort": {
+          "field": "excluded_share_pct",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "model",
+            "label": "Model",
+            "type": "text"
+          },
+          {
+            "field": "raw_actions",
+            "label": "Raw calls",
+            "type": "number"
+          },
+          {
+            "field": "interaction_actions",
+            "label": "Task interactions",
+            "type": "number"
+          },
+          {
+            "field": "excluded_observations",
+            "label": "Observations excluded",
+            "type": "number"
+          },
+          {
+            "field": "excluded_other",
+            "label": "Other excluded",
+            "type": "number"
+          },
+          {
+            "field": "excluded_share_pct",
+            "label": "Excluded (%)",
+            "type": "number"
+          },
+          {
+            "field": "median_interactions",
+            "label": "Median interactions",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "submission_audit_table",
+        "title": "Historical submission-score recovery",
+        "subtitle": "Successful submissions only; final-page zero contrasted with pre-submit recovery.",
+        "dataset": "submission_audit",
+        "sourceId": "submission_scoring_audit",
+        "defaultSort": {
+          "field": "submitted_trials",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "model",
+            "label": "Model",
+            "type": "text"
+          },
+          {
+            "field": "submitted_trials",
+            "label": "Submitted",
+            "type": "number"
+          },
+          {
+            "field": "final_page_zero_trials",
+            "label": "Final-page zero",
+            "type": "number"
+          },
+          {
+            "field": "recovered_nonzero_trials",
+            "label": "Recovered nonzero",
+            "type": "number"
+          },
+          {
+            "field": "recovered_perfect_trials",
+            "label": "Recovered perfect",
+            "type": "number"
+          },
+          {
+            "field": "recovered_partial_trials",
+            "label": "Recovered partial",
+            "type": "number"
+          },
+          {
+            "field": "unrecovered_zero_trials",
+            "label": "Still zero",
+            "type": "number"
+          },
+          {
+            "field": "median_recovered_pre_submit_accuracy_pct",
+            "label": "Median recovered (%)",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "model_ideal_table",
+        "title": "Canonical models versus matched scripted ideal",
+        "subtitle": "Fifty run-2 forms per condition; primary actions are normalized state-changing interactions.",
+        "dataset": "model_vs_ideal",
+        "sourceId": "model_vs_ideal",
+        "defaultSort": {
+          "field": "median_model_to_ideal_time_ratio",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "model",
+            "label": "Model",
+            "type": "text"
+          },
+          {
+            "field": "matched_forms",
+            "label": "Forms",
+            "type": "number"
+          },
+          {
+            "field": "full_fills",
+            "label": "Full fills",
+            "type": "number"
+          },
+          {
+            "field": "median_model_actions",
+            "label": "Model interactions",
+            "type": "number"
+          },
+          {
+            "field": "median_ideal_interaction_actions",
+            "label": "Ideal interactions",
+            "type": "number"
+          },
+          {
+            "field": "median_model_to_ideal_interaction_action_ratio",
+            "label": "Interaction ratio",
+            "type": "number"
+          },
+          {
+            "field": "median_model_duration_s",
+            "label": "Model duration (s)",
+            "type": "number"
+          },
+          {
+            "field": "median_ideal_duration_s",
+            "label": "Ideal duration (s)",
+            "type": "number"
+          },
+          {
+            "field": "median_model_to_ideal_time_ratio",
+            "label": "Time ratio (× ideal)",
+            "type": "number"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "interaction_analysis",
+        "label": "Canonical 50-form question/action decomposition plus primary baseline failure-only decomposition."
+      },
+      {
+        "id": "widget_failures",
+        "label": "Aggregates correct and missed fields by widget type, excluding ambiguous dropdown results."
+      },
+      {
+        "id": "hard_forms",
+        "label": "Ranks forms by field correctness pooled across the four fill-only conditions."
+      },
+      {
+        "id": "failure_matrix",
+        "label": "Classifies final field misses and trial stop reasons by model in the canonical 50-form comparison."
+      },
+      {
+        "id": "trial_stop_reasons",
+        "label": "Counts incomplete trial stop reasons by model in the canonical 50-form comparison."
+      },
+      {
+        "id": "question_item_consensus",
+        "label": "Ranks individual non-dropdown questions by the number of model-interface conditions that failed them."
+      },
+      {
+        "id": "canonical_action_behavior",
+        "label": "Compares model-issued action mix, efficiency, and adjacent exact repetition by model and trial outcome."
+      },
+      {
+        "id": "methodology_gaps",
+        "label": "Prioritized measurement and design gaps with concrete repair actions and paper-safe treatment."
+      },
+      {
+        "id": "ideal_reference",
+        "label": "Summarizes the 300 successful scripted Playwright reference runs across 50 forms and six answer sets."
+      },
+      {
+        "id": "model_vs_ideal",
+        "label": "Pairs each canonical run-2 model trial with the scripted reference for the same form and answer run."
+      },
+      {
+        "id": "dropdown_form_groups",
+        "label": "Separates canonical performance for forms with and without dropdown controls."
+      },
+      {
+        "id": "dropdown_verifier_audit",
+        "label": "Audits raw dropdown outcomes and option-container readings by model."
+      },
+      {
+        "id": "action_count_correction",
+        "label": "Reconciles raw model-issued calls to normalized state-changing interactions."
+      },
+      {
+        "id": "submission_scoring_audit",
+        "label": "Recovers historical submitted-trial correctness from pre-submit verification and audits the canonical no-submit contract."
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Where Web-Form Models Fail"
+      },
+      {
+        "id": "executive_summary",
+        "type": "markdown",
+        "sourceId": "interaction_analysis",
+        "body": "## Executive Summary\n\n- **Dropdown scoring materially suppresses exact completion.** All 100 dropdown targets were scored wrong, but 89 saved values contain the expected option inside the full option-list text. Those 89 outcomes are measurement-indeterminate; the remaining 11 are blank or not attempted.\n- **The canonical comparison has no submission artifact.** All 200 trials used `fill_only_done`, made zero submit attempts, and were graded while the form was still visible.\n- **Historical submitted scores are recoverable.** All 519 submitted trials ended with a final-page zero, but pre-submit logs recover 512 nonzero task scores and identify 153 verified-perfect submissions.\n- **Primary action counts now exclude observation overhead.** Screenshots, snapshots, waits, `DONE`, setup, and close are omitted. This removes 123 of Qwen3-VL's 714 raw calls and lowers its incomplete-trial exact-repeat rate from the previous screenshot-contaminated estimate to 28.20%."
+      },
+      {
+        "id": "scope",
+        "type": "markdown",
+        "sourceId": "interaction_analysis",
+        "body": "## What this analysis counts\n\nThe fill-only comparison contains **200 canonical trials** and **1,636 target-field outcomes**: 50 run-2 forms for each of Gemini, OpenCUA direct-MCP, Qwen Text, and Qwen VLM. A field is correct only when the saved final verifier marks the expected value correct. A full fill requires every field to be correct; submission is intentionally disabled.\n\nThe historical submission-enabled baseline contains **978 primary trials**. Failure cuts use the **459 non-submitted trials**; pre-submit scores additionally recover task correctness for submitted trials and every field for the 153 aggregate-perfect submissions. Primary action metrics count state-changing interactions only."
+      },
+      {
+        "id": "dropdown_risk",
+        "type": "markdown",
+        "sourceId": "interaction_analysis",
+        "body": "## Dropdown scoring is a high-severity measurement risk\n\nEvery model is recorded at **0/25 dropdown fields**. In **89 of 100 observations**, the expected option is embedded in the recorded option-container text: 22 Gemini, 22 OpenCUA, 24 Qwen Text, and 21 Qwen VLM. Because every option appears in that container whether selected or not, these cases cannot be safely changed to correct; they are measurement-indeterminate. The other 11 are blank or not attempted.\n\nThe results are therefore split below. The no-dropdown table supports exact full-fill claims. The with-dropdown table reports non-dropdown correctness and non-dropdown-complete forms while leaving 25 dropdown targets per model unresolved."
+      },
+      {
+        "id": "dropdown_audit_table_block",
+        "type": "table",
+        "tableId": "dropdown_audit_table"
+      },
+      {
+        "id": "forms_without_dropdown_table_block",
+        "type": "table",
+        "tableId": "forms_without_dropdown_table"
+      },
+      {
+        "id": "forms_with_dropdown_table_block",
+        "type": "table",
+        "tableId": "forms_with_dropdown_table"
+      },
+      {
+        "id": "widget_story",
+        "type": "markdown",
+        "sourceId": "interaction_analysis",
+        "body": "## Time controls are the hardest defensible shared task\n\nAfter setting dropdowns aside, time fields have the highest aggregate failure rate (**53.45%**). The weakness is concentrated in Gemini and the two Qwen conditions: both Gemini and Qwen Text fail 20 of 29 time fields, while Qwen VLM fails 17. OpenCUA direct-MCP fails only five.\n\nGemini's second distinctive weakness is paragraph entry: **22 of 45** paragraph fields fail, mostly after an attempted interaction that leaves the field blank. By contrast, its short text and choice controls are comparatively strong. This suggests a retention/focus problem on long text, not a general inability to type."
+      },
+      {
+        "id": "widget_chart_block",
+        "type": "chart",
+        "chartId": "widget_failure_chart"
+      },
+      {
+        "id": "widget_table_block",
+        "type": "table",
+        "tableId": "widget_model_table"
+      },
+      {
+        "id": "failure_story",
+        "type": "markdown",
+        "sourceId": "failure_matrix",
+        "body": "## The dominant field failure differs sharply by model\n\nAt field level, **Gemini is split between attempted-but-blank fields (44; 38.94% of its misses) and fields it never attempted (43; 38.05%)**. The other three conditions are dominated by fields never attempted: **94 for OpenCUA direct-MCP (78.99% of misses), 114 for Qwen3 Text (70.81%), and 97 for Qwen3-VL (76.98%)**. The separate option-container column is retained as a measurement warning, not treated as a behavioral failure.\n"
+      },
+      {
+        "id": "failure_matrix_table_block",
+        "type": "table",
+        "tableId": "failure_matrix_table"
+      },
+      {
+        "id": "trial_failure_story",
+        "type": "markdown",
+        "sourceId": "trial_stop_reasons",
+        "body": "## Step exhaustion is Gemini's main trial failure; premature DONE dominates direct-MCP\n\nGemini usually exhausts its step budget (**28 of 38 incomplete trials**). The direct-MCP conditions more often stop voluntarily while still incomplete: **29 of 35 incomplete OpenCUA trials, 33 of 42 Qwen3 Text trials, and 29 of 39 Qwen3-VL trials**. That distinction matters for fixes: Gemini needs more efficient navigation and progress control, while the MCP conditions need stronger completion checks before DONE."
+      },
+      {
+        "id": "stop_reason_table_block",
+        "type": "table",
+        "tableId": "stop_reason_table"
+      },
+      {
+        "id": "form_story",
+        "type": "markdown",
+        "sourceId": "interaction_analysis",
+        "body": "## Difficulty concentrates in long, mixed-control forms\n\nThe three hardest shared forms are `club_event_planning`, `purchase_request`, and `club_application`, each at **27.5%-32.5% cross-model correctness** with no full fills. All have ten fields and combine free text with several structured controls. `internship_app` is longer still at 12 fields and reaches only 35.42%.\n\nThis is not just a model-ranking effect: the same forms are difficult across all four conditions. They are the best candidates for qualitative trace review and targeted regression tests because improvement there would exercise scrolling, mixed widgets, and state tracking together."
+      },
+      {
+        "id": "hard_forms_table_block",
+        "type": "table",
+        "tableId": "hard_forms_table"
+      },
+      {
+        "id": "question_consensus_story",
+        "type": "markdown",
+        "sourceId": "question_item_consensus",
+        "body": "## Fourteen non-dropdown questions fail across all four conditions\n\nThe strongest item-level evidence is cross-model consensus: **14 of 384 non-dropdown questions were missed by all four model-interface conditions**. These questions concentrate in five long, mixed-control forms and include time entry, long text, multiselect, short text, and single choice. The table reports the exact item and whether failures were unattempted or attempted but still wrong.\n\nThis is an observed shared-difficulty index with a denominator of four evaluated conditions and is used as a practical regression-test list."
+      },
+      {
+        "id": "consensus_question_table_block",
+        "type": "table",
+        "tableId": "consensus_question_table"
+      },
+      {
+        "id": "action_comparison_story",
+        "type": "markdown",
+        "sourceId": "canonical_action_behavior",
+        "body": "## Repetition separates incomplete direct-MCP trials from full fills\n\nExact adjacent interaction repetition is **0% in every full-fill direct-MCP cohort**, but rises to **20.19% for incomplete OpenCUA, 29.15% for incomplete Qwen3 Text, and 28.20% for incomplete Qwen3-VL**. Snapshot and wait calls are excluded before forming adjacent pairs.\n\nGemini is different: exact repetition is not higher in incomplete trials. Its inefficiency appears as navigation and action volume—**5.33 interactions per verified field when incomplete versus 2.93 in full fills**, with scroll share rising from 6.75% to 17.95%. These patterns support separate loop-control and navigation hypotheses rather than one universal failure mechanism."
+      },
+      {
+        "id": "action_repeat_chart_block",
+        "type": "chart",
+        "chartId": "action_repeat_chart"
+      },
+      {
+        "id": "action_efficiency_table_block",
+        "type": "table",
+        "tableId": "action_efficiency_table"
+      },
+      {
+        "id": "action_correction_story",
+        "type": "markdown",
+        "sourceId": "action_count_correction",
+        "body": "## Observation calls are excluded from the corrected action count\n\nThe correction is small for Gemini, OpenCUA, and Qwen Text, but material for Qwen3-VL. Normalized totals are **1,372 Gemini interactions, 683 OpenCUA interactions, 573 Qwen Text interactions, and 591 Qwen3-VL interactions**. Qwen3-VL excludes 122 snapshots and one wait from 714 raw calls. The raw-to-normalized table preserves the full reconciliation."
+      },
+      {
+        "id": "action_correction_table_block",
+        "type": "table",
+        "tableId": "action_correction_table"
+      },
+      {
+        "id": "submission_correction_story",
+        "type": "markdown",
+        "sourceId": "submission_scoring_audit",
+        "body": "## Pre-submit logs repair the historical confirmation-page zeros\n\nThe historical baseline has **519 successful submissions**, and every one has zero final-page correctness because the confirmation page contains no controls. Pre-submit fields recover nonzero task scores for **512 trials** and prove **153 trials perfect**: 77 OpenCUA MCP, 44 Qwen Text, and 32 Qwen VLM. The seven remaining zero trials lack a usable nonzero pre-submit score.\n\nFor partial submitted trials, the recovered count is valid but the logs do not consistently retain which individual fields were correct. The report therefore repairs task-level accuracy for all recoverable submissions and restores field-level correctness only for the 153 aggregate-perfect trials. The canonical fill-only cohort is separately confirmed at zero submit attempts."
+      },
+      {
+        "id": "submission_audit_table_block",
+        "type": "table",
+        "tableId": "submission_audit_table"
+      },
+      {
+        "id": "ideal_reference_story",
+        "type": "markdown",
+        "sourceId": "ideal_reference",
+        "body": "## The ideal reference is complete, fast, and fully successful\n\nThe scripted Playwright reference contains **300 usable and successful submissions**: 50 forms across six answer runs. Its median completion time is **56.44 seconds**. A median run records **41 raw trace events** but only **10 normalized interactions**: navigation plus scripted field entry and submission. Screenshots, waits, setup, and close are excluded.\n\nThis dataset is the correct ideal-state anchor for form coverage, successful final state, and elapsed time. Its total trace-event count is not a clean interaction denominator because most events are observation or synchronization overhead."
+      },
+      {
+        "id": "model_ideal_story",
+        "type": "markdown",
+        "sourceId": "model_vs_ideal",
+        "body": "## Every model condition is much slower than the scripted ideal\n\nOn the same 50 run-2 forms, median completion time is **767.90 seconds for Gemini, 294.83 for OpenCUA direct-MCP, 202.17 for Qwen3 Text, and 216.38 for Qwen3-VL**, versus a matched ideal median of **55.76 seconds**. The median per-form time ratios are **11.78×, 5.21×, 3.62×, and 3.86×**, respectively.\n\nUsing the normalized definition, median per-form model/ideal action ratios are **2.72× for Gemini, 1.09× for OpenCUA, 1.00× for Qwen Text, and 0.90× for Qwen VLM**. A ratio below one does not imply better performance because incomplete trials can stop early and scripted or fill-form calls can cover different amounts of work. Completion, action count, and time must be read together."
+      },
+      {
+        "id": "ideal_time_chart_block",
+        "type": "chart",
+        "chartId": "ideal_time_ratio_chart"
+      },
+      {
+        "id": "model_ideal_table_block",
+        "type": "table",
+        "tableId": "model_ideal_table"
+      },
+      {
+        "id": "methodology_story",
+        "type": "markdown",
+        "sourceId": "methodology_gaps",
+        "body": "## The remaining priority is selected-option verification\n\nPost-submission task scores and observation-contaminated action counts are now repaired from existing logs. Dropdown correctness remains unresolved because container text does not prove selection. The next tier concerns per-action field attribution, action-call granularity, usable-trial replacement, and mixing submission-enabled historical evidence with the fill-only cohort.\n\nThe current repair plan is concrete: fix selected-option verification, instrument per-action field transitions, retain raw-to-normalized action reconciliation, and publish capability and operational reliability as separate result sets."
+      },
+      {
+        "id": "recommendations",
+        "type": "markdown",
+        "body": "## Recommended next steps\n\n1. **Repair and validate dropdown verification before citing widget-level or full-fill results.** Read the selected option through `aria-selected`, the selected option node, or the collapsed trigger label; add a regression test where the expected value is both selected and unselected.\n2. **Use the repaired pre-submit score hierarchy for every historical submitted trial.** Restore field-level rows only when the pre-submit aggregate proves all fields correct.\n3. **Keep normalized interactions as the primary action count.** Preserve raw calls in an audit table and interpret actions with completion and time.\n4. **Instrument every action with its target and before/after field state.** This makes actions without state change, corrections, regressions, and actions per newly correct field measurable for every model.\n5. **Add progress-aware control policies.** Require a completion verification before DONE and cap exact repeated commands or scrolling without state change.\n6. **Separate capability from operational reliability.** Preserve every provider, node, startup, context, and harness failure in an inclusion ledger even when a usable replacement is selected for capability scoring.\n7. **Make the hardest mixed-control forms the regression suite.** Start with `club_event_planning`, `purchase_request`, `club_application`, `internship_app`, and `publication_submission`."
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "sourceId": "interaction_analysis",
+        "body": "## Caveats and Assumptions\n\nThis is descriptive attribution, not a causal experiment. Widget type, form length, and field position are correlated, so unadjusted cuts should not be interpreted as isolated causal effects. Normalized interaction calls still differ in granularity; interpret them with completion and time. The canonical cohort is conditional on usable artifacts because infrastructure failures were replaced or excluded. Gemini “field-progress actions” count only immediate additions to verified correctness. Historical partial submitted trials are repaired at task level, while field-level restoration is limited to aggregate-perfect pre-submit scores."
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "status": "ready",
+    "generated_at": "2026-07-19T16:26:14.206757Z",
+    "datasets": {
+      "widget_overall": [
+        {
+          "widget_type": "time",
+          "target_fields": 116,
+          "missed_fields": 62,
+          "failure_rate_pct": 53.45
+        },
+        {
+          "widget_type": "multi_choice",
+          "target_fields": 192,
+          "missed_fields": 58,
+          "failure_rate_pct": 30.21
+        },
+        {
+          "widget_type": "paragraph_text",
+          "target_fields": 180,
+          "missed_fields": 50,
+          "failure_rate_pct": 27.78
+        },
+        {
+          "widget_type": "single_choice",
+          "target_fields": 308,
+          "missed_fields": 79,
+          "failure_rate_pct": 25.65
+        },
+        {
+          "widget_type": "short_text",
+          "target_fields": 564,
+          "missed_fields": 135,
+          "failure_rate_pct": 23.94
+        },
+        {
+          "widget_type": "date",
+          "target_fields": 176,
+          "missed_fields": 35,
+          "failure_rate_pct": 19.89
+        }
+      ],
+      "widget_by_model": [
+        {
+          "model": "Gemini 3.5 Flash",
+          "widget_type": "time",
+          "target_fields": 29,
+          "missed_fields": 20,
+          "failure_rate_pct": 68.97
+        },
+        {
+          "model": "Gemini 3.5 Flash",
+          "widget_type": "paragraph_text",
+          "target_fields": 45,
+          "missed_fields": 22,
+          "failure_rate_pct": 48.89
+        },
+        {
+          "model": "Gemini 3.5 Flash",
+          "widget_type": "multi_choice",
+          "target_fields": 48,
+          "missed_fields": 10,
+          "failure_rate_pct": 20.83
+        },
+        {
+          "model": "Gemini 3.5 Flash",
+          "widget_type": "date",
+          "target_fields": 44,
+          "missed_fields": 9,
+          "failure_rate_pct": 20.45
+        },
+        {
+          "model": "Gemini 3.5 Flash",
+          "widget_type": "single_choice",
+          "target_fields": 77,
+          "missed_fields": 12,
+          "failure_rate_pct": 15.58
+        },
+        {
+          "model": "Gemini 3.5 Flash",
+          "widget_type": "short_text",
+          "target_fields": 141,
+          "missed_fields": 15,
+          "failure_rate_pct": 10.64
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "widget_type": "short_text",
+          "target_fields": 141,
+          "missed_fields": 50,
+          "failure_rate_pct": 35.46
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "widget_type": "multi_choice",
+          "target_fields": 48,
+          "missed_fields": 12,
+          "failure_rate_pct": 25.0
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "widget_type": "single_choice",
+          "target_fields": 77,
+          "missed_fields": 19,
+          "failure_rate_pct": 24.68
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "widget_type": "time",
+          "target_fields": 29,
+          "missed_fields": 5,
+          "failure_rate_pct": 17.24
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "widget_type": "date",
+          "target_fields": 44,
+          "missed_fields": 4,
+          "failure_rate_pct": 9.09
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "widget_type": "paragraph_text",
+          "target_fields": 45,
+          "missed_fields": 4,
+          "failure_rate_pct": 8.89
+        },
+        {
+          "model": "Qwen3 Text",
+          "widget_type": "time",
+          "target_fields": 29,
+          "missed_fields": 20,
+          "failure_rate_pct": 68.97
+        },
+        {
+          "model": "Qwen3 Text",
+          "widget_type": "multi_choice",
+          "target_fields": 48,
+          "missed_fields": 24,
+          "failure_rate_pct": 50.0
+        },
+        {
+          "model": "Qwen3 Text",
+          "widget_type": "date",
+          "target_fields": 44,
+          "missed_fields": 16,
+          "failure_rate_pct": 36.36
+        },
+        {
+          "model": "Qwen3 Text",
+          "widget_type": "paragraph_text",
+          "target_fields": 45,
+          "missed_fields": 16,
+          "failure_rate_pct": 35.56
+        },
+        {
+          "model": "Qwen3 Text",
+          "widget_type": "single_choice",
+          "target_fields": 77,
+          "missed_fields": 26,
+          "failure_rate_pct": 33.77
+        },
+        {
+          "model": "Qwen3 Text",
+          "widget_type": "short_text",
+          "target_fields": 141,
+          "missed_fields": 34,
+          "failure_rate_pct": 24.11
+        },
+        {
+          "model": "Qwen3-VL",
+          "widget_type": "time",
+          "target_fields": 29,
+          "missed_fields": 17,
+          "failure_rate_pct": 58.62
+        },
+        {
+          "model": "Qwen3-VL",
+          "widget_type": "single_choice",
+          "target_fields": 77,
+          "missed_fields": 22,
+          "failure_rate_pct": 28.57
+        },
+        {
+          "model": "Qwen3-VL",
+          "widget_type": "short_text",
+          "target_fields": 141,
+          "missed_fields": 36,
+          "failure_rate_pct": 25.53
+        },
+        {
+          "model": "Qwen3-VL",
+          "widget_type": "multi_choice",
+          "target_fields": 48,
+          "missed_fields": 12,
+          "failure_rate_pct": 25.0
+        },
+        {
+          "model": "Qwen3-VL",
+          "widget_type": "paragraph_text",
+          "target_fields": 45,
+          "missed_fields": 8,
+          "failure_rate_pct": 17.78
+        },
+        {
+          "model": "Qwen3-VL",
+          "widget_type": "date",
+          "target_fields": 44,
+          "missed_fields": 6,
+          "failure_rate_pct": 13.64
+        }
+      ],
+      "hardest_forms": [
+        {
+          "form_id": "club_event_planning",
+          "fields": 10,
+          "complex_widgets": 5,
+          "widget_mix": "date:1, dropdown:1, multi_choice:2, paragraph_text:1, short_text:4, time:1",
+          "models_full": 0,
+          "cross_model_correctness_pct": 27.5
+        },
+        {
+          "form_id": "purchase_request",
+          "fields": 10,
+          "complex_widgets": 2,
+          "widget_mix": "date:1, dropdown:1, paragraph_text:1, short_text:5, single_choice:2",
+          "models_full": 0,
+          "cross_model_correctness_pct": 27.5
+        },
+        {
+          "form_id": "club_application",
+          "fields": 10,
+          "complex_widgets": 3,
+          "widget_mix": "date:1, multi_choice:1, paragraph_text:1, short_text:4, single_choice:2, time:1",
+          "models_full": 0,
+          "cross_model_correctness_pct": 32.5
+        },
+        {
+          "form_id": "internship_app",
+          "fields": 12,
+          "complex_widgets": 4,
+          "widget_mix": "date:1, multi_choice:2, paragraph_text:1, short_text:5, single_choice:2, time:1",
+          "models_full": 0,
+          "cross_model_correctness_pct": 35.42
+        },
+        {
+          "form_id": "data_annotation",
+          "fields": 9,
+          "complex_widgets": 4,
+          "widget_mix": "date:1, dropdown:1, multi_choice:1, paragraph_text:1, short_text:3, single_choice:1, time:1",
+          "models_full": 0,
+          "cross_model_correctness_pct": 36.11
+        },
+        {
+          "form_id": "publication_submission",
+          "fields": 10,
+          "complex_widgets": 3,
+          "widget_mix": "date:1, dropdown:1, multi_choice:1, paragraph_text:1, short_text:5, single_choice:1",
+          "models_full": 0,
+          "cross_model_correctness_pct": 37.5
+        },
+        {
+          "form_id": "sports_tournament",
+          "fields": 9,
+          "complex_widgets": 4,
+          "widget_mix": "date:1, dropdown:1, multi_choice:1, short_text:3, single_choice:2, time:1",
+          "models_full": 0,
+          "cross_model_correctness_pct": 41.67
+        },
+        {
+          "form_id": "conference_travel",
+          "fields": 10,
+          "complex_widgets": 5,
+          "widget_mix": "date:2, dropdown:1, multi_choice:1, paragraph_text:1, short_text:3, single_choice:1, time:1",
+          "models_full": 0,
+          "cross_model_correctness_pct": 42.5
+        },
+        {
+          "form_id": "travel_reimbursement",
+          "fields": 11,
+          "complex_widgets": 4,
+          "widget_mix": "date:2, multi_choice:1, paragraph_text:1, short_text:5, single_choice:1, time:1",
+          "models_full": 0,
+          "cross_model_correctness_pct": 43.18
+        },
+        {
+          "form_id": "seminar_proposal",
+          "fields": 8,
+          "complex_widgets": 3,
+          "widget_mix": "date:1, multi_choice:1, paragraph_text:1, short_text:3, single_choice:1, time:1",
+          "models_full": 0,
+          "cross_model_correctness_pct": 43.75
+        },
+        {
+          "form_id": "experiment_booking",
+          "fields": 9,
+          "complex_widgets": 4,
+          "widget_mix": "date:1, dropdown:1, multi_choice:1, paragraph_text:1, short_text:2, single_choice:2, time:1",
+          "models_full": 0,
+          "cross_model_correctness_pct": 44.44
+        },
+        {
+          "form_id": "job_fair",
+          "fields": 9,
+          "complex_widgets": 4,
+          "widget_mix": "date:1, multi_choice:2, paragraph_text:1, short_text:2, single_choice:2, time:1",
+          "models_full": 0,
+          "cross_model_correctness_pct": 44.44
+        }
+      ],
+      "consensus_questions": [
+        {
+          "form_id": "internship_app",
+          "question_index": 11,
+          "label": "Preferred meeting time for interview",
+          "widget_type": "time",
+          "position_bucket": "final third",
+          "models_failed": 4,
+          "models_not_attempted": 3,
+          "models_attempted_but_failed": 1
+        },
+        {
+          "form_id": "travel_reimbursement",
+          "question_index": 8,
+          "label": "Approximate total amount",
+          "widget_type": "short_text",
+          "position_bucket": "final third",
+          "models_failed": 4,
+          "models_not_attempted": 3,
+          "models_attempted_but_failed": 1
+        },
+        {
+          "form_id": "travel_reimbursement",
+          "question_index": 11,
+          "label": "Preferred contact time",
+          "widget_type": "time",
+          "position_bucket": "final third",
+          "models_failed": 4,
+          "models_not_attempted": 4,
+          "models_attempted_but_failed": 0
+        },
+        {
+          "form_id": "club_application",
+          "question_index": 5,
+          "label": "Why do you want to join?",
+          "widget_type": "paragraph_text",
+          "position_bucket": "middle third",
+          "models_failed": 4,
+          "models_not_attempted": 3,
+          "models_attempted_but_failed": 1
+        },
+        {
+          "form_id": "club_application",
+          "question_index": 6,
+          "label": "Activities you are interested in",
+          "widget_type": "multi_choice",
+          "position_bucket": "middle third",
+          "models_failed": 4,
+          "models_not_attempted": 3,
+          "models_attempted_but_failed": 1
+        },
+        {
+          "form_id": "club_application",
+          "question_index": 7,
+          "label": "Previous club experience",
+          "widget_type": "single_choice",
+          "position_bucket": "middle third",
+          "models_failed": 4,
+          "models_not_attempted": 4,
+          "models_attempted_but_failed": 0
+        },
+        {
+          "form_id": "club_event_planning",
+          "question_index": 6,
+          "label": "Preferred start time",
+          "widget_type": "time",
+          "position_bucket": "middle third",
+          "models_failed": 4,
+          "models_not_attempted": 4,
+          "models_attempted_but_failed": 0
+        },
+        {
+          "form_id": "club_event_planning",
+          "question_index": 7,
+          "label": "Expected number of attendees",
+          "widget_type": "short_text",
+          "position_bucket": "middle third",
+          "models_failed": 4,
+          "models_not_attempted": 3,
+          "models_attempted_but_failed": 1
+        },
+        {
+          "form_id": "club_event_planning",
+          "question_index": 8,
+          "label": "Venue needs",
+          "widget_type": "multi_choice",
+          "position_bucket": "final third",
+          "models_failed": 4,
+          "models_not_attempted": 3,
+          "models_attempted_but_failed": 1
+        },
+        {
+          "form_id": "publication_submission",
+          "question_index": 6,
+          "label": "DOI or URL",
+          "widget_type": "short_text",
+          "position_bucket": "middle third",
+          "models_failed": 4,
+          "models_not_attempted": 3,
+          "models_attempted_but_failed": 1
+        },
+        {
+          "form_id": "publication_submission",
+          "question_index": 7,
+          "label": "Keywords",
+          "widget_type": "short_text",
+          "position_bucket": "middle third",
+          "models_failed": 4,
+          "models_not_attempted": 3,
+          "models_attempted_but_failed": 1
+        },
+        {
+          "form_id": "publication_submission",
+          "question_index": 8,
+          "label": "Research area",
+          "widget_type": "multi_choice",
+          "position_bucket": "final third",
+          "models_failed": 4,
+          "models_not_attempted": 3,
+          "models_attempted_but_failed": 1
+        },
+        {
+          "form_id": "publication_submission",
+          "question_index": 9,
+          "label": "Abstract or short summary",
+          "widget_type": "paragraph_text",
+          "position_bucket": "final third",
+          "models_failed": 4,
+          "models_not_attempted": 3,
+          "models_attempted_but_failed": 1
+        },
+        {
+          "form_id": "publication_submission",
+          "question_index": 10,
+          "label": "Should this be shown publicly?",
+          "widget_type": "single_choice",
+          "position_bucket": "final third",
+          "models_failed": 4,
+          "models_not_attempted": 4,
+          "models_attempted_but_failed": 0
+        }
+      ],
+      "failure_matrix": [
+        {
+          "model": "Gemini 3.5 Flash",
+          "total_missed_fields": 113,
+          "dominant_behavioral_failure": "attempted_but_blank",
+          "dominant_behavioral_failure_count": 44,
+          "dominant_behavioral_share_of_misses_pct": 38.94,
+          "not_attempted_count": 43,
+          "attempted_but_blank_count": 44,
+          "wrong_value_count": 4,
+          "multi_choice_error_count": 0,
+          "ambiguous_option_text_count": 22
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "total_missed_fields": 119,
+          "dominant_behavioral_failure": "not_attempted",
+          "dominant_behavioral_failure_count": 94,
+          "dominant_behavioral_share_of_misses_pct": 78.99,
+          "not_attempted_count": 94,
+          "attempted_but_blank_count": 1,
+          "wrong_value_count": 1,
+          "multi_choice_error_count": 1,
+          "ambiguous_option_text_count": 22
+        },
+        {
+          "model": "Qwen3 Text",
+          "total_missed_fields": 161,
+          "dominant_behavioral_failure": "not_attempted",
+          "dominant_behavioral_failure_count": 114,
+          "dominant_behavioral_share_of_misses_pct": 70.81,
+          "not_attempted_count": 114,
+          "attempted_but_blank_count": 20,
+          "wrong_value_count": 2,
+          "multi_choice_error_count": 1,
+          "ambiguous_option_text_count": 24
+        },
+        {
+          "model": "Qwen3-VL",
+          "total_missed_fields": 126,
+          "dominant_behavioral_failure": "not_attempted",
+          "dominant_behavioral_failure_count": 97,
+          "dominant_behavioral_share_of_misses_pct": 76.98,
+          "not_attempted_count": 97,
+          "attempted_but_blank_count": 3,
+          "wrong_value_count": 2,
+          "multi_choice_error_count": 2,
+          "ambiguous_option_text_count": 21
+        }
+      ],
+      "stop_reasons": [
+        {
+          "model": "Gemini 3.5 Flash",
+          "stop_reason": "max_steps_exceeded",
+          "trials": 28,
+          "share_of_model_trials_pct": 56.0,
+          "incomplete_trials": 28,
+          "share_of_model_incomplete_trials_pct": 73.68
+        },
+        {
+          "model": "Gemini 3.5 Flash",
+          "stop_reason": "done_incomplete_fill_only",
+          "trials": 10,
+          "share_of_model_trials_pct": 20.0,
+          "incomplete_trials": 10,
+          "share_of_model_incomplete_trials_pct": 26.32
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "stop_reason": "done_incomplete_fill_only",
+          "trials": 29,
+          "share_of_model_trials_pct": 58.0,
+          "incomplete_trials": 29,
+          "share_of_model_incomplete_trials_pct": 82.86
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "stop_reason": "max_steps_exceeded",
+          "trials": 5,
+          "share_of_model_trials_pct": 10.0,
+          "incomplete_trials": 5,
+          "share_of_model_incomplete_trials_pct": 14.29
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "stop_reason": "timeout",
+          "trials": 1,
+          "share_of_model_trials_pct": 2.0,
+          "incomplete_trials": 1,
+          "share_of_model_incomplete_trials_pct": 2.86
+        },
+        {
+          "model": "Qwen3 Text",
+          "stop_reason": "done_incomplete_fill_only",
+          "trials": 33,
+          "share_of_model_trials_pct": 66.0,
+          "incomplete_trials": 33,
+          "share_of_model_incomplete_trials_pct": 78.57
+        },
+        {
+          "model": "Qwen3 Text",
+          "stop_reason": "timeout",
+          "trials": 6,
+          "share_of_model_trials_pct": 12.0,
+          "incomplete_trials": 6,
+          "share_of_model_incomplete_trials_pct": 14.29
+        },
+        {
+          "model": "Qwen3 Text",
+          "stop_reason": "max_steps_exceeded",
+          "trials": 2,
+          "share_of_model_trials_pct": 4.0,
+          "incomplete_trials": 2,
+          "share_of_model_incomplete_trials_pct": 4.76
+        },
+        {
+          "model": "Qwen3 Text",
+          "stop_reason": "model_no_tool_calls",
+          "trials": 1,
+          "share_of_model_trials_pct": 2.0,
+          "incomplete_trials": 1,
+          "share_of_model_incomplete_trials_pct": 2.38
+        },
+        {
+          "model": "Qwen3-VL",
+          "stop_reason": "done_incomplete_fill_only",
+          "trials": 29,
+          "share_of_model_trials_pct": 58.0,
+          "incomplete_trials": 29,
+          "share_of_model_incomplete_trials_pct": 74.36
+        },
+        {
+          "model": "Qwen3-VL",
+          "stop_reason": "max_steps_exceeded",
+          "trials": 9,
+          "share_of_model_trials_pct": 18.0,
+          "incomplete_trials": 9,
+          "share_of_model_incomplete_trials_pct": 23.08
+        },
+        {
+          "model": "Qwen3-VL",
+          "stop_reason": "timeout",
+          "trials": 1,
+          "share_of_model_trials_pct": 2.0,
+          "incomplete_trials": 1,
+          "share_of_model_incomplete_trials_pct": 2.56
+        }
+      ],
+      "action_efficiency": [
+        {
+          "model": "Gemini 3.5 Flash",
+          "outcome": "full fill",
+          "trials": 12,
+          "total_actions": 252,
+          "median_actions": 21.5,
+          "actions_per_verified_field": 2.93,
+          "median_correctness_pct": 100.0,
+          "click_share_pct": 68.25,
+          "type_share_pct": 25.0,
+          "scroll_share_pct": 6.75,
+          "other_share_pct": 0.0,
+          "adjacent_identical_rate_pct": 7.92
+        },
+        {
+          "model": "Gemini 3.5 Flash",
+          "outcome": "incomplete",
+          "trials": 38,
+          "total_actions": 1120,
+          "median_actions": 32.0,
+          "actions_per_verified_field": 5.33,
+          "median_correctness_pct": 68.34,
+          "click_share_pct": 67.32,
+          "type_share_pct": 14.73,
+          "scroll_share_pct": 17.95,
+          "other_share_pct": 0.0,
+          "adjacent_identical_rate_pct": 3.7
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "outcome": "full fill",
+          "trials": 15,
+          "total_actions": 133,
+          "median_actions": 9.0,
+          "actions_per_verified_field": 1.24,
+          "median_correctness_pct": 100.0,
+          "click_share_pct": 40.6,
+          "type_share_pct": 59.4,
+          "scroll_share_pct": 0.0,
+          "other_share_pct": 0.0,
+          "adjacent_identical_rate_pct": 0.0
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "outcome": "incomplete",
+          "trials": 35,
+          "total_actions": 550,
+          "median_actions": 12.0,
+          "actions_per_verified_field": 3.01,
+          "median_correctness_pct": 66.67,
+          "click_share_pct": 40.55,
+          "type_share_pct": 59.45,
+          "scroll_share_pct": 0.0,
+          "other_share_pct": 0.0,
+          "adjacent_identical_rate_pct": 20.19
+        },
+        {
+          "model": "Qwen3 Text",
+          "outcome": "full fill",
+          "trials": 8,
+          "total_actions": 61,
+          "median_actions": 7.5,
+          "actions_per_verified_field": 1.07,
+          "median_correctness_pct": 100.0,
+          "click_share_pct": 39.34,
+          "type_share_pct": 60.66,
+          "scroll_share_pct": 0.0,
+          "other_share_pct": 0.0,
+          "adjacent_identical_rate_pct": 0.0
+        },
+        {
+          "model": "Qwen3 Text",
+          "outcome": "incomplete",
+          "trials": 42,
+          "total_actions": 512,
+          "median_actions": 11.0,
+          "actions_per_verified_field": 2.68,
+          "median_correctness_pct": 59.82,
+          "click_share_pct": 61.33,
+          "type_share_pct": 38.28,
+          "scroll_share_pct": 0.0,
+          "other_share_pct": 0.39,
+          "adjacent_identical_rate_pct": 29.15
+        },
+        {
+          "model": "Qwen3-VL",
+          "outcome": "full fill",
+          "trials": 11,
+          "total_actions": 91,
+          "median_actions": 8.0,
+          "actions_per_verified_field": 1.18,
+          "median_correctness_pct": 100.0,
+          "click_share_pct": 41.76,
+          "type_share_pct": 58.24,
+          "scroll_share_pct": 0.0,
+          "other_share_pct": 0.0,
+          "adjacent_identical_rate_pct": 0.0
+        },
+        {
+          "model": "Qwen3-VL",
+          "outcome": "incomplete",
+          "trials": 39,
+          "total_actions": 500,
+          "median_actions": 10.0,
+          "actions_per_verified_field": 2.43,
+          "median_correctness_pct": 71.43,
+          "click_share_pct": 49.2,
+          "type_share_pct": 50.8,
+          "scroll_share_pct": 0.0,
+          "other_share_pct": 0.0,
+          "adjacent_identical_rate_pct": 28.2
+        }
+      ],
+      "action_correction": [
+        {
+          "model": "Gemini 3.5 Flash",
+          "raw_actions": 1382,
+          "interaction_actions": 1372,
+          "excluded_observations": 0,
+          "excluded_other": 10,
+          "excluded_share_pct": 0.72,
+          "median_raw": 32.0,
+          "median_interactions": 32.0
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "raw_actions": 684,
+          "interaction_actions": 683,
+          "excluded_observations": 0,
+          "excluded_other": 1,
+          "excluded_share_pct": 0.15,
+          "median_raw": 11.0,
+          "median_interactions": 11.0
+        },
+        {
+          "model": "Qwen3 Text",
+          "raw_actions": 577,
+          "interaction_actions": 573,
+          "excluded_observations": 4,
+          "excluded_other": 0,
+          "excluded_share_pct": 0.69,
+          "median_raw": 10.0,
+          "median_interactions": 10.0
+        },
+        {
+          "model": "Qwen3-VL",
+          "raw_actions": 714,
+          "interaction_actions": 591,
+          "excluded_observations": 122,
+          "excluded_other": 1,
+          "excluded_share_pct": 17.23,
+          "median_raw": 10.0,
+          "median_interactions": 9.0
+        }
+      ],
+      "forms_without_dropdown": [
+        {
+          "model": "Gemini 3.5 Flash",
+          "forms": 25,
+          "raw_field_correctness_pct": 81.5,
+          "non_dropdown_field_correctness_pct": 81.5,
+          "dropdown_targets_unresolved": 0,
+          "raw_full_fills": 12,
+          "raw_full_fill_rate_pct": 48.0,
+          "non_dropdown_complete_forms": 12,
+          "non_dropdown_complete_rate_pct": 48.0
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "forms": 25,
+          "raw_field_correctness_pct": 74.0,
+          "non_dropdown_field_correctness_pct": 74.0,
+          "dropdown_targets_unresolved": 0,
+          "raw_full_fills": 15,
+          "raw_full_fill_rate_pct": 60.0,
+          "non_dropdown_complete_forms": 15,
+          "non_dropdown_complete_rate_pct": 60.0
+        },
+        {
+          "model": "Qwen3 Text",
+          "forms": 25,
+          "raw_field_correctness_pct": 68.0,
+          "non_dropdown_field_correctness_pct": 68.0,
+          "dropdown_targets_unresolved": 0,
+          "raw_full_fills": 8,
+          "raw_full_fill_rate_pct": 32.0,
+          "non_dropdown_complete_forms": 8,
+          "non_dropdown_complete_rate_pct": 32.0
+        },
+        {
+          "model": "Qwen3-VL",
+          "forms": 25,
+          "raw_field_correctness_pct": 72.0,
+          "non_dropdown_field_correctness_pct": 72.0,
+          "dropdown_targets_unresolved": 0,
+          "raw_full_fills": 11,
+          "raw_full_fill_rate_pct": 44.0,
+          "non_dropdown_complete_forms": 11,
+          "non_dropdown_complete_rate_pct": 44.0
+        }
+      ],
+      "forms_with_dropdown": [
+        {
+          "model": "Gemini 3.5 Flash",
+          "forms": 25,
+          "raw_field_correctness_pct": 63.64,
+          "non_dropdown_field_correctness_pct": 72.28,
+          "dropdown_targets_unresolved": 25,
+          "raw_full_fills": 0,
+          "raw_full_fill_rate_pct": 0.0,
+          "non_dropdown_complete_forms": 6,
+          "non_dropdown_complete_rate_pct": 24.0
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "forms": 25,
+          "raw_field_correctness_pct": 67.94,
+          "non_dropdown_field_correctness_pct": 77.17,
+          "dropdown_targets_unresolved": 25,
+          "raw_full_fills": 0,
+          "raw_full_fill_rate_pct": 0.0,
+          "non_dropdown_complete_forms": 15,
+          "non_dropdown_complete_rate_pct": 60.0
+        },
+        {
+          "model": "Qwen3 Text",
+          "forms": 25,
+          "raw_field_correctness_pct": 53.59,
+          "non_dropdown_field_correctness_pct": 60.87,
+          "dropdown_targets_unresolved": 25,
+          "raw_full_fills": 0,
+          "raw_full_fill_rate_pct": 0.0,
+          "non_dropdown_complete_forms": 3,
+          "non_dropdown_complete_rate_pct": 12.0
+        },
+        {
+          "model": "Qwen3-VL",
+          "forms": 25,
+          "raw_field_correctness_pct": 66.51,
+          "non_dropdown_field_correctness_pct": 75.54,
+          "dropdown_targets_unresolved": 25,
+          "raw_full_fills": 0,
+          "raw_full_fill_rate_pct": 0.0,
+          "non_dropdown_complete_forms": 12,
+          "non_dropdown_complete_rate_pct": 48.0
+        }
+      ],
+      "dropdown_audit": [
+        {
+          "model": "Gemini 3.5 Flash",
+          "dropdown_targets": 25,
+          "raw_verified_correct": 0,
+          "expected_embedded_in_container": 22,
+          "blank_or_not_attempted": 3,
+          "measurement_indeterminate_pct": 88.0
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "dropdown_targets": 25,
+          "raw_verified_correct": 0,
+          "expected_embedded_in_container": 22,
+          "blank_or_not_attempted": 3,
+          "measurement_indeterminate_pct": 88.0
+        },
+        {
+          "model": "Qwen3 Text",
+          "dropdown_targets": 25,
+          "raw_verified_correct": 0,
+          "expected_embedded_in_container": 24,
+          "blank_or_not_attempted": 1,
+          "measurement_indeterminate_pct": 96.0
+        },
+        {
+          "model": "Qwen3-VL",
+          "dropdown_targets": 25,
+          "raw_verified_correct": 0,
+          "expected_embedded_in_container": 21,
+          "blank_or_not_attempted": 4,
+          "measurement_indeterminate_pct": 84.0
+        }
+      ],
+      "submission_audit": [
+        {
+          "model": "OpenCUA MCP",
+          "submitted_trials": 251,
+          "final_page_zero_trials": 251,
+          "recovered_nonzero_trials": 251,
+          "recovered_perfect_trials": 77,
+          "recovered_partial_trials": 174,
+          "unrecovered_zero_trials": 0,
+          "median_final_page_accuracy_pct": 0.0,
+          "median_recovered_pre_submit_accuracy_pct": 87.5
+        },
+        {
+          "model": "Qwen Text",
+          "submitted_trials": 102,
+          "final_page_zero_trials": 102,
+          "recovered_nonzero_trials": 99,
+          "recovered_perfect_trials": 44,
+          "recovered_partial_trials": 55,
+          "unrecovered_zero_trials": 3,
+          "median_final_page_accuracy_pct": 0.0,
+          "median_recovered_pre_submit_accuracy_pct": 87.5
+        },
+        {
+          "model": "Qwen VLM",
+          "submitted_trials": 166,
+          "final_page_zero_trials": 166,
+          "recovered_nonzero_trials": 162,
+          "recovered_perfect_trials": 32,
+          "recovered_partial_trials": 130,
+          "unrecovered_zero_trials": 4,
+          "median_final_page_accuracy_pct": 0.0,
+          "median_recovered_pre_submit_accuracy_pct": 85.71
+        }
+      ],
+      "model_vs_ideal": [
+        {
+          "model": "Gemini 3.5 Flash",
+          "matched_forms": 50,
+          "full_fills": 12,
+          "median_model_actions": 32.0,
+          "median_ideal_interaction_actions": 10.0,
+          "median_ideal_total_trace_events": 41.0,
+          "median_ideal_script_operations": 11.0,
+          "median_model_duration_s": 767.9,
+          "median_ideal_duration_s": 55.76,
+          "median_model_to_ideal_interaction_action_ratio": 2.723,
+          "median_model_to_ideal_total_event_ratio": 0.665,
+          "median_model_to_ideal_script_operation_ratio": 2.481,
+          "median_model_to_ideal_time_ratio": 11.779
+        },
+        {
+          "model": "OpenCUA direct-MCP",
+          "matched_forms": 50,
+          "full_fills": 15,
+          "median_model_actions": 11.0,
+          "median_ideal_interaction_actions": 10.0,
+          "median_ideal_total_trace_events": 41.0,
+          "median_ideal_script_operations": 11.0,
+          "median_model_duration_s": 294.83,
+          "median_ideal_duration_s": 55.76,
+          "median_model_to_ideal_interaction_action_ratio": 1.091,
+          "median_model_to_ideal_total_event_ratio": 0.267,
+          "median_model_to_ideal_script_operation_ratio": 1.0,
+          "median_model_to_ideal_time_ratio": 5.209
+        },
+        {
+          "model": "Qwen3 Text",
+          "matched_forms": 50,
+          "full_fills": 8,
+          "median_model_actions": 10.0,
+          "median_ideal_interaction_actions": 10.0,
+          "median_ideal_total_trace_events": 41.0,
+          "median_ideal_script_operations": 11.0,
+          "median_model_duration_s": 202.17,
+          "median_ideal_duration_s": 55.76,
+          "median_model_to_ideal_interaction_action_ratio": 1.0,
+          "median_model_to_ideal_total_event_ratio": 0.243,
+          "median_model_to_ideal_script_operation_ratio": 0.905,
+          "median_model_to_ideal_time_ratio": 3.617
+        },
+        {
+          "model": "Qwen3-VL",
+          "matched_forms": 50,
+          "full_fills": 11,
+          "median_model_actions": 9.0,
+          "median_ideal_interaction_actions": 10.0,
+          "median_ideal_total_trace_events": 41.0,
+          "median_ideal_script_operations": 11.0,
+          "median_model_duration_s": 216.38,
+          "median_ideal_duration_s": 55.76,
+          "median_model_to_ideal_interaction_action_ratio": 0.9,
+          "median_model_to_ideal_total_event_ratio": 0.22,
+          "median_model_to_ideal_script_operation_ratio": 0.818,
+          "median_model_to_ideal_time_ratio": 3.855
+        }
+      ]
+    },
+    "access_issues": []
+  },
+  "sources": [
+    {
+      "id": "interaction_analysis",
+      "query": {
+        "engine": "local_files",
+        "language": "python",
+        "description": "Canonical 50-form question/action decomposition plus primary baseline failure-only decomposition.",
+        "tables_used": [
+          "data/model_baseline_exports/fill_only_done_50_20260714/trials.csv",
+          "docs/eval_results/analysis/model_action_trial_counts.csv",
+          "data/model_baselines/**/annotations.json",
+          "data/model_baselines/**/model_io.jsonl",
+          "interaction_failure_analysis/data/baseline_submission_scoring_audit.csv",
+          "interaction_failure_analysis/data/dropdown_verifier_audit_by_model.csv",
+          "interaction_failure_analysis/data/action_count_correction_by_model.csv",
+          "interaction_failure_analysis/data/performance_forms_without_dropdown.csv",
+          "interaction_failure_analysis/data/performance_forms_with_dropdown.csv"
+        ],
+        "filters": [
+          "Fill-only comparison: four models, 50 usable run_0002 trials each",
+          "Primary baseline cohort: 978 trials from the existing action-trial index",
+          "Baseline failure cuts: 459 non-submitted trials; aggregate-perfect submitted fields recovered separately",
+          "Primary action count excludes screenshots, snapshots, waits, DONE, setup, and close"
+        ],
+        "metric_definitions": {
+          "field_correctness": "final verified_correct target fields / target fields",
+          "field_progress_action": "Gemini action after which at least one additional target field is verified correct",
+          "failure_subtype": "classification from attempted flag and final actual versus expected value",
+          "nondrop_correctness": "field correctness after excluding dropdown targets affected by verifier ambiguity",
+          "interaction_action": "navigation, click, type/fill, scroll, select/check, keypress, hover, drag, upload, or scripted fill/submit",
+          "submitted_score": "pre-successful-submit correctness, then pre-first-submit correctness, before final-page fallbacks"
+        },
+        "executed_at": "2026-07-19T16:26:14.206212Z"
+      }
+    },
+    {
+      "id": "widget_failures",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT widget_type, COUNT(*) AS target_fields, SUM(CASE WHEN verified_correct = 'False' THEN 1 ELSE 0 END) AS missed_fields, 100.0 * missed_fields / target_fields AS failure_rate_pct FROM read_csv_auto('interaction_failure_analysis/data/field_outcomes.csv') WHERE widget_type <> 'dropdown' GROUP BY widget_type",
+        "description": "Aggregates correct and missed fields by widget type, excluding ambiguous dropdown results.",
+        "tables_used": [
+          "interaction_failure_analysis/data/field_outcomes.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206228Z"
+      }
+    },
+    {
+      "id": "hard_forms",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT form_id, COUNT(*) AS target_fields_all_models, SUM(CASE WHEN verified_correct = 'True' THEN 1 ELSE 0 END) AS correct_fields_all_models, 100.0 * correct_fields_all_models / target_fields_all_models AS correctness_pct_all_models FROM read_csv_auto('interaction_failure_analysis/data/field_outcomes.csv') GROUP BY form_id ORDER BY correctness_pct_all_models ASC",
+        "description": "Ranks forms by field correctness pooled across the four fill-only conditions.",
+        "tables_used": [
+          "interaction_failure_analysis/data/field_outcomes.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206238Z"
+      }
+    },
+    {
+      "id": "failure_matrix",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT model, failure_subtype, COUNT(*) AS missed_fields FROM read_csv_auto('interaction_failure_analysis/data/field_outcomes.csv') WHERE verified_correct = 'False' GROUP BY model, failure_subtype",
+        "description": "Classifies final field misses and trial stop reasons by model in the canonical 50-form comparison.",
+        "tables_used": [
+          "interaction_failure_analysis/data/field_outcomes.csv",
+          "interaction_failure_analysis/data/trial_action_profile.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206251Z"
+      }
+    },
+    {
+      "id": "trial_stop_reasons",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT model, stop_reason, COUNT(*) AS incomplete_trials FROM read_csv_auto('interaction_failure_analysis/data/trial_action_profile.csv') WHERE full_fill_success <> 'true' GROUP BY model, stop_reason",
+        "description": "Counts incomplete trial stop reasons by model in the canonical 50-form comparison.",
+        "tables_used": [
+          "interaction_failure_analysis/data/trial_action_profile.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206256Z"
+      }
+    },
+    {
+      "id": "question_item_consensus",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT form_id, question_id, label, widget_type, COUNT(*) AS model_observations, SUM(CASE WHEN verified_correct = 'False' THEN 1 ELSE 0 END) AS models_failed FROM read_csv_auto('interaction_failure_analysis/data/field_outcomes.csv') WHERE widget_type <> 'dropdown' GROUP BY form_id, question_id, label, widget_type ORDER BY models_failed DESC",
+        "description": "Ranks individual non-dropdown questions by the number of model-interface conditions that failed them.",
+        "tables_used": [
+          "interaction_failure_analysis/data/field_outcomes.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206264Z"
+      }
+    },
+    {
+      "id": "canonical_action_behavior",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT model, CASE WHEN full_fill_success = 'true' THEN 'full fill' ELSE 'incomplete' END AS outcome, COUNT(*) AS trials, SUM(interaction_action_count) AS total_actions, MEDIAN(interaction_action_count) AS median_actions, 100.0 * SUM(adjacent_identical_actions) / SUM(GREATEST(interaction_action_count - 1, 0)) AS adjacent_identical_rate_pct FROM read_csv_auto('interaction_failure_analysis/data/trial_action_profile.csv') GROUP BY model, outcome",
+        "description": "Compares model-issued action mix, efficiency, and adjacent exact repetition by model and trial outcome.",
+        "tables_used": [
+          "interaction_failure_analysis/data/trial_action_profile.csv",
+          "interaction_failure_analysis/data/action_counts_long.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206267Z"
+      }
+    },
+    {
+      "id": "methodology_gaps",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT priority, gap, why_it_matters, concrete_fix, paper_treatment FROM read_csv_auto('interaction_failure_analysis/data/methodology_gap_register.csv') WHERE priority IN ('P0', 'P1')",
+        "description": "Prioritized measurement and design gaps with concrete repair actions and paper-safe treatment.",
+        "tables_used": [
+          "interaction_failure_analysis/data/methodology_gap_register.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206269Z"
+      }
+    },
+    {
+      "id": "ideal_reference",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT COUNT(*) AS reference_runs, SUM(CASE WHEN usable = 'True' THEN 1 ELSE 0 END) AS usable_runs, MEDIAN(interaction_actions) AS median_interaction_actions, MEDIAN(total_trace_events) AS median_total_trace_events, MEDIAN(duration_s) AS median_duration_s FROM read_csv_auto('interaction_failure_analysis/data/ideal_reference_runs.csv')",
+        "description": "Summarizes the 300 successful scripted Playwright reference runs across 50 forms and six answer sets.",
+        "tables_used": [
+          "interaction_failure_analysis/data/ideal_reference_runs.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206274Z"
+      }
+    },
+    {
+      "id": "model_vs_ideal",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT model, COUNT(*) AS matched_forms, MEDIAN(model_actions) AS median_model_actions, MEDIAN(ideal_interaction_actions) AS median_ideal_interaction_actions, MEDIAN(model_to_ideal_interaction_action_ratio) AS median_action_ratio, MEDIAN(model_duration_s) AS median_model_duration_s, MEDIAN(ideal_duration_s) AS median_ideal_duration_s, MEDIAN(model_to_ideal_time_ratio) AS median_time_ratio FROM read_csv_auto('interaction_failure_analysis/data/model_vs_ideal_by_form.csv') GROUP BY model",
+        "description": "Pairs each canonical run-2 model trial with the scripted reference for the same form and answer run.",
+        "tables_used": [
+          "interaction_failure_analysis/data/model_vs_ideal_by_form.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206277Z"
+      }
+    },
+    {
+      "id": "dropdown_form_groups",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT * FROM read_csv_auto(['interaction_failure_analysis/data/performance_forms_without_dropdown.csv', 'interaction_failure_analysis/data/performance_forms_with_dropdown.csv'])",
+        "description": "Separates canonical performance for forms with and without dropdown controls.",
+        "tables_used": [
+          "interaction_failure_analysis/data/performance_forms_without_dropdown.csv",
+          "interaction_failure_analysis/data/performance_forms_with_dropdown.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206279Z"
+      }
+    },
+    {
+      "id": "dropdown_verifier_audit",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT * FROM read_csv_auto('interaction_failure_analysis/data/dropdown_verifier_audit_by_model.csv')",
+        "description": "Audits raw dropdown outcomes and option-container readings by model.",
+        "tables_used": [
+          "interaction_failure_analysis/data/dropdown_verifier_audit_by_model.csv",
+          "interaction_failure_analysis/data/dropdown_verifier_examples.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206282Z"
+      }
+    },
+    {
+      "id": "action_count_correction",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT * FROM read_csv_auto('interaction_failure_analysis/data/action_count_correction_by_model.csv')",
+        "description": "Reconciles raw model-issued calls to normalized state-changing interactions.",
+        "tables_used": [
+          "interaction_failure_analysis/data/action_count_correction_by_model.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206285Z"
+      }
+    },
+    {
+      "id": "submission_scoring_audit",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT * FROM read_csv_auto('interaction_failure_analysis/data/baseline_submission_scoring_audit.csv')",
+        "description": "Recovers historical submitted-trial correctness from pre-submit verification and audits the canonical no-submit contract.",
+        "tables_used": [
+          "interaction_failure_analysis/data/baseline_submission_scoring_audit.csv",
+          "interaction_failure_analysis/data/canonical_submission_audit.csv",
+          "interaction_failure_analysis/data/baseline_recovered_perfect_submitted_fields.csv"
+        ],
+        "filters": [
+          "Canonical usable artifacts only",
+          "Model-issued actions only"
+        ],
+        "executed_at": "2026-07-19T16:26:14.206288Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+model,submitted_trials,final_page_zero_trials,pre_submit_score_available,recovered_nonzero_trials,recovered_perfect_trials,recovered_partial_trials,unrecovered_zero_trials,median_final_page_accuracy_pct,median_recovered_pre_submit_accuracy_pct
+OpenCUA MCP,251,251,251,251,77,174,0,0.0,87.5
+Qwen Text,102,102,99,99,44,55,3,0.0,87.5
+Qwen VLM,166,166,162,162,32,130,4,0.0,85.71

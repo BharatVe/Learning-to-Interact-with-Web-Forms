@@ -1,0 +1,5 @@
+model,trials,task_modes,submit_attempts,successful_submissions,expected_no_submit_trials
+Gemini 3.5 Flash,50,fill_only_done,0,0,50
+OpenCUA direct-MCP,50,fill_only_done,0,0,50
+Qwen3 Text,50,fill_only_done,0,0,50
+Qwen3-VL,50,fill_only_done,0,0,50

@@ -1,0 +1,22 @@
+model,failure_subtype,missed_fields,share_of_model_misses_pct
+Gemini 3.5 Flash,attempted_but_blank,44,38.94
+Gemini 3.5 Flash,not_attempted,43,38.05
+Gemini 3.5 Flash,option_container_text,22,19.47
+Gemini 3.5 Flash,wrong_value,4,3.54
+OpenCUA direct-MCP,not_attempted,94,78.99
+OpenCUA direct-MCP,option_container_text,22,18.49
+OpenCUA direct-MCP,partial_multi_choice,1,0.84
+OpenCUA direct-MCP,wrong_value,1,0.84
+OpenCUA direct-MCP,attempted_but_blank,1,0.84
+Qwen3 Text,not_attempted,114,70.81
+Qwen3 Text,option_container_text,24,14.91
+Qwen3 Text,attempted_but_blank,20,12.42
+Qwen3 Text,wrong_value,2,1.24
+Qwen3 Text,partial_multi_choice,1,0.62
+Qwen3-VL,not_attempted,97,76.98
+Qwen3-VL,option_container_text,21,16.67
+Qwen3-VL,attempted_but_blank,3,2.38
+Qwen3-VL,wrong_value,2,1.59
+Qwen3-VL,wrong_multi_choice,1,0.79
+Qwen3-VL,partial_multi_choice,1,0.79
+Qwen3-VL,expected_embedded_in_wrong_value,1,0.79

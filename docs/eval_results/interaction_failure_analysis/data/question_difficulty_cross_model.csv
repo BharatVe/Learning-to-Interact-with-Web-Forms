@@ -1,0 +1,410 @@
+form_id,question_id,label,widget_type,question_index,question_total,position_bucket,model_observations,models_correct,models_failed,cross_model_failure_rate_pct,models_not_attempted,models_attempted_but_failed,failed_model_names,ambiguous_dropdown_measurement
+internship_app,q_011,Preferred meeting time for interview,time,11,12,final third,4,0,4,100.0,3,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+travel_reimbursement,q_008,Approximate total amount,short_text,8,11,final third,4,0,4,100.0,3,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+travel_reimbursement,q_011,Preferred contact time,time,11,11,final third,4,0,4,100.0,4,0,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+club_application,q_005,Why do you want to join?,paragraph_text,5,10,middle third,4,0,4,100.0,3,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+club_application,q_006,Activities you are interested in,multi_choice,6,10,middle third,4,0,4,100.0,3,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+club_application,q_007,Previous club experience,single_choice,7,10,middle third,4,0,4,100.0,4,0,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+club_event_planning,q_006,Preferred start time,time,6,10,middle third,4,0,4,100.0,4,0,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+club_event_planning,q_007,Expected number of attendees,short_text,7,10,middle third,4,0,4,100.0,3,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+club_event_planning,q_008,Venue needs,multi_choice,8,10,final third,4,0,4,100.0,3,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+publication_submission,q_006,DOI or URL,short_text,6,10,middle third,4,0,4,100.0,3,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+publication_submission,q_007,Keywords,short_text,7,10,middle third,4,0,4,100.0,3,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+publication_submission,q_008,Research area,multi_choice,8,10,final third,4,0,4,100.0,3,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+publication_submission,q_009,Abstract or short summary,paragraph_text,9,10,final third,4,0,4,100.0,3,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+publication_submission,q_010,Should this be shown publicly?,single_choice,10,10,final third,4,0,4,100.0,4,0,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+internship_app,q_007,Link to GitHub or portfolio,short_text,7,12,middle third,4,1,3,75.0,2,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text,False
+internship_app,q_008,Brief motivation statement,paragraph_text,8,12,middle third,4,1,3,75.0,2,1,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text,False
+internship_app,q_009,Earliest start date,date,9,12,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+internship_app,q_010,Weekly availability (hours),short_text,10,12,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+internship_app,q_012,Are you open to remote work?,single_choice,12,12,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+travel_reimbursement,q_006,Transport mode,single_choice,6,11,middle third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+travel_reimbursement,q_007,Expense categories claimed,multi_choice,7,11,middle third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+travel_reimbursement,q_009,Bank account holder name,short_text,9,11,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3-VL,False
+travel_reimbursement,q_010,IBAN,short_text,10,11,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3-VL,False
+club_application,q_010,Preferred meeting time,time,10,10,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+club_event_planning,q_005,Preferred event date,date,5,10,middle third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+conference_travel,q_009,Preferred departure time,time,9,10,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3-VL,False
+purchase_request,q_001,Requester name,short_text,1,10,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+purchase_request,q_002,Email address,short_text,2,10,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+purchase_request,q_003,Department or project,short_text,3,10,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+purchase_request,q_007,Reason for purchase,paragraph_text,7,10,middle third,4,1,3,75.0,1,2,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3-VL,False
+purchase_request,q_008,Needed by date,date,8,10,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+purchase_request,q_009,Budget source known?,single_choice,9,10,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+purchase_request,q_010,Urgency level,single_choice,10,10,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+course_feedback,q_001,Course name,short_text,1,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+course_feedback,q_002,Your program level,single_choice,2,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+course_feedback,q_003,Did you attend most sessions?,single_choice,3,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+data_annotation,q_007,Preferred work time,time,7,9,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+data_annotation,q_008,Weekly availability,short_text,8,9,final third,4,1,3,75.0,1,2,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+data_annotation,q_009,Comments about task preference,paragraph_text,9,9,final third,4,1,3,75.0,1,2,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+experiment_booking,q_001,Participant name,short_text,1,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+experiment_booking,q_002,Email address,short_text,2,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+experiment_booking,q_003,Participant group,single_choice,3,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+experiment_booking,q_004,Prior participation in similar studies,single_choice,4,9,middle third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+hackathon_signup,q_001,Full name,short_text,1,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+hackathon_signup,q_002,Email address,short_text,2,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+hackathon_signup,q_003,University or organization,short_text,3,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+hackathon_signup,q_004,Participation type,single_choice,4,9,middle third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+job_fair,q_001,Full name,short_text,1,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+job_fair,q_002,Email address,short_text,2,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+job_fair,q_003,Current study level,single_choice,3,9,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+job_fair,q_004,Career interests,multi_choice,4,9,middle third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+job_fair,q_005,Are you currently looking for a job?,single_choice,5,9,middle third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+room_booking,q_007,Equipment needed,multi_choice,7,9,final third,4,1,3,75.0,2,1,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+room_booking,q_008,Catering or food planned?,single_choice,8,9,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+room_booking,q_009,Purpose of booking,paragraph_text,9,9,final third,4,1,3,75.0,2,1,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+sports_tournament,q_009,Preferred match time,time,9,9,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+course_enrollment,q_008,Preferred lab session time,time,8,8,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+field_trip,q_008,Mobility or accessibility notes,paragraph_text,8,8,final third,4,1,3,75.0,0,3,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+orientation_signup,q_007,Preferred start time,time,7,8,final third,4,1,3,75.0,0,3,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+seminar_proposal,q_001,Full name,short_text,1,8,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+seminar_proposal,q_002,Email address,short_text,2,8,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+seminar_proposal,q_003,Proposed seminar title,short_text,3,8,first third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+seminar_proposal,q_004,Topic area,single_choice,4,8,middle third,4,1,3,75.0,3,0,OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,False
+seminar_proposal,q_007,Preferred presentation time,time,7,8,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+survey_consent,q_008,Preferred session time,time,8,8,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+mentor_match,q_007,Preferred meeting time,time,7,7,final third,4,1,3,75.0,1,2,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+wellbeing_check,q_006,Preferred time for a check-in call,time,6,7,final third,4,1,3,75.0,3,0,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+wellbeing_check,q_007,Anything you want to note?,paragraph_text,7,7,final third,4,1,3,75.0,2,1,Gemini 3.5 Flash; Qwen3 Text; Qwen3-VL,False
+internship_app,q_001,Full name,short_text,1,12,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+internship_app,q_002,Contact email,short_text,2,12,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+internship_app,q_003,Current city,short_text,3,12,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+internship_app,q_004,Degree program,single_choice,4,12,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+internship_app,q_005,Primary area of interest,multi_choice,5,12,middle third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+internship_app,q_006,Programming languages you use,multi_choice,6,12,middle third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+club_application,q_001,Full name,short_text,1,10,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+club_application,q_002,Student email,short_text,2,10,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+club_application,q_003,Study program,short_text,3,10,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+club_application,q_004,Year of study,single_choice,4,10,middle third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+club_application,q_008,Available start date,date,8,10,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+club_application,q_009,Weekly time you can contribute,short_text,9,10,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+club_event_planning,q_001,Organizer name,short_text,1,10,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+club_event_planning,q_002,Organizer email,short_text,2,10,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+club_event_planning,q_003,Event title,short_text,3,10,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+club_event_planning,q_009,Promotion channels,multi_choice,9,10,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+club_event_planning,q_010,Short event description,paragraph_text,10,10,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+conference_travel,q_001,Full name,short_text,1,10,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+conference_travel,q_002,Email address,short_text,2,10,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+conference_travel,q_003,Conference name,short_text,3,10,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+conference_travel,q_004,Conference role,single_choice,4,10,middle third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+conference_travel,q_005,Conference start date,date,5,10,middle third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+conference_travel,q_006,Conference end date,date,6,10,middle third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+conference_travel,q_008,Accommodation preferences,multi_choice,8,10,final third,4,2,2,50.0,1,1,Qwen3 Text; Qwen3-VL,False
+conference_travel,q_010,Additional travel notes,paragraph_text,10,10,final third,4,2,2,50.0,1,1,Gemini 3.5 Flash; Qwen3-VL,False
+purchase_request,q_005,Item name,short_text,5,10,middle third,4,2,2,50.0,1,1,Gemini 3.5 Flash; OpenCUA direct-MCP,False
+purchase_request,q_006,Estimated cost,short_text,6,10,middle third,4,2,2,50.0,1,1,Gemini 3.5 Flash; OpenCUA direct-MCP,False
+course_feedback,q_008,Most useful aspects,multi_choice,8,9,final third,4,2,2,50.0,0,2,Gemini 3.5 Flash; Qwen3 Text,False
+course_feedback,q_009,Would you recommend this course?,single_choice,9,9,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+data_annotation,q_001,Full name,short_text,1,9,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+data_annotation,q_002,Email address,short_text,2,9,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+data_annotation,q_003,Annotation experience,single_choice,3,9,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+data_annotation,q_004,Languages comfortable with,multi_choice,4,9,middle third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+data_annotation,q_006,Available start date,date,6,9,middle third,4,2,2,50.0,2,0,Qwen3 Text; Qwen3-VL,False
+dataset_request,q_001,Full name,short_text,1,9,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+dataset_request,q_002,Institutional email,short_text,2,9,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+dataset_request,q_003,Affiliation,short_text,3,9,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+dataset_request,q_004,Requester type,single_choice,4,9,middle third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+dataset_request,q_007,Short project description,paragraph_text,7,9,final third,4,2,2,50.0,1,1,Gemini 3.5 Flash; Qwen3 Text,False
+dataset_request,q_008,Requested access start date,date,8,9,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+dataset_request,q_009,Do you agree to cite the dataset if used?,single_choice,9,9,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+equipment_checkout,q_007,Pickup time,time,7,9,final third,4,2,2,50.0,1,1,Gemini 3.5 Flash; Qwen3 Text,False
+equipment_checkout,q_008,Expected return date,date,8,9,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+equipment_checkout,q_009,Purpose of checkout,paragraph_text,9,9,final third,4,2,2,50.0,0,2,Gemini 3.5 Flash; Qwen3 Text,False
+experiment_booking,q_008,Session constraints,multi_choice,8,9,final third,4,2,2,50.0,0,2,Gemini 3.5 Flash; Qwen3 Text,False
+hackathon_signup,q_009,Emergency contact number,short_text,9,9,final third,4,2,2,50.0,0,2,Gemini 3.5 Flash; Qwen3 Text,False
+job_fair,q_007,Preferred arrival time,time,7,9,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+job_fair,q_008,Sessions you want to attend,multi_choice,8,9,final third,4,2,2,50.0,0,2,Gemini 3.5 Flash; Qwen3 Text,False
+language_exchange,q_001,Full name,short_text,1,9,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+language_exchange,q_002,Contact email,short_text,2,9,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+language_exchange,q_003,Native language,short_text,3,9,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+language_exchange,q_004,Language(s) you want to practice,multi_choice,4,9,middle third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3 Text,False
+sports_tournament,q_001,Full name,short_text,1,9,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+sports_tournament,q_002,Contact email,short_text,2,9,first third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+sports_tournament,q_004,Registration type,single_choice,4,9,middle third,4,2,2,50.0,2,0,OpenCUA direct-MCP; Qwen3-VL,False
+sports_tournament,q_005,Team name,short_text,5,9,middle third,4,2,2,50.0,1,1,Gemini 3.5 Flash; Qwen3 Text,False
+sports_tournament,q_006,Skill level,single_choice,6,9,middle third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+sports_tournament,q_007,Available match days,multi_choice,7,9,final third,4,2,2,50.0,1,1,Gemini 3.5 Flash; Qwen3 Text,False
+sports_tournament,q_008,Preferred first match date,date,8,9,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+field_trip,q_006,Preferred trip date,date,6,8,final third,4,2,2,50.0,2,0,Qwen3 Text; Qwen3-VL,False
+field_trip,q_007,Dietary restrictions,multi_choice,7,8,final third,4,2,2,50.0,0,2,Qwen3 Text; Qwen3-VL,False
+lab_safety,q_008,Questions for the trainer,paragraph_text,8,8,final third,4,2,2,50.0,0,2,Gemini 3.5 Flash; Qwen3 Text,False
+project_update,q_008,Preferred sync time,time,8,8,final third,4,2,2,50.0,1,1,Gemini 3.5 Flash; Qwen3 Text,False
+technical_support,q_006,Best time to contact you,time,6,8,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+technical_support,q_007,Impact level,single_choice,7,8,final third,4,2,2,50.0,2,0,Gemini 3.5 Flash; Qwen3 Text,False
+technical_support,q_008,Description of the issue,paragraph_text,8,8,final third,4,2,2,50.0,0,2,Gemini 3.5 Flash; Qwen3 Text,False
+thesis_meeting,q_004,Main topics to discuss,multi_choice,4,8,middle third,4,2,2,50.0,0,2,OpenCUA direct-MCP; Qwen3 Text,False
+conf_interest,q_007,Preferred meeting time,time,7,7,final third,4,2,2,50.0,2,0,Qwen3 Text; Qwen3-VL,False
+remote_setup,q_007,Technical constraints,paragraph_text,7,7,final third,4,2,2,50.0,0,2,Gemini 3.5 Flash; Qwen3 Text,False
+research_interest,q_007,Preferred meeting time,time,7,7,final third,4,2,2,50.0,1,1,Gemini 3.5 Flash; Qwen3 Text,False
+wellbeing_check,q_005,Do you feel stressed this week?,single_choice,5,7,middle third,4,2,2,50.0,2,0,Qwen3 Text; Qwen3-VL,False
+travel_reimbursement,q_001,Full name,short_text,1,11,first third,4,3,1,25.0,1,0,Qwen3 Text,False
+travel_reimbursement,q_002,Email address,short_text,2,11,first third,4,3,1,25.0,1,0,Qwen3 Text,False
+travel_reimbursement,q_003,Purpose of travel,paragraph_text,3,11,first third,4,3,1,25.0,1,0,Qwen3 Text,False
+travel_reimbursement,q_004,Departure date,date,4,11,first third,4,3,1,25.0,1,0,Qwen3 Text,False
+travel_reimbursement,q_005,Return date,date,5,11,middle third,4,3,1,25.0,1,0,Qwen3 Text,False
+publication_submission,q_005,Publication date,date,5,10,middle third,4,3,1,25.0,1,0,Qwen3 Text,False
+course_feedback,q_006,What did you like most?,paragraph_text,6,9,middle third,4,3,1,25.0,0,1,Gemini 3.5 Flash,False
+course_feedback,q_007,What should be improved?,paragraph_text,7,9,final third,4,3,1,25.0,0,1,Gemini 3.5 Flash,False
+dataset_request,q_006,Intended use,multi_choice,6,9,middle third,4,3,1,25.0,1,0,Qwen3 Text,False
+experiment_booking,q_007,Preferred start time,time,7,9,final third,4,3,1,25.0,1,0,Gemini 3.5 Flash,False
+experiment_booking,q_009,Additional comments,paragraph_text,9,9,final third,4,3,1,25.0,0,1,Gemini 3.5 Flash,False
+hackathon_signup,q_006,Skills you can contribute,multi_choice,6,9,middle third,4,3,1,25.0,0,1,Qwen3-VL,False
+hackathon_signup,q_007,Dietary restrictions,multi_choice,7,9,final third,4,3,1,25.0,0,1,Qwen3 Text,False
+job_fair,q_009,Questions for recruiters,paragraph_text,9,9,final third,4,3,1,25.0,0,1,Gemini 3.5 Flash,False
+language_exchange,q_005,Comfort level speaking target language,single_choice,5,9,middle third,4,3,1,25.0,1,0,Qwen3-VL,False
+language_exchange,q_006,Preferred format,single_choice,6,9,middle third,4,3,1,25.0,1,0,Qwen3-VL,False
+language_exchange,q_007,Preferred meeting date,date,7,9,final third,4,3,1,25.0,1,0,Qwen3-VL,False
+language_exchange,q_008,Preferred meeting time,time,8,9,final third,4,3,1,25.0,1,0,Qwen3-VL,False
+language_exchange,q_009,Topics you enjoy discussing,multi_choice,9,9,final third,4,3,1,25.0,1,0,Qwen3-VL,False
+room_booking,q_001,Requester name,short_text,1,9,first third,4,3,1,25.0,1,0,OpenCUA direct-MCP,False
+room_booking,q_002,Contact email,short_text,2,9,first third,4,3,1,25.0,1,0,OpenCUA direct-MCP,False
+room_booking,q_003,Room type requested,single_choice,3,9,first third,4,3,1,25.0,1,0,OpenCUA direct-MCP,False
+room_booking,q_004,Number of participants,short_text,4,9,middle third,4,3,1,25.0,1,0,OpenCUA direct-MCP,False
+room_booking,q_005,Preferred booking date,date,5,9,middle third,4,3,1,25.0,1,0,OpenCUA direct-MCP,False
+room_booking,q_006,Preferred start time,time,6,9,middle third,4,3,1,25.0,1,0,OpenCUA direct-MCP,False
+accessibility_feedback,q_004,Type of issue noticed,multi_choice,4,8,middle third,4,3,1,25.0,0,1,OpenCUA direct-MCP,False
+accessibility_feedback,q_008,May we contact you for follow-up?,single_choice,8,8,final third,4,3,1,25.0,1,0,Qwen3 Text,False
+course_enrollment,q_006,Reasons for enrolling,multi_choice,6,8,final third,4,3,1,25.0,0,1,Qwen3 Text,False
+course_enrollment,q_007,Schedule constraints,paragraph_text,7,8,final third,4,3,1,25.0,0,1,Qwen3 Text,False
+lab_safety,q_006,Training topics needed,multi_choice,6,8,final third,4,3,1,25.0,0,1,Qwen3 Text,False
+lab_safety,q_007,Preferred training date,date,7,8,final third,4,3,1,25.0,1,0,Gemini 3.5 Flash,False
+lab_visit,q_007,Preferred arrival time,time,7,8,final third,4,3,1,25.0,1,0,Qwen3-VL,False
+office_hours,q_005,Preferred meeting mode,single_choice,5,8,middle third,4,3,1,25.0,1,0,Qwen3 Text,False
+office_hours,q_007,Preferred time,time,7,8,final third,4,3,1,25.0,1,0,Qwen3-VL,False
+office_hours,q_008,Question or context,paragraph_text,8,8,final third,4,3,1,25.0,0,1,Gemini 3.5 Flash,False
+seminar_proposal,q_005,Short abstract,paragraph_text,5,8,middle third,4,3,1,25.0,0,1,Gemini 3.5 Flash,False
+seminar_proposal,q_006,Preferred presentation date,date,6,8,final third,4,3,1,25.0,1,0,Gemini 3.5 Flash,False
+seminar_proposal,q_008,Resources needed,multi_choice,8,8,final third,4,3,1,25.0,0,1,Gemini 3.5 Flash,False
+software_access,q_006,Requested start date,date,6,8,final third,4,3,1,25.0,1,0,Qwen3 Text,False
+software_access,q_007,Expected duration,single_choice,7,8,final third,4,3,1,25.0,1,0,Qwen3 Text,False
+software_access,q_008,Related project or course,short_text,8,8,final third,4,3,1,25.0,0,1,Gemini 3.5 Flash,False
+technical_support,q_005,When did the issue start?,date,5,8,middle third,4,3,1,25.0,1,0,Qwen3 Text,False
+thesis_meeting,q_007,Preferred meeting time,time,7,8,final third,4,3,1,25.0,1,0,Gemini 3.5 Flash,False
+thesis_meeting,q_008,Urgency,single_choice,8,8,final third,4,3,1,25.0,1,0,Gemini 3.5 Flash,False
+conf_interest,q_005,Topics you’re interested in,multi_choice,5,7,middle third,4,3,1,25.0,0,1,Qwen3-VL,False
+newsletter_signup,q_006,Would you like event reminders?,single_choice,6,7,final third,4,3,1,25.0,1,0,Qwen3 Text,False
+paper_review,q_003,Preferred paper topic,multi_choice,3,7,middle third,4,3,1,25.0,0,1,Qwen3-VL,False
+peer_evaluation,q_007,Constructive feedback,paragraph_text,7,7,final third,4,3,1,25.0,0,1,Qwen3 Text,False
+scholarship_interest,q_004,Scholarship type of interest,multi_choice,4,7,middle third,4,3,1,25.0,0,1,Qwen3 Text,False
+scholarship_interest,q_005,Expected application date,date,5,7,middle third,4,3,1,25.0,1,0,Gemini 3.5 Flash,False
+scholarship_interest,q_006,Do you need help reviewing documents?,single_choice,6,7,final third,4,3,1,25.0,1,0,Gemini 3.5 Flash,False
+scholarship_interest,q_007,Brief background or question,paragraph_text,7,7,final third,4,3,1,25.0,0,1,Gemini 3.5 Flash,False
+study_group_match,q_007,Preferred meeting time,time,7,7,final third,4,3,1,25.0,1,0,Qwen3 Text,False
+wellbeing_check,q_001,Name or nickname,short_text,1,7,first third,4,3,1,25.0,1,0,OpenCUA direct-MCP,False
+wellbeing_check,q_002,How are you feeling today?,single_choice,2,7,first third,4,3,1,25.0,1,0,OpenCUA direct-MCP,False
+wellbeing_check,q_003,Hours of sleep last night,short_text,3,7,middle third,4,3,1,25.0,1,0,OpenCUA direct-MCP,False
+wellbeing_check,q_004,Habits completed today,multi_choice,4,7,middle third,4,3,1,25.0,1,0,OpenCUA direct-MCP,False
+event_rsvp,q_004,Preferred arrival time,time,4,6,middle third,4,3,1,25.0,1,0,Qwen3 Text,False
+event_rsvp,q_005,Activities you’re interested in,multi_choice,5,6,final third,4,3,1,25.0,0,1,Qwen3 Text,False
+publication_submission,q_001,Publication title,short_text,1,10,first third,4,4,0,0.0,0,0,,False
+publication_submission,q_002,Author name,short_text,2,10,first third,4,4,0,0.0,0,0,,False
+publication_submission,q_003,Contact email,short_text,3,10,first third,4,4,0,0.0,0,0,,False
+bug_report,q_001,Reporter name,short_text,1,9,first third,4,4,0,0.0,0,0,,False
+bug_report,q_002,Contact email,short_text,2,9,first third,4,4,0,0.0,0,0,,False
+bug_report,q_003,Application or module name,short_text,3,9,first third,4,4,0,0.0,0,0,,False
+bug_report,q_004,Bug severity,single_choice,4,9,middle third,4,4,0,0.0,0,0,,False
+bug_report,q_006,Steps to reproduce,paragraph_text,6,9,middle third,4,4,0,0.0,0,0,,False
+bug_report,q_007,Expected behavior,paragraph_text,7,9,final third,4,4,0,0.0,0,0,,False
+bug_report,q_008,Observed behavior,paragraph_text,8,9,final third,4,4,0,0.0,0,0,,False
+bug_report,q_009,Date when issue occurred,date,9,9,final third,4,4,0,0.0,0,0,,False
+course_feedback,q_004,Overall satisfaction,single_choice,4,9,middle third,4,4,0,0.0,0,0,,False
+course_feedback,q_005,Workload felt,single_choice,5,9,middle third,4,4,0,0.0,0,0,,False
+equipment_checkout,q_001,Full name,short_text,1,9,first third,4,4,0,0.0,0,0,,False
+equipment_checkout,q_002,Email address,short_text,2,9,first third,4,4,0,0.0,0,0,,False
+equipment_checkout,q_003,Department or group,short_text,3,9,first third,4,4,0,0.0,0,0,,False
+equipment_checkout,q_005,Specific item requested,short_text,5,9,middle third,4,4,0,0.0,0,0,,False
+equipment_checkout,q_006,Pickup date,date,6,9,middle third,4,4,0,0.0,0,0,,False
+experiment_booking,q_006,Preferred session date,date,6,9,middle third,4,4,0,0.0,0,0,,False
+hackathon_signup,q_005,Preferred challenge track,single_choice,5,9,middle third,4,4,0,0.0,0,0,,False
+hackathon_signup,q_008,Arrival date,date,8,9,final third,4,4,0,0.0,0,0,,False
+job_fair,q_006,Preferred attendance date,date,6,9,middle third,4,4,0,0.0,0,0,,False
+accessibility_feedback,q_001,Name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+accessibility_feedback,q_002,Email address,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+accessibility_feedback,q_005,How severe was the issue?,single_choice,5,8,middle third,4,4,0,0.0,0,0,,False
+accessibility_feedback,q_006,Date of experience,date,6,8,final third,4,4,0,0.0,0,0,,False
+accessibility_feedback,q_007,Detailed feedback,paragraph_text,7,8,final third,4,4,0,0.0,0,0,,False
+course_enrollment,q_001,Full name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+course_enrollment,q_002,Student ID,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+course_enrollment,q_003,Email address,short_text,3,8,first third,4,4,0,0.0,0,0,,False
+course_enrollment,q_005,Prior knowledge,single_choice,5,8,middle third,4,4,0,0.0,0,0,,False
+exam_registration,q_001,Full name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+exam_registration,q_002,Student ID,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+exam_registration,q_003,Email address,short_text,3,8,first third,4,4,0,0.0,0,0,,False
+exam_registration,q_004,Program level,single_choice,4,8,middle third,4,4,0,0.0,0,0,,False
+exam_registration,q_005,Exam or module name,short_text,5,8,middle third,4,4,0,0.0,0,0,,False
+exam_registration,q_007,Exam date,date,7,8,final third,4,4,0,0.0,0,0,,False
+exam_registration,q_008,Describe the issue,paragraph_text,8,8,final third,4,4,0,0.0,0,0,,False
+field_trip,q_001,Full name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+field_trip,q_002,Email address,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+field_trip,q_003,Emergency contact name,short_text,3,8,first third,4,4,0,0.0,0,0,,False
+field_trip,q_004,Emergency contact phone,short_text,4,8,middle third,4,4,0,0.0,0,0,,False
+lab_safety,q_001,Full name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+lab_safety,q_002,University email,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+lab_safety,q_003,Role,single_choice,3,8,first third,4,4,0,0.0,0,0,,False
+lab_safety,q_005,Previous safety training completed,single_choice,5,8,middle third,4,4,0,0.0,0,0,,False
+lab_visit,q_001,Visitor name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+lab_visit,q_002,Contact email,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+lab_visit,q_003,Organization or school,short_text,3,8,first third,4,4,0,0.0,0,0,,False
+lab_visit,q_004,Visitor type,single_choice,4,8,middle third,4,4,0,0.0,0,0,,False
+lab_visit,q_005,Areas of interest,multi_choice,5,8,middle third,4,4,0,0.0,0,0,,False
+lab_visit,q_006,Preferred visit date,date,6,8,final third,4,4,0,0.0,0,0,,False
+lab_visit,q_008,Group size,short_text,8,8,final third,4,4,0,0.0,0,0,,False
+office_hours,q_001,Student name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+office_hours,q_002,Email address,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+office_hours,q_003,Course or project,short_text,3,8,first third,4,4,0,0.0,0,0,,False
+office_hours,q_006,Preferred date,date,6,8,final third,4,4,0,0.0,0,0,,False
+orientation_signup,q_001,Full name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+orientation_signup,q_002,Email address,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+orientation_signup,q_003,Program,short_text,3,8,first third,4,4,0,0.0,0,0,,False
+orientation_signup,q_004,Student type,single_choice,4,8,middle third,4,4,0,0.0,0,0,,False
+orientation_signup,q_005,Orientation activities,multi_choice,5,8,middle third,4,4,0,0.0,0,0,,False
+orientation_signup,q_006,Preferred orientation date,date,6,8,final third,4,4,0,0.0,0,0,,False
+orientation_signup,q_008,Questions before orientation,paragraph_text,8,8,final third,4,4,0,0.0,0,0,,False
+project_update,q_001,Name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+project_update,q_002,Project name,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+project_update,q_003,Reporting week start date,date,3,8,first third,4,4,0,0.0,0,0,,False
+project_update,q_004,Current project status,single_choice,4,8,middle third,4,4,0,0.0,0,0,,False
+project_update,q_005,Tasks completed this week,paragraph_text,5,8,middle third,4,4,0,0.0,0,0,,False
+project_update,q_006,Blockers or risks,multi_choice,6,8,final third,4,4,0,0.0,0,0,,False
+project_update,q_007,Next planned task,paragraph_text,7,8,final third,4,4,0,0.0,0,0,,False
+software_access,q_001,Full name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+software_access,q_002,Institutional email,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+software_access,q_004,Access level needed,single_choice,4,8,middle third,4,4,0,0.0,0,0,,False
+software_access,q_005,Purpose of access,paragraph_text,5,8,middle third,4,4,0,0.0,0,0,,False
+survey_consent,q_001,Participant code or name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+survey_consent,q_002,Contact email,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+survey_consent,q_003,I have read the study information,single_choice,3,8,first third,4,4,0,0.0,0,0,,False
+survey_consent,q_004,I agree to participate,single_choice,4,8,middle third,4,4,0,0.0,0,0,,False
+survey_consent,q_006,Available dates,multi_choice,6,8,final third,4,4,0,0.0,0,0,,False
+survey_consent,q_007,Preferred session date,date,7,8,final third,4,4,0,0.0,0,0,,False
+technical_support,q_001,Full name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+technical_support,q_002,Email address,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+technical_support,q_004,Affected device,single_choice,4,8,middle third,4,4,0,0.0,0,0,,False
+thesis_meeting,q_001,Student name,short_text,1,8,first third,4,4,0,0.0,0,0,,False
+thesis_meeting,q_002,Email address,short_text,2,8,first third,4,4,0,0.0,0,0,,False
+thesis_meeting,q_005,Current progress summary,paragraph_text,5,8,middle third,4,4,0,0.0,0,0,,False
+thesis_meeting,q_006,Preferred meeting date,date,6,8,final third,4,4,0,0.0,0,0,,False
+alumni_checkin,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+alumni_checkin,q_002,Graduation year,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+alumni_checkin,q_003,Current city,short_text,3,7,middle third,4,4,0,0.0,0,0,,False
+alumni_checkin,q_004,Current role,single_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+alumni_checkin,q_005,Areas you would like to stay connected to,multi_choice,5,7,middle third,4,4,0,0.0,0,0,,False
+alumni_checkin,q_006,Preferred contact email,short_text,6,7,final third,4,4,0,0.0,0,0,,False
+alumni_checkin,q_007,Would you attend an alumni meetup?,single_choice,7,7,final third,4,4,0,0.0,0,0,,False
+conf_interest,q_001,Full Name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+conf_interest,q_002,Preferred contact email,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+conf_interest,q_003,Brief bio,paragraph_text,3,7,middle third,4,4,0,0.0,0,0,,False
+conf_interest,q_004,Primary role,single_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+conf_interest,q_006,Preferred meeting date,date,6,7,final third,4,4,0,0.0,0,0,,False
+housing_preference,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+housing_preference,q_002,Contact email,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+housing_preference,q_003,Preferred accommodation type,single_choice,3,7,middle third,4,4,0,0.0,0,0,,False
+housing_preference,q_004,Preferred budget range,single_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+housing_preference,q_005,Preferred move-in date,date,5,7,middle third,4,4,0,0.0,0,0,,False
+housing_preference,q_006,Important features,multi_choice,6,7,final third,4,4,0,0.0,0,0,,False
+housing_preference,q_007,Additional notes,paragraph_text,7,7,final third,4,4,0,0.0,0,0,,False
+library_membership,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+library_membership,q_002,University ID,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+library_membership,q_003,Department or program,short_text,3,7,middle third,4,4,0,0.0,0,0,,False
+library_membership,q_004,Membership type,single_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+library_membership,q_005,Resources you use most,multi_choice,5,7,middle third,4,4,0,0.0,0,0,,False
+library_membership,q_006,Preferred visit date,date,6,7,final third,4,4,0,0.0,0,0,,False
+library_membership,q_007,Any additional access needs?,paragraph_text,7,7,final third,4,4,0,0.0,0,0,,False
+meal_plan,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+meal_plan,q_002,Meal preference,single_choice,2,7,first third,4,4,0,0.0,0,0,,False
+meal_plan,q_003,Allergies or intolerances,multi_choice,3,7,middle third,4,4,0,0.0,0,0,,False
+meal_plan,q_004,Preferred dining date,date,4,7,middle third,4,4,0,0.0,0,0,,False
+meal_plan,q_005,Preferred dining time,time,5,7,middle third,4,4,0,0.0,0,0,,False
+meal_plan,q_006,Would you like dessert?,single_choice,6,7,final third,4,4,0,0.0,0,0,,False
+meal_plan,q_007,Additional notes,paragraph_text,7,7,final third,4,4,0,0.0,0,0,,False
+mentor_match,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+mentor_match,q_002,Email address,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+mentor_match,q_003,Role in the program,single_choice,3,7,middle third,4,4,0,0.0,0,0,,False
+mentor_match,q_004,Field or area,single_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+mentor_match,q_005,Goals for mentorship,multi_choice,5,7,middle third,4,4,0,0.0,0,0,,False
+mentor_match,q_006,Brief introduction,paragraph_text,6,7,final third,4,4,0,0.0,0,0,,False
+newsletter_signup,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+newsletter_signup,q_002,Email address,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+newsletter_signup,q_003,Newsletter topics,multi_choice,3,7,middle third,4,4,0,0.0,0,0,,False
+newsletter_signup,q_005,Preferred language,single_choice,5,7,middle third,4,4,0,0.0,0,0,,False
+newsletter_signup,q_007,Additional interests,paragraph_text,7,7,final third,4,4,0,0.0,0,0,,False
+paper_review,q_001,Reviewer name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+paper_review,q_002,Email address,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+paper_review,q_004,Comfort level with reviewing,single_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+paper_review,q_006,Review deadline preference,date,6,7,final third,4,4,0,0.0,0,0,,False
+paper_review,q_007,Conflicts of interest,paragraph_text,7,7,final third,4,4,0,0.0,0,0,,False
+peer_evaluation,q_001,Your name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+peer_evaluation,q_002,Project group name,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+peer_evaluation,q_003,Peer being evaluated,short_text,3,7,middle third,4,4,0,0.0,0,0,,False
+peer_evaluation,q_004,Contribution level,single_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+peer_evaluation,q_005,Strengths observed,multi_choice,5,7,middle third,4,4,0,0.0,0,0,,False
+remote_setup,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+remote_setup,q_002,Email address,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+remote_setup,q_003,Remote work start date,date,3,7,middle third,4,4,0,0.0,0,0,,False
+remote_setup,q_005,Equipment needed,multi_choice,5,7,middle third,4,4,0,0.0,0,0,,False
+remote_setup,q_006,Primary work location,single_choice,6,7,final third,4,4,0,0.0,0,0,,False
+research_interest,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+research_interest,q_002,Contact email,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+research_interest,q_003,Current degree level,single_choice,3,7,middle third,4,4,0,0.0,0,0,,False
+research_interest,q_004,Research areas of interest,multi_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+research_interest,q_005,Previous research experience,paragraph_text,5,7,middle third,4,4,0,0.0,0,0,,False
+research_interest,q_006,Preferred meeting date,date,6,7,final third,4,4,0,0.0,0,0,,False
+scholarship_interest,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+scholarship_interest,q_002,Email address,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+study_group_match,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+study_group_match,q_002,Email address,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+study_group_match,q_003,Course or subject,short_text,3,7,middle third,4,4,0,0.0,0,0,,False
+study_group_match,q_004,Current level,single_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+study_group_match,q_005,Preferred study format,single_choice,5,7,middle third,4,4,0,0.0,0,0,,False
+study_group_match,q_006,Topics you want help with,multi_choice,6,7,final third,4,4,0,0.0,0,0,,False
+usability_test,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+usability_test,q_002,Email address,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+usability_test,q_003,Age group,single_choice,3,7,middle third,4,4,0,0.0,0,0,,False
+usability_test,q_004,Devices available,multi_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+usability_test,q_005,Have you used similar tools before?,single_choice,5,7,middle third,4,4,0,0.0,0,0,,False
+usability_test,q_006,Preferred session date,date,6,7,final third,4,4,0,0.0,0,0,,False
+usability_test,q_007,Preferred session time,time,7,7,final third,4,4,0,0.0,0,0,,False
+volunteer_shift,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+volunteer_shift,q_002,Contact email,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+volunteer_shift,q_003,Preferred volunteer role,single_choice,3,7,middle third,4,4,0,0.0,0,0,,False
+volunteer_shift,q_004,Available shift(s),multi_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+volunteer_shift,q_005,Previous volunteering experience,single_choice,5,7,middle third,4,4,0,0.0,0,0,,False
+volunteer_shift,q_006,Preferred volunteer date,date,6,7,final third,4,4,0,0.0,0,0,,False
+volunteer_shift,q_007,Comments or restrictions,paragraph_text,7,7,final third,4,4,0,0.0,0,0,,False
+workshop_signup,q_001,Full name,short_text,1,7,first third,4,4,0,0.0,0,0,,False
+workshop_signup,q_002,University or organization,short_text,2,7,first third,4,4,0,0.0,0,0,,False
+workshop_signup,q_003,Which workshop track are you registering for?,single_choice,3,7,middle third,4,4,0,0.0,0,0,,False
+workshop_signup,q_004,Experience level,single_choice,4,7,middle third,4,4,0,0.0,0,0,,False
+workshop_signup,q_005,Dietary restrictions,multi_choice,5,7,middle third,4,4,0,0.0,0,0,,False
+workshop_signup,q_006,Preferred session date,date,6,7,final third,4,4,0,0.0,0,0,,False
+workshop_signup,q_007,May we email you updates?,single_choice,7,7,final third,4,4,0,0.0,0,0,,False
+event_rsvp,q_001,Name,short_text,1,6,first third,4,4,0,0.0,0,0,,False
+event_rsvp,q_002,Will you attend?,single_choice,2,6,first third,4,4,0,0.0,0,0,,False
+event_rsvp,q_003,Number of guests (including yourself),short_text,3,6,middle third,4,4,0,0.0,0,0,,False
+event_rsvp,q_006,Accessibility needs or comments,paragraph_text,6,6,final third,4,4,0,0.0,0,0,,False
+club_event_planning,q_004,Event type,dropdown,4,10,middle third,4,0,4,100.0,2,2,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+conference_travel,q_007,Preferred travel mode,dropdown,7,10,middle third,4,0,4,100.0,1,3,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+publication_submission,q_004,Publication type,dropdown,4,10,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+purchase_request,q_004,Purchase category,dropdown,4,10,middle third,4,0,4,100.0,1,3,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+bug_report,q_005,Device or browser used,dropdown,5,9,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+data_annotation,q_005,Preferred annotation task,dropdown,5,9,middle third,4,0,4,100.0,1,3,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+dataset_request,q_005,Dataset requested,dropdown,5,9,middle third,4,0,4,100.0,1,3,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+equipment_checkout,q_004,Equipment category,dropdown,4,9,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+experiment_booking,q_005,Experiment type,dropdown,5,9,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+sports_tournament,q_003,Sport,dropdown,3,9,first third,4,0,4,100.0,2,2,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+accessibility_feedback,q_003,Feedback area,dropdown,3,8,first third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+course_enrollment,q_004,Preferred course,dropdown,4,8,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+exam_registration,q_006,Issue type,dropdown,6,8,final third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+field_trip,q_005,Trip option,dropdown,5,8,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+lab_safety,q_004,Lab area you need access to,dropdown,4,8,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+office_hours,q_004,Topic category,dropdown,4,8,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+software_access,q_003,Software or platform requested,dropdown,3,8,first third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+survey_consent,q_005,Participation mode preferred,dropdown,5,8,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+technical_support,q_003,Issue category,dropdown,3,8,first third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+thesis_meeting,q_003,Thesis stage,dropdown,3,8,first third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+newsletter_signup,q_004,Email frequency,dropdown,4,7,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+paper_review,q_005,Number of papers you can review,dropdown,5,7,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+peer_evaluation,q_006,Collaboration rating,dropdown,6,7,final third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+remote_setup,q_004,Expected remote work duration,dropdown,4,7,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True
+scholarship_interest,q_003,Current study level,dropdown,3,7,middle third,4,0,4,100.0,0,4,Gemini 3.5 Flash; OpenCUA direct-MCP; Qwen3 Text; Qwen3-VL,True

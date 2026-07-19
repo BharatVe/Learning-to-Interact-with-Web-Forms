@@ -1,0 +1,24 @@
+model,failure_subtype,missed_fields,share_of_model_misses_pct
+OpenCUA MCP,not_attempted,201,83.06
+OpenCUA MCP,attempted_but_blank,25,10.33
+OpenCUA MCP,option_container_text,15,6.2
+OpenCUA MCP,partial_multi_choice,1,0.41
+OpenCUA Native,not_attempted,600,59.17
+OpenCUA Native,attempted_but_blank,280,27.61
+OpenCUA Native,option_container_text,80,7.89
+OpenCUA Native,wrong_value,25,2.47
+OpenCUA Native,partial_multi_choice,12,1.18
+OpenCUA Native,expected_embedded_in_wrong_value,7,0.69
+OpenCUA Native,wrong_multi_choice,6,0.59
+OpenCUA Native,extra_multi_choice,4,0.39
+Qwen Text,not_attempted,517,75.58
+Qwen Text,option_container_text,81,11.84
+Qwen Text,attempted_but_blank,54,7.89
+Qwen Text,partial_multi_choice,27,3.95
+Qwen Text,wrong_value,3,0.44
+Qwen Text,wrong_multi_choice,2,0.29
+Qwen VLM,not_attempted,301,83.38
+Qwen VLM,option_container_text,20,5.54
+Qwen VLM,attempted_but_blank,20,5.54
+Qwen VLM,wrong_value,11,3.05
+Qwen VLM,partial_multi_choice,9,2.49

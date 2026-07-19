@@ -1,0 +1,8 @@
+model,outcome,trials,median_actions,median_click_share_pct,median_type_share_pct,median_adjacent_repeat_rate_pct,perfect_pre_submit_trials,postsubmit_zero_artifacts,median_final_page_accuracy_pct,median_scored_accuracy_pct
+OpenCUA MCP,submitted,251,12,55.0,44.44,,77,251,0.0,87.5
+OpenCUA MCP,not submitted,42,29.0,6.81,26.13,,0,0,0.0,0.0
+OpenCUA Native,not submitted,200,8.0,62.5,37.5,42.86,0,0,37.5,37.5
+Qwen Text,submitted,102,10.0,60.0,39.23,,44,99,0.0,87.5
+Qwen Text,not submitted,148,13.0,58.33,40.0,,0,0,44.44,44.44
+Qwen VLM,submitted,166,11.0,55.56,44.44,,32,162,0.0,85.71
+Qwen VLM,not submitted,69,19,71.88,25.0,,0,0,33.33,33.33

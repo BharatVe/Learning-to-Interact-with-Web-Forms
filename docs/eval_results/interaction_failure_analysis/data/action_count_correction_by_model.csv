@@ -1,0 +1,5 @@
+model,trials,model_issued_actions_raw,interaction_actions,excluded_observation_actions,excluded_other_noninteraction_actions,excluded_share_of_raw_pct,median_raw_actions_per_trial,median_interaction_actions_per_trial
+Gemini 3.5 Flash,50,1382,1372,0,10,0.72,32.0,32.0
+OpenCUA direct-MCP,50,684,683,0,1,0.15,11.0,11.0
+Qwen3 Text,50,577,573,4,0,0.69,10.0,10.0
+Qwen3-VL,50,714,591,122,1,17.23,10.0,9.0

@@ -1,0 +1,2 @@
+reference_runs,usable_runs,successful_submissions,forms,answer_runs_per_form,median_total_trace_events,median_interaction_actions,median_script_operations,median_screenshot_events,median_wait_events,median_duration_s
+300,300,300,50,6,41.0,10.0,11.0,18.0,10.0,56.44

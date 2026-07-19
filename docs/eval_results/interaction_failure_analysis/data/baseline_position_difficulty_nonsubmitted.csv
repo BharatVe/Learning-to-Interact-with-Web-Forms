@@ -1,0 +1,13 @@
+model,position_bucket,target_fields_in_nonsubmitted_trials,correct_fields,missed_fields,correctness_pct,failure_rate_pct
+OpenCUA Native,first third,536,482,54,89.93,10.07
+OpenCUA Native,middle third,564,134,430,23.76,76.24
+OpenCUA Native,final third,536,6,530,1.12,98.88
+OpenCUA MCP,first third,117,48,69,41.03,58.97
+OpenCUA MCP,middle third,119,28,91,23.53,76.47
+OpenCUA MCP,final third,117,35,82,29.91,70.09
+Qwen Text,first third,436,199,237,45.64,54.36
+Qwen Text,middle third,426,199,227,46.71,53.29
+Qwen Text,final third,436,216,220,49.54,50.46
+Qwen VLM,first third,195,74,121,37.95,62.05
+Qwen VLM,middle third,214,80,134,37.38,62.62
+Qwen VLM,final third,195,89,106,45.64,54.36

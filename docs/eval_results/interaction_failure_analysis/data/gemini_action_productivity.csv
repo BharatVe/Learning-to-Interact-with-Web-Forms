@@ -1,0 +1,4 @@
+action_type,actions,actions_with_new_correct_field,new_correct_fields,field_progress_rate_pct,no_field_progress_actions
+click,926,103,103,11.12,823
+type,228,193,193,84.65,35
+scroll,218,0,0,0.0,218

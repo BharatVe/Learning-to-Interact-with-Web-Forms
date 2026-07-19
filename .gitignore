@@ -157,6 +157,14 @@ data/model_baselines/
 !data/model_baseline_exports/
 !data/model_baseline_exports/**
 
+# Reproducible, lightweight failure-analysis reports and comparison tables.
+# Keep generated raw/browser artifacts ignored; this package contains only
+# reviewed CSV/JSON/Markdown/HTML outputs and their reproduction scripts.
+!docs/eval_results/interaction_failure_analysis/
+!docs/eval_results/interaction_failure_analysis/**
+docs/eval_results/interaction_failure_analysis/__pycache__/
+docs/eval_results/interaction_failure_analysis/**/*.pyc
+
 # Generated run artifacts (keep lightweight reference metadata trackable)
 data/forms/**/runs/run_*/*
 !data/forms/**/runs/run_*/annotations.json

@@ -1,0 +1,17 @@
+model,length_bucket,target_fields,correct_fields,missed_fields,correctness_pct,failure_rate_pct
+Gemini 3.5 Flash,7-8 fields,231,190,41,82.25,17.75
+Gemini 3.5 Flash,9-10 fields,149,87,62,58.39,41.61
+Gemini 3.5 Flash,4-6 fields,6,6,0,100.0,0.0
+Gemini 3.5 Flash,11-12 fields,23,13,10,56.52,43.48
+OpenCUA direct-MCP,7-8 fields,231,206,25,89.18,10.82
+OpenCUA direct-MCP,9-10 fields,149,70,79,46.98,53.02
+OpenCUA direct-MCP,4-6 fields,6,6,0,100.0,0.0
+OpenCUA direct-MCP,11-12 fields,23,8,15,34.78,65.22
+Qwen3 Text,7-8 fields,231,180,51,77.92,22.08
+Qwen3 Text,9-10 fields,149,58,91,38.93,61.07
+Qwen3 Text,4-6 fields,6,4,2,66.67,33.33
+Qwen3 Text,11-12 fields,23,6,17,26.09,73.91
+Qwen3-VL,7-8 fields,231,196,35,84.85,15.15
+Qwen3-VL,9-10 fields,149,72,77,48.32,51.68
+Qwen3-VL,4-6 fields,6,6,0,100.0,0.0
+Qwen3-VL,11-12 fields,23,9,14,39.13,60.87
