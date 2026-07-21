@@ -40,6 +40,8 @@ def main() -> None:
     model_ideal_forms = rows("model_vs_ideal_by_form.csv")
     action_correction = rows("action_count_correction_by_model.csv")
     dropdown_audit = rows("dropdown_verifier_audit_by_model.csv")
+    dropdown_selected = rows("dropdown_selected_state_audit.csv")
+    dropdown_selected_summary = rows("dropdown_selected_state_summary.csv")
     without_dropdown = rows("performance_forms_without_dropdown.csv")
     with_dropdown = rows("performance_forms_with_dropdown.csv")
     canonical_submission = rows("canonical_submission_audit.csv")
@@ -115,6 +117,30 @@ def main() -> None:
             "expected 89 indeterminate option-container readings")
     require(sum(int(r["blank_or_not_attempted"]) for r in dropdown_audit) == 11,
             "expected 11 blank or not-attempted dropdowns")
+    require(len(dropdown_selected) == 100, "selected-state audit must cover 100 dropdowns")
+    require(len({(r["model"], r["form_id"], r["question_id"]) for r in dropdown_selected}) == 100,
+            "selected-state dropdown audit grain is not unique")
+    selected_status = Counter(r["audit_status"] for r in dropdown_selected)
+    require(selected_status == {"confirmed_correct": 79, "unresolved_excerpt_gap": 21},
+            f"unexpected selected-state audit counts: {dict(selected_status)}")
+    require(all((ROOT.parents[2] / r["evidence_path"]).exists() for r in dropdown_selected),
+            "selected-state audit contains a missing evidence path")
+    expected_selected = {
+        "Gemini 3.5 Flash": (25, 0, 6, 0),
+        "OpenCUA direct-MCP": (20, 5, 13, 2),
+        "Qwen3 Text": (13, 12, 1, 2),
+        "Qwen3-VL": (21, 4, 11, 1),
+    }
+    require(len(dropdown_selected_summary) == 4, "expected four selected-state model rows")
+    for row in dropdown_selected_summary:
+        observed = (
+            int(row["artifact_confirmed_correct"]),
+            int(row["artifact_unresolved"]),
+            int(row["artifact_confirmed_full_fills"]),
+            int(row["additional_full_fills_if_all_unresolved_correct"]),
+        )
+        require(observed == expected_selected[row["model"]],
+                f"{row['model']}: selected-state audit summary changed")
     require(len(without_dropdown) == 4 and len(with_dropdown) == 4,
             "expected four model rows in each dropdown form table")
     require(all(int(r["forms"]) == 25 for r in without_dropdown + with_dropdown),
@@ -184,7 +210,8 @@ def main() -> None:
         "model_ideal_matches": len(model_ideal_forms),
         "historical_submissions_recovered_nonzero": 512,
         "historical_submissions_recovered_perfect": 153,
-        "dropdown_indeterminate": 89,
+        "dropdown_artifact_confirmed_correct": 79,
+        "dropdown_artifact_unresolved": 21,
         "models": len(MODELS),
         "report_tables": len(table_ids),
         "report_charts": len(chart_ids),

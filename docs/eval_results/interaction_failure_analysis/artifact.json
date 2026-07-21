@@ -5,7 +5,7 @@
     "surface": "report",
     "title": "Where Web-Form Models Fail",
     "description": "Task- and action-level failure analysis for primary baselines and the 50-form Gemini comparison.",
-    "generatedAt": "2026-07-19T16:26:14.206303Z",
+    "generatedAt": "2026-07-21T14:08:14.196094Z",
     "cards": [],
     "charts": [
       {
@@ -126,12 +126,12 @@
     "tables": [
       {
         "id": "dropdown_audit_table",
-        "title": "Dropdown verifier audit",
-        "subtitle": "Twenty-five dropdown targets per model; expected-in-container readings are unresolved, not corrected successes.",
+        "title": "Stored-artifact dropdown audit",
+        "subtitle": "Twenty-five targets per model; confirmed accuracy is a lower bound and full fills are shown as a bounded interval.",
         "dataset": "dropdown_audit",
         "sourceId": "dropdown_verifier_audit",
         "defaultSort": {
-          "field": "measurement_indeterminate_pct",
+          "field": "minimum_confirmed_accuracy_pct",
           "direction": "desc"
         },
         "columns": [
@@ -146,23 +146,33 @@
             "type": "number"
           },
           {
-            "field": "raw_verified_correct",
-            "label": "Raw correct",
+            "field": "artifact_confirmed_correct",
+            "label": "Confirmed correct",
             "type": "number"
           },
           {
-            "field": "expected_embedded_in_container",
-            "label": "Expected in container",
+            "field": "artifact_unresolved",
+            "label": "Unresolved",
             "type": "number"
           },
           {
-            "field": "blank_or_not_attempted",
-            "label": "Blank / not attempted",
+            "field": "artifact_confirmed_wrong",
+            "label": "Confirmed wrong",
             "type": "number"
           },
           {
-            "field": "measurement_indeterminate_pct",
-            "label": "Indeterminate (%)",
+            "field": "minimum_confirmed_accuracy_pct",
+            "label": "Confirmed lower bound (%)",
+            "type": "number"
+          },
+          {
+            "field": "artifact_confirmed_full_fills",
+            "label": "Confirmed full fills",
+            "type": "number"
+          },
+          {
+            "field": "full_fill_upper_bound",
+            "label": "Full-fill upper bound",
             "type": "number"
           }
         ]
@@ -207,8 +217,8 @@
       },
       {
         "id": "forms_with_dropdown_table",
-        "title": "Performance on forms containing dropdowns",
-        "subtitle": "Twenty-five forms per model; dropdown targets remain unresolved, so non-dropdown completion is the defensible comparison.",
+        "title": "Non-dropdown performance on forms containing dropdowns",
+        "subtitle": "Twenty-five forms per model; this legacy sensitivity table excludes dropdowns, while the selected-state audit supplies completion bounds.",
         "dataset": "forms_with_dropdown",
         "sourceId": "dropdown_form_groups",
         "defaultSort": {
@@ -224,11 +234,6 @@
           {
             "field": "forms",
             "label": "Forms",
-            "type": "number"
-          },
-          {
-            "field": "dropdown_targets_unresolved",
-            "label": "Unresolved dropdowns",
             "type": "number"
           },
           {
@@ -743,7 +748,7 @@
       },
       {
         "id": "dropdown_verifier_audit",
-        "label": "Audits raw dropdown outcomes and option-container readings by model."
+        "label": "Audits dropdown selected state from saved accessibility, encoded form state, and post-action screenshots."
       },
       {
         "id": "action_count_correction",
@@ -764,7 +769,7 @@
         "id": "executive_summary",
         "type": "markdown",
         "sourceId": "interaction_analysis",
-        "body": "## Executive Summary\n\n- **Dropdown scoring materially suppresses exact completion.** All 100 dropdown targets were scored wrong, but 89 saved values contain the expected option inside the full option-list text. Those 89 outcomes are measurement-indeterminate; the remaining 11 are blank or not attempted.\n- **The canonical comparison has no submission artifact.** All 200 trials used `fill_only_done`, made zero submit attempts, and were graded while the form was still visible.\n- **Historical submitted scores are recoverable.** All 519 submitted trials ended with a final-page zero, but pre-submit logs recover 512 nonzero task scores and identify 153 verified-perfect submissions.\n- **Primary action counts now exclude observation overhead.** Screenshots, snapshots, waits, `DONE`, setup, and close are omitted. This removes 123 of Qwen3-VL's 714 raw calls and lowers its incomplete-trial exact-repeat rate from the previous screenshot-contaminated estimate to 28.20%."
+        "body": "## Executive Summary\n\n- **The raw dropdown score is invalid.** All 100 targets were recorded wrong, but saved artifacts confirm 79 correct selections, confirm none wrong, and leave 21 unresolved. Confirmed rates are lower bounds.\n- **The canonical comparison has no submission artifact.** All 200 trials used `fill_only_done`, made zero submit attempts, and were graded while the form was still visible.\n- **Historical submitted scores are recoverable.** All 519 submitted trials ended with a final-page zero, but pre-submit logs recover 512 nonzero task scores and identify 153 verified-perfect submissions.\n- **Primary action counts now exclude observation overhead.** Screenshots, snapshots, waits, `DONE`, setup, and close are omitted. This removes 123 of Qwen3-VL's 714 raw calls and lowers its incomplete-trial exact-repeat rate from the previous screenshot-contaminated estimate to 28.20%."
       },
       {
         "id": "scope",
@@ -775,8 +780,8 @@
       {
         "id": "dropdown_risk",
         "type": "markdown",
-        "sourceId": "interaction_analysis",
-        "body": "## Dropdown scoring is a high-severity measurement risk\n\nEvery model is recorded at **0/25 dropdown fields**. In **89 of 100 observations**, the expected option is embedded in the recorded option-container text: 22 Gemini, 22 OpenCUA, 24 Qwen Text, and 21 Qwen VLM. Because every option appears in that container whether selected or not, these cases cannot be safely changed to correct; they are measurement-indeterminate. The other 11 are blank or not attempted.\n\nThe results are therefore split below. The no-dropdown table supports exact full-fill claims. The with-dropdown table reports non-dropdown correctness and non-dropdown-complete forms while leaving 25 dropdown targets per model unresolved."
+        "sourceId": "dropdown_verifier_audit",
+        "body": "## Saved artifacts overturn the zero-dropdown result\n\nEvery model is recorded at **0/25 dropdown fields**, but the verifier read all hidden option labels instead of the selected node. A stored-artifact audit confirms **79 correct selections**, confirms **zero wrong selections**, and leaves **21 unresolved** because bounded excerpts omit the relevant state. Minimum confirmed accuracy is Gemini **100%**, Qwen VLM **84%**, OpenCUA **80%**, and Qwen Text **52%**. Gemini uses manually reviewed post-action screenshots; direct-MCP evidence uses selected accessibility state or exact encoded form state.\n\nFor the 25 dropdown forms, artifact-confirmed complete fills are Gemini **6**, OpenCUA **13**, Qwen Text **1**, and Qwen VLM **11**. Treating the unresolved observations as an interval gives upper bounds of **6, 15, 3, and 12**. The no-dropdown table remains the directly scoreable comparison."
       },
       {
         "id": "dropdown_audit_table_block",
@@ -917,12 +922,12 @@
         "id": "methodology_story",
         "type": "markdown",
         "sourceId": "methodology_gaps",
-        "body": "## The remaining priority is selected-option verification\n\nPost-submission task scores and observation-contaminated action counts are now repaired from existing logs. Dropdown correctness remains unresolved because container text does not prove selection. The next tier concerns per-action field attribution, action-call granularity, usable-trial replacement, and mixing submission-enabled historical evidence with the fill-only cohort.\n\nThe current repair plan is concrete: fix selected-option verification, instrument per-action field transitions, retain raw-to-normalized action reconciliation, and publish capability and operational reliability as separate result sets."
+        "body": "## Dropdown verification is repaired; historical uncertainty is bounded\n\nPost-submission task scores and observation-contaminated action counts are repaired from existing logs. The dropdown audit resolves 79 historical targets and explicitly retains 21 as unobservable rather than assuming success or failure. Both browser backends now read `aria-selected`; the native path asserts the option after clicking, and later-page invisibility no longer erases a previously verified value.\n\nThe remaining tier concerns per-action field attribution, action-call granularity, usable-trial replacement, and mixing submission-enabled historical evidence with the fill-only cohort."
       },
       {
         "id": "recommendations",
         "type": "markdown",
-        "body": "## Recommended next steps\n\n1. **Repair and validate dropdown verification before citing widget-level or full-fill results.** Read the selected option through `aria-selected`, the selected option node, or the collapsed trigger label; add a regression test where the expected value is both selected and unselected.\n2. **Use the repaired pre-submit score hierarchy for every historical submitted trial.** Restore field-level rows only when the pre-submit aggregate proves all fields correct.\n3. **Keep normalized interactions as the primary action count.** Preserve raw calls in an audit table and interpret actions with completion and time.\n4. **Instrument every action with its target and before/after field state.** This makes actions without state change, corrections, regressions, and actions per newly correct field measurable for every model.\n5. **Add progress-aware control policies.** Require a completion verification before DONE and cap exact repeated commands or scrolling without state change.\n6. **Separate capability from operational reliability.** Preserve every provider, node, startup, context, and harness failure in an inclusion ledger even when a usable replacement is selected for capability scoring.\n7. **Make the hardest mixed-control forms the regression suite.** Start with `club_event_planning`, `purchase_request`, `club_application`, `internship_app`, and `publication_submission`."
+        "body": "## Recommended next steps\n\n1. **Use the selected-state audit for dropdown claims.** Report confirmed correctness as a lower bound and dropdown-form completion as an interval; never convert the 21 unresolved excerpts into failures or successes.\n2. **Use the repaired pre-submit score hierarchy for every historical submitted trial.** Restore field-level rows only when the pre-submit aggregate proves all fields correct.\n3. **Keep normalized interactions as the primary action count.** Preserve raw calls in an audit table and interpret actions with completion and time.\n4. **Instrument every action with its target and before/after field state.** This makes actions without state change, corrections, regressions, and actions per newly correct field measurable for every model.\n5. **Add progress-aware control policies.** Require a completion verification before DONE and cap exact repeated commands or scrolling without state change.\n6. **Separate capability from operational reliability.** Preserve every provider, node, startup, context, and harness failure in an inclusion ledger even when a usable replacement is selected for capability scoring.\n7. **Make the hardest mixed-control forms the regression suite.** Start with `club_event_planning`, `purchase_request`, `club_application`, `internship_app`, and `publication_submission`."
       },
       {
         "id": "caveats",
@@ -935,7 +940,7 @@
   "snapshot": {
     "version": 1,
     "status": "ready",
-    "generated_at": "2026-07-19T16:26:14.206757Z",
+    "generated_at": "2026-07-21T14:08:14.196558Z",
     "datasets": {
       "widget_overall": [
         {
@@ -1785,34 +1790,46 @@
         {
           "model": "Gemini 3.5 Flash",
           "dropdown_targets": 25,
-          "raw_verified_correct": 0,
-          "expected_embedded_in_container": 22,
-          "blank_or_not_attempted": 3,
-          "measurement_indeterminate_pct": 88.0
+          "recorded_correct": 0,
+          "artifact_confirmed_correct": 25,
+          "artifact_unresolved": 0,
+          "artifact_confirmed_wrong": 0,
+          "minimum_confirmed_accuracy_pct": 100.0,
+          "artifact_confirmed_full_fills": 6,
+          "full_fill_upper_bound": 6
         },
         {
           "model": "OpenCUA direct-MCP",
           "dropdown_targets": 25,
-          "raw_verified_correct": 0,
-          "expected_embedded_in_container": 22,
-          "blank_or_not_attempted": 3,
-          "measurement_indeterminate_pct": 88.0
+          "recorded_correct": 0,
+          "artifact_confirmed_correct": 20,
+          "artifact_unresolved": 5,
+          "artifact_confirmed_wrong": 0,
+          "minimum_confirmed_accuracy_pct": 80.0,
+          "artifact_confirmed_full_fills": 13,
+          "full_fill_upper_bound": 15
         },
         {
           "model": "Qwen3 Text",
           "dropdown_targets": 25,
-          "raw_verified_correct": 0,
-          "expected_embedded_in_container": 24,
-          "blank_or_not_attempted": 1,
-          "measurement_indeterminate_pct": 96.0
+          "recorded_correct": 0,
+          "artifact_confirmed_correct": 13,
+          "artifact_unresolved": 12,
+          "artifact_confirmed_wrong": 0,
+          "minimum_confirmed_accuracy_pct": 52.0,
+          "artifact_confirmed_full_fills": 1,
+          "full_fill_upper_bound": 3
         },
         {
           "model": "Qwen3-VL",
           "dropdown_targets": 25,
-          "raw_verified_correct": 0,
-          "expected_embedded_in_container": 21,
-          "blank_or_not_attempted": 4,
-          "measurement_indeterminate_pct": 84.0
+          "recorded_correct": 0,
+          "artifact_confirmed_correct": 21,
+          "artifact_unresolved": 4,
+          "artifact_confirmed_wrong": 0,
+          "minimum_confirmed_accuracy_pct": 84.0,
+          "artifact_confirmed_full_fills": 11,
+          "full_fill_upper_bound": 12
         }
       ],
       "submission_audit": [
@@ -1929,6 +1946,8 @@
           "data/model_baselines/**/model_io.jsonl",
           "interaction_failure_analysis/data/baseline_submission_scoring_audit.csv",
           "interaction_failure_analysis/data/dropdown_verifier_audit_by_model.csv",
+          "interaction_failure_analysis/data/dropdown_selected_state_audit.csv",
+          "interaction_failure_analysis/data/dropdown_selected_state_summary.csv",
           "interaction_failure_analysis/data/action_count_correction_by_model.csv",
           "interaction_failure_analysis/data/performance_forms_without_dropdown.csv",
           "interaction_failure_analysis/data/performance_forms_with_dropdown.csv"
@@ -1947,7 +1966,7 @@
           "interaction_action": "navigation, click, type/fill, scroll, select/check, keypress, hover, drag, upload, or scripted fill/submit",
           "submitted_score": "pre-successful-submit correctness, then pre-first-submit correctness, before final-page fallbacks"
         },
-        "executed_at": "2026-07-19T16:26:14.206212Z"
+        "executed_at": "2026-07-21T14:08:14.195995Z"
       }
     },
     {
@@ -1964,7 +1983,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206228Z"
+        "executed_at": "2026-07-21T14:08:14.196015Z"
       }
     },
     {
@@ -1981,7 +2000,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206238Z"
+        "executed_at": "2026-07-21T14:08:14.196025Z"
       }
     },
     {
@@ -1999,7 +2018,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206251Z"
+        "executed_at": "2026-07-21T14:08:14.196035Z"
       }
     },
     {
@@ -2016,7 +2035,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206256Z"
+        "executed_at": "2026-07-21T14:08:14.196038Z"
       }
     },
     {
@@ -2033,7 +2052,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206264Z"
+        "executed_at": "2026-07-21T14:08:14.196048Z"
       }
     },
     {
@@ -2051,7 +2070,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206267Z"
+        "executed_at": "2026-07-21T14:08:14.196052Z"
       }
     },
     {
@@ -2068,7 +2087,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206269Z"
+        "executed_at": "2026-07-21T14:08:14.196057Z"
       }
     },
     {
@@ -2085,7 +2104,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206274Z"
+        "executed_at": "2026-07-21T14:08:14.196059Z"
       }
     },
     {
@@ -2102,7 +2121,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206277Z"
+        "executed_at": "2026-07-21T14:08:14.196062Z"
       }
     },
     {
@@ -2120,7 +2139,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206279Z"
+        "executed_at": "2026-07-21T14:08:14.196065Z"
       }
     },
     {
@@ -2128,17 +2147,17 @@
       "query": {
         "engine": "duckdb",
         "language": "sql",
-        "sql": "SELECT * FROM read_csv_auto('interaction_failure_analysis/data/dropdown_verifier_audit_by_model.csv')",
-        "description": "Audits raw dropdown outcomes and option-container readings by model.",
+        "sql": "SELECT * FROM read_csv_auto('interaction_failure_analysis/data/dropdown_selected_state_summary.csv')",
+        "description": "Audits dropdown selected state from saved accessibility, encoded form state, and post-action screenshots.",
         "tables_used": [
-          "interaction_failure_analysis/data/dropdown_verifier_audit_by_model.csv",
-          "interaction_failure_analysis/data/dropdown_verifier_examples.csv"
+          "interaction_failure_analysis/data/dropdown_selected_state_summary.csv",
+          "interaction_failure_analysis/data/dropdown_selected_state_audit.csv"
         ],
         "filters": [
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206282Z"
+        "executed_at": "2026-07-21T14:08:14.196067Z"
       }
     },
     {
@@ -2155,7 +2174,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206285Z"
+        "executed_at": "2026-07-21T14:08:14.196072Z"
       }
     },
     {
@@ -2174,7 +2193,7 @@
           "Canonical usable artifacts only",
           "Model-issued actions only"
         ],
-        "executed_at": "2026-07-19T16:26:14.206288Z"
+        "executed_at": "2026-07-21T14:08:14.196075Z"
       }
     }
   ]

@@ -555,7 +555,7 @@ async (page) => {
 
   const isSelected = async (option) => {
     return await option.evaluate((el) => {
-      const aria = el.getAttribute("aria-checked");
+      const aria = el.getAttribute("aria-checked") ?? el.getAttribute("aria-selected");
       if (aria !== null) return aria === "true";
       if (el.hasAttribute("checked")) return true;
       if (el.matches("input[type=checkbox], input[type=radio]")) return !!el.checked;
@@ -1027,7 +1027,7 @@ async (page) => {
 
   const isSelected = async (option) => {
     return await option.evaluate((el) => {
-      const aria = el.getAttribute("aria-checked");
+      const aria = el.getAttribute("aria-checked") ?? el.getAttribute("aria-selected");
       if (aria !== null) return aria === "true";
       if (el.hasAttribute("checked")) return true;
       if (el.matches("input[type=checkbox], input[type=radio]")) return !!el.checked;
@@ -1078,9 +1078,8 @@ async (page) => {
       const cleaned = String(selectedText || "").replace(/\s+/g, " ").trim();
       return cleaned || null;
     }
-    const text = await trigger.innerText({ timeout: 1000 }).catch(() => "");
-    const cleaned = String(text || "").replace(/\s+/g, " ").trim();
-    return cleaned || null;
+    const selected = await selectedRoleLabels(container, "option");
+    return selected.length ? selected[0] : null;
   };
 
   const readDateValue = async (container) => {

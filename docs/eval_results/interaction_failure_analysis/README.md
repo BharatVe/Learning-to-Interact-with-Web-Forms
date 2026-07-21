@@ -20,6 +20,10 @@ python docs/eval_results/interaction_failure_analysis/analyze_action_failures.py
   --reference-runs-csv docs/eval_results/reference_analysis/reference_runs.csv \
   --reference-actions-csv docs/eval_results/reference_analysis/reference_action_breakdown.csv \
   --output-dir docs/eval_results/interaction_failure_analysis/data
+python docs/eval_results/interaction_failure_analysis/audit_dropdown_selected_state.py \
+  --project-root . \
+  --field-outcomes docs/eval_results/interaction_failure_analysis/data/field_outcomes.csv \
+  --output-dir docs/eval_results/interaction_failure_analysis/data
 python docs/eval_results/interaction_failure_analysis/build_report_artifact.py
 python docs/eval_results/interaction_failure_analysis/validate_outputs.py
 ```
@@ -40,6 +44,9 @@ dropdown classifications, submissions, and report links.
 - Dropdown split: `performance_forms_without_dropdown.csv`,
   `performance_forms_with_dropdown.csv`, and
   `dropdown_verifier_audit_by_model.csv`.
+- Selected-state repair: `DROPDOWN_FAILURE_ANALYSIS.md`,
+  `dropdown_selected_state_audit.csv`, and
+  `dropdown_selected_state_summary.csv`.
 - Submission audit: `canonical_submission_audit.csv`,
   `baseline_submission_scoring_audit.csv`, and
   `baseline_recovered_perfect_submitted_fields.csv`.
@@ -52,9 +59,10 @@ All paths above are under `data/`.
 
 - An interaction action changes or navigates task state. Screenshots,
   snapshots, waits, `DONE`, setup, and close are excluded.
-- Exact full-fill claims use only the 25 forms without dropdowns. Dropdown
-  outcomes remain unresolved because the verifier often saved the full option
-  list instead of the selected value.
+- Exact full-fill claims use the 25 forms without dropdowns. Dropdown-form
+  completion is reported as an artifact-confirmed lower/upper interval;
+  21 historical outcomes remain unresolved because their bounded saved excerpt
+  does not expose the selected state.
 - Historical submitted trials use the last meaningful pre-submit score because
   confirmation pages contain no form controls.
 - Action counts are interpreted with completion and elapsed time because one

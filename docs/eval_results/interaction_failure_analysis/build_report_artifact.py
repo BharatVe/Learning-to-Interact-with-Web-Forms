@@ -47,6 +47,7 @@ ideal_reference_rows = rows("ideal_reference_summary.csv")
 model_ideal_rows = rows("model_vs_ideal_summary.csv")
 action_correction_rows = rows("action_count_correction_by_model.csv")
 dropdown_audit_rows = rows("dropdown_verifier_audit_by_model.csv")
+dropdown_selected_rows = rows("dropdown_selected_state_summary.csv")
 forms_without_dropdown_rows = rows("performance_forms_without_dropdown.csv")
 forms_with_dropdown_rows = rows("performance_forms_with_dropdown.csv")
 submission_audit_rows = rows("baseline_submission_scoring_audit.csv")
@@ -288,11 +289,14 @@ forms_with_dropdown = form_group_table(forms_with_dropdown_rows)
 dropdown_audit = [{
     "model": r["model"],
     "dropdown_targets": inum(r["dropdown_targets"]),
-    "raw_verified_correct": inum(r["raw_verified_correct"]),
-    "expected_embedded_in_container": inum(r["expected_embedded_in_container"]),
-    "blank_or_not_attempted": inum(r["blank_or_not_attempted"]),
-    "measurement_indeterminate_pct": fnum(r["measurement_indeterminate_pct"]),
-} for r in dropdown_audit_rows]
+    "recorded_correct": inum(r["recorded_correct"]),
+    "artifact_confirmed_correct": inum(r["artifact_confirmed_correct"]),
+    "artifact_unresolved": inum(r["artifact_unresolved"]),
+    "artifact_confirmed_wrong": inum(r["artifact_confirmed_wrong"]),
+    "minimum_confirmed_accuracy_pct": fnum(r["minimum_confirmed_accuracy_pct"]),
+    "artifact_confirmed_full_fills": inum(r["artifact_confirmed_full_fills"]),
+    "full_fill_upper_bound": inum(r["artifact_confirmed_full_fills"]) + inum(r["additional_full_fills_if_all_unresolved_correct"]),
+} for r in dropdown_selected_rows]
 submission_audit = [{
     "model": r["model"],
     "submitted_trials": inum(r["submitted_trials"]),
@@ -330,6 +334,8 @@ source = {
             "data/model_baselines/**/model_io.jsonl",
             "interaction_failure_analysis/data/baseline_submission_scoring_audit.csv",
             "interaction_failure_analysis/data/dropdown_verifier_audit_by_model.csv",
+            "interaction_failure_analysis/data/dropdown_selected_state_audit.csv",
+            "interaction_failure_analysis/data/dropdown_selected_state_summary.csv",
             "interaction_failure_analysis/data/action_count_correction_by_model.csv",
             "interaction_failure_analysis/data/performance_forms_without_dropdown.csv",
             "interaction_failure_analysis/data/performance_forms_with_dropdown.csv",
@@ -466,9 +472,9 @@ form_group_source = sql_source(
 )
 dropdown_audit_source = sql_source(
     "dropdown_verifier_audit",
-    "Audits raw dropdown outcomes and option-container readings by model.",
-    "SELECT * FROM read_csv_auto('interaction_failure_analysis/data/dropdown_verifier_audit_by_model.csv')",
-    ["interaction_failure_analysis/data/dropdown_verifier_audit_by_model.csv", "interaction_failure_analysis/data/dropdown_verifier_examples.csv"],
+    "Audits dropdown selected state from saved accessibility, encoded form state, and post-action screenshots.",
+    "SELECT * FROM read_csv_auto('interaction_failure_analysis/data/dropdown_selected_state_summary.csv')",
+    ["interaction_failure_analysis/data/dropdown_selected_state_summary.csv", "interaction_failure_analysis/data/dropdown_selected_state_audit.csv"],
 )
 action_correction_source = sql_source(
     "action_count_correction",
@@ -487,7 +493,7 @@ blocks = [
     {"id": "title", "type": "markdown", "body": "# Where Web-Form Models Fail"},
     {"id": "executive_summary", "type": "markdown", "sourceId": "interaction_analysis", "body": """## Executive Summary
 
-- **Dropdown scoring materially suppresses exact completion.** All 100 dropdown targets were scored wrong, but 89 saved values contain the expected option inside the full option-list text. Those 89 outcomes are measurement-indeterminate; the remaining 11 are blank or not attempted.
+- **The raw dropdown score is invalid.** All 100 targets were recorded wrong, but saved artifacts confirm 79 correct selections, confirm none wrong, and leave 21 unresolved. Confirmed rates are lower bounds.
 - **The canonical comparison has no submission artifact.** All 200 trials used `fill_only_done`, made zero submit attempts, and were graded while the form was still visible.
 - **Historical submitted scores are recoverable.** All 519 submitted trials ended with a final-page zero, but pre-submit logs recover 512 nonzero task scores and identify 153 verified-perfect submissions.
 - **Primary action counts now exclude observation overhead.** Screenshots, snapshots, waits, `DONE`, setup, and close are omitted. This removes 123 of Qwen3-VL's 714 raw calls and lowers its incomplete-trial exact-repeat rate from the previous screenshot-contaminated estimate to 28.20%."""},
@@ -496,11 +502,11 @@ blocks = [
 The fill-only comparison contains **200 canonical trials** and **1,636 target-field outcomes**: 50 run-2 forms for each of Gemini, OpenCUA direct-MCP, Qwen Text, and Qwen VLM. A field is correct only when the saved final verifier marks the expected value correct. A full fill requires every field to be correct; submission is intentionally disabled.
 
 The historical submission-enabled baseline contains **978 primary trials**. Failure cuts use the **459 non-submitted trials**; pre-submit scores additionally recover task correctness for submitted trials and every field for the 153 aggregate-perfect submissions. Primary action metrics count state-changing interactions only."""},
-    {"id": "dropdown_risk", "type": "markdown", "sourceId": "interaction_analysis", "body": """## Dropdown scoring is a high-severity measurement risk
+    {"id": "dropdown_risk", "type": "markdown", "sourceId": "dropdown_verifier_audit", "body": """## Saved artifacts overturn the zero-dropdown result
 
-Every model is recorded at **0/25 dropdown fields**. In **89 of 100 observations**, the expected option is embedded in the recorded option-container text: 22 Gemini, 22 OpenCUA, 24 Qwen Text, and 21 Qwen VLM. Because every option appears in that container whether selected or not, these cases cannot be safely changed to correct; they are measurement-indeterminate. The other 11 are blank or not attempted.
+Every model is recorded at **0/25 dropdown fields**, but the verifier read all hidden option labels instead of the selected node. A stored-artifact audit confirms **79 correct selections**, confirms **zero wrong selections**, and leaves **21 unresolved** because bounded excerpts omit the relevant state. Minimum confirmed accuracy is Gemini **100%**, Qwen VLM **84%**, OpenCUA **80%**, and Qwen Text **52%**. Gemini uses manually reviewed post-action screenshots; direct-MCP evidence uses selected accessibility state or exact encoded form state.
 
-The results are therefore split below. The no-dropdown table supports exact full-fill claims. The with-dropdown table reports non-dropdown correctness and non-dropdown-complete forms while leaving 25 dropdown targets per model unresolved."""},
+For the 25 dropdown forms, artifact-confirmed complete fills are Gemini **6**, OpenCUA **13**, Qwen Text **1**, and Qwen VLM **11**. Treating the unresolved observations as an interval gives upper bounds of **6, 15, 3, and 12**. The no-dropdown table remains the directly scoreable comparison."""},
     {"id": "dropdown_audit_table_block", "type": "table", "tableId": "dropdown_audit_table"},
     {"id": "forms_without_dropdown_table_block", "type": "table", "tableId": "forms_without_dropdown_table"},
     {"id": "forms_with_dropdown_table_block", "type": "table", "tableId": "forms_with_dropdown_table"},
@@ -586,15 +592,15 @@ On the same 50 run-2 forms, median completion time is **767.90 seconds for Gemin
 Using the normalized definition, median per-form model/ideal action ratios are **2.72× for Gemini, 1.09× for OpenCUA, 1.00× for Qwen Text, and 0.90× for Qwen VLM**. A ratio below one does not imply better performance because incomplete trials can stop early and scripted or fill-form calls can cover different amounts of work. Completion, action count, and time must be read together."""},
     {"id": "ideal_time_chart_block", "type": "chart", "chartId": "ideal_time_ratio_chart"},
     {"id": "model_ideal_table_block", "type": "table", "tableId": "model_ideal_table"},
-    {"id": "methodology_story", "type": "markdown", "sourceId": "methodology_gaps", "body": """## The remaining priority is selected-option verification
+    {"id": "methodology_story", "type": "markdown", "sourceId": "methodology_gaps", "body": """## Dropdown verification is repaired; historical uncertainty is bounded
 
-Post-submission task scores and observation-contaminated action counts are now repaired from existing logs. Dropdown correctness remains unresolved because container text does not prove selection. The next tier concerns per-action field attribution, action-call granularity, usable-trial replacement, and mixing submission-enabled historical evidence with the fill-only cohort.
+Post-submission task scores and observation-contaminated action counts are repaired from existing logs. The dropdown audit resolves 79 historical targets and explicitly retains 21 as unobservable rather than assuming success or failure. Both browser backends now read `aria-selected`; the native path asserts the option after clicking, and later-page invisibility no longer erases a previously verified value.
 
-The current repair plan is concrete: fix selected-option verification, instrument per-action field transitions, retain raw-to-normalized action reconciliation, and publish capability and operational reliability as separate result sets."""},
+The remaining tier concerns per-action field attribution, action-call granularity, usable-trial replacement, and mixing submission-enabled historical evidence with the fill-only cohort."""},
     {"id": "methodology_gap_table_block", "type": "table", "tableId": "methodology_gap_table"},
     {"id": "recommendations", "type": "markdown", "body": """## Recommended next steps
 
-1. **Repair and validate dropdown verification before citing widget-level or full-fill results.** Read the selected option through `aria-selected`, the selected option node, or the collapsed trigger label; add a regression test where the expected value is both selected and unselected.
+1. **Use the selected-state audit for dropdown claims.** Report confirmed correctness as a lower bound and dropdown-form completion as an interval; never convert the 21 unresolved excerpts into failures or successes.
 2. **Use the repaired pre-submit score hierarchy for every historical submitted trial.** Restore field-level rows only when the pre-submit aggregate proves all fields correct.
 3. **Keep normalized interactions as the primary action count.** Preserve raw calls in an audit table and interpret actions with completion and time.
 4. **Instrument every action with its target and before/after field state.** This makes actions without state change, corrections, regressions, and actions per newly correct field measurable for every model.
@@ -629,9 +635,9 @@ artifact = {
         ],
         "tables": [
             {"id": "adjusted_model_table", "title": "Observed and non-dropdown outcomes", "subtitle": "Field correctness excludes the 25 ambiguous dropdown targets per model; full-fill rate uses the 25 forms without dropdowns.", "dataset": "adjusted_models", "sourceId": "adjusted_outcomes", "defaultSort": {"field": "nondrop_correctness_pct", "direction": "desc"}, "columns": [{"field": "model", "label": "Model", "type": "text"}, {"field": "observed_correctness_pct", "label": "Observed correct (%)", "type": "number"}, {"field": "nondrop_correctness_pct", "label": "Non-dropdown correct (%)", "type": "number"}, {"field": "full_fills", "label": "Full fills", "type": "number"}, {"field": "full_fill_rate_nondrop_pct", "label": "Full fills / 25 no-dropdown forms (%)", "type": "number"}]},
-            {"id": "dropdown_audit_table", "title": "Dropdown verifier audit", "subtitle": "Twenty-five dropdown targets per model; expected-in-container readings are unresolved, not corrected successes.", "dataset": "dropdown_audit", "sourceId": "dropdown_verifier_audit", "defaultSort": {"field": "measurement_indeterminate_pct", "direction": "desc"}, "columns": [{"field": "model", "label": "Model", "type": "text"}, {"field": "dropdown_targets", "label": "Targets", "type": "number"}, {"field": "raw_verified_correct", "label": "Raw correct", "type": "number"}, {"field": "expected_embedded_in_container", "label": "Expected in container", "type": "number"}, {"field": "blank_or_not_attempted", "label": "Blank / not attempted", "type": "number"}, {"field": "measurement_indeterminate_pct", "label": "Indeterminate (%)", "type": "number"}]},
+            {"id": "dropdown_audit_table", "title": "Stored-artifact dropdown audit", "subtitle": "Twenty-five targets per model; confirmed accuracy is a lower bound and full fills are shown as a bounded interval.", "dataset": "dropdown_audit", "sourceId": "dropdown_verifier_audit", "defaultSort": {"field": "minimum_confirmed_accuracy_pct", "direction": "desc"}, "columns": [{"field": "model", "label": "Model", "type": "text"}, {"field": "dropdown_targets", "label": "Targets", "type": "number"}, {"field": "artifact_confirmed_correct", "label": "Confirmed correct", "type": "number"}, {"field": "artifact_unresolved", "label": "Unresolved", "type": "number"}, {"field": "artifact_confirmed_wrong", "label": "Confirmed wrong", "type": "number"}, {"field": "minimum_confirmed_accuracy_pct", "label": "Confirmed lower bound (%)", "type": "number"}, {"field": "artifact_confirmed_full_fills", "label": "Confirmed full fills", "type": "number"}, {"field": "full_fill_upper_bound", "label": "Full-fill upper bound", "type": "number"}]},
             {"id": "forms_without_dropdown_table", "title": "Performance on forms without dropdowns", "subtitle": "Twenty-five forms per model; field correctness and exact full-fill rates are directly scoreable.", "dataset": "forms_without_dropdown", "sourceId": "dropdown_form_groups", "defaultSort": {"field": "raw_full_fill_rate_pct", "direction": "desc"}, "columns": [{"field": "model", "label": "Model", "type": "text"}, {"field": "forms", "label": "Forms", "type": "number"}, {"field": "raw_field_correctness_pct", "label": "Field correct (%)", "type": "number"}, {"field": "raw_full_fills", "label": "Full fills", "type": "number"}, {"field": "raw_full_fill_rate_pct", "label": "Full-fill rate (%)", "type": "number"}]},
-            {"id": "forms_with_dropdown_table", "title": "Performance on forms containing dropdowns", "subtitle": "Twenty-five forms per model; dropdown targets remain unresolved, so non-dropdown completion is the defensible comparison.", "dataset": "forms_with_dropdown", "sourceId": "dropdown_form_groups", "defaultSort": {"field": "non_dropdown_complete_rate_pct", "direction": "desc"}, "columns": [{"field": "model", "label": "Model", "type": "text"}, {"field": "forms", "label": "Forms", "type": "number"}, {"field": "dropdown_targets_unresolved", "label": "Unresolved dropdowns", "type": "number"}, {"field": "non_dropdown_field_correctness_pct", "label": "Non-dropdown correct (%)", "type": "number"}, {"field": "non_dropdown_complete_forms", "label": "Non-dropdown-complete forms", "type": "number"}, {"field": "non_dropdown_complete_rate_pct", "label": "Non-dropdown-complete (%)", "type": "number"}]},
+            {"id": "forms_with_dropdown_table", "title": "Non-dropdown performance on forms containing dropdowns", "subtitle": "Twenty-five forms per model; this legacy sensitivity table excludes dropdowns, while the selected-state audit supplies completion bounds.", "dataset": "forms_with_dropdown", "sourceId": "dropdown_form_groups", "defaultSort": {"field": "non_dropdown_complete_rate_pct", "direction": "desc"}, "columns": [{"field": "model", "label": "Model", "type": "text"}, {"field": "forms", "label": "Forms", "type": "number"}, {"field": "non_dropdown_field_correctness_pct", "label": "Non-dropdown correct (%)", "type": "number"}, {"field": "non_dropdown_complete_forms", "label": "Non-dropdown-complete forms", "type": "number"}, {"field": "non_dropdown_complete_rate_pct", "label": "Non-dropdown-complete (%)", "type": "number"}]},
             {"id": "widget_model_table", "title": "Widget failure rates by model", "subtitle": "Fill-only run 2; dropdown omitted; sorted by model and failure rate.", "dataset": "widget_by_model", "sourceId": "widget_failures", "defaultSort": {"field": "failure_rate_pct", "direction": "desc"}, "columns": [{"field": "model", "label": "Model", "type": "text"}, {"field": "widget_type", "label": "Widget", "type": "text"}, {"field": "target_fields", "label": "Targets", "type": "number"}, {"field": "missed_fields", "label": "Misses", "type": "number"}, {"field": "failure_rate_pct", "label": "Failure rate (%)", "type": "number"}]},
             {"id": "hard_forms_table", "title": "Hardest forms across all four models", "subtitle": "Lowest cross-model field correctness; widget mix shown per form.", "dataset": "hardest_forms", "sourceId": "hard_forms", "defaultSort": {"field": "cross_model_correctness_pct", "direction": "asc"}, "columns": [{"field": "form_id", "label": "Form", "type": "text"}, {"field": "fields", "label": "Fields", "type": "number"}, {"field": "complex_widgets", "label": "Structured widgets", "type": "number"}, {"field": "widget_mix", "label": "Widget mix", "type": "text"}, {"field": "models_full", "label": "Models full", "type": "number"}, {"field": "cross_model_correctness_pct", "label": "Correctness (%)", "type": "number"}]},
             {"id": "failure_matrix_table", "title": "Field-failure matrix by model", "subtitle": "Counts among final incorrect fields; ambiguous option-container text is shown separately.", "dataset": "failure_matrix", "sourceId": "failure_matrix", "defaultSort": {"field": "total_missed_fields", "direction": "desc"}, "columns": [{"field": "model", "label": "Model", "type": "text"}, {"field": "total_missed_fields", "label": "All misses", "type": "number"}, {"field": "dominant_behavioral_failure", "label": "Most common behavioral failure", "type": "text"}, {"field": "dominant_behavioral_failure_count", "label": "Dominant count", "type": "number"}, {"field": "dominant_behavioral_share_of_misses_pct", "label": "Share of misses (%)", "type": "number"}, {"field": "not_attempted_count", "label": "Not attempted", "type": "number"}, {"field": "attempted_but_blank_count", "label": "Attempted, blank", "type": "number"}, {"field": "wrong_value_count", "label": "Wrong value", "type": "number"}, {"field": "multi_choice_error_count", "label": "Multi-choice error", "type": "number"}, {"field": "ambiguous_option_text_count", "label": "Ambiguous option text", "type": "number"}]},

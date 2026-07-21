@@ -535,7 +535,7 @@ class FormEngine:
         try:
             selected = option.evaluate(
                 """(el) => {
-                  const aria = el.getAttribute('aria-checked');
+                  const aria = el.getAttribute('aria-checked') ?? el.getAttribute('aria-selected');
                   if (aria !== null) return aria === 'true';
                   if (el.hasAttribute('checked')) return true;
                   if (el.matches('input[type=checkbox], input[type=radio]')) return !!el.checked;
@@ -687,6 +687,7 @@ class FormEngine:
         self._set_action_target(action, option)
         self._hover(option, step_idx)
         self._click(option, step_idx)
+        self._assert_option_selected(container, target, "option")
 
     def _handle_date(self, label: str, value: Any, step_idx: int, action: Dict[str, Any]) -> None:
         parsed = self._normalize_date(value)
@@ -943,9 +944,16 @@ class FormEngine:
                         "el => el.options && el.selectedIndex >= 0 ? (el.options[el.selectedIndex].textContent || '') : ''"
                     )
                 else:
-                    text = dropdown.inner_text(timeout=1000)
+                    # A Google Forms listbox keeps every option in its subtree,
+                    # including hidden choices. Reading trigger.inner_text()
+                    # therefore returns the whole option list. The selected
+                    # option is represented explicitly with aria-selected.
+                    labels = self._selected_option_labels(container, "option")
+                    text = labels[0] if labels else ""
                 result["actual_value"] = re.sub(r"\s+", " ", str(text or "")).strip()
                 result["verified"] = bool(result["actual_value"])
+                if not result["verified"]:
+                    result["detail"] = "no_selected_option"
             elif widget == "date":
                 result["actual_value"] = self._read_date_value(container)
                 result["verified"] = result["actual_value"] is not None

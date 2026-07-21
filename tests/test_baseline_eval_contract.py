@@ -224,6 +224,23 @@ class BaselineEvalContractTests(TestCase):
         self.assertTrue(rbe._low_level_action_should_verify("type_text", text_state))
         self.assertTrue(rbe._low_level_action_should_verify("click_mouse", choice_state))
 
+    def test_unobservable_later_page_does_not_erase_verified_value(self):
+        state = {
+            "question_id": "q_002",
+            "value": "Network",
+            "actual_value": "Network",
+            "attempted": True,
+            "verified": True,
+            "verified_correct": True,
+        }
+        row = rbe._update_state_from_verification(
+            state,
+            {"verified": False, "actual_value": None, "detail": "container_not_visible"},
+        )
+        self.assertEqual(state["actual_value"], "Network")
+        self.assertTrue(state["verified_correct"])
+        self.assertTrue(row["verified_correct"])
+
     def test_soft_timeout_retry_collects_attempts(self):
         class RetryAdapter:
             def __init__(self):

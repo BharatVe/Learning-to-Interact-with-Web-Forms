@@ -1122,11 +1122,15 @@ def _action_signature(step: Dict[str, Any]) -> str:
 
 
 def _update_state_from_verification(state: Dict[str, Any], result: Dict[str, Any]) -> Dict[str, Any]:
+    previous_correct = bool(state.get("verified_correct"))
+    current_verified = bool(result.get("verified"))
+    preserve_previous = previous_correct and not current_verified
     state["last_verification"] = result
-    state["actual_value"] = result.get("actual_value")
-    state["verified"] = bool(result.get("verified"))
-    state["verified_correct"] = bool(result.get("verified")) and _value_matches(
-        state.get("value"), result.get("actual_value")
+    if not preserve_previous:
+        state["actual_value"] = result.get("actual_value")
+    state["verified"] = current_verified or preserve_previous
+    state["verified_correct"] = preserve_previous or (
+        current_verified and _value_matches(state.get("value"), result.get("actual_value"))
     )
     if state["verified_correct"]:
         state["final_status"] = "correct_verified"

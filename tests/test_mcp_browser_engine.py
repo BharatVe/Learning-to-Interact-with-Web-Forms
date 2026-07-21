@@ -55,3 +55,13 @@ class MCPBrowserEngineTests(TestCase):
             self.assertEqual(mcp.calls[-1][0], "browser_take_screenshot")
             self.assertTrue(Path(mcp.calls[-1][1]["filename"]).is_absolute())
             self.assertEqual(Path(mcp.calls[-1][1]["filename"]), path.resolve())
+
+    def test_dropdown_verifier_reads_selected_option_not_trigger_text(self):
+        engine = MCPBrowserEngine.__new__(MCPBrowserEngine)
+        engine.timeout_ms = 15000
+        code = engine._build_verify_step_code(
+            {"label": "Issue category", "widget_type": "dropdown", "value": "Network"}
+        )
+        self.assertIn('el.getAttribute("aria-selected")', code)
+        self.assertIn('selectedRoleLabels(container, "option")', code)
+        self.assertNotIn('trigger.innerText({ timeout: 1000 })', code)

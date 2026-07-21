@@ -37,15 +37,22 @@ submit attempts.
 
 ### Dropdown score
 
-The custom-dropdown verifier often records every option label instead of the
-selected option. All 100 dropdown targets were scored wrong; 89 contain the
-expected option in this ambiguous container text and 11 are blank or
-unattempted. The 89 cannot be safely reclassified as correct.
+The original custom-dropdown verifier read the listbox's full descendant text.
+Google Forms keeps hidden options in that subtree, so the recorded value became
+the complete option list. On multi-page forms, a later `container_not_visible`
+result could also overwrite a value verified on an earlier page.
+
+The retrospective audit uses only stored artifacts: the selected option or
+encoded form state in direct-MCP accessibility snapshots, and manually reviewed
+post-action screenshots for Gemini. It confirms 79 correct selections, no
+wrong selections, and leaves 21 unresolved where the bounded snapshot excerpt
+does not expose the control. `data/dropdown_selected_state_audit.csv` records
+the evidence path and step for every target. Confirmed rates are lower bounds.
 
 Use exact completion on `performance_forms_without_dropdown.csv`. For forms
-with dropdowns, use `performance_forms_with_dropdown.csv` and report only
-non-dropdown correctness until selection can be read from `aria-selected`, the
-selected option node, or the collapsed trigger label.
+with dropdowns, report the audited full-fill interval in
+`data/dropdown_selected_state_summary.csv`; do not assume unresolved selections
+are correct or wrong.
 
 ## What the failure labels mean
 
@@ -65,8 +72,8 @@ also reflect early stopping rather than efficiency.
 
 ## Remaining limitations
 
-1. Dropdown correctness is unresolved until selected-option verification is
-   repaired and tested with selected and unselected fixtures.
+1. Twenty-one historical dropdown outcomes remain unresolved because saved
+   snapshot excerpts are bounded; no new run is needed for the other 79.
 2. Widget type, form length, and field position are correlated; unadjusted cuts
    are descriptive rather than isolated causal effects.
 3. The canonical matrix replaces or excludes infrastructure failures. It
