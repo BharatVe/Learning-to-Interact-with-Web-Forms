@@ -38,6 +38,13 @@ LOW_LEVEL_ACTION_SCHEMA_TEXT = json.dumps(
     indent=2,
 )
 
+SCREENSHOT_ACTION_SEQUENCE_EXAMPLE = (
+    'Click example: {"tool":"browser_mouse_click_xy","args":{"x":300,"y":440,'
+    '"question_id":"q_001","label":"Full name"}}\n'
+    'On the following step, type example: {"tool":"browser_type","args":{"text":"Example Person",'
+    '"question_id":"q_001","label":"Full name"}}'
+)
+
 PROMPT_PROFILES = {"legacy", "detailed_v1", "runtime_safe_v1"}
 CONTEXT_PACKAGE_VERSION = "context_package.v1"
 
@@ -70,6 +77,30 @@ LOW_LEVEL_CONTROL_POLICY_TEXT = json.dumps(
     },
     indent=2,
 )
+
+
+def _low_level_control_policy_text(*, fill_only_done: bool, screenshot_only: bool) -> str:
+    if not screenshot_only:
+        return LOW_LEVEL_CONTROL_POLICY_TEXT
+    terminal_note = (
+        "Do not click Submit; return done when all target values have been entered."
+        if fill_only_done
+        else "Click the visible Submit button and return done only after the screenshot confirms submission."
+    )
+    return json.dumps(
+        {
+            "notes": [
+                "Choose explicit browser pointer and keyboard tools from the screenshot.",
+                "Do not rely on semantic element helpers or DOM-derived coordinates.",
+                "The evaluator may verify state internally, but verification data is not model-visible.",
+                "Your recent action history is model-visible; after a successful text-field click, type rather than repeating that click.",
+                "Return x and y as separate scalar integers, never as arrays or coordinate pairs.",
+                terminal_note,
+            ],
+            "coordinate_system": "x,y are normalized integers in [0,999] relative to viewport",
+        },
+        indent=2,
+    )
 
 CANONICAL_FEWSHOT_EXAMPLES: List[Dict[str, Any]] = [
     {
@@ -195,9 +226,31 @@ def _detailed_instruction_block(
     )
 
 
-def _low_level_instruction_block(remaining_answers: List[Dict[str, Any]], behavior_nudge: Optional[str] = None) -> str:
+def _low_level_instruction_block(
+    remaining_answers: List[Dict[str, Any]],
+    behavior_nudge: Optional[str] = None,
+    *,
+    fill_only_done: bool = False,
+    screenshot_only: bool = False,
+) -> str:
     allowed_ids = _remaining_question_ids(remaining_answers)
     nudge_block = f"Stall telemetry: {str(behavior_nudge).strip()}\n" if behavior_nudge else ""
+    terminal_instruction = (
+        "- This is a fill-only task: never click Submit. Return done as soon as every answer is filled.\n"
+        if fill_only_done
+        else "- When Remaining answers is empty, click the visible Submit button, then return done only after submission is confirmed.\n"
+    )
+    grounding_instruction = (
+        "- Infer all click coordinates from the screenshot; no DOM-derived interaction map is provided.\n"
+        if screenshot_only
+        else "- Prefer coordinates from Interaction map when available.\n"
+    )
+    screenshot_contract = (
+        "- Return args.x and args.y as separate integer values; never put [x,y] inside args.x.\n"
+        "- Review Recent action history before acting. After a successful click on a text input, normally use browser_type next instead of clicking it again.\n"
+        if screenshot_only
+        else ""
+    )
     return (
         "Return exactly one compact JSON object and nothing else.\n"
         "Control level: direct browser tool calls.\n"
@@ -211,11 +264,38 @@ def _low_level_instruction_block(remaining_answers: List[Dict[str, Any]], behavi
         "- Use browser_press_key for keyboard keys such as Tab, Enter, Control+A, Backspace.\n"
         "- Use browser_wait_for with args.time in seconds only when waiting is necessary.\n"
         "- Do not submit while Remaining answers is non-empty.\n"
-        "- When Remaining answers is empty, submit by clicking the visible submit button with browser_mouse_click_xy.\n"
-        "- Prefer coordinates from Interaction map when available.\n"
+        f"{terminal_instruction}"
+        f"{grounding_instruction}"
+        f"{screenshot_contract}"
         "- The model must choose direct browser tool calls on its own from the observed state.\n"
         f"{nudge_block}"
     )
+
+
+def _screenshot_action_history(recent_history: Optional[List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
+    """Expose agent-owned action state while excluding DOM and verifier telemetry."""
+    safe_history: List[Dict[str, Any]] = []
+    for row in recent_history or []:
+        if not isinstance(row, dict):
+            continue
+        action = row.get("action") if isinstance(row.get("action"), dict) else {}
+        args = action.get("args") if isinstance(action.get("args"), dict) else {}
+        safe_args = {
+            key: args.get(key)
+            for key in ("x", "y", "text", "key", "deltaX", "deltaY", "time", "question_id", "label")
+            if key in args
+        }
+        error = str(row.get("error") or "")
+        safe_row: Dict[str, Any] = {
+            "step_index": row.get("step_index"),
+            "tool": action.get("tool") or action.get("action"),
+            "args": safe_args,
+            "status": row.get("status"),
+        }
+        if error.startswith("model_output_invalid:"):
+            safe_row["syntax_error"] = error
+        safe_history.append(safe_row)
+    return safe_history
 
 
 def _format_examples(examples: List[Dict[str, Any]]) -> str:
@@ -246,24 +326,37 @@ def build_text_prompt(
     control_level: str = "high_level",
     observation_mode: str = "vision_coords",
     interaction_map: Optional[List[Dict[str, Any]]] = None,
+    fill_only_done: bool = False,
 ) -> str:
     low_level = str(control_level or "").strip().lower() == "low_level"
-    vision_coords_only = str(observation_mode or "").strip().lower() == "vision_coords"
+    normalized_observation_mode = str(observation_mode or "").strip().lower()
+    vision_coords_only = normalized_observation_mode in {"vision_coords", "vision_only_coords_v1"}
+    screenshot_only = normalized_observation_mode == "vision_only_coords_v1"
     if low_level:
         page_text_block = ""
+        interaction_context_block = ""
         if not vision_coords_only:
             page_text_block = f"Current page text:\n{compact_page_text(page_text, max_chars=int(compact_page_text_max_chars))}\n\n"
+        if not screenshot_only:
+            interaction_context_block = (
+                f"Interaction map:\n{json.dumps(interaction_map or [], indent=2, ensure_ascii=True)}\n\n"
+                f"Recent step history:\n{json.dumps(recent_history or [], indent=2, ensure_ascii=True)}\n\n"
+                f"Validation feedback:\n{json.dumps(validation_feedback or {}, indent=2, ensure_ascii=True)}\n\n"
+            )
+        else:
+            interaction_context_block = (
+                f"Action sequence example:\n{SCREENSHOT_ACTION_SEQUENCE_EXAMPLE}\n\n"
+                f"Recent action history:\n{json.dumps(_screenshot_action_history(recent_history), indent=2, ensure_ascii=True)}\n\n"
+            )
         return (
             "You are controlling a Google Form filling agent.\n"
-            f"{_low_level_instruction_block(remaining_answers, behavior_nudge)}\n"
+            f"{_low_level_instruction_block(remaining_answers, behavior_nudge, fill_only_done=fill_only_done, screenshot_only=screenshot_only)}\n"
             f"Context package version: {CONTEXT_PACKAGE_VERSION}\n\n"
             f"Current URL:\n{form_url}\n\n"
             f"Output schema:\n{LOW_LEVEL_ACTION_SCHEMA_TEXT}\n\n"
-            f"Low-level control policy:\n{LOW_LEVEL_CONTROL_POLICY_TEXT}\n\n"
+            f"Low-level control policy:\n{_low_level_control_policy_text(fill_only_done=fill_only_done, screenshot_only=screenshot_only)}\n\n"
             f"Remaining answers:\n{json.dumps(remaining_answers, indent=2, ensure_ascii=True)}\n\n"
-            f"Interaction map:\n{json.dumps(interaction_map or [], indent=2, ensure_ascii=True)}\n\n"
-            f"Recent step history:\n{json.dumps(recent_history or [], indent=2, ensure_ascii=True)}\n\n"
-            f"Validation feedback:\n{json.dumps(validation_feedback or {}, indent=2, ensure_ascii=True)}\n\n"
+            f"{interaction_context_block}"
             f"Recent action result:\n{json.dumps(last_result or {}, indent=2, ensure_ascii=True)}\n\n"
             f"{page_text_block}"
         )
@@ -321,25 +414,38 @@ def build_vlm_prompt(
     control_level: str = "high_level",
     observation_mode: str = "vision_coords",
     interaction_map: Optional[List[Dict[str, Any]]] = None,
+    fill_only_done: bool = False,
 ) -> str:
     low_level = str(control_level or "").strip().lower() == "low_level"
-    vision_coords_only = str(observation_mode or "").strip().lower() == "vision_coords"
+    normalized_observation_mode = str(observation_mode or "").strip().lower()
+    vision_coords_only = normalized_observation_mode in {"vision_coords", "vision_only_coords_v1"}
+    screenshot_only = normalized_observation_mode == "vision_only_coords_v1"
     if low_level:
         page_text_block = ""
+        interaction_context_block = ""
         if not vision_coords_only:
             page_text_block = f"Compact page text:\n{compact_page_text(page_text, max_chars=int(compact_page_text_max_chars))}\n\n"
+        if not screenshot_only:
+            interaction_context_block = (
+                f"Interaction map:\n{json.dumps(interaction_map or [], indent=2, ensure_ascii=True)}\n\n"
+                f"Recent step history:\n{json.dumps(recent_history or [], indent=2, ensure_ascii=True)}\n\n"
+                f"Validation feedback:\n{json.dumps(validation_feedback or {}, indent=2, ensure_ascii=True)}\n\n"
+            )
+        else:
+            interaction_context_block = (
+                f"Action sequence example:\n{SCREENSHOT_ACTION_SEQUENCE_EXAMPLE}\n\n"
+                f"Recent action history:\n{json.dumps(_screenshot_action_history(recent_history), indent=2, ensure_ascii=True)}\n\n"
+            )
         return (
             "You are controlling a Google Form filling agent from a screenshot.\n"
-            f"{_low_level_instruction_block(remaining_answers, behavior_nudge)}\n"
+            f"{_low_level_instruction_block(remaining_answers, behavior_nudge, fill_only_done=fill_only_done, screenshot_only=screenshot_only)}\n"
             f"Context package version: {CONTEXT_PACKAGE_VERSION}\n\n"
             f"Current URL:\n{form_url}\n\n"
             f"Screenshot path:\n{str(screenshot_path)}\n\n"
             f"Output schema:\n{LOW_LEVEL_ACTION_SCHEMA_TEXT}\n\n"
-            f"Low-level control policy:\n{LOW_LEVEL_CONTROL_POLICY_TEXT}\n\n"
+            f"Low-level control policy:\n{_low_level_control_policy_text(fill_only_done=fill_only_done, screenshot_only=screenshot_only)}\n\n"
             f"Remaining answers:\n{json.dumps(remaining_answers, indent=2, ensure_ascii=True)}\n\n"
-            f"Interaction map:\n{json.dumps(interaction_map or [], indent=2, ensure_ascii=True)}\n\n"
-            f"Recent step history:\n{json.dumps(recent_history or [], indent=2, ensure_ascii=True)}\n\n"
-            f"Validation feedback:\n{json.dumps(validation_feedback or {}, indent=2, ensure_ascii=True)}\n\n"
+            f"{interaction_context_block}"
             f"Recent action result:\n{json.dumps(last_result or {}, indent=2, ensure_ascii=True)}\n\n"
             f"{page_text_block}"
         )

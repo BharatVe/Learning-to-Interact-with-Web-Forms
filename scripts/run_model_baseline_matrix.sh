@@ -13,12 +13,24 @@ VLLM_PYTHON_BIN="${VLLM_PYTHON_BIN:-$ROOT_DIR/.venv-opencua/bin/python}"
 
 mkdir -p logs/slurm data/model_baselines
 
-module load release/25.06 GCCcore/13.3.0 nodejs/20.13.1
+ORIGINAL_LD_LIBRARY_PATH="${LD_LIBRARY_PATH-}"
+module load release/25.06 GCCcore/13.3.0 Python/3.12.3 nodejs/20.13.1
+MEDIATED_VLLM_LD_LIBRARY_PATH="${MEDIATED_VLLM_LD_LIBRARY_PATH:-${LD_LIBRARY_PATH-}}"
+export NODE_LD_LIBRARY_PATH_FOR_MCP="${LD_LIBRARY_PATH-}"
 
 export PATH="$ROOT_DIR/.venv-opencua/bin:$ROOT_DIR/.node-tools/node_modules/.bin:$PATH"
 export PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-$ROOT_DIR/.playwright-browsers-node}"
 export PYTHONUNBUFFERED=1
 export TOKENIZERS_PARALLELISM=false
+
+# The repository's evaluation virtualenv uses system Python 3.9. Restore the
+# pre-module library path for it; pass the module library path explicitly only
+# to the Python 3.12/vLLM and Node MCP subprocesses that require it.
+if [ -n "$ORIGINAL_LD_LIBRARY_PATH" ]; then
+  export LD_LIBRARY_PATH="$ORIGINAL_LD_LIBRARY_PATH"
+else
+  unset LD_LIBRARY_PATH
+fi
 
 EXPERIMENT_ID="${EXPERIMENT_ID:-baseline_mcp_v1}"
 CONFIG_PATH="${CONFIG_PATH:-configs/baselines/minimal_models.json}"
@@ -108,6 +120,11 @@ VERIFICATION_SCOPE="${VERIFICATION_SCOPE:-target_only}"
 CONTROL_LEVEL="${CONTROL_LEVEL:-high_level}"
 INTERACTION_PROTOCOL="${INTERACTION_PROTOCOL:-human_ui_v1}"
 OBSERVATION_MODE="${OBSERVATION_MODE:-vision_coords}"
+FILL_ONLY_DONE="${FILL_ONLY_DONE:-0}"
+TASK_MODE="fill_and_submit"
+if [ "$FILL_ONLY_DONE" = "1" ]; then
+  TASK_MODE="fill_only_done"
+fi
 SCORING_MODE="${SCORING_MODE:-soft_quality_v1}"
 HISTORY_WINDOW="${HISTORY_WINDOW:-2}"
 FEWSHOT_ENABLED="${FEWSHOT_ENABLED:-0}"
@@ -151,10 +168,10 @@ case "$INTERACTION_PROTOCOL" in
 esac
 
 case "$OBSERVATION_MODE" in
-  vision_coords|vision_coords_text)
+  vision_coords|vision_coords_text|vision_only_coords_v1)
     ;;
   *)
-    echo "[FAIL] unsupported OBSERVATION_MODE=$OBSERVATION_MODE (expected vision_coords|vision_coords_text)" >&2
+    echo "[FAIL] unsupported OBSERVATION_MODE=$OBSERVATION_MODE (expected vision_coords|vision_coords_text|vision_only_coords_v1)" >&2
     exit 1
     ;;
 esac
@@ -223,10 +240,10 @@ echo "[INFO] run_indexes=$RUN_INDEXES"
 echo "[INFO] resource_profile=$RESOURCE_PROFILE gpu_count=$GPU_COUNT cpus_per_task=$CPUS_PER_TASK"
 echo "[INFO] mediated_budget_profile=$MEDIATED_BUDGET_PROFILE"
 echo "[INFO] budgets max_steps=$MAX_STEPS timeout_s=$TIMEOUT_S max_new_tokens=$MAX_NEW_TOKENS step_soft_timeout_s=$STEP_SOFT_TIMEOUT_S step_retry_max_new_tokens=$STEP_RETRY_MAX_NEW_TOKENS compact_page_text_max_chars=$COMPACT_PAGE_TEXT_MAX_CHARS browser_mcp_timeout_ms=$BROWSER_MCP_TIMEOUT_MS"
-echo "[INFO] prompt_profile=$PROMPT_PROFILE verification_scope=$VERIFICATION_SCOPE control_level=$CONTROL_LEVEL interaction_protocol=$INTERACTION_PROTOCOL observation_mode=$OBSERVATION_MODE scoring_mode=$SCORING_MODE history_window=$HISTORY_WINDOW fewshot_enabled=$FEWSHOT_ENABLED fewshot_count=$FEWSHOT_COUNT"
+echo "[INFO] prompt_profile=$PROMPT_PROFILE verification_scope=$VERIFICATION_SCOPE control_level=$CONTROL_LEVEL interaction_protocol=$INTERACTION_PROTOCOL observation_mode=$OBSERVATION_MODE task_mode=$TASK_MODE scoring_mode=$SCORING_MODE history_window=$HISTORY_WINDOW fewshot_enabled=$FEWSHOT_ENABLED fewshot_count=$FEWSHOT_COUNT"
 echo "[INFO] fail_on_trial_failure=$FAIL_ON_TRIAL_FAILURE"
 echo "[INFO] inference_backend=$INFERENCE_BACKEND api_timeout_s=$API_TIMEOUT_S browser_init_retries=$BROWSER_INIT_RETRIES browser_init_retry_delay_s=$BROWSER_INIT_RETRY_DELAY_S"
-playwright-mcp --version || true
+LD_LIBRARY_PATH="$NODE_LD_LIBRARY_PATH_FOR_MCP" playwright-mcp --version || true
 
 "$PYTHON_BIN" scripts/verify_baseline_integrity.py --min-runs-per-form "$REQUIRED_RUN_MAX"
 "$PYTHON_BIN" scripts/validate_answer_sets.py \
@@ -345,7 +362,8 @@ start_openai_compat_server() {
   OPENAI_SERVER_LOG="logs/slurm/${model_id}-vllm-${SLURM_JOB_ID:-na}.log"
   startup_started="$(date +%s)"
   echo "[INFO] starting_persistent_server model_id=${model_id} model_kind=${model_kind} base_url=${OPENAI_SERVER_BASE_URL} model=${OPENAI_SERVER_MODEL} log=${OPENAI_SERVER_LOG}"
-  QWEN_VLLM_PORT="$port" \
+  LD_LIBRARY_PATH="$MEDIATED_VLLM_LD_LIBRARY_PATH" \
+    QWEN_VLLM_PORT="$port" \
     QWEN_VLLM_HOST="$MEDIATED_VLLM_HOST" \
     QWEN_MODEL_SPEC="$model_spec" \
     QWEN_SERVED_MODEL_NAME="$served_model_name" \
@@ -386,7 +404,8 @@ warmup_openai_compat_server() {
   local warmup_started
   warmup_started="$(date +%s)"
   if [ "$model_kind" = "vlm" ]; then
-    "$VLLM_PYTHON_BIN" - "$OPENAI_SERVER_BASE_URL" "$OPENAI_SERVER_MODEL" "$OPENAI_API_KEY" <<'PY_WARMUP'
+    LD_LIBRARY_PATH="$MEDIATED_VLLM_LD_LIBRARY_PATH" \
+      "$VLLM_PYTHON_BIN" - "$OPENAI_SERVER_BASE_URL" "$OPENAI_SERVER_MODEL" "$OPENAI_API_KEY" <<'PY_WARMUP'
 import json
 import sys
 import urllib.request
@@ -400,7 +419,7 @@ payload = {
             "role": "user",
             "content": [
                 {"type": "text", "text": "Return exactly one JSON object."},
-                {"type": "image_url", "image_url": {"url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9s2qW/sAAAAASUVORK5CYII="}},
+                {"type": "image_url", "image_url": {"url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAIAAAD9b0jDAAAAJ0lEQVR4nO3MMQEAAAgDILV/51nCwwMC0Enq2pyPUqlUKpVKpS/TBdFiAzXB+yhyAAAAAElFTkSuQmCC"}},
             ],
         }
     ],
@@ -415,7 +434,8 @@ with urllib.request.urlopen(req, timeout=180) as response:
     response.read()
 PY_WARMUP
   else
-    "$VLLM_PYTHON_BIN" - "$OPENAI_SERVER_BASE_URL" "$OPENAI_SERVER_MODEL" "$OPENAI_API_KEY" <<'PY_WARMUP'
+    LD_LIBRARY_PATH="$MEDIATED_VLLM_LD_LIBRARY_PATH" \
+      "$VLLM_PYTHON_BIN" - "$OPENAI_SERVER_BASE_URL" "$OPENAI_SERVER_MODEL" "$OPENAI_API_KEY" <<'PY_WARMUP'
 import json
 import sys
 import urllib.request
@@ -449,7 +469,7 @@ for row in "${MODEL_ROWS[@]}"; do
   fi
 done
 if [ "$NEEDS_GPU" = "1" ]; then
-  "$PYTHON_BIN" - <<'PY3'
+  LD_LIBRARY_PATH="$MEDIATED_VLLM_LD_LIBRARY_PATH" "$VLLM_PYTHON_BIN" - <<'PY3'
 import torch
 if not torch.cuda.is_available():
     raise SystemExit("[FAIL] GPU required by selected model set, but CUDA is unavailable")
@@ -581,6 +601,9 @@ run_eval() {
     EXTRA_ARGS+=(--fewshot-enabled)
   else
     EXTRA_ARGS+=(--no-fewshot-enabled)
+  fi
+  if [ "$FILL_ONLY_DONE" = "1" ]; then
+    EXTRA_ARGS+=(--fill-only-done)
   fi
 
   local model_max_new_tokens="$MAX_NEW_TOKENS"

@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "description": "Same-model FormFactory-style screenshot-coordinate condition for the paired Qwen3-VL interface study.",
+  "models": [
+    {
+      "id": "vlm_qwen3_vl_30b_a3b_instruct_formfactory_style",
+      "kind": "vlm",
+      "provider": "openai_compat",
+      "hf_repo": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+      "track": "formfactory_style_visual",
+      "requires_gpu": true,
+      "openai_model": "vlm-qwen3-vl-30b-a3b-instruct",
+      "served_model_name": "vlm-qwen3-vl-30b-a3b-instruct",
+      "openai_base_url": "http://127.0.0.1:8011/v1",
+      "server_backend": "vllm",
+      "notes": "FormFactory-inspired condition: target answers plus screenshots, primitive coordinate/keyboard actions, and no model-visible DOM-derived interaction map. This is a protocol adaptation on this repository's 50 Google Forms, not a reproduction of FormFactory's original forms or external model APIs."
+    }
+  ]
+}

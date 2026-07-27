@@ -50,6 +50,7 @@ FAIL_ON_TRIAL_FAILURE="${FAIL_ON_TRIAL_FAILURE:-0}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 FILL_ONLY_DONE="${FILL_ONLY_DONE:-0}"
 SUMMARY_OUTPUT="${SUMMARY_OUTPUT:-logs/${EXPERIMENT_ID}_reference_efficiency_summary.json}"
+UPDATE_GLOBAL_RESULTS_TRACKER="${UPDATE_GLOBAL_RESULTS_TRACKER:-1}"
 GPU_COUNT="${GPU_COUNT:-2}"
 CUDA_PREFLIGHT_PYTHON_BIN="${CUDA_PREFLIGHT_PYTHON_BIN:-$ROOT_DIR/.venv-opencua/bin/python}"
 MEDIATED_VLLM_HOST="${MEDIATED_VLLM_HOST:-127.0.0.1}"
@@ -271,8 +272,12 @@ write_progress_summary() {
   "$PYTHON_BIN" scripts/summarize_reference_efficiency.py \
     --experiment-id "$EXPERIMENT_ID" \
     --output "$SUMMARY_OUTPUT" || true
-  "$PYTHON_BIN" scripts/update_eval_results_tracker.py \
-    --experiment-id "$EXPERIMENT_ID" || true
+  if [ "$UPDATE_GLOBAL_RESULTS_TRACKER" = "1" ]; then
+    "$PYTHON_BIN" scripts/update_eval_results_tracker.py \
+      --experiment-id "$EXPERIMENT_ID" || true
+  else
+    echo "[INFO] skipping global evaluation-results tracker update"
+  fi
 }
 
 echo "[INFO] qwen_direct_mcp_experiment_id=$EXPERIMENT_ID"

@@ -19,6 +19,29 @@ from scripts import analyze_reference_dataset as ard
 
 
 class ReferenceEfficiencyHelperTests(TestCase):
+    def test_reference_task_actions_exclude_setup_and_submit_in_fill_only_mode(self):
+        with TemporaryDirectory() as tmp:
+            trace = Path(tmp) / "tool_trace.jsonl"
+            trace.write_text(
+                "\n".join(
+                    [
+                        json.dumps({"name": "browser_navigate", "t_s": 1.0}),
+                        json.dumps({"name": "browser_take_screenshot", "t_s": 2.0}),
+                        json.dumps({"name": "browser_run_code", "args": {"purpose": "fill_step"}, "t_s": 3.0}),
+                        json.dumps({"name": "browser_run_code", "args": {"purpose": "fill_step"}, "t_s": 5.0}),
+                        json.dumps({"name": "browser_run_code", "args": {"purpose": "submit"}, "t_s": 7.0}),
+                        json.dumps({"name": "browser_close", "t_s": 8.0}),
+                    ]
+                ) + "\n",
+                encoding="utf-8",
+            )
+            fill_only = rbe._reference_task_trace_stats(trace, "fill_only_done")
+            submit_enabled = rbe._reference_task_trace_stats(trace, "fill_and_submit")
+        self.assertEqual(fill_only["action_count"], 2)
+        self.assertEqual(fill_only["duration_s"], 2.0)
+        self.assertEqual(submit_enabled["action_count"], 3)
+        self.assertEqual(submit_enabled["duration_s"], 4.0)
+
     def test_resolve_reference_efficiency_uses_matching_reference_run(self):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)

@@ -1117,6 +1117,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                         "pre_submit_verified_correctness": pre_click_snapshot["correct"],
                         "pre_submit_attempted_count": pre_click_snapshot["attempted"],
                         "pre_submit_question_total": pre_click_snapshot["total"],
+                        "pre_submit_field_states": pre_click_snapshot["details"],
                     }
                 if args.fill_only_done and is_submit_attempt:
                     tool_error_count += 1
@@ -1259,6 +1260,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                                 "pre_submit_verified_correctness": pre_click_snapshot["correct"],
                                 "pre_submit_attempted_count": pre_click_snapshot["attempted"],
                                 "pre_submit_question_total": pre_click_snapshot["total"],
+                                "pre_submit_field_states": pre_click_snapshot["details"],
                             }
                     if submit_attempt is not None and engine is not None:
                         post_snapshot = _verification_snapshot(engine, question_states, step_ref=(step_idx * 1000) + 500)
@@ -1271,7 +1273,9 @@ def main(argv: Optional[List[str]] = None) -> int:
                                 "post_submit_verified_correctness": post_snapshot["correct"],
                                 "post_submit_attempted_count": post_snapshot["attempted"],
                                 "post_submit_question_total": post_snapshot["total"],
-                                "submitted_while_incomplete": post_snapshot["correct"] < post_snapshot["total"],
+                                "post_submit_field_states": post_snapshot["details"],
+                                "submitted_while_incomplete": submit_attempt.get("pre_submit_verified_correctness", 0)
+                                < submit_attempt.get("pre_submit_question_total", post_snapshot["total"]),
                             }
                         )
                         submit_attempts.append(submit_attempt)
@@ -1328,10 +1332,13 @@ def main(argv: Optional[List[str]] = None) -> int:
         if engine is not None and not args.fill_only_done:
             submit_success, submit_probe = _detect_submit_success(engine, step_ref=args.max_steps)
             success = submit_success
-            if stop_reason == "done" and not submit_success:
-                stop_reason = "premature_done_without_submit"
-                failure_category = "premature_done_without_submit"
-                failure_detail = "assistant returned DONE/STOP before submission success was detected"
+            if stop_reason == "done":
+                if submit_success:
+                    stop_reason = "submitted"
+                else:
+                    stop_reason = "premature_done_without_submit"
+                    failure_category = "premature_done_without_submit"
+                    failure_detail = "assistant returned DONE/STOP before submission success was detected"
             env = dict(env or {})
             env["submit_probe"] = submit_probe
             terminal_screenshot_path = engine.take_observation_screenshot("final.png" if success else "error.png", step_ref=None)
@@ -1404,6 +1411,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         (attempt.get("pre_submit_verified_correctness") for attempt in submit_attempts if attempt.get("post_submit_success")),
         None,
     )
+    pre_successful_submit_field_states = next(
+        (attempt.get("pre_submit_field_states") for attempt in submit_attempts if attempt.get("post_submit_success")),
+        None,
+    )
     premature_done_without_submit = stop_reason == "premature_done_without_submit"
     nonempty_transports = {key: value for key, value in tool_call_transport_counts.items() if key != "none" and value > 0}
     if len(nonempty_transports) == 1:
@@ -1430,6 +1441,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         model_trace_path=paths["trace_path"],
         model_action_count=tool_call_count,
         prefer_model_action_count=True,
+        task_mode=task_mode,
     )
     annotations: Dict[str, Any] = {
         "schema_version": SCHEMA_VERSION,
@@ -1473,6 +1485,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "first_submit_step": first_submit_step,
         "pre_first_submit_verified_correctness": pre_first_submit_verified_correctness,
         "pre_successful_submit_verified_correctness": pre_successful_submit_verified_correctness,
+        "pre_successful_submit_field_states": pre_successful_submit_field_states,
         "premature_done_without_submit": premature_done_without_submit,
         "done_step": done_step,
         "submit_attempts": submit_attempts,
@@ -1490,6 +1503,12 @@ def main(argv: Optional[List[str]] = None) -> int:
         else:
             annotations["artifacts"]["error_screenshot_path"] = terminal_screenshot_path
     annotations.update(metrics)
+    if bool(submit_success) and pre_successful_submit_verified_correctness is not None:
+        annotations["scored_correctness"] = int(pre_successful_submit_verified_correctness)
+        annotations["scored_correctness_source"] = "pre_successful_submit"
+    else:
+        annotations["scored_correctness"] = int(metrics.get("verified_correctness") or 0)
+        annotations["scored_correctness_source"] = "final_verification"
 
     summary = {
         "schema_version": SUMMARY_SCHEMA_VERSION,
@@ -1523,6 +1542,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         "attempted_correctness": annotations["attempted_correctness"],
         "verified_count": annotations["verified_count"],
         "verified_correctness": annotations["verified_correctness"],
+        "scored_correctness": annotations.get("scored_correctness"),
+        "scored_correctness_source": annotations.get("scored_correctness_source"),
         "action_count": annotations.get("action_count"),
         "tool_call_count": tool_call_count,
         "trace_action_count": annotations.get("trace_action_count"),
@@ -1537,6 +1558,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "first_submit_step": first_submit_step,
         "pre_first_submit_verified_correctness": pre_first_submit_verified_correctness,
         "pre_successful_submit_verified_correctness": pre_successful_submit_verified_correctness,
+        "pre_successful_submit_field_states": pre_successful_submit_field_states,
         "premature_done_without_submit": premature_done_without_submit,
         "done_step": done_step,
         "accessibility_snapshot_count": accessibility_snapshot_count,
@@ -1547,6 +1569,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "reference_trace_path": annotations.get("reference_trace_path"),
         "reference_video_path": annotations.get("reference_video_path"),
         "reference_action_count": annotations.get("reference_action_count"),
+        "reference_action_count_source": annotations.get("reference_action_count_source"),
         "reference_duration_s": annotations.get("reference_duration_s"),
         "action_overhead_ratio": annotations.get("action_overhead_ratio"),
         "time_overhead_ratio": annotations.get("time_overhead_ratio"),
@@ -1592,6 +1615,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         "action_count": annotations.get("action_count"),
         "trace_action_count": annotations.get("trace_action_count"),
         "trace_action_count_source": annotations.get("trace_action_count_source"),
+        "scored_correctness": annotations.get("scored_correctness"),
+        "scored_correctness_source": annotations.get("scored_correctness_source"),
         "tool_error_count": tool_error_count,
         "invalid_tool_call_count": invalid_tool_call_count,
         "submit_attempt_count": submit_attempt_count,
@@ -1604,6 +1629,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "inference_roundtrip_s": inference_roundtrip_s,
         "reference_available": annotations.get("reference_available"),
         "reference_action_count": annotations.get("reference_action_count"),
+        "reference_action_count_source": annotations.get("reference_action_count_source"),
         "reference_duration_s": annotations.get("reference_duration_s"),
         "action_overhead_ratio": annotations.get("action_overhead_ratio"),
         "time_overhead_ratio": annotations.get("time_overhead_ratio"),

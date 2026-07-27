@@ -117,6 +117,27 @@ def _validate_norm_coord(target: Dict[str, Any], key: str) -> int:
     return value
 
 
+def _coerce_direct_coordinate_pair(args: Dict[str, Any], warnings: List[str]) -> None:
+    """Normalize Qwen-style ``x: [x, y]`` without guessing coordinates."""
+    raw_x = args.get("x")
+    if not isinstance(raw_x, list):
+        return
+    if len(raw_x) != 2 or not all(isinstance(value, int) for value in raw_x):
+        return
+    pair_x, pair_y = raw_x
+    raw_y = args.get("y")
+    redundant_y_matches = raw_y is None or raw_y == pair_y
+    if isinstance(raw_y, list) and raw_y:
+        redundant_y_matches = all(isinstance(value, int) and value == pair_y for value in raw_y)
+    if not redundant_y_matches:
+        raise ValueError(
+            f"ambiguous_coordinate_pair: args.x={raw_x!r} conflicts with args.y={raw_y!r}"
+        )
+    args["x"] = pair_x
+    args["y"] = pair_y
+    warnings.append("coerced_coordinate_pair:args.x->[x,y]")
+
+
 def validate_low_level_action(action: Dict[str, Any]) -> Tuple[Dict[str, Any], List[str]]:
     if not isinstance(action, dict):
         raise ValueError("action_must_be_object")
@@ -157,6 +178,8 @@ def validate_low_level_action(action: Dict[str, Any]) -> Tuple[Dict[str, Any], L
         for key in list(args.keys()):
             if key not in {"x", "y", "text", "slowly", "submit", "key", "deltaX", "deltaY", "time", "question_id", "label"}:
                 warnings.append(f"unknown_args_key:{key}")
+        if action_name in {"browser_mouse_move_xy", "browser_mouse_click_xy"}:
+            _coerce_direct_coordinate_pair(args, warnings)
 
     if action_name in {"move_mouse", "click_mouse"}:
         _validate_norm_coord(normalized["target"], "x")

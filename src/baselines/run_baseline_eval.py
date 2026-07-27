@@ -1376,6 +1376,21 @@ class ExecutionSessionBase:
     def execute_type_text(self, text: str, step_idx: int) -> Dict[str, Any]:
         raise NotImplementedError
 
+    def detect_submit_success(self, step_idx: int) -> Tuple[bool, Dict[str, Any]]:
+        """Read the post-click page state without performing another interaction."""
+        page_text = str(self._get_page_text(step_idx) or "")
+        normalized = page_text.lower()
+        markers = (
+            "response has been recorded",
+            "your response has been recorded",
+            "ihre antwort wurde gesendet",
+            "antwort wurde gesendet",
+            "antwort wurde erfasst",
+            "deine antwort wurde aufgezeichnet",
+        )
+        success = any(marker in normalized for marker in markers)
+        return success, {"success": success, "page_text_excerpt": page_text[:1000]}
+
 
 class LocalExecutionSession(ExecutionSessionBase):
     def __init__(
@@ -2194,9 +2209,18 @@ def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--observation-mode",
-        choices=["vision_coords", "vision_coords_text"],
+        choices=["vision_coords", "vision_coords_text", "vision_only_coords_v1"],
         default=DEFAULT_OBSERVATION_MODE,
-        help="vision_coords omits page-text dumps from prompts and relies on screenshot + interaction map.",
+        help=(
+            "vision_coords omits page text but includes a DOM-derived interaction map; "
+            "vision_only_coords_v1 exposes only the screenshot and task answers to the model."
+        ),
+    )
+    parser.add_argument(
+        "--fill-only-done",
+        action="store_true",
+        default=False,
+        help="Score completion after all fields verify correctly and prevent form submission.",
     )
     parser.add_argument(
         "--scoring-mode",
@@ -2322,6 +2346,34 @@ def _derive_reference_duration_s(reference_annotations: Dict[str, Any], referenc
     return round(float(value), 6) if value is not None else None
 
 
+def _reference_task_trace_stats(reference_trace_path: Path, task_mode: str) -> Dict[str, Any]:
+    """Count scripted task operations, excluding browser setup and observation events."""
+    if not reference_trace_path.exists():
+        return {"action_count": 0, "duration_s": None, "source": "unavailable"}
+    include_submit = str(task_mode or "") != "fill_only_done"
+    times: List[float] = []
+    for line in reference_trace_path.read_text(encoding="utf-8").splitlines():
+        try:
+            event = json.loads(line)
+        except Exception:
+            continue
+        if not isinstance(event, dict) or event.get("name") != "browser_run_code":
+            continue
+        arguments = event.get("args") if isinstance(event.get("args"), dict) else {}
+        purpose = str(arguments.get("purpose") or "")
+        if purpose != "fill_step" and not (include_submit and purpose == "submit"):
+            continue
+        try:
+            times.append(float(event.get("t_s")))
+        except Exception:
+            times.append(float(len(times)))
+    if times:
+        duration = round(max(times) - min(times), 6)
+        return {"action_count": len(times), "duration_s": duration, "source": "scripted_task_operations"}
+    legacy = _trace_event_stats(reference_trace_path)
+    return {**legacy, "source": "legacy_all_events_fallback"}
+
+
 def _reference_run_paths(form_id: str, answer_run_id: str) -> Dict[str, Path]:
     run_root = (ROOT_DIR / "data" / "forms" / form_id / "runs" / answer_run_id).resolve()
     return {
@@ -2339,6 +2391,7 @@ def _resolve_reference_efficiency(
     model_trace_path: Path,
     model_action_count: Optional[int] = None,
     prefer_model_action_count: bool = False,
+    task_mode: str = "fill_and_submit",
 ) -> Dict[str, Any]:
     ref_paths = _reference_run_paths(form_id, answer_run_id)
     reference_annotations = _load_json_file(ref_paths["annotations_path"]) if ref_paths["annotations_path"].exists() else {}
@@ -2353,7 +2406,7 @@ def _resolve_reference_efficiency(
             candidates = sorted(ref_paths["run_root"].glob("*.webm"))
             if candidates:
                 reference_video_path = str(candidates[0])
-    reference_trace_stats = _trace_event_stats(reference_trace_path)
+    reference_trace_stats = _reference_task_trace_stats(reference_trace_path, task_mode)
     reference_submit = reference_annotations.get("submit") if isinstance(reference_annotations.get("submit"), dict) else {}
     reference_video_available = bool(
         reference_video_path
@@ -2395,7 +2448,7 @@ def _resolve_reference_efficiency(
         model_action_count_source = "summary_field" if preferred_count is not None else "unavailable"
 
     reference_action_count = int(reference_trace_stats.get("action_count") or 0) if reference_available else None
-    reference_duration_s = _derive_reference_duration_s(reference_annotations, reference_trace_path) if reference_available else None
+    reference_duration_s = reference_trace_stats.get("duration_s") if reference_available else None
 
     action_overhead_ratio = None
     action_count_delta = None
@@ -2423,6 +2476,7 @@ def _resolve_reference_efficiency(
         "reference_trace_path": str(reference_trace_path),
         "reference_video_path": reference_video_path,
         "reference_action_count": reference_action_count,
+        "reference_action_count_source": reference_trace_stats.get("source"),
         "reference_duration_s": reference_duration_s,
         "action_overhead_ratio": action_overhead_ratio,
         "time_overhead_ratio": time_overhead_ratio,
@@ -2473,8 +2527,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     args.observation_mode = str(args.observation_mode or DEFAULT_OBSERVATION_MODE).strip().lower()
     args.scoring_mode = str(args.scoring_mode or DEFAULT_SCORING_MODE).strip().lower()
     human_ui_protocol = args.interaction_protocol == "human_ui_v1"
+    screenshot_only_protocol = args.observation_mode == "vision_only_coords_v1"
+    task_mode = "fill_only_done" if args.fill_only_done else "fill_and_submit"
     effective_control_level = "low_level" if human_ui_protocol else str(args.control_level)
-    prompt_page_text_enabled = not (human_ui_protocol and args.observation_mode == "vision_coords")
+    prompt_page_text_enabled = not (
+        human_ui_protocol and args.observation_mode in {"vision_coords", "vision_only_coords_v1"}
+    )
     run_label = _make_run_label(args.run_label)
     run_started_utc = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     config_path = (ROOT_DIR / args.config).resolve()
@@ -2559,6 +2617,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "prompt_profile": args.prompt_profile,
         "interaction_protocol": args.interaction_protocol,
         "observation_mode": args.observation_mode,
+        "task_mode": task_mode,
         "scoring_mode": args.scoring_mode,
         "requested_control_level": args.control_level,
         "control_level": effective_control_level,
@@ -2588,6 +2647,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         "input_contract": {
             "provides_form_spec": False,
             "provides_dom_dump_upfront": False,
+            "provides_dom_interaction_map": not screenshot_only_protocol,
+            "provides_screenshot": args.model_kind == "vlm",
             "provides_answers": True,
             "provides_labels": True,
             "provides_widget_types": True,
@@ -2613,6 +2674,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             "require_gpu": bool(args.require_gpu),
             "interaction_protocol": str(args.interaction_protocol),
             "observation_mode": str(args.observation_mode),
+            "task_mode": task_mode,
+            "fill_only_done": bool(args.fill_only_done),
             "scoring_mode": str(args.scoring_mode),
             "requested_control_level": str(args.control_level),
             "control_level": str(effective_control_level),
@@ -2652,6 +2715,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             "prompt_profile": args.prompt_profile,
             "interaction_protocol": args.interaction_protocol,
             "observation_mode": args.observation_mode,
+            "task_mode": task_mode,
             "scoring_mode": args.scoring_mode,
             "verification_scope": args.verification_scope,
             "requested_control_level": args.control_level,
@@ -2755,11 +2819,21 @@ def main(argv: Optional[List[str]] = None) -> int:
                 last_target_widget_type = str(last_history_row.get("last_target_widget_type") or "").strip() or None
             last_target_visible = last_target_question_id in visible_question_ids if last_target_question_id else None
             page_text_for_prompt = page_text if prompt_page_text_enabled else ""
+            last_result_for_prompt = last_result
+            if screenshot_only_protocol:
+                last_error = str((last_result or {}).get("error") or "")
+                last_result_for_prompt = {
+                    "status": str((last_result or {}).get("status") or "observed"),
+                    "remaining_answers": len(remaining_answers),
+                }
+                if last_error.startswith("model_output_invalid:"):
+                    last_result_for_prompt["syntax_error"] = last_error
 
             image_path = Path(screenshot_path) if screenshot_path else paths["observations_dir"] / f"step_{step_idx:04d}.png"
             behavior_nudge: Optional[str] = None
             if (
                 remaining_answers
+                and not screenshot_only_protocol
                 and args.idle_step_threshold > 0
                 and idle_streak >= args.idle_step_threshold
                 and idle_nudge_count < args.idle_nudge_max
@@ -2781,7 +2855,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                     form_url,
                     remaining_answers,
                     page_text_for_prompt,
-                    last_result,
+                    last_result_for_prompt,
                     behavior_nudge=behavior_nudge,
                     compact_page_text_max_chars=args.compact_page_text_max_chars,
                     prompt_profile=args.prompt_profile,
@@ -2793,13 +2867,14 @@ def main(argv: Optional[List[str]] = None) -> int:
                     control_level=effective_control_level,
                     observation_mode=args.observation_mode,
                     interaction_map=interaction_map,
+                    fill_only_done=bool(args.fill_only_done),
                 )
             else:
                 prompt = build_vlm_prompt(
                     form_url,
                     remaining_answers,
                     page_text_for_prompt,
-                    last_result,
+                    last_result_for_prompt,
                     image_path,
                     behavior_nudge=behavior_nudge,
                     compact_page_text_max_chars=args.compact_page_text_max_chars,
@@ -2812,6 +2887,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                     control_level=effective_control_level,
                     observation_mode=args.observation_mode,
                     interaction_map=interaction_map,
+                    fill_only_done=bool(args.fill_only_done),
                 )
 
             step_input_record = {
@@ -3031,6 +3107,40 @@ def main(argv: Optional[List[str]] = None) -> int:
 
             action_name = action["action"]
             annotations["action_count"] += 1
+            if args.fill_only_done and action_name == "submit":
+                detail = "This condition requires filling every field and stopping without submission."
+                step_record["status"] = "blocked"
+                step_record["error"] = "submit_disabled_in_fill_only_done"
+                io_record["error"] = "submit_disabled_in_fill_only_done"
+                _record_soft_violation(annotations, "submit_disabled_in_fill_only_done", detail, step_idx)
+                step_record["progress_made"] = False
+                io_record["progress_made"] = False
+                annotations["steps"].append(step_record)
+                _append_jsonl(paths["model_io_path"], io_record)
+                last_result = {
+                    "status": "blocked",
+                    "error": "submit_disabled_in_fill_only_done",
+                    "remaining_answers": len(_serialize_remaining_answers(question_states)),
+                }
+                continue
+            if screenshot_only_protocol and action_name == "submit":
+                detail = "The visual condition requires clicking the visible Submit button with browser_mouse_click_xy."
+                step_record["status"] = "blocked"
+                step_record["error"] = "semantic_submit_disabled_in_visual_protocol"
+                io_record["error"] = "semantic_submit_disabled_in_visual_protocol"
+                _record_soft_violation(
+                    annotations, "semantic_submit_disabled_in_visual_protocol", detail, step_idx
+                )
+                step_record["progress_made"] = False
+                io_record["progress_made"] = False
+                annotations["steps"].append(step_record)
+                _append_jsonl(paths["model_io_path"], io_record)
+                last_result = {
+                    "status": "blocked",
+                    "error": "semantic_submit_disabled_in_visual_protocol",
+                    "remaining_answers": len(_serialize_remaining_answers(question_states)),
+                }
+                continue
             if action_name == "submit" and len(remaining_answers) > 0:
                 detail = json.dumps(
                     {
@@ -3078,8 +3188,37 @@ def main(argv: Optional[List[str]] = None) -> int:
                         execution_payload = execution_session.execute_move_mouse(int(target.get("x")), int(target.get("y")), step_idx)
                         step_record["status"] = "moved"
                     elif action_name in {"click_mouse", "browser_mouse_click_xy"}:
+                        pre_submit_field_states = None
+                        if not args.fill_only_done and not remaining_answers:
+                            pre_submit_field_states = [
+                                {
+                                    "question_id": state.get("question_id"),
+                                    "label": state.get("label"),
+                                    "verified": bool(state.get("verified")),
+                                    "verified_correct": bool(state.get("verified_correct")),
+                                    "actual_value": state.get("actual_value"),
+                                }
+                                for state in question_states
+                            ]
+                            annotations["pre_last_empty_state_click_verified_correctness"] = sum(
+                                1 for state in question_states if state.get("verified_correct")
+                            )
+                            annotations["pre_last_empty_state_click_field_states"] = pre_submit_field_states
                         execution_payload = execution_session.execute_click_mouse(int(target.get("x")), int(target.get("y")), step_idx)
                         step_record["status"] = "clicked"
+                        if not args.fill_only_done and not remaining_answers:
+                            execution_session.execute_wait(1.0, step_idx)
+                            submit_detected, submit_probe = execution_session.detect_submit_success(step_idx)
+                            execution_payload["submit_probe"] = submit_probe
+                            if submit_detected:
+                                step_record["status"] = "submitted"
+                                annotations["success"] = True
+                                annotations["submit_success"] = True
+                                annotations["stop_reason"] = "submitted"
+                                annotations["pre_successful_submit_verified_correctness"] = sum(
+                                    1 for state in question_states if state.get("verified_correct")
+                                )
+                                annotations["pre_successful_submit_field_states"] = pre_submit_field_states
                     elif action_name in {"type_text", "browser_type"}:
                         text_value = str(tool_args.get("text") if action_name == "browser_type" else action.get("value") or "")
                         execution_payload = execution_session.execute_type_text(text_value, step_idx)
@@ -3326,6 +3465,14 @@ def main(argv: Optional[List[str]] = None) -> int:
 
             remaining_after = len(_serialize_remaining_answers(question_states))
             progress_made = remaining_after < len(remaining_answers) or step_record.get("status") in {"submitted", "done"}
+            if args.fill_only_done and remaining_after == 0:
+                annotations["success"] = True
+                annotations["submit_success"] = False
+                annotations["stop_reason"] = "filled_without_submit"
+                annotations["failure_category"] = None
+                annotations["failure_detail"] = None
+                step_record["status"] = "filled_without_submit"
+                progress_made = True
             step_record["progress_made"] = bool(progress_made)
             io_record["progress_made"] = bool(progress_made)
             repeat_same_signature_count = _recent_repeat_same_signature_count(annotations.get("steps", []) + [step_record])
@@ -3369,6 +3516,7 @@ def main(argv: Optional[List[str]] = None) -> int:
 
             terminal_reasons = {
                 "submitted",
+                "filled_without_submit",
                 "model_output_invalid",
                 "model_inference_failed",
                 "done",
@@ -3391,6 +3539,39 @@ def main(argv: Optional[List[str]] = None) -> int:
                 )
             except Exception:
                 pass
+        if args.fill_only_done:
+            verified_correctness = sum(1 for state in question_states if state.get("verified_correct"))
+            question_total = len(question_states)
+            annotations["submit_success"] = False
+            annotations["success"] = question_total > 0 and verified_correctness >= question_total
+            if annotations["success"]:
+                annotations["stop_reason"] = "filled_without_submit"
+                annotations["failure_category"] = None
+                annotations["failure_detail"] = None
+            elif annotations.get("stop_reason") == "done":
+                annotations["stop_reason"] = "done_incomplete_fill_only"
+                _set_failure(
+                    annotations,
+                    "done_incomplete_fill_only",
+                    f"verified_correctness={verified_correctness}/{question_total}",
+                )
+        elif execution_session is not None and annotations.get("stop_reason") == "done":
+            submit_detected, submit_probe = execution_session.detect_submit_success(
+                len(annotations.get("steps", []))
+            )
+            annotations["terminal_submit_probe"] = submit_probe
+            if submit_detected:
+                annotations["success"] = True
+                annotations["submit_success"] = True
+                annotations["stop_reason"] = "submitted"
+                annotations["failure_category"] = None
+                annotations["failure_detail"] = None
+                annotations["pre_successful_submit_verified_correctness"] = annotations.get(
+                    "pre_last_empty_state_click_verified_correctness"
+                )
+                annotations["pre_successful_submit_field_states"] = annotations.get(
+                    "pre_last_empty_state_click_field_states"
+                )
         if annotations["stop_reason"] is None:
             annotations["stop_reason"] = "max_steps_exceeded"
             _set_failure(annotations, "max_steps_exceeded", f"max_steps={args.max_steps}")
@@ -3426,6 +3607,13 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     metrics = _calculate_metrics(question_states)
     annotations.update(metrics)
+    pre_submit_correctness = annotations.get("pre_successful_submit_verified_correctness")
+    if bool(annotations.get("submit_success")) and pre_submit_correctness is not None:
+        annotations["scored_correctness"] = int(pre_submit_correctness)
+        annotations["scored_correctness_source"] = "pre_successful_submit"
+    else:
+        annotations["scored_correctness"] = int(metrics.get("verified_correctness") or 0)
+        annotations["scored_correctness_source"] = "final_verification"
     if args.scoring_mode == "soft_quality_v1":
         quality_metrics = _calculate_soft_quality_metrics(
             steps=annotations.get("steps", []),
@@ -3445,6 +3633,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             model_duration_s=annotations["duration_s"],
             model_trace_path=paths["trace_path"],
             model_action_count=annotations.get("action_count"),
+            prefer_model_action_count=True,
+            task_mode=task_mode,
         )
     )
     annotations["trace"] = trace_summary
@@ -3477,6 +3667,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "prompt_profile": annotations.get("prompt_profile"),
         "interaction_protocol": args.interaction_protocol,
         "observation_mode": args.observation_mode,
+        "task_mode": task_mode,
         "scoring_mode": args.scoring_mode,
         "verification_scope": args.verification_scope,
         "requested_control_level": args.control_level,
@@ -3493,6 +3684,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         "attempted_correctness": annotations["attempted_correctness"],
         "verified_count": annotations["verified_count"],
         "verified_correctness": annotations["verified_correctness"],
+        "scored_correctness": annotations.get("scored_correctness"),
+        "scored_correctness_source": annotations.get("scored_correctness_source"),
+        "pre_successful_submit_verified_correctness": annotations.get("pre_successful_submit_verified_correctness"),
+        "pre_successful_submit_field_states": annotations.get("pre_successful_submit_field_states"),
         "action_count": annotations["action_count"],
         "trace_action_count": annotations.get("trace_action_count"),
         "trace_action_count_source": annotations.get("trace_action_count_source"),
@@ -3513,6 +3708,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "reference_trace_path": annotations.get("reference_trace_path"),
         "reference_video_path": annotations.get("reference_video_path"),
         "reference_action_count": annotations.get("reference_action_count"),
+        "reference_action_count_source": annotations.get("reference_action_count_source"),
         "reference_duration_s": annotations.get("reference_duration_s"),
         "action_overhead_ratio": annotations.get("action_overhead_ratio"),
         "time_overhead_ratio": annotations.get("time_overhead_ratio"),
@@ -3533,6 +3729,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             "submit_success": summary["submit_success"],
             "attempted_correctness": summary["attempted_correctness"],
             "verified_correctness": summary["verified_correctness"],
+            "scored_correctness": summary.get("scored_correctness"),
+            "scored_correctness_source": summary.get("scored_correctness_source"),
             "idle_reprompts": summary.get("idle_reprompts", 0),
             "model_driven_execution": summary.get("model_driven_execution"),
             "autonomy_step_rate": summary.get("autonomy_step_rate"),
@@ -3576,6 +3774,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "prompt_profile": annotations.get("prompt_profile"),
         "interaction_protocol": args.interaction_protocol,
         "observation_mode": args.observation_mode,
+        "task_mode": task_mode,
         "scoring_mode": args.scoring_mode,
         "verification_scope": args.verification_scope,
         "requested_control_level": args.control_level,
@@ -3598,9 +3797,12 @@ def main(argv: Optional[List[str]] = None) -> int:
         "termination_due_to_loop_stall": summary.get("termination_due_to_loop_stall"),
         "soft_violation_count": summary.get("soft_violation_count"),
         "trace_action_count": summary.get("trace_action_count"),
+        "scored_correctness": summary.get("scored_correctness"),
+        "scored_correctness_source": summary.get("scored_correctness_source"),
         "trace_action_count_source": summary.get("trace_action_count_source"),
         "reference_available": summary.get("reference_available"),
         "reference_action_count": summary.get("reference_action_count"),
+        "reference_action_count_source": summary.get("reference_action_count_source"),
         "reference_duration_s": summary.get("reference_duration_s"),
         "action_overhead_ratio": summary.get("action_overhead_ratio"),
         "time_overhead_ratio": summary.get("time_overhead_ratio"),

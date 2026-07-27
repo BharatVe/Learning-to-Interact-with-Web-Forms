@@ -1,0 +1,43 @@
+{
+  "analysis_id": "formfactory_qwen3vl_interface_comparison_20260724",
+  "expected_form_count": 50,
+  "answer_run_id": "run_0002",
+  "model_family": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 20260724,
+  "dropdown_audit_csv": "docs/eval_results/interaction_failure_analysis/data/dropdown_selected_state_audit.csv",
+  "conditions": [
+    {
+      "id": "direct_mcp_fill_only",
+      "label": "Direct MCP (fill-only)",
+      "interface": "direct_mcp",
+      "task_mode": "fill_only_done",
+      "source": {"kind": "experiment", "experiment_id": "qwen3vl_direct_mcp_fill_only_50_r2_20260727", "model_id": "vlm_qwen3_vl_30b_a3b_instruct"}
+    },
+    {
+      "id": "formfactory_style_fill_only",
+      "label": "FormFactory-style visual (fill-only)",
+      "interface": "formfactory_style_visual",
+      "task_mode": "fill_only_done",
+      "source": {"kind": "experiment", "experiment_id": "formfactory_style_qwen3vl_fill_only_50_r2_20260724", "model_id": "vlm_qwen3_vl_30b_a3b_instruct_formfactory_style"}
+    },
+    {
+      "id": "direct_mcp_submit",
+      "label": "Direct MCP (submit-enabled)",
+      "interface": "direct_mcp",
+      "task_mode": "fill_and_submit",
+      "source": {"kind": "experiment", "experiment_id": "qwen3vl_direct_mcp_submit_50_r2_20260724", "model_id": "vlm_qwen3_vl_30b_a3b_instruct"}
+    },
+    {
+      "id": "formfactory_style_submit",
+      "label": "FormFactory-style visual (submit-enabled)",
+      "interface": "formfactory_style_visual",
+      "task_mode": "fill_and_submit",
+      "source": {"kind": "experiment", "experiment_id": "formfactory_style_qwen3vl_submit_50_r2_20260724", "model_id": "vlm_qwen3_vl_30b_a3b_instruct_formfactory_style"}
+    }
+  ],
+  "paired_comparisons": [
+    {"id": "fill_only_visual_minus_direct", "left": "formfactory_style_fill_only", "right": "direct_mcp_fill_only"},
+    {"id": "submit_visual_minus_direct", "left": "formfactory_style_submit", "right": "direct_mcp_submit"}
+  ]
+}

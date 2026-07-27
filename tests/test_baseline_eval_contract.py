@@ -300,7 +300,22 @@ class BaselineEvalContractTests(TestCase):
         self.assertEqual(args.control_level, "high_level")
         self.assertEqual(args.interaction_protocol, "human_ui_v1")
         self.assertEqual(args.observation_mode, "vision_coords")
+        self.assertFalse(args.fill_only_done)
         self.assertEqual(args.scoring_mode, "soft_quality_v1")
+
+    def test_parse_args_accepts_formfactory_style_fill_only_protocol(self):
+        args = rbe._parse_args(
+            [
+                "--model-id", "vlm_qwen3_vl_30b_a3b_instruct_formfactory_style",
+                "--model-kind", "vlm",
+                "--form-id", "event_rsvp",
+                "--run-index", "2",
+                "--observation-mode", "vision_only_coords_v1",
+                "--fill-only-done",
+            ]
+        )
+        self.assertEqual(args.observation_mode, "vision_only_coords_v1")
+        self.assertTrue(args.fill_only_done)
 
     def test_mcp_interaction_map_uses_page_evaluate_and_returns_items(self):
         class FakeEngine:
@@ -396,6 +411,67 @@ class BaselineEvalContractTests(TestCase):
         self.assertIn("The model must choose direct browser tool calls on its own from the observed state.", prompt)
         self.assertNotIn("click target, then type_text", prompt)
         self.assertNotIn("Current page text:", prompt)
+
+    def test_formfactory_style_prompt_excludes_dom_derived_context(self):
+        prompt = pb.build_vlm_prompt(
+            form_url="https://example.test/form",
+            remaining_answers=[{"question_id": "q_001", "label": "Name", "widget_type": "short_text", "value": "Olivia"}],
+            page_text="DOM LEAK Name Email Submit",
+            last_result={"status": "observed", "error": None, "remaining_answers": 1},
+            screenshot_path=Path("/tmp/observation.png"),
+            control_level="low_level",
+            observation_mode="vision_only_coords_v1",
+            interaction_map=[{"role": "input", "label": "DOM MAP LEAK", "x": 200, "y": 300}],
+            recent_history=[
+                {
+                    "step_index": 0,
+                    "action": {
+                        "tool": "browser_mouse_click_xy",
+                        "action": "browser_mouse_click_xy",
+                        "args": {"x": 300, "y": 440, "question_id": "q_001", "label": "Name"},
+                    },
+                    "status": "clicked",
+                    "error": None,
+                    "progress_made": "DOM HISTORY LEAK",
+                }
+            ],
+            validation_feedback={"detail": "DOM VERIFICATION LEAK"},
+            fill_only_done=True,
+        )
+        self.assertIn("Infer all click coordinates from the screenshot", prompt)
+        self.assertIn("never click Submit", prompt)
+        self.assertNotIn("Interaction map:", prompt)
+        self.assertNotIn("Recent step history:", prompt)
+        self.assertNotIn("Validation feedback:", prompt)
+        self.assertNotIn("DOM LEAK", prompt)
+        self.assertIn("Recent action history:", prompt)
+        self.assertIn('"tool": "browser_mouse_click_xy"', prompt)
+        self.assertIn("After a successful click on a text input", prompt)
+        self.assertIn("Action sequence example:", prompt)
+
+    def test_formfactory_style_prompt_exposes_only_syntax_errors(self):
+        prompt = pb.build_vlm_prompt(
+            form_url="https://example.test/form",
+            remaining_answers=[{"question_id": "q_001", "label": "Name", "widget_type": "short_text", "value": "Olivia"}],
+            page_text="DOM PAGE LEAK",
+            last_result={"status": "failed", "syntax_error": "model_output_invalid: invalid_target_x"},
+            screenshot_path=Path("/tmp/observation.png"),
+            control_level="low_level",
+            observation_mode="vision_only_coords_v1",
+            recent_history=[
+                {
+                    "step_index": 1,
+                    "action": None,
+                    "status": "failed",
+                    "error": "model_output_invalid: invalid_target_x",
+                    "progress_made": False,
+                }
+            ],
+            validation_feedback={"detail": "DOM VERIFIER LEAK"},
+        )
+        self.assertIn("model_output_invalid: invalid_target_x", prompt)
+        self.assertNotIn("DOM PAGE LEAK", prompt)
+        self.assertNotIn("DOM VERIFIER LEAK", prompt)
 
     def test_idle_recovery_nudge_returns_neutral_stall_payload(self):
         payload = json.loads(
@@ -503,6 +579,30 @@ class BaselineEvalContractTests(TestCase):
         self.assertEqual(action["action"], "browser_mouse_click_xy")
         self.assertEqual(action["args"]["question_id"], "q_001")
         self.assertEqual(warnings, [])
+
+    def test_validate_direct_browser_tool_coerces_qwen_coordinate_pair(self):
+        action, warnings = validate_low_level_action(
+            {
+                "tool": "browser_mouse_click_xy",
+                "args": {"x": [377, 440], "y": 440, "question_id": "q_001"},
+            }
+        )
+        self.assertEqual(action["args"]["x"], 377)
+        self.assertEqual(action["args"]["y"], 440)
+        self.assertIn("coerced_coordinate_pair:args.x->[x,y]", warnings)
+
+        repeated_y_action, repeated_y_warnings = validate_low_level_action(
+            {"tool": "browser_mouse_click_xy", "args": {"x": [377, 440], "y": [440, 440]}}
+        )
+        self.assertEqual(repeated_y_action["args"]["x"], 377)
+        self.assertEqual(repeated_y_action["args"]["y"], 440)
+        self.assertIn("coerced_coordinate_pair:args.x->[x,y]", repeated_y_warnings)
+
+    def test_validate_direct_browser_tool_rejects_ambiguous_coordinate_pair(self):
+        with self.assertRaisesRegex(ValueError, "ambiguous_coordinate_pair"):
+            validate_low_level_action(
+                {"tool": "browser_mouse_click_xy", "args": {"x": [377, 440], "y": 441}}
+            )
 
     def test_direct_browser_tool_helpers_extract_args_and_target(self):
         action = {"tool": "browser_type", "action": "browser_type", "args": {"text": "Olivia", "question_id": "q_001", "label": "Name"}}

@@ -1,0 +1,29 @@
+{
+  "analysis_id": "formfactory_qwen3vl_interface_comparison_20260724",
+  "model_family": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+  "answer_run_id": "run_0002",
+  "status": "four_cell_full_run_submitted",
+  "completed_conditions": [],
+  "full_run_job_ids": {
+    "formfactory_style_fill_only": 2309099,
+    "formfactory_style_submit": 2309097,
+    "direct_mcp_fill_only": 2309098,
+    "direct_mcp_submit": 2309096
+  },
+  "completed_pilot_job_ids": [2304519, 2306745, 2306772, 2307720, 2307721],
+  "failed_preflight_job_ids": [2304517, 2304518, 2305016, 2305017, 2305253, 2305254, 2307716, 2307717],
+  "cancelled_pilot_job_ids": [2306746],
+  "pending_pilot_job_ids": [],
+  "corrected_visual_pilot_metrics": {
+    "fill_only_verified_fields": "14/43",
+    "submit_enabled_verified_fields": "13/43",
+    "invalid_model_actions": "0/98",
+    "submit_successes": "0/5"
+  },
+  "metric_policy": {
+    "primary": "non-dropdown field accuracy with form-level bootstrap confidence intervals",
+    "dropdown": "current corrected verifier in all four newly run conditions",
+    "submission": "pre-successful-submit state when available",
+    "actions": "setup, observation, verifier, synchronization, and close events excluded"
+  }
+}
