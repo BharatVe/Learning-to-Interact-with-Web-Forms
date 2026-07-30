@@ -1,0 +1,73 @@
+condition_id,condition_label,interface,question_position,eligible_forms,target_fields,correct_fields,accuracy_pct,ci_95_low_pct,ci_95_high_pct,low_sample_flag
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,1,50,50,50,100.0,100.0,100.0,False
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,2,50,50,50,100.0,100.0,100.0,False
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,3,44,44,44,100.0,100.0,100.0,False
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,4,41,41,41,100.0,100.0,100.0,False
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,5,43,43,38,88.37,79.07,97.67,False
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,6,48,48,38,79.17,66.67,89.58,False
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,7,48,48,25,52.08,37.5,66.67,False
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,8,32,32,8,25.0,12.5,40.62,False
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,9,18,18,2,11.11,0.0,27.78,False
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,10,7,7,0,0.0,0.0,0.0,True
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,11,2,2,0,0.0,0.0,0.0,True
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,12,1,1,0,0.0,0.0,0.0,True
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,1,50,50,34,68.0,54.0,80.0,False
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,2,50,50,34,68.0,54.0,80.0,False
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,3,44,44,29,65.91,52.27,79.55,False
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,4,41,41,26,63.41,48.78,78.05,False
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,5,43,43,36,83.72,72.09,93.02,False
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,6,48,48,40,83.33,72.92,93.75,False
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,7,48,48,42,87.5,77.08,95.83,False
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,8,32,32,28,87.5,75.0,96.88,False
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,9,18,18,15,83.33,66.67,100.0,False
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,10,7,7,5,71.43,28.57,100.0,True
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,11,2,2,0,0.0,0.0,0.0,True
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,12,1,1,1,100.0,100.0,100.0,True
+qwen3_text,Qwen3 Text,direct_mcp,1,50,50,40,80.0,68.0,90.0,False
+qwen3_text,Qwen3 Text,direct_mcp,2,50,50,40,80.0,68.0,90.0,False
+qwen3_text,Qwen3 Text,direct_mcp,3,44,44,34,77.27,63.64,88.64,False
+qwen3_text,Qwen3 Text,direct_mcp,4,41,41,30,73.17,58.54,85.37,False
+qwen3_text,Qwen3 Text,direct_mcp,5,43,43,31,72.09,58.14,83.72,False
+qwen3_text,Qwen3 Text,direct_mcp,6,48,48,32,66.67,54.11,79.17,False
+qwen3_text,Qwen3 Text,direct_mcp,7,48,48,23,47.92,33.33,62.5,False
+qwen3_text,Qwen3 Text,direct_mcp,8,32,32,10,31.25,15.62,46.88,False
+qwen3_text,Qwen3 Text,direct_mcp,9,18,18,6,33.33,11.11,55.56,False
+qwen3_text,Qwen3 Text,direct_mcp,10,7,7,2,28.57,0.0,71.43,True
+qwen3_text,Qwen3 Text,direct_mcp,11,2,2,0,0.0,0.0,0.0,True
+qwen3_text,Qwen3 Text,direct_mcp,12,1,1,0,0.0,0.0,0.0,True
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,1,50,50,39,78.0,66.0,88.0,False
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,2,50,50,39,78.0,66.0,88.0,False
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,3,44,44,33,75.0,61.36,86.36,False
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,4,41,41,33,80.49,68.29,92.68,False
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,5,43,43,37,86.05,74.42,95.35,False
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,6,48,48,39,81.25,68.75,91.67,False
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,7,48,48,32,66.67,52.08,79.17,False
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,8,32,32,21,65.62,50.0,81.25,False
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,9,18,18,9,50.0,27.78,72.22,False
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,10,7,7,1,14.29,0.0,42.86,True
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,11,2,2,0,0.0,0.0,0.0,True
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,12,1,1,0,0.0,0.0,0.0,True
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,1,50,50,46,92.0,84.0,98.0,False
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,2,50,50,42,84.0,74.0,94.0,False
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,3,44,44,30,68.18,54.55,81.82,False
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,4,41,41,22,53.66,39.02,68.29,False
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,5,43,43,4,9.3,2.33,18.6,False
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,6,48,48,2,4.17,0.0,10.42,False
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,7,48,48,1,2.08,0.0,6.25,False
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,8,32,32,0,0.0,0.0,0.0,False
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,9,18,18,0,0.0,0.0,0.0,False
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,10,7,7,0,0.0,0.0,0.0,True
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,11,2,2,0,0.0,0.0,0.0,True
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,12,1,1,0,0.0,0.0,0.0,True
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,1,50,50,50,100.0,100.0,100.0,False
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,2,50,50,46,92.0,84.0,98.0,False
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,3,44,44,33,75.0,61.36,86.36,False
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,4,41,41,1,2.44,0.0,7.32,False
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,5,43,43,0,0.0,0.0,0.0,False
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,6,48,48,1,2.08,0.0,6.25,False
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,7,48,48,0,0.0,0.0,0.0,False
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,8,32,32,0,0.0,0.0,0.0,False
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,9,18,18,0,0.0,0.0,0.0,False
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,10,7,7,0,0.0,0.0,0.0,True
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,11,2,2,0,0.0,0.0,0.0,True
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,12,1,1,0,0.0,0.0,0.0,True

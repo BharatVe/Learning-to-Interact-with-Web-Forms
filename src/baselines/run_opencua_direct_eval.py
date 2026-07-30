@@ -12,6 +12,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+from PIL import Image, ImageDraw, ImageFont
+
 ROOT_DIR = Path(__file__).resolve().parents[2]
 SRC_DIR = ROOT_DIR / "src"
 if str(SRC_DIR) not in sys.path:
@@ -58,6 +60,9 @@ WAIT_RE = re.compile(r"(?:time\.)?sleep\s*\(\s*(?P<secs>\d+(?:\.\d+)?)\s*\)", re
 SUBMIT_RE = re.compile(r"^(?:submit|finish_and_submit|click_submit)\s*$", re.IGNORECASE)
 DONE_RE = re.compile(r"^(?:done|stop|terminate)\s*$", re.IGNORECASE)
 REPEATED_ACTION_LOOP_THRESHOLD = 4
+RULER_TICK_SPACING_PX = 100
+RULER_MAJOR_TICK_SPACING_PX = 500
+RULER_BAND_PX = 36
 
 
 def _load_run_answers(answers_path: Path, run_index: int) -> List[Dict[str, Any]]:
@@ -177,6 +182,93 @@ def _image_part_for_path(path_value: Optional[str]) -> Optional[Dict[str, Any]]:
         return None
     encoded = base64.b64encode(raw).decode("ascii")
     return {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{encoded}"}}
+
+
+def _ruler_config() -> Dict[str, int]:
+    return {
+        "tick_spacing_px": RULER_TICK_SPACING_PX,
+        "major_tick_spacing_px": RULER_MAJOR_TICK_SPACING_PX,
+        "band_px": RULER_BAND_PX,
+    }
+
+
+def _build_input_contract(include_symbolic_support: bool, ruler_overlay: bool) -> Dict[str, bool]:
+    """Describe model-visible inputs rather than implementation internals."""
+    return {
+        "provides_form_spec": False,
+        "provides_dom_dump_upfront": False,
+        "provides_answers": True,
+        "provides_labels": True,
+        # Remaining answers always contain widget_type, even in the
+        # screenshot-only FormFactory-style condition.
+        "provides_widget_types": True,
+        "provides_values": True,
+        "provides_interaction_map": bool(include_symbolic_support),
+        "provides_visual_ruler": bool(ruler_overlay),
+    }
+
+
+def _add_pixel_ruler_overlay(
+    source_path: str,
+    output_path: Path,
+    tick_spacing_px: int = RULER_TICK_SPACING_PX,
+    major_tick_spacing_px: int = RULER_MAJOR_TICK_SPACING_PX,
+    band_px: int = RULER_BAND_PX,
+) -> Dict[str, Any]:
+    """Create a same-size model-input image with pixel rulers on top/left.
+
+    The raw screenshot is read-only. The overlay is drawn inside the existing
+    image bounds so browser coordinates and the Qwen smart-resize transform do
+    not change.
+    """
+    source = Path(source_path)
+    if not source.exists() or not source.is_file():
+        raise FileNotFoundError(f"ruler_source_missing:{source}")
+    if tick_spacing_px <= 0 or major_tick_spacing_px <= 0 or band_px <= 0:
+        raise ValueError("invalid_ruler_configuration")
+
+    with Image.open(source) as opened:
+        base = opened.convert("RGBA")
+    width, height = base.size
+    overlay = Image.new("RGBA", base.size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+    font = ImageFont.load_default()
+    band = max(1, min(int(band_px), width, height))
+    draw.rectangle((0, 0, width, band - 1), fill=(255, 255, 255, 220))
+    draw.rectangle((0, 0, band - 1, height), fill=(255, 255, 255, 220))
+    draw.line((0, band - 1, width, band - 1), fill=(32, 32, 32, 255), width=1)
+    draw.line((band - 1, 0, band - 1, height), fill=(32, 32, 32, 255), width=1)
+
+    for x in range(0, width, int(tick_spacing_px)):
+        major = x % int(major_tick_spacing_px) == 0
+        tick = 14 if major else 7
+        draw.line((x, band - 1, x, band - 1 - tick), fill=(32, 32, 32, 255), width=2 if major else 1)
+        if major:
+            label_x = min(max(1, x + 2), max(1, width - 34))
+            draw.text((label_x, 2), str(x), fill=(20, 20, 20, 255), font=font)
+
+    for y in range(0, height, int(tick_spacing_px)):
+        major = y % int(major_tick_spacing_px) == 0
+        tick = 14 if major else 7
+        draw.line((band - 1, y, band - 1 - tick, y), fill=(32, 32, 32, 255), width=2 if major else 1)
+        if major:
+            label_y = min(max(2, y + 2), max(2, height - 12))
+            draw.text((2, label_y), str(y), fill=(20, 20, 20, 255), font=font)
+
+    composited = Image.alpha_composite(base, overlay).convert("RGB")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    composited.save(output_path, format="PNG")
+    return {
+        "enabled": True,
+        "raw_screenshot_path": str(source),
+        "model_input_screenshot_path": str(output_path),
+        "width": int(width),
+        "height": int(height),
+        "tick_spacing_px": int(tick_spacing_px),
+        "major_tick_spacing_px": int(major_tick_spacing_px),
+        "band_px": int(band),
+        "coordinate_dimensions_unchanged": True,
+    }
 
 
 def _clean_model_text(raw_text: str) -> str:
@@ -331,6 +423,11 @@ def _recent_same_action_signature_count(recent_history: List[Dict[str, Any]]) ->
     return count
 
 
+def _verified_fill_complete(question_states: List[Dict[str, Any]]) -> bool:
+    """Return true only when every expected field has been positively verified."""
+    return bool(question_states) and all(bool(state.get("verified_correct")) for state in question_states)
+
+
 class OpenCUAAdapter:
     def __init__(self, model_cfg: Dict[str, Any], api_timeout_s: int, base_url: str, served_model_name: str, min_request_interval_s: float) -> None:
         self.model_cfg = dict(model_cfg)
@@ -390,6 +487,8 @@ def _build_goal_prompt(
     observation_mode: str,
     recent_history: List[Dict[str, Any]],
     include_symbolic_support: bool = False,
+    task_mode: str = "fill_and_submit",
+    ruler_overlay: bool = False,
 ) -> str:
     validation_feedback = rbe._normalize_validation_feedback(last_result)
     page_text_block = ""
@@ -398,9 +497,37 @@ def _build_goal_prompt(
     interaction_map_block = ""
     if include_symbolic_support:
         interaction_map_block = f"Interaction map (symbolic support only):\n{json.dumps(interaction_map or [], indent=2, ensure_ascii=True)}\n\n"
+    fill_only_done = str(task_mode or "") == "fill_only_done"
+    task_text = "fill the form without submitting it" if fill_only_done else "fill and submit the form"
+    terminal_action = (
+        "- DONE\n"
+        if fill_only_done
+        else "- SUBMIT\n- DONE\n"
+    )
+    terminal_rules = (
+        "- This is a fill-only evaluation: never click Submit and never output SUBMIT.\n"
+        "- When every target answer is correctly filled, output DONE.\n"
+        if fill_only_done
+        else
+        "- Before submitting, double-check the visible form state against the target answers as well as the current screenshot allows.\n"
+        "- If the form appears correct and you intend to submit, click the visible Submit button or output SUBMIT.\n"
+        "- SUBMIT means you intend to submit the current form state.\n"
+        "- DONE means you intend to stop without further browser actions.\n"
+    )
+    control_rule = (
+        "- Choose the coordinate for the visible control itself: text box, radio button, checkbox, time field, or dropdown.\n"
+        if fill_only_done
+        else "- Choose the coordinate for the visible control itself: text box, radio button, checkbox, time field, dropdown, or Submit button.\n"
+    )
+    ruler_rule = (
+        "- The screenshot has labeled pixel rulers along its top and left edges. "
+        "Use these rulers as references when predicting absolute click coordinates.\n"
+        if ruler_overlay
+        else ""
+    )
     return (
         "You are a GUI agent. You are given a task and screenshots of the browser. "
-        "You need to perform the next browser action to fill and submit the form.\n"
+        f"You need to perform the next browser action to {task_text}.\n"
         "Return only the next GUI action to execute now. Do not describe your reasoning. "
         "Do not output a script, plan, loop, code block, or a list of future actions.\n"
         "Use exactly one action line, except text entry may use exactly two lines: first click the field, then write the value. "
@@ -414,12 +541,12 @@ def _build_goal_prompt(
         "- pyautogui.hotkey('ctrl', 'a')\n"
         "- pyautogui.scroll(-600)\n"
         "- time.sleep(1)\n"
-        "- SUBMIT\n"
-        "- DONE\n"
+        f"{terminal_action}"
         "Rules:\n"
+        f"{ruler_rule}"
         "- Use coordinates from the screenshot, not from the interaction map.\n"
         "- Work through the remaining answers in a simple top-to-bottom order when possible.\n"
-        "- Choose the coordinate for the visible control itself: text box, radio button, checkbox, time field, or Submit button.\n"
+        f"{control_rule}"
         "- If the target answer is not visible, scroll instead of clicking an unrelated area.\n"
         "- If an action does not change the visible state, choose a different strategy on the next step.\n"
         "- Do not type option values into radio, checkbox, or dropdown controls.\n"
@@ -429,10 +556,7 @@ def _build_goal_prompt(
         "If the target option is not visible in the opened list, scroll the page or menu instead of typing the value.\n"
         "- For text, paragraph, date, and time fields, click the field and write the exact target value without adding extra text.\n"
         "- Do not output explanations outside the action text.\n"
-        "- Before submitting, double-check the visible form state against the target answers as well as the current screenshot allows.\n"
-        "- If the form appears correct and you intend to submit, click the visible Submit button or output SUBMIT.\n"
-        "- SUBMIT means you intend to submit the current form state.\n"
-        "- DONE means you intend to stop without further browser actions.\n\n"
+        f"{terminal_rules}\n"
         f"Current URL:\n{form_url}\n\n"
         f"Remaining answers:\n{json.dumps(remaining_answers, indent=2, ensure_ascii=True)}\n\n"
         f"{interaction_map_block}"
@@ -496,11 +620,41 @@ def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
         default=False,
         help="Include the benchmark interaction map in the OpenCUA prompt. Default is screenshot-native only.",
     )
+    parser.add_argument(
+        "--fill-only-done",
+        action="store_true",
+        default=False,
+        help="Fill all fields, forbid submission, and stop once final verification is complete.",
+    )
+    parser.add_argument(
+        "--formfactory-style",
+        action="store_true",
+        default=False,
+        help=(
+            "Use the paper-inspired screenshot-only protocol: no symbolic prompt support, "
+            "two-step sanitized action history, and no verifier feedback in the prompt."
+        ),
+    )
+    parser.add_argument(
+        "--ruler-overlay",
+        action="store_true",
+        default=False,
+        help=(
+            "Overlay same-size labeled pixel rulers on model-visible screenshots. "
+            "Requires --formfactory-style."
+        ),
+    )
     return parser.parse_args(argv)
 
 
 def main(argv: Optional[List[str]] = None) -> int:
     args = _parse_args(argv)
+    task_mode = "fill_only_done" if args.fill_only_done else "fill_and_submit"
+    if args.formfactory_style and args.include_symbolic_support:
+        raise ValueError("formfactory_style_forbids_symbolic_support")
+    if args.ruler_overlay and not args.formfactory_style:
+        raise ValueError("ruler_overlay_requires_formfactory_style")
+    interface_profile = "formfactory_style_visual" if args.formfactory_style else "opencua_native_visual"
     args.retention_window = max(0, int(args.retention_window))
     args.history_images = max(1, int(args.history_images))
     run_label = rbe._make_run_label(args.run_label)
@@ -552,7 +706,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "run_started_utc": run_started_utc,
         "model_id": args.model_id,
         "model_kind": "computer_use_agent",
-        "track": "computer_use_native",
+        "track": "formfactory_style_visual" if args.formfactory_style else "computer_use_native",
         "provider": model_cfg.get("provider"),
         "api_provider": "opencua_local",
         "form_id": args.form_id,
@@ -563,6 +717,9 @@ def main(argv: Optional[List[str]] = None) -> int:
         "interaction_protocol": str(args.interaction_protocol),
         "observation_mode": str(args.observation_mode),
         "scoring_mode": str(args.scoring_mode),
+        "task_mode": task_mode,
+        "ruler_overlay": bool(args.ruler_overlay),
+        "ruler_config": _ruler_config() if args.ruler_overlay else None,
         "success": False,
         "submit_success": False,
         "stop_reason": None,
@@ -578,15 +735,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         "invalid_actions": 0,
         "duration_s": None,
         "model": {"provider": model_cfg.get("provider"), "hf_repo": model_cfg.get("hf_repo")},
-        "input_contract": {
-            "provides_form_spec": False,
-            "provides_dom_dump_upfront": False,
-            "provides_answers": True,
-            "provides_labels": True,
-            "provides_widget_types": bool(args.include_symbolic_support),
-            "provides_values": True,
-            "provides_interaction_map": bool(args.include_symbolic_support),
-        },
+        "input_contract": _build_input_contract(
+            include_symbolic_support=bool(args.include_symbolic_support),
+            ruler_overlay=bool(args.ruler_overlay),
+        ),
         "run_params": {
             "headless": bool(args.headless),
             "timeout_s": args.timeout_s,
@@ -609,6 +761,11 @@ def main(argv: Optional[List[str]] = None) -> int:
             "base_url": adapter.base_url,
             "history_images": int(args.history_images),
             "include_symbolic_support": bool(args.include_symbolic_support),
+            "task_mode": task_mode,
+            "interface_profile": interface_profile,
+            "ruler_overlay": bool(args.ruler_overlay),
+            "ruler_config": _ruler_config() if args.ruler_overlay else None,
+            "model_visible_history_window": 2 if args.formfactory_style else 4,
         },
         "artifacts": rbe._artifact_payload(paths),
         "trace": {},
@@ -634,6 +791,10 @@ def main(argv: Optional[List[str]] = None) -> int:
             "api_provider": "opencua_local",
             "served_model_name": adapter.model,
             "base_url": adapter.base_url,
+            "task_mode": task_mode,
+            "interface_profile": interface_profile,
+            "ruler_overlay": bool(args.ruler_overlay),
+            "ruler_config": _ruler_config() if args.ruler_overlay else None,
         },
     )
 
@@ -642,6 +803,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     terminal_screenshot_path: Optional[str] = None
     observation_cache: Dict[int, Dict[str, Any]] = {}
     screenshot_history: List[str] = []
+    model_input_screenshot_history: List[str] = []
 
     try:
         execution_session = rbe._make_execution_session(args, paths, trace)
@@ -668,7 +830,18 @@ def main(argv: Optional[List[str]] = None) -> int:
                 break
 
             remaining_answers = rbe._serialize_remaining_answers(question_states)
-            recent_history = annotations.get("steps", [])[-4:]
+            if args.formfactory_style:
+                recent_history = rbe._recent_history_from_steps(annotations.get("steps", []), 2)
+                last_result_for_prompt: Dict[str, Any] = {
+                    "status": str((last_result or {}).get("status") or "observed"),
+                    "remaining_answers": len(remaining_answers),
+                }
+                last_error = str((last_result or {}).get("error") or "")
+                if last_error.startswith("model_output_invalid:"):
+                    last_result_for_prompt["syntax_error"] = last_error
+            else:
+                recent_history = annotations.get("steps", [])[-4:]
+                last_result_for_prompt = last_result
             observation = observation_cache.pop(step_idx, None)
             if observation is None:
                 observation = execution_session.observe(step_idx)
@@ -676,21 +849,36 @@ def main(argv: Optional[List[str]] = None) -> int:
                 observation = {}
             page_text = str(observation.get("page_text") or "")
             screenshot_path = str(observation.get("screenshot_path") or "") or None
+            model_input_screenshot_path = screenshot_path
+            ruler_metadata: Optional[Dict[str, Any]] = None
+            if args.ruler_overlay and screenshot_path:
+                ruler_output_path = (
+                    paths["artifact_dir"]
+                    / "model_input_screenshots"
+                    / f"step_{step_idx:04d}_ruler.png"
+                )
+                ruler_metadata = _add_pixel_ruler_overlay(screenshot_path, ruler_output_path)
+                model_input_screenshot_path = str(ruler_output_path)
             if screenshot_path:
                 screenshot_history.append(screenshot_path)
                 screenshot_history = screenshot_history[-args.history_images :]
+            if model_input_screenshot_path:
+                model_input_screenshot_history.append(model_input_screenshot_path)
+                model_input_screenshot_history = model_input_screenshot_history[-args.history_images :]
             raw_interaction_map = observation.get("interaction_map") if isinstance(observation.get("interaction_map"), list) else []
             interaction_map = rbe._enrich_interaction_map(raw_interaction_map, remaining_answers)
 
             prompt = _build_goal_prompt(
                 form_url=form_url,
                 remaining_answers=remaining_answers,
-                last_result=last_result,
+                last_result=last_result_for_prompt,
                 interaction_map=interaction_map,
                 page_text=page_text,
                 observation_mode=args.observation_mode,
                 recent_history=recent_history,
                 include_symbolic_support=bool(args.include_symbolic_support),
+                task_mode=task_mode,
+                ruler_overlay=bool(args.ruler_overlay),
             )
 
             step_input_record = {
@@ -702,7 +890,12 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "last_result": dict(last_result or {}),
                 "page_text_excerpt": compact_page_text(page_text, max_chars=3000),
                 "screenshot_path": screenshot_path,
+                "raw_screenshot_path": screenshot_path,
+                "model_input_screenshot_path": model_input_screenshot_path,
                 "screenshot_history": list(screenshot_history),
+                "model_input_screenshot_history": list(model_input_screenshot_history),
+                "ruler_overlay": bool(args.ruler_overlay),
+                "ruler_metadata": ruler_metadata,
                 "interaction_map": interaction_map if args.include_symbolic_support else [],
                 "interaction_map_available_count": len(interaction_map),
                 "interaction_map_count": len(interaction_map),
@@ -712,7 +905,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             }
             rbe._append_jsonl(paths["step_inputs_path"], step_input_record)
 
-            messages = _build_messages(prompt, screenshot_history)
+            messages = _build_messages(prompt, model_input_screenshot_history)
             infer_started = time.perf_counter()
             try:
                 raw_output, infer_meta, api_payload = adapter.infer(messages, max_new_tokens=args.max_new_tokens)
@@ -726,6 +919,10 @@ def main(argv: Optional[List[str]] = None) -> int:
                     "remaining_answers_before": len(remaining_answers),
                     "page_text_excerpt": page_text[:2000],
                     "screenshot_path": screenshot_path,
+                    "raw_screenshot_path": screenshot_path,
+                    "model_input_screenshot_path": model_input_screenshot_path,
+                    "ruler_overlay": bool(args.ruler_overlay),
+                    "ruler_metadata": ruler_metadata,
                     "raw_model_output": None,
                     "action": None,
                     "warnings": [],
@@ -752,6 +949,10 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "remaining_answers_before": len(remaining_answers),
                 "page_text_excerpt": page_text[:2000],
                 "screenshot_path": screenshot_path,
+                "raw_screenshot_path": screenshot_path,
+                "model_input_screenshot_path": model_input_screenshot_path,
+                "ruler_overlay": bool(args.ruler_overlay),
+                "ruler_metadata": ruler_metadata,
                 "raw_model_output": raw_output,
                 "action": None,
                 "warnings": [],
@@ -774,7 +975,12 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "prompt": prompt,
                 "remaining_answers": remaining_answers,
                 "screenshot_path": screenshot_path,
+                "raw_screenshot_path": screenshot_path,
+                "model_input_screenshot_path": model_input_screenshot_path,
                 "screenshot_history": list(screenshot_history),
+                "model_input_screenshot_history": list(model_input_screenshot_history),
+                "ruler_overlay": bool(args.ruler_overlay),
+                "ruler_metadata": ruler_metadata,
                 "interaction_map": interaction_map if args.include_symbolic_support else [],
                 "interaction_map_available_count": len(interaction_map),
                 "interaction_map_prompt_included": bool(args.include_symbolic_support),
@@ -818,7 +1024,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             action_name = str(action.get("action") or "")
             annotations["action_count"] += 1
 
-            if action_name == "submit" and len(remaining_answers) > 0:
+            if not args.fill_only_done and action_name == "submit" and len(remaining_answers) > 0:
                 detail = json.dumps(
                     {
                         "remaining_question_ids": [str(item.get("question_id") or "") for item in remaining_answers],
@@ -892,29 +1098,67 @@ def main(argv: Optional[List[str]] = None) -> int:
                         "remaining_answer_count_before": len(remaining_answers),
                         "submitted_while_incomplete": len(remaining_answers) > 0,
                     }
-                    submit_info, submit_err = execution_session.submit()
-                    execution_payload = submit_info
-                    submit_attempt["success"] = bool(submit_info.get("success")) if isinstance(submit_info, dict) else False
-                    submit_attempt["error"] = submit_err
-                    annotations.setdefault("submit_attempts", []).append(submit_attempt)
-                    if submit_err:
+                    if args.fill_only_done:
+                        execution_payload = {
+                            "status": "blocked",
+                            "error": "submit_disabled_in_fill_only_done",
+                            "blocked_by_harness": True,
+                        }
+                        submit_attempt.update(
+                            {
+                                "success": False,
+                                "error": "submit_disabled_in_fill_only_done",
+                                "blocked_by_harness": True,
+                            }
+                        )
+                        annotations.setdefault("submit_attempts", []).append(submit_attempt)
                         step_record["status"] = "failed"
-                        step_record["error"] = f"submission_failed: {submit_err}"
-                        rbe._record_soft_violation(annotations, "submission_failed", submit_err, step_idx)
-                    elif submit_info.get("success"):
-                        step_record["status"] = "submitted"
-                        step_record["progress_made"] = True
-                        annotations["success"] = True
-                        annotations["submit_success"] = True
-                        annotations["stop_reason"] = "submitted"
+                        step_record["error"] = "submit_disabled_in_fill_only_done"
+                        rbe._record_soft_violation(
+                            annotations,
+                            "submit_disabled_in_fill_only_done",
+                            "The native OpenCUA model attempted to submit in a fill-only condition.",
+                            step_idx,
+                        )
+                        if _verified_fill_complete(question_states):
+                            annotations["success"] = True
+                            annotations["stop_reason"] = "filled_without_submit"
                     else:
-                        step_record["status"] = "failed"
-                        step_record["error"] = "submission_failed: not confirmed"
-                        rbe._record_soft_violation(annotations, "submission_failed", json.dumps(submit_info, ensure_ascii=True), step_idx)
+                        submit_info, submit_err = execution_session.submit()
+                        execution_payload = submit_info
+                        submit_attempt["success"] = bool(submit_info.get("success")) if isinstance(submit_info, dict) else False
+                        submit_attempt["error"] = submit_err
+                        annotations.setdefault("submit_attempts", []).append(submit_attempt)
+                        if submit_err:
+                            step_record["status"] = "failed"
+                            step_record["error"] = f"submission_failed: {submit_err}"
+                            rbe._record_soft_violation(annotations, "submission_failed", submit_err, step_idx)
+                        elif submit_info.get("success"):
+                            step_record["status"] = "submitted"
+                            step_record["progress_made"] = True
+                            annotations["success"] = True
+                            annotations["submit_success"] = True
+                            annotations["stop_reason"] = "submitted"
+                        else:
+                            step_record["status"] = "failed"
+                            step_record["error"] = "submission_failed: not confirmed"
+                            rbe._record_soft_violation(annotations, "submission_failed", json.dumps(submit_info, ensure_ascii=True), step_idx)
                 elif action_name == "done":
                     execution_payload = {"status": "done"}
                     step_record["status"] = "done"
-                    annotations["stop_reason"] = "done"
+                    if args.fill_only_done and _verified_fill_complete(question_states):
+                        annotations["success"] = True
+                        annotations["stop_reason"] = "filled_without_submit"
+                    elif args.fill_only_done:
+                        annotations["stop_reason"] = "done_incomplete_fill_only"
+                        rbe._set_failure(
+                            annotations,
+                            "done_incomplete_fill_only",
+                            f"verified_correctness={sum(bool(state.get('verified_correct')) for state in question_states)}/{len(question_states)}",
+                            step_idx,
+                        )
+                    else:
+                        annotations["stop_reason"] = "done"
             except Exception as exc:
                 exec_err = str(exc)
 
@@ -971,11 +1215,22 @@ def main(argv: Optional[List[str]] = None) -> int:
                         step_record["error"] = f"verification_failed: {step_verification.get('detail')}"
                         rbe._record_soft_violation(annotations, "verification_failed", str(step_verification.get("detail")), step_idx)
 
+                if args.fill_only_done and _verified_fill_complete(question_states):
+                    annotations["success"] = True
+                    annotations["submit_success"] = False
+                    annotations["stop_reason"] = "filled_without_submit"
+                    annotations["failure_category"] = None
+                    annotations["failure_detail"] = None
+
             recent_with_current = annotations.get("steps", []) + [step_record]
             repeat_same_action_count = _recent_same_action_signature_count(recent_with_current)
             step_record["repeat_same_action_count"] = repeat_same_action_count
             io_record["repeat_same_action_count"] = repeat_same_action_count
-            if action_name in {"click_mouse", "wait"} and repeat_same_action_count >= REPEATED_ACTION_LOOP_THRESHOLD:
+            if (
+                annotations.get("stop_reason") is None
+                and action_name in {"click_mouse", "wait"}
+                and repeat_same_action_count >= REPEATED_ACTION_LOOP_THRESHOLD
+            ):
                 step_record["stall_type"] = "repeated_action_loop"
                 io_record["stall_type"] = "repeated_action_loop"
                 annotations["stop_reason"] = "repeated_action_loop"
@@ -990,7 +1245,16 @@ def main(argv: Optional[List[str]] = None) -> int:
             rbe._append_jsonl(paths["model_io_path"], io_record)
             last_result = {"status": step_record["status"], "error": step_record["error"], "remaining_answers": len(rbe._serialize_remaining_answers(question_states))}
 
-            if annotations["stop_reason"] in {"submitted", "submission_failed", "model_output_invalid", "model_inference_failed", "done", "repeated_action_loop"}:
+            if annotations["stop_reason"] in {
+                "submitted",
+                "submission_failed",
+                "model_output_invalid",
+                "model_inference_failed",
+                "done",
+                "done_incomplete_fill_only",
+                "filled_without_submit",
+                "repeated_action_loop",
+            }:
                 break
 
         if annotations["stop_reason"] is None:
@@ -1028,6 +1292,8 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     metrics = rbe._calculate_metrics(question_states)
     annotations.update(metrics)
+    annotations["scored_correctness"] = int(metrics.get("verified_correctness") or 0)
+    annotations["scored_correctness_source"] = "final_verification"
     if str(args.scoring_mode or "") == "soft_quality_v1":
         soft_metrics = rbe._calculate_soft_quality_metrics(annotations.get("steps", []), annotations, bool(annotations.get("submit_success")))
         annotations.update(soft_metrics)
@@ -1044,6 +1310,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             model_trace_path=paths["trace_path"],
             model_action_count=annotations.get("action_count"),
             prefer_model_action_count=True,
+            task_mode=task_mode,
         )
     )
     annotations["trace"] = trace_summary
@@ -1069,6 +1336,11 @@ def main(argv: Optional[List[str]] = None) -> int:
         "interaction_protocol": str(args.interaction_protocol),
         "observation_mode": str(args.observation_mode),
         "scoring_mode": str(args.scoring_mode),
+        "task_mode": task_mode,
+        "interface_profile": interface_profile,
+        "ruler_overlay": bool(args.ruler_overlay),
+        "ruler_config": _ruler_config() if args.ruler_overlay else None,
+        "input_contract": annotations.get("input_contract"),
         "success": bool(annotations["success"]),
         "submit_success": bool(annotations["submit_success"]),
         "stop_reason": annotations["stop_reason"],
@@ -1080,6 +1352,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         "attempted_correctness": annotations["attempted_correctness"],
         "verified_count": annotations["verified_count"],
         "verified_correctness": annotations["verified_correctness"],
+        "scored_correctness": annotations.get("scored_correctness"),
+        "scored_correctness_source": annotations.get("scored_correctness_source"),
         "action_count": annotations["action_count"],
         "trace_action_count": annotations.get("trace_action_count"),
         "trace_action_count_source": annotations.get("trace_action_count_source"),
@@ -1096,6 +1370,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "reference_trace_path": annotations.get("reference_trace_path"),
         "reference_video_path": annotations.get("reference_video_path"),
         "reference_action_count": annotations.get("reference_action_count"),
+        "reference_action_count_source": annotations.get("reference_action_count_source"),
         "reference_duration_s": annotations.get("reference_duration_s"),
         "action_overhead_ratio": annotations.get("action_overhead_ratio"),
         "time_overhead_ratio": annotations.get("time_overhead_ratio"),
@@ -1124,8 +1399,11 @@ def main(argv: Optional[List[str]] = None) -> int:
             "failure_detail": summary["failure_detail"],
             "success": summary["success"],
             "submit_success": summary["submit_success"],
+            "task_mode": summary["task_mode"],
             "attempted_correctness": summary["attempted_correctness"],
             "verified_correctness": summary["verified_correctness"],
+            "scored_correctness": summary.get("scored_correctness"),
+            "scored_correctness_source": summary.get("scored_correctness_source"),
             "trace_action_count": summary.get("trace_action_count"),
             "repeat_action_loop_count": summary.get("repeat_action_loop_count"),
             "termination_due_to_repeated_action_loop": summary.get("termination_due_to_repeated_action_loop"),
@@ -1138,6 +1416,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             "served_model_name": summary["served_model_name"],
             "coordinate_space": summary["coordinate_space"],
             "coordinate_transform": summary["coordinate_transform"],
+            "ruler_overlay": summary.get("ruler_overlay"),
+            "ruler_config": summary.get("ruler_config"),
         },
     )
 
@@ -1157,6 +1437,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         "api_provider": annotations.get("api_provider"),
         "form_id": args.form_id,
         "answer_run_id": answer_run_id,
+        "task_mode": task_mode,
+        "interface_profile": interface_profile,
+        "ruler_overlay": bool(args.ruler_overlay),
+        "ruler_config": _ruler_config() if args.ruler_overlay else None,
         "success": summary["success"],
         "submit_success": summary["submit_success"],
         "stop_reason": summary["stop_reason"],
@@ -1164,6 +1448,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         "failure_detail": summary["failure_detail"],
         "trace_action_count": summary.get("trace_action_count"),
         "trace_action_count_source": summary.get("trace_action_count_source"),
+        "scored_correctness": summary.get("scored_correctness"),
+        "scored_correctness_source": summary.get("scored_correctness_source"),
         "reference_available": summary.get("reference_available"),
         "reference_action_count": summary.get("reference_action_count"),
         "reference_duration_s": summary.get("reference_duration_s"),

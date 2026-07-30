@@ -43,6 +43,9 @@ SCORING_MODE="${SCORING_MODE:-soft_quality_v1}"
 RETENTION_WINDOW="${RETENTION_WINDOW:-5}"
 FAIL_ON_TRIAL_FAILURE="${FAIL_ON_TRIAL_FAILURE:-0}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
+FILL_ONLY_DONE="${FILL_ONLY_DONE:-0}"
+FORMFACTORY_STYLE="${FORMFACTORY_STYLE:-0}"
+FORMFACTORY_RULER="${FORMFACTORY_RULER:-0}"
 OPEN_CUA_MIN_REQUEST_INTERVAL_S="${OPEN_CUA_MIN_REQUEST_INTERVAL_S:-2.0}"
 OPEN_CUA_HISTORY_IMAGES="${OPEN_CUA_HISTORY_IMAGES:-3}"
 OPENCUA_VLLM_HOST="${OPENCUA_VLLM_HOST:-127.0.0.1}"
@@ -57,6 +60,11 @@ OPENAI_BASE_URL="${OPENAI_BASE_URL:-http://${OPENCUA_VLLM_HOST}:${OPENCUA_VLLM_P
 OPENAI_API_KEY="${OPENAI_API_KEY:-EMPTY}"
 
 export OPENAI_BASE_URL OPENAI_API_KEY
+
+if [ "$FORMFACTORY_RULER" = "1" ] && [ "$FORMFACTORY_STYLE" != "1" ]; then
+  echo "[FAIL] FORMFACTORY_RULER=1 requires FORMFACTORY_STYLE=1" >&2
+  exit 2
+fi
 
 if [ ! -f "$CONFIG_PATH" ]; then
   echo "[FAIL] config_path does not exist: $CONFIG_PATH" >&2
@@ -215,6 +223,9 @@ echo "[INFO] direct_provider=opencua_local"
 echo "[INFO] served_model_name=$OPENAI_MODEL"
 echo "[INFO] base_url=$OPENAI_BASE_URL"
 echo "[INFO] skip_completed=$SKIP_COMPLETED"
+echo "[INFO] fill_only_done=$FILL_ONLY_DONE"
+echo "[INFO] formfactory_style=$FORMFACTORY_STYLE"
+echo "[INFO] formfactory_ruler=$FORMFACTORY_RULER"
 
 IFS=',' read -r -a FORMS <<<"$RESOLVED_FORM_IDS"
 for form_id in "${FORMS[@]}"; do
@@ -228,31 +239,42 @@ for form_id in "${FORMS[@]}"; do
     direct_total=$((direct_total + 1))
     echo "[INFO] direct_eval model_id=${DIRECT_MODEL_ID} form_id=${form_id} run_index=${run_idx} trial_id=${trial_id} provider=opencua_local"
 
+    args=(
+      --config "$CONFIG_PATH"
+      --model-id "$DIRECT_MODEL_ID"
+      --form-id "$form_id"
+      --run-index "$run_idx"
+      --trial-id "$trial_id"
+      --experiment-id "$DIRECT_EXPERIMENT_ID"
+      --api-timeout-s "$DIRECT_API_TIMEOUT_S"
+      --execution-backend mcp_server
+      --headless
+      --max-new-tokens "$DIRECT_MAX_NEW_TOKENS"
+      --max-steps "$DIRECT_MAX_STEPS"
+      --timeout-s "$DIRECT_TIMEOUT_S"
+      --browser-mcp-timeout-ms "$DIRECT_BROWSER_MCP_TIMEOUT_MS"
+      --interaction-protocol "$INTERACTION_PROTOCOL"
+      --observation-mode "$OBSERVATION_MODE"
+      --scoring-mode "$SCORING_MODE"
+      --retention-window "$RETENTION_WINDOW"
+      --run-label "$run_label"
+      --base-url "$OPENAI_BASE_URL"
+      --served-model-name "$OPENAI_MODEL"
+      --coordinate-type qwen25
+      --history-images "$OPEN_CUA_HISTORY_IMAGES"
+      --disable-action-coercion
+    )
+    if [ "$FILL_ONLY_DONE" = "1" ]; then
+      args+=(--fill-only-done)
+    fi
+    if [ "$FORMFACTORY_STYLE" = "1" ]; then
+      args+=(--formfactory-style)
+    fi
+    if [ "$FORMFACTORY_RULER" = "1" ]; then
+      args+=(--ruler-overlay)
+    fi
     if OPEN_CUA_MIN_REQUEST_INTERVAL_S="$OPEN_CUA_MIN_REQUEST_INTERVAL_S" \
-      "$PYTHON_BIN" src/baselines/run_opencua_direct_eval.py \
-      --config "$CONFIG_PATH" \
-      --model-id "$DIRECT_MODEL_ID" \
-      --form-id "$form_id" \
-      --run-index "$run_idx" \
-      --trial-id "$trial_id" \
-      --experiment-id "$DIRECT_EXPERIMENT_ID" \
-      --api-timeout-s "$DIRECT_API_TIMEOUT_S" \
-      --execution-backend mcp_server \
-      --headless \
-      --max-new-tokens "$DIRECT_MAX_NEW_TOKENS" \
-      --max-steps "$DIRECT_MAX_STEPS" \
-      --timeout-s "$DIRECT_TIMEOUT_S" \
-      --browser-mcp-timeout-ms "$DIRECT_BROWSER_MCP_TIMEOUT_MS" \
-      --interaction-protocol "$INTERACTION_PROTOCOL" \
-      --observation-mode "$OBSERVATION_MODE" \
-      --scoring-mode "$SCORING_MODE" \
-      --retention-window "$RETENTION_WINDOW" \
-      --run-label "$run_label" \
-      --base-url "$OPENAI_BASE_URL" \
-      --served-model-name "$OPENAI_MODEL" \
-      --coordinate-type qwen25 \
-      --history-images "$OPEN_CUA_HISTORY_IMAGES" \
-      --disable-action-coercion; then
+      "$PYTHON_BIN" src/baselines/run_opencua_direct_eval.py "${args[@]}"; then
       direct_passed=$((direct_passed + 1))
     else
       echo "[WARN] direct eval failed for form_id=${form_id} run_index=${run_idx}" >&2

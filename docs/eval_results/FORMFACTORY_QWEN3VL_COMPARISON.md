@@ -68,3 +68,14 @@ The remaining limitations are study-design caveats rather than launch blockers: 
 | `2309096` | Direct MCP, submit-enabled | `qwen3vl_direct_mcp_submit_50_r2_20260724` |
 
 All jobs use the same Qwen3-VL checkpoint, `run_0002`, 50-form set, temperature 0, 128-step cap, 160-token per-decision cap, and two-turn action history. They exclude node `i8012`, use distinct localhost inference ports, retain failed trials as outcomes (`FAIL_ON_TRIAL_FAILURE=0`), and write only to their isolated experiment directories. The direct-MCP jobs do not update the global results tracker while running.
+
+## Campaign update (2026-07-28)
+
+- Visual fill-only (`2309099`) completed 50/50: 138/409 all fields correct (33.7%), 0/50 full fills, and no invalid actions.
+- Visual submit-enabled (`2309097`) completed 50/50: 116/409 all fields correct (28.4%), 0/50 submissions, and no invalid actions.
+- Direct-MCP submit-enabled (`2309096`) completed 50/50: 262/409 all fields correct from the registered pre-submit/final-state policy (64.1%), 13/50 full fills, 32/50 successful submissions, and no invalid tool calls.
+- Direct-MCP fill-only (`2309098`) reached 46/50 before Slurm's 24-hour job limit. It is not treated as a complete cohort. The missing forms are `usability_test`, `volunteer_shift`, `wellbeing_check`, and `workshop_signup`; four-form top-up `2310575` was submitted with the same experiment ID and settings.
+
+The older proprietary-model comparison contains all four missing Qwen3-VL direct-MCP records, but they do not replace the primary cohort. They used a 32-step cap and 768-token output allowance; three used the earlier unbounded-history protocol, while only `wellbeing_check` used two-turn history. `wellbeing_check` reached the old 32-step ceiling, so its 4/7 outcome is specifically censored by a different budget. As a labelled sensitivity analysis only, combining the 46 current trials with those four historical records gives direct-MCP fill-only primary accuracy 72.9% (95% bootstrap CI 65.2%–80.6%) versus 34.1% (31.9%–36.4%) visual. The paired visual-minus-direct difference is -41.2 percentage points (95% CI -48.1 to -33.9). This supports the direction of the submit comparison but is not the registered primary fill-only result.
+
+The strict primary analysis remains gated on 50/50 current-protocol direct-MCP fill-only summaries. The analysis generator now suppresses paired statistics unless both registered cohorts are complete, preventing the 46-form partial cohort from being published accidentally.

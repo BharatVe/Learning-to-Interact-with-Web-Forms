@@ -232,7 +232,7 @@ def write_csv(export_root: Path, name: str, rows: List[Dict[str, Any]]) -> None:
         path.write_text("", encoding="utf-8")
         return
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -279,6 +279,8 @@ def main() -> int:
     aggregate_rows = [aggregate(condition, cohorts[condition["id"]], int(config["bootstrap_samples"]), int(config["bootstrap_seed"])) for condition in config["conditions"] if condition["id"] in complete]
     paired_rows, paired_summaries = [], []
     for spec in config["paired_comparisons"]:
+        if spec["left"] not in complete or spec["right"] not in complete:
+            continue
         rows, summaries = paired(spec, cohorts, int(config["bootstrap_samples"]), int(config["bootstrap_seed"]))
         paired_rows.extend(rows)
         paired_summaries.extend(summaries)
@@ -293,19 +295,77 @@ def main() -> int:
         "conditions": statuses, "problems": problems,
         "metric_policy": {
             "primary": "non-dropdown field accuracy with 10,000 form-level bootstrap samples",
-            "dropdown": "audited lower/upper bounds for the historical cohort; fixed verifier for new runs",
+            "dropdown": "current corrected verifier in all four newly run conditions",
             "submission": "pre-successful-submit field state when available; final state otherwise",
             "actions": "secondary only; excludes setup, observation, harness verification, synchronization, and close; expands browser_fill_form by field count",
         },
     }
     (export_root / f"{PREFIX}analysis_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    doc_path.write_text(
-        "# Qwen3-VL FormFactory-style vs direct-MCP comparison\n\n"
-        "This analysis uses only the explicit cohorts in `configs/baselines/formfactory_qwen3vl_comparison_analysis.json`; it never scans unrelated legacy experiments.\n\n"
-        "The primary endpoint is non-dropdown field accuracy. Historical dropdowns are reported as audited lower/upper bounds, while new runs use the corrected verifier. Submission-enabled correctness is captured immediately before the successful submission. Action counts are secondary because coordinate UI primitives and semantic MCP calls have different granularity.\n\n"
-        f"Current completion: {len(complete)}/{len(config['conditions'])} cohorts. See the `formfactory_qwen3vl_*` exports under `data/model_baseline_exports`.\n",
-        encoding="utf-8",
-    )
+    def pct(value: Any) -> str:
+        return f"{100.0 * float(value):.1f}%"
+
+    doc_lines = [
+        "# Qwen3-VL FormFactory-style vs direct-MCP comparison",
+        "",
+        "This analysis uses only the explicit cohorts in `configs/baselines/formfactory_qwen3vl_comparison_analysis.json`; it never scans unrelated legacy experiments.",
+        "",
+        "The primary endpoint is non-dropdown field accuracy with a form-level bootstrap confidence interval. All four cohorts use the current corrected verifier. Submission-enabled correctness is captured immediately before successful submission. Action counts are secondary because coordinate UI primitives and semantic MCP calls have different granularity.",
+        "",
+        f"Current completion: **{len(complete)}/{len(config['conditions'])} cohorts**.",
+        "",
+    ]
+    if problems:
+        doc_lines.extend([
+            "> **Interim analysis:** the incomplete cohort is excluded from aggregate and paired tables; no partial paired result is published.",
+            "",
+            "Incomplete checks:",
+            "",
+            *[f"- {problem}" for problem in problems],
+            "",
+        ])
+    doc_lines.extend([
+        "## Complete-cohort results",
+        "",
+        "| Condition | Trials | Primary accuracy (95% CI) | All-field accuracy | Full fills | Submissions |",
+        "|---|---:|---:|---:|---:|---:|",
+    ])
+    for row in aggregate_rows:
+        doc_lines.append(
+            f"| {row['condition_label']} | {row['trials']} | "
+            f"{pct(row['non_dropdown_field_accuracy'])} "
+            f"({pct(row['non_dropdown_accuracy_ci_low'])}–{pct(row['non_dropdown_accuracy_ci_high'])}) | "
+            f"{pct(row['all_field_accuracy_lower'])} | "
+            f"{pct(row['full_fill_rate_lower'])} | {pct(row['submit_success_rate'])} |"
+        )
+    doc_lines.extend(["", "## Complete paired comparisons", ""])
+    if paired_summaries:
+        doc_lines.extend([
+            "Differences are visual minus direct MCP; negative values favour direct MCP.",
+            "",
+            "| Comparison | Forms | Primary difference (95% CI) | Full-fill difference | Submission difference |",
+            "|---|---:|---:|---:|---:|",
+        ])
+        for row in paired_summaries:
+            doc_lines.append(
+                f"| {row['comparison_id']} | {row['paired_forms']} | "
+                f"{pct(row['mean_non_dropdown_accuracy_diff'])} "
+                f"({pct(row['non_dropdown_accuracy_diff_ci_low'])}–{pct(row['non_dropdown_accuracy_diff_ci_high'])}) | "
+                f"{pct(row['mean_full_fill_lower_diff'])} | {pct(row['mean_submit_success_diff'])} |"
+            )
+    else:
+        doc_lines.append("No registered paired comparison has two complete 50-form cohorts yet.")
+    doc_lines.extend([
+        "",
+        "## Interpretation limits",
+        "",
+        "- This is a FormFactory-style adaptation, not a reproduction of the FormFactory study.",
+        "- Each condition has one deterministic run per form; confidence intervals quantify variation across forms, not decoding randomness.",
+        "- Correctness is the primary comparison. Semantic MCP actions and primitive visual actions do not have equivalent granularity.",
+        "",
+        "Machine-readable outputs are the `formfactory_qwen3vl_*` files under `data/model_baseline_exports`.",
+        "",
+    ])
+    doc_path.write_text("\n".join(doc_lines), encoding="utf-8")
     print(json.dumps({"conditions": statuses, "problems": problems}, indent=2))
     return 2 if args.strict and problems else 0
 

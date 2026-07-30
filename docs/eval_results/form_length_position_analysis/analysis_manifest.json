@@ -1,0 +1,24 @@
+{
+  "analysis_id": "form_length_position_six_condition_20260730",
+  "config_path": "configs/baselines/form_length_position_analysis.json",
+  "config_sha256": "0146db423ac206fb1a0f4fdcf3b09878e070701d2b27fa5ad9b0e9f789c5f6ce",
+  "answer_run_id": "run_0002",
+  "condition_count": 6,
+  "expected_form_count_per_condition": 50,
+  "expected_field_count_per_condition": 409,
+  "primary_population": "non_dropdown_fields",
+  "expected_non_dropdown_field_count_per_condition": 384,
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 20260730,
+  "validation_status": "passed",
+  "outputs": [
+    "REPORT.md",
+    "cohort_audit.csv",
+    "form_length_distribution.csv",
+    "accuracy_by_question_position.csv",
+    "accuracy_by_form_length.csv",
+    "first_last_three_summary.csv",
+    "form_length_position_accuracy.png",
+    "form_length_position_accuracy.pdf"
+  ]
+}

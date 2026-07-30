@@ -1,0 +1,7 @@
+condition_id,condition_label,interface,forms,early_correct_fields,early_target_fields,early_micro_accuracy_pct,early_macro_form_accuracy_pct,late_correct_fields,late_target_fields,late_micro_accuracy_pct,late_macro_form_accuracy_pct,late_minus_early_macro_pp,difference_ci_95_low_pp,difference_ci_95_high_pp
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,50,144,144,100.0,100.0,77,147,52.38,53.33,-46.67,-58.67,-34.67
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,50,97,144,67.36,68.0,138,147,93.88,94.0,26.0,12.0,40.0
+qwen3_text,Qwen3 Text,direct_mcp,50,114,144,79.17,80.0,78,147,53.06,53.67,-26.33,-40.67,-11.33
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,50,111,144,77.08,77.33,105,147,71.43,72.0,-5.33,-20.67,10.0
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,50,118,144,81.94,82.67,4,147,2.72,2.67,-80.0,-87.33,-71.33
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,50,129,144,89.58,90.0,0,147,0.0,0.0,-90.0,-94.67,-84.67

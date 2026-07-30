@@ -1,0 +1,71 @@
+{
+  "analysis_id": "form_length_position_six_condition_20260730",
+  "answer_run_id": "run_0002",
+  "expected_form_count": 50,
+  "expected_field_count": 409,
+  "expected_non_dropdown_field_count": 384,
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 20260730,
+  "conditions": [
+    {
+      "id": "gemini_35_flash",
+      "label": "Gemini 3.5 Flash",
+      "interface": "computer_use_visual",
+      "source": {
+        "kind": "field_outcomes_csv",
+        "path": "docs/eval_results/interaction_failure_analysis/data/field_outcomes.csv",
+        "model_filter": "Gemini 3.5 Flash"
+      }
+    },
+    {
+      "id": "opencua_direct_mcp",
+      "label": "OpenCUA direct-MCP",
+      "interface": "direct_mcp",
+      "source": {
+        "kind": "field_outcomes_csv",
+        "path": "docs/eval_results/interaction_failure_analysis/data/field_outcomes.csv",
+        "model_filter": "OpenCUA direct-MCP"
+      }
+    },
+    {
+      "id": "qwen3_text",
+      "label": "Qwen3 Text",
+      "interface": "direct_mcp",
+      "source": {
+        "kind": "field_outcomes_csv",
+        "path": "docs/eval_results/interaction_failure_analysis/data/field_outcomes.csv",
+        "model_filter": "Qwen3 Text"
+      }
+    },
+    {
+      "id": "qwen3_vl_direct_mcp",
+      "label": "Qwen3-VL direct-MCP",
+      "interface": "direct_mcp",
+      "source": {
+        "kind": "field_outcomes_csv",
+        "path": "docs/eval_results/interaction_failure_analysis/data/field_outcomes.csv",
+        "model_filter": "Qwen3-VL"
+      }
+    },
+    {
+      "id": "opencua_formfactory_style",
+      "label": "OpenCUA FormFactory-style",
+      "interface": "formfactory_style_visual",
+      "source": {
+        "kind": "experiment_annotations",
+        "experiment_id": "formfactory_style_opencua_fill_only_50_r2_step32_20260728",
+        "model_id": "computer_use_opencua_32b"
+      }
+    },
+    {
+      "id": "qwen3_vl_formfactory_style",
+      "label": "Qwen3-VL FormFactory-style",
+      "interface": "formfactory_style_visual",
+      "source": {
+        "kind": "experiment_annotations",
+        "experiment_id": "formfactory_style_qwen3vl_fill_only_50_r2_20260724",
+        "model_id": "vlm_qwen3_vl_30b_a3b_instruct_formfactory_style"
+      }
+    }
+  ]
+}

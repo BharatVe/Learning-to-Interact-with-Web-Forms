@@ -1,0 +1,7 @@
+condition_id,condition_label,interface,forms,fields,unique_form_question_keys,non_dropdown_fields,non_dropdown_correct,non_dropdown_accuracy_pct,status,problems
+gemini_35_flash,Gemini 3.5 Flash,computer_use_visual,50,409,409,384,296,77.08,valid,
+opencua_direct_mcp,OpenCUA direct-MCP,direct_mcp,50,409,409,384,290,75.52,valid,
+qwen3_text,Qwen3 Text,direct_mcp,50,409,409,384,248,64.58,valid,
+qwen3_vl_direct_mcp,Qwen3-VL direct-MCP,direct_mcp,50,409,409,384,283,73.7,valid,
+opencua_formfactory_style,OpenCUA FormFactory-style,formfactory_style_visual,50,409,409,384,147,38.28,valid,
+qwen3_vl_formfactory_style,Qwen3-VL FormFactory-style,formfactory_style_visual,50,409,409,384,131,34.11,valid,

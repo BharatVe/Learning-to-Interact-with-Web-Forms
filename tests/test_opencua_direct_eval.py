@@ -1,7 +1,10 @@
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from unittest import TestCase
 
 import sys
+
+from PIL import Image
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = REPO_ROOT / "src"
@@ -85,6 +88,27 @@ class OpenCUACoordinateTests(TestCase):
         self.assertEqual(coords["x"], 999)
         self.assertEqual(coords["y"], 999)
 
+    def test_ruler_overlay_preserves_dimensions_coordinates_and_raw_image(self):
+        with TemporaryDirectory() as temp_dir:
+            source = Path(temp_dir) / "raw.png"
+            output = Path(temp_dir) / "model_input.png"
+            Image.new("RGB", (1440, 900), color=(240, 240, 240)).save(source)
+            raw_before = source.read_bytes()
+            transform_before = opencua_eval._qwen25_smart_resize_to_abs(700, 420, 1440, 900)
+
+            metadata = opencua_eval._add_pixel_ruler_overlay(str(source), output)
+
+            self.assertEqual(source.read_bytes(), raw_before)
+            self.assertTrue(output.exists())
+            self.assertNotEqual(output.read_bytes(), raw_before)
+            with Image.open(source) as raw_image, Image.open(output) as model_image:
+                self.assertEqual(model_image.size, raw_image.size)
+            transform_after = opencua_eval._qwen25_smart_resize_to_abs(700, 420, 1440, 900)
+            self.assertEqual(transform_after, transform_before)
+            self.assertEqual(metadata["width"], 1440)
+            self.assertEqual(metadata["height"], 900)
+            self.assertTrue(metadata["coordinate_dimensions_unchanged"])
+
 
 class OpenCUALoopDetectionTests(TestCase):
     def test_recent_same_action_signature_count_counts_trailing_repeats(self):
@@ -105,6 +129,11 @@ class OpenCUALoopDetectionTests(TestCase):
             {"action": {"action": "click_mouse", "target": {"x": 330, "y": 987}}},
         ]
         self.assertEqual(opencua_eval._recent_same_action_signature_count(history), 1)
+
+    def test_verified_fill_complete_requires_every_field(self):
+        self.assertTrue(opencua_eval._verified_fill_complete([{"verified_correct": True}, {"verified_correct": True}]))
+        self.assertFalse(opencua_eval._verified_fill_complete([{"verified_correct": True}, {"verified_correct": False}]))
+        self.assertFalse(opencua_eval._verified_fill_complete([]))
 
 
 class OpenCUAPromptContractTests(TestCase):
@@ -143,3 +172,62 @@ class OpenCUAPromptContractTests(TestCase):
         )
         self.assertIn("Interaction map", prompt)
         self.assertIn('"ref": "e1"', prompt)
+
+    def test_fill_only_prompt_forbids_submission_and_uses_done(self):
+        prompt = opencua_eval._build_goal_prompt(
+            form_url="https://example.test/form",
+            remaining_answers=[{"label": "Name", "value": "Alice"}],
+            last_result={},
+            interaction_map=[],
+            page_text="Name",
+            observation_mode="vision_coords",
+            recent_history=[],
+            task_mode="fill_only_done",
+        )
+        self.assertIn("fill the form without submitting it", prompt)
+        self.assertIn("never click Submit and never output SUBMIT", prompt)
+        self.assertIn("When every target answer is correctly filled, output DONE", prompt)
+        self.assertNotIn("- SUBMIT\n", prompt)
+        self.assertNotIn("click the visible Submit button or output SUBMIT", prompt)
+
+    def test_ruler_prompt_is_present_only_when_enabled(self):
+        common = dict(
+            form_url="https://example.test/form",
+            remaining_answers=[{"label": "Name", "widget_type": "short_text", "value": "Alice"}],
+            last_result={},
+            interaction_map=[],
+            page_text="Name",
+            observation_mode="vision_coords",
+            recent_history=[],
+            task_mode="fill_only_done",
+        )
+        without_ruler = opencua_eval._build_goal_prompt(**common)
+        with_ruler = opencua_eval._build_goal_prompt(**common, ruler_overlay=True)
+        self.assertNotIn("labeled pixel rulers", without_ruler)
+        self.assertIn("labeled pixel rulers", with_ruler)
+        self.assertIn("absolute click coordinates", with_ruler)
+
+    def test_input_contract_discloses_widget_types_and_ruler(self):
+        contract = opencua_eval._build_input_contract(
+            include_symbolic_support=False,
+            ruler_overlay=True,
+        )
+        self.assertTrue(contract["provides_widget_types"])
+        self.assertTrue(contract["provides_visual_ruler"])
+        self.assertFalse(contract["provides_interaction_map"])
+
+    def test_formfactory_style_cli_flags(self):
+        args = opencua_eval._parse_args(
+            [
+                "--form-id",
+                "conf_interest",
+                "--run-index",
+                "2",
+                "--fill-only-done",
+                "--formfactory-style",
+                "--ruler-overlay",
+            ]
+        )
+        self.assertTrue(args.fill_only_done)
+        self.assertTrue(args.formfactory_style)
+        self.assertTrue(args.ruler_overlay)

@@ -1,5 +1,5 @@
 condition_id,task_mode,trials_found,forms_found,forms_expected,complete
-direct_mcp_fill_only,fill_only_done,50,50,50,True
-formfactory_style_fill_only,fill_only_done,0,0,50,False
-direct_mcp_submit,fill_and_submit,0,0,50,False
-formfactory_style_submit,fill_and_submit,0,0,50,False
+direct_mcp_fill_only,fill_only_done,46,46,50,False
+formfactory_style_fill_only,fill_only_done,50,50,50,True
+direct_mcp_submit,fill_and_submit,50,50,50,True
+formfactory_style_submit,fill_and_submit,50,50,50,True
