@@ -1,0 +1,1593 @@
+[
+  {
+    "experiment_id": "formfactory_style_opencua_fill_only_50_r2_step32_20260728",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "formfactory_style_visual",
+    "prompt_file_or_hash": "src/baselines/run_opencua_direct_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 96,
+    "step_limit": 32,
+    "history_limit": 2,
+    "timeouts": {
+      "trial_s": 9000,
+      "api_s": 180,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": "not_recorded",
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "146.0.7680.0",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "locale": "en-US",
+      "headless": true
+    },
+    "allocated_resources": {
+      "cpu": 16,
+      "memory": "180G",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-07-29T11:56:28Z",
+      "end_utc": "2026-07-29T19:15:51Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "formfactory_style_qwen3vl_fill_only_50_r2_20260724",
+    "model_id_or_service_version": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+    "interface_condition": "formfactory_style_visual",
+    "prompt_file_or_hash": "src/baselines/prompt_builders.py",
+    "temperature": 0,
+    "output_token_limit": 160,
+    "step_limit": 128,
+    "history_limit": 2,
+    "timeouts": {
+      "trial_s": 10800,
+      "api_s": 240,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": [
+      "browser_mouse_move_xy",
+      "browser_mouse_click_xy",
+      "browser_type",
+      "browser_press_key",
+      "browser_mouse_wheel",
+      "browser_wait_for",
+      "done"
+    ],
+    "verifier_feedback_visible_to_model": false,
+    "browser": {
+      "version": "146.0.7680.0",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "locale": "en-US",
+      "headless": true
+    },
+    "allocated_resources": {
+      "cpu": 12,
+      "memory": "120G",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-07-27T14:15:14Z",
+      "end_utc": "2026-07-27T15:19:13Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "formfactory_style_qwen3vl_submit_50_r2_20260724",
+    "model_id_or_service_version": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+    "interface_condition": "formfactory_style_visual",
+    "prompt_file_or_hash": "src/baselines/prompt_builders.py",
+    "temperature": 0,
+    "output_token_limit": 160,
+    "step_limit": 128,
+    "history_limit": 2,
+    "timeouts": {
+      "trial_s": 10800,
+      "api_s": 240,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": [
+      "browser_mouse_move_xy",
+      "browser_mouse_click_xy",
+      "browser_type",
+      "browser_press_key",
+      "browser_mouse_wheel",
+      "browser_wait_for",
+      "done"
+    ],
+    "verifier_feedback_visible_to_model": false,
+    "browser": {
+      "version": "146.0.7680.0",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "locale": "en-US",
+      "headless": true
+    },
+    "allocated_resources": {
+      "cpu": 12,
+      "memory": "120G",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-07-27T14:15:14Z",
+      "end_utc": "2026-07-27T15:17:33Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "gemini_35_flash_fill_only_done_30_seed20260709_r2_step32",
+    "model_id_or_service_version": "gemini-3.5-flash",
+    "interface_condition": "proprietary_computer_use_low_cost",
+    "prompt_file_or_hash": "src/baselines/run_gemini_low_cost_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 128,
+    "step_limit": 32,
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": 3600,
+      "api_s": "not_recorded",
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": "not_recorded",
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "146.0.0.0",
+      "viewport": "not_recorded",
+      "locale": "en-US",
+      "headless": true
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": "not_recorded"
+    },
+    "model_server": {
+      "version": "not_recorded",
+      "tensor_parallelism": "not_recorded"
+    },
+    "run_dates": {
+      "start_utc": "2026-07-09T20:54:15Z",
+      "end_utc": "2026-07-10T04:10:02Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "gemini_35_flash_fill_only_done_50_completion_20260713_r2_step32",
+    "model_id_or_service_version": "gemini-3.5-flash",
+    "interface_condition": "proprietary_computer_use_low_cost",
+    "prompt_file_or_hash": "src/baselines/run_gemini_low_cost_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 128,
+    "step_limit": 32,
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": 3600,
+      "api_s": "not_recorded",
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": "not_recorded",
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "146.0.0.0",
+      "viewport": "not_recorded",
+      "locale": "en-US",
+      "headless": true
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": "not_recorded"
+    },
+    "model_server": {
+      "version": "not_recorded",
+      "tensor_parallelism": "not_recorded"
+    },
+    "run_dates": {
+      "start_utc": "2026-07-13T21:30:11Z",
+      "end_utc": "2026-07-14T06:35:10Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_control_guidance_30form_20260526",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "computer_use_native",
+    "prompt_file_or_hash": "src/baselines/run_opencua_direct_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 96,
+    "step_limit": 128,
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": 3600,
+      "api_s": 180,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": "not_recorded",
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "146.0.0.0",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "locale": "en-US",
+      "headless": true
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-05-26T12:29:55Z",
+      "end_utc": "2026-05-26T16:54:21Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_control_guidance_all50_run2_20260528",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "computer_use_native",
+    "prompt_file_or_hash": "src/baselines/run_opencua_direct_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 96,
+    "step_limit": 128,
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": 3600,
+      "api_s": 180,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": "not_recorded",
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "146.0.0.0",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "locale": "en-US",
+      "headless": true
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-05-28T14:11:27Z",
+      "end_utc": "2026-05-28T22:18:38Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_control_guidance_remaining20_20260527",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "computer_use_native",
+    "prompt_file_or_hash": "src/baselines/run_opencua_direct_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 96,
+    "step_limit": 128,
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": 3600,
+      "api_s": 180,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": "not_recorded",
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "146.0.0.0",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "locale": "en-US",
+      "headless": true
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-05-27T09:12:18Z",
+      "end_utc": "2026-05-27T13:06:38Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_control_guidance_target10_run3_20260601",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "computer_use_native",
+    "prompt_file_or_hash": "src/baselines/run_opencua_direct_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 96,
+    "step_limit": 128,
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": 3600,
+      "api_s": 180,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": "not_recorded",
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "146.0.0.0",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "locale": "en-US",
+      "headless": true
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-01T19:57:12Z",
+      "end_utc": "2026-06-02T01:36:41Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_control_guidance_target10_run4_20260602",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "computer_use_native",
+    "prompt_file_or_hash": "src/baselines/run_opencua_direct_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 96,
+    "step_limit": 128,
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": 3600,
+      "api_s": 180,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": "not_recorded",
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "146.0.0.0",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "locale": "en-US",
+      "headless": true
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-02T20:22:40Z",
+      "end_utc": "2026-06-03T04:29:50Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_fill_only_done_30_seed20260709_r2_step32",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 1024,
+    "step_limit": 32,
+    "history_limit": 0,
+    "timeouts": {
+      "trial_s": 1800,
+      "api_s": 300,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-07-09T16:25:17Z",
+      "end_utc": "2026-07-09T20:14:10Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_fill_only_done_50_topup20_20260713_r2_step32",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 1024,
+    "step_limit": 32,
+    "history_limit": 0,
+    "timeouts": {
+      "trial_s": 1800,
+      "api_s": 300,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-07-13T21:46:22Z",
+      "end_utc": "2026-07-14T04:03:55Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_tools_smoke_20260602",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-02T20:22:51Z",
+      "end_utc": "2026-06-02T20:23:43Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_tools_smoke_relaxedparser_20260603",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-03T19:59:37Z",
+      "end_utc": "2026-06-03T20:21:04Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_tools_smoke_textfallback_20260602",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-02T20:37:13Z",
+      "end_utc": "2026-06-02T20:39:54Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_tools_target200_run4_20260611",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-12T10:52:02Z",
+      "end_utc": "2026-06-12T12:45:09Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_tools_target300_run1_20260609",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-09T16:10:46Z",
+      "end_utc": "2026-06-10T04:55:12Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_tools_target300_run2_20260609",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-10T15:04:03Z",
+      "end_utc": "2026-06-11T03:58:59Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_tools_target300_run3_20260609",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-11T04:17:27Z",
+      "end_utc": "2026-06-11T21:54:38Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_tools_target300_run4_20260609",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-12T10:52:01Z",
+      "end_utc": "2026-06-12T18:08:53Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_tools_target300_run5_20260609",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-12T18:27:08Z",
+      "end_utc": "2026-06-13T06:31:07Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_tools_target300_run6_20260609",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-13T11:45:44Z",
+      "end_utc": "2026-06-13T21:42:46Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "opencua_direct_mcp_tools_toolcontract_smoke_v2_20260608",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-06-08T18:33:31Z",
+      "end_utc": "2026-06-08T18:58:36Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen3vl_direct_mcp_fill_only_50_r2_20260727",
+    "model_id_or_service_version": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": 0,
+    "output_token_limit": 160,
+    "step_limit": 128,
+    "history_limit": 2,
+    "timeouts": {
+      "trial_s": 10800,
+      "api_s": 300,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": false,
+    "browser": {
+      "version": "146.0.7680.0",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": 12,
+      "memory": "120G",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-07-27T13:59:46Z",
+      "end_utc": "2026-08-07T15:18:15Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen3vl_direct_mcp_submit_50_r2_20260724",
+    "model_id_or_service_version": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": 0,
+    "output_token_limit": 160,
+    "step_limit": 128,
+    "history_limit": 2,
+    "timeouts": {
+      "trial_s": 10800,
+      "api_s": 300,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": false,
+    "browser": {
+      "version": "146.0.7680.0",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": 12,
+      "memory": "120G",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-07-27T13:59:46Z",
+      "end_utc": "2026-07-28T13:43:48Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen_direct_mcp_all50_run2_20260528",
+    "model_id_or_service_version": [
+      "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "Qwen/Qwen3-VL-30B-A3B-Instruct"
+    ],
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-05-28T14:07:06Z",
+      "end_utc": "2026-05-29T13:49:58Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen_direct_mcp_english_stepcap128_5form_20260515",
+    "model_id_or_service_version": [
+      "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "Qwen/Qwen3-VL-30B-A3B-Instruct"
+    ],
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-05-15T14:23:12Z",
+      "end_utc": "2026-05-27T09:35:28Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen_direct_mcp_fill_only_done_50_20260713_r2_step32",
+    "model_id_or_service_version": [
+      "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "Qwen/Qwen3-VL-30B-A3B-Instruct"
+    ],
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 1024,
+    "step_limit": 32,
+    "history_limit": 0,
+    "timeouts": {
+      "trial_s": 1800,
+      "api_s": 300,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-07-13T21:42:05Z",
+      "end_utc": "2026-07-14T07:58:02Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen_direct_mcp_target10_run3_20260601",
+    "model_id_or_service_version": [
+      "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "Qwen/Qwen3-VL-30B-A3B-Instruct"
+    ],
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-06-01T18:35:51Z",
+      "end_utc": "2026-06-02T16:29:26Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen_direct_mcp_target10_run3_20260602",
+    "model_id_or_service_version": [
+      "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "Qwen/Qwen3-VL-30B-A3B-Instruct"
+    ],
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-06-02T20:21:38Z",
+      "end_utc": "2026-06-03T10:58:37Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen_direct_mcp_target10_run4_20260602",
+    "model_id_or_service_version": [
+      "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "Qwen/Qwen3-VL-30B-A3B-Instruct"
+    ],
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-06-03T11:11:03Z",
+      "end_utc": "2026-06-04T09:26:28Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen_direct_mcp_target300_run1_20260611_target200",
+    "model_id_or_service_version": [
+      "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "Qwen/Qwen3-VL-30B-A3B-Instruct"
+    ],
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-06-11T16:09:26Z",
+      "end_utc": "2026-06-11T21:34:39Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen_direct_mcp_target300_run4_20260611_target200",
+    "model_id_or_service_version": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": "not_recorded",
+    "step_limit": "not_recorded",
+    "history_limit": "not_recorded",
+    "timeouts": {
+      "trial_s": "not_recorded",
+      "api_s": "not_recorded",
+      "browser_mcp_ms": "not_recorded"
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-06-12T02:01:57Z",
+      "end_utc": "2026-06-12T06:50:34Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen_vlm_fill_only_done_50_history2_topup4_20260715_r2_step32",
+    "model_id_or_service_version": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 768,
+    "step_limit": 32,
+    "history_limit": 2,
+    "timeouts": {
+      "trial_s": 1800,
+      "api_s": 300,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-07-15T09:44:57Z",
+      "end_utc": "2026-07-15T10:03:35Z"
+    },
+    "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "qwen_vlm_fill_only_done_50_topup11_20260714_r2_step32",
+    "model_id_or_service_version": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+    "interface_condition": "direct_mcp_tool_use",
+    "prompt_file_or_hash": "src/baselines/run_qwen_direct_mcp_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 768,
+    "step_limit": 32,
+    "history_limit": 0,
+    "timeouts": {
+      "trial_s": 1800,
+      "api_s": 300,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": [
+      "browser_fill_form",
+      "browser_press_key",
+      "browser_type",
+      "browser_snapshot",
+      "browser_click",
+      "browser_select_option",
+      "browser_wait_for"
+    ],
+    "verifier_feedback_visible_to_model": "not_recorded",
+    "browser": {
+      "version": "not_recorded",
+      "viewport": "not_recorded",
+      "locale": "not_recorded",
+      "headless": "not_recorded"
+    },
+    "allocated_resources": {
+      "cpu": "not_recorded",
+      "memory": "not_recorded",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 2
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 2
+    },
+    "run_dates": {
+      "start_utc": "2026-07-14T15:41:38Z",
+      "end_utc": "2026-07-14T16:26:15Z"
+    },
+    "source_commit": "not_recorded"
+  }
+]

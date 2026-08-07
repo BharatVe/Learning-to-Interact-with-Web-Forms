@@ -58,10 +58,10 @@
     {
       "condition_id": "direct_mcp_fill_only",
       "task_mode": "fill_only_done",
-      "trials_found": 46,
-      "forms_found": 46,
+      "trials_found": 50,
+      "forms_found": 50,
       "forms_expected": 50,
-      "complete": false
+      "complete": true
     },
     {
       "condition_id": "formfactory_style_fill_only",
@@ -88,9 +88,7 @@
       "complete": true
     }
   ],
-  "problems": [
-    "direct_mcp_fill_only: missing 4 forms"
-  ],
+  "problems": [],
   "metric_policy": {
     "primary": "non-dropdown field accuracy with 10,000 form-level bootstrap samples",
     "dropdown": "current corrected verifier in all four newly run conditions",

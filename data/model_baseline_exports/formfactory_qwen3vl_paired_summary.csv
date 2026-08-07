@@ -1,2 +1,3 @@
 comparison_id,paired_forms,mean_non_dropdown_accuracy_diff,non_dropdown_accuracy_diff_ci_low,non_dropdown_accuracy_diff_ci_high,mean_full_fill_lower_diff,full_fill_lower_diff_ci_low,full_fill_lower_diff_ci_high,mean_submit_success_diff,submit_success_diff_ci_low,submit_success_diff_ci_high,mean_duration_diff_s,duration_diff_s_ci_low,duration_diff_s_ci_high
+fill_only_visual_minus_direct,50,-0.40883477633477633,-0.4778174603174603,-0.33666666666666667,-0.42,-0.56,-0.28,0,0,0,-1677.2572,-2634.26766,-875.5347399999999
 submit_visual_minus_direct,50,-0.3791507936507937,-0.4615952380952381,-0.2982063492063492,-0.26,-0.38,-0.14,-0.64,-0.76,-0.5,-1634.09474,-2598.84378,-840.4841

@@ -1,0 +1,362 @@
+{
+  "source_commit": "51e1c431d299001a96b17317dcb1a553bdc7a863",
+  "analysis_date": "2026-08-07",
+  "paper_inputs": [
+    {
+      "path": "configs/baselines/form_length_position_analysis.json",
+      "sha256": "0146db423ac206fb1a0f4fdcf3b09878e070701d2b27fa5ad9b0e9f789c5f6ce",
+      "row_count": "not_applicable",
+      "generation_command": "not_applicable",
+      "validation_command": "python3 -m json.tool configs/baselines/form_length_position_analysis.json"
+    },
+    {
+      "path": "configs/baselines/formfactory_qwen3vl_comparison_analysis.json",
+      "sha256": "3c58a1bf0945aae015d54dffa8abfbd6458a8c9124ea9d05abd5214e67413e4e",
+      "row_count": "not_applicable",
+      "generation_command": "not_applicable",
+      "validation_command": "python3 -m json.tool configs/baselines/formfactory_qwen3vl_comparison_analysis.json"
+    },
+    {
+      "path": "data/model_baseline_exports/fill_only_done_50_20260714/trials.csv",
+      "sha256": "aa5d88db0304670a8f17ad097bfd28a71012eae2c07b6b9c6641c32084509abf",
+      "row_count": 200,
+      "primary_key": [
+        "model_id",
+        "form_id",
+        "answer_run_id"
+      ],
+      "generation_command": ".venv/bin/python scripts/export_fill_only_done_50_results.py",
+      "validation_command": "python docs/eval_results/interaction_failure_analysis/validate_outputs.py"
+    },
+    {
+      "path": "data/model_baseline_exports/formfactory_qwen3vl_aggregate_metrics.csv",
+      "sha256": "422e4ad7dcc216d84012a475de9a7ed982fd2c8deff20b7e66acaabd81b77755",
+      "row_count": 4,
+      "primary_key": [
+        "condition_id"
+      ],
+      "generation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict",
+      "validation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict"
+    },
+    {
+      "path": "data/model_baseline_exports/formfactory_qwen3vl_cohort_status.csv",
+      "sha256": "b25e9498fcfc7aeddccf6a4ffab43a3e2865585927f8e9176a6532bd9160a1b9",
+      "row_count": 4,
+      "primary_key": [
+        "condition_id"
+      ],
+      "generation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict",
+      "validation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict"
+    },
+    {
+      "path": "data/model_baseline_exports/formfactory_qwen3vl_paired_form_differences.csv",
+      "sha256": "88f4eef5aa11cf1afeff41ca188b32be97e60acc441b353bc82f4d6b4f8cdad5",
+      "row_count": 100,
+      "primary_key": [
+        "comparison_id",
+        "form_id"
+      ],
+      "generation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict",
+      "validation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict"
+    },
+    {
+      "path": "data/model_baseline_exports/formfactory_qwen3vl_paired_summary.csv",
+      "sha256": "c3c2a73435ccd6bb3fb7519a3ba05afc8d886c4793cc5a2d116feb0af04b76c7",
+      "row_count": 2,
+      "primary_key": [
+        "comparison_id"
+      ],
+      "generation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict",
+      "validation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict"
+    },
+    {
+      "path": "data/model_baseline_exports/formfactory_qwen3vl_trial_metrics.csv",
+      "sha256": "4aecb9e8e2691b2b4db1224990d059d297123fa505e134324fd21aa4cab9fba2",
+      "row_count": 200,
+      "primary_key": [
+        "condition_id",
+        "form_id",
+        "answer_run_id"
+      ],
+      "generation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict",
+      "validation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict"
+    },
+    {
+      "path": "docs/eval_results/analysis/canonical_trials.csv",
+      "sha256": "f5a05fadb7221d98865f87d1900126beb9f72332203ca57e79896b674c06bd06",
+      "row_count": 1006,
+      "primary_key": [
+        "experiment_id",
+        "model_id",
+        "form_id",
+        "answer_run_id",
+        "trial_id"
+      ],
+      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
+      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+    },
+    {
+      "path": "docs/eval_results/analysis/model_action_trial_counts.csv",
+      "sha256": "a3d2679c337dd0579432fb0bf0a2f310ec3bcb87ae5490efd11e21f4cce3e224",
+      "row_count": 978,
+      "primary_key": [
+        "experiment_id",
+        "model_id",
+        "form_id",
+        "answer_run_id",
+        "trial_id"
+      ],
+      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
+      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+    },
+    {
+      "path": "docs/eval_results/analysis/paired_efficiency_comparison.csv",
+      "sha256": "3d7a16c30e30d4e84562c57b77d36092cdcf9f8a7cb75492305322df9dcd3b31",
+      "row_count": 410,
+      "primary_key": [
+        "comparison",
+        "form_id",
+        "answer_run_id"
+      ],
+      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
+      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+    },
+    {
+      "path": "docs/eval_results/analysis/question_type_summary.csv",
+      "sha256": "79df9df41515548a8a2ecef1b847700334f72d8e17c07dbacb4133a65257096d",
+      "row_count": 20,
+      "primary_key": [
+        "model_id",
+        "track",
+        "widget_type",
+        "analysis_scope"
+      ],
+      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
+      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+    },
+    {
+      "path": "docs/eval_results/form_length_position_analysis/accuracy_by_form_length.csv",
+      "sha256": "dc253d24df894bebaab69e3587e15e80ffea12fbe7e639d185c333a09a0a0d33",
+      "row_count": 24,
+      "primary_key": [
+        "condition_id",
+        "length_bucket"
+      ],
+      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
+      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+    },
+    {
+      "path": "docs/eval_results/form_length_position_analysis/accuracy_by_question_position.csv",
+      "sha256": "00f6010d831e7d2a14e863c5801f634ed2e8d23dc5eb6a543a76438b99af823a",
+      "row_count": 72,
+      "primary_key": [
+        "condition_id",
+        "question_position"
+      ],
+      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
+      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+    },
+    {
+      "path": "docs/eval_results/form_length_position_analysis/cohort_audit.csv",
+      "sha256": "da13ebda55ed1f1b791191cf59289c0aa987b5c5f2577d1f2b739f322dda6f1a",
+      "row_count": 6,
+      "primary_key": [
+        "condition_id"
+      ],
+      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
+      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+    },
+    {
+      "path": "docs/eval_results/form_length_position_analysis/first_last_three_summary.csv",
+      "sha256": "b7638fd55f9cfa69cb27acf1e795c42b63ed60719f1a08fca9a382b091af5648",
+      "row_count": 6,
+      "primary_key": [
+        "condition_id"
+      ],
+      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
+      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+    },
+    {
+      "path": "docs/eval_results/form_length_position_analysis/form_length_distribution.csv",
+      "sha256": "1fecf7c68202877057bd6f8b51d9036675e3536fd565dc5f704361e0d5fe8d7b",
+      "row_count": 7,
+      "primary_key": [
+        "question_count"
+      ],
+      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
+      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+    },
+    {
+      "path": "docs/eval_results/form_length_position_analysis/form_length_position_accuracy.pdf",
+      "sha256": "d16d9b580c18b730aba08dc06089a4ac5cab27cd71cf2a391abeeed2582920a4",
+      "row_count": "not_applicable",
+      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
+      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+    },
+    {
+      "path": "docs/eval_results/form_length_position_analysis/form_length_position_accuracy.png",
+      "sha256": "828d625dfb02a25cf581a5a88b4d419004a73a01089688986eedd90f76e9538e",
+      "row_count": "not_applicable",
+      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
+      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+    },
+    {
+      "path": "docs/eval_results/interaction_failure_analysis/data/baseline_primary_trial_action_profile.csv",
+      "sha256": "ea80623ce592161e7fd0e586439e378e9fbe0a2ea24bac8769f7d215b1393089",
+      "row_count": 978,
+      "primary_key": [
+        "source_summary"
+      ],
+      "generation_command": "python docs/eval_results/interaction_failure_analysis/analyze_action_failures.py --project-root . --trials-csv data/model_baseline_exports/fill_only_done_50_20260714/trials.csv --baseline-actions-csv docs/eval_results/analysis/model_action_trial_counts.csv --reference-runs-csv docs/eval_results/reference_analysis/reference_runs.csv --reference-actions-csv docs/eval_results/reference_analysis/reference_action_breakdown.csv --output-dir docs/eval_results/interaction_failure_analysis/data",
+      "validation_command": "python docs/eval_results/interaction_failure_analysis/validate_outputs.py"
+    },
+    {
+      "path": "docs/eval_results/interaction_failure_analysis/data/baseline_recovered_perfect_submitted_fields.csv",
+      "sha256": "3c7d0b9ab0970c6fe2b4e804b86c00dc4bb3e66a6f1970a34e26c1d24e36cbe6",
+      "row_count": 1077,
+      "primary_key": [
+        "source_summary",
+        "question_index"
+      ],
+      "generation_command": "python docs/eval_results/interaction_failure_analysis/analyze_action_failures.py --project-root . --trials-csv data/model_baseline_exports/fill_only_done_50_20260714/trials.csv --baseline-actions-csv docs/eval_results/analysis/model_action_trial_counts.csv --reference-runs-csv docs/eval_results/reference_analysis/reference_runs.csv --reference-actions-csv docs/eval_results/reference_analysis/reference_action_breakdown.csv --output-dir docs/eval_results/interaction_failure_analysis/data",
+      "validation_command": "python docs/eval_results/interaction_failure_analysis/validate_outputs.py"
+    },
+    {
+      "path": "docs/eval_results/interaction_failure_analysis/data/dropdown_selected_state_audit.csv",
+      "sha256": "a1adbf89d1412885d7cca272dc66b2c122d5fef8c0c23a19062440c4abcfd61f",
+      "row_count": 100,
+      "primary_key": [
+        "model",
+        "form_id",
+        "question_id"
+      ],
+      "generation_command": "python docs/eval_results/interaction_failure_analysis/audit_dropdown_selected_state.py --project-root . --field-outcomes docs/eval_results/interaction_failure_analysis/data/field_outcomes.csv --output-dir docs/eval_results/interaction_failure_analysis/data",
+      "validation_command": "python docs/eval_results/interaction_failure_analysis/validate_outputs.py"
+    },
+    {
+      "path": "docs/eval_results/interaction_failure_analysis/data/field_outcomes.csv",
+      "sha256": "fbef4c469f092b27ecfcb3a63eeb8158aad0a6b46846fe2f6d992d811a6869f9",
+      "row_count": 1636,
+      "primary_key": [
+        "model_id",
+        "form_id",
+        "question_id"
+      ],
+      "generation_command": "python docs/eval_results/interaction_failure_analysis/analyze_action_failures.py --project-root . --trials-csv data/model_baseline_exports/fill_only_done_50_20260714/trials.csv --baseline-actions-csv docs/eval_results/analysis/model_action_trial_counts.csv --reference-runs-csv docs/eval_results/reference_analysis/reference_runs.csv --reference-actions-csv docs/eval_results/reference_analysis/reference_action_breakdown.csv --output-dir docs/eval_results/interaction_failure_analysis/data",
+      "validation_command": "python docs/eval_results/interaction_failure_analysis/validate_outputs.py"
+    },
+    {
+      "path": "docs/eval_results/interaction_failure_analysis/data/ideal_reference_runs.csv",
+      "sha256": "68da340d092523fb8ad508cbf55be1745a4218e6157723b3f2310b37ac7495e0",
+      "row_count": 300,
+      "primary_key": [
+        "form_id",
+        "answer_run_id"
+      ],
+      "generation_command": "python docs/eval_results/interaction_failure_analysis/analyze_action_failures.py --project-root . --trials-csv data/model_baseline_exports/fill_only_done_50_20260714/trials.csv --baseline-actions-csv docs/eval_results/analysis/model_action_trial_counts.csv --reference-runs-csv docs/eval_results/reference_analysis/reference_runs.csv --reference-actions-csv docs/eval_results/reference_analysis/reference_action_breakdown.csv --output-dir docs/eval_results/interaction_failure_analysis/data",
+      "validation_command": "python docs/eval_results/interaction_failure_analysis/validate_outputs.py"
+    },
+    {
+      "path": "docs/eval_results/interaction_failure_analysis/data/question_difficulty_cross_model.csv",
+      "sha256": "14a7a15166ff0e8ca4e8dd9a805731dc0c1eb5e1116ed09baa392468dfab27bc",
+      "row_count": 409,
+      "primary_key": [
+        "form_id",
+        "question_id"
+      ],
+      "generation_command": "python docs/eval_results/interaction_failure_analysis/analyze_action_failures.py --project-root . --trials-csv data/model_baseline_exports/fill_only_done_50_20260714/trials.csv --baseline-actions-csv docs/eval_results/analysis/model_action_trial_counts.csv --reference-runs-csv docs/eval_results/reference_analysis/reference_runs.csv --reference-actions-csv docs/eval_results/reference_analysis/reference_action_breakdown.csv --output-dir docs/eval_results/interaction_failure_analysis/data",
+      "validation_command": "python docs/eval_results/interaction_failure_analysis/validate_outputs.py"
+    },
+    {
+      "path": "docs/eval_results/interaction_failure_analysis/data/trial_action_profile.csv",
+      "sha256": "ef465c93ef13b4f2855644d2107b56a129467c6b84cc2b02830f4ecff919b56c",
+      "row_count": 200,
+      "primary_key": [
+        "model_id",
+        "form_id",
+        "answer_run_id"
+      ],
+      "generation_command": "python docs/eval_results/interaction_failure_analysis/analyze_action_failures.py --project-root . --trials-csv data/model_baseline_exports/fill_only_done_50_20260714/trials.csv --baseline-actions-csv docs/eval_results/analysis/model_action_trial_counts.csv --reference-runs-csv docs/eval_results/reference_analysis/reference_runs.csv --reference-actions-csv docs/eval_results/reference_analysis/reference_action_breakdown.csv --output-dir docs/eval_results/interaction_failure_analysis/data",
+      "validation_command": "python docs/eval_results/interaction_failure_analysis/validate_outputs.py"
+    },
+    {
+      "path": "docs/eval_results/interaction_failure_analysis/data/trial_stop_reasons_by_model.csv",
+      "sha256": "51bf4f55a87b578bc5758c3bdfd9fdca906a4ceff5ce845d08c625ab3221c353",
+      "row_count": 16,
+      "primary_key": [
+        "model",
+        "stop_reason"
+      ],
+      "generation_command": "python docs/eval_results/interaction_failure_analysis/analyze_action_failures.py --project-root . --trials-csv data/model_baseline_exports/fill_only_done_50_20260714/trials.csv --baseline-actions-csv docs/eval_results/analysis/model_action_trial_counts.csv --reference-runs-csv docs/eval_results/reference_analysis/reference_runs.csv --reference-actions-csv docs/eval_results/reference_analysis/reference_action_breakdown.csv --output-dir docs/eval_results/interaction_failure_analysis/data",
+      "validation_command": "python docs/eval_results/interaction_failure_analysis/validate_outputs.py"
+    },
+    {
+      "path": "docs/eval_results/interaction_failure_analysis/data/widget_difficulty_by_model.csv",
+      "sha256": "7a37025efeb3e61373f04df9070512d15f466953d225cf7a36f166b8557be738",
+      "row_count": 28,
+      "primary_key": [
+        "model",
+        "widget_type"
+      ],
+      "generation_command": "python docs/eval_results/interaction_failure_analysis/analyze_action_failures.py --project-root . --trials-csv data/model_baseline_exports/fill_only_done_50_20260714/trials.csv --baseline-actions-csv docs/eval_results/analysis/model_action_trial_counts.csv --reference-runs-csv docs/eval_results/reference_analysis/reference_runs.csv --reference-actions-csv docs/eval_results/reference_analysis/reference_action_breakdown.csv --output-dir docs/eval_results/interaction_failure_analysis/data",
+      "validation_command": "python docs/eval_results/interaction_failure_analysis/validate_outputs.py"
+    },
+    {
+      "path": "docs/eval_results/reference_analysis/reference_action_breakdown.csv",
+      "sha256": "e499414d233586be089894b5d2e8ea8f4e3e2480ce0a1ee67fc96132fdb1505e",
+      "row_count": 1495,
+      "primary_key": [
+        "form_id",
+        "answer_run_id",
+        "tool_name"
+      ],
+      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
+      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+    },
+    {
+      "path": "docs/eval_results/reference_analysis/reference_runs.csv",
+      "sha256": "f20e424753d17637b63a857adcc27651327d1f441878d7a3ea84cabaf4b7be0a",
+      "row_count": 300,
+      "primary_key": [
+        "form_id",
+        "answer_run_id"
+      ],
+      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
+      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+    },
+    {
+      "path": "evaluation_additions/missing_fill_only_runs/field_results.csv",
+      "sha256": "41868d427f7a8bea4af59e113adec3cdb60ba81125f8ad8cf10ff2af854b945c",
+      "row_count": 28,
+      "primary_key": [
+        "experiment_id",
+        "model_id",
+        "form_id",
+        "answer_run_id",
+        "question_id"
+      ],
+      "generation_command": "python3 scripts/export_missing_fill_only_additions.py",
+      "validation_command": "python3 scripts/export_missing_fill_only_additions.py --check"
+    },
+    {
+      "path": "evaluation_additions/missing_fill_only_runs/trial_summary.csv",
+      "sha256": "04839784772d014961c03dfc91fc9f8d33bf6f7b75981b88115fef3863690f0f",
+      "row_count": 4,
+      "primary_key": [
+        "experiment_id",
+        "model_id",
+        "form_id",
+        "answer_run_id"
+      ],
+      "generation_command": "python3 scripts/export_missing_fill_only_additions.py",
+      "validation_command": "python3 scripts/export_missing_fill_only_additions.py --check"
+    },
+    {
+      "path": "evaluation_additions/run_settings.json",
+      "sha256": "3e10b130092a37eca803f1011d15556db13b9d3270cfe2831e8effadddb2398b",
+      "row_count": 35,
+      "generation_command": "not_applicable",
+      "validation_command": "python3 -m json.tool evaluation_additions/run_settings.json"
+    }
+  ]
+}
