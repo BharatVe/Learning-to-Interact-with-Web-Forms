@@ -1,0 +1,95 @@
+{
+  "analysis_commit": "fbbf3dc2ef03e028ab1fed23493a9be167c76144",
+  "analysis_date": "2026-08-08",
+  "slurm_job": {
+    "job_id": "2314476",
+    "state": "COMPLETED",
+    "elapsed": "07:21:55",
+    "exit_code": "0:0"
+  },
+  "source_cohorts": [
+    {
+      "experiment_id": "formfactory_style_opencua_fill_only_50_r2_step32_20260728",
+      "manifest_path": "data/model_baselines/formfactory_style_opencua_fill_only_50_r2_step32_20260728/manifest.jsonl",
+      "manifest_sha256": "bfc063893f97bbcdc25fcce6011b02ff5f9844f05e949ec2d3c76f721439f545",
+      "manifest_rows": 50,
+      "primary_key": [
+        "model_id",
+        "form_id",
+        "answer_run_id",
+        "trial_id"
+      ]
+    },
+    {
+      "experiment_id": "formfactory_style_opencua_ruler_fill_only_50_r2_step32_20260807",
+      "manifest_path": "data/model_baselines/formfactory_style_opencua_ruler_fill_only_50_r2_step32_20260807/manifest.jsonl",
+      "manifest_sha256": "7a083d7fb823355d8bd7efb9b5d980b87ba57a952d3fba679d118f4bb075a9b3",
+      "manifest_rows": 50,
+      "primary_key": [
+        "model_id",
+        "form_id",
+        "answer_run_id",
+        "trial_id"
+      ]
+    }
+  ],
+  "generated_files": [
+    {
+      "path": "evaluation_additions/opencua_ruler_comparison/README.md",
+      "sha256": "c63efe2289cf75c268a3030f134a805fa6059c95a9c7b69ac3ebc63a1fe0c940",
+      "row_count": "not_applicable"
+    },
+    {
+      "path": "evaluation_additions/opencua_ruler_comparison/artifact.json",
+      "sha256": "50eaec62b122c48537b1ea5999dc6b012217a1e6a95aabcab26620c7bf1713e5",
+      "row_count": "not_applicable"
+    },
+    {
+      "path": "evaluation_additions/opencua_ruler_comparison/comparison_summary.csv",
+      "sha256": "35dfacc0071d4ac2907e94575dedba9e2394c97213fbcda60430e417530e8c11",
+      "row_count": 2
+    },
+    {
+      "path": "evaluation_additions/opencua_ruler_comparison/paired_fields.csv",
+      "sha256": "cdff7af6c98d25d86763cc9ee3d0a5ead17597e02c7dad0a131f69c0a6343c1a",
+      "row_count": 409
+    },
+    {
+      "path": "evaluation_additions/opencua_ruler_comparison/paired_forms.csv",
+      "sha256": "3a6ed631893762088e60282e345d7f47d61b0216097339ec106ae7c91b27fb47",
+      "row_count": 50
+    },
+    {
+      "path": "evaluation_additions/opencua_ruler_comparison/position_summary.csv",
+      "sha256": "2e459b4c0d8c0b5e04b646bed92f2ec7f5d373096a0b0dc00d6de8dc23dd1ea5",
+      "row_count": 3
+    },
+    {
+      "path": "evaluation_additions/opencua_ruler_comparison/protocol_comparison.json",
+      "sha256": "0aa0d078c9cc870ae9b6e39f74a0a0ca4a8eacf0431d6208646f3a759a73f0a2",
+      "row_count": "not_applicable"
+    },
+    {
+      "path": "evaluation_additions/opencua_ruler_comparison/robustness.json",
+      "sha256": "755a04ec3e3f26e331edcd60e0c3275fbfd3f1a780b5fd3ec9bb3d3655e7b06b",
+      "row_count": "not_applicable"
+    },
+    {
+      "path": "evaluation_additions/opencua_ruler_comparison/widget_summary.csv",
+      "sha256": "7936a6449a05f7d3534cd198cf82d9b04abefd874825806336d367680fa9c16f",
+      "row_count": 7
+    }
+  ],
+  "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
+  "validation_commands": [
+    "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+    "node <data-analytics-plugin>/skills/build-report/scripts/deliver_portable_artifact.mjs --input evaluation_additions/opencua_ruler_comparison/artifact.json --output evaluation_additions/opencua_ruler_comparison/report.html"
+  ],
+  "report_validation": {
+    "artifact_validation": "passed",
+    "packaging": "passed",
+    "structural_verification": "passed",
+    "browser_render_verification": "not_completed",
+    "reason": "Experiment Chromium timed out after 11.2 seconds; local visual inspection remains."
+  }
+}

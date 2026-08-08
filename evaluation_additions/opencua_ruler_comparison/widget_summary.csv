@@ -1,0 +1,8 @@
+widget_type,fields,baseline_correct,ruler_correct,baseline_accuracy_pct,ruler_accuracy_pct,difference_pp
+date,44,0,0,0.0,0.0,0.0
+dropdown,25,13,11,52.0,44.0,-8.0
+multi_choice,48,5,1,10.416667,2.083333,-8.333333
+paragraph_text,45,2,2,4.444444,4.444444,0.0
+short_text,141,101,110,71.631206,78.014184,6.382979
+single_choice,77,39,32,50.649351,41.558442,-9.090909
+time,29,0,0,0.0,0.0,0.0

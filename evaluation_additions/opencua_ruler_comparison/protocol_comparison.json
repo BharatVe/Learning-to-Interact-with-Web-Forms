@@ -1,0 +1,47 @@
+{
+  "matched_identity": {
+    "model_id": "computer_use_opencua_32b",
+    "answer_run_id": "run_0002",
+    "forms": 50
+  },
+  "common_recorded_parameters": {
+    "max_steps": 32,
+    "max_new_tokens": 96,
+    "model_visible_history_window": 2,
+    "history_images": 1,
+    "timeout_s": 9000,
+    "api_timeout_s": 180,
+    "browser_mcp_timeout_ms": 600000,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "headless": true,
+    "coordinate_space": "qwen25_smart_resize_absolute",
+    "coordinate_transform": "qwen25",
+    "interface_profile": "formfactory_style_visual",
+    "task_mode": "fill_only_done",
+    "include_symbolic_support": false,
+    "invalid_action_budget": 0,
+    "disable_action_coercion": true
+  },
+  "intended_difference": {
+    "baseline_ruler_overlay": false,
+    "ruler_ruler_overlay": true,
+    "ruler_config": {
+      "tick_spacing_px": 100,
+      "major_tick_spacing_px": 500,
+      "band_px": 36
+    },
+    "ruler_prompt_instruction": "Use labeled pixel rulers on the top and left edges as references for absolute click coordinates."
+  },
+  "operational_differences": [
+    "run date",
+    "run label",
+    "local model-server port"
+  ],
+  "unverified_comparability": [
+    "source commit was not recorded for either evaluation batch"
+  ],
+  "model_visible_verifier_feedback": false
+}

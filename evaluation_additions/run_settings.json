@@ -1589,5 +1589,52 @@
       "end_utc": "2026-07-14T16:26:15Z"
     },
     "source_commit": "not_recorded"
+  },
+  {
+    "experiment_id": "formfactory_style_opencua_ruler_fill_only_50_r2_step32_20260807",
+    "model_id_or_service_version": "xlangai/OpenCUA-32B",
+    "interface_condition": "formfactory_style_visual_with_pixel_ruler",
+    "prompt_file_or_hash": "src/baselines/run_opencua_direct_eval.py",
+    "temperature": "not_recorded",
+    "output_token_limit": 96,
+    "step_limit": 32,
+    "history_limit": 2,
+    "timeouts": {
+      "trial_s": 9000,
+      "api_s": 180,
+      "browser_mcp_ms": 600000
+    },
+    "available_tools": [
+      "pyautogui.click",
+      "pyautogui.doubleClick",
+      "pyautogui.write",
+      "pyautogui.press",
+      "pyautogui.hotkey",
+      "pyautogui.scroll",
+      "time.sleep",
+      "DONE"
+    ],
+    "verifier_feedback_visible_to_model": false,
+    "browser": {
+      "version": "146.0.7680.0",
+      "viewport": "1440x900",
+      "locale": "en-US",
+      "headless": true
+    },
+    "allocated_resources": {
+      "cpu": 16,
+      "memory": "180G",
+      "gpu_type": "A100-SXM4-40GB",
+      "gpu_count": 4
+    },
+    "model_server": {
+      "version": "0.19.1",
+      "tensor_parallelism": 4
+    },
+    "run_dates": {
+      "start_utc": "2026-08-07T15:01:07Z",
+      "end_utc": "2026-08-07T22:09:08Z"
+    },
+    "source_commit": "not_recorded"
   }
 ]

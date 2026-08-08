@@ -1,0 +1,4 @@
+position_bucket,fields,baseline_correct,ruler_correct,baseline_accuracy_pct,ruler_accuracy_pct,difference_pp
+first,156,127,128,81.410256,82.051282,0.641026
+middle,134,31,26,23.134328,19.402985,-3.731343
+last,119,2,2,1.680672,1.680672,0.0

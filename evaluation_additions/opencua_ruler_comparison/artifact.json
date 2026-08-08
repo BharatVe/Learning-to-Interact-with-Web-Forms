@@ -1,0 +1,592 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "OpenCUA Pixel-Ruler Evaluation",
+    "description": "Matched 50-form technical comparison of FormFactory-style OpenCUA with and without model-visible pixel rulers.",
+    "generatedAt": "2026-08-07T22:09:08Z",
+    "cards": [],
+    "charts": [
+      {
+        "id": "accuracy_comparison_chart",
+        "title": "Verified field accuracy by evaluation condition",
+        "subtitle": "Matched run-2 forms; 409 total fields and 384 non-dropdown fields.",
+        "type": "bar",
+        "dataset": "accuracy_chart",
+        "sourceId": "matched_annotations",
+        "valueFormat": "number",
+        "encodings": {
+          "x": {
+            "field": "scope",
+            "type": "nominal",
+            "label": "Scoring scope"
+          },
+          "y": {
+            "field": "accuracy_pct",
+            "type": "quantitative",
+            "label": "Verified accuracy (%)"
+          },
+          "color": {
+            "field": "condition",
+            "type": "nominal",
+            "label": "Condition"
+          },
+          "tooltip": [
+            {
+              "field": "correct_fields",
+              "type": "quantitative",
+              "label": "Correct fields"
+            },
+            {
+              "field": "fields",
+              "type": "quantitative",
+              "label": "Fields"
+            }
+          ]
+        }
+      },
+      {
+        "id": "widget_comparison_chart",
+        "title": "Verified accuracy by widget type",
+        "subtitle": "Matched fields; descriptive widget cut without multiple-comparison adjustment.",
+        "type": "bar",
+        "dataset": "widget_chart",
+        "sourceId": "matched_annotations",
+        "valueFormat": "number",
+        "encodings": {
+          "x": {
+            "field": "widget_type",
+            "type": "nominal",
+            "label": "Widget type"
+          },
+          "y": {
+            "field": "accuracy_pct",
+            "type": "quantitative",
+            "label": "Verified accuracy (%)"
+          },
+          "color": {
+            "field": "condition",
+            "type": "nominal",
+            "label": "Condition"
+          },
+          "tooltip": [
+            {
+              "field": "correct_fields",
+              "type": "quantitative",
+              "label": "Correct fields"
+            },
+            {
+              "field": "fields",
+              "type": "quantitative",
+              "label": "Fields"
+            }
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "aggregate_table",
+        "title": "Aggregate comparison",
+        "subtitle": "Two matched 50-form cohorts using the same model, answer run, and recorded limits.",
+        "dataset": "aggregate",
+        "sourceId": "matched_annotations",
+        "defaultSort": {
+          "field": "all_field_accuracy_pct",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "condition",
+            "label": "Condition",
+            "type": "text"
+          },
+          {
+            "field": "trials",
+            "label": "Forms",
+            "type": "number"
+          },
+          {
+            "field": "correct_fields",
+            "label": "Correct fields",
+            "type": "number"
+          },
+          {
+            "field": "fields",
+            "label": "Fields",
+            "type": "number"
+          },
+          {
+            "field": "all_field_accuracy_pct",
+            "label": "All-field accuracy (%)",
+            "type": "number"
+          },
+          {
+            "field": "non_dropdown_accuracy_pct",
+            "label": "Non-dropdown accuracy (%)",
+            "type": "number"
+          },
+          {
+            "field": "full_fills",
+            "label": "Full fills",
+            "type": "number"
+          },
+          {
+            "field": "mean_actions",
+            "label": "Mean actions",
+            "type": "number"
+          },
+          {
+            "field": "mean_duration_s",
+            "label": "Mean duration (s)",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "largest_changes_table",
+        "title": "Largest absolute form-level changes",
+        "subtitle": "Twelve forms with the largest absolute difference; percentage points are ruler minus no ruler.",
+        "dataset": "largest_changes",
+        "sourceId": "matched_annotations",
+        "defaultSort": {
+          "field": "accuracy_difference_pp",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "form_id",
+            "label": "Form",
+            "type": "text"
+          },
+          {
+            "field": "question_total",
+            "label": "Fields",
+            "type": "number"
+          },
+          {
+            "field": "baseline_accuracy_pct",
+            "label": "No ruler (%)",
+            "type": "number"
+          },
+          {
+            "field": "ruler_accuracy_pct",
+            "label": "Pixel ruler (%)",
+            "type": "number"
+          },
+          {
+            "field": "accuracy_difference_pp",
+            "label": "Difference (pp)",
+            "type": "number",
+            "movement": true
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "matched_annotations",
+        "label": "Matched OpenCUA run-2 summaries and field annotations for the ruler and no-ruler 50-form cohorts.",
+        "query": {
+          "sql": "SELECT * FROM comparison_summary; SELECT form_id, question_total, baseline_accuracy_pct, ruler_accuracy_pct, accuracy_difference_pp FROM paired_forms ORDER BY ABS(accuracy_difference_pp) DESC LIMIT 12; SELECT widget_type, fields, baseline_correct, ruler_correct, baseline_accuracy_pct, ruler_accuracy_pct FROM widget_summary;"
+        }
+      },
+      {
+        "id": "job_accounting",
+        "label": "Slurm output and model-server logs for completed job 2314476."
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# OpenCUA Pixel-Ruler Evaluation"
+      },
+      {
+        "id": "technical_summary",
+        "type": "markdown",
+        "sourceId": "matched_annotations",
+        "body": "## Technical summary\n\nThe pixel ruler produced **no observed aggregate benefit**. Verified all-field accuracy changed from **39.1%** without the ruler to **38.1%** with it (**-1.0 percentage points**). The mean paired form difference was **-1.3 points** with a form-bootstrap 95% interval of **-4.6 to +1.8 points**.\n\nThe ruler was better on **6 forms**, tied on **35**, and worse on **9**. Both conditions produced **0 full fills**, and nearly all trials reached the 32-step cap. These results support a descriptive statement of no observed ruler benefit, not a causal or run-to-run variability claim."
+      },
+      {
+        "id": "aggregate_story",
+        "type": "markdown",
+        "sourceId": "matched_annotations",
+        "body": "## Accuracy remained effectively unchanged\n\nAcross **409 matched fields**, the ruler condition verified **156** correct fields versus **160** without it. After excluding dropdowns, accuracy changed from **38.3%** to **37.8%**. The comparison chart starts at zero and uses the same scale for both conditions."
+      },
+      {
+        "id": "accuracy_chart_block",
+        "type": "chart",
+        "chartId": "accuracy_comparison_chart"
+      },
+      {
+        "id": "aggregate_table_block",
+        "type": "table",
+        "tableId": "aggregate_table"
+      },
+      {
+        "id": "paired_story",
+        "type": "markdown",
+        "sourceId": "matched_annotations",
+        "body": "## Gains and regressions mostly offset each other\n\nAt field level, **15** baseline misses became correct with the ruler, while **19** baseline-correct fields became wrong. The exact paired McNemar test gives **p = 0.608**. This inferential check does not show evidence of a systematic directional change. The largest individual gain and loss should be treated as diagnostic examples rather than independently tested effects."
+      },
+      {
+        "id": "largest_changes_table_block",
+        "type": "table",
+        "tableId": "largest_changes_table"
+      },
+      {
+        "id": "widget_story",
+        "type": "markdown",
+        "sourceId": "matched_annotations",
+        "body": "## Short-text gains did not generalize across controls\n\nShort-text accuracy increased, but single-choice, multi-choice, and dropdown accuracy declined; date and time fields remained at zero in both conditions. Because this cut spans several widget types with unequal denominators and no multiple-comparison adjustment, it is descriptive only."
+      },
+      {
+        "id": "widget_chart_block",
+        "type": "chart",
+        "chartId": "widget_comparison_chart"
+      },
+      {
+        "id": "scope_definitions",
+        "type": "markdown",
+        "sourceId": "matched_annotations",
+        "body": "## Scope and metric definitions\n\nThe unit of pairing is one Google Form using `run_0002`. The cohorts contain the same **50 forms**, **409 target fields**, expected values, question identifiers, and widget types. A field is correct only when the saved final verifier marks it correct. All-field accuracy is verified-correct fields divided by all target fields; non-dropdown accuracy applies the same rule after excluding dropdown fields. A full fill requires every target field in a form to be verified correct."
+      },
+      {
+        "id": "methodology",
+        "type": "markdown",
+        "sourceId": "matched_annotations",
+        "body": "## Matched comparison and robustness checks\n\nThe analysis joins cohorts on form, answer run, and question identifier; asserts identical expected answers and widget types; and rejects duplicates or incomplete cohorts. The uncertainty interval resamples the **50 paired forms** with replacement for **20,000 iterations** using seed **20260808**. A two-sided exact McNemar test uses the discordant paired field outcomes as a secondary robustness check. Micro-averaged field accuracy and the mean paired form difference are both reported to expose weighting sensitivity."
+      },
+      {
+        "id": "protocol",
+        "type": "markdown",
+        "sourceId": "job_accounting",
+        "body": "## Recorded protocol was matched except for the ruler intervention\n\nBoth cohorts used `xlangai/OpenCUA-32B`, the FormFactory-style visual interface, 96 output tokens, 32 steps, two model-visible history turns, one history image, a 1440\u00d7900 headless Chrome viewport, and the same timeout and coordinate-transform settings. The new condition overlaid 100-pixel ticks, 500-pixel major ticks, and a 36-pixel top/left band, plus one prompt instruction to use those rulers for absolute coordinates. Operational differences were run date, run label, and local server port."
+      },
+      {
+        "id": "limitations",
+        "type": "markdown",
+        "body": "## Limitations and claim boundary\n\n- There is one evaluation run per form-condition setting, so this bundle does not estimate run-to-run model variability.\n- Source commits were not recorded in the original cohort metadata; matching recorded parameters cannot rule out every unrecorded code difference between dates.\n- Bootstrap intervals quantify variation across forms, not decoding randomness.\n- Widget and form-level cuts are exploratory and are not adjusted for multiple comparisons.\n- The result is specific to OpenCUA, these 50 forms, run 2 answers, and this ruler design."
+      },
+      {
+        "id": "next_steps",
+        "type": "markdown",
+        "body": "## Recommended next steps\n\n1. Keep the paper claim descriptive: **the tested ruler did not improve the matched OpenCUA evaluation**.\n2. Do not collect more ruler runs unless this negative result is important enough to justify repeated independent seeds.\n3. If diagnosing the failure mechanism remains important, inspect the existing paired field and action traces before proposing another visual aid; do not infer causality from isolated form changes.\n4. Add this batch to release settings and provenance only if the ruler result will remain in the paper."
+      },
+      {
+        "id": "further_questions",
+        "type": "markdown",
+        "body": "## Further questions\n\n- Would repeated independent runs preserve the near-zero aggregate difference?\n- Are coordinate errors actually the limiting mechanism, or does the dominant failure arise from scrolling, retention, and step-budget exhaustion?\n- Would a controlled design that changes only ruler visibility within the same source commit alter the conclusion?"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "status": "ready",
+    "generated_at": "2026-08-07T22:09:08Z",
+    "datasets": {
+      "aggregate": [
+        {
+          "condition": "OpenCUA visual, no ruler",
+          "trials": 50,
+          "fields": 409,
+          "correct_fields": 160,
+          "all_field_accuracy_pct": 39.119804,
+          "non_dropdown_fields": 384,
+          "correct_non_dropdown_fields": 147,
+          "non_dropdown_accuracy_pct": 38.28125,
+          "full_fills": 0,
+          "full_fill_rate_pct": 0.0,
+          "mean_actions": 30.76,
+          "median_actions": 32.0,
+          "mean_duration_s": 525.82132,
+          "median_duration_s": 546.4355,
+          "max_steps_exceeded": 47,
+          "repeated_action_loop": 3
+        },
+        {
+          "condition": "OpenCUA visual, pixel ruler",
+          "trials": 50,
+          "fields": 409,
+          "correct_fields": 156,
+          "all_field_accuracy_pct": 38.141809,
+          "non_dropdown_fields": 384,
+          "correct_non_dropdown_fields": 145,
+          "non_dropdown_accuracy_pct": 37.760417,
+          "full_fills": 0,
+          "full_fill_rate_pct": 0.0,
+          "mean_actions": 31.32,
+          "median_actions": 32.0,
+          "mean_duration_s": 513.06406,
+          "median_duration_s": 512.615,
+          "max_steps_exceeded": 48,
+          "repeated_action_loop": 2
+        }
+      ],
+      "accuracy_chart": [
+        {
+          "condition": "OpenCUA visual, no ruler",
+          "scope": "All fields",
+          "accuracy_pct": 39.119804,
+          "correct_fields": 160,
+          "fields": 409
+        },
+        {
+          "condition": "OpenCUA visual, no ruler",
+          "scope": "Non-dropdown fields",
+          "accuracy_pct": 38.28125,
+          "correct_fields": 147,
+          "fields": 384
+        },
+        {
+          "condition": "OpenCUA visual, pixel ruler",
+          "scope": "All fields",
+          "accuracy_pct": 38.141809,
+          "correct_fields": 156,
+          "fields": 409
+        },
+        {
+          "condition": "OpenCUA visual, pixel ruler",
+          "scope": "Non-dropdown fields",
+          "accuracy_pct": 37.760417,
+          "correct_fields": 145,
+          "fields": 384
+        }
+      ],
+      "widget_chart": [
+        {
+          "widget_type": "date",
+          "condition": "No ruler",
+          "accuracy_pct": 0.0,
+          "correct_fields": 0,
+          "fields": 44
+        },
+        {
+          "widget_type": "date",
+          "condition": "Pixel ruler",
+          "accuracy_pct": 0.0,
+          "correct_fields": 0,
+          "fields": 44
+        },
+        {
+          "widget_type": "dropdown",
+          "condition": "No ruler",
+          "accuracy_pct": 52.0,
+          "correct_fields": 13,
+          "fields": 25
+        },
+        {
+          "widget_type": "dropdown",
+          "condition": "Pixel ruler",
+          "accuracy_pct": 44.0,
+          "correct_fields": 11,
+          "fields": 25
+        },
+        {
+          "widget_type": "multi_choice",
+          "condition": "No ruler",
+          "accuracy_pct": 10.416667,
+          "correct_fields": 5,
+          "fields": 48
+        },
+        {
+          "widget_type": "multi_choice",
+          "condition": "Pixel ruler",
+          "accuracy_pct": 2.083333,
+          "correct_fields": 1,
+          "fields": 48
+        },
+        {
+          "widget_type": "paragraph_text",
+          "condition": "No ruler",
+          "accuracy_pct": 4.444444,
+          "correct_fields": 2,
+          "fields": 45
+        },
+        {
+          "widget_type": "paragraph_text",
+          "condition": "Pixel ruler",
+          "accuracy_pct": 4.444444,
+          "correct_fields": 2,
+          "fields": 45
+        },
+        {
+          "widget_type": "short_text",
+          "condition": "No ruler",
+          "accuracy_pct": 71.631206,
+          "correct_fields": 101,
+          "fields": 141
+        },
+        {
+          "widget_type": "short_text",
+          "condition": "Pixel ruler",
+          "accuracy_pct": 78.014184,
+          "correct_fields": 110,
+          "fields": 141
+        },
+        {
+          "widget_type": "single_choice",
+          "condition": "No ruler",
+          "accuracy_pct": 50.649351,
+          "correct_fields": 39,
+          "fields": 77
+        },
+        {
+          "widget_type": "single_choice",
+          "condition": "Pixel ruler",
+          "accuracy_pct": 41.558442,
+          "correct_fields": 32,
+          "fields": 77
+        },
+        {
+          "widget_type": "time",
+          "condition": "No ruler",
+          "accuracy_pct": 0.0,
+          "correct_fields": 0,
+          "fields": 29
+        },
+        {
+          "widget_type": "time",
+          "condition": "Pixel ruler",
+          "accuracy_pct": 0.0,
+          "correct_fields": 0,
+          "fields": 29
+        }
+      ],
+      "largest_changes": [
+        {
+          "form_id": "lab_safety",
+          "baseline_accuracy_pct": 75.0,
+          "ruler_accuracy_pct": 25.0,
+          "accuracy_difference_pp": -50.0,
+          "question_total": 8
+        },
+        {
+          "form_id": "hackathon_signup",
+          "baseline_accuracy_pct": 11.111111,
+          "ruler_accuracy_pct": 44.444444,
+          "accuracy_difference_pp": 33.333333,
+          "question_total": 9
+        },
+        {
+          "form_id": "study_group_match",
+          "baseline_accuracy_pct": 85.714286,
+          "ruler_accuracy_pct": 57.142857,
+          "accuracy_difference_pp": -28.571429,
+          "question_total": 7
+        },
+        {
+          "form_id": "purchase_request",
+          "baseline_accuracy_pct": 0.0,
+          "ruler_accuracy_pct": 20.0,
+          "accuracy_difference_pp": 20.0,
+          "question_total": 10
+        },
+        {
+          "form_id": "alumni_checkin",
+          "baseline_accuracy_pct": 42.857143,
+          "ruler_accuracy_pct": 57.142857,
+          "accuracy_difference_pp": 14.285714,
+          "question_total": 7
+        },
+        {
+          "form_id": "housing_preference",
+          "baseline_accuracy_pct": 57.142857,
+          "ruler_accuracy_pct": 42.857143,
+          "accuracy_difference_pp": -14.285714,
+          "question_total": 7
+        },
+        {
+          "form_id": "peer_evaluation",
+          "baseline_accuracy_pct": 57.142857,
+          "ruler_accuracy_pct": 42.857143,
+          "accuracy_difference_pp": -14.285714,
+          "question_total": 7
+        },
+        {
+          "form_id": "research_interest",
+          "baseline_accuracy_pct": 28.571429,
+          "ruler_accuracy_pct": 14.285714,
+          "accuracy_difference_pp": -14.285714,
+          "question_total": 7
+        },
+        {
+          "form_id": "scholarship_interest",
+          "baseline_accuracy_pct": 57.142857,
+          "ruler_accuracy_pct": 42.857143,
+          "accuracy_difference_pp": -14.285714,
+          "question_total": 7
+        },
+        {
+          "form_id": "usability_test",
+          "baseline_accuracy_pct": 28.571429,
+          "ruler_accuracy_pct": 42.857143,
+          "accuracy_difference_pp": 14.285714,
+          "question_total": 7
+        },
+        {
+          "form_id": "field_trip",
+          "baseline_accuracy_pct": 50.0,
+          "ruler_accuracy_pct": 37.5,
+          "accuracy_difference_pp": -12.5,
+          "question_total": 8
+        },
+        {
+          "form_id": "bug_report",
+          "baseline_accuracy_pct": 33.333333,
+          "ruler_accuracy_pct": 44.444444,
+          "accuracy_difference_pp": 11.111111,
+          "question_total": 9
+        }
+      ]
+    },
+    "access_issues": []
+  },
+  "sources": [
+    {
+      "id": "matched_annotations",
+      "query": {
+        "engine": "local_files",
+        "language": "python",
+        "description": "Matched form- and field-level comparison generated by scripts/analyze_opencua_ruler_comparison.py.",
+        "sql": "SELECT * FROM comparison_summary; SELECT form_id, question_total, baseline_accuracy_pct, ruler_accuracy_pct, accuracy_difference_pp FROM paired_forms ORDER BY ABS(accuracy_difference_pp) DESC LIMIT 12; SELECT widget_type, fields, baseline_correct, ruler_correct, baseline_accuracy_pct, ruler_accuracy_pct FROM widget_summary;",
+        "tables_used": [
+          "data/model_baselines/formfactory_style_opencua_fill_only_50_r2_step32_20260728/**/summary.json",
+          "data/model_baselines/formfactory_style_opencua_fill_only_50_r2_step32_20260728/**/annotations.json",
+          "data/model_baselines/formfactory_style_opencua_ruler_fill_only_50_r2_step32_20260807/**/summary.json",
+          "data/model_baselines/formfactory_style_opencua_ruler_fill_only_50_r2_step32_20260807/**/annotations.json"
+        ],
+        "filters": [
+          "model_id = computer_use_opencua_32b",
+          "answer_run_id = run_0002",
+          "50 forms present in both cohorts"
+        ],
+        "metric_definitions": {
+          "all_field_accuracy": "verified-correct target fields divided by all target fields",
+          "non_dropdown_accuracy": "verified-correct non-dropdown target fields divided by non-dropdown target fields",
+          "full_fill": "every target field in the form is verified correct",
+          "paired_form_difference": "ruler form accuracy minus no-ruler form accuracy in percentage points"
+        },
+        "executed_at": "2026-08-07T22:09:08Z"
+      }
+    },
+    {
+      "id": "job_accounting",
+      "query": {
+        "engine": "local_files",
+        "language": "text",
+        "description": "Job completion, recorded run parameters, GPU allocation, and vLLM server configuration.",
+        "tables_used": [
+          "logs/slurm/opencua-direct-2314476.out",
+          "logs/slurm/opencua-vllm-2314476.log"
+        ],
+        "filters": [
+          "Slurm job 2314476"
+        ],
+        "executed_at": "2026-08-07T22:09:08Z"
+      }
+    }
+  ]
+}

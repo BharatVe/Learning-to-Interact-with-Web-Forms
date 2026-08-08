@@ -1,0 +1,38 @@
+{
+  "comparison": "pixel ruler minus no ruler",
+  "analysis_grain": "50 matched forms; 409 matched fields",
+  "all_field_micro_difference_pp": -0.977995,
+  "mean_paired_form_difference_pp": -1.303968,
+  "mean_paired_form_difference_bootstrap_95_ci_pp": [
+    -4.592857,
+    1.769048
+  ],
+  "non_dropdown_micro_difference_pp": -0.520833,
+  "mean_paired_non_dropdown_difference_pp": -0.956349,
+  "mean_paired_non_dropdown_difference_bootstrap_95_ci_pp": [
+    -4.150794,
+    2.059524
+  ],
+  "bootstrap": {
+    "unit": "form",
+    "resamples": 20000,
+    "seed": 20260808,
+    "percentile_interval": [
+      0.025,
+      0.975
+    ]
+  },
+  "form_outcomes": {
+    "ruler_better": 6,
+    "tie": 35,
+    "ruler_worse": 9
+  },
+  "field_transitions": {
+    "baseline_correct_ruler_wrong": 19,
+    "baseline_wrong_ruler_correct": 15,
+    "both_correct": 141,
+    "both_wrong": 234
+  },
+  "mcnemar_exact_two_sided_p": 0.6075913612730801,
+  "claim_boundary": "Descriptive matched comparison only; one run per model-form setting does not estimate run-to-run variability or establish a causal ruler effect."
+}

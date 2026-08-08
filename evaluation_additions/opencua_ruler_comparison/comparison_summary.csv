@@ -1,0 +1,3 @@
+condition,trials,fields,correct_fields,all_field_accuracy_pct,non_dropdown_fields,correct_non_dropdown_fields,non_dropdown_accuracy_pct,full_fills,full_fill_rate_pct,mean_actions,median_actions,mean_duration_s,median_duration_s,max_steps_exceeded,repeated_action_loop
+"OpenCUA visual, no ruler",50,409,160,39.119804,384,147,38.28125,0,0.0,30.76,32.0,525.82132,546.4355,47,3
+"OpenCUA visual, pixel ruler",50,409,156,38.141809,384,145,37.760417,0,0.0,31.32,32.0,513.06406,512.615,48,2
