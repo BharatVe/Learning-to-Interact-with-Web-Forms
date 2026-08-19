@@ -128,3 +128,45 @@ Every number above is read directly from `summary.json` files under
 `data/model_baselines/opencua_direct_mcp_fill_only_done_{10_seed20260702,30_seed20260709}_r2_step32/`,
 and `data/model_baselines/opencua_direct_mcp_tools_target300_run2_20260609/`.
 No numbers here are estimated or interpolated.
+
+## Primary historical pairing: initial 128-step OpenCUA direct-MCP pool
+
+The relevant historical source is the initial OpenCUA direct-MCP campaign:
+50 forms × runs `run_0001`–`run_0004` = a target of 200 form-run trials, launched
+with `DIRECT_MCP_MAX_STEPS=128`. It is **not** a 200-form dataset. The current
+LocalForms checkpoint contains only `run_0002`, so using the other three
+historical answer runs would change the target answers. The valid comparison is
+therefore the `run_0002` slice of that historical 128-step pool.
+
+Pairs were retained only when form ID, `run_0002` answer set, model
+(`computer_use_opencua_32b_direct_mcp`), tool contract, ordered question
+specification, saved answer instance, and expected field count matched. All 12
+retained pairs pass; no pair was excluded for a field or answer mismatch.
+`event_rsvp`, `internship_app`, and `course_feedback` are excluded solely
+because the historical 128-step `run_0002` campaign has no record for them.
+
+`V/T` means correct expected target fields / expected target fields. Submitted
+historical trials use their saved pre-submit verification snapshot.
+
+| Form | LocalForms, fill-only 128-step | Historical Google Forms, submit-enabled 128-step |
+|---|---:|---:|
+| `conference_travel` | 9/10 | 3/10 |
+| `course_enrollment` | 7/8 | 5/8 |
+| `exam_registration` | 7/8 | 7/8 |
+| `lab_safety` | 7/8 | 7/8 |
+| `job_fair` | 9/9 | 4/9 |
+| `publication_submission` | 9/10 | 0/10 |
+| `travel_reimbursement` | 11/11 | 2/11 |
+| `accessibility_feedback` | 7/8 | 7/8 |
+| `alumni_checkin` | 7/7 | 0/7 |
+| `bug_report` | 8/9 | 8/9 |
+| `club_application` | 10/10 | 2/10 |
+| `club_event_planning` | 9/10 | 2/10 |
+| **Paired total** | **100/108 (92.6%)** | **47/108 (43.5%)** |
+
+This is the strongest currently available historical comparison: model,
+model-facing tool contract, answer run, forms, target-field definitions, and
+128-step cap are identical. It remains descriptive rather than platform-only
+causal evidence because the historical condition was submit-enabled while
+LocalForms was fill-only.
+
