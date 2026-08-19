@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Research Interest Intake{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Research Interest Intake</h1>
+    <p class="text-muted">Collects research interests, experience, and preferred supervision topics.</p>
+    <form method="POST" id="research_interestForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="research_interest_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="research_interest_1_full_name" name="research_interest_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="research_interest_2_contact_email">Contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="research_interest_2_contact_email" name="research_interest_2_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="research_interest_3_current_degree_level">Current degree level <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="research_interest_3_current_degree_level" id="research_interest_3_current_degree_level_0" value="Bachelor’s" aria-label="Bachelor’s" required aria-required="true">
+      <label class="form-check-label" for="research_interest_3_current_degree_level_0">Bachelor’s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="research_interest_3_current_degree_level" id="research_interest_3_current_degree_level_1" value="Master’s" aria-label="Master’s" required aria-required="true">
+      <label class="form-check-label" for="research_interest_3_current_degree_level_1">Master’s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="research_interest_3_current_degree_level" id="research_interest_3_current_degree_level_2" value="PhD" aria-label="PhD" required aria-required="true">
+      <label class="form-check-label" for="research_interest_3_current_degree_level_2">PhD</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="research_interest_3_current_degree_level" id="research_interest_3_current_degree_level_3" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="research_interest_3_current_degree_level_3">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="research_interest_4_research_areas_of_interest">Research areas of interest <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="research_interest_4_research_areas_of_interest" id="research_interest_4_research_areas_of_interest_0" value="Machine Learning" aria-label="Machine Learning">
+      <label class="form-check-label" for="research_interest_4_research_areas_of_interest_0">Machine Learning</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="research_interest_4_research_areas_of_interest" id="research_interest_4_research_areas_of_interest_1" value="Computer Vision" aria-label="Computer Vision">
+      <label class="form-check-label" for="research_interest_4_research_areas_of_interest_1">Computer Vision</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="research_interest_4_research_areas_of_interest" id="research_interest_4_research_areas_of_interest_2" value="NLP" aria-label="NLP">
+      <label class="form-check-label" for="research_interest_4_research_areas_of_interest_2">NLP</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="research_interest_4_research_areas_of_interest" id="research_interest_4_research_areas_of_interest_3" value="Robotics" aria-label="Robotics">
+      <label class="form-check-label" for="research_interest_4_research_areas_of_interest_3">Robotics</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="research_interest_4_research_areas_of_interest" id="research_interest_4_research_areas_of_interest_4" value="Human-Computer Interaction" aria-label="Human-Computer Interaction">
+      <label class="form-check-label" for="research_interest_4_research_areas_of_interest_4">Human-Computer Interaction</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="research_interest_5_previous_research_experience">Previous research experience</label>
+    <div class="form-text">2–4 sentences.</div>
+    <textarea class="form-control" id="research_interest_5_previous_research_experience" name="research_interest_5_previous_research_experience" rows="4"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="research_interest_6_preferred_meeting_date">Preferred meeting date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="research_interest_6_preferred_meeting_date" name="research_interest_6_preferred_meeting_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="research_interest_7_preferred_meeting_time">Preferred meeting time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="research_interest_7_preferred_meeting_time" name="research_interest_7_preferred_meeting_time" placeholder="HH:MM">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

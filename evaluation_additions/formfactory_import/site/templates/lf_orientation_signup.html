@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}Student Orientation Signup{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Student Orientation Signup</h1>
+    <p class="text-muted">Signup form for orientation sessions, campus tours, and onboarding support.</p>
+    <form method="POST" id="orientation_signupForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="orientation_signup_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="orientation_signup_1_full_name" name="orientation_signup_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="orientation_signup_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="orientation_signup_2_email_address" name="orientation_signup_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="orientation_signup_3_program">Program <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="orientation_signup_3_program" name="orientation_signup_3_program" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="orientation_signup_4_student_type">Student type <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="orientation_signup_4_student_type" id="orientation_signup_4_student_type_0" value="Bachelor&#x27;s" aria-label="Bachelor&#x27;s" required aria-required="true">
+      <label class="form-check-label" for="orientation_signup_4_student_type_0">Bachelor&#x27;s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="orientation_signup_4_student_type" id="orientation_signup_4_student_type_1" value="Master&#x27;s" aria-label="Master&#x27;s" required aria-required="true">
+      <label class="form-check-label" for="orientation_signup_4_student_type_1">Master&#x27;s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="orientation_signup_4_student_type" id="orientation_signup_4_student_type_2" value="Exchange" aria-label="Exchange" required aria-required="true">
+      <label class="form-check-label" for="orientation_signup_4_student_type_2">Exchange</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="orientation_signup_4_student_type" id="orientation_signup_4_student_type_3" value="PhD" aria-label="PhD" required aria-required="true">
+      <label class="form-check-label" for="orientation_signup_4_student_type_3">PhD</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="orientation_signup_4_student_type" id="orientation_signup_4_student_type_4" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="orientation_signup_4_student_type_4">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="orientation_signup_5_orientation_activities">Orientation activities <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="orientation_signup_5_orientation_activities" id="orientation_signup_5_orientation_activities_0" value="Campus tour" aria-label="Campus tour">
+      <label class="form-check-label" for="orientation_signup_5_orientation_activities_0">Campus tour</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="orientation_signup_5_orientation_activities" id="orientation_signup_5_orientation_activities_1" value="Library introduction" aria-label="Library introduction">
+      <label class="form-check-label" for="orientation_signup_5_orientation_activities_1">Library introduction</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="orientation_signup_5_orientation_activities" id="orientation_signup_5_orientation_activities_2" value="IT setup" aria-label="IT setup">
+      <label class="form-check-label" for="orientation_signup_5_orientation_activities_2">IT setup</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="orientation_signup_5_orientation_activities" id="orientation_signup_5_orientation_activities_3" value="City tour" aria-label="City tour">
+      <label class="form-check-label" for="orientation_signup_5_orientation_activities_3">City tour</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="orientation_signup_5_orientation_activities" id="orientation_signup_5_orientation_activities_4" value="Program Q&amp;A" aria-label="Program Q&amp;A">
+      <label class="form-check-label" for="orientation_signup_5_orientation_activities_4">Program Q&amp;A</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="orientation_signup_6_preferred_orientation_date">Preferred orientation date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="orientation_signup_6_preferred_orientation_date" name="orientation_signup_6_preferred_orientation_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="orientation_signup_7_preferred_start_time">Preferred start time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="orientation_signup_7_preferred_start_time" name="orientation_signup_7_preferred_start_time" placeholder="HH:MM">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="orientation_signup_8_questions_before_orientation">Questions before orientation</label>
+    <textarea class="form-control" id="orientation_signup_8_questions_before_orientation" name="orientation_signup_8_questions_before_orientation" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

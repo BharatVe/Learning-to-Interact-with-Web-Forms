@@ -1119,6 +1119,11 @@ async (page) => {
       const value = (await readInputValue(native.first())).trim();
       return value || null;
     }
+    const textInputs = container.locator("input[type='text']");
+    if (await textInputs.count() === 1) {
+      const value = (await readInputValue(textInputs.first())).trim();
+      return value || null;
+    }
     let hourInput = await findInputByKeywords(container, ["hour", "hh", "h"]);
     let minuteInput = await findInputByKeywords(container, ["minute", "mm", "m"]);
     if (!hourInput || !minuteInput) {

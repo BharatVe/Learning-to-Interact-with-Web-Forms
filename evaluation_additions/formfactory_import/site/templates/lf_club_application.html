@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block title %}Student Club Application (3 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Student Club Application (3 pages)</h1>
+    <p class="text-muted">Application form for joining a student club and choosing activities.</p>
+    <form method="POST" id="club_applicationForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="club_application_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="club_application_1_full_name" name="club_application_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="club_application_2_student_email">Student email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="club_application_2_student_email" name="club_application_2_student_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="club_application_3_study_program">Study program <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="club_application_3_study_program" name="club_application_3_study_program" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="club_application_4_year_of_study">Year of study <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="club_application_4_year_of_study" id="club_application_4_year_of_study_0" value="1st year" aria-label="1st year" required aria-required="true">
+      <label class="form-check-label" for="club_application_4_year_of_study_0">1st year</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="club_application_4_year_of_study" id="club_application_4_year_of_study_1" value="2nd year" aria-label="2nd year" required aria-required="true">
+      <label class="form-check-label" for="club_application_4_year_of_study_1">2nd year</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="club_application_4_year_of_study" id="club_application_4_year_of_study_2" value="3rd year" aria-label="3rd year" required aria-required="true">
+      <label class="form-check-label" for="club_application_4_year_of_study_2">3rd year</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="club_application_4_year_of_study" id="club_application_4_year_of_study_3" value="4th year" aria-label="4th year" required aria-required="true">
+      <label class="form-check-label" for="club_application_4_year_of_study_3">4th year</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="club_application_4_year_of_study" id="club_application_4_year_of_study_4" value="Master’s" aria-label="Master’s" required aria-required="true">
+      <label class="form-check-label" for="club_application_4_year_of_study_4">Master’s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="club_application_4_year_of_study" id="club_application_4_year_of_study_5" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="club_application_4_year_of_study_5">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="club_application_1_why_do_you_want_to_join">Why do you want to join? <span class="text-danger">*</span></label>
+    <div class="form-text">2–4 sentences.</div>
+    <textarea class="form-control" id="club_application_1_why_do_you_want_to_join" name="club_application_1_why_do_you_want_to_join" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="club_application_2_activities_you_are_interested_in">Activities you are interested in <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_application_2_activities_you_are_interested_in" id="club_application_2_activities_you_are_interested_in_0" value="Events" aria-label="Events">
+      <label class="form-check-label" for="club_application_2_activities_you_are_interested_in_0">Events</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_application_2_activities_you_are_interested_in" id="club_application_2_activities_you_are_interested_in_1" value="Workshops" aria-label="Workshops">
+      <label class="form-check-label" for="club_application_2_activities_you_are_interested_in_1">Workshops</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_application_2_activities_you_are_interested_in" id="club_application_2_activities_you_are_interested_in_2" value="Social media" aria-label="Social media">
+      <label class="form-check-label" for="club_application_2_activities_you_are_interested_in_2">Social media</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_application_2_activities_you_are_interested_in" id="club_application_2_activities_you_are_interested_in_3" value="Sponsorship" aria-label="Sponsorship">
+      <label class="form-check-label" for="club_application_2_activities_you_are_interested_in_3">Sponsorship</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_application_2_activities_you_are_interested_in" id="club_application_2_activities_you_are_interested_in_4" value="Technical projects" aria-label="Technical projects">
+      <label class="form-check-label" for="club_application_2_activities_you_are_interested_in_4">Technical projects</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="club_application_3_previous_club_experience">Previous club experience</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="club_application_3_previous_club_experience" id="club_application_3_previous_club_experience_0" value="Yes" aria-label="Yes">
+      <label class="form-check-label" for="club_application_3_previous_club_experience_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="club_application_3_previous_club_experience" id="club_application_3_previous_club_experience_1" value="No" aria-label="No">
+      <label class="form-check-label" for="club_application_3_previous_club_experience_1">No</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="club_application_1_available_start_date">Available start date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="club_application_1_available_start_date" name="club_application_1_available_start_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="club_application_2_weekly_time_you_can_contribute">Weekly time you can contribute <span class="text-danger">*</span></label>
+    <div class="form-text">Example: 2, 4, 6</div>
+    <input type="text" class="form-control" id="club_application_2_weekly_time_you_can_contribute" name="club_application_2_weekly_time_you_can_contribute" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="club_application_3_preferred_meeting_time">Preferred meeting time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="club_application_3_preferred_meeting_time" name="club_application_3_preferred_meeting_time" placeholder="HH:MM">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

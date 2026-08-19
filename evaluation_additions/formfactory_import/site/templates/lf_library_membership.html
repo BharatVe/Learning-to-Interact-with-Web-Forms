@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}Library Membership Request{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Library Membership Request</h1>
+    <p class="text-muted">Collects details for campus library membership and reading preferences.</p>
+    <form method="POST" id="library_membershipForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="library_membership_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="library_membership_1_full_name" name="library_membership_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="library_membership_2_university_id">University ID <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="library_membership_2_university_id" name="library_membership_2_university_id" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="library_membership_3_department_or_program">Department or program <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="library_membership_3_department_or_program" name="library_membership_3_department_or_program" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="library_membership_4_membership_type">Membership type <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="library_membership_4_membership_type" id="library_membership_4_membership_type_0" value="Student" aria-label="Student" required aria-required="true">
+      <label class="form-check-label" for="library_membership_4_membership_type_0">Student</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="library_membership_4_membership_type" id="library_membership_4_membership_type_1" value="Research staff" aria-label="Research staff" required aria-required="true">
+      <label class="form-check-label" for="library_membership_4_membership_type_1">Research staff</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="library_membership_4_membership_type" id="library_membership_4_membership_type_2" value="Faculty" aria-label="Faculty" required aria-required="true">
+      <label class="form-check-label" for="library_membership_4_membership_type_2">Faculty</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="library_membership_4_membership_type" id="library_membership_4_membership_type_3" value="External visitor" aria-label="External visitor" required aria-required="true">
+      <label class="form-check-label" for="library_membership_4_membership_type_3">External visitor</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="library_membership_5_resources_you_use_most">Resources you use most</label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="library_membership_5_resources_you_use_most" id="library_membership_5_resources_you_use_most_0" value="Books" aria-label="Books">
+      <label class="form-check-label" for="library_membership_5_resources_you_use_most_0">Books</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="library_membership_5_resources_you_use_most" id="library_membership_5_resources_you_use_most_1" value="E-books" aria-label="E-books">
+      <label class="form-check-label" for="library_membership_5_resources_you_use_most_1">E-books</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="library_membership_5_resources_you_use_most" id="library_membership_5_resources_you_use_most_2" value="Study rooms" aria-label="Study rooms">
+      <label class="form-check-label" for="library_membership_5_resources_you_use_most_2">Study rooms</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="library_membership_5_resources_you_use_most" id="library_membership_5_resources_you_use_most_3" value="Journals" aria-label="Journals">
+      <label class="form-check-label" for="library_membership_5_resources_you_use_most_3">Journals</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="library_membership_5_resources_you_use_most" id="library_membership_5_resources_you_use_most_4" value="Computers" aria-label="Computers">
+      <label class="form-check-label" for="library_membership_5_resources_you_use_most_4">Computers</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="library_membership_6_preferred_visit_date">Preferred visit date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="library_membership_6_preferred_visit_date" name="library_membership_6_preferred_visit_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="library_membership_7_any_additional_access_needs">Any additional access needs?</label>
+    <textarea class="form-control" id="library_membership_7_any_additional_access_needs" name="library_membership_7_any_additional_access_needs" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

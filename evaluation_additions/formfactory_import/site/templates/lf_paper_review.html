@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Paper Review Assignment{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Paper Review Assignment</h1>
+    <p class="text-muted">Form for assigning and collecting structured paper review preferences.</p>
+    <form method="POST" id="paper_reviewForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="paper_review_1_reviewer_name">Reviewer name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="paper_review_1_reviewer_name" name="paper_review_1_reviewer_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="paper_review_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="paper_review_2_email_address" name="paper_review_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="paper_review_3_preferred_paper_topic">Preferred paper topic <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="paper_review_3_preferred_paper_topic" id="paper_review_3_preferred_paper_topic_0" value="Computer use agents" aria-label="Computer use agents">
+      <label class="form-check-label" for="paper_review_3_preferred_paper_topic_0">Computer use agents</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="paper_review_3_preferred_paper_topic" id="paper_review_3_preferred_paper_topic_1" value="Vision-language models" aria-label="Vision-language models">
+      <label class="form-check-label" for="paper_review_3_preferred_paper_topic_1">Vision-language models</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="paper_review_3_preferred_paper_topic" id="paper_review_3_preferred_paper_topic_2" value="Web automation" aria-label="Web automation">
+      <label class="form-check-label" for="paper_review_3_preferred_paper_topic_2">Web automation</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="paper_review_3_preferred_paper_topic" id="paper_review_3_preferred_paper_topic_3" value="Dataset construction" aria-label="Dataset construction">
+      <label class="form-check-label" for="paper_review_3_preferred_paper_topic_3">Dataset construction</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="paper_review_3_preferred_paper_topic" id="paper_review_3_preferred_paper_topic_4" value="Evaluation metrics" aria-label="Evaluation metrics">
+      <label class="form-check-label" for="paper_review_3_preferred_paper_topic_4">Evaluation metrics</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="paper_review_4_comfort_level_with_reviewing">Comfort level with reviewing <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="paper_review_4_comfort_level_with_reviewing" id="paper_review_4_comfort_level_with_reviewing_0" value="Beginner" aria-label="Beginner" required aria-required="true">
+      <label class="form-check-label" for="paper_review_4_comfort_level_with_reviewing_0">Beginner</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="paper_review_4_comfort_level_with_reviewing" id="paper_review_4_comfort_level_with_reviewing_1" value="Intermediate" aria-label="Intermediate" required aria-required="true">
+      <label class="form-check-label" for="paper_review_4_comfort_level_with_reviewing_1">Intermediate</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="paper_review_4_comfort_level_with_reviewing" id="paper_review_4_comfort_level_with_reviewing_2" value="Advanced" aria-label="Advanced" required aria-required="true">
+      <label class="form-check-label" for="paper_review_4_comfort_level_with_reviewing_2">Advanced</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="paper_review_5_number_of_papers_you_can_review">Number of papers you can review <span class="text-danger">*</span></label>
+    <select class="form-select" id="paper_review_5_number_of_papers_you_can_review" name="paper_review_5_number_of_papers_you_can_review" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="paper_review_6_review_deadline_preference">Review deadline preference</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="paper_review_6_review_deadline_preference" name="paper_review_6_review_deadline_preference" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="paper_review_7_conflicts_of_interest">Conflicts of interest</label>
+    <div class="form-text">Mention authors, labs, or topics you cannot review.</div>
+    <textarea class="form-control" id="paper_review_7_conflicts_of_interest" name="paper_review_7_conflicts_of_interest" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}Peer Evaluation Form{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Peer Evaluation Form</h1>
+    <p class="text-muted">Collects peer feedback for group projects and collaboration assessment.</p>
+    <form method="POST" id="peer_evaluationForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="peer_evaluation_1_your_name">Your name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="peer_evaluation_1_your_name" name="peer_evaluation_1_your_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="peer_evaluation_2_project_group_name">Project group name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="peer_evaluation_2_project_group_name" name="peer_evaluation_2_project_group_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="peer_evaluation_3_peer_being_evaluated">Peer being evaluated <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="peer_evaluation_3_peer_being_evaluated" name="peer_evaluation_3_peer_being_evaluated" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="peer_evaluation_4_contribution_level">Contribution level <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="peer_evaluation_4_contribution_level" id="peer_evaluation_4_contribution_level_0" value="Very low" aria-label="Very low" required aria-required="true">
+      <label class="form-check-label" for="peer_evaluation_4_contribution_level_0">Very low</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="peer_evaluation_4_contribution_level" id="peer_evaluation_4_contribution_level_1" value="Low" aria-label="Low" required aria-required="true">
+      <label class="form-check-label" for="peer_evaluation_4_contribution_level_1">Low</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="peer_evaluation_4_contribution_level" id="peer_evaluation_4_contribution_level_2" value="Moderate" aria-label="Moderate" required aria-required="true">
+      <label class="form-check-label" for="peer_evaluation_4_contribution_level_2">Moderate</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="peer_evaluation_4_contribution_level" id="peer_evaluation_4_contribution_level_3" value="High" aria-label="High" required aria-required="true">
+      <label class="form-check-label" for="peer_evaluation_4_contribution_level_3">High</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="peer_evaluation_4_contribution_level" id="peer_evaluation_4_contribution_level_4" value="Very high" aria-label="Very high" required aria-required="true">
+      <label class="form-check-label" for="peer_evaluation_4_contribution_level_4">Very high</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="peer_evaluation_5_strengths_observed">Strengths observed</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="peer_evaluation_5_strengths_observed" id="peer_evaluation_5_strengths_observed_0" value="Communication" aria-label="Communication">
+      <label class="form-check-label" for="peer_evaluation_5_strengths_observed_0">Communication</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="peer_evaluation_5_strengths_observed" id="peer_evaluation_5_strengths_observed_1" value="Technical work" aria-label="Technical work">
+      <label class="form-check-label" for="peer_evaluation_5_strengths_observed_1">Technical work</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="peer_evaluation_5_strengths_observed" id="peer_evaluation_5_strengths_observed_2" value="Writing" aria-label="Writing">
+      <label class="form-check-label" for="peer_evaluation_5_strengths_observed_2">Writing</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="peer_evaluation_5_strengths_observed" id="peer_evaluation_5_strengths_observed_3" value="Presentation" aria-label="Presentation">
+      <label class="form-check-label" for="peer_evaluation_5_strengths_observed_3">Presentation</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="peer_evaluation_5_strengths_observed" id="peer_evaluation_5_strengths_observed_4" value="Organization" aria-label="Organization">
+      <label class="form-check-label" for="peer_evaluation_5_strengths_observed_4">Organization</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="peer_evaluation_5_strengths_observed" id="peer_evaluation_5_strengths_observed_5" value="Problem solving" aria-label="Problem solving">
+      <label class="form-check-label" for="peer_evaluation_5_strengths_observed_5">Problem solving</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="peer_evaluation_6_collaboration_rating">Collaboration rating <span class="text-danger">*</span></label>
+    <select class="form-select" id="peer_evaluation_6_collaboration_rating" name="peer_evaluation_6_collaboration_rating" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="peer_evaluation_7_constructive_feedback">Constructive feedback</label>
+    <textarea class="form-control" id="peer_evaluation_7_constructive_feedback" name="peer_evaluation_7_constructive_feedback" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

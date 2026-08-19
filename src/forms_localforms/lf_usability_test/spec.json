@@ -1,0 +1,83 @@
+{
+  "form_id": "lf_usability_test",
+  "form_title": "Usability Test Registration",
+  "form_description": "Collects participant information and device availability for a usability session.",
+  "active": true,
+  "edit_url": null,
+  "published_url": null,
+  "form_url": "http://127.0.0.1:5000/forms/lf_usability_test",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Participant info",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant info",
+      "q_order": 2,
+      "q_title": "Email address",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant info",
+      "q_order": 3,
+      "q_title": "Age group",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "18–24;25–34;35–44;45+",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant info",
+      "q_order": 4,
+      "q_title": "Devices available",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Laptop;Desktop;Tablet;Android phone;iPhone",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant info",
+      "q_order": 5,
+      "q_title": "Have you used similar tools before?",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Yes;No;Not sure",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant info",
+      "q_order": 6,
+      "q_title": "Preferred session date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Participant info",
+      "q_order": 7,
+      "q_title": "Preferred session time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "generate_localforms.py recreation of src/forms/usability_test/spec.json (FormFactory-style)"
+}

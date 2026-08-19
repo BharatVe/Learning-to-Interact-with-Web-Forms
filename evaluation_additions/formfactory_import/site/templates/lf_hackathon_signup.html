@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block title %}Hackathon Signup (2 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Hackathon Signup (2 pages)</h1>
+    <p class="text-muted">Registration form for hackathon participants with team and logistics details.</p>
+    <form method="POST" id="hackathon_signupForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="hackathon_signup_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="hackathon_signup_1_full_name" name="hackathon_signup_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="hackathon_signup_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="hackathon_signup_2_email_address" name="hackathon_signup_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="hackathon_signup_3_university_or_organization">University or organization <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="hackathon_signup_3_university_or_organization" name="hackathon_signup_3_university_or_organization" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="hackathon_signup_4_participation_type">Participation type <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="hackathon_signup_4_participation_type" id="hackathon_signup_4_participation_type_0" value="Solo participant" aria-label="Solo participant" required aria-required="true">
+      <label class="form-check-label" for="hackathon_signup_4_participation_type_0">Solo participant</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="hackathon_signup_4_participation_type" id="hackathon_signup_4_participation_type_1" value="Already in a team" aria-label="Already in a team" required aria-required="true">
+      <label class="form-check-label" for="hackathon_signup_4_participation_type_1">Already in a team</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="hackathon_signup_4_participation_type" id="hackathon_signup_4_participation_type_2" value="Looking for a team" aria-label="Looking for a team" required aria-required="true">
+      <label class="form-check-label" for="hackathon_signup_4_participation_type_2">Looking for a team</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="hackathon_signup_1_preferred_challenge_track">Preferred challenge track <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="hackathon_signup_1_preferred_challenge_track" id="hackathon_signup_1_preferred_challenge_track_0" value="AI for Education" aria-label="AI for Education" required aria-required="true">
+      <label class="form-check-label" for="hackathon_signup_1_preferred_challenge_track_0">AI for Education</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="hackathon_signup_1_preferred_challenge_track" id="hackathon_signup_1_preferred_challenge_track_1" value="Sustainability" aria-label="Sustainability" required aria-required="true">
+      <label class="form-check-label" for="hackathon_signup_1_preferred_challenge_track_1">Sustainability</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="hackathon_signup_1_preferred_challenge_track" id="hackathon_signup_1_preferred_challenge_track_2" value="Health Tech" aria-label="Health Tech" required aria-required="true">
+      <label class="form-check-label" for="hackathon_signup_1_preferred_challenge_track_2">Health Tech</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="hackathon_signup_1_preferred_challenge_track" id="hackathon_signup_1_preferred_challenge_track_3" value="Open Innovation" aria-label="Open Innovation" required aria-required="true">
+      <label class="form-check-label" for="hackathon_signup_1_preferred_challenge_track_3">Open Innovation</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="hackathon_signup_2_skills_you_can_contribute">Skills you can contribute <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="hackathon_signup_2_skills_you_can_contribute" id="hackathon_signup_2_skills_you_can_contribute_0" value="Programming" aria-label="Programming">
+      <label class="form-check-label" for="hackathon_signup_2_skills_you_can_contribute_0">Programming</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="hackathon_signup_2_skills_you_can_contribute" id="hackathon_signup_2_skills_you_can_contribute_1" value="Design" aria-label="Design">
+      <label class="form-check-label" for="hackathon_signup_2_skills_you_can_contribute_1">Design</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="hackathon_signup_2_skills_you_can_contribute" id="hackathon_signup_2_skills_you_can_contribute_2" value="Data Analysis" aria-label="Data Analysis">
+      <label class="form-check-label" for="hackathon_signup_2_skills_you_can_contribute_2">Data Analysis</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="hackathon_signup_2_skills_you_can_contribute" id="hackathon_signup_2_skills_you_can_contribute_3" value="Presentation" aria-label="Presentation">
+      <label class="form-check-label" for="hackathon_signup_2_skills_you_can_contribute_3">Presentation</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="hackathon_signup_2_skills_you_can_contribute" id="hackathon_signup_2_skills_you_can_contribute_4" value="Project Management" aria-label="Project Management">
+      <label class="form-check-label" for="hackathon_signup_2_skills_you_can_contribute_4">Project Management</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="hackathon_signup_3_dietary_restrictions">Dietary restrictions</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="hackathon_signup_3_dietary_restrictions" id="hackathon_signup_3_dietary_restrictions_0" value="Vegetarian" aria-label="Vegetarian">
+      <label class="form-check-label" for="hackathon_signup_3_dietary_restrictions_0">Vegetarian</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="hackathon_signup_3_dietary_restrictions" id="hackathon_signup_3_dietary_restrictions_1" value="Vegan" aria-label="Vegan">
+      <label class="form-check-label" for="hackathon_signup_3_dietary_restrictions_1">Vegan</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="hackathon_signup_3_dietary_restrictions" id="hackathon_signup_3_dietary_restrictions_2" value="Halal" aria-label="Halal">
+      <label class="form-check-label" for="hackathon_signup_3_dietary_restrictions_2">Halal</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="hackathon_signup_3_dietary_restrictions" id="hackathon_signup_3_dietary_restrictions_3" value="None" aria-label="None">
+      <label class="form-check-label" for="hackathon_signup_3_dietary_restrictions_3">None</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="hackathon_signup_3_dietary_restrictions" id="hackathon_signup_3_dietary_restrictions_4" value="Other" aria-label="Other">
+      <label class="form-check-label" for="hackathon_signup_3_dietary_restrictions_4">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="hackathon_signup_4_arrival_date">Arrival date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="hackathon_signup_4_arrival_date" name="hackathon_signup_4_arrival_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="hackathon_signup_5_emergency_contact_number">Emergency contact number</label>
+    <input type="text" class="form-control" id="hackathon_signup_5_emergency_contact_number" name="hackathon_signup_5_emergency_contact_number">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

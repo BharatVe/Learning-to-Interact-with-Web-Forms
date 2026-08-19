@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Usability Test Registration{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Usability Test Registration</h1>
+    <p class="text-muted">Collects participant information and device availability for a usability session.</p>
+    <form method="POST" id="usability_testForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="usability_test_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="usability_test_1_full_name" name="usability_test_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="usability_test_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="usability_test_2_email_address" name="usability_test_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="usability_test_3_age_group">Age group <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="usability_test_3_age_group" id="usability_test_3_age_group_0" value="18–24" aria-label="18–24" required aria-required="true">
+      <label class="form-check-label" for="usability_test_3_age_group_0">18–24</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="usability_test_3_age_group" id="usability_test_3_age_group_1" value="25–34" aria-label="25–34" required aria-required="true">
+      <label class="form-check-label" for="usability_test_3_age_group_1">25–34</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="usability_test_3_age_group" id="usability_test_3_age_group_2" value="35–44" aria-label="35–44" required aria-required="true">
+      <label class="form-check-label" for="usability_test_3_age_group_2">35–44</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="usability_test_3_age_group" id="usability_test_3_age_group_3" value="45+" aria-label="45+" required aria-required="true">
+      <label class="form-check-label" for="usability_test_3_age_group_3">45+</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="usability_test_4_devices_available">Devices available <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="usability_test_4_devices_available" id="usability_test_4_devices_available_0" value="Laptop" aria-label="Laptop">
+      <label class="form-check-label" for="usability_test_4_devices_available_0">Laptop</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="usability_test_4_devices_available" id="usability_test_4_devices_available_1" value="Desktop" aria-label="Desktop">
+      <label class="form-check-label" for="usability_test_4_devices_available_1">Desktop</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="usability_test_4_devices_available" id="usability_test_4_devices_available_2" value="Tablet" aria-label="Tablet">
+      <label class="form-check-label" for="usability_test_4_devices_available_2">Tablet</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="usability_test_4_devices_available" id="usability_test_4_devices_available_3" value="Android phone" aria-label="Android phone">
+      <label class="form-check-label" for="usability_test_4_devices_available_3">Android phone</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="usability_test_4_devices_available" id="usability_test_4_devices_available_4" value="iPhone" aria-label="iPhone">
+      <label class="form-check-label" for="usability_test_4_devices_available_4">iPhone</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="usability_test_5_have_you_used_similar_tools_before">Have you used similar tools before? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="usability_test_5_have_you_used_similar_tools_before" id="usability_test_5_have_you_used_similar_tools_before_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="usability_test_5_have_you_used_similar_tools_before_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="usability_test_5_have_you_used_similar_tools_before" id="usability_test_5_have_you_used_similar_tools_before_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="usability_test_5_have_you_used_similar_tools_before_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="usability_test_5_have_you_used_similar_tools_before" id="usability_test_5_have_you_used_similar_tools_before_2" value="Not sure" aria-label="Not sure" required aria-required="true">
+      <label class="form-check-label" for="usability_test_5_have_you_used_similar_tools_before_2">Not sure</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="usability_test_6_preferred_session_date">Preferred session date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="usability_test_6_preferred_session_date" name="usability_test_6_preferred_session_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="usability_test_7_preferred_session_time">Preferred session time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="usability_test_7_preferred_session_time" name="usability_test_7_preferred_session_time" placeholder="HH:MM">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

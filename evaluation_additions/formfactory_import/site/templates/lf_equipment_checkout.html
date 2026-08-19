@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Equipment Checkout Request{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Equipment Checkout Request</h1>
+    <p class="text-muted">Request form for borrowing university or lab equipment with pickup and return details.</p>
+    <form method="POST" id="equipment_checkoutForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="equipment_checkout_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="equipment_checkout_1_full_name" name="equipment_checkout_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="equipment_checkout_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="equipment_checkout_2_email_address" name="equipment_checkout_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="equipment_checkout_3_department_or_group">Department or group <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="equipment_checkout_3_department_or_group" name="equipment_checkout_3_department_or_group" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="equipment_checkout_4_equipment_category">Equipment category <span class="text-danger">*</span></label>
+    <select class="form-select" id="equipment_checkout_4_equipment_category" name="equipment_checkout_4_equipment_category" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Laptop">Laptop</option>
+      <option value="Camera">Camera</option>
+      <option value="Microphone">Microphone</option>
+      <option value="Sensor kit">Sensor kit</option>
+      <option value="Projector">Projector</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="equipment_checkout_5_specific_item_requested">Specific item requested <span class="text-danger">*</span></label>
+    <div class="form-text">Example: DSLR camera kit or laptop charger</div>
+    <input type="text" class="form-control" id="equipment_checkout_5_specific_item_requested" name="equipment_checkout_5_specific_item_requested" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="equipment_checkout_6_pickup_date">Pickup date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="equipment_checkout_6_pickup_date" name="equipment_checkout_6_pickup_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="equipment_checkout_7_pickup_time">Pickup time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="equipment_checkout_7_pickup_time" name="equipment_checkout_7_pickup_time" placeholder="HH:MM">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="equipment_checkout_8_expected_return_date">Expected return date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="equipment_checkout_8_expected_return_date" name="equipment_checkout_8_expected_return_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="9">
+    <label class="form-label" for="equipment_checkout_9_purpose_of_checkout">Purpose of checkout</label>
+    <div class="form-text">Briefly describe how the item will be used.</div>
+    <textarea class="form-control" id="equipment_checkout_9_purpose_of_checkout" name="equipment_checkout_9_purpose_of_checkout" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

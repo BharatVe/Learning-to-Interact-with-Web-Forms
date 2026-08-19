@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block title %}Technical Support Request{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Technical Support Request</h1>
+    <p class="text-muted">Support request form for device, account, network, or software problems.</p>
+    <form method="POST" id="technical_supportForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="technical_support_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="technical_support_1_full_name" name="technical_support_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="technical_support_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="technical_support_2_email_address" name="technical_support_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="technical_support_3_issue_category">Issue category <span class="text-danger">*</span></label>
+    <select class="form-select" id="technical_support_3_issue_category" name="technical_support_3_issue_category" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Account">Account</option>
+      <option value="Network">Network</option>
+      <option value="Software">Software</option>
+      <option value="Hardware">Hardware</option>
+      <option value="Printing">Printing</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="technical_support_4_affected_device">Affected device <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="technical_support_4_affected_device" id="technical_support_4_affected_device_0" value="Laptop" aria-label="Laptop" required aria-required="true">
+      <label class="form-check-label" for="technical_support_4_affected_device_0">Laptop</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="technical_support_4_affected_device" id="technical_support_4_affected_device_1" value="Desktop" aria-label="Desktop" required aria-required="true">
+      <label class="form-check-label" for="technical_support_4_affected_device_1">Desktop</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="technical_support_4_affected_device" id="technical_support_4_affected_device_2" value="Phone" aria-label="Phone" required aria-required="true">
+      <label class="form-check-label" for="technical_support_4_affected_device_2">Phone</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="technical_support_4_affected_device" id="technical_support_4_affected_device_3" value="Tablet" aria-label="Tablet" required aria-required="true">
+      <label class="form-check-label" for="technical_support_4_affected_device_3">Tablet</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="technical_support_4_affected_device" id="technical_support_4_affected_device_4" value="Lab workstation" aria-label="Lab workstation" required aria-required="true">
+      <label class="form-check-label" for="technical_support_4_affected_device_4">Lab workstation</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="technical_support_4_affected_device" id="technical_support_4_affected_device_5" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="technical_support_4_affected_device_5">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="technical_support_5_when_did_the_issue_start">When did the issue start?</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="technical_support_5_when_did_the_issue_start" name="technical_support_5_when_did_the_issue_start" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="technical_support_6_best_time_to_contact_you">Best time to contact you</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="technical_support_6_best_time_to_contact_you" name="technical_support_6_best_time_to_contact_you" placeholder="HH:MM">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="technical_support_7_impact_level">Impact level <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="technical_support_7_impact_level" id="technical_support_7_impact_level_0" value="Low" aria-label="Low" required aria-required="true">
+      <label class="form-check-label" for="technical_support_7_impact_level_0">Low</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="technical_support_7_impact_level" id="technical_support_7_impact_level_1" value="Medium" aria-label="Medium" required aria-required="true">
+      <label class="form-check-label" for="technical_support_7_impact_level_1">Medium</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="technical_support_7_impact_level" id="technical_support_7_impact_level_2" value="High" aria-label="High" required aria-required="true">
+      <label class="form-check-label" for="technical_support_7_impact_level_2">High</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="technical_support_7_impact_level" id="technical_support_7_impact_level_3" value="Cannot work" aria-label="Cannot work" required aria-required="true">
+      <label class="form-check-label" for="technical_support_7_impact_level_3">Cannot work</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="technical_support_8_description_of_the_issue">Description of the issue <span class="text-danger">*</span></label>
+    <textarea class="form-control" id="technical_support_8_description_of_the_issue" name="technical_support_8_description_of_the_issue" rows="4" required aria-required="true"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

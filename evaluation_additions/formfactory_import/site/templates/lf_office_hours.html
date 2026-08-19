@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Office Hours Booking{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Office Hours Booking</h1>
+    <p class="text-muted">Booking form for academic office hours and consultation topics.</p>
+    <form method="POST" id="office_hoursForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="office_hours_1_student_name">Student name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="office_hours_1_student_name" name="office_hours_1_student_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="office_hours_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="office_hours_2_email_address" name="office_hours_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="office_hours_3_course_or_project">Course or project <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="office_hours_3_course_or_project" name="office_hours_3_course_or_project" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="office_hours_4_topic_category">Topic category <span class="text-danger">*</span></label>
+    <select class="form-select" id="office_hours_4_topic_category" name="office_hours_4_topic_category" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Lecture content">Lecture content</option>
+      <option value="Assignment">Assignment</option>
+      <option value="Exam preparation">Exam preparation</option>
+      <option value="Project feedback">Project feedback</option>
+      <option value="Administrative question">Administrative question</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="office_hours_5_preferred_meeting_mode">Preferred meeting mode <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="office_hours_5_preferred_meeting_mode" id="office_hours_5_preferred_meeting_mode_0" value="In person" aria-label="In person" required aria-required="true">
+      <label class="form-check-label" for="office_hours_5_preferred_meeting_mode_0">In person</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="office_hours_5_preferred_meeting_mode" id="office_hours_5_preferred_meeting_mode_1" value="Online" aria-label="Online" required aria-required="true">
+      <label class="form-check-label" for="office_hours_5_preferred_meeting_mode_1">Online</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="office_hours_5_preferred_meeting_mode" id="office_hours_5_preferred_meeting_mode_2" value="Either" aria-label="Either" required aria-required="true">
+      <label class="form-check-label" for="office_hours_5_preferred_meeting_mode_2">Either</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="office_hours_6_preferred_date">Preferred date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="office_hours_6_preferred_date" name="office_hours_6_preferred_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="office_hours_7_preferred_time">Preferred time <span class="text-danger">*</span></label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="office_hours_7_preferred_time" name="office_hours_7_preferred_time" placeholder="HH:MM" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="office_hours_8_question_or_context">Question or context</label>
+    <div class="form-text">Briefly describe what you want to discuss.</div>
+    <textarea class="form-control" id="office_hours_8_question_or_context" name="office_hours_8_question_or_context" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

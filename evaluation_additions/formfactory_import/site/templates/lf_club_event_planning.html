@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}Club Event Planning Form (3 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Club Event Planning Form (3 pages)</h1>
+    <p class="text-muted">Planning form for student club events with logistics and promotion details.</p>
+    <form method="POST" id="club_event_planningForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="club_event_planning_1_organizer_name">Organizer name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="club_event_planning_1_organizer_name" name="club_event_planning_1_organizer_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="club_event_planning_2_organizer_email">Organizer email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="club_event_planning_2_organizer_email" name="club_event_planning_2_organizer_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="club_event_planning_3_event_title">Event title <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="club_event_planning_3_event_title" name="club_event_planning_3_event_title" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="club_event_planning_4_event_type">Event type <span class="text-danger">*</span></label>
+    <select class="form-select" id="club_event_planning_4_event_type" name="club_event_planning_4_event_type" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Workshop">Workshop</option>
+      <option value="Social event">Social event</option>
+      <option value="Guest talk">Guest talk</option>
+      <option value="Competition">Competition</option>
+      <option value="Study session">Study session</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="club_event_planning_1_preferred_event_date">Preferred event date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="club_event_planning_1_preferred_event_date" name="club_event_planning_1_preferred_event_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="club_event_planning_2_preferred_start_time">Preferred start time <span class="text-danger">*</span></label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="club_event_planning_2_preferred_start_time" name="club_event_planning_2_preferred_start_time" placeholder="HH:MM" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="club_event_planning_3_expected_number_of_attendees">Expected number of attendees <span class="text-danger">*</span></label>
+    <div class="form-text">Enter an approximate number.</div>
+    <input type="text" class="form-control" id="club_event_planning_3_expected_number_of_attendees" name="club_event_planning_3_expected_number_of_attendees" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="club_event_planning_4_venue_needs">Venue needs</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_event_planning_4_venue_needs" id="club_event_planning_4_venue_needs_0" value="Projector" aria-label="Projector">
+      <label class="form-check-label" for="club_event_planning_4_venue_needs_0">Projector</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_event_planning_4_venue_needs" id="club_event_planning_4_venue_needs_1" value="Microphone" aria-label="Microphone">
+      <label class="form-check-label" for="club_event_planning_4_venue_needs_1">Microphone</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_event_planning_4_venue_needs" id="club_event_planning_4_venue_needs_2" value="Whiteboard" aria-label="Whiteboard">
+      <label class="form-check-label" for="club_event_planning_4_venue_needs_2">Whiteboard</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_event_planning_4_venue_needs" id="club_event_planning_4_venue_needs_3" value="Open space" aria-label="Open space">
+      <label class="form-check-label" for="club_event_planning_4_venue_needs_3">Open space</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_event_planning_4_venue_needs" id="club_event_planning_4_venue_needs_4" value="Tables" aria-label="Tables">
+      <label class="form-check-label" for="club_event_planning_4_venue_needs_4">Tables</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_event_planning_4_venue_needs" id="club_event_planning_4_venue_needs_5" value="No special needs" aria-label="No special needs">
+      <label class="form-check-label" for="club_event_planning_4_venue_needs_5">No special needs</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="club_event_planning_1_promotion_channels">Promotion channels</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_event_planning_1_promotion_channels" id="club_event_planning_1_promotion_channels_0" value="Instagram" aria-label="Instagram">
+      <label class="form-check-label" for="club_event_planning_1_promotion_channels_0">Instagram</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_event_planning_1_promotion_channels" id="club_event_planning_1_promotion_channels_1" value="Email" aria-label="Email">
+      <label class="form-check-label" for="club_event_planning_1_promotion_channels_1">Email</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_event_planning_1_promotion_channels" id="club_event_planning_1_promotion_channels_2" value="Posters" aria-label="Posters">
+      <label class="form-check-label" for="club_event_planning_1_promotion_channels_2">Posters</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_event_planning_1_promotion_channels" id="club_event_planning_1_promotion_channels_3" value="Website" aria-label="Website">
+      <label class="form-check-label" for="club_event_planning_1_promotion_channels_3">Website</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="club_event_planning_1_promotion_channels" id="club_event_planning_1_promotion_channels_4" value="Class announcements" aria-label="Class announcements">
+      <label class="form-check-label" for="club_event_planning_1_promotion_channels_4">Class announcements</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="club_event_planning_2_short_event_description">Short event description <span class="text-danger">*</span></label>
+    <textarea class="form-control" id="club_event_planning_2_short_event_description" name="club_event_planning_2_short_event_description" rows="4" required aria-required="true"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

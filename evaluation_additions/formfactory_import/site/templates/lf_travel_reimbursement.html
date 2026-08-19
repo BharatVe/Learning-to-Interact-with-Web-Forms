@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %}Travel Reimbursement Request (3 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Travel Reimbursement Request (3 pages)</h1>
+    <p class="text-muted">Collects trip, expense, and payment information for reimbursement.</p>
+    <form method="POST" id="travel_reimbursementForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="travel_reimbursement_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="travel_reimbursement_1_full_name" name="travel_reimbursement_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="travel_reimbursement_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="travel_reimbursement_2_email_address" name="travel_reimbursement_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="travel_reimbursement_3_purpose_of_travel">Purpose of travel <span class="text-danger">*</span></label>
+    <div class="form-text">Briefly describe the event or reason.</div>
+    <textarea class="form-control" id="travel_reimbursement_3_purpose_of_travel" name="travel_reimbursement_3_purpose_of_travel" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="travel_reimbursement_4_departure_date">Departure date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="travel_reimbursement_4_departure_date" name="travel_reimbursement_4_departure_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="travel_reimbursement_5_return_date">Return date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="travel_reimbursement_5_return_date" name="travel_reimbursement_5_return_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="travel_reimbursement_1_transport_mode">Transport mode <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="travel_reimbursement_1_transport_mode" id="travel_reimbursement_1_transport_mode_0" value="Train" aria-label="Train" required aria-required="true">
+      <label class="form-check-label" for="travel_reimbursement_1_transport_mode_0">Train</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="travel_reimbursement_1_transport_mode" id="travel_reimbursement_1_transport_mode_1" value="Flight" aria-label="Flight" required aria-required="true">
+      <label class="form-check-label" for="travel_reimbursement_1_transport_mode_1">Flight</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="travel_reimbursement_1_transport_mode" id="travel_reimbursement_1_transport_mode_2" value="Bus" aria-label="Bus" required aria-required="true">
+      <label class="form-check-label" for="travel_reimbursement_1_transport_mode_2">Bus</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="travel_reimbursement_1_transport_mode" id="travel_reimbursement_1_transport_mode_3" value="Car" aria-label="Car" required aria-required="true">
+      <label class="form-check-label" for="travel_reimbursement_1_transport_mode_3">Car</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="travel_reimbursement_1_transport_mode" id="travel_reimbursement_1_transport_mode_4" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="travel_reimbursement_1_transport_mode_4">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="travel_reimbursement_2_expense_categories_claimed">Expense categories claimed <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="travel_reimbursement_2_expense_categories_claimed" id="travel_reimbursement_2_expense_categories_claimed_0" value="Transport" aria-label="Transport">
+      <label class="form-check-label" for="travel_reimbursement_2_expense_categories_claimed_0">Transport</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="travel_reimbursement_2_expense_categories_claimed" id="travel_reimbursement_2_expense_categories_claimed_1" value="Accommodation" aria-label="Accommodation">
+      <label class="form-check-label" for="travel_reimbursement_2_expense_categories_claimed_1">Accommodation</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="travel_reimbursement_2_expense_categories_claimed" id="travel_reimbursement_2_expense_categories_claimed_2" value="Meals" aria-label="Meals">
+      <label class="form-check-label" for="travel_reimbursement_2_expense_categories_claimed_2">Meals</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="travel_reimbursement_2_expense_categories_claimed" id="travel_reimbursement_2_expense_categories_claimed_3" value="Conference fee" aria-label="Conference fee">
+      <label class="form-check-label" for="travel_reimbursement_2_expense_categories_claimed_3">Conference fee</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="travel_reimbursement_2_expense_categories_claimed" id="travel_reimbursement_2_expense_categories_claimed_4" value="Local travel" aria-label="Local travel">
+      <label class="form-check-label" for="travel_reimbursement_2_expense_categories_claimed_4">Local travel</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="travel_reimbursement_3_approximate_total_amount">Approximate total amount <span class="text-danger">*</span></label>
+    <div class="form-text">Enter a number only.</div>
+    <input type="text" class="form-control" id="travel_reimbursement_3_approximate_total_amount" name="travel_reimbursement_3_approximate_total_amount" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="travel_reimbursement_1_bank_account_holder_name">Bank account holder name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="travel_reimbursement_1_bank_account_holder_name" name="travel_reimbursement_1_bank_account_holder_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="travel_reimbursement_2_iban">IBAN <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="travel_reimbursement_2_iban" name="travel_reimbursement_2_iban" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="travel_reimbursement_3_preferred_contact_time">Preferred contact time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="travel_reimbursement_3_preferred_contact_time" name="travel_reimbursement_3_preferred_contact_time" placeholder="HH:MM">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

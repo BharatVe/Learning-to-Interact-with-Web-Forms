@@ -1,0 +1,83 @@
+{
+  "form_id": "lf_research_interest",
+  "form_title": "Research Interest Intake",
+  "form_description": "Collects research interests, experience, and preferred supervision topics.",
+  "active": true,
+  "edit_url": null,
+  "published_url": null,
+  "form_url": "http://127.0.0.1:5000/forms/lf_research_interest",
+  "question_count": 7,
+  "questions": [
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 1,
+      "q_title": "Full name",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 2,
+      "q_title": "Contact email",
+      "q_type": "SHORT_TEXT",
+      "required": true,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 3,
+      "q_title": "Current degree level",
+      "q_type": "SINGLE_CHOICE",
+      "required": true,
+      "options": "Bachelor’s;Master’s;PhD;Other",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 4,
+      "q_title": "Research areas of interest",
+      "q_type": "MULTI_CHOICE",
+      "required": true,
+      "options": "Machine Learning;Computer Vision;NLP;Robotics;Human-Computer Interaction",
+      "help_text": "Select one or more."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 5,
+      "q_title": "Previous research experience",
+      "q_type": "PARAGRAPH",
+      "required": false,
+      "options": "",
+      "help_text": "2–4 sentences."
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 6,
+      "q_title": "Preferred meeting date",
+      "q_type": "DATE",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    },
+    {
+      "section_order": 1,
+      "section_title": "Research background",
+      "q_order": 7,
+      "q_title": "Preferred meeting time",
+      "q_type": "TIME",
+      "required": false,
+      "options": "",
+      "help_text": ""
+    }
+  ],
+  "source": "generate_localforms.py recreation of src/forms/research_interest/spec.json (FormFactory-style)"
+}

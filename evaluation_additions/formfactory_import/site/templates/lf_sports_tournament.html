@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}Sports Tournament Registration (2 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Sports Tournament Registration (2 pages)</h1>
+    <p class="text-muted">Registration form for tournament participants, teams, and scheduling preferences.</p>
+    <form method="POST" id="sports_tournamentForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="sports_tournament_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="sports_tournament_1_full_name" name="sports_tournament_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="sports_tournament_2_contact_email">Contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="sports_tournament_2_contact_email" name="sports_tournament_2_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="sports_tournament_3_sport">Sport <span class="text-danger">*</span></label>
+    <select class="form-select" id="sports_tournament_3_sport" name="sports_tournament_3_sport" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Football">Football</option>
+      <option value="Basketball">Basketball</option>
+      <option value="Badminton">Badminton</option>
+      <option value="Table tennis">Table tennis</option>
+      <option value="Volleyball">Volleyball</option>
+      <option value="Running">Running</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="sports_tournament_4_registration_type">Registration type <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="sports_tournament_4_registration_type" id="sports_tournament_4_registration_type_0" value="Individual" aria-label="Individual" required aria-required="true">
+      <label class="form-check-label" for="sports_tournament_4_registration_type_0">Individual</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="sports_tournament_4_registration_type" id="sports_tournament_4_registration_type_1" value="Team captain" aria-label="Team captain" required aria-required="true">
+      <label class="form-check-label" for="sports_tournament_4_registration_type_1">Team captain</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="sports_tournament_4_registration_type" id="sports_tournament_4_registration_type_2" value="Team member" aria-label="Team member" required aria-required="true">
+      <label class="form-check-label" for="sports_tournament_4_registration_type_2">Team member</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="sports_tournament_1_team_name">Team name</label>
+    <input type="text" class="form-control" id="sports_tournament_1_team_name" name="sports_tournament_1_team_name">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="sports_tournament_2_skill_level">Skill level <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="sports_tournament_2_skill_level" id="sports_tournament_2_skill_level_0" value="Beginner" aria-label="Beginner" required aria-required="true">
+      <label class="form-check-label" for="sports_tournament_2_skill_level_0">Beginner</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="sports_tournament_2_skill_level" id="sports_tournament_2_skill_level_1" value="Intermediate" aria-label="Intermediate" required aria-required="true">
+      <label class="form-check-label" for="sports_tournament_2_skill_level_1">Intermediate</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="sports_tournament_2_skill_level" id="sports_tournament_2_skill_level_2" value="Advanced" aria-label="Advanced" required aria-required="true">
+      <label class="form-check-label" for="sports_tournament_2_skill_level_2">Advanced</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="sports_tournament_3_available_match_days">Available match days <span class="text-danger">*</span></label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="sports_tournament_3_available_match_days" id="sports_tournament_3_available_match_days_0" value="Monday" aria-label="Monday">
+      <label class="form-check-label" for="sports_tournament_3_available_match_days_0">Monday</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="sports_tournament_3_available_match_days" id="sports_tournament_3_available_match_days_1" value="Tuesday" aria-label="Tuesday">
+      <label class="form-check-label" for="sports_tournament_3_available_match_days_1">Tuesday</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="sports_tournament_3_available_match_days" id="sports_tournament_3_available_match_days_2" value="Wednesday" aria-label="Wednesday">
+      <label class="form-check-label" for="sports_tournament_3_available_match_days_2">Wednesday</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="sports_tournament_3_available_match_days" id="sports_tournament_3_available_match_days_3" value="Thursday" aria-label="Thursday">
+      <label class="form-check-label" for="sports_tournament_3_available_match_days_3">Thursday</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="sports_tournament_3_available_match_days" id="sports_tournament_3_available_match_days_4" value="Friday" aria-label="Friday">
+      <label class="form-check-label" for="sports_tournament_3_available_match_days_4">Friday</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="sports_tournament_3_available_match_days" id="sports_tournament_3_available_match_days_5" value="Weekend" aria-label="Weekend">
+      <label class="form-check-label" for="sports_tournament_3_available_match_days_5">Weekend</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="sports_tournament_4_preferred_first_match_date">Preferred first match date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="sports_tournament_4_preferred_first_match_date" name="sports_tournament_4_preferred_first_match_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="sports_tournament_5_preferred_match_time">Preferred match time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="sports_tournament_5_preferred_match_time" name="sports_tournament_5_preferred_match_time" placeholder="HH:MM">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

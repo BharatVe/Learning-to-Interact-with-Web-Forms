@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}Project Progress Update{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Project Progress Update</h1>
+    <p class="text-muted">Weekly project update form collecting progress, blockers, and next steps.</p>
+    <form method="POST" id="project_updateForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="project_update_1_name">Name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="project_update_1_name" name="project_update_1_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="project_update_2_project_name">Project name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="project_update_2_project_name" name="project_update_2_project_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="project_update_3_reporting_week_start_date">Reporting week start date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="project_update_3_reporting_week_start_date" name="project_update_3_reporting_week_start_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="project_update_4_current_project_status">Current project status <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="project_update_4_current_project_status" id="project_update_4_current_project_status_0" value="On track" aria-label="On track" required aria-required="true">
+      <label class="form-check-label" for="project_update_4_current_project_status_0">On track</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="project_update_4_current_project_status" id="project_update_4_current_project_status_1" value="Slightly delayed" aria-label="Slightly delayed" required aria-required="true">
+      <label class="form-check-label" for="project_update_4_current_project_status_1">Slightly delayed</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="project_update_4_current_project_status" id="project_update_4_current_project_status_2" value="Blocked" aria-label="Blocked" required aria-required="true">
+      <label class="form-check-label" for="project_update_4_current_project_status_2">Blocked</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="project_update_4_current_project_status" id="project_update_4_current_project_status_3" value="Completed" aria-label="Completed" required aria-required="true">
+      <label class="form-check-label" for="project_update_4_current_project_status_3">Completed</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="project_update_5_tasks_completed_this_week">Tasks completed this week <span class="text-danger">*</span></label>
+    <textarea class="form-control" id="project_update_5_tasks_completed_this_week" name="project_update_5_tasks_completed_this_week" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="project_update_6_blockers_or_risks">Blockers or risks</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="project_update_6_blockers_or_risks" id="project_update_6_blockers_or_risks_0" value="Technical issue" aria-label="Technical issue">
+      <label class="form-check-label" for="project_update_6_blockers_or_risks_0">Technical issue</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="project_update_6_blockers_or_risks" id="project_update_6_blockers_or_risks_1" value="Missing data" aria-label="Missing data">
+      <label class="form-check-label" for="project_update_6_blockers_or_risks_1">Missing data</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="project_update_6_blockers_or_risks" id="project_update_6_blockers_or_risks_2" value="Waiting for feedback" aria-label="Waiting for feedback">
+      <label class="form-check-label" for="project_update_6_blockers_or_risks_2">Waiting for feedback</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="project_update_6_blockers_or_risks" id="project_update_6_blockers_or_risks_3" value="Scheduling conflict" aria-label="Scheduling conflict">
+      <label class="form-check-label" for="project_update_6_blockers_or_risks_3">Scheduling conflict</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="project_update_6_blockers_or_risks" id="project_update_6_blockers_or_risks_4" value="No blockers" aria-label="No blockers">
+      <label class="form-check-label" for="project_update_6_blockers_or_risks_4">No blockers</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="project_update_7_next_planned_task">Next planned task <span class="text-danger">*</span></label>
+    <textarea class="form-control" id="project_update_7_next_planned_task" name="project_update_7_next_planned_task" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="project_update_8_preferred_sync_time">Preferred sync time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="project_update_8_preferred_sync_time" name="project_update_8_preferred_sync_time" placeholder="HH:MM">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

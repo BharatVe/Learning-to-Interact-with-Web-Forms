@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}Experiment Session Booking (2 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Experiment Session Booking (2 pages)</h1>
+    <p class="text-muted">Booking form for lab or user-study experiment sessions.</p>
+    <form method="POST" id="experiment_bookingForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="experiment_booking_1_participant_name">Participant name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="experiment_booking_1_participant_name" name="experiment_booking_1_participant_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="experiment_booking_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="experiment_booking_2_email_address" name="experiment_booking_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="experiment_booking_3_participant_group">Participant group <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="experiment_booking_3_participant_group" id="experiment_booking_3_participant_group_0" value="Student" aria-label="Student" required aria-required="true">
+      <label class="form-check-label" for="experiment_booking_3_participant_group_0">Student</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="experiment_booking_3_participant_group" id="experiment_booking_3_participant_group_1" value="Research staff" aria-label="Research staff" required aria-required="true">
+      <label class="form-check-label" for="experiment_booking_3_participant_group_1">Research staff</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="experiment_booking_3_participant_group" id="experiment_booking_3_participant_group_2" value="External participant" aria-label="External participant" required aria-required="true">
+      <label class="form-check-label" for="experiment_booking_3_participant_group_2">External participant</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="experiment_booking_3_participant_group" id="experiment_booking_3_participant_group_3" value="Pilot tester" aria-label="Pilot tester" required aria-required="true">
+      <label class="form-check-label" for="experiment_booking_3_participant_group_3">Pilot tester</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="experiment_booking_4_prior_participation_in_similar_studies">Prior participation in similar studies <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="experiment_booking_4_prior_participation_in_similar_studies" id="experiment_booking_4_prior_participation_in_similar_studies_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="experiment_booking_4_prior_participation_in_similar_studies_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="experiment_booking_4_prior_participation_in_similar_studies" id="experiment_booking_4_prior_participation_in_similar_studies_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="experiment_booking_4_prior_participation_in_similar_studies_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="experiment_booking_4_prior_participation_in_similar_studies" id="experiment_booking_4_prior_participation_in_similar_studies_2" value="Not sure" aria-label="Not sure" required aria-required="true">
+      <label class="form-check-label" for="experiment_booking_4_prior_participation_in_similar_studies_2">Not sure</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="experiment_booking_1_experiment_type">Experiment type <span class="text-danger">*</span></label>
+    <select class="form-select" id="experiment_booking_1_experiment_type" name="experiment_booking_1_experiment_type" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Usability test">Usability test</option>
+      <option value="Eye-tracking session">Eye-tracking session</option>
+      <option value="Interview">Interview</option>
+      <option value="Annotation task">Annotation task</option>
+      <option value="Pilot session">Pilot session</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="experiment_booking_2_preferred_session_date">Preferred session date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="experiment_booking_2_preferred_session_date" name="experiment_booking_2_preferred_session_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="experiment_booking_3_preferred_start_time">Preferred start time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="experiment_booking_3_preferred_start_time" name="experiment_booking_3_preferred_start_time" placeholder="HH:MM">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="experiment_booking_4_session_constraints">Session constraints</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="experiment_booking_4_session_constraints" id="experiment_booking_4_session_constraints_0" value="Needs online option" aria-label="Needs online option">
+      <label class="form-check-label" for="experiment_booking_4_session_constraints_0">Needs online option</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="experiment_booking_4_session_constraints" id="experiment_booking_4_session_constraints_1" value="Needs quiet room" aria-label="Needs quiet room">
+      <label class="form-check-label" for="experiment_booking_4_session_constraints_1">Needs quiet room</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="experiment_booking_4_session_constraints" id="experiment_booking_4_session_constraints_2" value="Cannot be recorded" aria-label="Cannot be recorded">
+      <label class="form-check-label" for="experiment_booking_4_session_constraints_2">Cannot be recorded</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="experiment_booking_4_session_constraints" id="experiment_booking_4_session_constraints_3" value="Flexible schedule" aria-label="Flexible schedule">
+      <label class="form-check-label" for="experiment_booking_4_session_constraints_3">Flexible schedule</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="experiment_booking_4_session_constraints" id="experiment_booking_4_session_constraints_4" value="No constraints" aria-label="No constraints">
+      <label class="form-check-label" for="experiment_booking_4_session_constraints_4">No constraints</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="experiment_booking_5_additional_comments">Additional comments</label>
+    <textarea class="form-control" id="experiment_booking_5_additional_comments" name="experiment_booking_5_additional_comments" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

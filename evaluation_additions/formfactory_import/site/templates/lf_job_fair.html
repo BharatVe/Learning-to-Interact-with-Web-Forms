@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block title %}Job Fair Registration (2 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Job Fair Registration (2 pages)</h1>
+    <p class="text-muted">Registration form for job fair attendees, career interests, and availability.</p>
+    <form method="POST" id="job_fairForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="job_fair_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="job_fair_1_full_name" name="job_fair_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="job_fair_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="job_fair_2_email_address" name="job_fair_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="job_fair_3_current_study_level">Current study level <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="job_fair_3_current_study_level" id="job_fair_3_current_study_level_0" value="Bachelor&#x27;s" aria-label="Bachelor&#x27;s" required aria-required="true">
+      <label class="form-check-label" for="job_fair_3_current_study_level_0">Bachelor&#x27;s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="job_fair_3_current_study_level" id="job_fair_3_current_study_level_1" value="Master&#x27;s" aria-label="Master&#x27;s" required aria-required="true">
+      <label class="form-check-label" for="job_fair_3_current_study_level_1">Master&#x27;s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="job_fair_3_current_study_level" id="job_fair_3_current_study_level_2" value="PhD" aria-label="PhD" required aria-required="true">
+      <label class="form-check-label" for="job_fair_3_current_study_level_2">PhD</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="job_fair_3_current_study_level" id="job_fair_3_current_study_level_3" value="Graduate" aria-label="Graduate" required aria-required="true">
+      <label class="form-check-label" for="job_fair_3_current_study_level_3">Graduate</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="job_fair_3_current_study_level" id="job_fair_3_current_study_level_4" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="job_fair_3_current_study_level_4">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="job_fair_4_career_interests">Career interests <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="job_fair_4_career_interests" id="job_fair_4_career_interests_0" value="Software Engineering" aria-label="Software Engineering">
+      <label class="form-check-label" for="job_fair_4_career_interests_0">Software Engineering</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="job_fair_4_career_interests" id="job_fair_4_career_interests_1" value="Data Engineering" aria-label="Data Engineering">
+      <label class="form-check-label" for="job_fair_4_career_interests_1">Data Engineering</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="job_fair_4_career_interests" id="job_fair_4_career_interests_2" value="AI/ML" aria-label="AI/ML">
+      <label class="form-check-label" for="job_fair_4_career_interests_2">AI/ML</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="job_fair_4_career_interests" id="job_fair_4_career_interests_3" value="Product Management" aria-label="Product Management">
+      <label class="form-check-label" for="job_fair_4_career_interests_3">Product Management</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="job_fair_4_career_interests" id="job_fair_4_career_interests_4" value="Research" aria-label="Research">
+      <label class="form-check-label" for="job_fair_4_career_interests_4">Research</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="job_fair_4_career_interests" id="job_fair_4_career_interests_5" value="Consulting" aria-label="Consulting">
+      <label class="form-check-label" for="job_fair_4_career_interests_5">Consulting</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="job_fair_5_are_you_currently_looking_for_a_job">Are you currently looking for a job? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="job_fair_5_are_you_currently_looking_for_a_job" id="job_fair_5_are_you_currently_looking_for_a_job_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="job_fair_5_are_you_currently_looking_for_a_job_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="job_fair_5_are_you_currently_looking_for_a_job" id="job_fair_5_are_you_currently_looking_for_a_job_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="job_fair_5_are_you_currently_looking_for_a_job_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="job_fair_5_are_you_currently_looking_for_a_job" id="job_fair_5_are_you_currently_looking_for_a_job_2" value="Maybe soon" aria-label="Maybe soon" required aria-required="true">
+      <label class="form-check-label" for="job_fair_5_are_you_currently_looking_for_a_job_2">Maybe soon</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="job_fair_1_preferred_attendance_date">Preferred attendance date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="job_fair_1_preferred_attendance_date" name="job_fair_1_preferred_attendance_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="job_fair_2_preferred_arrival_time">Preferred arrival time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="job_fair_2_preferred_arrival_time" name="job_fair_2_preferred_arrival_time" placeholder="HH:MM">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="job_fair_3_sessions_you_want_to_attend">Sessions you want to attend</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="job_fair_3_sessions_you_want_to_attend" id="job_fair_3_sessions_you_want_to_attend_0" value="Company booths" aria-label="Company booths">
+      <label class="form-check-label" for="job_fair_3_sessions_you_want_to_attend_0">Company booths</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="job_fair_3_sessions_you_want_to_attend" id="job_fair_3_sessions_you_want_to_attend_1" value="CV review" aria-label="CV review">
+      <label class="form-check-label" for="job_fair_3_sessions_you_want_to_attend_1">CV review</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="job_fair_3_sessions_you_want_to_attend" id="job_fair_3_sessions_you_want_to_attend_2" value="Mock interviews" aria-label="Mock interviews">
+      <label class="form-check-label" for="job_fair_3_sessions_you_want_to_attend_2">Mock interviews</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="job_fair_3_sessions_you_want_to_attend" id="job_fair_3_sessions_you_want_to_attend_3" value="Tech talks" aria-label="Tech talks">
+      <label class="form-check-label" for="job_fair_3_sessions_you_want_to_attend_3">Tech talks</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="job_fair_3_sessions_you_want_to_attend" id="job_fair_3_sessions_you_want_to_attend_4" value="Networking" aria-label="Networking">
+      <label class="form-check-label" for="job_fair_3_sessions_you_want_to_attend_4">Networking</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="job_fair_4_questions_for_recruiters">Questions for recruiters</label>
+    <textarea class="form-control" id="job_fair_4_questions_for_recruiters" name="job_fair_4_questions_for_recruiters" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

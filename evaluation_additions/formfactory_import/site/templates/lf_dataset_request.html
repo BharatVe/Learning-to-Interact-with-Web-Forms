@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}Dataset Access Request (2 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Dataset Access Request (2 pages)</h1>
+    <p class="text-muted">Request form for accessing research datasets and describing intended use.</p>
+    <form method="POST" id="dataset_requestForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="dataset_request_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="dataset_request_1_full_name" name="dataset_request_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="dataset_request_2_institutional_email">Institutional email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="dataset_request_2_institutional_email" name="dataset_request_2_institutional_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="dataset_request_3_affiliation">Affiliation <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="dataset_request_3_affiliation" name="dataset_request_3_affiliation" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="dataset_request_4_requester_type">Requester type <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="dataset_request_4_requester_type" id="dataset_request_4_requester_type_0" value="Student" aria-label="Student" required aria-required="true">
+      <label class="form-check-label" for="dataset_request_4_requester_type_0">Student</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="dataset_request_4_requester_type" id="dataset_request_4_requester_type_1" value="Researcher" aria-label="Researcher" required aria-required="true">
+      <label class="form-check-label" for="dataset_request_4_requester_type_1">Researcher</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="dataset_request_4_requester_type" id="dataset_request_4_requester_type_2" value="Instructor" aria-label="Instructor" required aria-required="true">
+      <label class="form-check-label" for="dataset_request_4_requester_type_2">Instructor</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="dataset_request_4_requester_type" id="dataset_request_4_requester_type_3" value="Industry partner" aria-label="Industry partner" required aria-required="true">
+      <label class="form-check-label" for="dataset_request_4_requester_type_3">Industry partner</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="dataset_request_4_requester_type" id="dataset_request_4_requester_type_4" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="dataset_request_4_requester_type_4">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="dataset_request_1_dataset_requested">Dataset requested <span class="text-danger">*</span></label>
+    <select class="form-select" id="dataset_request_1_dataset_requested" name="dataset_request_1_dataset_requested" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Form interaction videos">Form interaction videos</option>
+      <option value="Annotation traces">Annotation traces</option>
+      <option value="Synthetic answers">Synthetic answers</option>
+      <option value="Evaluation logs">Evaluation logs</option>
+      <option value="All available datasets">All available datasets</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="dataset_request_2_intended_use">Intended use <span class="text-danger">*</span></label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="dataset_request_2_intended_use" id="dataset_request_2_intended_use_0" value="Course project" aria-label="Course project">
+      <label class="form-check-label" for="dataset_request_2_intended_use_0">Course project</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="dataset_request_2_intended_use" id="dataset_request_2_intended_use_1" value="Thesis" aria-label="Thesis">
+      <label class="form-check-label" for="dataset_request_2_intended_use_1">Thesis</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="dataset_request_2_intended_use" id="dataset_request_2_intended_use_2" value="Research paper" aria-label="Research paper">
+      <label class="form-check-label" for="dataset_request_2_intended_use_2">Research paper</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="dataset_request_2_intended_use" id="dataset_request_2_intended_use_3" value="Benchmark evaluation" aria-label="Benchmark evaluation">
+      <label class="form-check-label" for="dataset_request_2_intended_use_3">Benchmark evaluation</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="dataset_request_2_intended_use" id="dataset_request_2_intended_use_4" value="Tool development" aria-label="Tool development">
+      <label class="form-check-label" for="dataset_request_2_intended_use_4">Tool development</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="dataset_request_3_short_project_description">Short project description <span class="text-danger">*</span></label>
+    <div class="form-text">2-5 sentences.</div>
+    <textarea class="form-control" id="dataset_request_3_short_project_description" name="dataset_request_3_short_project_description" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="dataset_request_4_requested_access_start_date">Requested access start date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="dataset_request_4_requested_access_start_date" name="dataset_request_4_requested_access_start_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="dataset_request_5_do_you_agree_to_cite_the_dataset_if_used">Do you agree to cite the dataset if used? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="dataset_request_5_do_you_agree_to_cite_the_dataset_if_used" id="dataset_request_5_do_you_agree_to_cite_the_dataset_if_used_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="dataset_request_5_do_you_agree_to_cite_the_dataset_if_used_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="dataset_request_5_do_you_agree_to_cite_the_dataset_if_used" id="dataset_request_5_do_you_agree_to_cite_the_dataset_if_used_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="dataset_request_5_do_you_agree_to_cite_the_dataset_if_used_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="dataset_request_5_do_you_agree_to_cite_the_dataset_if_used" id="dataset_request_5_do_you_agree_to_cite_the_dataset_if_used_2" value="Need clarification" aria-label="Need clarification" required aria-required="true">
+      <label class="form-check-label" for="dataset_request_5_do_you_agree_to_cite_the_dataset_if_used_2">Need clarification</label>
+    </div>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Mentorship Matching Form{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Mentorship Matching Form</h1>
+    <p class="text-muted">Collects background and goals for mentor-mentee matching.</p>
+    <form method="POST" id="mentor_matchForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="mentor_match_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="mentor_match_1_full_name" name="mentor_match_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="mentor_match_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="mentor_match_2_email_address" name="mentor_match_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="mentor_match_3_role_in_the_program">Role in the program <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="mentor_match_3_role_in_the_program" id="mentor_match_3_role_in_the_program_0" value="Mentor" aria-label="Mentor" required aria-required="true">
+      <label class="form-check-label" for="mentor_match_3_role_in_the_program_0">Mentor</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="mentor_match_3_role_in_the_program" id="mentor_match_3_role_in_the_program_1" value="Mentee" aria-label="Mentee" required aria-required="true">
+      <label class="form-check-label" for="mentor_match_3_role_in_the_program_1">Mentee</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="mentor_match_4_field_or_area">Field or area <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="mentor_match_4_field_or_area" id="mentor_match_4_field_or_area_0" value="Computer Science" aria-label="Computer Science" required aria-required="true">
+      <label class="form-check-label" for="mentor_match_4_field_or_area_0">Computer Science</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="mentor_match_4_field_or_area" id="mentor_match_4_field_or_area_1" value="Data Science" aria-label="Data Science" required aria-required="true">
+      <label class="form-check-label" for="mentor_match_4_field_or_area_1">Data Science</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="mentor_match_4_field_or_area" id="mentor_match_4_field_or_area_2" value="Business" aria-label="Business" required aria-required="true">
+      <label class="form-check-label" for="mentor_match_4_field_or_area_2">Business</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="mentor_match_4_field_or_area" id="mentor_match_4_field_or_area_3" value="Design" aria-label="Design" required aria-required="true">
+      <label class="form-check-label" for="mentor_match_4_field_or_area_3">Design</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="mentor_match_4_field_or_area" id="mentor_match_4_field_or_area_4" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="mentor_match_4_field_or_area_4">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="mentor_match_5_goals_for_mentorship">Goals for mentorship <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="mentor_match_5_goals_for_mentorship" id="mentor_match_5_goals_for_mentorship_0" value="Career guidance" aria-label="Career guidance">
+      <label class="form-check-label" for="mentor_match_5_goals_for_mentorship_0">Career guidance</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="mentor_match_5_goals_for_mentorship" id="mentor_match_5_goals_for_mentorship_1" value="Research advice" aria-label="Research advice">
+      <label class="form-check-label" for="mentor_match_5_goals_for_mentorship_1">Research advice</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="mentor_match_5_goals_for_mentorship" id="mentor_match_5_goals_for_mentorship_2" value="Networking" aria-label="Networking">
+      <label class="form-check-label" for="mentor_match_5_goals_for_mentorship_2">Networking</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="mentor_match_5_goals_for_mentorship" id="mentor_match_5_goals_for_mentorship_3" value="Skill development" aria-label="Skill development">
+      <label class="form-check-label" for="mentor_match_5_goals_for_mentorship_3">Skill development</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="mentor_match_5_goals_for_mentorship" id="mentor_match_5_goals_for_mentorship_4" value="Study planning" aria-label="Study planning">
+      <label class="form-check-label" for="mentor_match_5_goals_for_mentorship_4">Study planning</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="mentor_match_6_brief_introduction">Brief introduction</label>
+    <textarea class="form-control" id="mentor_match_6_brief_introduction" name="mentor_match_6_brief_introduction" rows="4"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="mentor_match_7_preferred_meeting_time">Preferred meeting time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="mentor_match_7_preferred_meeting_time" name="mentor_match_7_preferred_meeting_time" placeholder="HH:MM">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

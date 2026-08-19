@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Conference Interest Survey{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Conference Interest Survey</h1>
+    <p class="text-muted">Collects background and topic preferences for conference meetups.</p>
+    <form method="POST" id="conf_interestForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="conf_interest_1_full_name">Full Name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="conf_interest_1_full_name" name="conf_interest_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="conf_interest_2_preferred_contact_email">Preferred contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="conf_interest_2_preferred_contact_email" name="conf_interest_2_preferred_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="conf_interest_3_brief_bio">Brief bio</label>
+    <div class="form-text">2–3 sentences about your background.</div>
+    <textarea class="form-control" id="conf_interest_3_brief_bio" name="conf_interest_3_brief_bio" rows="4"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="conf_interest_4_primary_role">Primary role <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="conf_interest_4_primary_role" id="conf_interest_4_primary_role_0" value="Undergraduate student" aria-label="Undergraduate student" required aria-required="true">
+      <label class="form-check-label" for="conf_interest_4_primary_role_0">Undergraduate student</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="conf_interest_4_primary_role" id="conf_interest_4_primary_role_1" value="Master’s student" aria-label="Master’s student" required aria-required="true">
+      <label class="form-check-label" for="conf_interest_4_primary_role_1">Master’s student</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="conf_interest_4_primary_role" id="conf_interest_4_primary_role_2" value="PhD student" aria-label="PhD student" required aria-required="true">
+      <label class="form-check-label" for="conf_interest_4_primary_role_2">PhD student</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="conf_interest_4_primary_role" id="conf_interest_4_primary_role_3" value="Industry Professional" aria-label="Industry Professional" required aria-required="true">
+      <label class="form-check-label" for="conf_interest_4_primary_role_3">Industry Professional</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="conf_interest_5_topics_you_re_interested_in">Topics you’re interested in <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="conf_interest_5_topics_you_re_interested_in" id="conf_interest_5_topics_you_re_interested_in_0" value="AI/ML" aria-label="AI/ML">
+      <label class="form-check-label" for="conf_interest_5_topics_you_re_interested_in_0">AI/ML</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="conf_interest_5_topics_you_re_interested_in" id="conf_interest_5_topics_you_re_interested_in_1" value="Security" aria-label="Security">
+      <label class="form-check-label" for="conf_interest_5_topics_you_re_interested_in_1">Security</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="conf_interest_5_topics_you_re_interested_in" id="conf_interest_5_topics_you_re_interested_in_2" value="Systems" aria-label="Systems">
+      <label class="form-check-label" for="conf_interest_5_topics_you_re_interested_in_2">Systems</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="conf_interest_5_topics_you_re_interested_in" id="conf_interest_5_topics_you_re_interested_in_3" value="Human-Computer Interaction" aria-label="Human-Computer Interaction">
+      <label class="form-check-label" for="conf_interest_5_topics_you_re_interested_in_3">Human-Computer Interaction</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="conf_interest_6_preferred_meeting_date">Preferred meeting date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="conf_interest_6_preferred_meeting_date" name="conf_interest_6_preferred_meeting_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="conf_interest_7_preferred_meeting_time">Preferred meeting time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="conf_interest_7_preferred_meeting_time" name="conf_interest_7_preferred_meeting_time" placeholder="HH:MM">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

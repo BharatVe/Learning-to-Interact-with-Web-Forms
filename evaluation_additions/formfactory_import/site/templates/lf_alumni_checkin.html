@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Alumni Check-in Survey{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Alumni Check-in Survey</h1>
+    <p class="text-muted">Collects alumni background, current role, and event interest.</p>
+    <form method="POST" id="alumni_checkinForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="alumni_checkin_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="alumni_checkin_1_full_name" name="alumni_checkin_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="alumni_checkin_2_graduation_year">Graduation year <span class="text-danger">*</span></label>
+    <div class="form-text">Example: 2022</div>
+    <input type="text" class="form-control" id="alumni_checkin_2_graduation_year" name="alumni_checkin_2_graduation_year" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="alumni_checkin_3_current_city">Current city</label>
+    <input type="text" class="form-control" id="alumni_checkin_3_current_city" name="alumni_checkin_3_current_city">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="alumni_checkin_4_current_role">Current role <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="alumni_checkin_4_current_role" id="alumni_checkin_4_current_role_0" value="Student" aria-label="Student" required aria-required="true">
+      <label class="form-check-label" for="alumni_checkin_4_current_role_0">Student</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="alumni_checkin_4_current_role" id="alumni_checkin_4_current_role_1" value="Researcher" aria-label="Researcher" required aria-required="true">
+      <label class="form-check-label" for="alumni_checkin_4_current_role_1">Researcher</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="alumni_checkin_4_current_role" id="alumni_checkin_4_current_role_2" value="Industry Professional" aria-label="Industry Professional" required aria-required="true">
+      <label class="form-check-label" for="alumni_checkin_4_current_role_2">Industry Professional</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="alumni_checkin_4_current_role" id="alumni_checkin_4_current_role_3" value="Entrepreneur" aria-label="Entrepreneur" required aria-required="true">
+      <label class="form-check-label" for="alumni_checkin_4_current_role_3">Entrepreneur</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="alumni_checkin_4_current_role" id="alumni_checkin_4_current_role_4" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="alumni_checkin_4_current_role_4">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="alumni_checkin_5_areas_you_would_like_to_stay_connected_to">Areas you would like to stay connected to <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="alumni_checkin_5_areas_you_would_like_to_stay_connected_to" id="alumni_checkin_5_areas_you_would_like_to_stay_connected_to_0" value="Networking" aria-label="Networking">
+      <label class="form-check-label" for="alumni_checkin_5_areas_you_would_like_to_stay_connected_to_0">Networking</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="alumni_checkin_5_areas_you_would_like_to_stay_connected_to" id="alumni_checkin_5_areas_you_would_like_to_stay_connected_to_1" value="Mentoring" aria-label="Mentoring">
+      <label class="form-check-label" for="alumni_checkin_5_areas_you_would_like_to_stay_connected_to_1">Mentoring</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="alumni_checkin_5_areas_you_would_like_to_stay_connected_to" id="alumni_checkin_5_areas_you_would_like_to_stay_connected_to_2" value="Research talks" aria-label="Research talks">
+      <label class="form-check-label" for="alumni_checkin_5_areas_you_would_like_to_stay_connected_to_2">Research talks</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="alumni_checkin_5_areas_you_would_like_to_stay_connected_to" id="alumni_checkin_5_areas_you_would_like_to_stay_connected_to_3" value="Job opportunities" aria-label="Job opportunities">
+      <label class="form-check-label" for="alumni_checkin_5_areas_you_would_like_to_stay_connected_to_3">Job opportunities</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="alumni_checkin_5_areas_you_would_like_to_stay_connected_to" id="alumni_checkin_5_areas_you_would_like_to_stay_connected_to_4" value="Alumni events" aria-label="Alumni events">
+      <label class="form-check-label" for="alumni_checkin_5_areas_you_would_like_to_stay_connected_to_4">Alumni events</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="alumni_checkin_6_preferred_contact_email">Preferred contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="alumni_checkin_6_preferred_contact_email" name="alumni_checkin_6_preferred_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="alumni_checkin_7_would_you_attend_an_alumni_meetup">Would you attend an alumni meetup? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="alumni_checkin_7_would_you_attend_an_alumni_meetup" id="alumni_checkin_7_would_you_attend_an_alumni_meetup_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="alumni_checkin_7_would_you_attend_an_alumni_meetup_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="alumni_checkin_7_would_you_attend_an_alumni_meetup" id="alumni_checkin_7_would_you_attend_an_alumni_meetup_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="alumni_checkin_7_would_you_attend_an_alumni_meetup_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="alumni_checkin_7_would_you_attend_an_alumni_meetup" id="alumni_checkin_7_would_you_attend_an_alumni_meetup_2" value="Maybe" aria-label="Maybe" required aria-required="true">
+      <label class="form-check-label" for="alumni_checkin_7_would_you_attend_an_alumni_meetup_2">Maybe</label>
+    </div>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

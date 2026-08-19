@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}Study Consent and Availability Form{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Study Consent and Availability Form</h1>
+    <p class="text-muted">Consent and scheduling form for participation in a research study.</p>
+    <form method="POST" id="survey_consentForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="survey_consent_1_participant_code_or_name">Participant code or name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="survey_consent_1_participant_code_or_name" name="survey_consent_1_participant_code_or_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="survey_consent_2_contact_email">Contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="survey_consent_2_contact_email" name="survey_consent_2_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="survey_consent_3_i_have_read_the_study_information">I have read the study information <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="survey_consent_3_i_have_read_the_study_information" id="survey_consent_3_i_have_read_the_study_information_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="survey_consent_3_i_have_read_the_study_information_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="survey_consent_3_i_have_read_the_study_information" id="survey_consent_3_i_have_read_the_study_information_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="survey_consent_3_i_have_read_the_study_information_1">No</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="survey_consent_4_i_agree_to_participate">I agree to participate <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="survey_consent_4_i_agree_to_participate" id="survey_consent_4_i_agree_to_participate_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="survey_consent_4_i_agree_to_participate_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="survey_consent_4_i_agree_to_participate" id="survey_consent_4_i_agree_to_participate_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="survey_consent_4_i_agree_to_participate_1">No</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="survey_consent_5_participation_mode_preferred">Participation mode preferred <span class="text-danger">*</span></label>
+    <select class="form-select" id="survey_consent_5_participation_mode_preferred" name="survey_consent_5_participation_mode_preferred" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Online">Online</option>
+      <option value="In person">In person</option>
+      <option value="Either">Either</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="survey_consent_6_available_dates">Available dates</label>
+    <div class="form-text">Select all weekdays that usually work.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="survey_consent_6_available_dates" id="survey_consent_6_available_dates_0" value="Monday" aria-label="Monday">
+      <label class="form-check-label" for="survey_consent_6_available_dates_0">Monday</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="survey_consent_6_available_dates" id="survey_consent_6_available_dates_1" value="Tuesday" aria-label="Tuesday">
+      <label class="form-check-label" for="survey_consent_6_available_dates_1">Tuesday</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="survey_consent_6_available_dates" id="survey_consent_6_available_dates_2" value="Wednesday" aria-label="Wednesday">
+      <label class="form-check-label" for="survey_consent_6_available_dates_2">Wednesday</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="survey_consent_6_available_dates" id="survey_consent_6_available_dates_3" value="Thursday" aria-label="Thursday">
+      <label class="form-check-label" for="survey_consent_6_available_dates_3">Thursday</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="survey_consent_6_available_dates" id="survey_consent_6_available_dates_4" value="Friday" aria-label="Friday">
+      <label class="form-check-label" for="survey_consent_6_available_dates_4">Friday</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="survey_consent_7_preferred_session_date">Preferred session date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="survey_consent_7_preferred_session_date" name="survey_consent_7_preferred_session_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="survey_consent_8_preferred_session_time">Preferred session time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="survey_consent_8_preferred_session_time" name="survey_consent_8_preferred_session_time" placeholder="HH:MM">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

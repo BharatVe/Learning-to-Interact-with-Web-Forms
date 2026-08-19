@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}Workshop Registration{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Workshop Registration</h1>
+    <p class="text-muted">Signup form for workshops including track selection and preferences.</p>
+    <form method="POST" id="workshop_signupForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="workshop_signup_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="workshop_signup_1_full_name" name="workshop_signup_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="workshop_signup_2_university_or_organization">University or organization <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="workshop_signup_2_university_or_organization" name="workshop_signup_2_university_or_organization" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="workshop_signup_3_which_workshop_track_are_you_registering_for">Which workshop track are you registering for? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="workshop_signup_3_which_workshop_track_are_you_registering_for" id="workshop_signup_3_which_workshop_track_are_you_registering_for_0" value="Intro to Machine Learning" aria-label="Intro to Machine Learning" required aria-required="true">
+      <label class="form-check-label" for="workshop_signup_3_which_workshop_track_are_you_registering_for_0">Intro to Machine Learning</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="workshop_signup_3_which_workshop_track_are_you_registering_for" id="workshop_signup_3_which_workshop_track_are_you_registering_for_1" value="Advanced Data Engineering" aria-label="Advanced Data Engineering" required aria-required="true">
+      <label class="form-check-label" for="workshop_signup_3_which_workshop_track_are_you_registering_for_1">Advanced Data Engineering</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="workshop_signup_3_which_workshop_track_are_you_registering_for" id="workshop_signup_3_which_workshop_track_are_you_registering_for_2" value="UI Agents and Automation" aria-label="UI Agents and Automation" required aria-required="true">
+      <label class="form-check-label" for="workshop_signup_3_which_workshop_track_are_you_registering_for_2">UI Agents and Automation</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="workshop_signup_4_experience_level">Experience level <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="workshop_signup_4_experience_level" id="workshop_signup_4_experience_level_0" value="Beginner" aria-label="Beginner" required aria-required="true">
+      <label class="form-check-label" for="workshop_signup_4_experience_level_0">Beginner</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="workshop_signup_4_experience_level" id="workshop_signup_4_experience_level_1" value="Intermediate" aria-label="Intermediate" required aria-required="true">
+      <label class="form-check-label" for="workshop_signup_4_experience_level_1">Intermediate</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="workshop_signup_4_experience_level" id="workshop_signup_4_experience_level_2" value="Advanced" aria-label="Advanced" required aria-required="true">
+      <label class="form-check-label" for="workshop_signup_4_experience_level_2">Advanced</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="workshop_signup_5_dietary_restrictions">Dietary restrictions</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="workshop_signup_5_dietary_restrictions" id="workshop_signup_5_dietary_restrictions_0" value="Vegetarian" aria-label="Vegetarian">
+      <label class="form-check-label" for="workshop_signup_5_dietary_restrictions_0">Vegetarian</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="workshop_signup_5_dietary_restrictions" id="workshop_signup_5_dietary_restrictions_1" value="Vegan" aria-label="Vegan">
+      <label class="form-check-label" for="workshop_signup_5_dietary_restrictions_1">Vegan</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="workshop_signup_5_dietary_restrictions" id="workshop_signup_5_dietary_restrictions_2" value="Halal" aria-label="Halal">
+      <label class="form-check-label" for="workshop_signup_5_dietary_restrictions_2">Halal</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="workshop_signup_5_dietary_restrictions" id="workshop_signup_5_dietary_restrictions_3" value="None" aria-label="None">
+      <label class="form-check-label" for="workshop_signup_5_dietary_restrictions_3">None</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="workshop_signup_5_dietary_restrictions" id="workshop_signup_5_dietary_restrictions_4" value="Other" aria-label="Other">
+      <label class="form-check-label" for="workshop_signup_5_dietary_restrictions_4">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="workshop_signup_6_preferred_session_date">Preferred session date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="workshop_signup_6_preferred_session_date" name="workshop_signup_6_preferred_session_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="workshop_signup_7_may_we_email_you_updates">May we email you updates? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="workshop_signup_7_may_we_email_you_updates" id="workshop_signup_7_may_we_email_you_updates_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="workshop_signup_7_may_we_email_you_updates_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="workshop_signup_7_may_we_email_you_updates" id="workshop_signup_7_may_we_email_you_updates_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="workshop_signup_7_may_we_email_you_updates_1">No</label>
+    </div>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

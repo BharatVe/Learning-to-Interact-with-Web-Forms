@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block title %}Internship Application (3 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Internship Application (3 pages)</h1>
+    <p class="text-muted">Internship application form with personal info, skills, and availability, split into pages.</p>
+    <form method="POST" id="internship_appForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="internship_app_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="internship_app_1_full_name" name="internship_app_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="internship_app_2_contact_email">Contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="internship_app_2_contact_email" name="internship_app_2_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="internship_app_3_current_city">Current city</label>
+    <input type="text" class="form-control" id="internship_app_3_current_city" name="internship_app_3_current_city">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="internship_app_4_degree_program">Degree program <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="internship_app_4_degree_program" id="internship_app_4_degree_program_0" value="Bachelor’s" aria-label="Bachelor’s" required aria-required="true">
+      <label class="form-check-label" for="internship_app_4_degree_program_0">Bachelor’s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="internship_app_4_degree_program" id="internship_app_4_degree_program_1" value="Master’s" aria-label="Master’s" required aria-required="true">
+      <label class="form-check-label" for="internship_app_4_degree_program_1">Master’s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="internship_app_4_degree_program" id="internship_app_4_degree_program_2" value="PhD" aria-label="PhD" required aria-required="true">
+      <label class="form-check-label" for="internship_app_4_degree_program_2">PhD</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="internship_app_4_degree_program" id="internship_app_4_degree_program_3" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="internship_app_4_degree_program_3">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="internship_app_1_primary_area_of_interest">Primary area of interest <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="internship_app_1_primary_area_of_interest" id="internship_app_1_primary_area_of_interest_0" value="Backend" aria-label="Backend">
+      <label class="form-check-label" for="internship_app_1_primary_area_of_interest_0">Backend</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="internship_app_1_primary_area_of_interest" id="internship_app_1_primary_area_of_interest_1" value="Frontend" aria-label="Frontend">
+      <label class="form-check-label" for="internship_app_1_primary_area_of_interest_1">Frontend</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="internship_app_1_primary_area_of_interest" id="internship_app_1_primary_area_of_interest_2" value="Data and Machine Learning" aria-label="Data and Machine Learning">
+      <label class="form-check-label" for="internship_app_1_primary_area_of_interest_2">Data and Machine Learning</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="internship_app_1_primary_area_of_interest" id="internship_app_1_primary_area_of_interest_3" value="UI/UX" aria-label="UI/UX">
+      <label class="form-check-label" for="internship_app_1_primary_area_of_interest_3">UI/UX</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="internship_app_1_primary_area_of_interest" id="internship_app_1_primary_area_of_interest_4" value="DevOps" aria-label="DevOps">
+      <label class="form-check-label" for="internship_app_1_primary_area_of_interest_4">DevOps</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="internship_app_2_programming_languages_you_use">Programming languages you use</label>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="internship_app_2_programming_languages_you_use" id="internship_app_2_programming_languages_you_use_0" value="Python" aria-label="Python">
+      <label class="form-check-label" for="internship_app_2_programming_languages_you_use_0">Python</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="internship_app_2_programming_languages_you_use" id="internship_app_2_programming_languages_you_use_1" value="Java" aria-label="Java">
+      <label class="form-check-label" for="internship_app_2_programming_languages_you_use_1">Java</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="internship_app_2_programming_languages_you_use" id="internship_app_2_programming_languages_you_use_2" value="C/C++" aria-label="C/C++">
+      <label class="form-check-label" for="internship_app_2_programming_languages_you_use_2">C/C++</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="internship_app_2_programming_languages_you_use" id="internship_app_2_programming_languages_you_use_3" value="JavaScript/TypeScript" aria-label="JavaScript/TypeScript">
+      <label class="form-check-label" for="internship_app_2_programming_languages_you_use_3">JavaScript/TypeScript</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="internship_app_2_programming_languages_you_use" id="internship_app_2_programming_languages_you_use_4" value="SQL" aria-label="SQL">
+      <label class="form-check-label" for="internship_app_2_programming_languages_you_use_4">SQL</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="internship_app_2_programming_languages_you_use" id="internship_app_2_programming_languages_you_use_5" value="Other" aria-label="Other">
+      <label class="form-check-label" for="internship_app_2_programming_languages_you_use_5">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="internship_app_3_link_to_github_or_portfolio">Link to GitHub or portfolio</label>
+    <input type="text" class="form-control" id="internship_app_3_link_to_github_or_portfolio" name="internship_app_3_link_to_github_or_portfolio">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="internship_app_4_brief_motivation_statement">Brief motivation statement <span class="text-danger">*</span></label>
+    <div class="form-text">3–5 sentences.</div>
+    <textarea class="form-control" id="internship_app_4_brief_motivation_statement" name="internship_app_4_brief_motivation_statement" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="internship_app_1_earliest_start_date">Earliest start date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="internship_app_1_earliest_start_date" name="internship_app_1_earliest_start_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="internship_app_2_weekly_availability_hours">Weekly availability (hours) <span class="text-danger">*</span></label>
+    <div class="form-text">Example: 10, 20, 30</div>
+    <input type="text" class="form-control" id="internship_app_2_weekly_availability_hours" name="internship_app_2_weekly_availability_hours" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="internship_app_3_preferred_meeting_time_for_interview">Preferred meeting time for interview</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="internship_app_3_preferred_meeting_time_for_interview" name="internship_app_3_preferred_meeting_time_for_interview" placeholder="HH:MM">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="internship_app_4_are_you_open_to_remote_work">Are you open to remote work? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="internship_app_4_are_you_open_to_remote_work" id="internship_app_4_are_you_open_to_remote_work_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="internship_app_4_are_you_open_to_remote_work_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="internship_app_4_are_you_open_to_remote_work" id="internship_app_4_are_you_open_to_remote_work_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="internship_app_4_are_you_open_to_remote_work_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="internship_app_4_are_you_open_to_remote_work" id="internship_app_4_are_you_open_to_remote_work_2" value="Hybrid" aria-label="Hybrid" required aria-required="true">
+      <label class="form-check-label" for="internship_app_4_are_you_open_to_remote_work_2">Hybrid</label>
+    </div>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

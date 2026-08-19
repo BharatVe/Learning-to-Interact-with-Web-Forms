@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}Lab Visit Scheduling{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Lab Visit Scheduling</h1>
+    <p class="text-muted">Scheduling form for visitors interested in a lab tour or research demonstration.</p>
+    <form method="POST" id="lab_visitForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="lab_visit_1_visitor_name">Visitor name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="lab_visit_1_visitor_name" name="lab_visit_1_visitor_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="lab_visit_2_contact_email">Contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="lab_visit_2_contact_email" name="lab_visit_2_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="lab_visit_3_organization_or_school">Organization or school</label>
+    <input type="text" class="form-control" id="lab_visit_3_organization_or_school" name="lab_visit_3_organization_or_school">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="lab_visit_4_visitor_type">Visitor type <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="lab_visit_4_visitor_type" id="lab_visit_4_visitor_type_0" value="Student" aria-label="Student" required aria-required="true">
+      <label class="form-check-label" for="lab_visit_4_visitor_type_0">Student</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="lab_visit_4_visitor_type" id="lab_visit_4_visitor_type_1" value="Researcher" aria-label="Researcher" required aria-required="true">
+      <label class="form-check-label" for="lab_visit_4_visitor_type_1">Researcher</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="lab_visit_4_visitor_type" id="lab_visit_4_visitor_type_2" value="Industry visitor" aria-label="Industry visitor" required aria-required="true">
+      <label class="form-check-label" for="lab_visit_4_visitor_type_2">Industry visitor</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="lab_visit_4_visitor_type" id="lab_visit_4_visitor_type_3" value="School group" aria-label="School group" required aria-required="true">
+      <label class="form-check-label" for="lab_visit_4_visitor_type_3">School group</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="lab_visit_4_visitor_type" id="lab_visit_4_visitor_type_4" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="lab_visit_4_visitor_type_4">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="lab_visit_5_areas_of_interest">Areas of interest <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="lab_visit_5_areas_of_interest" id="lab_visit_5_areas_of_interest_0" value="Robotics" aria-label="Robotics">
+      <label class="form-check-label" for="lab_visit_5_areas_of_interest_0">Robotics</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="lab_visit_5_areas_of_interest" id="lab_visit_5_areas_of_interest_1" value="AI demos" aria-label="AI demos">
+      <label class="form-check-label" for="lab_visit_5_areas_of_interest_1">AI demos</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="lab_visit_5_areas_of_interest" id="lab_visit_5_areas_of_interest_2" value="Visualization lab" aria-label="Visualization lab">
+      <label class="form-check-label" for="lab_visit_5_areas_of_interest_2">Visualization lab</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="lab_visit_5_areas_of_interest" id="lab_visit_5_areas_of_interest_3" value="Data science" aria-label="Data science">
+      <label class="form-check-label" for="lab_visit_5_areas_of_interest_3">Data science</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="lab_visit_5_areas_of_interest" id="lab_visit_5_areas_of_interest_4" value="Human-computer interaction" aria-label="Human-computer interaction">
+      <label class="form-check-label" for="lab_visit_5_areas_of_interest_4">Human-computer interaction</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="lab_visit_6_preferred_visit_date">Preferred visit date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="lab_visit_6_preferred_visit_date" name="lab_visit_6_preferred_visit_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="lab_visit_7_preferred_arrival_time">Preferred arrival time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="lab_visit_7_preferred_arrival_time" name="lab_visit_7_preferred_arrival_time" placeholder="HH:MM">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="lab_visit_8_group_size">Group size <span class="text-danger">*</span></label>
+    <div class="form-text">Use a number like 1, 5, or 12.</div>
+    <input type="text" class="form-control" id="lab_visit_8_group_size" name="lab_visit_8_group_size" required aria-required="true">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

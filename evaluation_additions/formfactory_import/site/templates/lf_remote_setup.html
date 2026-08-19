@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Remote Work Setup Request{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Remote Work Setup Request</h1>
+    <p class="text-muted">Request form for remote work equipment, access, and support needs.</p>
+    <form method="POST" id="remote_setupForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="remote_setup_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="remote_setup_1_full_name" name="remote_setup_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="remote_setup_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="remote_setup_2_email_address" name="remote_setup_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="remote_setup_3_remote_work_start_date">Remote work start date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="remote_setup_3_remote_work_start_date" name="remote_setup_3_remote_work_start_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="remote_setup_4_expected_remote_work_duration">Expected remote work duration <span class="text-danger">*</span></label>
+    <select class="form-select" id="remote_setup_4_expected_remote_work_duration" name="remote_setup_4_expected_remote_work_duration" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="1 day">1 day</option>
+      <option value="1 week">1 week</option>
+      <option value="1 month">1 month</option>
+      <option value="Full semester">Full semester</option>
+      <option value="Long term">Long term</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="remote_setup_5_equipment_needed">Equipment needed</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="remote_setup_5_equipment_needed" id="remote_setup_5_equipment_needed_0" value="Laptop" aria-label="Laptop">
+      <label class="form-check-label" for="remote_setup_5_equipment_needed_0">Laptop</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="remote_setup_5_equipment_needed" id="remote_setup_5_equipment_needed_1" value="Monitor" aria-label="Monitor">
+      <label class="form-check-label" for="remote_setup_5_equipment_needed_1">Monitor</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="remote_setup_5_equipment_needed" id="remote_setup_5_equipment_needed_2" value="Keyboard" aria-label="Keyboard">
+      <label class="form-check-label" for="remote_setup_5_equipment_needed_2">Keyboard</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="remote_setup_5_equipment_needed" id="remote_setup_5_equipment_needed_3" value="Mouse" aria-label="Mouse">
+      <label class="form-check-label" for="remote_setup_5_equipment_needed_3">Mouse</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="remote_setup_5_equipment_needed" id="remote_setup_5_equipment_needed_4" value="Headset" aria-label="Headset">
+      <label class="form-check-label" for="remote_setup_5_equipment_needed_4">Headset</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="remote_setup_5_equipment_needed" id="remote_setup_5_equipment_needed_5" value="VPN access" aria-label="VPN access">
+      <label class="form-check-label" for="remote_setup_5_equipment_needed_5">VPN access</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="remote_setup_5_equipment_needed" id="remote_setup_5_equipment_needed_6" value="None" aria-label="None">
+      <label class="form-check-label" for="remote_setup_5_equipment_needed_6">None</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="remote_setup_6_primary_work_location">Primary work location <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="remote_setup_6_primary_work_location" id="remote_setup_6_primary_work_location_0" value="Home" aria-label="Home" required aria-required="true">
+      <label class="form-check-label" for="remote_setup_6_primary_work_location_0">Home</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="remote_setup_6_primary_work_location" id="remote_setup_6_primary_work_location_1" value="Co-working space" aria-label="Co-working space" required aria-required="true">
+      <label class="form-check-label" for="remote_setup_6_primary_work_location_1">Co-working space</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="remote_setup_6_primary_work_location" id="remote_setup_6_primary_work_location_2" value="Traveling" aria-label="Traveling" required aria-required="true">
+      <label class="form-check-label" for="remote_setup_6_primary_work_location_2">Traveling</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="remote_setup_6_primary_work_location" id="remote_setup_6_primary_work_location_3" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="remote_setup_6_primary_work_location_3">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="remote_setup_7_technical_constraints">Technical constraints</label>
+    <textarea class="form-control" id="remote_setup_7_technical_constraints" name="remote_setup_7_technical_constraints" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}Thesis Meeting Request{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Thesis Meeting Request</h1>
+    <p class="text-muted">Collects thesis meeting preferences, current progress, and discussion topics.</p>
+    <form method="POST" id="thesis_meetingForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="thesis_meeting_1_student_name">Student name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="thesis_meeting_1_student_name" name="thesis_meeting_1_student_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="thesis_meeting_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="thesis_meeting_2_email_address" name="thesis_meeting_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="thesis_meeting_3_thesis_stage">Thesis stage <span class="text-danger">*</span></label>
+    <select class="form-select" id="thesis_meeting_3_thesis_stage" name="thesis_meeting_3_thesis_stage" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Topic planning">Topic planning</option>
+      <option value="Implementation">Implementation</option>
+      <option value="Data collection">Data collection</option>
+      <option value="Evaluation">Evaluation</option>
+      <option value="Writing">Writing</option>
+      <option value="Final review">Final review</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="thesis_meeting_4_main_topics_to_discuss">Main topics to discuss <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="thesis_meeting_4_main_topics_to_discuss" id="thesis_meeting_4_main_topics_to_discuss_0" value="Research question" aria-label="Research question">
+      <label class="form-check-label" for="thesis_meeting_4_main_topics_to_discuss_0">Research question</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="thesis_meeting_4_main_topics_to_discuss" id="thesis_meeting_4_main_topics_to_discuss_1" value="Implementation" aria-label="Implementation">
+      <label class="form-check-label" for="thesis_meeting_4_main_topics_to_discuss_1">Implementation</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="thesis_meeting_4_main_topics_to_discuss" id="thesis_meeting_4_main_topics_to_discuss_2" value="Dataset design" aria-label="Dataset design">
+      <label class="form-check-label" for="thesis_meeting_4_main_topics_to_discuss_2">Dataset design</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="thesis_meeting_4_main_topics_to_discuss" id="thesis_meeting_4_main_topics_to_discuss_3" value="Evaluation" aria-label="Evaluation">
+      <label class="form-check-label" for="thesis_meeting_4_main_topics_to_discuss_3">Evaluation</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="thesis_meeting_4_main_topics_to_discuss" id="thesis_meeting_4_main_topics_to_discuss_4" value="Writing structure" aria-label="Writing structure">
+      <label class="form-check-label" for="thesis_meeting_4_main_topics_to_discuss_4">Writing structure</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="thesis_meeting_4_main_topics_to_discuss" id="thesis_meeting_4_main_topics_to_discuss_5" value="Timeline" aria-label="Timeline">
+      <label class="form-check-label" for="thesis_meeting_4_main_topics_to_discuss_5">Timeline</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="thesis_meeting_5_current_progress_summary">Current progress summary <span class="text-danger">*</span></label>
+    <div class="form-text">Briefly summarize what has changed since the last meeting.</div>
+    <textarea class="form-control" id="thesis_meeting_5_current_progress_summary" name="thesis_meeting_5_current_progress_summary" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="thesis_meeting_6_preferred_meeting_date">Preferred meeting date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="thesis_meeting_6_preferred_meeting_date" name="thesis_meeting_6_preferred_meeting_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="thesis_meeting_7_preferred_meeting_time">Preferred meeting time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="thesis_meeting_7_preferred_meeting_time" name="thesis_meeting_7_preferred_meeting_time" placeholder="HH:MM">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="thesis_meeting_8_urgency">Urgency <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="thesis_meeting_8_urgency" id="thesis_meeting_8_urgency_0" value="Low" aria-label="Low" required aria-required="true">
+      <label class="form-check-label" for="thesis_meeting_8_urgency_0">Low</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="thesis_meeting_8_urgency" id="thesis_meeting_8_urgency_1" value="Normal" aria-label="Normal" required aria-required="true">
+      <label class="form-check-label" for="thesis_meeting_8_urgency_1">Normal</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="thesis_meeting_8_urgency" id="thesis_meeting_8_urgency_2" value="High" aria-label="High" required aria-required="true">
+      <label class="form-check-label" for="thesis_meeting_8_urgency_2">High</label>
+    </div>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

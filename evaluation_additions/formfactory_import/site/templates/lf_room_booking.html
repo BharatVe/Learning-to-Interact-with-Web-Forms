@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %}Room Booking Request (2 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Room Booking Request (2 pages)</h1>
+    <p class="text-muted">Booking form for study rooms, meeting rooms, and event spaces.</p>
+    <form method="POST" id="room_bookingForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="room_booking_1_requester_name">Requester name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="room_booking_1_requester_name" name="room_booking_1_requester_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="room_booking_2_contact_email">Contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="room_booking_2_contact_email" name="room_booking_2_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="room_booking_3_room_type_requested">Room type requested <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="room_booking_3_room_type_requested" id="room_booking_3_room_type_requested_0" value="Small study room" aria-label="Small study room" required aria-required="true">
+      <label class="form-check-label" for="room_booking_3_room_type_requested_0">Small study room</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="room_booking_3_room_type_requested" id="room_booking_3_room_type_requested_1" value="Meeting room" aria-label="Meeting room" required aria-required="true">
+      <label class="form-check-label" for="room_booking_3_room_type_requested_1">Meeting room</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="room_booking_3_room_type_requested" id="room_booking_3_room_type_requested_2" value="Seminar room" aria-label="Seminar room" required aria-required="true">
+      <label class="form-check-label" for="room_booking_3_room_type_requested_2">Seminar room</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="room_booking_3_room_type_requested" id="room_booking_3_room_type_requested_3" value="Computer lab" aria-label="Computer lab" required aria-required="true">
+      <label class="form-check-label" for="room_booking_3_room_type_requested_3">Computer lab</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="room_booking_4_number_of_participants">Number of participants <span class="text-danger">*</span></label>
+    <div class="form-text">Enter a number only.</div>
+    <input type="text" class="form-control" id="room_booking_4_number_of_participants" name="room_booking_4_number_of_participants" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="room_booking_5_preferred_booking_date">Preferred booking date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="room_booking_5_preferred_booking_date" name="room_booking_5_preferred_booking_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="room_booking_6_preferred_start_time">Preferred start time <span class="text-danger">*</span></label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="room_booking_6_preferred_start_time" name="room_booking_6_preferred_start_time" placeholder="HH:MM" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="room_booking_1_equipment_needed">Equipment needed</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="room_booking_1_equipment_needed" id="room_booking_1_equipment_needed_0" value="Projector" aria-label="Projector">
+      <label class="form-check-label" for="room_booking_1_equipment_needed_0">Projector</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="room_booking_1_equipment_needed" id="room_booking_1_equipment_needed_1" value="Whiteboard" aria-label="Whiteboard">
+      <label class="form-check-label" for="room_booking_1_equipment_needed_1">Whiteboard</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="room_booking_1_equipment_needed" id="room_booking_1_equipment_needed_2" value="Video conferencing" aria-label="Video conferencing">
+      <label class="form-check-label" for="room_booking_1_equipment_needed_2">Video conferencing</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="room_booking_1_equipment_needed" id="room_booking_1_equipment_needed_3" value="Power outlets" aria-label="Power outlets">
+      <label class="form-check-label" for="room_booking_1_equipment_needed_3">Power outlets</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="room_booking_1_equipment_needed" id="room_booking_1_equipment_needed_4" value="None" aria-label="None">
+      <label class="form-check-label" for="room_booking_1_equipment_needed_4">None</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="room_booking_2_catering_or_food_planned">Catering or food planned? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="room_booking_2_catering_or_food_planned" id="room_booking_2_catering_or_food_planned_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="room_booking_2_catering_or_food_planned_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="room_booking_2_catering_or_food_planned" id="room_booking_2_catering_or_food_planned_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="room_booking_2_catering_or_food_planned_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="room_booking_2_catering_or_food_planned" id="room_booking_2_catering_or_food_planned_2" value="Not sure" aria-label="Not sure" required aria-required="true">
+      <label class="form-check-label" for="room_booking_2_catering_or_food_planned_2">Not sure</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="room_booking_3_purpose_of_booking">Purpose of booking</label>
+    <textarea class="form-control" id="room_booking_3_purpose_of_booking" name="room_booking_3_purpose_of_booking" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

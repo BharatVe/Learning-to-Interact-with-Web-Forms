@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}Field Trip Participation Form{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Field Trip Participation Form</h1>
+    <p class="text-muted">Collects participant details, emergency contact, and trip preferences.</p>
+    <form method="POST" id="field_tripForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="field_trip_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="field_trip_1_full_name" name="field_trip_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="field_trip_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="field_trip_2_email_address" name="field_trip_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="field_trip_3_emergency_contact_name">Emergency contact name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="field_trip_3_emergency_contact_name" name="field_trip_3_emergency_contact_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="field_trip_4_emergency_contact_phone">Emergency contact phone <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="field_trip_4_emergency_contact_phone" name="field_trip_4_emergency_contact_phone" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="field_trip_5_trip_option">Trip option <span class="text-danger">*</span></label>
+    <select class="form-select" id="field_trip_5_trip_option" name="field_trip_5_trip_option" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Museum visit">Museum visit</option>
+      <option value="Research institute tour">Research institute tour</option>
+      <option value="Field site visit">Field site visit</option>
+      <option value="Company visit">Company visit</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="field_trip_6_preferred_trip_date">Preferred trip date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="field_trip_6_preferred_trip_date" name="field_trip_6_preferred_trip_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="field_trip_7_dietary_restrictions">Dietary restrictions</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="field_trip_7_dietary_restrictions" id="field_trip_7_dietary_restrictions_0" value="Vegetarian" aria-label="Vegetarian">
+      <label class="form-check-label" for="field_trip_7_dietary_restrictions_0">Vegetarian</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="field_trip_7_dietary_restrictions" id="field_trip_7_dietary_restrictions_1" value="Vegan" aria-label="Vegan">
+      <label class="form-check-label" for="field_trip_7_dietary_restrictions_1">Vegan</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="field_trip_7_dietary_restrictions" id="field_trip_7_dietary_restrictions_2" value="Halal" aria-label="Halal">
+      <label class="form-check-label" for="field_trip_7_dietary_restrictions_2">Halal</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="field_trip_7_dietary_restrictions" id="field_trip_7_dietary_restrictions_3" value="Gluten-free" aria-label="Gluten-free">
+      <label class="form-check-label" for="field_trip_7_dietary_restrictions_3">Gluten-free</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="field_trip_7_dietary_restrictions" id="field_trip_7_dietary_restrictions_4" value="None" aria-label="None">
+      <label class="form-check-label" for="field_trip_7_dietary_restrictions_4">None</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="field_trip_7_dietary_restrictions" id="field_trip_7_dietary_restrictions_5" value="Other" aria-label="Other">
+      <label class="form-check-label" for="field_trip_7_dietary_restrictions_5">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="field_trip_8_mobility_or_accessibility_notes">Mobility or accessibility notes</label>
+    <textarea class="form-control" id="field_trip_8_mobility_or_accessibility_notes" name="field_trip_8_mobility_or_accessibility_notes" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

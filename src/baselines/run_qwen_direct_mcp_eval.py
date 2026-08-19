@@ -855,6 +855,8 @@ def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--model-id", required=True)
     parser.add_argument("--model-kind", choices=["text_llm", "vlm", "computer_use_agent"], required=True)
     parser.add_argument("--form-id", required=True)
+    parser.add_argument("--forms-root", default=None, help="Override src/forms root (default: src/forms)")
+    parser.add_argument("--form-url", default=None, help="Override form_url from the spec file")
     parser.add_argument("--run-index", type=int, required=True)
     parser.add_argument("--answers-root", default=DEFAULT_ANSWERS_ROOT)
     parser.add_argument("--dataset-root", default=DEFAULT_DATASET_ROOT)
@@ -915,8 +917,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         f"api_model={model_name} base_url={base_url} native_tool_calls={native_tool_calls_enabled} task_mode={task_mode}"
     )
 
-    form_spec = load_form_spec(args.form_id, ROOT_DIR / "src" / "forms")
-    form_url = force_english_google_forms_url(str(form_spec.get("form_url") or form_spec.get("url") or ""))
+    forms_root = Path(args.forms_root) if args.forms_root else (ROOT_DIR / "src" / "forms")
+    form_spec = load_form_spec(args.form_id, forms_root)
+    form_url = str(args.form_url or form_spec.get("form_url") or form_spec.get("url") or "")
+    form_url = force_english_google_forms_url(form_url)
     if not form_url:
         raise ValueError(f"Missing form_url in spec for {args.form_id}")
 

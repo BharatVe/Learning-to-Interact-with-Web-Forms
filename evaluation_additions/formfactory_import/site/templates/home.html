@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}LocalForms{% endblock %}
+{% block content %}
+<h1 class="mb-4">LocalForms</h1>
+<p class="text-muted">FormFactory-style recreation of the 50-form dataset, served as native-HTML forms.</p>
+<ul class="list-group">
+{% for form_id, title in forms %}
+  <li class="list-group-item"><a href="{{ url_for('render_form', form_id=form_id) }}">{{ title }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

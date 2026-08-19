@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block title %}Weekly Wellbeing Check-in (2 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Weekly Wellbeing Check-in (2 pages)</h1>
+    <p class="text-muted">Short wellbeing form with habit and schedule questions across two pages.</p>
+    <form method="POST" id="wellbeing_checkForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="wellbeing_check_1_name_or_nickname">Name or nickname</label>
+    <input type="text" class="form-control" id="wellbeing_check_1_name_or_nickname" name="wellbeing_check_1_name_or_nickname">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="wellbeing_check_2_how_are_you_feeling_today">How are you feeling today? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="wellbeing_check_2_how_are_you_feeling_today" id="wellbeing_check_2_how_are_you_feeling_today_0" value="Very good" aria-label="Very good" required aria-required="true">
+      <label class="form-check-label" for="wellbeing_check_2_how_are_you_feeling_today_0">Very good</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="wellbeing_check_2_how_are_you_feeling_today" id="wellbeing_check_2_how_are_you_feeling_today_1" value="Good" aria-label="Good" required aria-required="true">
+      <label class="form-check-label" for="wellbeing_check_2_how_are_you_feeling_today_1">Good</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="wellbeing_check_2_how_are_you_feeling_today" id="wellbeing_check_2_how_are_you_feeling_today_2" value="Okay" aria-label="Okay" required aria-required="true">
+      <label class="form-check-label" for="wellbeing_check_2_how_are_you_feeling_today_2">Okay</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="wellbeing_check_2_how_are_you_feeling_today" id="wellbeing_check_2_how_are_you_feeling_today_3" value="Low" aria-label="Low" required aria-required="true">
+      <label class="form-check-label" for="wellbeing_check_2_how_are_you_feeling_today_3">Low</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="wellbeing_check_2_how_are_you_feeling_today" id="wellbeing_check_2_how_are_you_feeling_today_4" value="Very low" aria-label="Very low" required aria-required="true">
+      <label class="form-check-label" for="wellbeing_check_2_how_are_you_feeling_today_4">Very low</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="wellbeing_check_3_hours_of_sleep_last_night">Hours of sleep last night</label>
+    <div class="form-text">Example: 6, 7.5, 8</div>
+    <input type="text" class="form-control" id="wellbeing_check_3_hours_of_sleep_last_night" name="wellbeing_check_3_hours_of_sleep_last_night">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="wellbeing_check_4_habits_completed_today">Habits completed today</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="wellbeing_check_4_habits_completed_today" id="wellbeing_check_4_habits_completed_today_0" value="Exercise" aria-label="Exercise">
+      <label class="form-check-label" for="wellbeing_check_4_habits_completed_today_0">Exercise</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="wellbeing_check_4_habits_completed_today" id="wellbeing_check_4_habits_completed_today_1" value="Healthy meal" aria-label="Healthy meal">
+      <label class="form-check-label" for="wellbeing_check_4_habits_completed_today_1">Healthy meal</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="wellbeing_check_4_habits_completed_today" id="wellbeing_check_4_habits_completed_today_2" value="Study session" aria-label="Study session">
+      <label class="form-check-label" for="wellbeing_check_4_habits_completed_today_2">Study session</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="wellbeing_check_4_habits_completed_today" id="wellbeing_check_4_habits_completed_today_3" value="Break outdoors" aria-label="Break outdoors">
+      <label class="form-check-label" for="wellbeing_check_4_habits_completed_today_3">Break outdoors</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="wellbeing_check_4_habits_completed_today" id="wellbeing_check_4_habits_completed_today_4" value="Meditation" aria-label="Meditation">
+      <label class="form-check-label" for="wellbeing_check_4_habits_completed_today_4">Meditation</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="wellbeing_check_1_do_you_feel_stressed_this_week">Do you feel stressed this week? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="wellbeing_check_1_do_you_feel_stressed_this_week" id="wellbeing_check_1_do_you_feel_stressed_this_week_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="wellbeing_check_1_do_you_feel_stressed_this_week_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="wellbeing_check_1_do_you_feel_stressed_this_week" id="wellbeing_check_1_do_you_feel_stressed_this_week_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="wellbeing_check_1_do_you_feel_stressed_this_week_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="wellbeing_check_1_do_you_feel_stressed_this_week" id="wellbeing_check_1_do_you_feel_stressed_this_week_2" value="Somewhat" aria-label="Somewhat" required aria-required="true">
+      <label class="form-check-label" for="wellbeing_check_1_do_you_feel_stressed_this_week_2">Somewhat</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="wellbeing_check_2_preferred_time_for_a_check_in_call">Preferred time for a check-in call</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="wellbeing_check_2_preferred_time_for_a_check_in_call" name="wellbeing_check_2_preferred_time_for_a_check_in_call" placeholder="HH:MM">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="wellbeing_check_3_anything_you_want_to_note">Anything you want to note?</label>
+    <textarea class="form-control" id="wellbeing_check_3_anything_you_want_to_note" name="wellbeing_check_3_anything_you_want_to_note" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

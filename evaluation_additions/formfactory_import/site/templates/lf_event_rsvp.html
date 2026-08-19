@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Event RSVP{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Event RSVP</h1>
+    <p class="text-muted">RSVP form collecting attendance and preferences.</p>
+    <form method="POST" id="event_rsvpForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="event_rsvp_1_name">Name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="event_rsvp_1_name" name="event_rsvp_1_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="event_rsvp_2_will_you_attend">Will you attend? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="event_rsvp_2_will_you_attend" id="event_rsvp_2_will_you_attend_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="event_rsvp_2_will_you_attend_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="event_rsvp_2_will_you_attend" id="event_rsvp_2_will_you_attend_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="event_rsvp_2_will_you_attend_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="event_rsvp_2_will_you_attend" id="event_rsvp_2_will_you_attend_2" value="Maybe" aria-label="Maybe" required aria-required="true">
+      <label class="form-check-label" for="event_rsvp_2_will_you_attend_2">Maybe</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="event_rsvp_3_number_of_guests_including_yourself">Number of guests (including yourself) <span class="text-danger">*</span></label>
+    <div class="form-text">Use a number like 1, 2, or 3</div>
+    <input type="text" class="form-control" id="event_rsvp_3_number_of_guests_including_yourself" name="event_rsvp_3_number_of_guests_including_yourself" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="event_rsvp_4_preferred_arrival_time">Preferred arrival time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="event_rsvp_4_preferred_arrival_time" name="event_rsvp_4_preferred_arrival_time" placeholder="HH:MM">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="event_rsvp_5_activities_you_re_interested_in">Activities you’re interested in</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="event_rsvp_5_activities_you_re_interested_in" id="event_rsvp_5_activities_you_re_interested_in_0" value="Talks" aria-label="Talks">
+      <label class="form-check-label" for="event_rsvp_5_activities_you_re_interested_in_0">Talks</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="event_rsvp_5_activities_you_re_interested_in" id="event_rsvp_5_activities_you_re_interested_in_1" value="Poster session" aria-label="Poster session">
+      <label class="form-check-label" for="event_rsvp_5_activities_you_re_interested_in_1">Poster session</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="event_rsvp_5_activities_you_re_interested_in" id="event_rsvp_5_activities_you_re_interested_in_2" value="Networking" aria-label="Networking">
+      <label class="form-check-label" for="event_rsvp_5_activities_you_re_interested_in_2">Networking</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="event_rsvp_5_activities_you_re_interested_in" id="event_rsvp_5_activities_you_re_interested_in_3" value="Demo booths" aria-label="Demo booths">
+      <label class="form-check-label" for="event_rsvp_5_activities_you_re_interested_in_3">Demo booths</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="event_rsvp_6_accessibility_needs_or_comments">Accessibility needs or comments</label>
+    <textarea class="form-control" id="event_rsvp_6_accessibility_needs_or_comments" name="event_rsvp_6_accessibility_needs_or_comments" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}Language Exchange Signup (2 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Language Exchange Signup (2 pages)</h1>
+    <p class="text-muted">Matches participants for language exchange based on interests and availability.</p>
+    <form method="POST" id="language_exchangeForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="language_exchange_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="language_exchange_1_full_name" name="language_exchange_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="language_exchange_2_contact_email">Contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="language_exchange_2_contact_email" name="language_exchange_2_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="language_exchange_3_native_language">Native language <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="language_exchange_3_native_language" name="language_exchange_3_native_language" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="language_exchange_4_language_s_you_want_to_practice">Language(s) you want to practice <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="language_exchange_4_language_s_you_want_to_practice" id="language_exchange_4_language_s_you_want_to_practice_0" value="English" aria-label="English">
+      <label class="form-check-label" for="language_exchange_4_language_s_you_want_to_practice_0">English</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="language_exchange_4_language_s_you_want_to_practice" id="language_exchange_4_language_s_you_want_to_practice_1" value="German" aria-label="German">
+      <label class="form-check-label" for="language_exchange_4_language_s_you_want_to_practice_1">German</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="language_exchange_4_language_s_you_want_to_practice" id="language_exchange_4_language_s_you_want_to_practice_2" value="French" aria-label="French">
+      <label class="form-check-label" for="language_exchange_4_language_s_you_want_to_practice_2">French</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="language_exchange_4_language_s_you_want_to_practice" id="language_exchange_4_language_s_you_want_to_practice_3" value="Spanish" aria-label="Spanish">
+      <label class="form-check-label" for="language_exchange_4_language_s_you_want_to_practice_3">Spanish</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="language_exchange_4_language_s_you_want_to_practice" id="language_exchange_4_language_s_you_want_to_practice_4" value="Hindi" aria-label="Hindi">
+      <label class="form-check-label" for="language_exchange_4_language_s_you_want_to_practice_4">Hindi</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="language_exchange_4_language_s_you_want_to_practice" id="language_exchange_4_language_s_you_want_to_practice_5" value="Other" aria-label="Other">
+      <label class="form-check-label" for="language_exchange_4_language_s_you_want_to_practice_5">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="language_exchange_1_comfort_level_speaking_target_language">Comfort level speaking target language <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="language_exchange_1_comfort_level_speaking_target_language" id="language_exchange_1_comfort_level_speaking_target_language_0" value="Beginner" aria-label="Beginner" required aria-required="true">
+      <label class="form-check-label" for="language_exchange_1_comfort_level_speaking_target_language_0">Beginner</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="language_exchange_1_comfort_level_speaking_target_language" id="language_exchange_1_comfort_level_speaking_target_language_1" value="Intermediate" aria-label="Intermediate" required aria-required="true">
+      <label class="form-check-label" for="language_exchange_1_comfort_level_speaking_target_language_1">Intermediate</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="language_exchange_1_comfort_level_speaking_target_language" id="language_exchange_1_comfort_level_speaking_target_language_2" value="Advanced" aria-label="Advanced" required aria-required="true">
+      <label class="form-check-label" for="language_exchange_1_comfort_level_speaking_target_language_2">Advanced</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="language_exchange_2_preferred_format">Preferred format <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="language_exchange_2_preferred_format" id="language_exchange_2_preferred_format_0" value="In person" aria-label="In person" required aria-required="true">
+      <label class="form-check-label" for="language_exchange_2_preferred_format_0">In person</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="language_exchange_2_preferred_format" id="language_exchange_2_preferred_format_1" value="Online" aria-label="Online" required aria-required="true">
+      <label class="form-check-label" for="language_exchange_2_preferred_format_1">Online</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="language_exchange_2_preferred_format" id="language_exchange_2_preferred_format_2" value="Either" aria-label="Either" required aria-required="true">
+      <label class="form-check-label" for="language_exchange_2_preferred_format_2">Either</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="language_exchange_3_preferred_meeting_date">Preferred meeting date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="language_exchange_3_preferred_meeting_date" name="language_exchange_3_preferred_meeting_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="language_exchange_4_preferred_meeting_time">Preferred meeting time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="language_exchange_4_preferred_meeting_time" name="language_exchange_4_preferred_meeting_time" placeholder="HH:MM">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="language_exchange_5_topics_you_enjoy_discussing">Topics you enjoy discussing</label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="language_exchange_5_topics_you_enjoy_discussing" id="language_exchange_5_topics_you_enjoy_discussing_0" value="Travel" aria-label="Travel">
+      <label class="form-check-label" for="language_exchange_5_topics_you_enjoy_discussing_0">Travel</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="language_exchange_5_topics_you_enjoy_discussing" id="language_exchange_5_topics_you_enjoy_discussing_1" value="Culture" aria-label="Culture">
+      <label class="form-check-label" for="language_exchange_5_topics_you_enjoy_discussing_1">Culture</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="language_exchange_5_topics_you_enjoy_discussing" id="language_exchange_5_topics_you_enjoy_discussing_2" value="Technology" aria-label="Technology">
+      <label class="form-check-label" for="language_exchange_5_topics_you_enjoy_discussing_2">Technology</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="language_exchange_5_topics_you_enjoy_discussing" id="language_exchange_5_topics_you_enjoy_discussing_3" value="Food" aria-label="Food">
+      <label class="form-check-label" for="language_exchange_5_topics_you_enjoy_discussing_3">Food</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="language_exchange_5_topics_you_enjoy_discussing" id="language_exchange_5_topics_you_enjoy_discussing_4" value="Daily life" aria-label="Daily life">
+      <label class="form-check-label" for="language_exchange_5_topics_you_enjoy_discussing_4">Daily life</label>
+    </div>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

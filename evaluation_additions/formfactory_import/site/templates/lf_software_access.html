@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}Software Access Request{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Software Access Request</h1>
+    <p class="text-muted">Request form for access to software tools, licenses, and platforms.</p>
+    <form method="POST" id="software_accessForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="software_access_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="software_access_1_full_name" name="software_access_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="software_access_2_institutional_email">Institutional email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="software_access_2_institutional_email" name="software_access_2_institutional_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="software_access_3_software_or_platform_requested">Software or platform requested <span class="text-danger">*</span></label>
+    <select class="form-select" id="software_access_3_software_or_platform_requested" name="software_access_3_software_or_platform_requested" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="GitHub">GitHub</option>
+      <option value="Overleaf">Overleaf</option>
+      <option value="MATLAB">MATLAB</option>
+      <option value="JetBrains">JetBrains</option>
+      <option value="Cloud platform">Cloud platform</option>
+      <option value="Internal server">Internal server</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="software_access_4_access_level_needed">Access level needed <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="software_access_4_access_level_needed" id="software_access_4_access_level_needed_0" value="Viewer" aria-label="Viewer" required aria-required="true">
+      <label class="form-check-label" for="software_access_4_access_level_needed_0">Viewer</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="software_access_4_access_level_needed" id="software_access_4_access_level_needed_1" value="Editor" aria-label="Editor" required aria-required="true">
+      <label class="form-check-label" for="software_access_4_access_level_needed_1">Editor</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="software_access_4_access_level_needed" id="software_access_4_access_level_needed_2" value="Admin" aria-label="Admin" required aria-required="true">
+      <label class="form-check-label" for="software_access_4_access_level_needed_2">Admin</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="software_access_4_access_level_needed" id="software_access_4_access_level_needed_3" value="Temporary guest access" aria-label="Temporary guest access" required aria-required="true">
+      <label class="form-check-label" for="software_access_4_access_level_needed_3">Temporary guest access</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="software_access_5_purpose_of_access">Purpose of access <span class="text-danger">*</span></label>
+    <textarea class="form-control" id="software_access_5_purpose_of_access" name="software_access_5_purpose_of_access" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="software_access_6_requested_start_date">Requested start date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="software_access_6_requested_start_date" name="software_access_6_requested_start_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="software_access_7_expected_duration">Expected duration <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="software_access_7_expected_duration" id="software_access_7_expected_duration_0" value="Less than 1 week" aria-label="Less than 1 week" required aria-required="true">
+      <label class="form-check-label" for="software_access_7_expected_duration_0">Less than 1 week</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="software_access_7_expected_duration" id="software_access_7_expected_duration_1" value="1 month" aria-label="1 month" required aria-required="true">
+      <label class="form-check-label" for="software_access_7_expected_duration_1">1 month</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="software_access_7_expected_duration" id="software_access_7_expected_duration_2" value="1 semester" aria-label="1 semester" required aria-required="true">
+      <label class="form-check-label" for="software_access_7_expected_duration_2">1 semester</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="software_access_7_expected_duration" id="software_access_7_expected_duration_3" value="Long term" aria-label="Long term" required aria-required="true">
+      <label class="form-check-label" for="software_access_7_expected_duration_3">Long term</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="software_access_8_related_project_or_course">Related project or course</label>
+    <input type="text" class="form-control" id="software_access_8_related_project_or_course" name="software_access_8_related_project_or_course">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

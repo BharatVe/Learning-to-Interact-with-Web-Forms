@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Software Bug Report{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Software Bug Report</h1>
+    <p class="text-muted">Collects reproducible bug reports, environment details, and severity information.</p>
+    <form method="POST" id="bug_reportForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="bug_report_1_reporter_name">Reporter name</label>
+    <input type="text" class="form-control" id="bug_report_1_reporter_name" name="bug_report_1_reporter_name">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="bug_report_2_contact_email">Contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="bug_report_2_contact_email" name="bug_report_2_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="bug_report_3_application_or_module_name">Application or module name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="bug_report_3_application_or_module_name" name="bug_report_3_application_or_module_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="bug_report_4_bug_severity">Bug severity <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="bug_report_4_bug_severity" id="bug_report_4_bug_severity_0" value="Low" aria-label="Low" required aria-required="true">
+      <label class="form-check-label" for="bug_report_4_bug_severity_0">Low</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="bug_report_4_bug_severity" id="bug_report_4_bug_severity_1" value="Medium" aria-label="Medium" required aria-required="true">
+      <label class="form-check-label" for="bug_report_4_bug_severity_1">Medium</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="bug_report_4_bug_severity" id="bug_report_4_bug_severity_2" value="High" aria-label="High" required aria-required="true">
+      <label class="form-check-label" for="bug_report_4_bug_severity_2">High</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="bug_report_4_bug_severity" id="bug_report_4_bug_severity_3" value="Critical" aria-label="Critical" required aria-required="true">
+      <label class="form-check-label" for="bug_report_4_bug_severity_3">Critical</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="bug_report_5_device_or_browser_used">Device or browser used <span class="text-danger">*</span></label>
+    <select class="form-select" id="bug_report_5_device_or_browser_used" name="bug_report_5_device_or_browser_used" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Chrome">Chrome</option>
+      <option value="Firefox">Firefox</option>
+      <option value="Edge">Edge</option>
+      <option value="Safari">Safari</option>
+      <option value="Android app">Android app</option>
+      <option value="iOS app">iOS app</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="bug_report_6_steps_to_reproduce">Steps to reproduce <span class="text-danger">*</span></label>
+    <div class="form-text">List the actions that caused the issue.</div>
+    <textarea class="form-control" id="bug_report_6_steps_to_reproduce" name="bug_report_6_steps_to_reproduce" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="bug_report_7_expected_behavior">Expected behavior</label>
+    <textarea class="form-control" id="bug_report_7_expected_behavior" name="bug_report_7_expected_behavior" rows="4"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="bug_report_8_observed_behavior">Observed behavior <span class="text-danger">*</span></label>
+    <textarea class="form-control" id="bug_report_8_observed_behavior" name="bug_report_8_observed_behavior" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="9">
+    <label class="form-label" for="bug_report_9_date_when_issue_occurred">Date when issue occurred</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="bug_report_9_date_when_issue_occurred" name="bug_report_9_date_when_issue_occurred" placeholder="YYYY-MM-DD">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

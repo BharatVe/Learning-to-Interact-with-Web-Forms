@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Housing Preference Survey{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Housing Preference Survey</h1>
+    <p class="text-muted">Collects accommodation preferences, budget, and move-in details.</p>
+    <form method="POST" id="housing_preferenceForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="housing_preference_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="housing_preference_1_full_name" name="housing_preference_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="housing_preference_2_contact_email">Contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="housing_preference_2_contact_email" name="housing_preference_2_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="housing_preference_3_preferred_accommodation_type">Preferred accommodation type <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="housing_preference_3_preferred_accommodation_type" id="housing_preference_3_preferred_accommodation_type_0" value="Studio" aria-label="Studio" required aria-required="true">
+      <label class="form-check-label" for="housing_preference_3_preferred_accommodation_type_0">Studio</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="housing_preference_3_preferred_accommodation_type" id="housing_preference_3_preferred_accommodation_type_1" value="Shared flat" aria-label="Shared flat" required aria-required="true">
+      <label class="form-check-label" for="housing_preference_3_preferred_accommodation_type_1">Shared flat</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="housing_preference_3_preferred_accommodation_type" id="housing_preference_3_preferred_accommodation_type_2" value="Single room in dorm" aria-label="Single room in dorm" required aria-required="true">
+      <label class="form-check-label" for="housing_preference_3_preferred_accommodation_type_2">Single room in dorm</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="housing_preference_3_preferred_accommodation_type" id="housing_preference_3_preferred_accommodation_type_3" value="Private apartment" aria-label="Private apartment" required aria-required="true">
+      <label class="form-check-label" for="housing_preference_3_preferred_accommodation_type_3">Private apartment</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="housing_preference_4_preferred_budget_range">Preferred budget range <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="housing_preference_4_preferred_budget_range" id="housing_preference_4_preferred_budget_range_0" value="Below 300 EUR" aria-label="Below 300 EUR" required aria-required="true">
+      <label class="form-check-label" for="housing_preference_4_preferred_budget_range_0">Below 300 EUR</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="housing_preference_4_preferred_budget_range" id="housing_preference_4_preferred_budget_range_1" value="300–500 EUR" aria-label="300–500 EUR" required aria-required="true">
+      <label class="form-check-label" for="housing_preference_4_preferred_budget_range_1">300–500 EUR</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="housing_preference_4_preferred_budget_range" id="housing_preference_4_preferred_budget_range_2" value="500–700 EUR" aria-label="500–700 EUR" required aria-required="true">
+      <label class="form-check-label" for="housing_preference_4_preferred_budget_range_2">500–700 EUR</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="housing_preference_4_preferred_budget_range" id="housing_preference_4_preferred_budget_range_3" value="Above 700 EUR" aria-label="Above 700 EUR" required aria-required="true">
+      <label class="form-check-label" for="housing_preference_4_preferred_budget_range_3">Above 700 EUR</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="housing_preference_5_preferred_move_in_date">Preferred move-in date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="housing_preference_5_preferred_move_in_date" name="housing_preference_5_preferred_move_in_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="housing_preference_6_important_features">Important features <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="housing_preference_6_important_features" id="housing_preference_6_important_features_0" value="Furnished" aria-label="Furnished">
+      <label class="form-check-label" for="housing_preference_6_important_features_0">Furnished</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="housing_preference_6_important_features" id="housing_preference_6_important_features_1" value="Near campus" aria-label="Near campus">
+      <label class="form-check-label" for="housing_preference_6_important_features_1">Near campus</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="housing_preference_6_important_features" id="housing_preference_6_important_features_2" value="Private bathroom" aria-label="Private bathroom">
+      <label class="form-check-label" for="housing_preference_6_important_features_2">Private bathroom</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="housing_preference_6_important_features" id="housing_preference_6_important_features_3" value="Quiet area" aria-label="Quiet area">
+      <label class="form-check-label" for="housing_preference_6_important_features_3">Quiet area</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="housing_preference_6_important_features" id="housing_preference_6_important_features_4" value="Good public transport" aria-label="Good public transport">
+      <label class="form-check-label" for="housing_preference_6_important_features_4">Good public transport</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="housing_preference_7_additional_notes">Additional notes</label>
+    <textarea class="form-control" id="housing_preference_7_additional_notes" name="housing_preference_7_additional_notes" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

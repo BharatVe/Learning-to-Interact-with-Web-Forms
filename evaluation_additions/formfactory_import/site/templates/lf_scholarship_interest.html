@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Scholarship Interest Form{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Scholarship Interest Form</h1>
+    <p class="text-muted">Collects scholarship interests, eligibility information, and contact preferences.</p>
+    <form method="POST" id="scholarship_interestForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="scholarship_interest_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="scholarship_interest_1_full_name" name="scholarship_interest_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="scholarship_interest_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="scholarship_interest_2_email_address" name="scholarship_interest_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="scholarship_interest_3_current_study_level">Current study level <span class="text-danger">*</span></label>
+    <select class="form-select" id="scholarship_interest_3_current_study_level" name="scholarship_interest_3_current_study_level" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Bachelor&#x27;s">Bachelor&#x27;s</option>
+      <option value="Master&#x27;s">Master&#x27;s</option>
+      <option value="PhD">PhD</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="scholarship_interest_4_scholarship_type_of_interest">Scholarship type of interest <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="scholarship_interest_4_scholarship_type_of_interest" id="scholarship_interest_4_scholarship_type_of_interest_0" value="Merit-based" aria-label="Merit-based">
+      <label class="form-check-label" for="scholarship_interest_4_scholarship_type_of_interest_0">Merit-based</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="scholarship_interest_4_scholarship_type_of_interest" id="scholarship_interest_4_scholarship_type_of_interest_1" value="Need-based" aria-label="Need-based">
+      <label class="form-check-label" for="scholarship_interest_4_scholarship_type_of_interest_1">Need-based</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="scholarship_interest_4_scholarship_type_of_interest" id="scholarship_interest_4_scholarship_type_of_interest_2" value="Research funding" aria-label="Research funding">
+      <label class="form-check-label" for="scholarship_interest_4_scholarship_type_of_interest_2">Research funding</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="scholarship_interest_4_scholarship_type_of_interest" id="scholarship_interest_4_scholarship_type_of_interest_3" value="Travel grant" aria-label="Travel grant">
+      <label class="form-check-label" for="scholarship_interest_4_scholarship_type_of_interest_3">Travel grant</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="scholarship_interest_4_scholarship_type_of_interest" id="scholarship_interest_4_scholarship_type_of_interest_4" value="Emergency support" aria-label="Emergency support">
+      <label class="form-check-label" for="scholarship_interest_4_scholarship_type_of_interest_4">Emergency support</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="scholarship_interest_5_expected_application_date">Expected application date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="scholarship_interest_5_expected_application_date" name="scholarship_interest_5_expected_application_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="scholarship_interest_6_do_you_need_help_reviewing_documents">Do you need help reviewing documents? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="scholarship_interest_6_do_you_need_help_reviewing_documents" id="scholarship_interest_6_do_you_need_help_reviewing_documents_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="scholarship_interest_6_do_you_need_help_reviewing_documents_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="scholarship_interest_6_do_you_need_help_reviewing_documents" id="scholarship_interest_6_do_you_need_help_reviewing_documents_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="scholarship_interest_6_do_you_need_help_reviewing_documents_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="scholarship_interest_6_do_you_need_help_reviewing_documents" id="scholarship_interest_6_do_you_need_help_reviewing_documents_2" value="Maybe" aria-label="Maybe" required aria-required="true">
+      <label class="form-check-label" for="scholarship_interest_6_do_you_need_help_reviewing_documents_2">Maybe</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="scholarship_interest_7_brief_background_or_question">Brief background or question</label>
+    <textarea class="form-control" id="scholarship_interest_7_brief_background_or_question" name="scholarship_interest_7_brief_background_or_question" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

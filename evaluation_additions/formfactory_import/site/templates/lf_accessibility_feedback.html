@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block title %}Accessibility Feedback Form{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Accessibility Feedback Form</h1>
+    <p class="text-muted">Collects accessibility feedback about events, spaces, and digital materials.</p>
+    <form method="POST" id="accessibility_feedbackForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="accessibility_feedback_1_name">Name</label>
+    <input type="text" class="form-control" id="accessibility_feedback_1_name" name="accessibility_feedback_1_name">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="accessibility_feedback_2_email_address">Email address</label>
+    <input type="text" class="form-control" id="accessibility_feedback_2_email_address" name="accessibility_feedback_2_email_address">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="accessibility_feedback_3_feedback_area">Feedback area <span class="text-danger">*</span></label>
+    <select class="form-select" id="accessibility_feedback_3_feedback_area" name="accessibility_feedback_3_feedback_area" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Event">Event</option>
+      <option value="Website">Website</option>
+      <option value="Classroom">Classroom</option>
+      <option value="Library">Library</option>
+      <option value="Student service">Student service</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="accessibility_feedback_4_type_of_issue_noticed">Type of issue noticed <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="accessibility_feedback_4_type_of_issue_noticed" id="accessibility_feedback_4_type_of_issue_noticed_0" value="Navigation" aria-label="Navigation">
+      <label class="form-check-label" for="accessibility_feedback_4_type_of_issue_noticed_0">Navigation</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="accessibility_feedback_4_type_of_issue_noticed" id="accessibility_feedback_4_type_of_issue_noticed_1" value="Visual readability" aria-label="Visual readability">
+      <label class="form-check-label" for="accessibility_feedback_4_type_of_issue_noticed_1">Visual readability</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="accessibility_feedback_4_type_of_issue_noticed" id="accessibility_feedback_4_type_of_issue_noticed_2" value="Audio" aria-label="Audio">
+      <label class="form-check-label" for="accessibility_feedback_4_type_of_issue_noticed_2">Audio</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="accessibility_feedback_4_type_of_issue_noticed" id="accessibility_feedback_4_type_of_issue_noticed_3" value="Physical access" aria-label="Physical access">
+      <label class="form-check-label" for="accessibility_feedback_4_type_of_issue_noticed_3">Physical access</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="accessibility_feedback_4_type_of_issue_noticed" id="accessibility_feedback_4_type_of_issue_noticed_4" value="Timing" aria-label="Timing">
+      <label class="form-check-label" for="accessibility_feedback_4_type_of_issue_noticed_4">Timing</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="accessibility_feedback_4_type_of_issue_noticed" id="accessibility_feedback_4_type_of_issue_noticed_5" value="Communication" aria-label="Communication">
+      <label class="form-check-label" for="accessibility_feedback_4_type_of_issue_noticed_5">Communication</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="accessibility_feedback_5_how_severe_was_the_issue">How severe was the issue? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="accessibility_feedback_5_how_severe_was_the_issue" id="accessibility_feedback_5_how_severe_was_the_issue_0" value="Minor" aria-label="Minor" required aria-required="true">
+      <label class="form-check-label" for="accessibility_feedback_5_how_severe_was_the_issue_0">Minor</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="accessibility_feedback_5_how_severe_was_the_issue" id="accessibility_feedback_5_how_severe_was_the_issue_1" value="Moderate" aria-label="Moderate" required aria-required="true">
+      <label class="form-check-label" for="accessibility_feedback_5_how_severe_was_the_issue_1">Moderate</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="accessibility_feedback_5_how_severe_was_the_issue" id="accessibility_feedback_5_how_severe_was_the_issue_2" value="Major" aria-label="Major" required aria-required="true">
+      <label class="form-check-label" for="accessibility_feedback_5_how_severe_was_the_issue_2">Major</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="accessibility_feedback_5_how_severe_was_the_issue" id="accessibility_feedback_5_how_severe_was_the_issue_3" value="Blocking" aria-label="Blocking" required aria-required="true">
+      <label class="form-check-label" for="accessibility_feedback_5_how_severe_was_the_issue_3">Blocking</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="accessibility_feedback_6_date_of_experience">Date of experience</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="accessibility_feedback_6_date_of_experience" name="accessibility_feedback_6_date_of_experience" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="accessibility_feedback_7_detailed_feedback">Detailed feedback <span class="text-danger">*</span></label>
+    <textarea class="form-control" id="accessibility_feedback_7_detailed_feedback" name="accessibility_feedback_7_detailed_feedback" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="accessibility_feedback_8_may_we_contact_you_for_follow_up">May we contact you for follow-up? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="accessibility_feedback_8_may_we_contact_you_for_follow_up" id="accessibility_feedback_8_may_we_contact_you_for_follow_up_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="accessibility_feedback_8_may_we_contact_you_for_follow_up_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="accessibility_feedback_8_may_we_contact_you_for_follow_up" id="accessibility_feedback_8_may_we_contact_you_for_follow_up_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="accessibility_feedback_8_may_we_contact_you_for_follow_up_1">No</label>
+    </div>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

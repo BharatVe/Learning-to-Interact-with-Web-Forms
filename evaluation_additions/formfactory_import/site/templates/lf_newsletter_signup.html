@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}Newsletter Preference Signup{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Newsletter Preference Signup</h1>
+    <p class="text-muted">Signup form for topic-specific newsletters and communication preferences.</p>
+    <form method="POST" id="newsletter_signupForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="newsletter_signup_1_full_name">Full name</label>
+    <input type="text" class="form-control" id="newsletter_signup_1_full_name" name="newsletter_signup_1_full_name">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="newsletter_signup_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="newsletter_signup_2_email_address" name="newsletter_signup_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="newsletter_signup_3_newsletter_topics">Newsletter topics <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="newsletter_signup_3_newsletter_topics" id="newsletter_signup_3_newsletter_topics_0" value="Research news" aria-label="Research news">
+      <label class="form-check-label" for="newsletter_signup_3_newsletter_topics_0">Research news</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="newsletter_signup_3_newsletter_topics" id="newsletter_signup_3_newsletter_topics_1" value="Events" aria-label="Events">
+      <label class="form-check-label" for="newsletter_signup_3_newsletter_topics_1">Events</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="newsletter_signup_3_newsletter_topics" id="newsletter_signup_3_newsletter_topics_2" value="Job opportunities" aria-label="Job opportunities">
+      <label class="form-check-label" for="newsletter_signup_3_newsletter_topics_2">Job opportunities</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="newsletter_signup_3_newsletter_topics" id="newsletter_signup_3_newsletter_topics_3" value="Student projects" aria-label="Student projects">
+      <label class="form-check-label" for="newsletter_signup_3_newsletter_topics_3">Student projects</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="newsletter_signup_3_newsletter_topics" id="newsletter_signup_3_newsletter_topics_4" value="Funding calls" aria-label="Funding calls">
+      <label class="form-check-label" for="newsletter_signup_3_newsletter_topics_4">Funding calls</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="newsletter_signup_4_email_frequency">Email frequency <span class="text-danger">*</span></label>
+    <select class="form-select" id="newsletter_signup_4_email_frequency" name="newsletter_signup_4_email_frequency" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Weekly">Weekly</option>
+      <option value="Biweekly">Biweekly</option>
+      <option value="Monthly">Monthly</option>
+      <option value="Only major announcements">Only major announcements</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="newsletter_signup_5_preferred_language">Preferred language <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="newsletter_signup_5_preferred_language" id="newsletter_signup_5_preferred_language_0" value="English" aria-label="English" required aria-required="true">
+      <label class="form-check-label" for="newsletter_signup_5_preferred_language_0">English</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="newsletter_signup_5_preferred_language" id="newsletter_signup_5_preferred_language_1" value="German" aria-label="German" required aria-required="true">
+      <label class="form-check-label" for="newsletter_signup_5_preferred_language_1">German</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="newsletter_signup_5_preferred_language" id="newsletter_signup_5_preferred_language_2" value="No preference" aria-label="No preference" required aria-required="true">
+      <label class="form-check-label" for="newsletter_signup_5_preferred_language_2">No preference</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="newsletter_signup_6_would_you_like_event_reminders">Would you like event reminders? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="newsletter_signup_6_would_you_like_event_reminders" id="newsletter_signup_6_would_you_like_event_reminders_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="newsletter_signup_6_would_you_like_event_reminders_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="newsletter_signup_6_would_you_like_event_reminders" id="newsletter_signup_6_would_you_like_event_reminders_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="newsletter_signup_6_would_you_like_event_reminders_1">No</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="newsletter_signup_7_additional_interests">Additional interests</label>
+    <textarea class="form-control" id="newsletter_signup_7_additional_interests" name="newsletter_signup_7_additional_interests" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

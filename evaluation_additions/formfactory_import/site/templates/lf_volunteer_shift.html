@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}Volunteer Shift Signup{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Volunteer Shift Signup</h1>
+    <p class="text-muted">Signup form for volunteers with role and shift preferences.</p>
+    <form method="POST" id="volunteer_shiftForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="volunteer_shift_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="volunteer_shift_1_full_name" name="volunteer_shift_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="volunteer_shift_2_contact_email">Contact email <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="volunteer_shift_2_contact_email" name="volunteer_shift_2_contact_email" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="volunteer_shift_3_preferred_volunteer_role">Preferred volunteer role <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="volunteer_shift_3_preferred_volunteer_role" id="volunteer_shift_3_preferred_volunteer_role_0" value="Registration desk" aria-label="Registration desk" required aria-required="true">
+      <label class="form-check-label" for="volunteer_shift_3_preferred_volunteer_role_0">Registration desk</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="volunteer_shift_3_preferred_volunteer_role" id="volunteer_shift_3_preferred_volunteer_role_1" value="Technical support" aria-label="Technical support" required aria-required="true">
+      <label class="form-check-label" for="volunteer_shift_3_preferred_volunteer_role_1">Technical support</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="volunteer_shift_3_preferred_volunteer_role" id="volunteer_shift_3_preferred_volunteer_role_2" value="Logistics" aria-label="Logistics" required aria-required="true">
+      <label class="form-check-label" for="volunteer_shift_3_preferred_volunteer_role_2">Logistics</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="volunteer_shift_3_preferred_volunteer_role" id="volunteer_shift_3_preferred_volunteer_role_3" value="Guest assistance" aria-label="Guest assistance" required aria-required="true">
+      <label class="form-check-label" for="volunteer_shift_3_preferred_volunteer_role_3">Guest assistance</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="volunteer_shift_4_available_shift_s">Available shift(s) <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="volunteer_shift_4_available_shift_s" id="volunteer_shift_4_available_shift_s_0" value="Morning" aria-label="Morning">
+      <label class="form-check-label" for="volunteer_shift_4_available_shift_s_0">Morning</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="volunteer_shift_4_available_shift_s" id="volunteer_shift_4_available_shift_s_1" value="Afternoon" aria-label="Afternoon">
+      <label class="form-check-label" for="volunteer_shift_4_available_shift_s_1">Afternoon</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="volunteer_shift_4_available_shift_s" id="volunteer_shift_4_available_shift_s_2" value="Evening" aria-label="Evening">
+      <label class="form-check-label" for="volunteer_shift_4_available_shift_s_2">Evening</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="volunteer_shift_5_previous_volunteering_experience">Previous volunteering experience</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="volunteer_shift_5_previous_volunteering_experience" id="volunteer_shift_5_previous_volunteering_experience_0" value="Yes" aria-label="Yes">
+      <label class="form-check-label" for="volunteer_shift_5_previous_volunteering_experience_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="volunteer_shift_5_previous_volunteering_experience" id="volunteer_shift_5_previous_volunteering_experience_1" value="No" aria-label="No">
+      <label class="form-check-label" for="volunteer_shift_5_previous_volunteering_experience_1">No</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="volunteer_shift_6_preferred_volunteer_date">Preferred volunteer date <span class="text-danger">*</span></label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="volunteer_shift_6_preferred_volunteer_date" name="volunteer_shift_6_preferred_volunteer_date" placeholder="YYYY-MM-DD" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="volunteer_shift_7_comments_or_restrictions">Comments or restrictions</label>
+    <textarea class="form-control" id="volunteer_shift_7_comments_or_restrictions" name="volunteer_shift_7_comments_or_restrictions" rows="4"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}Purchase Request Form (3 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Purchase Request Form (3 pages)</h1>
+    <p class="text-muted">Internal request form for software, hardware, or material purchases.</p>
+    <form method="POST" id="purchase_requestForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="purchase_request_1_requester_name">Requester name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="purchase_request_1_requester_name" name="purchase_request_1_requester_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="purchase_request_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="purchase_request_2_email_address" name="purchase_request_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="purchase_request_3_department_or_project">Department or project <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="purchase_request_3_department_or_project" name="purchase_request_3_department_or_project" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="purchase_request_1_purchase_category">Purchase category <span class="text-danger">*</span></label>
+    <select class="form-select" id="purchase_request_1_purchase_category" name="purchase_request_1_purchase_category" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Hardware">Hardware</option>
+      <option value="Software">Software</option>
+      <option value="Books">Books</option>
+      <option value="Lab materials">Lab materials</option>
+      <option value="Cloud credits">Cloud credits</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="purchase_request_2_item_name">Item name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="purchase_request_2_item_name" name="purchase_request_2_item_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="purchase_request_3_estimated_cost">Estimated cost <span class="text-danger">*</span></label>
+    <div class="form-text">Enter approximate amount and currency.</div>
+    <input type="text" class="form-control" id="purchase_request_3_estimated_cost" name="purchase_request_3_estimated_cost" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="purchase_request_4_reason_for_purchase">Reason for purchase <span class="text-danger">*</span></label>
+    <textarea class="form-control" id="purchase_request_4_reason_for_purchase" name="purchase_request_4_reason_for_purchase" rows="4" required aria-required="true"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="purchase_request_1_needed_by_date">Needed by date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="purchase_request_1_needed_by_date" name="purchase_request_1_needed_by_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="purchase_request_2_budget_source_known">Budget source known? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="purchase_request_2_budget_source_known" id="purchase_request_2_budget_source_known_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="purchase_request_2_budget_source_known_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="purchase_request_2_budget_source_known" id="purchase_request_2_budget_source_known_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="purchase_request_2_budget_source_known_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="purchase_request_2_budget_source_known" id="purchase_request_2_budget_source_known_2" value="Not sure" aria-label="Not sure" required aria-required="true">
+      <label class="form-check-label" for="purchase_request_2_budget_source_known_2">Not sure</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="purchase_request_3_urgency_level">Urgency level <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="purchase_request_3_urgency_level" id="purchase_request_3_urgency_level_0" value="Low" aria-label="Low" required aria-required="true">
+      <label class="form-check-label" for="purchase_request_3_urgency_level_0">Low</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="purchase_request_3_urgency_level" id="purchase_request_3_urgency_level_1" value="Normal" aria-label="Normal" required aria-required="true">
+      <label class="form-check-label" for="purchase_request_3_urgency_level_1">Normal</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="purchase_request_3_urgency_level" id="purchase_request_3_urgency_level_2" value="High" aria-label="High" required aria-required="true">
+      <label class="form-check-label" for="purchase_request_3_urgency_level_2">High</label>
+    </div>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

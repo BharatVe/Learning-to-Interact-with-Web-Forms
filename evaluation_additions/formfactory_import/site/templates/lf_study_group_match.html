@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}Study Group Matching Form{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Study Group Matching Form</h1>
+    <p class="text-muted">Matches students into study groups based on course and schedule preferences.</p>
+    <form method="POST" id="study_group_matchForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="study_group_match_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="study_group_match_1_full_name" name="study_group_match_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="study_group_match_2_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="study_group_match_2_email_address" name="study_group_match_2_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="study_group_match_3_course_or_subject">Course or subject <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="study_group_match_3_course_or_subject" name="study_group_match_3_course_or_subject" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="study_group_match_4_current_level">Current level <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="study_group_match_4_current_level" id="study_group_match_4_current_level_0" value="Beginner" aria-label="Beginner" required aria-required="true">
+      <label class="form-check-label" for="study_group_match_4_current_level_0">Beginner</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="study_group_match_4_current_level" id="study_group_match_4_current_level_1" value="Intermediate" aria-label="Intermediate" required aria-required="true">
+      <label class="form-check-label" for="study_group_match_4_current_level_1">Intermediate</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="study_group_match_4_current_level" id="study_group_match_4_current_level_2" value="Advanced" aria-label="Advanced" required aria-required="true">
+      <label class="form-check-label" for="study_group_match_4_current_level_2">Advanced</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="study_group_match_5_preferred_study_format">Preferred study format <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="study_group_match_5_preferred_study_format" id="study_group_match_5_preferred_study_format_0" value="In person" aria-label="In person" required aria-required="true">
+      <label class="form-check-label" for="study_group_match_5_preferred_study_format_0">In person</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="study_group_match_5_preferred_study_format" id="study_group_match_5_preferred_study_format_1" value="Online" aria-label="Online" required aria-required="true">
+      <label class="form-check-label" for="study_group_match_5_preferred_study_format_1">Online</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="study_group_match_5_preferred_study_format" id="study_group_match_5_preferred_study_format_2" value="Either" aria-label="Either" required aria-required="true">
+      <label class="form-check-label" for="study_group_match_5_preferred_study_format_2">Either</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="study_group_match_6_topics_you_want_help_with">Topics you want help with <span class="text-danger">*</span></label>
+    <div class="form-text">Select one or more.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="study_group_match_6_topics_you_want_help_with" id="study_group_match_6_topics_you_want_help_with_0" value="Theory review" aria-label="Theory review">
+      <label class="form-check-label" for="study_group_match_6_topics_you_want_help_with_0">Theory review</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="study_group_match_6_topics_you_want_help_with" id="study_group_match_6_topics_you_want_help_with_1" value="Exercises" aria-label="Exercises">
+      <label class="form-check-label" for="study_group_match_6_topics_you_want_help_with_1">Exercises</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="study_group_match_6_topics_you_want_help_with" id="study_group_match_6_topics_you_want_help_with_2" value="Exam prep" aria-label="Exam prep">
+      <label class="form-check-label" for="study_group_match_6_topics_you_want_help_with_2">Exam prep</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="study_group_match_6_topics_you_want_help_with" id="study_group_match_6_topics_you_want_help_with_3" value="Projects" aria-label="Projects">
+      <label class="form-check-label" for="study_group_match_6_topics_you_want_help_with_3">Projects</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="study_group_match_6_topics_you_want_help_with" id="study_group_match_6_topics_you_want_help_with_4" value="Assignments" aria-label="Assignments">
+      <label class="form-check-label" for="study_group_match_6_topics_you_want_help_with_4">Assignments</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="study_group_match_7_preferred_meeting_time">Preferred meeting time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="study_group_match_7_preferred_meeting_time" name="study_group_match_7_preferred_meeting_time" placeholder="HH:MM">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

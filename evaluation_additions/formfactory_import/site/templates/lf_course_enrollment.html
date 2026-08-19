@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Course Enrollment Preference Form{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Course Enrollment Preference Form</h1>
+    <p class="text-muted">Collects course enrollment preferences, prior knowledge, and schedule constraints.</p>
+    <form method="POST" id="course_enrollmentForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="course_enrollment_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="course_enrollment_1_full_name" name="course_enrollment_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="course_enrollment_2_student_id">Student ID <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="course_enrollment_2_student_id" name="course_enrollment_2_student_id" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="course_enrollment_3_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="course_enrollment_3_email_address" name="course_enrollment_3_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="course_enrollment_4_preferred_course">Preferred course <span class="text-danger">*</span></label>
+    <select class="form-select" id="course_enrollment_4_preferred_course" name="course_enrollment_4_preferred_course" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Machine Learning">Machine Learning</option>
+      <option value="Data Visualization">Data Visualization</option>
+      <option value="Scalable Data Engineering">Scalable Data Engineering</option>
+      <option value="Human-Computer Interaction">Human-Computer Interaction</option>
+      <option value="Computer Vision">Computer Vision</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="course_enrollment_5_prior_knowledge">Prior knowledge <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_enrollment_5_prior_knowledge" id="course_enrollment_5_prior_knowledge_0" value="None" aria-label="None" required aria-required="true">
+      <label class="form-check-label" for="course_enrollment_5_prior_knowledge_0">None</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_enrollment_5_prior_knowledge" id="course_enrollment_5_prior_knowledge_1" value="Basic" aria-label="Basic" required aria-required="true">
+      <label class="form-check-label" for="course_enrollment_5_prior_knowledge_1">Basic</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_enrollment_5_prior_knowledge" id="course_enrollment_5_prior_knowledge_2" value="Intermediate" aria-label="Intermediate" required aria-required="true">
+      <label class="form-check-label" for="course_enrollment_5_prior_knowledge_2">Intermediate</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_enrollment_5_prior_knowledge" id="course_enrollment_5_prior_knowledge_3" value="Advanced" aria-label="Advanced" required aria-required="true">
+      <label class="form-check-label" for="course_enrollment_5_prior_knowledge_3">Advanced</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="course_enrollment_6_reasons_for_enrolling">Reasons for enrolling</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="course_enrollment_6_reasons_for_enrolling" id="course_enrollment_6_reasons_for_enrolling_0" value="Degree requirement" aria-label="Degree requirement">
+      <label class="form-check-label" for="course_enrollment_6_reasons_for_enrolling_0">Degree requirement</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="course_enrollment_6_reasons_for_enrolling" id="course_enrollment_6_reasons_for_enrolling_1" value="Research interest" aria-label="Research interest">
+      <label class="form-check-label" for="course_enrollment_6_reasons_for_enrolling_1">Research interest</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="course_enrollment_6_reasons_for_enrolling" id="course_enrollment_6_reasons_for_enrolling_2" value="Career preparation" aria-label="Career preparation">
+      <label class="form-check-label" for="course_enrollment_6_reasons_for_enrolling_2">Career preparation</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="course_enrollment_6_reasons_for_enrolling" id="course_enrollment_6_reasons_for_enrolling_3" value="Project topic" aria-label="Project topic">
+      <label class="form-check-label" for="course_enrollment_6_reasons_for_enrolling_3">Project topic</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="course_enrollment_6_reasons_for_enrolling" id="course_enrollment_6_reasons_for_enrolling_4" value="General interest" aria-label="General interest">
+      <label class="form-check-label" for="course_enrollment_6_reasons_for_enrolling_4">General interest</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="course_enrollment_7_schedule_constraints">Schedule constraints</label>
+    <textarea class="form-control" id="course_enrollment_7_schedule_constraints" name="course_enrollment_7_schedule_constraints" rows="4"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="course_enrollment_8_preferred_lab_session_time">Preferred lab session time</label>
+    <div class="form-text">Format: HH:MM (24-hour)</div>
+    <input type="text" class="form-control" id="course_enrollment_8_preferred_lab_session_time" name="course_enrollment_8_preferred_lab_session_time" placeholder="HH:MM">
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

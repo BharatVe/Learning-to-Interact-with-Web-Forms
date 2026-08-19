@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block title %}Course Feedback (2 pages){% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Course Feedback (2 pages)</h1>
+    <p class="text-muted">Feedback form with ratings and qualitative comments, split into pages.</p>
+    <form method="POST" id="course_feedbackForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="course_feedback_1_course_name">Course name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="course_feedback_1_course_name" name="course_feedback_1_course_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="course_feedback_2_your_program_level">Your program level <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_2_your_program_level" id="course_feedback_2_your_program_level_0" value="Bachelor’s" aria-label="Bachelor’s" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_2_your_program_level_0">Bachelor’s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_2_your_program_level" id="course_feedback_2_your_program_level_1" value="Master’s" aria-label="Master’s" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_2_your_program_level_1">Master’s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_2_your_program_level" id="course_feedback_2_your_program_level_2" value="PhD" aria-label="PhD" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_2_your_program_level_2">PhD</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_2_your_program_level" id="course_feedback_2_your_program_level_3" value="Other" aria-label="Other" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_2_your_program_level_3">Other</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="course_feedback_3_did_you_attend_most_sessions">Did you attend most sessions? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_3_did_you_attend_most_sessions" id="course_feedback_3_did_you_attend_most_sessions_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_3_did_you_attend_most_sessions_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_3_did_you_attend_most_sessions" id="course_feedback_3_did_you_attend_most_sessions_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_3_did_you_attend_most_sessions_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_3_did_you_attend_most_sessions" id="course_feedback_3_did_you_attend_most_sessions_2" value="Partially" aria-label="Partially" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_3_did_you_attend_most_sessions_2">Partially</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="course_feedback_1_overall_satisfaction">Overall satisfaction <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_1_overall_satisfaction" id="course_feedback_1_overall_satisfaction_0" value="1 – Very dissatisfied" aria-label="1 – Very dissatisfied" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_1_overall_satisfaction_0">1 – Very dissatisfied</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_1_overall_satisfaction" id="course_feedback_1_overall_satisfaction_1" value="2" aria-label="2" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_1_overall_satisfaction_1">2</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_1_overall_satisfaction" id="course_feedback_1_overall_satisfaction_2" value="3" aria-label="3" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_1_overall_satisfaction_2">3</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_1_overall_satisfaction" id="course_feedback_1_overall_satisfaction_3" value="4" aria-label="4" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_1_overall_satisfaction_3">4</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_1_overall_satisfaction" id="course_feedback_1_overall_satisfaction_4" value="5 – Very satisfied" aria-label="5 – Very satisfied" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_1_overall_satisfaction_4">5 – Very satisfied</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="course_feedback_2_workload_felt">Workload felt <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_2_workload_felt" id="course_feedback_2_workload_felt_0" value="Too low" aria-label="Too low" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_2_workload_felt_0">Too low</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_2_workload_felt" id="course_feedback_2_workload_felt_1" value="About right" aria-label="About right" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_2_workload_felt_1">About right</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_2_workload_felt" id="course_feedback_2_workload_felt_2" value="Too high" aria-label="Too high" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_2_workload_felt_2">Too high</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="course_feedback_3_what_did_you_like_most">What did you like most?</label>
+    <textarea class="form-control" id="course_feedback_3_what_did_you_like_most" name="course_feedback_3_what_did_you_like_most" rows="4"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="course_feedback_4_what_should_be_improved">What should be improved?</label>
+    <textarea class="form-control" id="course_feedback_4_what_should_be_improved" name="course_feedback_4_what_should_be_improved" rows="4"></textarea>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="course_feedback_5_most_useful_aspects">Most useful aspects</label>
+    <div class="form-text">Select all that apply.</div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="course_feedback_5_most_useful_aspects" id="course_feedback_5_most_useful_aspects_0" value="Theory" aria-label="Theory">
+      <label class="form-check-label" for="course_feedback_5_most_useful_aspects_0">Theory</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="course_feedback_5_most_useful_aspects" id="course_feedback_5_most_useful_aspects_1" value="Practical labs" aria-label="Practical labs">
+      <label class="form-check-label" for="course_feedback_5_most_useful_aspects_1">Practical labs</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="course_feedback_5_most_useful_aspects" id="course_feedback_5_most_useful_aspects_2" value="Assignments" aria-label="Assignments">
+      <label class="form-check-label" for="course_feedback_5_most_useful_aspects_2">Assignments</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" role="checkbox" name="course_feedback_5_most_useful_aspects" id="course_feedback_5_most_useful_aspects_3" value="Project work" aria-label="Project work">
+      <label class="form-check-label" for="course_feedback_5_most_useful_aspects_3">Project work</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="course_feedback_6_would_you_recommend_this_course">Would you recommend this course? <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_6_would_you_recommend_this_course" id="course_feedback_6_would_you_recommend_this_course_0" value="Yes" aria-label="Yes" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_6_would_you_recommend_this_course_0">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_6_would_you_recommend_this_course" id="course_feedback_6_would_you_recommend_this_course_1" value="No" aria-label="No" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_6_would_you_recommend_this_course_1">No</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="course_feedback_6_would_you_recommend_this_course" id="course_feedback_6_would_you_recommend_this_course_2" value="Maybe" aria-label="Maybe" required aria-required="true">
+      <label class="form-check-label" for="course_feedback_6_would_you_recommend_this_course_2">Maybe</label>
+    </div>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

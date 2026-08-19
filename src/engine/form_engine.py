@@ -769,6 +769,16 @@ class FormEngine:
             self._assert_input_value(field, f"{hour_24}:{minute}", "time_value_mismatch")
             return
 
+        text_inputs = container.locator("input[type='text']")
+        if text_inputs.count() == 1:
+            field = text_inputs.first
+            self._set_action_target(action, field)
+            self._hover(field, step_idx)
+            self._click(field, step_idx)
+            self._type(field, f"{hour_24}:{minute}", step_idx, clear_before_typing=True)
+            self._assert_input_value(field, f"{hour_24}:{minute}", "time_value_mismatch")
+            return
+
         hour_input = self._find_input_by_keywords(container, ["hour", "hh", "h"])
         minute_input = self._find_input_by_keywords(container, ["minute", "mm", "m"])
 
@@ -852,6 +862,11 @@ class FormEngine:
         native = container.locator("input[type='time']")
         if native.count() > 0:
             value = self._read_input_value(native.first).strip()
+            return value or None
+
+        text_inputs = container.locator("input[type='text']")
+        if text_inputs.count() == 1:
+            value = self._read_input_value(text_inputs.first).strip()
             return value or None
 
         hour_input = self._find_input_by_keywords(container, ["hour", "hh", "h"])

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Exam Registration Help Request{% endblock %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    <h1 class="mb-2">Exam Registration Help Request</h1>
+    <p class="text-muted">Form for students requesting support with exam registration issues.</p>
+    <form method="POST" id="exam_registrationForm">
+      <div role="list">
+  <div class="mb-3" role="listitem" data-question-order="1">
+    <label class="form-label" for="exam_registration_1_full_name">Full name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="exam_registration_1_full_name" name="exam_registration_1_full_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="2">
+    <label class="form-label" for="exam_registration_2_student_id">Student ID <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="exam_registration_2_student_id" name="exam_registration_2_student_id" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="3">
+    <label class="form-label" for="exam_registration_3_email_address">Email address <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="exam_registration_3_email_address" name="exam_registration_3_email_address" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="4">
+    <label class="form-label" for="exam_registration_4_program_level">Program level <span class="text-danger">*</span></label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="exam_registration_4_program_level" id="exam_registration_4_program_level_0" value="Bachelor&#x27;s" aria-label="Bachelor&#x27;s" required aria-required="true">
+      <label class="form-check-label" for="exam_registration_4_program_level_0">Bachelor&#x27;s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="exam_registration_4_program_level" id="exam_registration_4_program_level_1" value="Master&#x27;s" aria-label="Master&#x27;s" required aria-required="true">
+      <label class="form-check-label" for="exam_registration_4_program_level_1">Master&#x27;s</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="exam_registration_4_program_level" id="exam_registration_4_program_level_2" value="PhD" aria-label="PhD" required aria-required="true">
+      <label class="form-check-label" for="exam_registration_4_program_level_2">PhD</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" role="radio" name="exam_registration_4_program_level" id="exam_registration_4_program_level_3" value="Exchange student" aria-label="Exchange student" required aria-required="true">
+      <label class="form-check-label" for="exam_registration_4_program_level_3">Exchange student</label>
+    </div>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="5">
+    <label class="form-label" for="exam_registration_5_exam_or_module_name">Exam or module name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="exam_registration_5_exam_or_module_name" name="exam_registration_5_exam_or_module_name" required aria-required="true">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="6">
+    <label class="form-label" for="exam_registration_6_issue_type">Issue type <span class="text-danger">*</span></label>
+    <select class="form-select" id="exam_registration_6_issue_type" name="exam_registration_6_issue_type" required aria-required="true">
+      <option value="" disabled selected>Select an option</option>
+      <option value="Registration not visible">Registration not visible</option>
+      <option value="Deadline question">Deadline question</option>
+      <option value="Wrong exam listed">Wrong exam listed</option>
+      <option value="Deregistration request">Deregistration request</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="7">
+    <label class="form-label" for="exam_registration_7_exam_date">Exam date</label>
+    <div class="form-text">Format: YYYY-MM-DD</div>
+    <input type="text" class="form-control" id="exam_registration_7_exam_date" name="exam_registration_7_exam_date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3" role="listitem" data-question-order="8">
+    <label class="form-label" for="exam_registration_8_describe_the_issue">Describe the issue <span class="text-danger">*</span></label>
+    <textarea class="form-control" id="exam_registration_8_describe_the_issue" name="exam_registration_8_describe_the_issue" rows="4" required aria-required="true"></textarea>
+  </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
