@@ -1,0 +1,3 @@
+comparison,n_forms,localforms_accuracy_pct,comparison_accuracy_pct,point_diff_pp,bootstrap_95ci_low_pp,bootstrap_95ci_high_pp,ci_excludes_zero,wins_localforms,wins_comparison,ties,sign_test_p
+A: LocalForms vs GF32 (fill-only matched),50,73.35,70.66,2.69,-9.52,14.14,False,14,11,25,0.69
+B: LocalForms vs GF128 (step-cap matched),45,73.64,66.3,7.34,-7.4,21.08,False,15,11,19,0.5572

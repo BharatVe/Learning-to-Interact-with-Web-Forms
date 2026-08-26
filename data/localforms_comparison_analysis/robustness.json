@@ -1,0 +1,41 @@
+{
+  "methodology": "10000 form-level bootstrap resamples (resample forms with replacement, recompute aggregate field accuracy per condition, take the difference). Exact two-sided sign test on per-form win/loss (ties excluded), matching this repo's existing paired-comparison methodology (see scripts/analyze_opencua_ruler_comparison.py).",
+  "seed": 20260819,
+  "n_bootstrap": 10000,
+  "comparison_a_localforms_vs_gf32_fillonly": {
+    "n_forms": 50,
+    "localforms_total": "300/409",
+    "localforms_accuracy": 73.35,
+    "comparison_total": "289/409",
+    "comparison_accuracy": 70.66,
+    "point_diff_pp": 2.69,
+    "bootstrap_mean_diff_pp": 2.55,
+    "bootstrap_95ci_pp": [
+      -9.52,
+      14.14
+    ],
+    "ci_excludes_zero": false,
+    "wins_localforms": 14,
+    "wins_comparison": 11,
+    "ties": 25,
+    "sign_test_two_sided_p": 0.69
+  },
+  "comparison_b_localforms_vs_gf128_submitcap128": {
+    "n_forms": 45,
+    "localforms_total": "271/368",
+    "localforms_accuracy": 73.64,
+    "comparison_total": "244/368",
+    "comparison_accuracy": 66.3,
+    "point_diff_pp": 7.34,
+    "bootstrap_mean_diff_pp": 7.23,
+    "bootstrap_95ci_pp": [
+      -7.4,
+      21.08
+    ],
+    "ci_excludes_zero": false,
+    "wins_localforms": 15,
+    "wins_comparison": 11,
+    "ties": 19,
+    "sign_test_two_sided_p": 0.5572
+  }
+}
