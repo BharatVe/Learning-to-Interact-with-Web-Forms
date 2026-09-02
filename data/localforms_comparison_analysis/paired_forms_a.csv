@@ -1,4 +1,4 @@
-form_id,localforms_v,localforms_t,localforms_stop_reason,gf32_v,gf32_t,gf32_stop_reason
+form_id,a_v,a_t,a_stop_reason,b_v,b_t,b_stop_reason
 accessibility_feedback,7,8,done_incomplete_fill_only,6,8,max_steps_exceeded
 alumni_checkin,7,7,filled_without_submit,7,7,filled_without_submit
 bug_report,8,9,max_steps_exceeded,8,9,done_incomplete_fill_only

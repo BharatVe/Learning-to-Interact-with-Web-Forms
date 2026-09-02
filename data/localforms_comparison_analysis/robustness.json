@@ -1,13 +1,14 @@
 {
-  "methodology": "10000 form-level bootstrap resamples (resample forms with replacement, recompute aggregate field accuracy per condition, take the difference). Exact two-sided sign test on per-form win/loss (ties excluded), matching this repo's existing paired-comparison methodology (see scripts/analyze_opencua_ruler_comparison.py).",
+  "methodology": "10000 form-level bootstrap resamples (resample forms with replacement, recompute aggregate field accuracy per condition, take the difference). Exact two-sided sign test on per-form win/loss (ties excluded). Scores use the harness's scored_correctness field (pre-submit snapshot for submitted trials, final verification otherwise) so post-submit-navigation state loss does not bias submit-enabled comparisons toward zero. Comparisons E and F split D by whether the source Google Forms form has more than one section_order (i.e. renders as multiple pages on Google Forms); the LocalForms recreation renders every form as a single page regardless, so D alone conflates a platform-DOM effect with a page-count effect -- E is the corrected apples-to-apples reading.",
   "seed": 20260819,
   "n_bootstrap": 10000,
-  "comparison_a_localforms_vs_gf32_fillonly": {
+  "multi_section_form_count": 18,
+  "A_localforms_fillonly_vs_gf32_fillonly_32step": {
     "n_forms": 50,
-    "localforms_total": "300/409",
-    "localforms_accuracy": 73.35,
-    "comparison_total": "289/409",
-    "comparison_accuracy": 70.66,
+    "a_total": "300/409",
+    "a_accuracy": 73.35,
+    "b_total": "289/409",
+    "b_accuracy": 70.66,
     "point_diff_pp": 2.69,
     "bootstrap_mean_diff_pp": 2.55,
     "bootstrap_95ci_pp": [
@@ -15,17 +16,18 @@
       14.14
     ],
     "ci_excludes_zero": false,
-    "wins_localforms": 14,
-    "wins_comparison": 11,
+    "wins_a": 14,
+    "wins_b": 11,
     "ties": 25,
-    "sign_test_two_sided_p": 0.69
+    "sign_test_two_sided_p": 0.69,
+    "note": "task matched, step cap NOT matched (128 vs 32)"
   },
-  "comparison_b_localforms_vs_gf128_submitcap128": {
+  "B_localforms_fillonly_vs_gf128_submit_128step": {
     "n_forms": 45,
-    "localforms_total": "271/368",
-    "localforms_accuracy": 73.64,
-    "comparison_total": "244/368",
-    "comparison_accuracy": 66.3,
+    "a_total": "271/368",
+    "a_accuracy": 73.64,
+    "b_total": "244/368",
+    "b_accuracy": 66.3,
     "point_diff_pp": 7.34,
     "bootstrap_mean_diff_pp": 7.23,
     "bootstrap_95ci_pp": [
@@ -33,9 +35,86 @@
       21.08
     ],
     "ci_excludes_zero": false,
-    "wins_localforms": 15,
-    "wins_comparison": 11,
+    "wins_a": 15,
+    "wins_b": 11,
     "ties": 19,
-    "sign_test_two_sided_p": 0.5572
+    "sign_test_two_sided_p": 0.5572,
+    "note": "step cap matched (128), task NOT matched (fill-only vs submit-enabled)"
+  },
+  "C_localforms_fillonly_vs_gf_fillonly_128step": {
+    "n_forms": 50,
+    "a_total": "300/409",
+    "a_accuracy": 73.35,
+    "b_total": "278/409",
+    "b_accuracy": 67.97,
+    "point_diff_pp": 5.38,
+    "bootstrap_mean_diff_pp": 5.33,
+    "bootstrap_95ci_pp": [
+      -9.05,
+      19.62
+    ],
+    "ci_excludes_zero": false,
+    "wins_a": 18,
+    "wins_b": 19,
+    "ties": 13,
+    "sign_test_two_sided_p": 1.0,
+    "note": "FULLY MATCHED: fill-only, 128-step, run_0002, both platforms"
+  },
+  "D_localforms_submit_vs_gf128_submit_128step": {
+    "n_forms": 45,
+    "a_total": "312/368",
+    "a_accuracy": 84.78,
+    "b_total": "244/368",
+    "b_accuracy": 66.3,
+    "point_diff_pp": 18.48,
+    "bootstrap_mean_diff_pp": 18.35,
+    "bootstrap_95ci_pp": [
+      7.16,
+      29.82
+    ],
+    "ci_excludes_zero": true,
+    "wins_a": 18,
+    "wins_b": 6,
+    "ties": 21,
+    "sign_test_two_sided_p": 0.0227,
+    "note": "FULLY MATCHED but includes a page-count confound: submit-enabled, 128-step, run_0002, both platforms -- 16 of these forms are multi-page on Google Forms but single-page on the LocalForms recreation (see E/F)"
+  },
+  "E_D_restricted_single_page_only": {
+    "n_forms": 29,
+    "a_total": "190/220",
+    "a_accuracy": 86.36,
+    "b_total": "192/220",
+    "b_accuracy": 87.27,
+    "point_diff_pp": -0.91,
+    "bootstrap_mean_diff_pp": -0.96,
+    "bootstrap_95ci_pp": [
+      -10.19,
+      8.68
+    ],
+    "ci_excludes_zero": false,
+    "wins_a": 4,
+    "wins_b": 4,
+    "ties": 21,
+    "sign_test_two_sided_p": 1.0,
+    "note": "D restricted to forms that are single-page on BOTH platforms (excludes forms multi-page on Google Forms) -- the real apples-to-apples submit-enabled comparison"
+  },
+  "F_D_restricted_multipage_only": {
+    "n_forms": 16,
+    "a_total": "122/148",
+    "a_accuracy": 82.43,
+    "b_total": "52/148",
+    "b_accuracy": 35.14,
+    "point_diff_pp": 47.3,
+    "bootstrap_mean_diff_pp": 47.26,
+    "bootstrap_95ci_pp": [
+      30.07,
+      62.42
+    ],
+    "ci_excludes_zero": true,
+    "wins_a": 14,
+    "wins_b": 2,
+    "ties": 0,
+    "sign_test_two_sided_p": 0.0042,
+    "note": "D restricted to forms that are multi-page on Google Forms but single-page on LocalForms -- isolates the page-count confound itself, NOT a platform DOM-implementation effect"
   }
 }

@@ -546,17 +546,33 @@ def _load_run_answers(answers_path: Path, run_index: int) -> List[Dict[str, Any]
 
 
 def _detect_submit_success(engine: MCPBrowserEngine, step_ref: Optional[int]) -> Tuple[bool, Dict[str, Any]]:
+    # A click that submits a classic <form method="POST"> (no client-side JS,
+    # full page navigation) can still be mid-navigation when this runs, since
+    # the click tool call returns as soon as the click itself lands, not once
+    # any resulting navigation settles. Google Forms' AJAX-style submission
+    # never exposed this race (no navigation to wait for); a plain HTML form
+    # does. Wait for the navigation to settle, then retry the text check once
+    # after a short pause, before concluding the confirmation text is absent.
     code = """
 async (page) => {
-  const text = (await page.locator("body").innerText({ timeout: 3000 }).catch(() => "") || "");
+  const isSuccess = (text) => {
+    const normalized = text.toLowerCase();
+    return normalized.includes("response has been recorded")
+      || normalized.includes("your response has been recorded")
+      || normalized.includes("ihre antwort wurde gesendet")
+      || normalized.includes("antwort wurde gesendet")
+      || normalized.includes("antwort wurde erfasst")
+      || normalized.includes("deine antwort wurde aufgezeichnet");
+  };
+  await page.waitForLoadState("load", { timeout: 5000 }).catch(() => {});
+  let text = (await page.locator("body").innerText({ timeout: 3000 }).catch(() => "") || "");
+  let success = isSuccess(text);
+  if (!success) {
+    await page.waitForTimeout(700);
+    text = (await page.locator("body").innerText({ timeout: 3000 }).catch(() => "") || "");
+    success = isSuccess(text);
+  }
   const url = page.url();
-  const normalized = text.toLowerCase();
-  const success = normalized.includes("response has been recorded")
-    || normalized.includes("your response has been recorded")
-    || normalized.includes("ihre antwort wurde gesendet")
-    || normalized.includes("antwort wurde gesendet")
-    || normalized.includes("antwort wurde erfasst")
-    || normalized.includes("deine antwort wurde aufgezeichnet");
   const out = "THESIS_JSON:" + JSON.stringify({ success, text, url });
   console.log(out);
   return out;

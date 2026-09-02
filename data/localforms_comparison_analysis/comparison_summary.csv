@@ -1,3 +1,7 @@
-comparison,n_forms,localforms_accuracy_pct,comparison_accuracy_pct,point_diff_pp,bootstrap_95ci_low_pp,bootstrap_95ci_high_pp,ci_excludes_zero,wins_localforms,wins_comparison,ties,sign_test_p
-A: LocalForms vs GF32 (fill-only matched),50,73.35,70.66,2.69,-9.52,14.14,False,14,11,25,0.69
-B: LocalForms vs GF128 (step-cap matched),45,73.64,66.3,7.34,-7.4,21.08,False,15,11,19,0.5572
+comparison,n_forms,a_accuracy_pct,b_accuracy_pct,point_diff_pp,bootstrap_95ci_low_pp,bootstrap_95ci_high_pp,ci_excludes_zero,wins_a,wins_b,ties,sign_test_p
+A_localforms_fillonly_vs_gf32_fillonly_32step,50,73.35,70.66,2.69,-9.52,14.14,False,14,11,25,0.69
+B_localforms_fillonly_vs_gf128_submit_128step,45,73.64,66.3,7.34,-7.4,21.08,False,15,11,19,0.5572
+C_localforms_fillonly_vs_gf_fillonly_128step,50,73.35,67.97,5.38,-9.05,19.62,False,18,19,13,1.0
+D_localforms_submit_vs_gf128_submit_128step,45,84.78,66.3,18.48,7.16,29.82,True,18,6,21,0.0227
+E_D_restricted_single_page_only,29,86.36,87.27,-0.91,-10.19,8.68,False,4,4,21,1.0
+F_D_restricted_multipage_only,16,82.43,35.14,47.3,30.07,62.42,True,14,2,0,0.0042
