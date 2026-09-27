@@ -190,6 +190,12 @@ def cmd_data_check(settings: Settings, args: argparse.Namespace) -> int:
     return data.check(settings)
 
 
+def cmd_data_relpaths(settings: Settings, args: argparse.Namespace) -> int:
+    from formbench import data
+
+    return data.relpaths(settings, apply=args.apply)
+
+
 def cmd_forms_serve(settings: Settings, args: argparse.Namespace) -> int:
     from formbench.forms_site import serve_command
 
@@ -352,6 +358,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_data_build)
     p = data.add_parser("check", help="validate specs, answer sets and committed reference traces")
     p.set_defaults(func=cmd_data_check)
+    p = data.add_parser("relpaths", help="make absolute workspace paths in reference runs repo-relative (dry run by default)")
+    p.add_argument("--apply", action="store_true", help="rewrite the files")
+    p.set_defaults(func=cmd_data_relpaths)
 
     forms = sub.add_parser("forms", help="LocalForms site").add_subparsers(dest="forms_cmd", required=True, metavar="<action>")
     p = forms.add_parser("serve", help="serve the LocalForms Flask site in the foreground")

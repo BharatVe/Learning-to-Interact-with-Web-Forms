@@ -138,6 +138,18 @@ def _find_cached_chromium_executable() -> Optional[Path]:
     return None
 
 
+def _node_env(extra: Optional[Dict[str, str]] = None) -> Dict[str, str]:
+    """Environment for Node subprocesses (Playwright MCP): on HPC the Python venv runs with the
+    original LD_LIBRARY_PATH, while Node needs the module libraries (scripts/env.sh exports them
+    as NODE_LD_LIBRARY_PATH_FOR_MCP)."""
+    env = dict(os.environ)
+    node_ld = os.environ.get("NODE_LD_LIBRARY_PATH_FOR_MCP", "")
+    if node_ld:
+        env["LD_LIBRARY_PATH"] = node_ld
+    env.update(extra or {})
+    return env
+
+
 def ensure_playwright_mcp_package(timeout_seconds: int) -> None:
     if shutil.which("playwright-mcp"):
         return
@@ -147,6 +159,7 @@ def ensure_playwright_mcp_package(timeout_seconds: int) -> None:
         capture_output=True,
         text=True,
         timeout=max(30, timeout_seconds),
+        env=_node_env(),
     )
     if proc.returncode == 0:
         return
@@ -162,8 +175,9 @@ def ensure_playwright_mcp_package(timeout_seconds: int) -> None:
 def ensure_node_playwright_browser(browser_name: str, timeout_seconds: int) -> None:
     if browser_name != "chromium":
         return
-    cmd = ["npx", "-y", "playwright@latest", "install", browser_name]
-    env = dict(os.environ)
+    pinned_cli = ROOT_DIR / ".node-tools" / "node_modules" / ".bin" / "playwright"
+    cmd = [str(pinned_cli), "install", browser_name] if pinned_cli.exists() else ["npx", "-y", "playwright@latest", "install", browser_name]
+    env = _node_env()
     env.setdefault("PLAYWRIGHT_BROWSERS_PATH", _default_playwright_browsers_path())
     print(f"[INFO] Installing Node Playwright browser for MCP: {browser_name}")
     proc = subprocess.run(
@@ -229,7 +243,12 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument("--screenshots", action="store_true", default=False)
     parser.add_argument("--no-mouse-overlay", action="store_true", default=False)
-    parser.add_argument("--interaction-mode", choices=["local", "mcp_server"], default="local")
+    parser.add_argument(
+        "--interaction-mode",
+        choices=["local", "mcp_server"],
+        default="mcp_server",
+        help="mcp_server (default) drives the official Playwright MCP server and produced the committed reference runs; local uses Python Playwright directly.",
+    )
     parser.add_argument("--trace-mode", choices=["mcp", "local"], default=DEFAULT_TRACE_MODE)
     parser.add_argument("--mcp-server-cmd")
     parser.add_argument("--mcp-tool-name", default=DEFAULT_MCP_TOOL_NAME)
@@ -880,26 +899,10 @@ def _run_single_local(
                 if not args.no_mouse_overlay:
                     engine.enable_mouse_overlay()
 
-                for idx, entry in enumerate(answers):
-                    label = entry.get("label") if isinstance(entry, dict) else None
-                    if label:
-                        print(f"[INFO] Filling step {idx}: {label}")
-                    else:
-                        print(f"[INFO] Filling step {idx}")
-                    action, err = engine.fill_step(entry, idx)
-                    annotations["actions"].append(action)
-                    if err:
-                        errors.append(f"step {idx}: {err}")
-
-                print("[INFO] Submitting form")
-                submit_info, submit_err = engine.submit()
-                annotations["submit"] = submit_info
-                if submit_err:
-                    errors.append(f"submit: {submit_err}")
-                elif not submit_info.get("success"):
-                    errors.append("submit_not_confirmed")
-                elif submit_info.get("success") and args.post_submit_delay_seconds > 0:
-                    page.wait_for_timeout(int(args.post_submit_delay_seconds * 1000))
+                _fill_and_submit(
+                    engine, answers, annotations, errors, args.post_submit_delay_seconds,
+                    wait=lambda seconds: page.wait_for_timeout(int(seconds * 1000)),
+                )
             except PlaywrightError as exc:
                 raise _playwright_browser_error(exc) from exc
             except PlaywrightTimeoutError as exc:
@@ -951,6 +954,8 @@ def _run_single_mcp_server(
 
     mcp_command: Any = args.browser_mcp_cmd or _default_browser_mcp_command(args, run_dir)
     mcp_env = {"PLAYWRIGHT_BROWSERS_PATH": _default_playwright_browsers_path()}
+    if os.environ.get("NODE_LD_LIBRARY_PATH_FOR_MCP"):
+        mcp_env["LD_LIBRARY_PATH"] = os.environ["NODE_LD_LIBRARY_PATH_FOR_MCP"]
     annotations["run_params"]["browser_mcp_cmd"] = mcp_command
     annotations["run_params"]["browser_mcp_env"] = mcp_env
     try:
@@ -996,26 +1001,10 @@ def _run_single_mcp_server(
         if not args.no_mouse_overlay:
             engine.enable_mouse_overlay()
 
-        for idx, entry in enumerate(answers):
-            label = entry.get("label") if isinstance(entry, dict) else None
-            if label:
-                print(f"[INFO] Filling step {idx}: {label}")
-            else:
-                print(f"[INFO] Filling step {idx}")
-            action, err = engine.fill_step(entry, idx)
-            annotations["actions"].append(action)
-            if err:
-                errors.append(f"step {idx}: {err}")
-
-        print("[INFO] Submitting form")
-        submit_info, submit_err = engine.submit()
-        annotations["submit"] = submit_info
-        if submit_err:
-            errors.append(f"submit: {submit_err}")
-        elif not submit_info.get("success"):
-            errors.append("submit_not_confirmed")
-        elif submit_info.get("success") and args.post_submit_delay_seconds > 0:
-            engine.wait_seconds(args.post_submit_delay_seconds, step_ref=None)
+        _fill_and_submit(
+            engine, answers, annotations, errors, args.post_submit_delay_seconds,
+            wait=lambda seconds: engine.wait_seconds(seconds, step_ref=None),
+        )
     except Exception as exc:
         mapped = _mcp_browser_error(exc)
         run_error = mapped
@@ -1032,6 +1021,30 @@ def _run_single_mcp_server(
             except Exception:
                 pass
     return errors, run_error
+
+
+def _fill_and_submit(engine: Any, answers: List[Any], annotations: Dict[str, Any], errors: List[str], post_submit_delay_s: float, wait: Any) -> None:
+    """Scripted ideal run: fill every answer in order, submit, optionally wait (both browser engines)."""
+    for idx, entry in enumerate(answers):
+        label = entry.get("label") if isinstance(entry, dict) else None
+        if label:
+            print(f"[INFO] Filling step {idx}: {label}")
+        else:
+            print(f"[INFO] Filling step {idx}")
+        action, err = engine.fill_step(entry, idx)
+        annotations["actions"].append(action)
+        if err:
+            errors.append(f"step {idx}: {err}")
+
+    print("[INFO] Submitting form")
+    submit_info, submit_err = engine.submit()
+    annotations["submit"] = submit_info
+    if submit_err:
+        errors.append(f"submit: {submit_err}")
+    elif not submit_info.get("success"):
+        errors.append("submit_not_confirmed")
+    elif submit_info.get("success") and post_submit_delay_s > 0:
+        wait(post_submit_delay_s)
 
 
 def run_single(
@@ -1287,12 +1300,11 @@ def main(argv: Optional[List[str]] = None) -> bool:
             )
         else:
             try:
-                python_executable = _detect_python_playwright_chromium_executable()
+                explicit_executable = os.environ.get("PLAYWRIGHT_MCP_CHROMIUM_EXECUTABLE", "").strip()
+                python_executable = explicit_executable or _detect_python_playwright_chromium_executable()
                 if python_executable:
-                    print(
-                        f"[INFO] Using Python Playwright Chromium executable for MCP: {python_executable}",
-                        file=sys.stderr,
-                    )
+                    source = "PLAYWRIGHT_MCP_CHROMIUM_EXECUTABLE" if explicit_executable else "Python Playwright"
+                    print(f"[INFO] Using {source} Chromium executable for MCP: {python_executable}", file=sys.stderr)
                 try:
                     ensure_playwright_mcp_package(timeout_seconds=args.mcp_browser_install_timeout_s)
                 except Exception as preflight_exc:

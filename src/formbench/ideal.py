@@ -12,13 +12,10 @@ from typing import Dict, List, Optional, Sequence, Tuple
 from formbench.common import FormbenchError, answer_run_id, discover_form_ids, dump_table, info, quote_cmd, run, short
 from formbench.settings import Settings
 
-LOCALFORMS_REFERENCE_DIR = Path("data/forms_localforms")
-
-
 def roots(settings: Settings, platform: str) -> Tuple[Path, Path, Path]:
     """(specs_root, answers_root, reference_root) for a platform."""
     if platform == "localforms":
-        return settings.localforms_forms_root, settings.localforms_answers_root, settings.root / LOCALFORMS_REFERENCE_DIR
+        return settings.localforms_forms_root, settings.localforms_answers_root, settings.localforms_reference_root
     if platform != "google":
         raise FormbenchError(f"platform must be google or localforms, got {platform!r}")
     return settings.forms_root, settings.answers_root, settings.reference_root
@@ -50,9 +47,9 @@ def coverage(settings: Settings, platform: str = "google", forms: Optional[List[
     for form_id in forms or discover_form_ids(specs_root):
         total = answer_count(answers_root, form_id)
         runs_dir = reference_root / form_id / "runs"
-        have_trace = sorted(p.parent.name for p in runs_dir.glob("run_*/tool_trace.jsonl"))
-        have_video = sorted(p.parent.name for p in runs_dir.glob("run_*/*.webm"))
         failed = sorted(p.parent.name for p in runs_dir.glob("run_*/failure_manifest.json"))
+        have_trace = sorted(p.parent.name for p in runs_dir.glob("run_*/tool_trace.jsonl") if p.parent.name not in failed and p.stat().st_size > 0)
+        have_video = sorted(p.parent.name for p in runs_dir.glob("run_*/*.webm"))
         missing = [answer_run_id(i) for i in range(1, total + 1) if answer_run_id(i) not in have_trace]
         rows.append({
             "form_id": form_id, "answer_sets": total, "traces": len(have_trace), "videos": len(have_video),

@@ -58,6 +58,7 @@ class Settings:
     answers_root: Path
     localforms_forms_root: Path
     localforms_answers_root: Path
+    localforms_reference_root: Path
     localforms_host: str
     localforms_port: int
     node_tools_dir: Path
@@ -141,6 +142,7 @@ def load_settings(environ: Optional[Mapping[str, str]] = None, root: Optional[Pa
         answers_root=_resolve(root, get("ANSWERS_ROOT", "data/answers")),
         localforms_forms_root=_resolve(root, get("LOCALFORMS_FORMS_ROOT", "src/forms_localforms")),
         localforms_answers_root=_resolve(root, get("LOCALFORMS_ANSWERS_ROOT", "data/answers_localforms")),
+        localforms_reference_root=_resolve(root, get("LOCALFORMS_REFERENCE_ROOT", "data/forms_localforms")),
         localforms_host=get("LOCALFORMS_HOST", "127.0.0.1"),
         localforms_port=int(get("LOCALFORMS_PORT", "5000")),
         node_tools_dir=_resolve(root, get("NODE_TOOLS_DIR", ".node-tools")),
