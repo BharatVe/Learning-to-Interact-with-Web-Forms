@@ -4,8 +4,6 @@ import os
 import re
 import sys
 import time
-import urllib.error
-import urllib.request
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -17,13 +15,14 @@ if str(SRC_DIR) not in sys.path:
 
 from baselines import run_baseline_eval as rbe  # noqa: E402
 from baselines.model_registry import get_model_by_id  # noqa: E402
+from baselines.common import http_post_json, load_run_answers  # noqa: E402
 from engine.browser_language import force_english_google_forms_url  # noqa: E402
 from engine.mcp_browser_engine import MCPBrowserEngine  # noqa: E402
 from engine.mcp_trace_client import MCPClient  # noqa: E402
-from engine.runner import _default_mcp_server_command, iter_run_specs, load_form_spec, resolve_answers_path  # noqa: E402
+from engine.runner import load_form_spec, resolve_answers_path  # noqa: E402
 from engine.trace_logger import TraceLogger  # noqa: E402
 
-DEFAULT_CONFIG = "configs/baselines/track_baseline_models.json"
+DEFAULT_CONFIG = "configs/models.json"
 DEFAULT_ANSWERS_ROOT = "data/answers"
 DEFAULT_DATASET_ROOT = "data/model_baselines"
 DEFAULT_EXPERIMENT_ID = "baseline_qwen_direct_mcp_v1"
@@ -120,26 +119,7 @@ def _log_progress(message: str) -> None:
 
 
 def _http_post_json(url: str, headers: Dict[str, str], payload: Dict[str, Any], timeout_s: int) -> Dict[str, Any]:
-    body = json.dumps(payload).encode("utf-8")
-    request = urllib.request.Request(url=url, data=body, method="POST")
-    for key, value in headers.items():
-        request.add_header(key, value)
-    request.add_header("Content-Type", "application/json")
-    try:
-        with urllib.request.urlopen(request, timeout=max(1, int(timeout_s))) as response:
-            raw = response.read().decode("utf-8")
-    except urllib.error.HTTPError as exc:
-        raw = exc.read().decode("utf-8", errors="replace") if hasattr(exc, "read") else str(exc)
-        raise RuntimeError(f"openai_compat_http_error:{exc.code}:{raw}") from exc
-    except Exception as exc:
-        raise RuntimeError(f"openai_compat_request_failed:{exc}") from exc
-    try:
-        parsed = json.loads(raw)
-    except Exception as exc:
-        raise RuntimeError(f"openai_compat_invalid_json:{exc}") from exc
-    if not isinstance(parsed, dict):
-        raise RuntimeError("openai_compat_response_not_object")
-    return parsed
+    return http_post_json(url, payload, timeout_s, headers=headers, error_prefix="openai_compat")
 
 
 def _parse_openai_response(payload: Dict[str, Any]) -> Dict[str, Any]:
@@ -535,14 +515,7 @@ def _done_text(text: str) -> bool:
     return bool(re.search(r"\b(done|stop)\b", raw))
 
 
-def _load_run_answers(answers_path: Path, run_index: int) -> List[Dict[str, Any]]:
-    for idx, run_spec in enumerate(iter_run_specs(answers_path), start=1):
-        if idx == run_index:
-            answers = run_spec.get("answers", [])
-            if not isinstance(answers, list):
-                raise ValueError(f"Run {run_index} answers must be a list")
-            return answers
-    raise IndexError(f"Run index out of range: {run_index} for {answers_path}")
+_load_run_answers = load_run_answers
 
 
 def _detect_submit_success(engine: MCPBrowserEngine, step_ref: Optional[int]) -> Tuple[bool, Dict[str, Any]]:
@@ -972,7 +945,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     required_tools = ["browser_navigate", "browser_run_code", "browser_wait_for", "browser_close", "browser_snapshot"]
     if args.model_kind in {"vlm", "computer_use_agent"}:
         required_tools.append("browser_take_screenshot")
-    command: Any = args.browser_mcp_cmd or _default_mcp_server_command(args, paths)
+    command: Any = args.browser_mcp_cmd or _browser_mcp_command(args, paths)
 
     mcp = None
     engine = None
@@ -1484,6 +1457,20 @@ def main(argv: Optional[List[str]] = None) -> int:
         "model_visible_tools": [tool["function"]["name"] for tool in openai_tools] if "openai_tools" in locals() else [],
         "serving_mode": "openai_compat_persistent",
         "server_backend": model_cfg.get("server_backend"),
+        "run_params": {
+            "max_steps": int(args.max_steps),
+            "max_new_tokens": max_new_tokens,
+            "timeout_s": int(args.timeout_s),
+            "api_timeout_s": int(args.api_timeout_s),
+            "history_turns": int(args.history_turns),
+            "browser_mcp_timeout_ms": int(args.browser_mcp_timeout_ms),
+            "headless": bool(args.headless),
+            "fill_only_done": bool(args.fill_only_done),
+            "retention_window": int(args.retention_window),
+            "forms_root": args.forms_root,
+            "form_url_override": args.form_url,
+            "run_label": run_label,
+        },
         "form_id": args.form_id,
         "answer_run_id": answer_run_id,
         "success": bool(success),
@@ -1659,8 +1646,15 @@ def main(argv: Optional[List[str]] = None) -> int:
         "model_io_path": str(paths["model_io_path"]),
         "step_inputs_path": str(paths["step_inputs_path"]),
         "video_path": annotations["artifacts"].get("video_path"),
+        "artifact_dir": str(paths["artifact_dir"]),
     }
     rbe._append_jsonl(paths["manifest_path"], manifest_entry)
+    rbe._update_experiment_indexes(
+        experiment_root=paths["experiment_root"],
+        manifest_entry=manifest_entry,
+        run_label=run_label,
+        retention_window=args.retention_window,
+    )
     print(f"[INFO] wrote direct-mcp summary: {paths['summary_path']}")
     print(f"[INFO] wrote direct-mcp annotations: {paths['annotations_path']}")
     print(f"[INFO] wrote direct-mcp manifest: {paths['manifest_path']}")
@@ -1671,7 +1665,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     return 0 if not failure_category else 1
 
 
-def _default_mcp_server_command(args: argparse.Namespace, paths: Dict[str, Path]) -> List[str]:
+def _browser_mcp_command(args: argparse.Namespace, paths: Dict[str, Path]) -> List[str]:
     return rbe._default_browser_mcp_command(
         rbe.DEFAULT_VIEWPORT_WIDTH,
         rbe.DEFAULT_VIEWPORT_HEIGHT,

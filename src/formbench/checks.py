@@ -99,6 +99,27 @@ def _api_key_check(settings: Settings, model: Mapping[str, Any]) -> Optional[Che
     return None
 
 
+def _local_hf_compat(settings: Settings, model: Mapping[str, Any]) -> CheckResult:
+    """Can the installed transformers load this architecture? (same check the runner does at start)."""
+    import json
+
+    code = (
+        "import json, sys; from baselines.run_baseline_eval import _ensure_model_runtime_compat; "
+        "_ensure_model_runtime_compat(json.loads(sys.argv[1]))"
+    )
+    try:
+        out = subprocess.run(
+            [str(settings.python_bin), "-c", code, json.dumps(dict(model))],
+            capture_output=True, text=True, timeout=600, env=settings.subprocess_env(), cwd=str(settings.root),
+        )
+    except subprocess.TimeoutExpired:
+        return CheckResult(WARN, "transformers", "compatibility check timed out")
+    if out.returncode == 0:
+        return CheckResult(OK, "transformers", "architecture loadable (AutoConfig)")
+    detail = (out.stderr.strip().splitlines() or ["unknown error"])[-1]
+    return CheckResult(FAIL, "transformers", detail, "make setup WITH=localhf (or upgrade transformers)")
+
+
 def check_model(
     settings: Settings,
     model: Mapping[str, Any],
@@ -135,6 +156,8 @@ def check_model(
     if provider == "local_hf":
         if weights and (weights / "config.json").is_file():
             results.append(CheckResult(OK, "weights", str(weights)))
+            if smoke:
+                results.append(_local_hf_compat(settings, model))
         else:
             results.append(CheckResult(FAIL, "weights", f"no local weights for {mid}", f"make install-models MODEL={mid}"))
     elif provider == "openai_compat" and isinstance(model.get("serve"), dict):

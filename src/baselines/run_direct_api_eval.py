@@ -3,8 +3,6 @@ import json
 import os
 import sys
 import time
-import urllib.error
-import urllib.request
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -17,14 +15,15 @@ if str(SRC_DIR) not in sys.path:
 from baselines import run_baseline_eval as rbe  # noqa: E402
 from baselines.action_schema import parse_action, validate_action  # noqa: E402
 from baselines.model_registry import get_model_by_id  # noqa: E402
+from baselines.common import extract_openai_text, http_post_json, load_run_answers  # noqa: E402
 from baselines.prompt_builders import build_text_prompt, compact_page_text  # noqa: E402
 from engine.browser_language import force_english_google_forms_url  # noqa: E402
-from engine.runner import iter_run_specs, load_form_spec, resolve_answers_path  # noqa: E402
+from engine.runner import load_form_spec, resolve_answers_path  # noqa: E402
 from engine.trace_logger import TraceLogger  # noqa: E402
 
 DEFAULT_ANSWERS_ROOT = "data/answers"
 DEFAULT_DATASET_ROOT = "data/model_baselines"
-DEFAULT_CONFIG = "configs/baselines/minimal_models.json"
+DEFAULT_CONFIG = "configs/models.json"
 DEFAULT_EXPERIMENT_ID = "baseline_direct_api_v1"
 DEFAULT_MAX_STEPS = 15
 DEFAULT_TIMEOUT_S = 300
@@ -36,34 +35,11 @@ SCHEMA_VERSION = "baseline_eval.v3"
 SUMMARY_SCHEMA_VERSION = "baseline_summary.v3"
 
 
-def _load_run_answers(answers_path: Path, run_index: int) -> List[Dict[str, Any]]:
-    for idx, run_spec in enumerate(iter_run_specs(answers_path), start=1):
-        if idx == run_index:
-            answers = run_spec.get("answers", [])
-            if not isinstance(answers, list):
-                raise ValueError(f"Run {run_index} answers must be a list")
-            return answers
-    raise IndexError(f"Run index out of range: {run_index} for {answers_path}")
+_load_run_answers = load_run_answers
 
 
 def _extract_openai_text(payload: Dict[str, Any]) -> str:
-    choices = payload.get("choices")
-    if not isinstance(choices, list) or not choices:
-        raise RuntimeError("openai_response_missing_choices")
-    message = choices[0].get("message") if isinstance(choices[0], dict) else None
-    if not isinstance(message, dict):
-        raise RuntimeError("openai_response_missing_message")
-    content = message.get("content")
-    if isinstance(content, str):
-        return content.strip()
-    if isinstance(content, list):
-        parts: List[str] = []
-        for item in content:
-            if isinstance(item, dict) and isinstance(item.get("text"), str):
-                parts.append(item["text"])
-        if parts:
-            return "\n".join(parts).strip()
-    raise RuntimeError("openai_response_missing_text")
+    return extract_openai_text(payload, error_prefix="openai_response")
 
 
 def _extract_anthropic_text(payload: Dict[str, Any]) -> str:
@@ -80,27 +56,7 @@ def _extract_anthropic_text(payload: Dict[str, Any]) -> str:
 
 
 def _http_post_json(url: str, headers: Dict[str, str], payload: Dict[str, Any], timeout_s: int) -> Dict[str, Any]:
-    body = json.dumps(payload).encode("utf-8")
-    request = urllib.request.Request(url=url, data=body, method="POST")
-    for key, value in headers.items():
-        request.add_header(key, value)
-    request.add_header("Content-Type", "application/json")
-    try:
-        with urllib.request.urlopen(request, timeout=max(1, int(timeout_s))) as response:
-            raw = response.read().decode("utf-8")
-    except urllib.error.HTTPError as exc:
-        raw = exc.read().decode("utf-8", errors="replace") if hasattr(exc, "read") else str(exc)
-        raise RuntimeError(f"api_http_error:{exc.code}:{raw}") from exc
-    except Exception as exc:
-        raise RuntimeError(f"api_request_failed:{exc}") from exc
-
-    try:
-        parsed = json.loads(raw)
-    except Exception as exc:
-        raise RuntimeError(f"api_invalid_json:{exc}") from exc
-    if not isinstance(parsed, dict):
-        raise RuntimeError("api_response_not_object")
-    return parsed
+    return http_post_json(url, payload, timeout_s, headers=headers, error_prefix="api")
 
 
 def _select_provider(provider_arg: str) -> str:

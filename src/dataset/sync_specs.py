@@ -6,7 +6,7 @@ import shutil
 import sys
 from collections import defaultdict
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List
 
 if __package__ in (None, ""):  # allow `python src/dataset/<module>.py`
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))

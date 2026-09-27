@@ -6,8 +6,6 @@ import os
 import re
 import sys
 import time
-import urllib.error
-import urllib.request
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -22,14 +20,15 @@ if str(SRC_DIR) not in sys.path:
 from baselines import run_baseline_eval as rbe  # noqa: E402
 from baselines.action_schema import validate_low_level_action  # noqa: E402
 from baselines.model_registry import get_model_by_id  # noqa: E402
+from baselines.common import extract_openai_text, http_post_json, load_run_answers  # noqa: E402
 from baselines.prompt_builders import compact_page_text  # noqa: E402
 from engine.browser_language import force_english_google_forms_url  # noqa: E402
-from engine.runner import iter_run_specs, load_form_spec, resolve_answers_path  # noqa: E402
+from engine.runner import load_form_spec, resolve_answers_path  # noqa: E402
 from engine.trace_logger import TraceLogger  # noqa: E402
 
 DEFAULT_ANSWERS_ROOT = "data/answers"
 DEFAULT_DATASET_ROOT = "data/model_baselines"
-DEFAULT_CONFIG = "configs/baselines/track_baseline_models.json"
+DEFAULT_CONFIG = "configs/models.json"
 DEFAULT_EXPERIMENT_ID = "track_baseline_opencua_native_v1"
 DEFAULT_MAX_STEPS = 128
 DEFAULT_TIMEOUT_S = 5400
@@ -65,38 +64,11 @@ RULER_MAJOR_TICK_SPACING_PX = 500
 RULER_BAND_PX = 36
 
 
-def _load_run_answers(answers_path: Path, run_index: int) -> List[Dict[str, Any]]:
-    for idx, run_spec in enumerate(iter_run_specs(answers_path), start=1):
-        if idx == run_index:
-            answers = run_spec.get("answers", [])
-            if not isinstance(answers, list):
-                raise ValueError(f"Run {run_index} answers must be a list")
-            return answers
-    raise IndexError(f"Run index out of range: {run_index} for {answers_path}")
+_load_run_answers = load_run_answers
 
 
 def _http_post_json(url: str, headers: Dict[str, str], payload: Dict[str, Any], timeout_s: int) -> Dict[str, Any]:
-    body = json.dumps(payload).encode("utf-8")
-    request = urllib.request.Request(url=url, data=body, method="POST")
-    for key, value in headers.items():
-        request.add_header(key, value)
-    request.add_header("Content-Type", "application/json")
-    try:
-        with urllib.request.urlopen(request, timeout=max(1, int(timeout_s))) as response:
-            raw = response.read().decode("utf-8")
-    except urllib.error.HTTPError as exc:
-        raw = exc.read().decode("utf-8", errors="replace") if hasattr(exc, "read") else str(exc)
-        raise RuntimeError(f"opencua_http_error:{exc.code}:{raw}") from exc
-    except Exception as exc:
-        raise RuntimeError(f"opencua_request_failed:{exc}") from exc
-
-    try:
-        parsed = json.loads(raw)
-    except Exception as exc:
-        raise RuntimeError(f"opencua_invalid_json:{exc}") from exc
-    if not isinstance(parsed, dict):
-        raise RuntimeError("opencua_response_not_object")
-    return parsed
+    return http_post_json(url, payload, timeout_s, headers=headers, error_prefix="opencua")
 
 
 def _smart_resize(height: int, width: int, factor: int = 28, min_pixels: int = 56 * 56, max_pixels: int = 14 * 14 * 4 * 1280) -> Tuple[int, int]:
@@ -149,23 +121,7 @@ def _to_norm(abs_x: int, abs_y: int, width: int, height: int) -> Dict[str, int]:
 
 
 def _extract_openai_text(payload: Dict[str, Any]) -> str:
-    choices = payload.get("choices")
-    if not isinstance(choices, list) or not choices:
-        raise RuntimeError("openai_response_missing_choices")
-    message = choices[0].get("message") if isinstance(choices[0], dict) else None
-    if not isinstance(message, dict):
-        raise RuntimeError("openai_response_missing_message")
-    content = message.get("content")
-    if isinstance(content, str):
-        return content.strip()
-    if isinstance(content, list):
-        parts: List[str] = []
-        for item in content:
-            if isinstance(item, dict) and isinstance(item.get("text"), str):
-                parts.append(item["text"])
-        if parts:
-            return "\n".join(parts).strip()
-    raise RuntimeError("openai_response_missing_text")
+    return extract_openai_text(payload, error_prefix="openai_response")
 
 
 def _image_part_for_path(path_value: Optional[str]) -> Optional[Dict[str, Any]]:

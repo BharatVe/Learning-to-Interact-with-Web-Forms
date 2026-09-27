@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 from urllib.parse import urlparse
 
 from baselines.model_registry import resolve_model_path
-from formbench.common import FormbenchError, info, quote_cmd, warn
+from formbench.common import FormbenchError, info, quote_cmd
 from formbench.settings import Settings
 
 LOCAL_HOSTS = {"127.0.0.1", "localhost", "0.0.0.0"}

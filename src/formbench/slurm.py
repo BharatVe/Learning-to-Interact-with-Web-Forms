@@ -15,7 +15,7 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence
 
 from baselines.model_registry import get_model_by_id
 from formbench.common import FormbenchError, info, utc_now
-from formbench.matrix import Cohort, Experiment
+from formbench.matrix import Experiment
 from formbench.settings import Settings
 
 DEFAULT_RESOURCES = {"gpus": 0, "cpus": 4, "mem": "16G", "time": "04:00:00"}

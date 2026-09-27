@@ -18,6 +18,7 @@ if str(SRC_DIR) not in sys.path:
 
 from baselines.action_schema import parse_action, validate_action, validate_low_level_action  # noqa: E402
 from baselines.model_registry import get_model_by_id  # noqa: E402
+from baselines.common import load_run_answers  # noqa: E402
 from baselines.prompt_builders import (  # noqa: E402
     CONTEXT_PACKAGE_VERSION,
     build_text_prompt,
@@ -31,7 +32,6 @@ from engine.mcp_browser_engine import MCPBrowserEngine  # noqa: E402
 from engine.mcp_trace_client import MCPClient, MCPTraceClient  # noqa: E402
 from engine.runner import (  # noqa: E402
     _default_mcp_server_command,
-    iter_run_specs,
     load_form_spec,
     resolve_answers_path,
 )
@@ -273,14 +273,7 @@ def _visible_question_ids(interaction_map: List[Dict[str, Any]]) -> List[str]:
     )
 
 
-def _load_run_answers(answers_path: Path, run_index: int) -> List[Dict[str, Any]]:
-    for idx, run_spec in enumerate(iter_run_specs(answers_path), start=1):
-        if idx == run_index:
-            answers = run_spec.get("answers", [])
-            if not isinstance(answers, list):
-                raise ValueError(f"Run {run_index} answers must be a list")
-            return answers
-    raise IndexError(f"Run index out of range: {run_index} for {answers_path}")
+_load_run_answers = load_run_answers
 
 
 def _select_inference_backend(model_cfg: Dict[str, Any], requested_backend: str) -> str:
@@ -2182,7 +2175,7 @@ def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--answers-root", default=DEFAULT_ANSWERS_ROOT)
     parser.add_argument("--dataset-root", default=DEFAULT_DATASET_ROOT)
     parser.add_argument("--logs-root", default="logs/baseline_eval")
-    parser.add_argument("--config", default="configs/baselines/minimal_models.json")
+    parser.add_argument("--config", default="configs/models.json")
     parser.add_argument("--experiment-id", default=DEFAULT_EXPERIMENT_ID)
     parser.add_argument("--trial-id")
     parser.add_argument("--max-steps", type=int, default=DEFAULT_MAX_STEPS)
