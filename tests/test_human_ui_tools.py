@@ -28,7 +28,7 @@ class HumanUIToolsTests(TestCase):
         self.assertIsNone(mod._extract_model_size_b("qwen3_large"))
 
     def test_validate_answer_sets_detects_missing_runs_and_invalid_option(self):
-        script = REPO_ROOT / "scripts" / "validate_answer_sets.py"
+        script = REPO_ROOT / "src" / "dataset" / "validate.py"
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             forms_root = root / "src/forms"
@@ -116,7 +116,7 @@ class HumanUIToolsTests(TestCase):
             self.assertIn("not in options", combined)
 
     def test_validate_answer_sets_strict_allows_superset_and_all_form_ids(self):
-        script = REPO_ROOT / "scripts" / "validate_answer_sets.py"
+        script = REPO_ROOT / "src" / "dataset" / "validate.py"
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             forms_root = root / "src/forms"

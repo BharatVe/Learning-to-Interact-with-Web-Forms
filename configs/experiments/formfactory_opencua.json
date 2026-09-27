@@ -1,0 +1,46 @@
+{
+  "id": "formfactory_opencua",
+  "description": "OpenCUA-32B in the FormFactory-style visual condition (fill-only, 32 steps, run 2), without and with the pixel-ruler overlay.",
+  "defaults": {
+    "forms": "all",
+    "run_indexes": [
+      2
+    ],
+    "skip_completed": "experiment"
+  },
+  "cohorts": [
+    {
+      "name": "formfactory",
+      "experiment_id": "formfactory_style_opencua_fill_only_50_r2_step32_20260728",
+      "models": [
+        "computer_use_opencua_32b"
+      ],
+      "args": {
+        "max_steps": 32,
+        "max_new_tokens": 96,
+        "timeout_s": 9000,
+        "api_timeout_s": 180,
+        "history_images": 1,
+        "fill_only_done": true,
+        "formfactory_style": true
+      }
+    },
+    {
+      "name": "formfactory_ruler",
+      "experiment_id": "formfactory_style_opencua_ruler_fill_only_50_r2_step32_20260807",
+      "models": [
+        "computer_use_opencua_32b"
+      ],
+      "args": {
+        "max_steps": 32,
+        "max_new_tokens": 96,
+        "timeout_s": 9000,
+        "api_timeout_s": 180,
+        "history_images": 1,
+        "fill_only_done": true,
+        "formfactory_style": true,
+        "ruler_overlay": true
+      }
+    }
+  ]
+}

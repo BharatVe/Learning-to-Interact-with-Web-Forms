@@ -1,0 +1,6 @@
+# Optional: in-process Hugging Face inference for `local_hf` registry models (legacy mediated track).
+# Install: make setup WITH=localhf
+-r requirements.txt
+transformers>=4.53.0
+accelerate>=1.8.0
+torchvision>=0.23.0

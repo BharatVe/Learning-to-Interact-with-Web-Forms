@@ -110,7 +110,7 @@ def main() -> int:
     if args.min_runs_per_form <= 0:
         raise SystemExit("--min-runs-per-form must be positive")
 
-    repo_root = Path(__file__).resolve().parents[1]
+    repo_root = Path(__file__).resolve().parents[2]
     errors: List[str] = []
 
     forms_root = repo_root / "src" / "forms"

@@ -1,0 +1,67 @@
+{
+  "id": "qwen3vl_interface_comparison",
+  "description": "Paired Qwen3-VL interface study on all 50 forms (run 2): direct Playwright MCP tools vs FormFactory-style screenshot/coordinates, each for fill-and-submit and fill-only.",
+  "defaults": {
+    "forms": "all",
+    "run_indexes": [
+      2
+    ],
+    "skip_completed": "experiment"
+  },
+  "cohorts": [
+    {
+      "name": "mcp_submit",
+      "experiment_id": "qwen3vl_direct_mcp_submit_50_r2_20260724",
+      "models": [
+        "vlm_qwen3_vl_30b_a3b_instruct"
+      ],
+      "args": {
+        "history_turns": 2,
+        "max_new_tokens": 160,
+        "timeout_s": 10800,
+        "api_timeout_s": 300
+      }
+    },
+    {
+      "name": "mcp_fill_only",
+      "experiment_id": "qwen3vl_direct_mcp_fill_only_50_r2_20260727",
+      "models": [
+        "vlm_qwen3_vl_30b_a3b_instruct"
+      ],
+      "args": {
+        "history_turns": 2,
+        "max_new_tokens": 160,
+        "timeout_s": 10800,
+        "api_timeout_s": 300,
+        "fill_only_done": true
+      }
+    },
+    {
+      "name": "formfactory_submit",
+      "experiment_id": "formfactory_style_qwen3vl_submit_50_r2_20260724",
+      "models": [
+        "vlm_qwen3_vl_30b_a3b_instruct_formfactory_style"
+      ],
+      "budget_profile": "large_qwen3",
+      "args": {
+        "observation_mode": "vision_only_coords_v1",
+        "history_window": 2,
+        "max_new_tokens": 160
+      }
+    },
+    {
+      "name": "formfactory_fill_only",
+      "experiment_id": "formfactory_style_qwen3vl_fill_only_50_r2_20260724",
+      "models": [
+        "vlm_qwen3_vl_30b_a3b_instruct_formfactory_style"
+      ],
+      "budget_profile": "large_qwen3",
+      "args": {
+        "observation_mode": "vision_only_coords_v1",
+        "history_window": 2,
+        "max_new_tokens": 160,
+        "fill_only_done": true
+      }
+    }
+  ]
+}

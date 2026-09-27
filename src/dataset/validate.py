@@ -7,25 +7,13 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Set
 
+if __package__ in (None, ""):  # allow `python src/dataset/<module>.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-WIDGET_TO_QTYPE = {
-    "short_text": "SHORT_TEXT",
-    "paragraph_text": "PARAGRAPH",
-    "date": "DATE",
-    "time": "TIME",
-    "single_choice": "SINGLE_CHOICE",
-    "multi_choice": "MULTI_CHOICE",
-    "dropdown": "DROPDOWN",
-}
+from dataset.common import WIDGET_TO_QTYPE, resolve, split_options  # noqa: E402
+
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 TIME_RE = re.compile(r"^\d{2}:\d{2}$")
-
-
-def _split_options(raw: str) -> List[str]:
-    text = str(raw or "").strip()
-    if not text:
-        return []
-    return [item.strip() for item in text.split(";") if item.strip()]
 
 
 def _load_question_meta(forms_master: Path) -> Dict[str, Dict[str, Dict[str, Any]]]:
@@ -46,7 +34,7 @@ def _load_question_meta(forms_master: Path) -> Dict[str, Dict[str, Dict[str, Any
             by_form.setdefault(form_id, {})[q_title] = {
                 "q_type": str(row.get("q_type") or "").strip().upper(),
                 "required": str(row.get("required") or "").strip().lower() in {"1", "true", "t", "yes", "y"},
-                "options": _split_options(str(row.get("options") or "")),
+                "options": split_options(str(row.get("options") or "")),
             }
     return by_form
 
@@ -214,10 +202,9 @@ def _parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = _parse_args()
-    repo_root = Path(__file__).resolve().parents[1]
-    forms_root = (repo_root / args.forms_root).resolve()
-    answers_root = (repo_root / args.answers_root).resolve()
-    forms_master = (repo_root / args.forms_master).resolve()
+    forms_root = resolve(args.forms_root).resolve()
+    answers_root = resolve(args.answers_root).resolve()
+    forms_master = resolve(args.forms_master).resolve()
     required_indexes = _parse_required_indexes(args.required_run_indexes)
 
     if args.required_runs <= 0:

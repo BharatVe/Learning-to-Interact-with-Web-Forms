@@ -1,0 +1,21 @@
+{
+  "id": "opencua_native_control_guidance",
+  "description": "OpenCUA-32B native computer use with control guidance, all 50 forms, runs 1-4 (thesis primary native results).",
+  "defaults": {
+    "forms": "all",
+    "skip_completed": "any",
+    "args": {
+      "timeout_s": 3600
+    }
+  },
+  "cohorts": [
+    {
+      "name": "native",
+      "experiment_id": "opencua_control_guidance",
+      "models": [
+        "computer_use_opencua_32b"
+      ],
+      "run_indexes": "1-4"
+    }
+  ]
+}

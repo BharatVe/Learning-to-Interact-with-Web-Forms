@@ -1,7 +1,9 @@
+# Core environment (.venv): dataset pipeline, ideal runs, API models, analytics, formbench CLI.
+# Install: make setup   (or: .venv/bin/pip install -r requirements.txt)
 playwright==1.44.0
-huggingface_hub>=0.34.0,<1.0.0
-transformers>=4.53.0
-accelerate>=1.8.0
+flask>=2.3,<3.1
 pillow>=10.0.0
-torchvision>=0.23.0
+numpy>=1.24
+matplotlib>=3.7
+huggingface_hub>=0.34.0,<1.0.0
 google-genai>=1.11.0

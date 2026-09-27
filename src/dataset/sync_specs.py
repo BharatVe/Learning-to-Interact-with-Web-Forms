@@ -8,15 +8,11 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
-SRC_ROOT = REPO_ROOT / "src"
-if str(SRC_ROOT) not in sys.path:
-    sys.path.insert(0, str(SRC_ROOT))
+if __package__ in (None, ""):  # allow `python src/dataset/<module>.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from engine.browser_language import force_english_google_forms_url  # noqa: E402
+from dataset.common import FORMS_CSV, QUESTIONS_CSV, SUPPORTED_Q_TYPES, as_bool, as_int, dict_reader, resolve  # noqa: E402
 
-
-SUPPORTED_Q_TYPES = {"SHORT_TEXT", "PARAGRAPH", "DATE", "TIME", "SINGLE_CHOICE", "MULTI_CHOICE", "DROPDOWN"}
 FORMS_MASTER_COLUMNS = [
     "form_id",
     "section_order",
@@ -32,32 +28,9 @@ FORMS_MASTER_COLUMNS = [
 ]
 
 
-def _dict_reader(path: Path) -> Tuple[Any, csv.DictReader]:
-    handle = path.open("r", encoding="utf-8", newline="")
-    sample = handle.read(4096)
-    handle.seek(0)
-    try:
-        dialect = csv.Sniffer().sniff(sample, delimiters=",\t")
-    except csv.Error:
-        dialect = csv.excel
-    return handle, csv.DictReader(handle, dialect=dialect)
-
-
-def _as_bool(raw: str) -> bool:
-    text = str(raw or "").strip().lower()
-    return text in {"1", "true", "t", "yes", "y"}
-
-
-def _as_int(raw: str, field: str, form_id: str, q_title: str) -> int:
-    try:
-        return int(str(raw or "").strip())
-    except Exception as exc:
-        raise ValueError(f"invalid integer '{field}' for form_id={form_id} question='{q_title}'") from exc
-
-
 def _read_forms(forms_csv: Path) -> Dict[str, Dict[str, Any]]:
     rows: Dict[str, Dict[str, Any]] = {}
-    handle, reader = _dict_reader(forms_csv)
+    handle, reader = dict_reader(forms_csv)
     with handle:
         required_cols = {"form_id", "form_title", "form_description", "active", "edit_url", "published_url"}
         missing = required_cols - set(reader.fieldnames or [])
@@ -74,7 +47,7 @@ def _read_forms(forms_csv: Path) -> Dict[str, Dict[str, Any]]:
                 "form_id": form_id,
                 "form_title": str(row.get("form_title") or "").strip(),
                 "form_description": str(row.get("form_description") or "").strip(),
-                "active": _as_bool(str(row.get("active") or "")),
+                "active": as_bool(str(row.get("active") or "")),
                 "edit_url": str(row.get("edit_url") or "").strip(),
                 "published_url": published_url,
             }
@@ -85,7 +58,7 @@ def _read_forms(forms_csv: Path) -> Dict[str, Dict[str, Any]]:
 
 def _read_questions(questions_csv: Path, form_rows: Dict[str, Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
     by_form: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
-    handle, reader = _dict_reader(questions_csv)
+    handle, reader = dict_reader(questions_csv)
     with handle:
         required_cols = {"form_id", "section_order", "section_title", "q_order", "q_title", "q_type", "required", "options", "help_text"}
         missing = required_cols - set(reader.fieldnames or [])
@@ -105,12 +78,12 @@ def _read_questions(questions_csv: Path, form_rows: Dict[str, Dict[str, Any]]) -
                 raise ValueError(f"form '{form_id}' question '{q_title}' has unsupported q_type '{q_type}'")
             item = {
                 "form_id": form_id,
-                "section_order": _as_int(row.get("section_order", ""), "section_order", form_id, q_title),
+                "section_order": as_int(row.get("section_order", ""), "section_order", form_id, q_title),
                 "section_title": str(row.get("section_title") or "").strip(),
-                "q_order": _as_int(row.get("q_order", ""), "q_order", form_id, q_title),
+                "q_order": as_int(row.get("q_order", ""), "q_order", form_id, q_title),
                 "q_title": q_title,
                 "q_type": q_type,
-                "required": _as_bool(str(row.get("required") or "")),
+                "required": as_bool(str(row.get("required") or "")),
                 "options": str(row.get("options") or "").strip(),
                 "help_text": str(row.get("help_text") or "").strip(),
             }
@@ -136,8 +109,10 @@ def _write_form_specs(form_rows: Dict[str, Dict[str, Any]], questions_by_form: D
             "form_description": form["form_description"],
             "active": bool(form["active"]),
             "edit_url": form["edit_url"],
-            "published_url": force_english_google_forms_url(form["published_url"]),
-            "form_url": force_english_google_forms_url(form["published_url"]),
+            # Stored raw; every consumer applies engine.browser_language.force_english_google_forms_url
+            # (hl=en) when loading, so the committed specs stay byte-identical on re-sync.
+            "published_url": form["published_url"],
+            "form_url": form["published_url"],
             "question_count": len(questions),
             "questions": [
                 {
@@ -208,8 +183,8 @@ def _prune_stale_form_specs(output_forms_root: Path, keep_form_ids: List[str]) -
 
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Sync generator CSVs into src/forms specs and data/specs/forms_master.csv.")
-    parser.add_argument("--forms-csv", default="From Generator - Forms.csv")
-    parser.add_argument("--questions-csv", default="From Generator - Questions.csv")
+    parser.add_argument("--forms-csv", default=FORMS_CSV)
+    parser.add_argument("--questions-csv", default=QUESTIONS_CSV)
     parser.add_argument("--output-forms-root", default="src/forms")
     parser.add_argument("--forms-master", default="data/specs/forms_master.csv")
     parser.add_argument("--prune", action="store_true", default=False, help="Delete stale form spec directories not present in forms csv.")
@@ -218,11 +193,10 @@ def _parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = _parse_args()
-    repo_root = Path(__file__).resolve().parents[1]
-    forms_csv = (repo_root / args.forms_csv).resolve()
-    questions_csv = (repo_root / args.questions_csv).resolve()
-    output_forms_root = (repo_root / args.output_forms_root).resolve()
-    forms_master_path = (repo_root / args.forms_master).resolve()
+    forms_csv = resolve(args.forms_csv).resolve()
+    questions_csv = resolve(args.questions_csv).resolve()
+    output_forms_root = resolve(args.output_forms_root).resolve()
+    forms_master_path = resolve(args.forms_master).resolve()
 
     if not forms_csv.exists():
         raise FileNotFoundError(f"forms csv not found: {forms_csv}")

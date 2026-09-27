@@ -104,6 +104,7 @@ celerybeat.pid
 # Environments
 .env
 .env.*
+!.env.example
 .secrets/
 .venv
 .venv/
@@ -149,7 +150,9 @@ data/forms/**/runs/**/*.webm
 .playwright-browsers-node/
 .runtime-cache/
 models/
-.node-tools/
+.node-tools/*
+!.node-tools/package.json
+!.node-tools/package-lock.json
 data/model_baselines/
 
 # Compact evaluation exports are intentionally suitable for Git/GitHub.
@@ -171,6 +174,11 @@ data/forms/**/runs/run_*/*
 !data/forms/**/runs/run_*/answers_instance.json
 !data/forms/**/runs/run_*/tool_trace.jsonl
 !data/forms/**/runs/run_*/failure_manifest.json
+data/forms_localforms/**/runs/run_*/*
+!data/forms_localforms/**/runs/run_*/annotations.json
+!data/forms_localforms/**/runs/run_*/answers_instance.json
+!data/forms_localforms/**/runs/run_*/tool_trace.jsonl
+!data/forms_localforms/**/runs/run_*/failure_manifest.json
 data/baseline_eval/
 
 # Cluster / batch logs and scratch files

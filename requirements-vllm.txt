@@ -1,0 +1,8 @@
+# vLLM serving environment (.venv-opencua, Python 3.12): locally served Qwen / OpenCUA models.
+# Install: make setup WITH=vllm   (needs a CUDA-capable node or matching wheels)
+vllm==0.19.1
+playwright==1.44.0
+flask>=2.3,<3.1
+pillow>=10.0.0
+numpy>=1.24
+huggingface_hub>=0.34.0,<1.0.0

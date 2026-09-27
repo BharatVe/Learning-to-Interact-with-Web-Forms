@@ -1,0 +1,155 @@
+{
+  "id": "fill_only_done_50_completion",
+  "description": "Completion plan extending the fixed 20260709 30-form sample to all 50 forms. Gemini retries six non-usable attempts and runs the 20 new forms; OpenCUA runs only the 20 new forms; both Qwen direct-MCP models run all 50 because the earlier Qwen job produced no trials.",
+  "defaults": {
+    "run_indexes": [
+      2
+    ],
+    "skip_completed": "none"
+  },
+  "cohorts": [
+    {
+      "name": "gemini",
+      "experiment_id": "gemini_35_flash_fill_only_done_50_completion_20260713_r2_step32",
+      "models": [
+        "computer_use_gemini_35_flash_lowcost"
+      ],
+      "forms": [
+        "accessibility_feedback",
+        "club_application",
+        "club_event_planning",
+        "conf_interest",
+        "equipment_checkout",
+        "experiment_booking",
+        "field_trip",
+        "internship_app",
+        "lab_safety",
+        "lab_visit",
+        "mentor_match",
+        "peer_evaluation",
+        "purchase_request",
+        "remote_setup",
+        "research_interest",
+        "seminar_proposal",
+        "software_access",
+        "thesis_meeting",
+        "travel_reimbursement",
+        "wellbeing_check",
+        "alumni_checkin",
+        "bug_report",
+        "conference_travel",
+        "hackathon_signup",
+        "orientation_signup",
+        "technical_support"
+      ],
+      "args": {
+        "max_steps": 32,
+        "fill_only": true,
+        "api_timeout_s": 300
+      },
+      "env": {
+        "GEMINI_MAX_INFER_RETRIES": "8",
+        "GEMINI_RETRY_DELAY_S": "120",
+        "GEMINI_RETRY_BACKOFF": "1.5",
+        "GEMINI_RETRY_MAX_DELAY_S": "900"
+      }
+    },
+    {
+      "name": "qwen",
+      "experiment_id": "qwen_direct_mcp_fill_only_done_50_20260713_r2_step32",
+      "models": [
+        "text_qwen3_30b_a3b_instruct_2507",
+        "vlm_qwen3_vl_30b_a3b_instruct"
+      ],
+      "forms": [
+        "accessibility_feedback",
+        "alumni_checkin",
+        "bug_report",
+        "club_application",
+        "club_event_planning",
+        "conf_interest",
+        "conference_travel",
+        "course_enrollment",
+        "course_feedback",
+        "data_annotation",
+        "dataset_request",
+        "equipment_checkout",
+        "event_rsvp",
+        "exam_registration",
+        "experiment_booking",
+        "field_trip",
+        "hackathon_signup",
+        "housing_preference",
+        "internship_app",
+        "job_fair",
+        "lab_safety",
+        "lab_visit",
+        "language_exchange",
+        "library_membership",
+        "meal_plan",
+        "mentor_match",
+        "newsletter_signup",
+        "office_hours",
+        "orientation_signup",
+        "paper_review",
+        "peer_evaluation",
+        "project_update",
+        "publication_submission",
+        "purchase_request",
+        "remote_setup",
+        "research_interest",
+        "room_booking",
+        "scholarship_interest",
+        "seminar_proposal",
+        "software_access",
+        "sports_tournament",
+        "study_group_match",
+        "survey_consent",
+        "technical_support",
+        "thesis_meeting",
+        "travel_reimbursement",
+        "usability_test",
+        "volunteer_shift",
+        "wellbeing_check",
+        "workshop_signup"
+      ],
+      "args": {
+        "max_steps": 32,
+        "fill_only_done": true
+      }
+    },
+    {
+      "name": "opencua_mcp",
+      "experiment_id": "opencua_direct_mcp_fill_only_done_50_topup20_20260713_r2_step32",
+      "models": [
+        "computer_use_opencua_32b_direct_mcp"
+      ],
+      "forms": [
+        "accessibility_feedback",
+        "club_application",
+        "club_event_planning",
+        "conf_interest",
+        "equipment_checkout",
+        "experiment_booking",
+        "field_trip",
+        "internship_app",
+        "lab_safety",
+        "lab_visit",
+        "mentor_match",
+        "peer_evaluation",
+        "purchase_request",
+        "remote_setup",
+        "research_interest",
+        "seminar_proposal",
+        "software_access",
+        "thesis_meeting",
+        "travel_reimbursement",
+        "wellbeing_check"
+      ],
+      "args": {
+        "max_steps": 32,
+        "fill_only_done": true
+      }
+    }
+  ]
+}

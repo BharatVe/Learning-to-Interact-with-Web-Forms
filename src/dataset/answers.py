@@ -4,21 +4,17 @@ import csv
 import hashlib
 import json
 import random
+import sys
 from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Dict, List
 
+if __package__ in (None, ""):  # allow `python src/dataset/<module>.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-SUPPORTED_Q_TYPES = {"SHORT_TEXT", "PARAGRAPH", "DATE", "TIME", "SINGLE_CHOICE", "MULTI_CHOICE", "DROPDOWN"}
-WIDGET_TYPE_MAP = {
-    "SHORT_TEXT": "short_text",
-    "PARAGRAPH": "paragraph_text",
-    "DATE": "date",
-    "TIME": "time",
-    "SINGLE_CHOICE": "single_choice",
-    "MULTI_CHOICE": "multi_choice",
-    "DROPDOWN": "dropdown",
-}
+from dataset.common import QTYPE_TO_WIDGET as WIDGET_TYPE_MAP  # noqa: E402
+from dataset.common import QUESTIONS_CSV, SUPPORTED_Q_TYPES, dict_reader, resolve, split_options  # noqa: E402
+
 
 
 FIRST_NAMES = ["Avery", "Jordan", "Riley", "Taylor", "Casey", "Morgan", "Sam", "Noah", "Lena", "Priya"]
@@ -32,7 +28,10 @@ PARAGRAPH_TEMPLATES = [
     "I would like to participate and contribute with structured feedback and observations.",
 ]
 TIME_OPTIONS = ["08:30", "09:00", "10:15", "11:30", "13:00", "14:15", "15:30", "16:45"]
-GLOBAL_SEED = 0
+# The committed data/answers were generated with seed 0: the old CLI parsed --seed
+# but never applied it (the assignment sat after `raise SystemExit(main())`).
+DEFAULT_SEED = 0
+GLOBAL_SEED = DEFAULT_SEED
 
 
 def _stable_seed(*parts: Any) -> int:
@@ -41,28 +40,9 @@ def _stable_seed(*parts: Any) -> int:
     return int(digest[:16], 16)
 
 
-def _split_options(raw: str) -> List[str]:
-    text = str(raw or "").strip()
-    if not text:
-        return []
-    items = [item.strip() for item in text.split(";")]
-    return [item for item in items if item]
-
-
-def _dict_reader(path: Path) -> Any:
-    handle = path.open("r", encoding="utf-8", newline="")
-    sample = handle.read(4096)
-    handle.seek(0)
-    try:
-        dialect = csv.Sniffer().sniff(sample, delimiters=",\t")
-    except csv.Error:
-        dialect = csv.excel
-    return handle, csv.DictReader(handle, dialect=dialect)
-
-
 def _read_questions_by_form(questions_csv: Path) -> Dict[str, List[Dict[str, Any]]]:
     by_form: Dict[str, List[Dict[str, Any]]] = {}
-    handle, reader = _dict_reader(questions_csv)
+    handle, reader = dict_reader(questions_csv)
     with handle:
         required_cols = {"form_id", "section_order", "q_order", "q_title", "q_type", "required", "options"}
         missing = required_cols - set(reader.fieldnames or [])
@@ -83,7 +63,7 @@ def _read_questions_by_form(questions_csv: Path) -> Dict[str, List[Dict[str, Any
                 "q_title": q_title,
                 "q_type": q_type,
                 "required": str(row.get("required") or "").strip().lower() in {"1", "true", "t", "yes", "y"},
-                "options": _split_options(str(row.get("options") or "")),
+                "options": split_options(str(row.get("options") or "")),
             }
             by_form.setdefault(form_id, []).append(entry)
     for form_id, rows in by_form.items():
@@ -244,10 +224,10 @@ def _write_form_outputs(
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate deterministic runs.json + answers.csv answer sets for all forms.")
     parser.add_argument("--forms-root", default="src/forms")
-    parser.add_argument("--questions-csv", default="From Generator - Questions.csv")
+    parser.add_argument("--questions-csv", default=QUESTIONS_CSV)
     parser.add_argument("--answers-root", default="data/answers")
     parser.add_argument("--runs-per-form", type=int, default=10)
-    parser.add_argument("--seed", type=int, default=20260413)
+    parser.add_argument("--seed", type=int, default=DEFAULT_SEED, help="Seed mixed into every value; 0 reproduces the committed answer sets.")
     parser.add_argument("--rewrite", action="store_true", default=False)
     return parser.parse_args()
 
@@ -255,12 +235,12 @@ def _parse_args() -> argparse.Namespace:
 def main() -> int:
     global GLOBAL_SEED
     args = _parse_args()
+    GLOBAL_SEED = int(args.seed)
     if args.runs_per_form <= 0:
         raise ValueError("--runs-per-form must be positive")
-    repo_root = Path(__file__).resolve().parents[1]
-    forms_root = (repo_root / args.forms_root).resolve()
-    questions_csv = (repo_root / args.questions_csv).resolve()
-    answers_root = (repo_root / args.answers_root).resolve()
+    forms_root = resolve(args.forms_root).resolve()
+    questions_csv = resolve(args.questions_csv).resolve()
+    answers_root = resolve(args.answers_root).resolve()
     answers_root.mkdir(parents=True, exist_ok=True)
 
     form_ids = sorted(entry.name for entry in forms_root.iterdir() if entry.is_dir() and (entry / "spec.json").exists())
@@ -298,4 +278,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-    GLOBAL_SEED = int(args.seed)

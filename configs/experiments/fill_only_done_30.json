@@ -1,0 +1,85 @@
+{
+  "id": "fill_only_done_30",
+  "description": "Fixed 30-form fill-only/DONE comparison sample for Gemini, Qwen direct-MCP, and OpenCUA direct-MCP. (seed 20260709, run 2).",
+  "defaults": {
+    "forms": [
+      "alumni_checkin",
+      "bug_report",
+      "conference_travel",
+      "course_enrollment",
+      "course_feedback",
+      "data_annotation",
+      "dataset_request",
+      "event_rsvp",
+      "exam_registration",
+      "hackathon_signup",
+      "housing_preference",
+      "job_fair",
+      "language_exchange",
+      "library_membership",
+      "meal_plan",
+      "newsletter_signup",
+      "office_hours",
+      "orientation_signup",
+      "paper_review",
+      "project_update",
+      "publication_submission",
+      "room_booking",
+      "scholarship_interest",
+      "sports_tournament",
+      "study_group_match",
+      "survey_consent",
+      "technical_support",
+      "usability_test",
+      "volunteer_shift",
+      "workshop_signup"
+    ],
+    "run_indexes": [
+      2
+    ],
+    "skip_completed": "none"
+  },
+  "cohorts": [
+    {
+      "name": "gemini",
+      "experiment_id": "gemini_35_flash_fill_only_done_30_seed20260709_r2_step32",
+      "models": [
+        "computer_use_gemini_35_flash_lowcost"
+      ],
+      "args": {
+        "max_steps": 32,
+        "fill_only": true,
+        "api_timeout_s": 300
+      },
+      "env": {
+        "GEMINI_MAX_INFER_RETRIES": "8",
+        "GEMINI_RETRY_DELAY_S": "120",
+        "GEMINI_RETRY_BACKOFF": "1.5",
+        "GEMINI_RETRY_MAX_DELAY_S": "900"
+      }
+    },
+    {
+      "name": "qwen",
+      "experiment_id": "qwen_direct_mcp_fill_only_done_30_seed20260709_r2_step32",
+      "models": [
+        "text_qwen3_30b_a3b_instruct_2507",
+        "vlm_qwen3_vl_30b_a3b_instruct"
+      ],
+      "args": {
+        "max_steps": 32,
+        "fill_only_done": true
+      }
+    },
+    {
+      "name": "opencua_mcp",
+      "experiment_id": "opencua_direct_mcp_fill_only_done_30_seed20260709_r2_step32",
+      "models": [
+        "computer_use_opencua_32b_direct_mcp"
+      ],
+      "args": {
+        "max_steps": 32,
+        "fill_only_done": true
+      }
+    }
+  ]
+}

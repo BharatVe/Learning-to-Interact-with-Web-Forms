@@ -1,0 +1,23 @@
+{
+  "id": "opencua_direct_mcp_fill_only_128",
+  "description": "OpenCUA-32B direct MCP on the Google Forms, fill-only with the full 128-step budget (run 2) - the Google-platform counterpart of localforms_opencua_direct_mcp.",
+  "defaults": {
+    "forms": "all",
+    "run_indexes": [
+      2
+    ],
+    "skip_completed": "experiment"
+  },
+  "cohorts": [
+    {
+      "name": "fill_only_128",
+      "experiment_id": "opencua_direct_mcp_fill_only_128_run0002_20260901",
+      "models": [
+        "computer_use_opencua_32b_direct_mcp"
+      ],
+      "args": {
+        "fill_only_done": true
+      }
+    }
+  ]
+}

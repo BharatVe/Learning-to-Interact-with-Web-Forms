@@ -34,7 +34,7 @@ import re
 import shutil
 from pathlib import Path
 
-ROOT_DIR = Path(__file__).resolve().parents[1]
+ROOT_DIR = Path(__file__).resolve().parents[2]
 FORMS_SRC = ROOT_DIR / "src" / "forms"
 ANSWERS_SRC = ROOT_DIR / "data" / "answers"
 SITE_DIR = ROOT_DIR / "evaluation_additions" / "formfactory_import" / "site"

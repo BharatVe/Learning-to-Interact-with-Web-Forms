@@ -301,6 +301,15 @@ def _select_inference_backend(model_cfg: Dict[str, Any], requested_backend: str)
     return requested
 
 
+def _local_model_dir(model_cfg: Dict[str, Any]) -> Path:
+    """Registry `weights_dir` if given (lets legacy ids share weights), else models/<id>."""
+    weights_dir = str(model_cfg.get("weights_dir") or "").strip()
+    if weights_dir:
+        path = Path(weights_dir)
+        return path if path.is_absolute() else ROOT_DIR / path
+    return ROOT_DIR / "models" / str(model_cfg["id"])
+
+
 def _make_adapter(
     model_cfg: Dict[str, Any],
     model_kind: str,
@@ -318,7 +327,7 @@ def _make_adapter(
             api_timeout_s=api_timeout_s,
         )
 
-    model_dir = ROOT_DIR / "models" / str(model_cfg["id"])
+    model_dir = _local_model_dir(model_cfg)
     if model_kind == "text_llm":
         from baselines.model_adapters.local_text import LocalTextAdapter
 
@@ -360,7 +369,7 @@ def _ensure_model_runtime_compat(model_cfg: Dict[str, Any]) -> None:
     model_id = str(model_cfg.get("id") or "").strip()
     if not model_id:
         return
-    model_dir = ROOT_DIR / "models" / model_id
+    model_dir = _local_model_dir(model_cfg)
     cfg_path = model_dir / "config.json"
     if not cfg_path.exists():
         raise RuntimeError(f"model_runtime_check_failed: missing config.json for {model_id} at {model_dir}")
