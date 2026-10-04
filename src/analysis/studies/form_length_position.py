@@ -18,12 +18,12 @@ import os
 import random
 import statistics
 from collections import Counter, defaultdict
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable, Iterable, Sequence
 
 
-DEFAULT_CONFIG = "configs/baselines/form_length_position_analysis.json"
+DEFAULT_CONFIG = "configs/analysis/form_length_position.json"
 DEFAULT_OUTPUT_DIR = "docs/eval_results/form_length_position_analysis"
 LENGTH_BUCKETS = ("6", "7-8", "9-10", "11-12")
 
@@ -612,7 +612,7 @@ def build_figure(
     )
     fig.tight_layout(rect=(0, 0.04, 1, 0.92), w_pad=2.5)
     fig.savefig(output_path.with_suffix(".png"), dpi=220, bbox_inches="tight", facecolor="white")
-    fig.savefig(output_path.with_suffix(".pdf"), bbox_inches="tight", facecolor="white")
+    fig.savefig(output_path.with_suffix(".pdf"), bbox_inches="tight", facecolor="white", metadata={"CreationDate": None})
     plt.close(fig)
 
 
@@ -763,10 +763,9 @@ def build_report(
             "## Reproduction",
             "",
             "```bash",
-            "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py \\",
-            "  --project-root . \\",
-            "  --config configs/baselines/form_length_position_analysis.json \\",
-            "  --output-dir docs/eval_results/form_length_position_analysis",
+            "make study NAME=form_length_position",
+            "# equivalent: python -m analysis.studies.form_length_position --config configs/analysis/form_length_position.json \\",
+            "#   --output-dir docs/eval_results/form_length_position_analysis",
             "```",
             "",
             "The machine-readable tables and analysis manifest are stored beside this report.",

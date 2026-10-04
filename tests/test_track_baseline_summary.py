@@ -1,4 +1,5 @@
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -17,7 +18,7 @@ class TrackBaselineSummaryTests(TestCase):
         return out
 
     def test_summarize_track_baseline_outputs_per_track_and_accounting(self):
-        script = REPO_ROOT / "scripts" / "summarize_track_baseline.py"
+        script = "analysis.track_baseline"
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             dataset_root = root / "data/model_baselines"
@@ -103,7 +104,8 @@ class TrackBaselineSummaryTests(TestCase):
             proc = subprocess.run(
                 [
                     sys.executable,
-                    str(script),
+                    "-m",
+                    script,
                     "--dataset-root",
                     str(dataset_root),
                     "--family-a-experiment-id",
@@ -118,6 +120,7 @@ class TrackBaselineSummaryTests(TestCase):
                     str(out_path),
                 ],
                 cwd=str(REPO_ROOT),
+                env={**os.environ, "PYTHONPATH": str(REPO_ROOT / "src")},
                 capture_output=True,
                 text=True,
                 check=False,
@@ -136,7 +139,7 @@ class TrackBaselineSummaryTests(TestCase):
             )
 
     def test_expected_trial_count_uses_configured_model_count_when_track_missing(self):
-        script = REPO_ROOT / "scripts" / "summarize_track_baseline.py"
+        script = "analysis.track_baseline"
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             dataset_root = root / "data/model_baselines"
@@ -213,7 +216,8 @@ class TrackBaselineSummaryTests(TestCase):
             proc = subprocess.run(
                 [
                     sys.executable,
-                    str(script),
+                    "-m",
+                    script,
                     "--dataset-root",
                     str(dataset_root),
                     "--family-a-experiment-id",
@@ -230,6 +234,7 @@ class TrackBaselineSummaryTests(TestCase):
                     str(out_path),
                 ],
                 cwd=str(REPO_ROOT),
+                env={**os.environ, "PYTHONPATH": str(REPO_ROOT / "src")},
                 capture_output=True,
                 text=True,
                 check=False,

@@ -6,22 +6,10 @@ from pathlib import Path
 from statistics import median
 from typing import Any, Dict, Iterable, List
 
+from analysis.lib import load_jsonl, resolve_stored_path
 
-def _load_jsonl(path: Path) -> List[Dict[str, Any]]:
-    if not path.exists():
-        return []
-    rows: List[Dict[str, Any]] = []
-    for line in path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        try:
-            payload = json.loads(line)
-        except Exception:
-            continue
-        if isinstance(payload, dict):
-            rows.append(payload)
-    return rows
+
+_load_jsonl = load_jsonl
 
 
 def _load_json(path: Path) -> Dict[str, Any]:
@@ -114,7 +102,7 @@ def main() -> int:
     parser.add_argument("--output", default="logs/reference_efficiency_summary.json")
     args = parser.parse_args()
 
-    repo_root = Path(__file__).resolve().parents[1]
+    repo_root = Path(__file__).resolve().parents[2]
     dataset_root = (repo_root / args.dataset_root).resolve()
     output_path = (repo_root / args.output).resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -126,7 +114,7 @@ def main() -> int:
             summary_path_raw = str(manifest_row.get("summary_path") or "").strip()
             if not summary_path_raw:
                 continue
-            summary = _load_json(Path(summary_path_raw))
+            summary = _load_json(resolve_stored_path(summary_path_raw, repo_root))
             if not summary:
                 continue
             row = _trial_row(summary, manifest_row)

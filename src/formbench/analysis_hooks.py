@@ -42,7 +42,7 @@ def post_matrix(settings: Settings, experiment: "Experiment", update_tracker: bo
                 "--output", str(settings.logs_dir / f"{exp_id}_human_ui_attribution.json"),
             ])
         if update_tracker:
-            _run_quiet(settings, [python, "-m", "analysis.tracker", "--dataset-root", str(settings.dataset_root), "--experiment-id", exp_id])
+            _run_quiet(settings, [python, "-m", "analysis.tracker", "--dataset-root", str(settings.dataset_root), "--output-dir", str(settings.reports_dir), "--experiment-id", exp_id])
 
 
 def _model(settings: Settings, model_id: str) -> dict:

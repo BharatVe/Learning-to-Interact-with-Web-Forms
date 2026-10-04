@@ -686,8 +686,8 @@ The tested pixel ruler did not improve aggregate verified correctness: all-field
 ## Regenerate and validate
 
 ```bash
-python3 scripts/analyze_opencua_ruler_comparison.py
-python3 scripts/analyze_opencua_ruler_comparison.py --check
+make study NAME=opencua_ruler          # regenerate (runs the check afterwards)
+make study NAME=opencua_ruler CHECK=1  # only verify the committed files
 ```
 
 The data exporter uses only the Python standard library. `report.html` is already packaged and does not need Python, Node.js, a local server, or network access to open.
@@ -717,9 +717,9 @@ The portable-report packager passed artifact validation, packaging, and structur
             for experiment in (BASELINE_EXPERIMENT, RULER_EXPERIMENT)
         ],
         "generated_files": [],
-        "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
+        "generation_command": "make study NAME=opencua_ruler",
         "validation_commands": [
-            "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+            "make study NAME=opencua_ruler CHECK=1",
             "node <data-analytics-plugin>/skills/build-report/scripts/deliver_portable_artifact.mjs --input evaluation_additions/opencua_ruler_comparison/artifact.json --output evaluation_additions/opencua_ruler_comparison/report.html",
         ],
         "report_validation": {
@@ -739,6 +739,19 @@ The portable-report packager passed artifact validation, packaging, and structur
         source_manifest["generated_files"].append({"path": (OUTPUT_REL / name).as_posix(), "sha256": sha256_bytes(content.encode("utf-8")), "row_count": row_count})
     outputs["source_manifest.json"] = json.dumps(source_manifest, indent=2) + "\n"
     return outputs
+
+
+def _same_output(name: str, existing: str, regenerated: str) -> bool:
+    """Byte equality, except the manifest's analysis_commit (it records git HEAD, which moves with every commit)."""
+    if name != "source_manifest.json":
+        return existing == regenerated
+    try:
+        old, new = json.loads(existing), json.loads(regenerated)
+    except ValueError:
+        return False
+    old.pop("analysis_commit", None)
+    new.pop("analysis_commit", None)
+    return old == new
 
 
 def validate_csv_keys(output_dir: Path) -> None:
@@ -771,7 +784,7 @@ def main() -> int:
     if args.check:
         stale = [
             name for name, content in outputs.items()
-            if not (output_dir / name).is_file() or (output_dir / name).read_text(encoding="utf-8") != content
+            if not (output_dir / name).is_file() or not _same_output(name, (output_dir / name).read_text(encoding="utf-8"), content)
         ]
         if stale:
             raise SystemExit(f"missing or stale comparison outputs: {', '.join(stale)}")

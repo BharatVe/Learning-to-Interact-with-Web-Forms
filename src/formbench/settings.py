@@ -63,6 +63,7 @@ class Settings:
     localforms_port: int
     node_tools_dir: Path
     logs_dir: Path
+    reports_dir: Path
     modules: str
     gemini_api_key_file: Path
     slurm_account: str
@@ -147,6 +148,7 @@ def load_settings(environ: Optional[Mapping[str, str]] = None, root: Optional[Pa
         localforms_port=int(get("LOCALFORMS_PORT", "5000")),
         node_tools_dir=_resolve(root, get("NODE_TOOLS_DIR", ".node-tools")),
         logs_dir=_resolve(root, get("LOGS_DIR", "logs")),
+        reports_dir=_resolve(root, get("REPORTS_DIR", "reports")),
         modules=get("MODULES", ""),
         gemini_api_key_file=_resolve(root, get("GEMINI_API_KEY_FILE", ".secrets/gemini_api_key")),
         slurm_account=get("SLURM_ACCOUNT", ""),

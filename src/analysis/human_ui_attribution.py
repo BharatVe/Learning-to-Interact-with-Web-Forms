@@ -7,33 +7,12 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-
-def _load_jsonl(path: Path) -> List[Dict[str, Any]]:
-    if not path.exists():
-        return []
-    rows: List[Dict[str, Any]] = []
-    for line in path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        try:
-            payload = json.loads(line)
-        except Exception:
-            continue
-        if isinstance(payload, dict):
-            rows.append(payload)
-    return rows
+from analysis.lib import load_jsonl, read_json_object, resolve_stored_path
 
 
-def _load_summary(path_value: str) -> Dict[str, Any]:
-    path = Path(path_value)
-    if not path.exists():
-        return {}
-    try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
-    return payload if isinstance(payload, dict) else {}
+_load_jsonl = load_jsonl
+
+
 
 
 def _safe_rate(numerator: float, denominator: float) -> float:
@@ -204,7 +183,7 @@ def main() -> int:
     parser.add_argument("--output", default="logs/human_ui_attribution_report.json")
     args = parser.parse_args()
 
-    repo_root = Path(__file__).resolve().parents[1]
+    repo_root = Path(__file__).resolve().parents[2]
     dataset_root = (repo_root / args.dataset_root).resolve()
     experiment_root = dataset_root / args.experiment_id
     manifest_path = experiment_root / "manifest.jsonl"
@@ -221,7 +200,7 @@ def main() -> int:
         summary_path = str(row.get("summary_path") or "").strip()
         if not summary_path:
             continue
-        summary = _load_summary(summary_path)
+        summary = read_json_object(resolve_stored_path(summary_path))
         if not summary:
             continue
         if str(summary.get("interaction_protocol") or "") != str(args.interaction_protocol):

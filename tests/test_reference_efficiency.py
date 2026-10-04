@@ -1,4 +1,5 @@
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -15,7 +16,7 @@ if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 from baselines import run_baseline_eval as rbe
-from scripts import analyze_reference_dataset as ard
+from analysis import reference as ard
 
 
 class ReferenceEfficiencyHelperTests(TestCase):
@@ -245,7 +246,7 @@ class ReferenceDatasetAnalysisTests(TestCase):
 
 class ReferenceEfficiencySummaryTests(TestCase):
     def test_summarize_reference_efficiency_outputs_model_aggregates(self):
-        script = REPO_ROOT / "scripts" / "summarize_reference_efficiency.py"
+        script = "analysis.reference_efficiency"
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             dataset_root = root / "data/model_baselines"
@@ -303,7 +304,8 @@ class ReferenceEfficiencySummaryTests(TestCase):
             proc = subprocess.run(
                 [
                     sys.executable,
-                    str(script),
+                    "-m",
+                    script,
                     "--dataset-root",
                     str(dataset_root),
                     "--experiment-id",
@@ -312,6 +314,7 @@ class ReferenceEfficiencySummaryTests(TestCase):
                     str(output_path),
                 ],
                 cwd=str(REPO_ROOT),
+                env={**os.environ, "PYTHONPATH": str(REPO_ROOT / "src")},
                 capture_output=True,
                 text=True,
                 check=False,

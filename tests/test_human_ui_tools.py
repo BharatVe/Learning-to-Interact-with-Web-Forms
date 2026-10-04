@@ -9,6 +9,8 @@ from unittest import TestCase
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT / "src"))
 
 
 class HumanUIToolsTests(TestCase):
@@ -21,7 +23,7 @@ class HumanUIToolsTests(TestCase):
         return module
 
     def test_extract_model_size_parses_underscore_and_hyphen(self):
-        mod = self._load_module("scripts/summarize_human_ui_attribution.py")
+        mod = importlib.import_module("analysis.human_ui_attribution")
         self.assertEqual(mod._extract_model_size_b("text_qwen25_7b_instruct"), 7)
         self.assertEqual(mod._extract_model_size_b("vlm-qwen3-30b-a3b"), 30)
         self.assertEqual(mod._extract_model_size_b("model 8b"), 8)

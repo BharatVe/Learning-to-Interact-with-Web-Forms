@@ -10,7 +10,9 @@ import json
 import math
 from collections import Counter
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple
+
+from analysis.lib import read_json_object
 
 
 DEFAULT_DATASET_ROOT = Path("data/forms")
@@ -19,12 +21,7 @@ DEFAULT_OUTPUT_DIR = Path("docs/eval_results/reference_analysis")
 DEFAULT_RUNS = "1-6"
 
 
-def _read_json(path: Path) -> Dict[str, Any]:
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
-    return data if isinstance(data, dict) else {}
+_read_json = read_json_object
 
 
 def _optional_float(value: Any) -> Optional[float]:

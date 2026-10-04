@@ -2,7 +2,7 @@
 """Paired form-level statistics for the LocalForms vs. Google Forms comparison.
 
 Mirrors this repo's established comparison-analysis methodology (see
-scripts/analyze_opencua_ruler_comparison.py, scripts/analyze_formfactory_qwen3vl_comparison.py):
+analysis/studies/opencua_ruler.py, analysis/studies/formfactory_qwen3vl.py):
 form-level paired bootstrap over accuracy differences, resampling whole forms
 (not individual fields) with replacement so fields within a form are not
 treated as independent observations. Standard library + numpy only.
@@ -43,7 +43,7 @@ from pathlib import Path
 
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 OUT_DIR = ROOT / "data" / "localforms_comparison_analysis"
 N_BOOTSTRAP = 10000
 SEED = 20260819

@@ -10,10 +10,10 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 RAW_ROOT = ROOT / "data" / "model_baselines"
 OUTPUT = ROOT / "data" / "model_baseline_exports" / "fill_only_done_50_20260714"
-MANIFEST = ROOT / "configs" / "baselines" / "fill_only_done_50_completion_20260713.json"
+MANIFEST = ROOT / "configs" / "analysis" / "samples" / "fill_only_done_50_completion_20260713.json"
 
 MODEL_LABELS = {
     "computer_use_gemini_35_flash_lowcost": "Gemini 3.5 Flash",
@@ -168,7 +168,7 @@ def write_readme(aggregates: list[dict[str, Any]]) -> None:
             "Recreate this export with:",
             "",
             "```bash",
-            ".venv/bin/python scripts/export_fill_only_done_50_results.py",
+            "make study NAME=fill_only_done_50_export",
             "```",
             "",
         ]

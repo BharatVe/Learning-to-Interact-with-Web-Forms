@@ -304,7 +304,7 @@ def cmd_report(settings: Settings, args: argparse.Namespace) -> int:
         report.print_studies()
         return 0
     if args.study:
-        return report.run_study(settings, args.study, extra=args.extra)
+        return report.run_study(settings, args.study, extra=args.extra, check=args.check)
     if args.reference:
         return report.run_reference(settings)
     return report.run_core(settings, experiments=parse_csv_list(args.experiments), output_dir=args.output_dir, extra=args.extra)
@@ -416,9 +416,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = sub.add_parser("report", help="analytics: CSV tables + SVG plots")
     p.add_argument("--experiments", help="restrict the core report to these experiment ids")
-    p.add_argument("--output-dir", help="default docs/eval_results/analysis")
+    p.add_argument("--output-dir", help="default reports/ (gitignored)")
     p.add_argument("--study", help="re-run a named thesis study (see --list-studies)")
     p.add_argument("--list-studies", action="store_true")
+    p.add_argument("--check", action="store_true", help="with --study: verify committed outputs are up to date instead of rewriting")
     p.add_argument("--reference", action="store_true", help="ideal-run (reference dataset) summary + plots")
     p.add_argument("extra", nargs=argparse.REMAINDER, help="extra args passed to the study script (after --)")
     p.set_defaults(func=cmd_report)

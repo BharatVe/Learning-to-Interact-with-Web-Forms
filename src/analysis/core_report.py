@@ -18,9 +18,11 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
-from analyze_reference_dataset import trace_stats
+from analysis.reference import trace_stats
+
+from analysis.lib import read_json_object, rel_to_cwd
 
 
 DEFAULT_DATASET_ROOT = Path("data/model_baselines")
@@ -28,65 +30,35 @@ DEFAULT_OUTPUT_DIR = Path("docs/eval_results/analysis")
 DEFAULT_ANSWERS_ROOT = Path("data/answers")
 DEFAULT_FORMS_ROOT = Path("src/forms")
 DEFAULT_REFERENCE_ROOT = Path("data/forms")
-TARGET_RUN_COUNT = 6
-TARGET_TRIAL_COUNT = 300
+CONFIG_PATH = Path(__file__).resolve().parents[2] / "configs" / "analysis" / "core_report.json"
+_CFG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+TARGET_RUN_COUNT = int(_CFG["target_run_count"])
+TARGET_TRIAL_COUNT = int(_CFG["target_trial_count"])
 TARGET_RUN_IDS = tuple(f"run_{idx:04d}" for idx in range(1, TARGET_RUN_COUNT + 1))
-BOOTSTRAP_SAMPLES = 1000
-BOOTSTRAP_SEED = 20260609
-QWEN_MODEL_IDS = {
-    "text_qwen3_30b_a3b_instruct_2507",
-    "vlm_qwen3_vl_30b_a3b_instruct",
-}
-OPENCUA_NATIVE_MODEL_ID = "computer_use_opencua_32b"
-OPENCUA_DIRECT_MCP_MODEL_ID = "computer_use_opencua_32b_direct_mcp"
+BOOTSTRAP_SAMPLES = int(_CFG["bootstrap_samples"])
+BOOTSTRAP_SEED = int(_CFG["bootstrap_seed"])
+QWEN_MODEL_IDS = set(_CFG["models"]["qwen"])
+OPENCUA_NATIVE_MODEL_ID = _CFG["models"]["opencua_native"]
+OPENCUA_DIRECT_MCP_MODEL_ID = _CFG["models"]["opencua_direct_mcp"]
 TARGET_MODEL_IDS = {
     *QWEN_MODEL_IDS,
     OPENCUA_NATIVE_MODEL_ID,
     OPENCUA_DIRECT_MCP_MODEL_ID,
 }
-THESIS_MODEL_ORDER = (
-    "text_qwen3_30b_a3b_instruct_2507",
-    "vlm_qwen3_vl_30b_a3b_instruct",
-    OPENCUA_NATIVE_MODEL_ID,
-    OPENCUA_DIRECT_MCP_MODEL_ID,
-)
-THESIS_MODEL_LABELS = {
-    "text_qwen3_30b_a3b_instruct_2507": "Qwen Text",
-    "vlm_qwen3_vl_30b_a3b_instruct": "Qwen VLM",
-    OPENCUA_NATIVE_MODEL_ID: "OpenCUA Native",
-    OPENCUA_DIRECT_MCP_MODEL_ID: "OpenCUA MCP",
-}
-THESIS_COLORS = {
-    "Qwen Text": "#2563eb",
-    "Qwen VLM": "#059669",
-    "OpenCUA Native": "#dc2626",
-    "OpenCUA MCP": "#7c3aed",
-}
-QWEN_EXPERIMENT = "qwen_direct_mcp_english_stepcap128_5form_20260515"
-OPENCUA_CONTROL_EXPERIMENT = "opencua_control_guidance_30form_20260526"
-OPENCUA_REMAINING_EXPERIMENT = "opencua_control_guidance_remaining20_20260527"
-OPENCUA_LOOP_EXPERIMENT = "opencua_loopdetector_30form_retry_20260526"
-OPENCUA_TOPDOWN_EXPERIMENT = "opencua_topdown_prompt_20form_20260519"
-QWEN_EXPERIMENT_PREFIX = "qwen_direct_mcp_"
-OPENCUA_CONTROL_EXPERIMENT_PREFIX = "opencua_control_guidance"
-OPENCUA_DIRECT_MCP_EXPERIMENT_PREFIX = "opencua_direct_mcp_tools"
-QWEN_RECENT_BATCH_DATE = "2026-05-27"
-EXPECTED_EXPERIMENT_TRIALS = {
-    "qwen_direct_mcp_all50_run2_20260528": 100,
-    "opencua_control_guidance_all50_run2_20260528": 50,
-}
-QWEN_PREVIOUS_BATCH_FORMS = {
-    "research_interest",
-    "room_booking",
-    "scholarship_interest",
-    "seminar_proposal",
-    "software_access",
-    "sports_tournament",
-    "study_group_match",
-    "survey_consent",
-    "technical_support",
-    "thesis_meeting",
-}
+THESIS_MODEL_ORDER = tuple(_CFG["thesis_model_order"])
+THESIS_MODEL_LABELS = dict(_CFG["thesis_model_labels"])
+THESIS_COLORS = dict(_CFG["thesis_colors"])
+QWEN_EXPERIMENT = _CFG["experiments"]["qwen"]
+OPENCUA_CONTROL_EXPERIMENT = _CFG["experiments"]["opencua_control"]
+OPENCUA_REMAINING_EXPERIMENT = _CFG["experiments"]["opencua_remaining"]
+OPENCUA_LOOP_EXPERIMENT = _CFG["experiments"]["opencua_loop"]
+OPENCUA_TOPDOWN_EXPERIMENT = _CFG["experiments"]["opencua_topdown"]
+QWEN_EXPERIMENT_PREFIX = _CFG["experiment_prefixes"]["qwen"]
+OPENCUA_CONTROL_EXPERIMENT_PREFIX = _CFG["experiment_prefixes"]["opencua_control"]
+OPENCUA_DIRECT_MCP_EXPERIMENT_PREFIX = _CFG["experiment_prefixes"]["opencua_direct_mcp"]
+QWEN_RECENT_BATCH_DATE = _CFG["qwen_recent_batch_date"]
+EXPECTED_EXPERIMENT_TRIALS = {str(k): int(v) for k, v in _CFG["expected_experiment_trials"].items()}
+QWEN_PREVIOUS_BATCH_FORMS = set(_CFG["qwen_previous_batch_forms"])
 
 
 @dataclass(frozen=True)
@@ -128,12 +100,7 @@ class Trial:
     summary_path: Path
 
 
-def _read_json(path: Path) -> Dict[str, Any]:
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
-    return data if isinstance(data, dict) else {}
+_read_json = read_json_object
 
 
 def _as_bool(value: Any) -> bool:
@@ -1229,11 +1196,7 @@ def question_type_rows(trials: Sequence[Trial], cohort: str, reliable_only: bool
     return sorted(rows, key=lambda item: (item["model_id"], item["widget_type"], item["analysis_scope"]))
 
 
-def _rel(path: Path) -> str:
-    try:
-        return str(path.resolve().relative_to(Path.cwd().resolve()))
-    except Exception:
-        return str(path)
+_rel = rel_to_cwd
 
 
 def canonical_trial_rows(trials: Sequence[Trial]) -> List[Dict[str, Any]]:
@@ -1915,7 +1878,7 @@ def write_markdown(
         "",
         f"Last updated: {now}",
         "",
-        "Generated by `scripts/analyze_eval_results.py` from `data/model_baselines/**/summary.json`.",
+        "Generated by `make report` (analysis.core_report) from `data/model_baselines/**/summary.json`.",
         "",
         "## Thesis Model Effectiveness",
         "",

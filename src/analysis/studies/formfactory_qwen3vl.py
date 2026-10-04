@@ -9,9 +9,11 @@ from pathlib import Path
 from statistics import mean, median
 from typing import Any, Dict, List, Optional, Tuple
 
+from analysis.lib import resolve_stored_path
 
-ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CONFIG = ROOT / "configs/baselines/formfactory_qwen3vl_comparison_analysis.json"
+
+ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_CONFIG = ROOT / "configs/analysis/formfactory_qwen3vl.json"
 EXPORT_ROOT = ROOT / "data/model_baseline_exports"
 DOC_PATH = ROOT / "docs/eval_results/FORMFACTORY_QWEN3VL_RESULTS.md"
 PREFIX = "formfactory_qwen3vl_"
@@ -86,10 +88,7 @@ def actions(summary: Dict[str, Any], annotations: Dict[str, Any]) -> Dict[str, O
     artifacts = summary.get("artifacts") if isinstance(summary.get("artifacts"), dict) else {}
     if not artifacts and isinstance(annotations.get("artifacts"), dict):
         artifacts = annotations["artifacts"]
-    raw_path = artifacts.get("trace_path")
-    path = Path(raw_path) if isinstance(raw_path, str) else None
-    if path is not None and not path.is_absolute():
-        path = ROOT / path
+    path = resolve_stored_path(artifacts.get("trace_path"), ROOT)
     raw_events = 0
     normalized = 0
     if path and path.exists():
@@ -307,7 +306,7 @@ def main() -> int:
     doc_lines = [
         "# Qwen3-VL FormFactory-style vs direct-MCP comparison",
         "",
-        "This analysis uses only the explicit cohorts in `configs/baselines/formfactory_qwen3vl_comparison_analysis.json`; it never scans unrelated legacy experiments.",
+        "This analysis uses only the explicit cohorts in `configs/analysis/formfactory_qwen3vl.json`; it never scans unrelated legacy experiments.",
         "",
         "The primary endpoint is non-dropdown field accuracy with a form-level bootstrap confidence interval. All four cohorts use the current corrected verifier. Submission-enabled correctness is captured immediately before successful submission. Action counts are secondary because coordinate UI primitives and semantic MCP calls have different granularity.",
         "",

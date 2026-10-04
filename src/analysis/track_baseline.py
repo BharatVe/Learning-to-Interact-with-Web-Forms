@@ -6,6 +6,8 @@ from pathlib import Path
 from statistics import median
 from typing import Any, Dict, Iterable, List, Optional, Set
 
+from analysis.lib import read_json_object, resolve_stored_path
+
 
 def _load_jsonl(path: Path) -> List[Dict[str, Any]]:
     if not path.exists():
@@ -24,15 +26,6 @@ def _load_jsonl(path: Path) -> List[Dict[str, Any]]:
     return rows
 
 
-def _load_summary(path_value: str) -> Dict[str, Any]:
-    path = Path(path_value)
-    if not path.exists():
-        return {}
-    try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
-    return payload if isinstance(payload, dict) else {}
 
 
 def _safe_rate(num: float, den: float) -> float:
@@ -163,7 +156,7 @@ def _load_trials(dataset_root: Path, experiment_id: str) -> List[Dict[str, Any]]
         summary_path = str(row.get("summary_path") or "").strip()
         if not summary_path:
             continue
-        summary = _load_summary(summary_path)
+        summary = read_json_object(resolve_stored_path(summary_path))
         if not summary:
             continue
         out.append(_to_trial_row(summary, row))
@@ -222,7 +215,7 @@ def main() -> int:
     parser.add_argument("--output", default="logs/track_baseline_summary.json")
     args = parser.parse_args()
 
-    repo_root = Path(__file__).resolve().parents[1]
+    repo_root = Path(__file__).resolve().parents[2]
     dataset_root = (repo_root / args.dataset_root).resolve()
     output_path = (repo_root / args.output).resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)

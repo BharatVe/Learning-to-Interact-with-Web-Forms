@@ -103,17 +103,17 @@ submit: ## submit an experiment to Slurm (same selection vars; SPLIT=cohort|mode
 	@$(FB) submit $(SELECT) --split $(SPLIT) $(call flag,--chain,$(CHAIN)) $(call flag,--after,$(AFTER))
 
 ## --- analytics ----------------------------------------------------------------
-report: ## core analytics: CSV tables + SVG plots in docs/eval_results/analysis (EXPERIMENTS=)
+report: ## current analytics: CSV + SVG plots into reports/ (EXPERIMENTS= filters the overview)
 	@$(FB) report $(call flag,--experiments,$(EXPERIMENTS))
 
-reference-report: ## ideal-run dataset summary + plots in docs/eval_results/reference_analysis
+reference-report: ## ideal-run dataset summary + plots into reports/reference/
 	@$(FB) report --reference
 
 studies: ## list thesis studies that `make study NAME=` can regenerate
 	@$(FB) report --list-studies
 
-study: ## regenerate one thesis study's outputs (NAME=)
-	@$(FB) report --study $(NAME)
+study: ## regenerate one thesis study's outputs (NAME=, CHECK=1 only verifies)
+	@$(FB) report --study $(NAME) $(call bool,--check,$(CHECK))
 
 inspect: ## show one trial: summary (+ STEPS=all|0,3 and MEDIA=1)
 	@$(FB) inspect $(TRIAL) $(if $(STEPS),--steps $(STEPS),) $(call bool,--media,$(MEDIA))
