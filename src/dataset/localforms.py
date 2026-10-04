@@ -8,7 +8,7 @@ the 50 forms already defined in src/forms/*/spec.json, so the same content can b
 served from a second, non-Google-Forms platform.
 
 Two additive, documented adaptations keep the recreation compatible with this
-repo's existing verifier/scoring contract (see docs/ALTERNATIVE_PLATFORM_PLAN.md):
+repo's existing verifier/scoring contract (see docs/METHODOLOGY.md, LocalForms section):
   1. Each question is wrapped in a Google-Forms-compatible `role="listitem"`
      container (the verifier locates questions this way regardless of platform).
   2. Each radio/checkbox input carries an explicit `role="radio"`/`role="checkbox"`
@@ -262,29 +262,41 @@ if __name__ == "__main__":
 '''
 
 
-def main() -> None:
-    if TEMPLATES_DIR.exists():
-        shutil.rmtree(TEMPLATES_DIR)
-    TEMPLATES_DIR.mkdir(parents=True)
-    (SITE_DIR / "static" / "css").mkdir(parents=True, exist_ok=True)
-    (SITE_DIR / "submission").mkdir(parents=True, exist_ok=True)
+def main(argv: list | None = None) -> None:
+    import argparse
 
-    if FORMS_OUT.exists():
-        shutil.rmtree(FORMS_OUT)
-    FORMS_OUT.mkdir(parents=True)
-    if ANSWERS_OUT.exists():
-        shutil.rmtree(ANSWERS_OUT)
-    ANSWERS_OUT.mkdir(parents=True)
+    parser = argparse.ArgumentParser(description="Regenerate the LocalForms site, specs and answer sets from src/forms + data/answers.")
+    parser.add_argument("--forms-src", type=Path, default=FORMS_SRC)
+    parser.add_argument("--answers-src", type=Path, default=ANSWERS_SRC)
+    parser.add_argument("--site-dir", type=Path, default=SITE_DIR)
+    parser.add_argument("--forms-out", type=Path, default=FORMS_OUT)
+    parser.add_argument("--answers-out", type=Path, default=ANSWERS_OUT)
+    args = parser.parse_args(argv)
+    forms_src, answers_src, site_dir = args.forms_src, args.answers_src, args.site_dir
+    forms_out, answers_out = args.forms_out, args.answers_out
+    templates_dir = site_dir / "templates"
+    if templates_dir.exists():
+        shutil.rmtree(templates_dir)
+    templates_dir.mkdir(parents=True)
+    (site_dir / "static" / "css").mkdir(parents=True, exist_ok=True)
+    (site_dir / "submission").mkdir(parents=True, exist_ok=True)
 
-    (TEMPLATES_DIR / "base.html").write_text(BASE_HTML, encoding="utf-8")
-    (TEMPLATES_DIR / "home.html").write_text(HOME_TEMPLATE, encoding="utf-8")
-    (TEMPLATES_DIR / "submitted.html").write_text(SUBMITTED_TEMPLATE, encoding="utf-8")
+    if forms_out.exists():
+        shutil.rmtree(forms_out)
+    forms_out.mkdir(parents=True)
+    if answers_out.exists():
+        shutil.rmtree(answers_out)
+    answers_out.mkdir(parents=True)
+
+    (templates_dir / "base.html").write_text(BASE_HTML, encoding="utf-8")
+    (templates_dir / "home.html").write_text(HOME_TEMPLATE, encoding="utf-8")
+    (templates_dir / "submitted.html").write_text(SUBMITTED_TEMPLATE, encoding="utf-8")
 
     form_titles = {}
-    form_ids = sorted(p.name for p in FORMS_SRC.iterdir() if p.is_dir() and (p / "spec.json").exists())
+    form_ids = sorted(p.name for p in forms_src.iterdir() if p.is_dir() and (p / "spec.json").exists())
 
     for form_id in form_ids:
-        spec = json.loads((FORMS_SRC / form_id / "spec.json").read_text(encoding="utf-8"))
+        spec = json.loads((forms_src / form_id / "spec.json").read_text(encoding="utf-8"))
         lf_id = f"{LF_PREFIX}{form_id}"
         title = spec.get("form_title") or form_id
         description = spec.get("form_description") or ""
@@ -296,7 +308,7 @@ def main() -> None:
             form_id=form_id,
             questions=questions_html,
         )
-        (TEMPLATES_DIR / f"{lf_id}.html").write_text(template_html, encoding="utf-8")
+        (templates_dir / f"{lf_id}.html").write_text(template_html, encoding="utf-8")
         form_titles[lf_id] = title
 
         lf_spec = dict(spec)
@@ -314,29 +326,29 @@ def main() -> None:
             questions.append(q2)
         lf_spec["questions"] = questions
 
-        out_dir = FORMS_OUT / lf_id
+        out_dir = forms_out / lf_id
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "spec.json").write_text(json.dumps(lf_spec, ensure_ascii=False, indent=2), encoding="utf-8")
 
-        answers_path = ANSWERS_SRC / form_id / "runs.json"
+        answers_path = answers_src / form_id / "runs.json"
         answers_doc = json.loads(answers_path.read_text(encoding="utf-8"))
         answers_doc["form_id"] = lf_id
         answers_doc["description"] = (
             f"{answers_doc.get('description', '')} (recreated for LocalForms platform comparison)".strip()
         )
-        out_answers_dir = ANSWERS_OUT / lf_id
+        out_answers_dir = answers_out / lf_id
         out_answers_dir.mkdir(parents=True, exist_ok=True)
         (out_answers_dir / "runs.json").write_text(
             json.dumps(answers_doc, ensure_ascii=False, indent=2), encoding="utf-8"
         )
 
     app_py = APP_PY_TEMPLATE.format(form_titles=json.dumps(form_titles, ensure_ascii=False, indent=4))
-    (SITE_DIR / "app.py").write_text(app_py, encoding="utf-8")
+    (site_dir / "app.py").write_text(app_py, encoding="utf-8")
 
     print(f"[OK] generated {len(form_ids)} forms")
-    print(f"[OK] site: {SITE_DIR}")
-    print(f"[OK] specs: {FORMS_OUT}")
-    print(f"[OK] answers: {ANSWERS_OUT}")
+    print(f"[OK] site: {site_dir}")
+    print(f"[OK] specs: {forms_out}")
+    print(f"[OK] answers: {answers_out}")
 
 
 if __name__ == "__main__":
