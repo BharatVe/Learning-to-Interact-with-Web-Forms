@@ -277,7 +277,7 @@ def cmd_submit(settings: Settings, args: argparse.Namespace) -> int:
         base += ["--experiment-id", experiment.cohorts[0].experiment_id]  # pin the dated id for every job
     if getattr(args, "skip_checks", False):
         base.append("--skip-checks")
-    jobs = plan_jobs(settings, experiment, getattr(args, "split", "none") or "none", base)
+    jobs = plan_jobs(settings, experiment, getattr(args, "split", "none") or "none", base, time_limit=getattr(args, "time", None))
     submit(settings, jobs, chain=getattr(args, "chain", None), after=getattr(args, "after", None), dry_run=args.dry_run)
     return 0
 
@@ -392,6 +392,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--fail-fast", action="store_true")
     p.add_argument("--no-tracker", action="store_true", help="do not update docs/eval_results tracker")
     p.add_argument("--submit", action="store_true", help="run as a Slurm job with the model's resources")
+    p.add_argument("--time", help="with --submit: Slurm time limit override, e.g. 02:00:00")
     p.set_defaults(func=cmd_eval)
 
     p = sub.add_parser("matrix", help="run an experiment: forms x runs x models (locally / inside a job)")
@@ -407,6 +408,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--split", choices=["none", "cohort", "model", "run"], default="none", help="one job per cohort/model/run index")
     p.add_argument("--chain", choices=["afterok", "afterany"], help="make each job depend on the previous one")
     p.add_argument("--after", help="first job depends on this job id")
+    p.add_argument("--time", help="override the Slurm time limit from the registry, e.g. 02:00:00")
     p.add_argument("--skip-checks", action="store_true")
     p.add_argument("--dry-run", action="store_true", help="write and print job scripts without submitting")
     p.set_defaults(func=cmd_submit)

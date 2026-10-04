@@ -429,6 +429,25 @@ class SlurmPlanningTests(TestCase):
             self.assertIn("--dependency=afterok:<job0>", text)
             self.assertEqual(len(list((Path(tmp) / "slurm" / "jobs").glob("*.sbatch"))), 2)
 
+    def test_adhoc_split_has_one_models_flag_and_time_override(self):
+        settings = load_settings(environ={"LOCAL": "1"})
+        experiment = matrix.adhoc_experiment(settings, "val", ["text_qwen3_30b_a3b_instruct_2507", "computer_use_opencua_32b"], "conf_interest", "1")
+        base = ["--models", "text_qwen3_30b_a3b_instruct_2507,computer_use_opencua_32b", "--forms", "conf_interest", "--experiment-id", "val"]
+        jobs = slurm.plan_jobs(settings, experiment, "model", base, time_limit="02:00:00")
+        self.assertEqual(len(jobs), 2)
+        for job, model in zip(jobs, ["text_qwen3_30b_a3b_instruct_2507", "computer_use_opencua_32b"]):
+            self.assertEqual(job.formbench_args.count("--models"), 1)
+            self.assertEqual(job.formbench_args[job.formbench_args.index("--models") + 1], model)
+            self.assertNotIn("--cohort", job.formbench_args)
+            self.assertEqual(job.resources["time"], "02:00:00")
+        self.assertEqual(jobs[1].resources["gpus"], 4)
+        runs = slurm.plan_jobs(settings, experiment, "run", base + ["--runs", "1"])
+        self.assertTrue(all(j.formbench_args.count("--runs") == 1 for j in runs))
+        manifest_jobs = slurm.plan_jobs(settings, matrix.load_experiment(settings, "smoke"), "model", ["smoke"])
+        self.assertTrue(all("--cohort" in j.formbench_args for j in manifest_jobs))
+        with self.assertRaises(common.FormbenchError):
+            slurm.plan_jobs(settings, experiment, "model", base, time_limit="two hours")
+
     def test_resource_parsing(self):
         self.assertEqual(slurm._mem_mb("120G"), 120 * 1024)
         self.assertEqual(slurm._mem_mb("512M"), 512)

@@ -99,8 +99,8 @@ eval: ## one trial (MODEL= FORM= RUN= PLATFORM= SET="k=v ..." DRY_RUN=1 SUBMIT=1
 matrix: ## run an experiment here (EXPERIMENT= or MODELS= FORMS= RUNS=; COHORT= DRY_RUN=1)
 	@$(FB) matrix $(SELECT) $(call bool,--skip-checks,$(SKIP_CHECKS))
 
-submit: ## submit an experiment to Slurm (same selection vars; SPLIT=cohort|model|run CHAIN=afterok)
-	@$(FB) submit $(SELECT) --split $(SPLIT) $(call flag,--chain,$(CHAIN)) $(call flag,--after,$(AFTER))
+submit: ## submit an experiment to Slurm (same selection vars; SPLIT=cohort|model|run CHAIN=afterok TIME=02:00:00)
+	@$(FB) submit $(SELECT) --split $(SPLIT) $(call flag,--chain,$(CHAIN)) $(call flag,--after,$(AFTER)) $(call flag,--time,$(TIME))
 
 ## --- analytics ----------------------------------------------------------------
 report: ## current analytics: CSV + SVG plots into reports/ (EXPERIMENTS= filters the overview)

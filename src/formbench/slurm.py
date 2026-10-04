@@ -32,6 +32,8 @@ def _mem_mb(value: str) -> int:
 
 def _time_s(value: str) -> int:
     text = str(value).strip()
+    if not re.fullmatch(r"(\d+-)?\d+(:\d+){0,2}", text):
+        raise FormbenchError(f"cannot parse time {value!r} (use e.g. 04:00:00 or 1-00:00:00)")
     days = 0
     if "-" in text:
         day_part, text = text.split("-", 1)
@@ -66,15 +68,42 @@ class JobPlan:
     script_path: Optional[Path] = None
 
 
-def plan_jobs(settings: Settings, experiment: Experiment, split: str, base_args: List[str]) -> List[JobPlan]:
+VALUE_FLAGS = {"--models", "--runs", "--cohort"}
+
+
+def merge_flags(base: List[str], extra: List[str]) -> List[str]:
+    """Append `extra` to `base`, dropping any value flag in `base` that `extra` sets again."""
+    override = {extra[i] for i in range(len(extra) - 1) if extra[i] in VALUE_FLAGS}
+    merged: List[str] = []
+    skip = False
+    for i, token in enumerate(base):
+        if skip:
+            skip = False
+            continue
+        if token in override:
+            skip = True
+            continue
+        merged.append(token)
+    return merged + extra
+
+
+def plan_jobs(settings: Settings, experiment: Experiment, split: str, base_args: List[str], time_limit: Optional[str] = None) -> List[JobPlan]:
     if split not in SPLIT_MODES:
         raise FormbenchError(f"--split must be one of {sorted(SPLIT_MODES)}")
+    if time_limit:
+        _time_s(time_limit)  # validate early
     jobs: List[JobPlan] = []
     safe = re.sub(r"[^A-Za-z0-9_.-]", "_", experiment.id)[:40]
+    from_manifest = bool(base_args) and not base_args[0].startswith("-")
 
     def add(suffix: str, extra: List[str], models: List[str]) -> None:
+        if not from_manifest:  # ad-hoc runs have a single implicit cohort
+            extra = [tok for i, tok in enumerate(extra) if tok != "--cohort" and (i == 0 or extra[i - 1] != "--cohort")]
         name = f"fb-{safe}" + (f"-{suffix}" if suffix else "")
-        jobs.append(JobPlan(name=name, formbench_args=["matrix"] + base_args + extra, models=models, resources=job_resources(settings, models)))
+        resources = job_resources(settings, models)
+        if time_limit:
+            resources["time"] = time_limit
+        jobs.append(JobPlan(name=name, formbench_args=["matrix"] + merge_flags(base_args, extra), models=models, resources=resources))
 
     if split == "none":
         models = sorted({m for c in experiment.cohorts for m in c.models})
