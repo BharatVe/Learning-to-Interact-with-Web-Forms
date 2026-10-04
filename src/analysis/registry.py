@@ -36,12 +36,6 @@ STUDIES: Dict[str, Study] = {
             ["docs/eval_results/reference_analysis/"],
         ),
         Study(
-            "results_tracker",
-            "Consolidated per-trial results tracker (metrics.csv/jsonl + README table).",
-            [["-m", "analysis.tracker", "--output-dir", "docs/eval_results"]],
-            ["docs/eval_results/metrics.csv", "docs/eval_results/metrics.jsonl", "docs/eval_results/README.md"],
-        ),
-        Study(
             "form_length_position",
             "Accuracy by form length and question position (fill-only cohorts, dropdowns excluded).",
             [["-m", "analysis.studies.form_length_position"]],

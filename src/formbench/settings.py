@@ -39,6 +39,14 @@ def parse_env_file(path: Path) -> Dict[str, str]:
     return values
 
 
+def localforms_port(value: str, environ: Mapping[str, str]) -> int:
+    """'auto': per-job port inside Slurm (concurrent jobs on one node must not collide), else 5000."""
+    if str(value).strip().lower() != "auto":
+        return int(value)
+    job = str(environ.get("SLURM_JOB_ID") or "")
+    return 38000 + int(job) % 9000 if job.isdigit() else 5000
+
+
 def _resolve(root: Path, value: str) -> Path:
     path = Path(os.path.expandvars(os.path.expanduser(value)))
     return path if path.is_absolute() else (root / path)
@@ -105,6 +113,7 @@ class Settings:
         for key, value in self.cache_env().items():
             env.setdefault(key, value)
         env["PYTHONUNBUFFERED"] = "1"
+        env["LOCALFORMS_PORT"] = str(self.localforms_port)
         py_path = [str(SRC_DIR)] + [p for p in env.get("PYTHONPATH", "").split(os.pathsep) if p]
         env["PYTHONPATH"] = os.pathsep.join(dict.fromkeys(py_path))
         path_parts = [str(self.node_tools_dir / "node_modules" / ".bin"), str(self.vllm_python_bin.parent)]
@@ -145,7 +154,7 @@ def load_settings(environ: Optional[Mapping[str, str]] = None, root: Optional[Pa
         localforms_answers_root=_resolve(root, get("LOCALFORMS_ANSWERS_ROOT", "data/answers_localforms")),
         localforms_reference_root=_resolve(root, get("LOCALFORMS_REFERENCE_ROOT", "data/forms_localforms")),
         localforms_host=get("LOCALFORMS_HOST", "127.0.0.1"),
-        localforms_port=int(get("LOCALFORMS_PORT", "5000")),
+        localforms_port=localforms_port(get("LOCALFORMS_PORT", "auto"), env),
         node_tools_dir=_resolve(root, get("NODE_TOOLS_DIR", ".node-tools")),
         logs_dir=_resolve(root, get("LOGS_DIR", "logs")),
         reports_dir=_resolve(root, get("REPORTS_DIR", "reports")),

@@ -4,7 +4,7 @@
                             all-experiment overview, results tracker
     make reference-report   ideal (scripted reference) run summary into reports/reference/
     make studies / study    list / regenerate one committed thesis study (analysis.registry),
-                            incl. core_report / reference / results_tracker under docs/eval_results
+                            incl. core_report / reference under docs/eval_results
 
 `make report` never touches committed files: docs/eval_results/** are thesis records
 (hashed in evaluation_additions/manifest.json, read by other studies) and change only

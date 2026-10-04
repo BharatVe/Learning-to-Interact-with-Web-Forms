@@ -84,7 +84,7 @@ class DirectProviderTests(TestCase):
 
 class DirectRunnerAndComparisonTests(TestCase):
     def _write_config(self, repo_root: Path) -> None:
-        config_path = repo_root / "configs/baselines/minimal_models.json"
+        config_path = repo_root / "configs/models.json"
         config_path.parent.mkdir(parents=True, exist_ok=True)
         config_path.write_text(
             json.dumps(
@@ -138,7 +138,7 @@ class DirectRunnerAndComparisonTests(TestCase):
 
             argv = [
                 "--config",
-                "configs/baselines/minimal_models.json",
+                "configs/models.json",
                 "--model-id",
                 "computer_use_mcp_api",
                 "--form-id",

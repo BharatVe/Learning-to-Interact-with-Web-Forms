@@ -28,6 +28,11 @@ def serve_command(settings: Settings) -> list:
     ]
 
 
+def serve_env(settings: Settings) -> dict:
+    """The generated app.py reads LOCALFORMS_PORT/HOST as argparse defaults, so pass resolved values."""
+    return settings.subprocess_env({"LOCALFORMS_HOST": settings.localforms_host, "LOCALFORMS_PORT": str(settings.localforms_port)})
+
+
 class LocalFormsSite:
     """Reuse a running site or start one for the duration of a `with` block."""
 
@@ -45,7 +50,7 @@ class LocalFormsSite:
         with open(self.log_path, "ab") as log:
             self.process = subprocess.Popen(
                 serve_command(self.settings), stdout=log, stderr=subprocess.STDOUT,
-                env=self.settings.subprocess_env(), cwd=str(self.settings.root), start_new_session=True,
+                env=serve_env(self.settings), cwd=str(self.settings.root), start_new_session=True,
             )
         for _ in range(30):
             if site_reachable(self.settings):

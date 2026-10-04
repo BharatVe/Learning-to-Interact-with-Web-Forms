@@ -197,7 +197,7 @@ class TrackBaselineSummaryTests(TestCase):
             )
             (family_b_dir / "manifest.jsonl").write_text("", encoding="utf-8")
 
-            config_path = root / "configs/baselines/track_baseline_models.json"
+            config_path = root / "configs/models.json"
             config_path.parent.mkdir(parents=True, exist_ok=True)
             config_path.write_text(
                 json.dumps(

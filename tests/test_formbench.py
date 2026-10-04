@@ -179,6 +179,11 @@ class SettingsTests(TestCase):
             path.write_text('# c\nexport A=1\nB="two words"\nC=x # trailing\nbad line\n')
             self.assertEqual(parse_env_file(path), {"A": "1", "B": "two words", "C": "x"})
 
+    def test_localforms_port_auto(self):
+        self.assertEqual(load_settings(environ={"LOCALFORMS_PORT": "auto"}).localforms_port, 5000)
+        self.assertEqual(load_settings(environ={"LOCALFORMS_PORT": "auto", "SLURM_JOB_ID": "2331078"}).localforms_port, 38000 + 2331078 % 9000)
+        self.assertEqual(load_settings(environ={"LOCALFORMS_PORT": "6123", "SLURM_JOB_ID": "5"}).localforms_port, 6123)
+
     def test_process_env_overrides_file(self):
         with TemporaryDirectory() as tmp:
             (Path(tmp) / ".env").write_text("LOCALFORMS_PORT=6000\nCACHE_ROOT=cache\n")

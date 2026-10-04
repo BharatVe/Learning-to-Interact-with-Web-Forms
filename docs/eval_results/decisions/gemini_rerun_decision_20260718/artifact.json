@@ -1,0 +1,177 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Gemini Rerun Decision",
+    "description": "Whether a corrected Gemini adapter justifies another 50-form evaluation.",
+    "generatedAt": "2026-07-18T21:31:28Z",
+    "cards": [],
+    "charts": [
+      {
+        "id": "rerun_cost_chart",
+        "title": "Estimated API spend by validation stage",
+        "subtitle": "Historical lower-bound cost and elapsed-time basis from the existing 50-form Gemini evaluation.",
+        "type": "bar",
+        "dataset": "rerun_stages",
+        "sourceId": "gemini_trials",
+        "valueFormat": "currency",
+        "encodings": {
+          "x": {"field": "stage", "type": "nominal", "label": "Validation stage"},
+          "y": {"field": "estimated_cost_usd", "type": "quantitative", "label": "Estimated API cost (USD)"},
+          "tooltip": [
+            {"field": "forms", "type": "quantitative", "label": "Forms"},
+            {"field": "estimated_hours", "type": "quantitative", "label": "Estimated elapsed hours"},
+            {"field": "purpose", "type": "nominal", "label": "Purpose"}
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "decision_gate_table",
+        "title": "Staged decision gate",
+        "subtitle": "Each stage must pass before committing to the next evaluation spend.",
+        "dataset": "decision_gates",
+        "sourceId": "analysis_decision",
+        "defaultSort": {"field": "stage", "direction": "asc"},
+        "columns": [
+          {"field": "stage", "label": "Stage", "type": "text"},
+          {"field": "scope", "label": "Scope", "type": "text"},
+          {"field": "pass_condition", "label": "Pass condition", "type": "text"},
+          {"field": "decision", "label": "Decision", "type": "text"}
+        ]
+      },
+      {
+        "id": "pilot_forms_table",
+        "title": "Five-form pilot baseline",
+        "subtitle": "Two prior full fills and three prior max-step outcomes, all using run 2.",
+        "dataset": "pilot_forms",
+        "sourceId": "gemini_trials",
+        "defaultSort": {"field": "form_id", "direction": "asc"},
+        "columns": [
+          {"field": "form_id", "label": "Form", "type": "text"},
+          {"field": "old_outcome", "label": "Old outcome", "type": "text"},
+          {"field": "correct", "label": "Correct", "type": "number"},
+          {"field": "questions", "label": "Fields", "type": "number"},
+          {"field": "actions", "label": "Actions", "type": "number"},
+          {"field": "cost_usd", "label": "Cost", "format": "currency"}
+        ]
+      }
+    ],
+    "sources": [
+      {"id": "aggregate_results", "label": "Final 50-form aggregate results", "path": "data/model_baseline_exports/fill_only_done_50_20260714/aggregate.json"},
+      {"id": "gemini_trials", "label": "Final 50-form trial results", "path": "data/model_baseline_exports/fill_only_done_50_20260714/trials.csv"},
+      {"id": "analysis_decision", "label": "Rerun decision analysis", "path": "gemini_rerun_decision_20260718/artifact.json"}
+    ],
+    "blocks": [
+      {"id": "title", "type": "markdown", "body": "# Gemini Rerun Decision"},
+      {
+        "id": "executive_summary",
+        "type": "markdown",
+        "body": "## Executive Summary\n\n- **Do not run all 50 forms yet.** Restore the successful initial-request shape, validate one complete stateful form, and run the fixed five-form paired pilot first.\n- **A full rerun is potentially justified scientifically.** Gemini leads OpenCUA by only 6 verified fields, while 28 of Gemini's 50 trials reached the action cap. A stateful adapter could change that narrow comparison.\n- **Money is not the main constraint.** The existing 50-form Gemini evaluation recorded a $3.36 lower-bound API cost but took 12.35 elapsed hours. The five-form pilot is approximately $0.34 and 1.25 hours on the same basis.\n- **Authorize all 50 only after a material pilot change.** The thresholds below prevent spending another overnight run on a behaviorally equivalent adapter."
+      },
+      {
+        "id": "why_material",
+        "type": "markdown",
+        "sourceId": "aggregate_results",
+        "body": "## The adapter could change a narrow thesis result\n\nGemini completed 12 of 50 forms and verified 296 of 409 fields (72.37%). OpenCUA completed 15 forms and verified 290 fields (70.90%). The field-correctness difference is only 1.47 percentage points, or six fields, while full fills currently favor OpenCUA by three forms.\n\nMeanwhile, 28 Gemini trials ended at the 32-action cap and Gemini issued 1,382 actions, versus OpenCUA's 684. Stateful continuation is most likely to matter in repeated or stalled interactions, so it is worth testing even though the coordinate correction alone is immaterial."
+      },
+      {
+        "id": "cost_context",
+        "type": "markdown",
+        "sourceId": "gemini_trials",
+        "body": "## Staged validation contains the real cost\n\nThe historical Gemini average was about $0.067 in recorded lower-bound API spend and 14.8 minutes per form. A five-form pilot costs roughly one tenth of a full rerun and directly tests whether statefulness changes easy successes, hard max-step cases, or action efficiency. Actual provider latency may differ."
+      },
+      {"id": "cost_chart", "type": "chart", "chartId": "rerun_cost_chart"},
+      {
+        "id": "recommended_path",
+        "type": "markdown",
+        "body": "## Run one form, then five, then decide\n\nThe first gate verifies that the minimally changed request produces valid tool calls and completes stateful continuation. The second gate uses the same fixed five forms already selected from the 50-form evaluation. Only a material paired change should trigger all 50."
+      },
+      {"id": "decision_gates", "type": "table", "tableId": "decision_gate_table"},
+      {
+        "id": "pilot_context",
+        "type": "markdown",
+        "sourceId": "gemini_trials",
+        "body": "## The five-form sample tests both stability and upside\n\nThe fixed pilot contains two forms the old adapter completed and three that reached the step cap. The old adapter verified 32 of 43 fields, used 138 actions, cost $0.342, and took 1.25 hours. This detects regressions on easy forms and improvements on cases statefulness is intended to help."
+      },
+      {"id": "pilot_table", "type": "table", "tableId": "pilot_forms_table"},
+      {
+        "id": "further_questions",
+        "type": "markdown",
+        "body": "## What would change the decision?\n\n- Does the minimal runner complete one full stateful interaction without malformed tool calls?\n- On five paired forms, does it change at least two field outcomes, two full-fill outcomes, or total actions by at least 15%?\n- Does it recover at least two of the three prior max-step forms?\n\nThese are practical decision thresholds, not statistical-significance tests. If none is met and easy forms do not regress, retain the existing 50-form result and document the sensitivity check."
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "body": "## Caveats and Assumptions\n\nThe cost is a lower-bound estimate because artifacts do not reliably split input and output tokens. Elapsed time includes variable provider latency. Five forms cannot establish population-level equivalence; the pilot is a cost-control gate. The runner must first restore the old initial request because the previous attempted correction introduced a 128-token output cap and failed before any browser action."
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-18T21:31:28Z",
+    "status": "ready",
+    "datasets": {
+      "rerun_stages": [
+        {"stage": "1-form validation", "forms": 1, "estimated_cost_usd": 0.067184, "estimated_hours": 0.247, "purpose": "Verify request and continuation"},
+        {"stage": "5-form paired pilot", "forms": 5, "estimated_cost_usd": 0.341562, "estimated_hours": 1.252, "purpose": "Test easy and max-step cases"},
+        {"stage": "10-form expanded pilot", "forms": 10, "estimated_cost_usd": 0.671838, "estimated_hours": 2.469, "purpose": "Optional uncertainty reduction"},
+        {"stage": "50-form full rerun", "forms": 50, "estimated_cost_usd": 3.359188, "estimated_hours": 12.346, "purpose": "Replace the primary comparison"}
+      ],
+      "decision_gates": [
+        {"order": 1, "stage": "Protocol validation", "scope": "1 complete form", "pass_condition": "Valid tool call, stateful continuation, no adapter failure", "decision": "Proceed to five forms"},
+        {"order": 2, "stage": "Paired pilot", "scope": "5 fixed forms", "pass_condition": "2 field changes, 2 fill changes, 15% action change, or 2 max-step recoveries", "decision": "Material effect justifies 50"},
+        {"order": 3, "stage": "Replacement evaluation", "scope": "All 50 forms", "pass_condition": "Stable minimal adapter and unchanged contract", "decision": "Replace primary result; retain old sensitivity baseline"}
+      ],
+      "pilot_forms": [
+        {"form_id": "conf_interest", "old_outcome": "filled_without_submit", "correct": 7, "questions": 7, "actions": 25, "duration_s": 1288.053, "tokens": 40282, "cost_usd": 0.060423},
+        {"form_id": "event_rsvp", "old_outcome": "filled_without_submit", "correct": 6, "questions": 6, "actions": 17, "duration_s": 281.301, "tokens": 25885, "cost_usd": 0.038828},
+        {"form_id": "course_feedback", "old_outcome": "max_steps_exceeded", "correct": 5, "questions": 9, "actions": 32, "duration_s": 585.324, "tokens": 52230, "cost_usd": 0.078345},
+        {"form_id": "conference_travel", "old_outcome": "max_steps_exceeded", "correct": 7, "questions": 10, "actions": 32, "duration_s": 1146.533, "tokens": 54941, "cost_usd": 0.082411},
+        {"form_id": "travel_reimbursement", "old_outcome": "max_steps_exceeded", "correct": 7, "questions": 11, "actions": 32, "duration_s": 1207.572, "tokens": 54370, "cost_usd": 0.081555}
+      ]
+    },
+    "accessIssues": []
+  },
+  "sources": [
+    {
+      "id": "aggregate_results",
+      "query": {
+        "engine": "local_files",
+        "language": "jq",
+        "description": "Reads final canonical 50-form aggregate metrics.",
+        "tables_used": ["data/model_baseline_exports/fill_only_done_50_20260714/aggregate.json"],
+        "filters": ["run_0002", "fill_only_done", "50 usable forms per condition"],
+        "metric_definitions": {"field_correctness": "verified_correctness / question_total", "full_fill": "all target fields verified before DONE", "model_actions": "model-issued actions only"},
+        "executed_at": "2026-07-18T21:31:28Z"
+      }
+    },
+    {
+      "id": "gemini_trials",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "WITH g AS (SELECT * FROM read_csv_auto('data/model_baseline_exports/fill_only_done_50_20260714/trials.csv') WHERE model_id = 'computer_use_gemini_35_flash_lowcost'), base AS (SELECT SUM(estimated_usd_lower_bound) AS total_cost, SUM(duration_s) / 3600.0 AS total_hours, COUNT(*) AS forms FROM g), pilot AS (SELECT SUM(estimated_usd_lower_bound) AS pilot_cost, SUM(duration_s) / 3600.0 AS pilot_hours FROM g WHERE form_id IN ('conf_interest','event_rsvp','course_feedback','conference_travel','travel_reimbursement')) SELECT '1-form validation' AS stage, 1 AS forms, total_cost / forms AS estimated_cost_usd, total_hours / forms AS estimated_hours FROM base UNION ALL SELECT '5-form paired pilot', 5, pilot_cost, pilot_hours FROM pilot UNION ALL SELECT '10-form expanded pilot', 10, total_cost / forms * 10, total_hours / forms * 10 FROM base UNION ALL SELECT '50-form full rerun', 50, total_cost, total_hours FROM base",
+        "description": "Aggregates Gemini cost, duration, and pilot rows from canonical trials.",
+        "tables_used": ["data/model_baseline_exports/fill_only_done_50_20260714/trials.csv"],
+        "filters": ["model_id=computer_use_gemini_35_flash_lowcost", "run_0002", "usable=true"],
+        "metric_definitions": {"estimated_cost_usd": "sum of estimated_usd_lower_bound", "elapsed_hours": "sum(duration_s) / 3600", "pilot": "five fixed named forms"},
+        "executed_at": "2026-07-18T21:31:28Z"
+      }
+    },
+    {
+      "id": "analysis_decision",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT * FROM (VALUES (1, 'Protocol validation', '1 complete form', 'Valid tool call, stateful continuation, no adapter failure', 'Proceed to five forms'), (2, 'Paired pilot', '5 fixed forms', '2 field changes, 2 fill changes, 15% action change, or 2 max-step recoveries', 'Material effect justifies 50'), (3, 'Replacement evaluation', 'All 50 forms', 'Stable minimal adapter and unchanged contract', 'Replace primary result; retain old sensitivity baseline')) AS t(order_id, stage, scope, pass_condition, decision)",
+        "description": "Defines staged go/no-go thresholds from aggregate and trial evidence.",
+        "tables_used": ["aggregate.json", "trials.csv"],
+        "filters": ["Thresholds are practical gates, not significance tests"],
+        "executed_at": "2026-07-18T21:31:28Z"
+      }
+    }
+  ]
+}

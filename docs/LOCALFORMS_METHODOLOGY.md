@@ -1,7 +1,8 @@
 # LocalForms: dataset creation methodology for the platform comparison
 
 This is the methods note for the second-platform arm of the interface comparison
-(see `docs/ALTERNATIVE_PLATFORM_PLAN.md` for the original proposal and rationale).
+(the original proposal document was not committed; its rationale is summarised here and
+the results are in `docs/LOCALFORMS_ANALYSIS_FOR_THESIS.md`).
 It answers one question precisely: **did we use FormFactory as-is, or modify it,
 and how.**
 
@@ -64,7 +65,7 @@ src/forms/<form_id>/spec.json  →  evaluation_additions/formfactory_import/site
 data/answers/<form_id>/runs.json → data/answers_localforms/lf_<form_id>/runs.json         (copied, form_id renamed)
 ```
 
-Generator: `scripts/generate_localforms.py`. Deterministic and idempotent — rerun
+Generator: `src/dataset/localforms.py` (`make data`). Deterministic and idempotent — rerun
 any time the 50 source specs change; it fully regenerates all four outputs from
 scratch (`shutil.rmtree` + rebuild) so there is never a stale/partial mix.
 
@@ -162,9 +163,9 @@ presents a lone `input[type=text]` for a date/time question.
    of the job (`.venv-opencua`), verified under the actual loaded module
    environment, then rerun clean: 0 invalid tool calls, 0 tool errors, 7/7 fields
    verified.
-5. **10-form and 40-form batch jobs** — in progress at time of writing; see
-   `docs/ALTERNATIVE_PLATFORM_PLAN.md` / session log for current job IDs and
-   results as they land.
+5. **10-form and 40-form batch jobs** — completed; job history in
+   `docs/EVAL_IMPLEMENTATION_TRACKING_LOG.md`, results in
+   `docs/LOCALFORMS_ANALYSIS_FOR_THESIS.md`.
 
 ## 7. Where everything lives
 
@@ -172,13 +173,10 @@ presents a lone `input[type=text]` for a date/time question.
 |---|---|
 | Upstream reference (unmodified) | `evaluation_additions/formfactory_import/upstream/` |
 | Generated Flask site | `evaluation_additions/formfactory_import/site/` |
-| Generator script | `scripts/generate_localforms.py` |
+| Generator | `src/dataset/localforms.py` (run by `make data`) |
 | Generated form specs (50) | `src/forms_localforms/lf_*/spec.json` |
 | Generated answer sets (50) | `data/answers_localforms/lf_*/runs.json` |
-| Slurm job scripts | `scripts/slurm_opencua_direct_mcp_localforms.sbatch`, `scripts/run_opencua_direct_mcp_localforms_matrix.sh`, `scripts/run_localforms_server.sh` |
+| Experiment manifest | `configs/experiments/localforms_opencua_direct_mcp.json` (`make submit EXPERIMENT=localforms_opencua_direct_mcp`; the site is started per job) |
 | Implementation notes | `evaluation_additions/formfactory_import/README.md` |
-| Original proposal / alternatives considered | `docs/ALTERNATIVE_PLATFORM_PLAN.md` |
 | This methodology report | `docs/LOCALFORMS_METHODOLOGY.md` |
 
-Nothing here has been committed to git yet — these are working-tree changes,
-ready to review with `git status` / `git diff` and commit when you're ready.

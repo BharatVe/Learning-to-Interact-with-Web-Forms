@@ -197,10 +197,10 @@ def cmd_data_relpaths(settings: Settings, args: argparse.Namespace) -> int:
 
 
 def cmd_forms_serve(settings: Settings, args: argparse.Namespace) -> int:
-    from formbench.forms_site import serve_command
+    from formbench.forms_site import serve_command, serve_env
 
     info(f"LocalForms at {settings.localforms_base_url} (Ctrl-C to stop)")
-    return subprocess.run(serve_command(settings), env=settings.subprocess_env(), cwd=str(settings.root)).returncode
+    return subprocess.run(serve_command(settings), env=serve_env(settings), cwd=str(settings.root)).returncode
 
 
 def cmd_ideal(settings: Settings, args: argparse.Namespace) -> int:

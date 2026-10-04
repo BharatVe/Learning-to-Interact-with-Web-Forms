@@ -22,7 +22,7 @@ The screenshot condition receives the same remaining-answer task state used by t
 - Submission-enabled correctness is captured immediately before the successful submission, avoiding the loss of readable field state after navigation.
 - All four conditions are rerun with the current evaluator. This avoids mixing the new 128-step visual protocol with the earlier direct-MCP fill-only export, which combined three batches, used a 32-step cap, and predated the current scoring metadata.
 - Action counts exclude setup navigation, screenshots, internal DOM verification, harness synchronization, and browser close. `browser_fill_form` is additionally expanded by its number of fields. Action efficiency remains secondary because semantic MCP calls and UI primitives have inherently different granularity.
-- `scripts/analyze_formfactory_qwen3vl_comparison.py` reads only the explicit sources in `configs/baselines/formfactory_qwen3vl_comparison_analysis.json`. It fails in strict mode on missing forms, duplicates, or mixed task modes.
+- `make study NAME=formfactory_qwen3vl` (`src/analysis/studies/formfactory_qwen3vl.py`) reads only the explicit sources in `configs/analysis/formfactory_qwen3vl.json`. It fails in strict mode on missing forms, duplicates, or mixed task modes.
 
 ## Current execution status (2026-07-26)
 
