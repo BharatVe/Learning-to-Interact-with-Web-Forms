@@ -31,7 +31,7 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from baselines.model_registry import get_model_by_id, list_models
 from formbench.common import (
-    FormbenchError, answer_run_id, discover_form_ids, info, new_run_label, new_trial_id,
+    FormbenchError, answer_run_id, discover_form_ids, fail, info, new_run_label, new_trial_id,
     parse_run_indexes, quote_cmd, read_json, short, utc_now, warn, write_json,
 )
 from formbench.protocols import TrialSpec, build_trial_command, protocol_for, resolve_runner_args, uses_vllm_python
@@ -208,6 +208,7 @@ class TrialOutcome:
     failure_category: Optional[str] = None
     failure_detail: Optional[str] = None
     fallback_for: Optional[str] = None
+    summary_written: bool = False
 
 
 def _trial_env(settings: Settings, model: Mapping[str, Any], extra: Mapping[str, str]) -> Dict[str, str]:
@@ -250,6 +251,7 @@ class MatrixRunner:
         self.registry = {str(m["id"]): m for m in list_models(settings.models_config)}
         self.outcomes: List[TrialOutcome] = []
         self.skipped = 0
+        self.server_failures: List[Dict[str, Any]] = []
 
     def model(self, model_id: str) -> Dict[str, Any]:
         if model_id not in self.registry:
@@ -295,7 +297,7 @@ class MatrixRunner:
             cohort.experiment_id, model["id"], form_id, run_index, spec.trial_id, code, round(time.time() - started, 1),
             success=summary.get("success"), stop_reason=summary.get("stop_reason"),
             failure_category=summary.get("failure_category"), failure_detail=summary.get("failure_detail"),
-            fallback_for=fallback_for,
+            fallback_for=fallback_for, summary_written=bool(summary),
         )
         status = "ok" if code == 0 else f"exit={code}"
         info(f"trial done {status} success={outcome.success} stop_reason={outcome.stop_reason} ({outcome.duration_s}s)")
@@ -328,7 +330,23 @@ class MatrixRunner:
         info(f"{header}: {len(todo)} trial(s)")
         with ExitStack() as stack:
             if endpoint is not None and endpoint.managed:
-                stack.enter_context(VLLMServer(self.settings, model, endpoint))
+                try:
+                    stack.enter_context(VLLMServer(self.settings, model, endpoint))
+                except FormbenchError as exc:
+                    if self.fail_fast:
+                        raise
+                    # One model's server failing must not cost the other models in this job their trials.
+                    first_line = str(exc).splitlines()[0]
+                    fail(f"{header}: server did not start; {len(todo)} trial(s) marked server_start_failed, continuing\n{exc}")
+                    if exc.hint:
+                        print(f"       fix: {exc.hint}", flush=True)
+                    self.server_failures.append({"experiment_id": cohort.experiment_id, "model_id": model["id"], "error": first_line})
+                    for form_id, run_index in todo:
+                        self.outcomes.append(TrialOutcome(
+                            cohort.experiment_id, model["id"], form_id, run_index, "", -1, 0.0, success=False,
+                            stop_reason="server_start_failed", failure_category="server_start_failed", failure_detail=first_line,
+                        ))
+                    return
             fallback = self.fallback_model(model["id"]) if cohort.fallback else None
             for form_id, run_index in todo:
                 outcome = self.run_trial(cohort, model, form_id, run_index, endpoint)
@@ -356,9 +374,16 @@ class MatrixRunner:
     def finish(self, started: Any) -> int:
         from formbench.analysis_hooks import post_matrix
 
-        failed = [o for o in self.outcomes if o.exit_code != 0]
+        completed = [o for o in self.outcomes if o.summary_written]
         succeeded = [o for o in self.outcomes if o.success]
-        info(f"trials run={len(self.outcomes)} runner_errors={len(failed)} task_success={len(succeeded)} skipped={self.skipped}")
+        crashed = [o for o in self.outcomes if o.exit_code != 0 and not o.summary_written and o.stop_reason != "server_start_failed"]
+        unserved = [o for o in self.outcomes if o.stop_reason == "server_start_failed"]
+        info(
+            f"trials={len(self.outcomes)} completed={len(completed)} task_success={len(succeeded)} "
+            f"runner_crashes={len(crashed)} server_start_failed={len(unserved)} skipped={self.skipped}"
+        )
+        for o in crashed:
+            warn(f"runner crashed without a summary: model={o.model_id} form={o.form_id} run={o.run_index} exit={o.exit_code}")
         report = {
             "experiment": self.experiment.id,
             "source": str(self.experiment.source) if self.experiment.source else None,
@@ -367,14 +392,16 @@ class MatrixRunner:
             "slurm_job_id": os.environ.get("SLURM_JOB_ID"),
             "overrides": self.overrides,
             "skipped": self.skipped,
+            "server_failures": self.server_failures,
             "outcomes": [o.__dict__ for o in self.outcomes],
         }
         out = self.settings.logs_dir / "matrix" / f"{self.experiment.id}-{started.strftime('%Y%m%dT%H%M%SZ')}.json"
         write_json(out, report)
         info(f"matrix report: {out}")
-        if self.outcomes:
+        if completed:
             post_matrix(self.settings, self.experiment, update_tracker=self.update_tracker)
-        return 1 if failed and self.fail_fast else 0
+        # Task failures are benchmark results (exit 0); infrastructure failures fail the job so Slurm shows them.
+        return 1 if self.server_failures or crashed else 0
 
 
 def parse_overrides(pairs: List[str]) -> Dict[str, Any]:

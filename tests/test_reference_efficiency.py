@@ -106,6 +106,33 @@ class ReferenceEfficiencyHelperTests(TestCase):
             self.assertAlmostEqual(payload["action_overhead_ratio"], 5 / 3, places=6)
             self.assertEqual(payload["time_overhead_ratio"], 7.5)
 
+    def test_reference_with_stale_recorded_video_path_falls_back_to_run_dir(self):
+        """After a workspace move the recorded absolute video_path no longer exists; the video next to the trace still counts."""
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            reference_root = root / "data/forms/conf_interest/runs/run_0001"
+            reference_root.mkdir(parents=True, exist_ok=True)
+            (reference_root / "annotations.json").write_text(
+                json.dumps({"video_path": "/data/horse/ws/old-workspace/Learning-to-Interact-with-Web-Forms/data/forms/conf_interest/runs/run_0001",
+                            "submit": {"success": True}}),
+                encoding="utf-8",
+            )
+            (reference_root / "conf_interest_run_0001.webm").write_bytes(b"video")
+            (reference_root / "tool_trace.jsonl").write_text(
+                "\n".join(json.dumps({"name": n, "t_s": t}) for n, t in (("browser_type", 1.0), ("browser_click", 2.0))) + "\n",
+                encoding="utf-8",
+            )
+            model_trace = root / "trial/tool_trace.jsonl"
+            model_trace.parent.mkdir(parents=True, exist_ok=True)
+            model_trace.write_text(json.dumps({"name": "browser_type", "t_s": 1.0}) + "\n", encoding="utf-8")
+            with patch.object(rbe, "ROOT_DIR", root):
+                payload = rbe._resolve_reference_efficiency(
+                    form_id="conf_interest", answer_run_id="run_0001", model_duration_s=5.0, model_trace_path=model_trace,
+                )
+            self.assertTrue(payload["reference_available"])
+            self.assertTrue(payload["reference_video_path"].endswith("conf_interest_run_0001.webm"))
+            self.assertEqual(payload["reference_action_count"], 2)
+
     def test_resolve_reference_efficiency_can_prefer_model_action_count(self):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)

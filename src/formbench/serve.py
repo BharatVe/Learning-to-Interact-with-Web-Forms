@@ -44,7 +44,7 @@ SERVE_DEFAULTS: Dict[str, Any] = {
     "chat_template": None,
     "extra_args": [],
     "env": {},
-    "startup_attempts": 180,
+    "startup_attempts": 420,
     "startup_sleep_s": 10,
 }
 NCCL_ENV = {

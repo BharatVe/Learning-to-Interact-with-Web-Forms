@@ -44,7 +44,7 @@
       "openai_model": "vlm-qwen3-vl-30b-a3b-instruct",
       "served_model_name": "vlm-qwen3-vl-30b-a3b-instruct",
       "server_backend": "vllm",
-      "serve": {"port": "auto", "tensor_parallel": 2, "gpu_memory_utilization": 0.92, "tool_call_parser": "hermes", "generation_config": "vllm", "limit_mm_per_prompt": "{\"image\":1,\"video\":0}", "startup_attempts": 180},
+      "serve": {"port": "auto", "tensor_parallel": 2, "gpu_memory_utilization": 0.92, "tool_call_parser": "hermes", "generation_config": "vllm", "limit_mm_per_prompt": "{\"image\":1,\"video\":0}", "startup_attempts": 420},
       "resources": {"gpus": 2, "cpus": 12, "mem": "120G", "time": "24:00:00"},
       "notes": "FormFactory-inspired condition: answers plus screenshots, primitive coordinate/keyboard actions, no model-visible DOM map. Runs through the mediated runner (run_baseline_eval.py)."
     },
@@ -137,7 +137,7 @@
       "openai_model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
       "served_model_name": "Qwen/Qwen3-30B-A3B-Instruct-2507",
       "server_backend": "vllm",
-      "serve": {"port": "auto", "tensor_parallel": 2, "gpu_memory_utilization": 0.92, "tool_call_parser": "hermes", "generation_config": "vllm", "startup_attempts": 180},
+      "serve": {"port": "auto", "tensor_parallel": 2, "gpu_memory_utilization": 0.92, "tool_call_parser": "hermes", "generation_config": "vllm", "startup_attempts": 420},
       "resources": {"gpus": 2, "cpus": 12, "mem": "120G", "time": "24:00:00"},
       "notes": "Benchmark-action (mediated) protocol, vLLM serving. Was `text_qwen3_30b_a3b_instruct_2507` in minimal_models.json."
     },
@@ -152,7 +152,7 @@
       "openai_model": "Qwen/Qwen3-30B-A3B-Instruct-2507-FP8",
       "served_model_name": "Qwen/Qwen3-30B-A3B-Instruct-2507-FP8",
       "server_backend": "vllm",
-      "serve": {"port": "auto", "tensor_parallel": 2, "gpu_memory_utilization": 0.92, "tool_call_parser": "hermes", "generation_config": "vllm", "startup_attempts": 180},
+      "serve": {"port": "auto", "tensor_parallel": 2, "gpu_memory_utilization": 0.92, "tool_call_parser": "hermes", "generation_config": "vllm", "startup_attempts": 420},
       "resources": {"gpus": 2, "cpus": 12, "mem": "120G", "time": "24:00:00"},
       "notes": "FP8 A/B variant for throughput/stability comparison (mediated protocol)."
     },
@@ -168,7 +168,7 @@
       "openai_model": "Qwen/Qwen3-VL-30B-A3B-Instruct",
       "served_model_name": "Qwen/Qwen3-VL-30B-A3B-Instruct",
       "server_backend": "vllm",
-      "serve": {"port": "auto", "tensor_parallel": 2, "gpu_memory_utilization": 0.92, "tool_call_parser": "hermes", "generation_config": "vllm", "limit_mm_per_prompt": "{\"image\":1,\"video\":0}", "startup_attempts": 180},
+      "serve": {"port": "auto", "tensor_parallel": 2, "gpu_memory_utilization": 0.92, "tool_call_parser": "hermes", "generation_config": "vllm", "limit_mm_per_prompt": "{\"image\":1,\"video\":0}", "startup_attempts": 420},
       "resources": {"gpus": 2, "cpus": 12, "mem": "120G", "time": "24:00:00"},
       "notes": "Benchmark-action (mediated) protocol VLM. Was `vlm_qwen3_vl_30b_a3b_instruct` in minimal_models.json."
     },
@@ -185,7 +185,7 @@
       "openai_model": "Qwen/Qwen3-VL-8B-Instruct-FP8",
       "served_model_name": "Qwen/Qwen3-VL-8B-Instruct-FP8",
       "server_backend": "vllm",
-      "serve": {"port": "auto", "tensor_parallel": 2, "gpu_memory_utilization": 0.92, "tool_call_parser": "hermes", "generation_config": "vllm", "limit_mm_per_prompt": "{\"image\":1,\"video\":0}", "startup_attempts": 180},
+      "serve": {"port": "auto", "tensor_parallel": 2, "gpu_memory_utilization": 0.92, "tool_call_parser": "hermes", "generation_config": "vllm", "limit_mm_per_prompt": "{\"image\":1,\"video\":0}", "startup_attempts": 420},
       "resources": {"gpus": 2, "cpus": 12, "mem": "120G", "time": "24:00:00"},
       "notes": "Fallback when the primary mediated VLM fails with timeout/OOM/startup errors."
     },

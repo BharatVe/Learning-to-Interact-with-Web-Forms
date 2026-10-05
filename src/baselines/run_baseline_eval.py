@@ -2402,7 +2402,8 @@ def _resolve_reference_efficiency(
     reference_video_path = None
     if raw_reference_available:
         raw_video = reference_annotations.get("video_path")
-        if isinstance(raw_video, str) and raw_video.strip():
+        # The recorded path is absolute and goes stale when the workspace moves; then use the video beside the trace.
+        if isinstance(raw_video, str) and raw_video.strip() and Path(raw_video.strip()).exists():
             reference_video_path = raw_video.strip()
         else:
             candidates = sorted(ref_paths["run_root"].glob("*.webm"))

@@ -101,6 +101,8 @@ STUB_RUNNER = textwrap.dedent(
         p.add_argument(flag)
     a, _ = p.parse_known_args()
     outcome = os.environ.get("STUB_OUTCOME_" + a.model_id.upper(), "success")
+    if outcome == "crash":
+        print("Traceback: stub runner crashed", file=sys.stderr); sys.exit(2)
     root = Path(a.dataset_root or "data/model_baselines")
     d = root / a.experiment_id / a.model_id / a.form_id / f"run_{int(a.run_index):04d}" / a.trial_id
     d.mkdir(parents=True, exist_ok=True)
@@ -344,6 +346,39 @@ class MatrixExecutionTests(TestCase):
                 with p1, p2, self.assertRaises(common.FormbenchError):
                     strict.run()
                 self.assertEqual(len(strict.outcomes), 1)
+
+    def test_runner_crash_without_summary_fails_the_job(self):
+        with TemporaryDirectory() as tmp:
+            api = {"id": "api_model", "kind": "computer_use_agent", "provider": "gemini_low_cost", "track": "proprietary_computer_use_low_cost", "gemini_model": "g"}
+            rt = RuntimeEnv(Path(tmp), [api])
+            cohort = dict(name="c", experiment_id="exp_crash", models=["api_model"], forms=["conf_interest"], run_indexes=[1])
+            runner, p1, p2 = self._runner(rt, cohort)
+            with p1, p2 as post, mock.patch.dict(os.environ, {"STUB_OUTCOME_API_MODEL": "crash"}):
+                self.assertEqual(runner.run(), 1)
+            self.assertFalse(runner.outcomes[0].summary_written)
+            post.assert_not_called()  # nothing to summarise
+
+    def test_server_start_failure_marks_trials_and_continues_with_next_model(self):
+        with TemporaryDirectory() as tmp:
+            broken = _served_model("broken", "crash-model", free_port())
+            api = {"id": "api_model", "kind": "computer_use_agent", "provider": "gemini_low_cost", "track": "proprietary_computer_use_low_cost", "gemini_model": "g"}
+            rt = RuntimeEnv(Path(tmp), [broken, api])
+            cohort = dict(name="c", experiment_id="exp_srv", models=["broken", "api_model"], forms=["conf_interest", "event_rsvp"], run_indexes=[1])
+            runner, p1, p2 = self._runner(rt, cohort)
+            with p1, p2 as post, mock.patch.dict(os.environ, {"STUB_OUTCOME_API_MODEL": "success"}):
+                self.assertEqual(runner.run(), 1)  # infrastructure failure -> non-zero job exit
+            by_model = {}
+            for o in runner.outcomes:
+                by_model.setdefault(o.model_id, []).append(o)
+            self.assertEqual([o.stop_reason for o in by_model["broken"]], ["server_start_failed"] * 2)
+            self.assertTrue(all(o.success for o in by_model["api_model"]))
+            post.assert_called_once()
+            report = json.loads(next((Path(tmp) / "logs" / "matrix").glob("exp-*.json")).read_text())
+            self.assertEqual(report["server_failures"][0]["model_id"], "broken")
+            self.assertIn("exited with code 3", report["server_failures"][0]["error"])
+            strict, p1, p2 = self._runner(rt, dict(cohort, experiment_id="exp_srv2"), fail_fast=True)
+            with p1, p2, self.assertRaises(common.FormbenchError):
+                strict.run()
 
     def test_vlm_fallback_runs_after_timeout(self):
         with TemporaryDirectory() as tmp:
