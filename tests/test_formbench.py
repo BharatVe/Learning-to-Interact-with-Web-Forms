@@ -43,6 +43,19 @@ class RegistryTests(TestCase):
         self.assertTrue(any("opnai_model" in w for w in warnings))
 
 
+class DocumentationExampleTests(TestCase):
+    def test_model_examples_in_docs_are_valid_registry_entries(self):
+        import re
+
+        text = (REPO_ROOT / "docs" / "MODELS.md").read_text()
+        blocks = [json.loads(b) for b in re.findall(r"```json\n(.*?)```", text, flags=re.S) if '"provider"' in b and '"cohorts"' not in b]
+        self.assertGreaterEqual(len(blocks), 2)
+        errors, warnings = validate_models(blocks)
+        self.assertEqual((errors, warnings), ([], []))
+        for model in blocks:
+            protocols.protocol_for(model)  # every documented example maps to a runner
+
+
 class ProtocolCommandTests(TestCase):
     """Generated runner commands must match what the replaced shell matrices passed."""
 

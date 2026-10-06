@@ -58,31 +58,31 @@ The schema is enforced: wrong types, unknown providers or tracks, a
 `tensor_parallel` larger than `resources.gpus`, or a dangling `fallback_for` are
 errors. Unknown keys are reported as likely typos.
 
-## Swapping a model
+## Adding or swapping a model
 
-1. **Same family, different checkpoint** (for example a newer Qwen VL): copy the existing
-   entry and change `id`, `hf_repo`, `openai_model`/`served_model_name`, and `resources`/`serve`
-   if the size changes. Keep `track` to keep the protocol.
-2. `make model-check MODEL=<new_id>`. Fix every FAIL row; WARN rows are informational.
-3. `make install-models MODEL=<new_id>` to pre-fetch weights (optional; vLLM downloads them
-   otherwise).
-4. One trial: `make eval MODEL=<new_id> FORM=conf_interest RUN=1 SET="max_steps=8" DRY_RUN=1`,
-   then without `DRY_RUN` (or `SUBMIT=1` on the cluster).
-5. In experiments: `make matrix EXPERIMENT=<manifest> MODELS=<new_id>` filters a manifest to
-   specific models, or add the id to a cohort's `models` list.
+Most new models need **only a registry entry**, with no code changes. The work is
+picking the right `provider` + `track` (which decides the runner), then checking and
+trialling the entry.
 
-**Hosted API model** (no GPU), e.g. an OpenAI-compatible endpoint:
+### Step 1: decide what kind of model it is
 
-```json
-{
-  "id": "my_api_model", "status": "current", "kind": "computer_use_agent",
-  "provider": "api_over_mcp", "track": "direct_api_tool_use",
-  "openai_model": "provider/model-name", "openai_base_url": "https://api.example.org/v1",
-  "api_key_env": "OPENAI_API_KEY", "resources": {"gpus": 0, "cpus": 6, "mem": "32G", "time": "12:00:00"}
-}
-```
+| Your model | `provider` / `track` | `kind` | Code changes? |
+|---|---|---|---|
+| Open-weights chat model with tool calling (Qwen, Llama, Mistral, …), served on our GPUs | `openai_compat` / `direct_mcp_tool_use` + `serve` block | `text_llm` or `vlm` | No |
+| Same, but already served elsewhere (another job, a group server) | `openai_compat` / `direct_mcp_tool_use` + `openai_base_url` (no `serve`) | `text_llm` or `vlm` | No |
+| Hosted OpenAI-compatible or Anthropic API (e.g. a university LLM service) | `api_over_mcp` / `direct_api_tool_use` | `computer_use_agent` | No |
+| Gemini computer-use model | `gemini_low_cost` / `proprietary_computer_use_low_cost` | `computer_use_agent` | No (`gemini_model` picks the version) |
+| Screenshot → pyautogui-style computer-use model (OpenCUA family) | `openai_compat` / `computer_use_native` | `computer_use_agent` | No if it emits OpenCUA-style `pyautogui.*` actions; otherwise the action parser in `run_opencua_direct_eval.py` needs extending |
+| Small model run in-process with transformers (benchmark-action protocol) | `local_hf` / `mediated` | `text_llm` or `vlm` | No |
+| A new kind of agent/API not covered above | new provider | | Yes, see "Adding a new protocol" below |
 
-**Locally served model** (vLLM, started and stopped by `eval`/`matrix`):
+**Swapping** a checkpoint within a family (for example a newer Qwen VL): copy the existing entry
+and change `id`, `hf_repo`, `openai_model`/`served_model_name`, and `resources`/`serve` if the
+size changes. Keep `track`, so the comparison uses the same protocol.
+
+### Step 2: add the entry to `configs/models.json`
+
+**Locally served model** (vLLM is started and stopped by `eval`/`matrix`):
 
 ```json
 {
@@ -94,8 +94,62 @@ errors. Unknown keys are reported as likely typos.
 }
 ```
 
-Never put API keys in the registry. Export them, or for Gemini use
-`.secrets/gemini_api_key` (mode 600; gitignored).
+Sizing: `tensor_parallel` must not exceed `resources.gpus`. Roughly, weights in bf16 need 2 GB per
+billion parameters, plus room for the KV cache (a 30B model fits on 2 × A100-40GB). Set
+`tool_call_parser` to the parser vLLM documents for the model family. Large checkpoints on the
+cluster filesystem can take 15–45 min to load, and `startup_attempts` (default 420 × 10 s) covers
+that.
+
+**Hosted OpenAI-compatible API** (no GPU). This is the SCADS/TUD:AI Gemma 4 endpoint used in a
+pilot, kept here as a ready-made example:
+
+```json
+{
+  "id": "scads_gemma4_31b_it_api", "status": "current", "kind": "computer_use_agent",
+  "provider": "api_over_mcp", "track": "direct_api_tool_use", "hf_repo": "google/gemma-4-31B-it",
+  "requires_gpu": false, "openai_model": "google/gemma-4-31B-it", "openai_base_url": "https://llm.scads.ai/v1",
+  "openai_extra_body": {"disable_fallbacks": true}, "api_key_env": "OPENAI_API_KEY",
+  "resources": {"gpus": 0, "cpus": 6, "mem": "32G", "time": "12:00:00"}
+}
+```
+
+Never put API keys in the registry. Export the variable named in `api_key_env`
+(`export OPENAI_API_KEY=…`), or for Gemini use `.secrets/gemini_api_key` (mode 600; gitignored).
+The preflight refuses to start a remote API model without its key.
+
+### Step 3: check, trial, then scale up
+
+```bash
+make model-check MODEL=<id>                 # fix every FAIL row; WARN rows are informational
+make install-models MODEL=<id>              # optional: pre-fetch weights (served / local_hf models)
+make eval MODEL=<id> FORM=conf_interest RUN=1 SET="max_steps=8" DRY_RUN=1    # inspect the exact commands
+make eval MODEL=<id> FORM=conf_interest RUN=1 SET="max_steps=8" SUBMIT=1 TIME=02:00:00   # cluster
+make inspect TRIAL=adhoc_<id>_<date>/<id>/conf_interest/run_0001 STEPS=all  # did it behave sensibly?
+```
+
+Then add the id to a cohort's `models` list in an experiment manifest (or create one, see below),
+and run `make submit EXPERIMENT=<name> DRY_RUN=1` before submitting for real.
+`make matrix EXPERIMENT=<manifest> MODELS=<id>` filters an existing manifest to just your model.
+
+### Adding a new protocol (only for a new kind of agent)
+
+If the model needs a different interaction loop or API than every protocol above:
+
+1. **Runner:** add `src/baselines/run_<name>_eval.py`. Copy the closest existing runner, since
+   they share argument names (`--config --model-id --form-id --run-index --trial-id
+   --experiment-id …`). Write outputs with `rbe._build_trial_paths`,
+   `rbe._update_experiment_indexes` and the usual `summary.json`/`annotations.json`
+   fields (`success`, `question_total`, `scored_correctness`, `stop_reason`, `run_params`), so
+   analytics and skip-completed logic work unchanged. Reuse `baselines/common.py` for HTTP and
+   answer loading.
+2. **Registry schema:** add the provider to `PROVIDERS` and its allowed keys to `PROVIDER_KEYS`
+   (plus any required-key rule) in `src/baselines/model_registry.py`, and a track to `TRACKS`.
+3. **Protocol:** add a `Protocol` (script, default flags) to `PROTOCOLS` and a branch in
+   `protocol_for()` in `src/formbench/protocols.py`.
+4. **Failsafes:** if it uses a new kind of credential, add it to `_api_key_check()` in
+   `src/formbench/checks.py`.
+5. **Tests:** add a command-building case to `tests/test_formbench.py` (`ProtocolCommandTests`)
+   and run `make test`.
 
 ## Environment overrides
 

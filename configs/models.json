@@ -98,21 +98,6 @@
       "notes": "Gemini 3.5 Flash native Computer Use via the low-token Interactions workflow. Key: GEMINI_API_KEY or .secrets/gemini_api_key."
     },
     {
-      "id": "scads_gemma4_31b_it_api",
-      "status": "current",
-      "kind": "computer_use_agent",
-      "provider": "api_over_mcp",
-      "track": "direct_api_tool_use",
-      "hf_repo": "google/gemma-4-31B-it",
-      "requires_gpu": false,
-      "openai_model": "google/gemma-4-31B-it",
-      "openai_base_url": "https://llm.scads.ai/v1",
-      "openai_extra_body": {"disable_fallbacks": true},
-      "api_key_env": "OPENAI_API_KEY",
-      "resources": {"gpus": 0, "cpus": 6, "mem": "32G", "time": "12:00:00"},
-      "notes": "SCADS/TUD:AI OpenAI-compatible Gemma API. Key via OPENAI_API_KEY, never stored in config."
-    },
-    {
       "id": "computer_use_mcp_api",
       "status": "legacy",
       "kind": "computer_use_agent",

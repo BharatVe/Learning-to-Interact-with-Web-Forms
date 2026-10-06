@@ -86,9 +86,10 @@ make ideal-runs PLATFORM=localforms FORMS=conf_interest RUNS=1   # LocalForms si
 
 > Google Forms runs **submit real responses** to the live forms.
 
-**Swap or add a model:** edit `configs/models.json` and run `make model-check MODEL=<id>`.
-[docs/MODELS.md](docs/MODELS.md) covers the fields, every provider, and what each
-check failure means.
+**Swap or add a model:** usually just a registry entry, no code. [docs/MODELS.md](docs/MODELS.md)
+"Adding or swapping a model" walks through it: pick the provider/track for your kind of model,
+copy an example entry into `configs/models.json`, run `make model-check MODEL=<id>`, then a short
+`make eval`. It also covers the rare case of a new kind of agent that needs a new runner.
 
 **Look at results:** `make report`, then open `reports/experiment_overview.csv`,
 `reports/thesis_model_summary.csv` and `reports/plots/*.svg`. Thesis-cited outputs

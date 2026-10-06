@@ -96,7 +96,7 @@ class OverviewTests(TestCase):
         self.assertEqual(overview.model_family("vlm_qwen3_vl_30b_a3b_instruct_formfactory_style"), "FormFactory-style")
         self.assertEqual(overview.model_family("text_qwen25_7b_instruct"), "Qwen Text")
         self.assertEqual(overview.model_family("computer_use_gemini_35_flash_lowcost"), "Gemini")
-        self.assertEqual(overview.model_family("scads_gemma4_31b_it_api"), "Other")
+        self.assertEqual(overview.model_family("my_new_api_model"), "Other")
         self.assertEqual(len(overview.FAMILY_ORDER), len(overview.FAMILY_COLORS))
 
 

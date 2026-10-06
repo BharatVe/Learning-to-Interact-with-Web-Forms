@@ -1,6 +1,6 @@
 {
   "id": "smoke",
-  "description": "Setup check: one short trial per current model on conf_interest/run 1 (max 4 steps). Pick a family with COHORT=gemini|qwen|opencua_native|opencua_mcp|gemma_api.",
+  "description": "Setup check: one short trial per current model on conf_interest/run 1 (max 4 steps). Pick a family with COHORT=gemini|qwen|opencua_native|opencua_mcp.",
   "defaults": {
     "forms": [
       "conf_interest"
@@ -57,13 +57,6 @@
         "timeout_s": 1800,
         "api_timeout_s": 180
       }
-    },
-    {
-      "name": "gemma_api",
-      "experiment_id": "smoke_gemma_api",
-      "models": [
-        "scads_gemma4_31b_it_api"
-      ]
     }
   ]
 }

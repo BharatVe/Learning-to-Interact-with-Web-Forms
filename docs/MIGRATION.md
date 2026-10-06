@@ -32,7 +32,7 @@ unchanged, and existing results stay where they are.
 
 | Before | Now |
 |---|---|
-| `configs/baselines/{track_baseline_models,minimal_models,qwen_localhf_matrix,text_size_localhf_models,formfactory_style_qwen3_vl,scads_gemma_api_matrix}.json` | one registry `configs/models.json` (legacy variants: `*_mediated`, `*_localhf`, see `docs/MODELS.md`) |
+| `configs/baselines/{track_baseline_models,minimal_models,qwen_localhf_matrix,text_size_localhf_models,formfactory_style_qwen3_vl,scads_gemma_api_matrix}.json` | one registry `configs/models.json` (legacy variants: `*_mediated`, `*_localhf`, see `docs/MODELS.md`). The SCADS Gemma API entry is not registered; it is the worked example for adding a hosted API model in `docs/MODELS.md` |
 | `scripts/run_qwen_vllm_server.sh`, `scripts/run_opencua_vllm_server.sh` | `make serve-model MODEL=…`, or automatic per model inside `eval`/`matrix` (`serve` block) |
 | `scripts/run_qwen_direct_mcp_matrix.sh` | `make matrix MODELS=text_qwen3_30b_a3b_instruct_2507,vlm_qwen3_vl_30b_a3b_instruct FORMS=… RUNS=…` |
 | `scripts/run_opencua_direct_matrix.sh` | `make matrix MODELS=computer_use_opencua_32b …` (e.g. `EXPERIMENT=formfactory_opencua`) |
