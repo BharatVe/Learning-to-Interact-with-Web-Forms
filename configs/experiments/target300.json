@@ -1,0 +1,36 @@
+{
+  "id": "target300",
+  "description": "Unique form-run target (50 forms x runs 1-6 = 300 per model), completed across all experiments (skip_completed=any). Replaces submit_eval_target_chain.py: make submit EXPERIMENT=target300 SPLIT=run CHAIN=afterok.",
+  "defaults": {
+    "forms": "all",
+    "run_indexes": "1-6",
+    "skip_completed": "any"
+  },
+  "cohorts": [
+    {
+      "name": "qwen",
+      "experiment_id": "qwen_direct_mcp_target300",
+      "models": [
+        "text_qwen3_30b_a3b_instruct_2507",
+        "vlm_qwen3_vl_30b_a3b_instruct"
+      ]
+    },
+    {
+      "name": "opencua_native",
+      "experiment_id": "opencua_control_guidance_target300",
+      "models": [
+        "computer_use_opencua_32b"
+      ],
+      "args": {
+        "timeout_s": 3600
+      }
+    },
+    {
+      "name": "opencua_mcp",
+      "experiment_id": "opencua_direct_mcp_tools_target300",
+      "models": [
+        "computer_use_opencua_32b_direct_mcp"
+      ]
+    }
+  ]
+}

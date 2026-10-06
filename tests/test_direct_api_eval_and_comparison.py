@@ -1,4 +1,3 @@
-import importlib.util
 import json
 import os
 import sys
@@ -65,14 +64,6 @@ class FakeSession:
         return None
 
 
-def _load_summary_module():
-    script_path = REPO_ROOT / "scripts" / "summarize_comparison.py"
-    spec = importlib.util.spec_from_file_location("summarize_comparison", script_path)
-    if spec is None or spec.loader is None:
-        raise RuntimeError("failed_to_load_summarize_comparison")
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
 
 
 class DirectProviderTests(TestCase):
@@ -93,7 +84,7 @@ class DirectProviderTests(TestCase):
 
 class DirectRunnerAndComparisonTests(TestCase):
     def _write_config(self, repo_root: Path) -> None:
-        config_path = repo_root / "configs/baselines/minimal_models.json"
+        config_path = repo_root / "configs/models.json"
         config_path.parent.mkdir(parents=True, exist_ok=True)
         config_path.write_text(
             json.dumps(
@@ -147,7 +138,7 @@ class DirectRunnerAndComparisonTests(TestCase):
 
             argv = [
                 "--config",
-                "configs/baselines/minimal_models.json",
+                "configs/models.json",
                 "--model-id",
                 "computer_use_mcp_api",
                 "--form-id",
@@ -204,90 +195,6 @@ class DirectRunnerAndComparisonTests(TestCase):
             self.assertTrue((summary_path.parent / "step_inputs.jsonl").exists())
             self.assertTrue(isinstance(summary.get("run_label"), str) and "_job" in summary.get("run_label"))
 
-    def test_comparison_winner_logic_and_report(self):
-        mod = _load_summary_module()
-
-        mediated = {
-            "verified_correctness_rate": 0.6,
-            "submit_success_rate": 1.0,
-            "failure_rate": 0.0,
-            "median_duration_s": 10,
-        }
-        direct = {
-            "verified_correctness_rate": 0.6,
-            "submit_success_rate": 1.0,
-            "failure_rate": 0.0,
-            "median_duration_s": 8,
-        }
-        winner, reason = mod.choose_winner(mediated, direct)
-        self.assertEqual(winner, "direct_api_tool_use")
-        self.assertIn("median_duration", reason)
-
-        with TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            dataset_root = root / "data/model_baselines"
-            mediated_exp = dataset_root / "mediated_exp"
-            direct_exp = dataset_root / "direct_exp"
-            mediated_exp.mkdir(parents=True, exist_ok=True)
-            direct_exp.mkdir(parents=True, exist_ok=True)
-
-            m_summary = mediated_exp / "summary_m.json"
-            d_summary = direct_exp / "summary_d.json"
-            m_summary.write_text(
-                json.dumps(
-                    {
-                        "question_total": 2,
-                        "verified_correctness": 1,
-                        "submit_success": True,
-                        "success": True,
-                        "duration_s": 12,
-                    }
-                ),
-                encoding="utf-8",
-            )
-            d_summary.write_text(
-                json.dumps(
-                    {
-                        "question_total": 2,
-                        "verified_correctness": 2,
-                        "submit_success": True,
-                        "success": True,
-                        "duration_s": 9,
-                    }
-                ),
-                encoding="utf-8",
-            )
-
-            (mediated_exp / "manifest.jsonl").write_text(
-                json.dumps({"summary_path": str(m_summary)}) + "\n",
-                encoding="utf-8",
-            )
-            (direct_exp / "manifest.jsonl").write_text(
-                json.dumps({"summary_path": str(d_summary)}) + "\n",
-                encoding="utf-8",
-            )
-
-            output_path = root / "logs/comparison.json"
-            argv = [
-                "summarize_comparison.py",
-                "--dataset-root",
-                str(dataset_root.relative_to(root)),
-                "--mediated-experiment-id",
-                "mediated_exp",
-                "--direct-experiment-id",
-                "direct_exp",
-                "--output",
-                str(output_path.relative_to(root)),
-            ]
-            with patch.object(mod, "__file__", str(root / "scripts/summarize_comparison.py")), patch.object(
-                sys, "argv", argv
-            ):
-                rc = mod.main()
-
-            self.assertEqual(rc, 0)
-            report = json.loads(output_path.read_text())
-            self.assertEqual(report["winner"], "direct_api_tool_use")
-            self.assertIn("verified_correctness_rate", report["direct_api_tool_use"])
 
 
 if __name__ == "__main__":

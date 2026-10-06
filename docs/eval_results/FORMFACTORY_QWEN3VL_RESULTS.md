@@ -1,6 +1,6 @@
 # Qwen3-VL FormFactory-style vs direct-MCP comparison
 
-This analysis uses only the explicit cohorts in `configs/baselines/formfactory_qwen3vl_comparison_analysis.json`; it never scans unrelated legacy experiments.
+This analysis uses only the explicit cohorts in `configs/analysis/formfactory_qwen3vl.json`; it never scans unrelated legacy experiments.
 
 The primary endpoint is non-dropdown field accuracy with a form-level bootstrap confidence interval. All four cohorts use the current corrected verifier. Submission-enabled correctness is captured immediately before successful submission. Action counts are secondary because coordinate UI primitives and semantic MCP calls have different granularity.
 

@@ -19,5 +19,5 @@ No form was submitted. `full_fill_successes` means the visible fields were verif
 Recreate this export with:
 
 ```bash
-.venv/bin/python scripts/export_fill_only_done_50_results.py
+make study NAME=fill_only_done_50_export
 ```

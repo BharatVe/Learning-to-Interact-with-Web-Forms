@@ -3,18 +3,18 @@
   "analysis_date": "2026-08-08",
   "paper_inputs": [
     {
-      "path": "configs/baselines/form_length_position_analysis.json",
+      "path": "configs/analysis/form_length_position.json",
       "sha256": "0146db423ac206fb1a0f4fdcf3b09878e070701d2b27fa5ad9b0e9f789c5f6ce",
       "row_count": "not_applicable",
       "generation_command": "not_applicable",
-      "validation_command": "python3 -m json.tool configs/baselines/form_length_position_analysis.json"
+      "validation_command": "python3 -m json.tool configs/analysis/form_length_position.json"
     },
     {
-      "path": "configs/baselines/formfactory_qwen3vl_comparison_analysis.json",
+      "path": "configs/analysis/formfactory_qwen3vl.json",
       "sha256": "3c58a1bf0945aae015d54dffa8abfbd6458a8c9124ea9d05abd5214e67413e4e",
       "row_count": "not_applicable",
       "generation_command": "not_applicable",
-      "validation_command": "python3 -m json.tool configs/baselines/formfactory_qwen3vl_comparison_analysis.json"
+      "validation_command": "python3 -m json.tool configs/analysis/formfactory_qwen3vl.json"
     },
     {
       "path": "data/model_baseline_exports/fill_only_done_50_20260714/trials.csv",
@@ -25,7 +25,7 @@
         "form_id",
         "answer_run_id"
       ],
-      "generation_command": ".venv/bin/python scripts/export_fill_only_done_50_results.py",
+      "generation_command": "make study NAME=fill_only_done_50_export",
       "validation_command": "python docs/eval_results/interaction_failure_analysis/validate_outputs.py"
     },
     {
@@ -35,8 +35,8 @@
       "primary_key": [
         "condition_id"
       ],
-      "generation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict",
-      "validation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict"
+      "generation_command": "make study NAME=formfactory_qwen3vl",
+      "validation_command": "make study NAME=formfactory_qwen3vl"
     },
     {
       "path": "data/model_baseline_exports/formfactory_qwen3vl_cohort_status.csv",
@@ -45,8 +45,8 @@
       "primary_key": [
         "condition_id"
       ],
-      "generation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict",
-      "validation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict"
+      "generation_command": "make study NAME=formfactory_qwen3vl",
+      "validation_command": "make study NAME=formfactory_qwen3vl"
     },
     {
       "path": "data/model_baseline_exports/formfactory_qwen3vl_paired_form_differences.csv",
@@ -56,8 +56,8 @@
         "comparison_id",
         "form_id"
       ],
-      "generation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict",
-      "validation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict"
+      "generation_command": "make study NAME=formfactory_qwen3vl",
+      "validation_command": "make study NAME=formfactory_qwen3vl"
     },
     {
       "path": "data/model_baseline_exports/formfactory_qwen3vl_paired_summary.csv",
@@ -66,8 +66,8 @@
       "primary_key": [
         "comparison_id"
       ],
-      "generation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict",
-      "validation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict"
+      "generation_command": "make study NAME=formfactory_qwen3vl",
+      "validation_command": "make study NAME=formfactory_qwen3vl"
     },
     {
       "path": "data/model_baseline_exports/formfactory_qwen3vl_trial_metrics.csv",
@@ -78,13 +78,13 @@
         "form_id",
         "answer_run_id"
       ],
-      "generation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict",
-      "validation_command": "python3 scripts/analyze_formfactory_qwen3vl_comparison.py --strict"
+      "generation_command": "make study NAME=formfactory_qwen3vl",
+      "validation_command": "make study NAME=formfactory_qwen3vl"
     },
     {
       "path": "data/model_baselines/formfactory_style_opencua_fill_only_50_r2_step32_20260728/manifest.jsonl",
       "generation_command": "not_recorded",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
       "primary_key": [
         "model_id",
         "form_id",
@@ -97,7 +97,7 @@
     {
       "path": "data/model_baselines/formfactory_style_opencua_ruler_fill_only_50_r2_step32_20260807/manifest.jsonl",
       "generation_command": "not_recorded",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
       "primary_key": [
         "model_id",
         "form_id",
@@ -118,8 +118,8 @@
         "answer_run_id",
         "trial_id"
       ],
-      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
-      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+      "generation_command": "make report",
+      "validation_command": "make report"
     },
     {
       "path": "docs/eval_results/analysis/model_action_trial_counts.csv",
@@ -132,8 +132,8 @@
         "answer_run_id",
         "trial_id"
       ],
-      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
-      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+      "generation_command": "make report",
+      "validation_command": "make report"
     },
     {
       "path": "docs/eval_results/analysis/paired_efficiency_comparison.csv",
@@ -144,8 +144,8 @@
         "form_id",
         "answer_run_id"
       ],
-      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
-      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+      "generation_command": "make report",
+      "validation_command": "make report"
     },
     {
       "path": "docs/eval_results/analysis/question_type_summary.csv",
@@ -157,8 +157,8 @@
         "widget_type",
         "analysis_scope"
       ],
-      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
-      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+      "generation_command": "make report",
+      "validation_command": "make report"
     },
     {
       "path": "docs/eval_results/form_length_position_analysis/accuracy_by_form_length.csv",
@@ -168,8 +168,8 @@
         "condition_id",
         "length_bucket"
       ],
-      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
-      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+      "generation_command": "make study NAME=form_length_position",
+      "validation_command": "make study NAME=form_length_position"
     },
     {
       "path": "docs/eval_results/form_length_position_analysis/accuracy_by_question_position.csv",
@@ -179,8 +179,8 @@
         "condition_id",
         "question_position"
       ],
-      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
-      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+      "generation_command": "make study NAME=form_length_position",
+      "validation_command": "make study NAME=form_length_position"
     },
     {
       "path": "docs/eval_results/form_length_position_analysis/cohort_audit.csv",
@@ -189,8 +189,8 @@
       "primary_key": [
         "condition_id"
       ],
-      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
-      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+      "generation_command": "make study NAME=form_length_position",
+      "validation_command": "make study NAME=form_length_position"
     },
     {
       "path": "docs/eval_results/form_length_position_analysis/first_last_three_summary.csv",
@@ -199,8 +199,8 @@
       "primary_key": [
         "condition_id"
       ],
-      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
-      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+      "generation_command": "make study NAME=form_length_position",
+      "validation_command": "make study NAME=form_length_position"
     },
     {
       "path": "docs/eval_results/form_length_position_analysis/form_length_distribution.csv",
@@ -209,22 +209,22 @@
       "primary_key": [
         "question_count"
       ],
-      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
-      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+      "generation_command": "make study NAME=form_length_position",
+      "validation_command": "make study NAME=form_length_position"
     },
     {
       "path": "docs/eval_results/form_length_position_analysis/form_length_position_accuracy.pdf",
-      "sha256": "d16d9b580c18b730aba08dc06089a4ac5cab27cd71cf2a391abeeed2582920a4",
+      "sha256": "c09599219fed9790534d92f29436db86da0d1029dbaef7c61da189d3eea016ee",
       "row_count": "not_applicable",
-      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
-      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+      "generation_command": "make study NAME=form_length_position",
+      "validation_command": "make study NAME=form_length_position"
     },
     {
       "path": "docs/eval_results/form_length_position_analysis/form_length_position_accuracy.png",
       "sha256": "828d625dfb02a25cf581a5a88b4d419004a73a01089688986eedd90f76e9538e",
       "row_count": "not_applicable",
-      "generation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis",
-      "validation_command": "MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py --project-root . --config configs/baselines/form_length_position_analysis.json --output-dir docs/eval_results/form_length_position_analysis"
+      "generation_command": "make study NAME=form_length_position",
+      "validation_command": "make study NAME=form_length_position"
     },
     {
       "path": "docs/eval_results/interaction_failure_analysis/data/baseline_primary_trial_action_profile.csv",
@@ -336,8 +336,8 @@
         "answer_run_id",
         "tool_name"
       ],
-      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
-      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+      "generation_command": "make report",
+      "validation_command": "make report"
     },
     {
       "path": "docs/eval_results/reference_analysis/reference_runs.csv",
@@ -347,8 +347,8 @@
         "form_id",
         "answer_run_id"
       ],
-      "generation_command": ".venv/bin/python scripts/analyze_eval_results.py",
-      "validation_command": ".venv/bin/python scripts/analyze_eval_results.py"
+      "generation_command": "make report",
+      "validation_command": "make report"
     },
     {
       "path": "evaluation_additions/missing_fill_only_runs/field_results.csv",
@@ -361,8 +361,8 @@
         "answer_run_id",
         "question_id"
       ],
-      "generation_command": "python3 scripts/export_missing_fill_only_additions.py",
-      "validation_command": "python3 scripts/export_missing_fill_only_additions.py --check"
+      "generation_command": "make study NAME=missing_fill_only_additions",
+      "validation_command": "make study NAME=missing_fill_only_additions CHECK=1"
     },
     {
       "path": "evaluation_additions/missing_fill_only_runs/trial_summary.csv",
@@ -374,27 +374,27 @@
         "form_id",
         "answer_run_id"
       ],
-      "generation_command": "python3 scripts/export_missing_fill_only_additions.py",
-      "validation_command": "python3 scripts/export_missing_fill_only_additions.py --check"
+      "generation_command": "make study NAME=missing_fill_only_additions",
+      "validation_command": "make study NAME=missing_fill_only_additions CHECK=1"
     },
     {
       "path": "evaluation_additions/opencua_ruler_comparison/README.md",
-      "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
-      "sha256": "c63efe2289cf75c268a3030f134a805fa6059c95a9c7b69ac3ebc63a1fe0c940",
+      "generation_command": "make study NAME=opencua_ruler",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
+      "sha256": "01e6d12c7c40209b28a54b67ee68be6c51657423ba087266d233e2972ab38712",
       "row_count": "not_applicable"
     },
     {
       "path": "evaluation_additions/opencua_ruler_comparison/artifact.json",
-      "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+      "generation_command": "make study NAME=opencua_ruler",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
       "sha256": "50eaec62b122c48537b1ea5999dc6b012217a1e6a95aabcab26620c7bf1713e5",
       "row_count": "not_applicable"
     },
     {
       "path": "evaluation_additions/opencua_ruler_comparison/comparison_summary.csv",
-      "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+      "generation_command": "make study NAME=opencua_ruler",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
       "primary_key": [
         "condition"
       ],
@@ -403,8 +403,8 @@
     },
     {
       "path": "evaluation_additions/opencua_ruler_comparison/paired_fields.csv",
-      "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+      "generation_command": "make study NAME=opencua_ruler",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
       "primary_key": [
         "form_id",
         "answer_run_id",
@@ -415,8 +415,8 @@
     },
     {
       "path": "evaluation_additions/opencua_ruler_comparison/paired_forms.csv",
-      "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+      "generation_command": "make study NAME=opencua_ruler",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
       "primary_key": [
         "form_id",
         "answer_run_id"
@@ -426,8 +426,8 @@
     },
     {
       "path": "evaluation_additions/opencua_ruler_comparison/position_summary.csv",
-      "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+      "generation_command": "make study NAME=opencua_ruler",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
       "primary_key": [
         "position_bucket"
       ],
@@ -436,8 +436,8 @@
     },
     {
       "path": "evaluation_additions/opencua_ruler_comparison/protocol_comparison.json",
-      "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+      "generation_command": "make study NAME=opencua_ruler",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
       "sha256": "0aa0d078c9cc870ae9b6e39f74a0a0ca4a8eacf0431d6208646f3a759a73f0a2",
       "row_count": "not_applicable"
     },
@@ -450,22 +450,22 @@
     },
     {
       "path": "evaluation_additions/opencua_ruler_comparison/robustness.json",
-      "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+      "generation_command": "make study NAME=opencua_ruler",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
       "sha256": "755a04ec3e3f26e331edcd60e0c3275fbfd3f1a780b5fd3ec9bb3d3655e7b06b",
       "row_count": "not_applicable"
     },
     {
       "path": "evaluation_additions/opencua_ruler_comparison/source_manifest.json",
-      "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
-      "sha256": "ec5b0ae083803108d091ced9b030e331de0ac1f1013725f1354039d2c159478a",
+      "generation_command": "make study NAME=opencua_ruler",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
+      "sha256": "5f661b3f5eabf9c00994c07a7342e2993bdc28295127f5b30ae9562eaec44989",
       "row_count": "not_applicable"
     },
     {
       "path": "evaluation_additions/opencua_ruler_comparison/widget_summary.csv",
-      "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
-      "validation_command": "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+      "generation_command": "make study NAME=opencua_ruler",
+      "validation_command": "make study NAME=opencua_ruler CHECK=1",
       "primary_key": [
         "widget_type"
       ],
@@ -479,5 +479,14 @@
       "generation_command": "not_applicable",
       "validation_command": "python3 -m json.tool evaluation_additions/run_settings.json"
     }
-  ]
+  ],
+  "layout_update": {
+    "date": "2026-10-04",
+    "note": "Repository reorganised around `formbench` (Makefile + python -m formbench). Scripts moved to src/analysis/, configs to configs/analysis/. Regenerated outputs are byte-identical except reproduction-command text and the PDF CreationDate (now omitted for deterministic output); their sha256 values were refreshed.",
+    "rehashed": [
+      "docs/eval_results/form_length_position_analysis/form_length_position_accuracy.pdf",
+      "evaluation_additions/opencua_ruler_comparison/README.md",
+      "evaluation_additions/opencua_ruler_comparison/source_manifest.json"
+    ]
+  }
 }

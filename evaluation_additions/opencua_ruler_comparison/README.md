@@ -21,8 +21,8 @@ The tested pixel ruler did not improve aggregate verified correctness: all-field
 ## Regenerate and validate
 
 ```bash
-python3 scripts/analyze_opencua_ruler_comparison.py
-python3 scripts/analyze_opencua_ruler_comparison.py --check
+make study NAME=opencua_ruler          # regenerate (runs the check afterwards)
+make study NAME=opencua_ruler CHECK=1  # only verify the committed files
 ```
 
 The data exporter uses only the Python standard library. `report.html` is already packaged and does not need Python, Node.js, a local server, or network access to open.

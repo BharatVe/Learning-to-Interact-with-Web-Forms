@@ -19,13 +19,14 @@ if str(SRC_DIR) not in sys.path:
 from baselines import run_baseline_eval as rbe  # noqa: E402
 from baselines.action_schema import validate_low_level_action  # noqa: E402
 from baselines.model_registry import get_model_by_id  # noqa: E402
+from baselines.common import http_post_json, load_run_answers  # noqa: E402
 from engine.browser_language import force_english_google_forms_url  # noqa: E402
-from engine.runner import iter_run_specs, load_form_spec, resolve_answers_path  # noqa: E402
+from engine.runner import load_form_spec, resolve_answers_path  # noqa: E402
 from engine.trace_logger import TraceLogger  # noqa: E402
 
 DEFAULT_ANSWERS_ROOT = "data/answers"
 DEFAULT_DATASET_ROOT = "data/model_baselines"
-DEFAULT_CONFIG = "configs/baselines/track_baseline_models.json"
+DEFAULT_CONFIG = "configs/models.json"
 DEFAULT_EXPERIMENT_ID = "gemini_35_flash_lowcost_token_pilot_v1"
 DEFAULT_MAX_STEPS = 48
 DEFAULT_TIMEOUT_S = 3600
@@ -49,14 +50,7 @@ def _task_mode(fill_only: bool) -> str:
     return "fill_only_done" if fill_only else "fill_and_submit"
 
 
-def _load_run_answers(answers_path: Path, run_index: int) -> List[Dict[str, Any]]:
-    for idx, run_spec in enumerate(iter_run_specs(answers_path), start=1):
-        if idx == run_index:
-            answers = run_spec.get("answers", [])
-            if not isinstance(answers, list):
-                raise ValueError(f"Run {run_index} answers must be a list")
-            return answers
-    raise IndexError(f"Run index out of range: {run_index} for {answers_path}")
+_load_run_answers = load_run_answers
 
 
 def _read_api_key() -> Tuple[str, str]:
@@ -79,25 +73,7 @@ def _read_api_key() -> Tuple[str, str]:
 
 
 def _http_post_json(url: str, payload: Dict[str, Any], api_key: str, timeout_s: int) -> Dict[str, Any]:
-    body = json.dumps(payload, separators=(",", ":")).encode("utf-8")
-    request = urllib.request.Request(url=url, data=body, method="POST")
-    request.add_header("Content-Type", "application/json")
-    request.add_header("x-goog-api-key", api_key)
-    try:
-        with urllib.request.urlopen(request, timeout=max(1, int(timeout_s))) as response:
-            raw = response.read().decode("utf-8")
-    except urllib.error.HTTPError as exc:
-        raw = exc.read().decode("utf-8", errors="replace") if hasattr(exc, "read") else str(exc)
-        raise RuntimeError(f"gemini_interactions_http_error:{exc.code}:{raw}") from exc
-    except Exception as exc:
-        raise RuntimeError(f"gemini_interactions_request_failed:{exc}") from exc
-    try:
-        parsed = json.loads(raw)
-    except Exception as exc:
-        raise RuntimeError(f"gemini_interactions_invalid_json:{exc}") from exc
-    if not isinstance(parsed, dict):
-        raise RuntimeError("gemini_interactions_response_not_object")
-    return parsed
+    return http_post_json(url, payload, timeout_s, headers={"x-goog-api-key": api_key}, error_prefix="gemini_interactions", compact=True)
 
 
 def _is_transient_provider_error(message: str) -> bool:

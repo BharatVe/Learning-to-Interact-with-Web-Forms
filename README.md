@@ -1,191 +1,148 @@
-# Learning-to-Interact-with-Web-Forms
+# Learning to Interact with Web Forms
 
-## Overview
+A benchmark for LLM, VLM and computer-use agents that fill in web forms, compared
+against scripted "ideal" Playwright runs of the same forms and answers.
 
-This project generates a dataset of Google Form interactions using direct Playwright Python for browser control.
-Tool traces are validated and normalized through an MCP server by default, then written to `tool_trace.jsonl`.
+```
+data/generator/*.csv ──make data──▶ src/forms/<id>/spec.json + data/answers/<id>/runs.json  (50 forms × 10 answer sets)
+                                    └─▶ LocalForms copy: self-hosted Flask site, src/forms_localforms/, data/answers_localforms/
 
-## Install
-
-```bash
-pip install -r requirements.txt
-python -m playwright install chromium
-# Linux only (if needed):
-python -m playwright install --with-deps chromium
+make ideal-runs ──▶ data/forms/<id>/runs/run_XXXX/      scripted reference: video, tool_trace.jsonl, annotations.json
+make eval/matrix ─▶ data/model_baselines/<experiment>/<model>/<form>/run_XXXX/<trial>/   one directory per model trial
+make report ──────▶ reports/                             accuracy, completion, efficiency vs the ideal run, failure mix
 ```
 
-HPC-friendly setup wrapper (no `sudo`, project-local venv/browser cache):
+Everything runs through `make <target>`, a thin layer over one Python CLI
+(`python -m formbench`). Every command validates its inputs, prints the resolved
+settings, and supports `DRY_RUN=1` where it would start something expensive.
+
+## Quick start
 
 ```bash
-bash scripts/hpc_setup.sh
+cp .env.example .env        # HPC: set MODULES and CACHE_ROOT (see docs/HPC.md); laptop: clear MODULES
+make setup                  # .venv, pinned Playwright MCP, Chromium   (WITH=vllm also builds the vLLM env)
+make doctor                 # checks everything and prints the fix for anything missing
+make test                   # ~220 tests, ~25 s, no GPU or network needed
 ```
 
-Runtime readiness check:
+## Commands
+
+| Area | Command | What it does |
+|---|---|---|
+| **Setup** | `make setup` | Create/refresh environments and browsers (idempotent). `WITH=localhf\|vllm\|all` |
+| | `make doctor` | Environment, dataset and registry health check, with fixes |
+| | `make test` | Unit + integration tests (`V=1` for verbose) |
+| **Dataset** | `make data` | Rebuild answer sets and the LocalForms copy, then validate (`FROM_CSV=1` also re-syncs specs from the generator CSVs) |
+| | `make data-check` | Validate specs, answers and committed reference traces |
+| | `make serve-forms` | Serve the LocalForms site locally |
+| **Ideal runs** | `make ideal-status` | Which form/answer-set reference runs exist (`PLATFORM=localforms`) |
+| | `make ideal-runs` | Regenerate scripted Playwright reference runs. `FORMS=a,b RUNS=1-10 PLATFORM=… OVERWRITE=1 HEADED=1 SUBMIT=1 DRY_RUN=1` |
+| **Models** | `make models` | Registered models, what each needs, whether weights are local (`ALL=1` adds legacy) |
+| | `make model-check MODEL=…` | Preflight: registry, API key, weights, endpoint, GPUs (`SMOKE=1` sends a test request) |
+| | `make serve-model MODEL=…` | Start a model's vLLM server in the foreground (eval/matrix reuse it) |
+| | `make install-models MODEL=…` | Download Hugging Face weights into `models/` (`DRY_RUN=1`) |
+| **Evaluation** | `make eval MODEL=… FORM=… RUN=…` | One trial. `SET="max_steps=8 fill_only_done=true" PLATFORM=localforms DRY_RUN=1 SUBMIT=1` |
+| | `make experiments` | List experiment manifests (`configs/experiments/`) |
+| | `make matrix EXPERIMENT=…` | Run an experiment here: forms × runs × models, servers started/stopped per model, completed trials skipped. `COHORT= MODELS= FORMS= RUNS= SUFFIX= DRY_RUN=1` |
+| | `make submit EXPERIMENT=…` | Same, as Slurm jobs sized from the registry. `SPLIT=cohort\|model\|run CHAIN=afterok DRY_RUN=1` |
+| **Analytics** | `make report` | Current analytics into `reports/`: core thesis tables + plots, per-experiment overview, trial tracker |
+| | `make reference-report` | Ideal-run summary into `reports/reference/` |
+| | `make studies` / `make study NAME=…` | List / regenerate a committed thesis study (`CHECK=1` only verifies) |
+| | `make inspect TRIAL=…` | One trial's summary, step inputs/outputs (`STEPS=all`) and media (`MEDIA=1`) |
+
+`make help` prints the same list. Each target maps to `python -m formbench …`
+(see `--help` on any subcommand) if you prefer calling the CLI directly.
+
+## Common workflows
+
+**Try a model on one form before spending GPU hours**
 
 ```bash
-python3 scripts/verify_runtime_setup.py
-python3 scripts/preflight_baseline_eval.py
+make model-check MODEL=computer_use_gemini_35_flash_lowcost
+make eval MODEL=computer_use_gemini_35_flash_lowcost FORM=conf_interest RUN=1 SET="max_steps=4" DRY_RUN=1   # see the exact command
+make eval MODEL=computer_use_gemini_35_flash_lowcost FORM=conf_interest RUN=1 SET="max_steps=4"
+make inspect TRIAL=adhoc_computer_use_gemini_35_flash_lowcost_<date>/computer_use_gemini_35_flash_lowcost/conf_interest/run_0001 STEPS=all
 ```
 
-Headless baseline wrapper:
+**Run or resume a full experiment on the cluster**
 
 ```bash
-bash scripts/run_baselines_headless.sh --smoke-test-all-forms --overwrite-existing
+make experiments                                         # what exists
+make submit EXPERIMENT=fill_only_done_30 DRY_RUN=1       # inspect the job scripts and resources
+make submit EXPERIMENT=fill_only_done_30 SPLIT=cohort CHAIN=afterok
+squeue -u $USER; tail -f logs/slurm/fb-fill_only_done_30-*.out
 ```
 
-For cluster workflow (canonical directory policy, model install, Slurm/headless usage), see:
-`README_HPC.md`
+Re-submitting the same manifest only runs trials that are still missing. To repeat
+an experiment from scratch into new folders use `SUFFIX=_rerun1`.
 
-Canonical thesis-primary runbook now separates two benchmark families:
-
-- Family A: direct Playwright MCP tool use for Qwen `text_llm` and `vlm`
-- Family B: native computer-use for `OpenCUA-32B`
-
-The combined orchestrator runs both families sequentially:
+**Regenerate ideal runs** (official Playwright MCP server, headless, existing videos skipped)
 
 ```bash
-CONFIG_PATH=configs/baselines/track_baseline_models.json \
-DIRECT_PROVIDER=opencua_local \
-bash scripts/run_track_baseline_matrix.sh
+make ideal-status
+make ideal-runs FORMS=conf_interest RUNS=7-10 SUBMIT=1        # HPC: as a CPU job
+make ideal-runs PLATFORM=localforms FORMS=conf_interest RUNS=1   # LocalForms site is started for you
 ```
 
-Reference efficiency is compared against the matching scripted Playwright run for the same `form_id` and `run_XXXX`, using `tool_trace.jsonl` event counts and structured run annotations rather than video parsing.
+> Google Forms runs **submit real responses** to the live forms.
 
-If `PLAYWRIGHT_SKIP_FFMPEG_INSTALL` is set, video recording may fail.
-`mcp_server` interaction mode also requires `node` + `npx` to run the official Playwright MCP server.
-The default MCP command now forces `--browser chromium` to avoid system Chrome dependency.
-Default MCP launch no longer enables `--caps=vision`, which improves compatibility in WSL/restricted environments.
-When Python Playwright is installed, runner automatically passes its Chromium executable path to MCP (`--executable-path`) to avoid Node browser mismatch.
-In WSL, runner also adds `--no-sandbox` for MCP browser launch.
-If `@playwright/mcp` is not already cached, the first `mcp_server` run may need network access for `npx` package resolution.
-Runner now auto-installs Node Playwright `chromium` for `mcp_server` mode unless `--no-mcp-browser-install` is provided.
-Runner also performs an MCP package preflight (`npx @playwright/mcp --version`) before run start in `mcp_server` mode.
-For more stable startup in WSL/offline scenarios, install MCP globally once: `npm i -g @playwright/mcp`.
+**Swap or add a model:** edit `configs/models.json` and run `make model-check MODEL=<id>`.
+[docs/MODELS.md](docs/MODELS.md) covers the fields, every provider, and what each
+check failure means.
 
-## Dataset Generation (Single Form)
+**Look at results:** `make report`, then open `reports/experiment_overview.csv`,
+`reports/thesis_model_summary.csv` and `reports/plots/*.svg`. Thesis-cited outputs
+live in `docs/eval_results/` and change only through `make study`; see
+[docs/eval_results/README.md](docs/eval_results/README.md).
 
-```bash
-python3 src/engine/runner.py \
-  --form-id conf_interest \
-  --dataset-root data/forms \
-  --num-runs 1
+## Failsafes
+
+- `make model-check` (run automatically before `eval`/`matrix`) validates the registry
+  entry against a per-provider schema, checks API keys (and key-file permissions), local
+  weights, transformers compatibility (`SMOKE=1`), the endpoint (reachable and serving the
+  expected model name), GPU count and memory, and **warns about every environment variable
+  that overrides the registry** (`OPENAI_BASE_URL`, `OPENAI_MODEL`, …).
+- On a node without the required GPUs a run stops with a hint to use `make submit`.
+- vLLM servers are reused if already serving the right model, rejected if another model
+  holds the port, and always stopped (whole process group) when the run ends. Failed
+  startups print the end of the server log.
+- Slurm resources come from the registry. Inside jobs, server and LocalForms ports derive
+  from the job id, so concurrent jobs on one node do not collide.
+- Trial failures are recorded as benchmark outcomes, and a run summary is written to
+  `logs/matrix/`. `--fail-fast` stops at the first runner error. VLM timeouts and OOM
+  failures trigger the registered fallback model.
+- `make report` never touches committed thesis files. `evaluation_additions/manifest.json`
+  hashes every thesis input, and `make test` verifies those hashes.
+
+## Repository layout
+
+```
+Makefile, .env.example         entry points and site settings
+configs/models.json            model registry (one entry per model; docs/MODELS.md)
+configs/experiments/*.json     reproducible experiment manifests
+configs/analysis/*.json        report cohorts and study configs
+src/formbench/                 CLI: settings, checks, serving, matrix, Slurm, ideal runs, reports
+src/engine/                    scripted Playwright engine for ideal runs (local + MCP backends)
+src/baselines/                 model runners (one per protocol) + model adapters
+src/dataset/                   generator CSV → specs → answers → LocalForms
+src/analysis/                  core report, overview, tracker, studies/
+scripts/                       env.sh (environment wrapper), setup.sh, Playwright MCP runtime helper
+data/                          forms, answers, reference runs (traces committed, videos ignored), exports
+docs/                          methodology, results, HPC and model guides
+evaluation_additions/          LocalForms site, additional comparisons, provenance manifest
+tests/                         unittest suite (make test)
 ```
 
-Answers are matched automatically from:
-`data/answers/<form_id>/runs.json`
+Raw trial artefacts (`data/model_baselines/`), model weights (`models/`), logs, reports
+and caches are git-ignored.
 
-Full dataset run (all forms under `src/forms`, each auto-matched to `data/answers/<form_id>/runs.json`):
+## Further reading
 
-```bash
-python3 src/engine/runner.py \
-  --all-forms \
-  --dataset-root data/forms \
-  --skip-existing-video
-```
-
-Smoke test across all forms (runs exactly one answer instance per form, prints pass/fail summary):
-
-```bash
-python3 src/engine/runner.py \
-  --smoke-test-all-forms \
-  --dataset-root data/forms \
-  --overwrite-existing
-```
-
-Smoke test using full official Playwright MCP browser execution:
-
-```bash
-python3 src/engine/runner.py \
-  --smoke-test-all-forms \
-  --dataset-root data/forms \
-  --overwrite-existing \
-  --interaction-mode mcp_server
-```
-
-By default the browser runs **headed** (visible). Use `--headless` to disable UI.
-Mouse overlay is enabled by default for video clarity. Use `--no-mouse-overlay` to disable it.
-Screenshots are optional and disabled by default. Use `--screenshots` to save `observations/*.png`.
-Trace mode defaults to `mcp` and auto-starts the bundled server `src/engine/mcp_trace_server.py`.
-Interaction mode defaults to `local`.
-Use `--interaction-mode mcp_server` to execute browser interaction via the official Playwright MCP server.
-
-## Inputs
-
-The engine accepts two formats:
-
-- JSON: either a single run (a list of answer entries) or a multi-run object with `runs`.
-- JSONL: one run per line, each line is a JSON object describing a run.
-
-Each answer entry must contain:
-
-- `label` (question label text to match)
-- `widget_type` (short_text, paragraph_text, single_choice, multi_choice, date, time)
-- `value` (string or list, depending on widget type)
-
-Optional run metadata can be included and is carried into `annotations.json`.
-
-## Outputs
-
-Each run generates:
-
-- `data/forms/<form_id>/runs/run_XXXX/<form_id>_run_XXXX.webm`
-- `data/forms/<form_id>/runs/run_XXXX/annotations.json`
-- `data/forms/<form_id>/runs/run_XXXX/answers_instance.json`
-- `data/forms/<form_id>/runs/run_XXXX/tool_trace.jsonl`
-- `data/forms/<form_id>/runs/run_XXXX/observations/step_XXXX_pre.png`
-- `data/forms/<form_id>/runs/run_XXXX/observations/step_XXXX_post.png`
-- `data/forms/<form_id>/runs/run_XXXX/observations/submit_pre.png`
-- `data/forms/<form_id>/runs/run_XXXX/observations/submit_post.png`
-
-`annotations.json` includes form/run identifiers, video path, run parameters, macro actions, submit timing, and trace pointers.
-`tool_trace.jsonl` is JSONL with Playwright MCP-style action names.
-In `local` mode it records low-level interaction actions (`browser_mouse_click_xy`, `browser_mouse_move_xy`, `browser_type`, `browser_press_key`, `browser_mouse_wheel`).
-In `mcp_server` mode it records official MCP tool calls (`browser_navigate`, `browser_run_code`, `browser_wait_for`, `browser_take_screenshot`, `browser_close`).
-Each action now also includes required-field metadata when detectable: `required`, `required_attr`, `required_marker`.
-
-## Run Controls
-
-Useful flags:
-
-- `--num-runs` limit how many runs to generate in one execution.
-- `--start-index` force the starting run index.
-- `--resume` continue from the next missing run index.
-- `--skip-existing` skip runs whose output directory already exists.
-- `--skip-existing-video` skip runs whose output directory already contains a `.webm`.
-- `--overwrite-existing` delete an existing run directory and regenerate it.
-- `--all-forms` run all form specs in `src/forms`.
-- `--smoke-test-all-forms` run one test run per form and continue through failures, then print summary.
-- `--form-url` override the URL from the spec file.
-- `--answers-root` base directory for automatic answer matching (default: `data/answers`).
-- `--answers-file` primary filename to look for in each form answer directory (default: `runs.json`).
-- Fallback if missing: `runs.jsonl`, `runs.ndjson` (fails with explicit error if none exist).
-- `--headless` run without visible browser UI.
-- `--slow-mo` add a delay (ms) to Playwright actions.
-- `--type-delay-ms` delay (ms) between typed characters.
-- `--action-delay-ms` delay (ms) after each action for visibility.
-- `--viewport-width` / `--viewport-height` set the browser viewport.
-- `--timeout-ms` set Playwright timeout for waits.
-- `--screenshots` enable per-step and submit screenshots.
-- `--no-mouse-overlay` disable the visible mouse overlay.
-- `--interaction-mode` choose browser action backend: `local` (default) or `mcp_server`.
-- `--trace-mode` choose trace backend: `mcp` (default) or `local`.
-- `--mcp-server-cmd` override MCP server command (defaults to bundled trace server).
-- `--mcp-tool-name` MCP tool used for event normalization (default: `record_action`).
-- `--mcp-timeout-ms` MCP request timeout (default: `5000`).
-- `--browser-mcp-cmd` override official Playwright MCP browser command used in `mcp_server` mode.
-- `--browser-mcp-timeout-ms` timeout for browser MCP tool calls (default: `120000`).
-- `--no-mcp-browser-install` disable automatic Node Playwright browser install preflight.
-- `--mcp-browser-install-timeout-s` timeout for browser preflight install (default: `600`).
-- `--no-mcp-verify-trace` disable MCP action-schema validation for trace events.
-- `--no-mcp-strict` keep validation on but do not fail the run on validation errors.
-
-Overwrite existing run:
-
-```bash
-python3 src/engine/runner.py \
-  --form-id conf_interest \
-  --dataset-root data/forms \
-  --num-runs 1 \
-  --start-index 1 \
-  --overwrite-existing
-```
+| Document | Contents |
+|---|---|
+| [docs/MODELS.md](docs/MODELS.md) | Model registry, providers and protocols, adding/swapping models, experiment manifests |
+| [docs/HPC.md](docs/HPC.md) | Cluster setup, modules, caches, Slurm, troubleshooting |
+| [docs/eval_results/README.md](docs/eval_results/README.md) | Index of results and the command that regenerates each |
+| [docs/LOCALFORMS_METHODOLOGY.md](docs/LOCALFORMS_METHODOLOGY.md) | How the self-hosted LocalForms platform was built |
+| [docs/MIGRATION.md](docs/MIGRATION.md) | Old scripts → new commands |
+| [docs/EVAL_IMPLEMENTATION_TRACKING_LOG.md](docs/EVAL_IMPLEMENTATION_TRACKING_LOG.md) | Historical decision and job log |

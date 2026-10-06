@@ -231,3 +231,35 @@ class OpenCUAPromptContractTests(TestCase):
         self.assertTrue(args.fill_only_done)
         self.assertTrue(args.formfactory_style)
         self.assertTrue(args.ruler_overlay)
+
+
+class OpenCUACompatibilityContractTests(TestCase):
+    """Self-checks formerly run by scripts/verify_opencua_compatibility.py before each OpenCUA job."""
+
+    def test_hotkey_normalization(self):
+        action, _ = opencua_eval._parse_opencua_action(
+            "pyautogui.hotkey('ctrl', 'a')", viewport_width=1440, viewport_height=900, coordinate_type="qwen25"
+        )
+        self.assertEqual(action, {"action": "press_key", "value": "Control+A"})
+
+    def test_qwen25_coordinate_transform_in_bounds(self):
+        abs_x, abs_y, meta = opencua_eval._qwen25_smart_resize_to_abs(960, 324, 1440, 900)
+        self.assertTrue(0 <= abs_x <= 1440 and 0 <= abs_y <= 900)
+        self.assertEqual(meta.get("coordinate_space"), "qwen25_smart_resize_absolute")
+
+    def test_prompt_contract_without_and_with_symbolic_support(self):
+        common = dict(
+            form_url="https://example.test/form",
+            remaining_answers=[{"label": "Full name", "value": "Alice Example"}],
+            last_result={},
+            interaction_map=[{"label": "Full name", "ref": "e1"}],
+            page_text="Full name",
+            observation_mode="vision_coords",
+            recent_history=[],
+        )
+        prompt = opencua_eval._build_goal_prompt(**common)
+        self.assertNotIn("Interaction map", prompt)
+        self.assertNotIn('"ref": "e1"', prompt)
+        self.assertIn("pyautogui.click", prompt)
+        self.assertIn("pyautogui.write", prompt)
+        self.assertIn("Interaction map", opencua_eval._build_goal_prompt(**common, include_symbolic_support=True))

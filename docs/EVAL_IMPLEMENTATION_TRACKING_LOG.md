@@ -1,5 +1,9 @@
 # Evaluation Implementation Tracking Log
 
+> **Historical log.** Commands below refer to scripts that were replaced by `make` /
+> `python -m formbench` in the October 2026 reorganisation; see `docs/MIGRATION.md` for the
+> mapping and `README.md` for current usage. Entries are kept unchanged as a record.
+
 Last updated: 2026-07-09
 
 Use this file as the current source of truth before rerunning evaluation jobs. It records the active evaluation design, implementation status, latest outputs, known issues, and next actions.

@@ -1,0 +1,58 @@
+{
+  "id": "fill_only_done_10",
+  "description": "Fixed 10-form fill-only/DONE comparison sample for Gemini, Qwen direct-MCP, and OpenCUA direct-MCP. (seed 20260702, run 2, fill-only then DONE).",
+  "defaults": {
+    "forms": [
+      "conference_travel",
+      "course_enrollment",
+      "course_feedback",
+      "exam_registration",
+      "internship_app",
+      "job_fair",
+      "lab_safety",
+      "technical_support",
+      "travel_reimbursement",
+      "usability_test"
+    ],
+    "run_indexes": [
+      2
+    ],
+    "skip_completed": "none"
+  },
+  "cohorts": [
+    {
+      "name": "gemini",
+      "experiment_id": "gemini_35_flash_fill_only_done_10_seed20260702_r2_step24",
+      "models": [
+        "computer_use_gemini_35_flash_lowcost"
+      ],
+      "args": {
+        "max_steps": 24,
+        "fill_only": true
+      }
+    },
+    {
+      "name": "qwen",
+      "experiment_id": "qwen_direct_mcp_fill_only_done_10_seed20260702_r2_step32",
+      "models": [
+        "text_qwen3_30b_a3b_instruct_2507",
+        "vlm_qwen3_vl_30b_a3b_instruct"
+      ],
+      "args": {
+        "max_steps": 32,
+        "fill_only_done": true
+      }
+    },
+    {
+      "name": "opencua_mcp",
+      "experiment_id": "opencua_direct_mcp_fill_only_done_10_seed20260702_r2_step32",
+      "models": [
+        "computer_use_opencua_32b_direct_mcp"
+      ],
+      "args": {
+        "max_steps": 32,
+        "fill_only_done": true
+      }
+    }
+  ]
+}

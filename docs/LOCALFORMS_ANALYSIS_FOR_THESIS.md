@@ -3,10 +3,9 @@
 **Status: complete.** Both matched-condition data collections finished
 (Google Forms fill-only 128-step, 50/50 forms; LocalForms submit-enabled,
 50/50 forms), closing every confound flagged in the previous version of this
-document. This is the full, corrected analysis — read this version, not
-`docs/LOCALFORMS_15FORM_CHECKPOINT.md` or the earlier draft of this file for
-the platform-comparison conclusion; those were provisional snapshots taken
-mid-collection.
+document. This is the full, corrected analysis. The provisional snapshots taken
+mid-collection (10-form pilot, 15-form checkpoint, 50-form fill-only update) were
+removed from the working tree; they remain in git tag `pre-cleanup-thesis-results`.
 
 ## The one-sentence finding
 
@@ -24,7 +23,7 @@ be.
 
 ## Statistical results — six comparisons, in order of how well-matched they are
 
-Computed by `scripts/analyze_localforms_comparison.py` (numpy + stdlib only,
+Computed by `src/analysis/studies/localforms_comparison.py` (numpy + stdlib only,
 reproducible, seed `20260819`). All scores use the harness's own
 `scored_correctness` field — the pre-submit verification snapshot for trials
 that submitted, final verification otherwise — because raw
@@ -190,7 +189,7 @@ research question — was responsible for.
 ## Reproducing every number in this document
 
 ```bash
-.venv/bin/python3 scripts/analyze_localforms_comparison.py
+make study NAME=localforms_comparison
 ```
 
 Reads `data/model_baselines/opencua_localforms_direct_mcp_{fill_only,submit}_{10,40}_*/`,

@@ -1,55 +1,18 @@
 import base64
-import json
 import os
 import time
-import urllib.error
-import urllib.request
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from baselines.common import extract_openai_text, http_post_json
+
 
 def _http_post_json(url: str, headers: Dict[str, str], payload: Dict[str, Any], timeout_s: int) -> Dict[str, Any]:
-    body = json.dumps(payload).encode("utf-8")
-    request = urllib.request.Request(url=url, data=body, method="POST")
-    for key, value in headers.items():
-        request.add_header(key, value)
-    request.add_header("Content-Type", "application/json")
-    try:
-        with urllib.request.urlopen(request, timeout=max(1, int(timeout_s))) as response:
-            raw = response.read().decode("utf-8")
-    except urllib.error.HTTPError as exc:
-        raw = exc.read().decode("utf-8", errors="replace") if hasattr(exc, "read") else str(exc)
-        raise RuntimeError(f"openai_compat_http_error:{exc.code}:{raw}") from exc
-    except Exception as exc:
-        raise RuntimeError(f"openai_compat_request_failed:{exc}") from exc
-
-    try:
-        parsed = json.loads(raw)
-    except Exception as exc:
-        raise RuntimeError(f"openai_compat_invalid_json:{exc}") from exc
-    if not isinstance(parsed, dict):
-        raise RuntimeError("openai_compat_response_not_object")
-    return parsed
+    return http_post_json(url, payload, timeout_s, headers=headers, error_prefix="openai_compat")
 
 
 def _extract_openai_text(payload: Dict[str, Any]) -> str:
-    choices = payload.get("choices")
-    if not isinstance(choices, list) or not choices:
-        raise RuntimeError("openai_compat_missing_choices")
-    message = choices[0].get("message") if isinstance(choices[0], dict) else None
-    if not isinstance(message, dict):
-        raise RuntimeError("openai_compat_missing_message")
-    content = message.get("content")
-    if isinstance(content, str):
-        return content.strip()
-    if isinstance(content, list):
-        parts: List[str] = []
-        for item in content:
-            if isinstance(item, dict) and isinstance(item.get("text"), str):
-                parts.append(item["text"])
-        if parts:
-            return "\n".join(parts).strip()
-    raise RuntimeError("openai_compat_missing_text")
+    return extract_openai_text(payload, error_prefix="openai_compat")
 
 
 def _image_to_data_url(path: Path) -> str:

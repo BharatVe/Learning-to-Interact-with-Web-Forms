@@ -18,6 +18,7 @@ if str(SRC_DIR) not in sys.path:
 
 from baselines.action_schema import parse_action, validate_action, validate_low_level_action  # noqa: E402
 from baselines.model_registry import get_model_by_id  # noqa: E402
+from baselines.common import load_run_answers  # noqa: E402
 from baselines.prompt_builders import (  # noqa: E402
     CONTEXT_PACKAGE_VERSION,
     build_text_prompt,
@@ -31,7 +32,6 @@ from engine.mcp_browser_engine import MCPBrowserEngine  # noqa: E402
 from engine.mcp_trace_client import MCPClient, MCPTraceClient  # noqa: E402
 from engine.runner import (  # noqa: E402
     _default_mcp_server_command,
-    iter_run_specs,
     load_form_spec,
     resolve_answers_path,
 )
@@ -273,14 +273,7 @@ def _visible_question_ids(interaction_map: List[Dict[str, Any]]) -> List[str]:
     )
 
 
-def _load_run_answers(answers_path: Path, run_index: int) -> List[Dict[str, Any]]:
-    for idx, run_spec in enumerate(iter_run_specs(answers_path), start=1):
-        if idx == run_index:
-            answers = run_spec.get("answers", [])
-            if not isinstance(answers, list):
-                raise ValueError(f"Run {run_index} answers must be a list")
-            return answers
-    raise IndexError(f"Run index out of range: {run_index} for {answers_path}")
+_load_run_answers = load_run_answers
 
 
 def _select_inference_backend(model_cfg: Dict[str, Any], requested_backend: str) -> str:
@@ -301,6 +294,15 @@ def _select_inference_backend(model_cfg: Dict[str, Any], requested_backend: str)
     return requested
 
 
+def _local_model_dir(model_cfg: Dict[str, Any]) -> Path:
+    """Registry `weights_dir` if given (lets legacy ids share weights), else models/<id>."""
+    weights_dir = str(model_cfg.get("weights_dir") or "").strip()
+    if weights_dir:
+        path = Path(weights_dir)
+        return path if path.is_absolute() else ROOT_DIR / path
+    return ROOT_DIR / "models" / str(model_cfg["id"])
+
+
 def _make_adapter(
     model_cfg: Dict[str, Any],
     model_kind: str,
@@ -318,7 +320,7 @@ def _make_adapter(
             api_timeout_s=api_timeout_s,
         )
 
-    model_dir = ROOT_DIR / "models" / str(model_cfg["id"])
+    model_dir = _local_model_dir(model_cfg)
     if model_kind == "text_llm":
         from baselines.model_adapters.local_text import LocalTextAdapter
 
@@ -360,7 +362,7 @@ def _ensure_model_runtime_compat(model_cfg: Dict[str, Any]) -> None:
     model_id = str(model_cfg.get("id") or "").strip()
     if not model_id:
         return
-    model_dir = ROOT_DIR / "models" / model_id
+    model_dir = _local_model_dir(model_cfg)
     cfg_path = model_dir / "config.json"
     if not cfg_path.exists():
         raise RuntimeError(f"model_runtime_check_failed: missing config.json for {model_id} at {model_dir}")
@@ -2173,7 +2175,7 @@ def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--answers-root", default=DEFAULT_ANSWERS_ROOT)
     parser.add_argument("--dataset-root", default=DEFAULT_DATASET_ROOT)
     parser.add_argument("--logs-root", default="logs/baseline_eval")
-    parser.add_argument("--config", default="configs/baselines/minimal_models.json")
+    parser.add_argument("--config", default="configs/models.json")
     parser.add_argument("--experiment-id", default=DEFAULT_EXPERIMENT_ID)
     parser.add_argument("--trial-id")
     parser.add_argument("--max-steps", type=int, default=DEFAULT_MAX_STEPS)
@@ -2400,7 +2402,8 @@ def _resolve_reference_efficiency(
     reference_video_path = None
     if raw_reference_available:
         raw_video = reference_annotations.get("video_path")
-        if isinstance(raw_video, str) and raw_video.strip():
+        # The recorded path is absolute and goes stale when the workspace moves; then use the video beside the trace.
+        if isinstance(raw_video, str) and raw_video.strip() and Path(raw_video.strip()).exists():
             reference_video_path = raw_video.strip()
         else:
             candidates = sorted(ref_paths["run_root"].glob("*.webm"))

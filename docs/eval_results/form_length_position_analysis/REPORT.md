@@ -73,10 +73,9 @@ Automatic scrolling, detailed verifier feedback, multi-action page plans, 2880×
 ## Reproduction
 
 ```bash
-MPLCONFIGDIR=/tmp/form-length-position-mpl python3 scripts/analyze_form_length_position.py \
-  --project-root . \
-  --config configs/baselines/form_length_position_analysis.json \
-  --output-dir docs/eval_results/form_length_position_analysis
+make study NAME=form_length_position
+# equivalent: python -m analysis.studies.form_length_position --config configs/analysis/form_length_position.json \
+#   --output-dir docs/eval_results/form_length_position_analysis
 ```
 
 The machine-readable tables and analysis manifest are stored beside this report.

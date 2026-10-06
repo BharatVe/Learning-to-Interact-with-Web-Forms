@@ -1,0 +1,29 @@
+{
+  "id": "track_baseline_full",
+  "description": "Canonical thesis-primary track baseline (all 50 forms x runs 1-10): Family A Qwen text/VL direct Playwright MCP, Family B OpenCUA-32B native computer use.",
+  "defaults": {
+    "forms": "all",
+    "run_indexes": "1-10",
+    "skip_completed": "any"
+  },
+  "cohorts": [
+    {
+      "name": "family_a_direct_mcp",
+      "experiment_id": "track_baseline_qwen_direct_mcp_all50",
+      "models": [
+        "text_qwen3_30b_a3b_instruct_2507",
+        "vlm_qwen3_vl_30b_a3b_instruct"
+      ]
+    },
+    {
+      "name": "family_b_native",
+      "experiment_id": "track_baseline_opencua_native_all50",
+      "models": [
+        "computer_use_opencua_32b"
+      ],
+      "args": {
+        "timeout_s": 5400
+      }
+    }
+  ]
+}

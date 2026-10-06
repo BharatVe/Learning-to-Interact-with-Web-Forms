@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Make sure the Chromium build expected by the pinned @playwright/mcp exists under
+# $PLAYWRIGHT_BROWSERS_PATH and record its path in .mcp-chromium-executable
+# (read by the runners via PLAYWRIGHT_MCP_CHROMIUM_EXECUTABLE). Called by scripts/setup.sh.
 set -euo pipefail
 
 ROOT_DIR="${ROOT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
@@ -19,7 +22,8 @@ export PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-$CACHE_ROOT/playwri
 mkdir -p "$PLAYWRIGHT_BROWSERS_PATH"
 
 EXECUTABLE_RECORD="$PLAYWRIGHT_BROWSERS_PATH/.mcp-chromium-executable"
-INSTALL_LOG="${PLAYWRIGHT_MCP_INSTALL_LOG:-/tmp/playwright-mcp-install-${USER:-unknown}.log}"
+INSTALL_LOG="${PLAYWRIGHT_MCP_INSTALL_LOG:-$ROOT_DIR/logs/playwright-mcp-install.log}"
+mkdir -p "$(dirname "$INSTALL_LOG")"
 FALLBACK_BROWSERS_PATH="${PLAYWRIGHT_MCP_FALLBACK_BROWSERS_PATH:-$(dirname "$ROOT_DIR")/cache/playwright}"
 
 resolve_runtime_json() {

@@ -9,6 +9,8 @@ from unittest import TestCase
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT / "src"))
 
 
 class HumanUIToolsTests(TestCase):
@@ -21,14 +23,14 @@ class HumanUIToolsTests(TestCase):
         return module
 
     def test_extract_model_size_parses_underscore_and_hyphen(self):
-        mod = self._load_module("scripts/summarize_human_ui_attribution.py")
+        mod = importlib.import_module("analysis.human_ui_attribution")
         self.assertEqual(mod._extract_model_size_b("text_qwen25_7b_instruct"), 7)
         self.assertEqual(mod._extract_model_size_b("vlm-qwen3-30b-a3b"), 30)
         self.assertEqual(mod._extract_model_size_b("model 8b"), 8)
         self.assertIsNone(mod._extract_model_size_b("qwen3_large"))
 
     def test_validate_answer_sets_detects_missing_runs_and_invalid_option(self):
-        script = REPO_ROOT / "scripts" / "validate_answer_sets.py"
+        script = REPO_ROOT / "src" / "dataset" / "validate.py"
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             forms_root = root / "src/forms"
@@ -116,7 +118,7 @@ class HumanUIToolsTests(TestCase):
             self.assertIn("not in options", combined)
 
     def test_validate_answer_sets_strict_allows_superset_and_all_form_ids(self):
-        script = REPO_ROOT / "scripts" / "validate_answer_sets.py"
+        script = REPO_ROOT / "src" / "dataset" / "validate.py"
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             forms_root = root / "src/forms"

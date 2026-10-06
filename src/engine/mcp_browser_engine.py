@@ -8,43 +8,7 @@ from engine.browser_language import force_english_google_forms_url
 from engine.trace_logger import TraceLogger
 
 
-CURSOR_OVERLAY_SCRIPT = r"""
-(() => {
-  if (window.__thesisCursorOverlayInitialized) return;
-  window.__thesisCursorOverlayInitialized = true;
-
-  const init = () => {
-    if (window.__thesisCursorOverlay) return;
-    const cursor = document.createElement('div');
-    cursor.id = '__thesis_cursor_overlay';
-    Object.assign(cursor.style, {
-      position: 'fixed',
-      width: '16px',
-      height: '16px',
-      border: '2px solid #ff2d55',
-      borderRadius: '50%',
-      background: 'rgba(255,45,85,0.22)',
-      boxShadow: '0 0 10px rgba(255,45,85,0.75)',
-      pointerEvents: 'none',
-      zIndex: '2147483647',
-      transform: 'translate(-50%, -50%)',
-      transition: 'top 70ms linear, left 70ms linear'
-    });
-    document.body.appendChild(cursor);
-    window.addEventListener('mousemove', (event) => {
-      cursor.style.left = `${event.clientX}px`;
-      cursor.style.top = `${event.clientY}px`;
-    }, true);
-    window.__thesisCursorOverlay = cursor;
-  };
-
-  if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', init, { once: true });
-  } else {
-    init();
-  }
-})();
-"""
+from engine.cursor_overlay import CURSOR_OVERLAY_SCRIPT
 
 JSON_MARKER = "THESIS_JSON:"
 RUN_CODE_TRACE_MAX_INLINE_CHARS = 1400
@@ -296,11 +260,10 @@ class MCPBrowserEngine:
             raise RuntimeError(f"browser_take_screenshot did not create file: {abs_path}")
         return str(abs_path)
 
-    def _screenshot(self, filename: str, step_ref: Optional[int]) -> Optional[str]:
-        return self.capture_screenshot(self.observations_dir / filename, step_ref)
-
     def take_observation_screenshot(self, filename: str, step_ref: Optional[int]) -> Optional[str]:
         return self.capture_screenshot(self.observations_dir / filename, step_ref)
+
+    _screenshot = take_observation_screenshot
 
     def get_page_text(self, step_ref: Optional[int]) -> str:
         code = f"""

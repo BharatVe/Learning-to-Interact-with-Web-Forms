@@ -1,5 +1,5 @@
 {
-  "analysis_commit": "fbbf3dc2ef03e028ab1fed23493a9be167c76144",
+  "analysis_commit": "2bda5a2215a8891ed417f5a10d4e07dd64d3134d",
   "analysis_date": "2026-08-08",
   "slurm_job": {
     "job_id": "2314476",
@@ -36,7 +36,7 @@
   "generated_files": [
     {
       "path": "evaluation_additions/opencua_ruler_comparison/README.md",
-      "sha256": "c63efe2289cf75c268a3030f134a805fa6059c95a9c7b69ac3ebc63a1fe0c940",
+      "sha256": "01e6d12c7c40209b28a54b67ee68be6c51657423ba087266d233e2972ab38712",
       "row_count": "not_applicable"
     },
     {
@@ -80,9 +80,9 @@
       "row_count": 7
     }
   ],
-  "generation_command": "python3 scripts/analyze_opencua_ruler_comparison.py",
+  "generation_command": "make study NAME=opencua_ruler",
   "validation_commands": [
-    "python3 scripts/analyze_opencua_ruler_comparison.py --check",
+    "make study NAME=opencua_ruler CHECK=1",
     "node <data-analytics-plugin>/skills/build-report/scripts/deliver_portable_artifact.mjs --input evaluation_additions/opencua_ruler_comparison/artifact.json --output evaluation_additions/opencua_ruler_comparison/report.html"
   ],
   "report_validation": {

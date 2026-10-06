@@ -1,0 +1,62 @@
+{
+  "description": "Cohorts and constants of the core thesis report (analysis.core_report, `make report`). Target study: Qwen text/VL direct-MCP and OpenCUA-32B (native + direct-MCP) on 50 forms x runs 1-6. Edit here, not in code.",
+  "target_run_count": 6,
+  "target_trial_count": 300,
+  "bootstrap_samples": 1000,
+  "bootstrap_seed": 20260609,
+  "models": {
+    "qwen": [
+      "text_qwen3_30b_a3b_instruct_2507",
+      "vlm_qwen3_vl_30b_a3b_instruct"
+    ],
+    "opencua_native": "computer_use_opencua_32b",
+    "opencua_direct_mcp": "computer_use_opencua_32b_direct_mcp"
+  },
+  "thesis_model_order": [
+    "text_qwen3_30b_a3b_instruct_2507",
+    "vlm_qwen3_vl_30b_a3b_instruct",
+    "computer_use_opencua_32b",
+    "computer_use_opencua_32b_direct_mcp"
+  ],
+  "thesis_model_labels": {
+    "text_qwen3_30b_a3b_instruct_2507": "Qwen Text",
+    "vlm_qwen3_vl_30b_a3b_instruct": "Qwen VLM",
+    "computer_use_opencua_32b": "OpenCUA Native",
+    "computer_use_opencua_32b_direct_mcp": "OpenCUA MCP"
+  },
+  "thesis_colors": {
+    "Qwen Text": "#2563eb",
+    "Qwen VLM": "#059669",
+    "OpenCUA Native": "#dc2626",
+    "OpenCUA MCP": "#7c3aed"
+  },
+  "experiments": {
+    "qwen": "qwen_direct_mcp_english_stepcap128_5form_20260515",
+    "opencua_control": "opencua_control_guidance_30form_20260526",
+    "opencua_remaining": "opencua_control_guidance_remaining20_20260527",
+    "opencua_loop": "opencua_loopdetector_30form_retry_20260526",
+    "opencua_topdown": "opencua_topdown_prompt_20form_20260519"
+  },
+  "experiment_prefixes": {
+    "qwen": "qwen_direct_mcp_",
+    "opencua_control": "opencua_control_guidance",
+    "opencua_direct_mcp": "opencua_direct_mcp_tools"
+  },
+  "qwen_recent_batch_date": "2026-05-27",
+  "expected_experiment_trials": {
+    "qwen_direct_mcp_all50_run2_20260528": 100,
+    "opencua_control_guidance_all50_run2_20260528": 50
+  },
+  "qwen_previous_batch_forms": [
+    "research_interest",
+    "room_booking",
+    "scholarship_interest",
+    "seminar_proposal",
+    "software_access",
+    "sports_tournament",
+    "study_group_match",
+    "survey_consent",
+    "technical_support",
+    "thesis_meeting"
+  ]
+}

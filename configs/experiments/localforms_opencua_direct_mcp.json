@@ -1,0 +1,155 @@
+{
+  "id": "localforms_opencua_direct_mcp",
+  "description": "Platform comparison: OpenCUA-32B direct MCP on the self-hosted LocalForms copies of the 50 forms (run 2), fill-only and fill-and-submit (10 + 40 form batches).",
+  "defaults": {
+    "platform": "localforms",
+    "run_indexes": [
+      2
+    ],
+    "skip_completed": "experiment"
+  },
+  "cohorts": [
+    {
+      "name": "fill_only_10",
+      "experiment_id": "opencua_localforms_direct_mcp_fill_only_10_20260819",
+      "models": [
+        "computer_use_opencua_32b_direct_mcp"
+      ],
+      "forms": [
+        "conference_travel",
+        "course_enrollment",
+        "course_feedback",
+        "event_rsvp",
+        "exam_registration",
+        "internship_app",
+        "job_fair",
+        "lab_safety",
+        "publication_submission",
+        "travel_reimbursement"
+      ],
+      "args": {
+        "fill_only_done": true
+      }
+    },
+    {
+      "name": "fill_only_40",
+      "experiment_id": "opencua_localforms_direct_mcp_fill_only_40_20260819",
+      "models": [
+        "computer_use_opencua_32b_direct_mcp"
+      ],
+      "forms": [
+        "accessibility_feedback",
+        "alumni_checkin",
+        "bug_report",
+        "club_application",
+        "club_event_planning",
+        "conf_interest",
+        "data_annotation",
+        "dataset_request",
+        "equipment_checkout",
+        "experiment_booking",
+        "field_trip",
+        "hackathon_signup",
+        "housing_preference",
+        "lab_visit",
+        "language_exchange",
+        "library_membership",
+        "meal_plan",
+        "mentor_match",
+        "newsletter_signup",
+        "office_hours",
+        "orientation_signup",
+        "paper_review",
+        "peer_evaluation",
+        "project_update",
+        "purchase_request",
+        "remote_setup",
+        "research_interest",
+        "room_booking",
+        "scholarship_interest",
+        "seminar_proposal",
+        "software_access",
+        "sports_tournament",
+        "study_group_match",
+        "survey_consent",
+        "technical_support",
+        "thesis_meeting",
+        "usability_test",
+        "volunteer_shift",
+        "wellbeing_check",
+        "workshop_signup"
+      ],
+      "args": {
+        "fill_only_done": true
+      }
+    },
+    {
+      "name": "submit_10",
+      "experiment_id": "opencua_localforms_direct_mcp_submit_10_20260827",
+      "models": [
+        "computer_use_opencua_32b_direct_mcp"
+      ],
+      "forms": [
+        "conference_travel",
+        "course_enrollment",
+        "course_feedback",
+        "event_rsvp",
+        "exam_registration",
+        "internship_app",
+        "job_fair",
+        "lab_safety",
+        "publication_submission",
+        "travel_reimbursement"
+      ]
+    },
+    {
+      "name": "submit_40",
+      "experiment_id": "opencua_localforms_direct_mcp_submit_40_20260827",
+      "models": [
+        "computer_use_opencua_32b_direct_mcp"
+      ],
+      "forms": [
+        "accessibility_feedback",
+        "alumni_checkin",
+        "bug_report",
+        "club_application",
+        "club_event_planning",
+        "conf_interest",
+        "data_annotation",
+        "dataset_request",
+        "equipment_checkout",
+        "experiment_booking",
+        "field_trip",
+        "hackathon_signup",
+        "housing_preference",
+        "lab_visit",
+        "language_exchange",
+        "library_membership",
+        "meal_plan",
+        "mentor_match",
+        "newsletter_signup",
+        "office_hours",
+        "orientation_signup",
+        "paper_review",
+        "peer_evaluation",
+        "project_update",
+        "purchase_request",
+        "remote_setup",
+        "research_interest",
+        "room_booking",
+        "scholarship_interest",
+        "seminar_proposal",
+        "software_access",
+        "sports_tournament",
+        "study_group_match",
+        "survey_consent",
+        "technical_support",
+        "thesis_meeting",
+        "usability_test",
+        "volunteer_shift",
+        "wellbeing_check",
+        "workshop_signup"
+      ]
+    }
+  ]
+}

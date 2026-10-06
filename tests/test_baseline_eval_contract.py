@@ -149,7 +149,7 @@ class SequenceAdapter:
 
 class BaselineEvalContractTests(TestCase):
     def _write_config(self, repo_root: Path, model_id: str = "text_qwen25_3b_instruct") -> None:
-        config_path = repo_root / "configs/baselines/minimal_models.json"
+        config_path = repo_root / "configs/models.json"
         config_path.parent.mkdir(parents=True, exist_ok=True)
         config_path.write_text(
             json.dumps(
@@ -695,7 +695,7 @@ class BaselineEvalContractTests(TestCase):
             answers = [{"label": "Name", "widget_type": "short_text", "value": "Olivia Brooks"}]
             argv = [
                 "--config",
-                "configs/baselines/minimal_models.json",
+                "configs/models.json",
                 "--model-id",
                 "text_qwen25_3b_instruct",
                 "--model-kind",
@@ -781,7 +781,7 @@ class BaselineEvalContractTests(TestCase):
             answers = [{"label": "Name", "widget_type": "short_text", "value": "Olivia Brooks"}]
             argv = [
                 "--config",
-                "configs/baselines/minimal_models.json",
+                "configs/models.json",
                 "--model-id",
                 "text_qwen25_3b_instruct",
                 "--model-kind",
@@ -858,7 +858,7 @@ class BaselineEvalContractTests(TestCase):
             answers = [{"label": "Name", "widget_type": "short_text", "value": "Olivia Brooks"}]
             argv = [
                 "--config",
-                "configs/baselines/minimal_models.json",
+                "configs/models.json",
                 "--model-id",
                 "text_qwen25_3b_instruct",
                 "--model-kind",
@@ -927,7 +927,7 @@ class BaselineEvalContractTests(TestCase):
             answers = [{"label": "Name", "widget_type": "short_text", "value": "Olivia Brooks"}]
             argv = [
                 "--config",
-                "configs/baselines/minimal_models.json",
+                "configs/models.json",
                 "--model-id",
                 "text_qwen25_3b_instruct",
                 "--model-kind",
@@ -997,7 +997,7 @@ class BaselineEvalContractTests(TestCase):
             answers = [{"label": "Name", "widget_type": "short_text", "value": "Olivia Brooks"}]
             argv = [
                 "--config",
-                "configs/baselines/minimal_models.json",
+                "configs/models.json",
                 "--model-id",
                 "text_qwen25_3b_instruct",
                 "--model-kind",
@@ -1057,7 +1057,7 @@ class BaselineEvalContractTests(TestCase):
             answers = [{"label": "Name", "widget_type": "short_text", "value": "Olivia Brooks"}]
             argv = [
                 "--config",
-                "configs/baselines/minimal_models.json",
+                "configs/models.json",
                 "--model-id",
                 "text_qwen25_3b_instruct",
                 "--model-kind",
@@ -1145,7 +1145,7 @@ class BaselineEvalContractTests(TestCase):
                 rc1 = rbe.main(
                     [
                         "--config",
-                        "configs/baselines/minimal_models.json",
+                        "configs/models.json",
                         "--model-id",
                         "text_qwen25_3b_instruct",
                         "--model-kind",
@@ -1171,7 +1171,7 @@ class BaselineEvalContractTests(TestCase):
                 rc2 = rbe.main(
                     [
                         "--config",
-                        "configs/baselines/minimal_models.json",
+                        "configs/models.json",
                         "--model-id",
                         "text_qwen25_3b_instruct",
                         "--model-kind",
@@ -1205,7 +1205,7 @@ class BaselineEvalContractTests(TestCase):
     def test_fallback_metadata_in_summary_and_manifest(self):
         with TemporaryDirectory() as tmp:
             repo_root = Path(tmp)
-            config_path = repo_root / "configs/baselines/minimal_models.json"
+            config_path = repo_root / "configs/models.json"
             config_path.parent.mkdir(parents=True, exist_ok=True)
             config_path.write_text(
                 json.dumps(
@@ -1242,7 +1242,7 @@ class BaselineEvalContractTests(TestCase):
 
             argv = [
                 "--config",
-                "configs/baselines/minimal_models.json",
+                "configs/models.json",
                 "--model-id",
                 "vlm_fallback_model",
                 "--model-kind",
