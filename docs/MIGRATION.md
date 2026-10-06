@@ -77,3 +77,11 @@ unchanged, and existing results stay where they are.
 | `docs/BASELINE1_STANDARD_PLAN.md` | removed (pre-thesis plan; tag) |
 | `docs/LOCALFORMS_{10FORM_PILOT_RESULTS,15FORM_CHECKPOINT,50FORM_FILLONLY_RESULTS}.md` | superseded by `docs/LOCALFORMS_ANALYSIS_FOR_THESIS.md` (tag) |
 | `docs/eval_results/README.md` (auto-generated tracker), `metrics.csv/jsonl` | `docs/eval_results/README.md` is now the results index; the tracker is in `reports/` |
+
+## Files outside the repository
+
+The duplicated media copies next to the checkout (`interaction_media.zip`,
+`interaction-media-on-main.bundle`, `interaction_media_bundle/`, `interaction_media_release/`,
+~400 MB on disk) were deleted after verifying that every file is byte-identical to
+`docs/eval_results/interaction_media/` and that the bundle's commit (`a85ab4c`) is on
+`origin/main`. The optional GitHub-release upload is now `scripts/upload_media_release.sh`.
