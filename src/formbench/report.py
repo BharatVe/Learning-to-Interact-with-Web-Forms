@@ -40,7 +40,9 @@ def run_core(settings: Settings, experiments: Optional[List[str]] = None, output
     if not experiments:
         # The core report's cohorts are fixed by configs/analysis/core_report.json, so it always reads everything.
         commands.append(_python(settings, "-m", "analysis.core_report", "--dataset-root", str(settings.dataset_root), "--output-dir", str(out), *(extra or [])))
-    commands.append(_python(settings, "-m", "analysis.overview", "--dataset-root", str(settings.dataset_root), "--output-dir", str(out), *exp_flags))
+    # Selected experiments are usually small (smoke/validation runs): show every group, not only those with >= 20 trials.
+    min_trials = ["--min-trials", "1"] if experiments else []
+    commands.append(_python(settings, "-m", "analysis.overview", "--dataset-root", str(settings.dataset_root), "--output-dir", str(out), *exp_flags, *min_trials))
     tracker_out = out
     commands.append(_python(settings, "-m", "analysis.tracker", "--dataset-root", str(settings.dataset_root), "--output-dir", str(tracker_out), *exp_flags))
     code = _run_all(settings, commands)

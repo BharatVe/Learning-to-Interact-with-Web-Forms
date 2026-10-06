@@ -169,6 +169,7 @@ class ReportInspectTests(CLITestCase):
         self.write_trial(form="event_rsvp", trial="trial_2", success=False, scored_correctness=1)
         out = self.fb("report", "--experiments", "exp_cli")
         self.assertIn("experiment_overview.csv", out)
+        self.assertRegex(out, r"exp_cli\s+computer_use_gemini_35_flash_lowcost\s+2\s")  # small experiments are listed in the terminal table
         overview = (self.tmp / "reports" / "experiment_overview.csv").read_text()
         self.assertIn("exp_cli,computer_use_gemini_35_flash_lowcost", overview)
         self.assertIn(",0.4286,", overview)  # (5 + 1) / 14
