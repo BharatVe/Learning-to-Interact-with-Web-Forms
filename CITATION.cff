@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, its code or its data, please cite it as below."
+title: "Learning to Interact with Web Forms"
+abstract: >-
+  A benchmark of 50 web forms with 10 answer sets each, scripted Playwright reference
+  ("ideal") interaction runs, and tooling to evaluate LLM, VLM and computer-use agents
+  (direct Playwright MCP tool use, native computer use, FormFactory-style visual interaction)
+  on Google Forms and a self-hosted LocalForms copy.
+type: software
+authors:
+  - family-names: Veauli
+    given-names: Bharat
+    email: bharat.veauli2000@gmail.com
+repository-code: "https://github.com/BharatVe/Learning-to-Interact-with-Web-Forms"
+license:
+  - MIT
+  - CC-BY-4.0
+keywords:
+  - web agents
+  - form filling
+  - benchmark
+  - Playwright
+  - computer use

@@ -25,6 +25,25 @@ make doctor                 # checks everything and prints the fix for anything 
 make test                   # ~220 tests, ~25 s, no GPU or network needed
 ```
 
+**What you need.** Python ≥ 3.9 and Node ≥ 18 (on the cluster both come from `MODULES`). That is
+enough for the dataset, ideal runs, analytics and API models. Locally served models (Qwen, OpenCUA)
+also need NVIDIA GPUs and the vLLM environment (`make setup WITH=vllm`); on the cluster you get
+the GPUs through `make submit`. Gemini needs an API key (`.secrets/gemini_api_key`, see
+[docs/MODELS.md](docs/MODELS.md)).
+
+### Where to start
+
+| I want to… | Shortest path |
+|---|---|
+| check my installation | `make doctor` → fix the FAIL rows → `make test` |
+| see the existing results | `make report` → open `reports/experiment_overview.csv` and `reports/plots/` |
+| run one model on one form | `make model-check MODEL=<id>` → `make eval MODEL=<id> FORM=conf_interest RUN=1 SET="max_steps=8"` (add `SUBMIT=1` on the cluster) |
+| reproduce a thesis experiment | `make experiments` → `make submit EXPERIMENT=<name> DRY_RUN=1` → same without `DRY_RUN` |
+| add or swap a model | [docs/MODELS.md](docs/MODELS.md) "Adding or swapping a model" |
+| regenerate the ideal runs | `make ideal-status` → `make ideal-runs FORMS=… RUNS=… SUBMIT=1` |
+| change the forms or answers | edit `data/generator/*.csv` → `make data FROM_CSV=1` → `make data-check` |
+| rebuild a thesis figure/table | `make studies` → `make study NAME=<name>` → review `git diff` |
+
 ## Commands
 
 | Area | Command | What it does |
@@ -96,6 +115,27 @@ copy an example entry into `configs/models.json`, run `make model-check MODEL=<i
 live in `docs/eval_results/` and change only through `make study`; see
 [docs/eval_results/README.md](docs/eval_results/README.md).
 
+## Working efficiently
+
+- **Dry-run first.** `DRY_RUN=1` on `eval`, `matrix`, `submit` and `ideal-runs` prints the exact
+  server, runner and `sbatch` commands without starting anything.
+- **One job per model on the cluster.** `make submit EXPERIMENT=… SPLIT=model` gives each model a job
+  sized to its own GPUs (2 for Qwen, 4 for OpenCUA) instead of one job sized for the largest.
+  Add `TIME=04:00:00` for short runs: smaller time limits are scheduled sooner.
+- **Avoid shared-weight contention.** Two jobs loading the same 60 GB checkpoint on one node from
+  the shared filesystem can take 45+ min to start. Use `CHAIN=afterok` (sequential jobs) when
+  several cohorts share a model.
+- **Reuse a running server.** `make serve-model MODEL=<id>` in one terminal (locally, or in a
+  Slurm allocation), then `make eval`/`matrix` in another shell of the same allocation: they
+  find the server on the same port and reuse it instead of loading the weights again.
+- **Resume, don't restart.** Re-running a manifest skips completed trials (`skip_completed`).
+  `SUFFIX=_rerun1` starts a fresh copy; `FORMS=`, `RUNS=`, `COHORT=`, `MODELS=` run a subset.
+- **Fast feedback.** `SET="max_steps=8"` for smoke trials, `make report EXPERIMENTS=<id>` for only
+  your new experiment, and `make inspect TRIAL=… STEPS=all` to see what the model did.
+- **Fill reference gaps before big runs.** Planning warns when answer sets lack an ideal run
+  (most forms have runs 1–6). Without one, a trial gets no efficiency-vs-ideal metrics.
+- **Keep storage lean.** `make doctor` flags model weights stored twice and unused weight folders.
+
 ## Failsafes
 
 - `make model-check` (run automatically before `eval`/`matrix`) validates the registry
@@ -138,10 +178,22 @@ data/                          forms, answers, reference runs (traces committed,
 docs/                          methodology, results, HPC and model guides
 evaluation_additions/          LocalForms site, additional comparisons, provenance manifest
 tests/                         unittest suite (make test)
+LICENSE, LICENSE-DATA           MIT (code) and CC BY 4.0 (data, results, docs)
+THIRD_PARTY_NOTICES.md, CITATION.cff   third-party components; how to cite
 ```
 
 Raw trial artefacts (`data/model_baselines/`), model weights (`models/`), logs, reports
 and caches are git-ignored.
+
+## License and citation
+
+- **Code** (`src/` except form specs, `scripts/`, `tests/`, `Makefile`, `configs/models.json`,
+  `configs/analysis/*.json`, the LocalForms site code, and source files anywhere): [MIT](LICENSE).
+- **Data, results and documentation** (`data/`, `src/forms*/`, `docs/`, `evaluation_additions/`
+  outputs, `configs/experiments/`): [CC BY 4.0](LICENSE-DATA). Reuse freely with attribution.
+- **Third-party components** (Bootstrap, references to FormFactory and Google Forms, models and
+  APIs that are not included): [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+- **Citation:** [CITATION.cff](CITATION.cff). GitHub shows a "Cite this repository" button.
 
 ## Further reading
 
