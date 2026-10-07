@@ -296,4 +296,27 @@ def doctor(settings: Settings) -> bool:
     results.append(CheckResult(OK if len(lf_forms) == len(forms) else WARN, "localforms", f"{len(lf_forms)} LocalForms specs", "make data"))
     refs = sum(1 for f in forms for _ in (settings.reference_root / f / "runs").glob("run_*/tool_trace.jsonl")) if forms else 0
     results.append(CheckResult(OK if refs else WARN, "ideal runs", f"{refs} reference runs with tool_trace.jsonl", "make ideal-runs"))
+    results += storage_checks(settings, models)
     return print_results("doctor", results)
+
+
+def storage_checks(settings: Settings, models: List[Mapping[str, Any]]) -> List[CheckResult]:
+    """Duplicate or orphaned weights (tens of GB each); cheap directory checks, no size scans."""
+    results: List[CheckResult] = []
+    hf_hub = Path(os.environ.get("HF_HOME") or settings.cache_root / "hf") / "hub"
+    reported = set()
+    for model in models:
+        repo = model.get("hf_repo")
+        weights = local_weights_dir(dict(model), repo_root=settings.root, models_dir=settings.models_dir)
+        cached = hf_hub / ("models--" + str(repo).replace("/", "--")) if repo else None
+        if weights and cached is not None and cached.is_dir() and cached not in reported:
+            reported.add(cached)
+            results.append(CheckResult(WARN, "storage", f"{model['id']}: weights in {weights} and again in the HF cache {cached}",
+                                       f"the local copy is what runs; remove the cache copy to free space: rm -rf {cached}"))
+    used = {str(local_weights_dir(dict(m), repo_root=settings.root, models_dir=settings.models_dir) or "") for m in models}
+    if settings.models_dir.is_dir():
+        for entry in sorted(settings.models_dir.iterdir()):
+            if entry.is_dir() and str(entry) not in used:
+                results.append(CheckResult(WARN, "storage", f"{entry} is not used by any registry model",
+                                           "register it in configs/models.json (docs/MODELS.md) or delete it"))
+    return results

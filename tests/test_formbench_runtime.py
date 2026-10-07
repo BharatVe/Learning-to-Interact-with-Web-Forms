@@ -292,6 +292,22 @@ class FailsafeCheckTests(TestCase):
         with mock.patch.object(checks, "visible_gpus", return_value=big):
             self.assertEqual(self._status(checks.check_model(settings, model, probe_endpoint=False), "gpu"), [checks.OK])
 
+    def test_storage_checks_flag_duplicate_and_orphan_weights(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "models" / "m_local").mkdir(parents=True)
+            (root / "models" / "orphan").mkdir()
+            (root / "hf" / "hub" / "models--Org--Local").mkdir(parents=True)
+            settings = load_settings(environ={"LOCAL": "1", "MODELS_DIR": str(root / "models"), "HF_HOME": str(root / "hf")}, root=REPO_ROOT)
+            models = [{"id": "m_local", "hf_repo": "Org/Local"}, {"id": "m_remote", "hf_repo": "Org/Remote"},
+                      {"id": "m_variant", "hf_repo": "Org/Local", "weights_dir": str(root / "models" / "m_local")}]  # shared weights: reported once
+            with mock.patch.dict(os.environ, {"HF_HOME": str(root / "hf")}):
+                results = checks.storage_checks(settings, models)
+            messages = " | ".join(r.message for r in results)
+            self.assertEqual(len(results), 2, messages)
+            self.assertIn("m_local: weights in", messages)
+            self.assertIn("orphan is not used by any registry model", messages)
+
     def test_check_models_rejects_unknown_ids(self):
         settings = load_settings(environ={"LOCAL": "1"})
         with mock.patch("sys.stdout", new_callable=StringIO) as out:

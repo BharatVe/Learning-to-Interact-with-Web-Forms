@@ -88,7 +88,8 @@ def _default_playwright_browsers_path() -> str:
     env_value = os.environ.get("PLAYWRIGHT_BROWSERS_PATH")
     if env_value:
         return env_value
-    return str(ROOT_DIR / ".playwright-browsers-node")
+    # Same location scripts/env.sh exports ($CACHE_ROOT/playwright, default .runtime-cache).
+    return str(ROOT_DIR / ".runtime-cache" / "playwright")
 
 
 def _is_wsl() -> bool:
