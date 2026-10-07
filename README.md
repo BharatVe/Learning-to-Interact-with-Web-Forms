@@ -112,6 +112,12 @@ live in `docs/eval_results/` and change only through `make study`; see
 - Trial failures are recorded as benchmark outcomes, and a run summary is written to
   `logs/matrix/`. `--fail-fast` stops at the first runner error. VLM timeouts and OOM
   failures trigger the registered fallback model.
+- Planning warns when trials have no ideal reference run for their answer set (so no
+  efficiency-vs-ideal metrics) and prints the `make ideal-runs` command that fills the gap.
+- `make doctor` also flags model weights stored twice (in `models/` and the HF cache) and weight
+  folders no registered model uses.
+- Google Forms widget scoring can be re-checked live, without submitting, before a large run:
+  `FORMBENCH_LIVE=1 scripts/env.sh .venv/bin/python -m unittest tests.test_live_google_forms`.
 - `make report` never touches committed thesis files. `evaluation_additions/manifest.json`
   hashes every thesis input, and `make test` verifies those hashes.
 

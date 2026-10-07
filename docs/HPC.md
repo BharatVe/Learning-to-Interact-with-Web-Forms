@@ -68,6 +68,10 @@ tail -f logs/slurm/fb-<experiment>-<cohort>-<jobid>.out
 | `$CACHE_ROOT` | HF, pip, uv, Playwright browsers | no |
 | `logs/`, `reports/` | Job logs, matrix summaries, current analytics | no |
 
+Weights live in **one** place: `models/<id>` (or the registry's `weights_dir`) is what vLLM
+loads. A second copy in `$CACHE_ROOT/hf/hub` is redundant, and `make doctor` reports it with the
+`rm` command. When moving `CACHE_ROOT`, delete the old cache folder rather than keeping both.
+
 Retention: each runner keeps the newest 5 trials per (experiment, model, form, answer set)
 and moves older repeats to `<experiment>/_archive/` (`--set retention_window=N`).
 
