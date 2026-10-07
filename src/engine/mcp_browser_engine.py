@@ -585,8 +585,18 @@ async (page) => {
       }).catch(() => "");
       return canonical(selectedText);
     }
-    const text = await trigger.innerText({ timeout: 1000 }).catch(() => "");
-    return canonical(text);
+    // Read the option marked selected. The listbox's own innerText also contains every hidden
+    // option (Google Forms keeps them in the DOM), which made this self-check always pass.
+    const options = container.locator("[role='option']");
+    const count = await options.count();
+    for (let i = 0; i < count; i++) {
+      const option = options.nth(i);
+      if (!(await isSelected(option))) continue;
+      const label = (await option.getAttribute("aria-label").catch(() => "")) || (await option.innerText({ timeout: 800 }).catch(() => ""));
+      const cleaned = canonical(label);
+      if (cleaned) return cleaned;
+    }
+    return "";
   };
 
   const parseDateParts = (raw) => {
@@ -685,7 +695,13 @@ async (page) => {
       result.target_bbox = await bbox(option);
       Object.assign(result, await getTargetMeta(option));
     }
-    const actual = await readDropdownValue(container);
+    // Google Forms updates the selected option asynchronously (popup close animation): poll briefly.
+    let actual = "";
+    for (let attempt = 0; attempt < 15; attempt++) {
+      actual = await readDropdownValue(container);
+      if (actual && (!norm(target) || norm(actual).includes(norm(target)))) break;
+      await page.waitForTimeout(200);
+    }
     if (!actual || (norm(target) && !norm(actual).includes(norm(target)))) {
       throw new Error(`dropdown_value_mismatch: expected=${target}, actual=${actual}`);
     }
