@@ -27,13 +27,17 @@ and the per-trial tracker (`reports/metrics.csv`, `reports/README.md`).
 
 ## Caveats
 
-- **Dropdown scores.** On Google Forms the verifier read every option label of the custom
-  dropdown instead of the selected one. In the audited 50-form fill-only cohorts every
-  dropdown target got 0 credit, and other experiments used the same verifier. The stored-artifact audit (`interaction_failure_analysis/DROPDOWN_FAILURE_ANALYSIS.md`)
-  confirms 79 of 100 audited selections as correct, none as wrong, and 21 as
-  unresolved. Tables computed directly from trial summaries, including `analysis/`, the
-  `reports/` overview and the tracker, still contain the raw dropdown scores. The
-  form-length and FormFactory studies exclude dropdowns.
+- **Dropdown scores (experiments before 2026-07-21).** On Google Forms the verifier used to read
+  every option label of the custom dropdown instead of the selected one, so every dropdown
+  target in the audited 50-form fill-only cohorts got 0 credit. The stored-artifact audit
+  (`interaction_failure_analysis/DROPDOWN_FAILURE_ANALYSIS.md`) confirms 79 of 100 audited
+  selections as correct, none as wrong, and 21 as unresolved. Tables computed directly from
+  those trials' summaries (`analysis/`, the `reports/` overview, the tracker) still contain
+  the raw 0 scores; the form-length and FormFactory studies exclude dropdowns. **The verifier
+  was fixed on 2026-07-21** (it reads the option marked selected), so later experiments are
+  scored correctly; a live probe on three forms in October 2026 confirmed this. Re-check
+  before a large campaign with `FORMBENCH_LIVE=1 … -m unittest tests.test_live_google_forms`.
+  LocalForms uses a native `<select>` and was never affected.
 - **`run_settings.json` trial timeouts.** For `opencua_direct_mcp_fill_only_done_30_seed20260709_r2_step32`
   and `opencua_direct_mcp_fill_only_done_50_topup20_20260713_r2_step32` the file records
   `trial_s: 1800`, but the Slurm logs of those jobs show `direct_mcp_timeout_s=9000`
