@@ -211,6 +211,22 @@ def completed_pairs(dataset_root: Path, model_id: str, experiment_id: Optional[s
     return done
 
 
+def missing_references(settings: Settings, cohort: Cohort) -> List[Tuple[str, int]]:
+    """(form, run) pairs of a cohort without a usable ideal reference run (trace present, no failure).
+
+    Trials on those pairs still run, but get no efficiency-vs-ideal metrics.
+    """
+    root = settings.localforms_reference_root if cohort.platform == "localforms" else settings.reference_root
+    missing = []
+    for form_id in cohort.forms:
+        for run_index in cohort.run_indexes:
+            run_dir = root / _form_dir_id(cohort, form_id) / "runs" / answer_run_id(run_index)
+            trace = run_dir / "tool_trace.jsonl"
+            if not trace.is_file() or trace.stat().st_size == 0 or (run_dir / "failure_manifest.json").exists():
+                missing.append((form_id, run_index))
+    return missing
+
+
 def trial_completed(settings: Settings, cohort: Cohort, model_id: str, form_id: str, run_index: int) -> bool:
     if cohort.skip_completed == "none":
         return False
@@ -388,6 +404,16 @@ class MatrixRunner:
         from formbench.forms_site import LocalFormsSite
 
         started = utc_now()
+        for cohort in self.experiment.cohorts:
+            gaps = missing_references(self.settings, cohort)
+            if gaps:
+                runs = ",".join(str(r) for r in sorted({r for _, r in gaps}))
+                platform = f" PLATFORM={cohort.platform}" if cohort.platform != "google" else ""
+                warn(
+                    f"cohort {cohort.name}: {len(gaps)}/{len(cohort.forms) * len(cohort.run_indexes)} form/run pairs have no ideal "
+                    f"reference run, so those trials get no efficiency-vs-ideal metrics (e.g. {gaps[0][0]} run {gaps[0][1]}). "
+                    f"Generate them first with: make ideal-runs RUNS={runs}{platform}"
+                )
         with ExitStack() as stack:
             if not self.dry_run and any(c.platform == "localforms" for c in self.experiment.cohorts):
                 stack.enter_context(LocalFormsSite(self.settings))

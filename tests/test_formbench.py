@@ -181,6 +181,21 @@ class MatrixTests(TestCase):
                 for f, r in everything:
                     self.assertEqual(matrix.trial_completed(settings, cohort, "m", f, r), (f, r) in skipped)
 
+    def test_missing_references(self):
+        with TemporaryDirectory() as tmp:
+            ref = Path(tmp)
+            for form, run, trace, failed in (("conf_interest", "run_0001", "x", False), ("conf_interest", "run_0002", "", False), ("event_rsvp", "run_0001", "x", True)):
+                d = ref / form / "runs" / run
+                d.mkdir(parents=True)
+                (d / "tool_trace.jsonl").write_text(trace)
+                if failed:
+                    (d / "failure_manifest.json").write_text("{}")
+            settings = _settings(REFERENCE_ROOT=tmp, LOCALFORMS_REFERENCE_ROOT=tmp)
+            cohort = matrix.Cohort(name="c", experiment_id="e", models=["m"], forms=["conf_interest", "event_rsvp"], run_indexes=[1, 2])
+            self.assertEqual(matrix.missing_references(settings, cohort), [("conf_interest", 2), ("event_rsvp", 1), ("event_rsvp", 2)])
+            cohort.platform = "localforms"
+            self.assertEqual(len(matrix.missing_references(settings, cohort)), 4)  # lf_* references live under their own ids
+
     def test_every_manifest_loads(self):
         settings = _settings()
         names = [name for name, _ in matrix.list_experiments(settings)]
