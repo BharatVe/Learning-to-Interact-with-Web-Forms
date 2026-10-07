@@ -146,6 +146,41 @@ class MatrixTests(TestCase):
             cohort.skip_completed = "none"
             self.assertFalse(matrix.trial_completed(settings, cohort, "m1", "conf_interest", 2))
 
+    def test_completed_index_matches_per_trial_check(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            def done(exp, model, form, run, summary=True):
+                d = root / exp / model / form / run / "trial_x"
+                d.mkdir(parents=True)
+                if summary:
+                    (d / "summary.json").write_text("{}")
+            done("e1", "m", "conf_interest", "run_0001")
+            done("e2", "m", "event_rsvp", "run_0002")
+            done("e2", "m", "bug_report", "run_0001", summary=False)   # crashed trial: not completed
+            done("e1", "m", "lf_conf_interest", "run_0002")
+            done("_archive_like", "m", "conf_interest", "run_0003")  # underscore dirs are not experiments
+            self.assertEqual(matrix.completed_pairs(root, "m", "e1"), {("conf_interest", "run_0001"), ("lf_conf_interest", "run_0002")})
+            self.assertEqual(matrix.completed_pairs(root, "m"), {("conf_interest", "run_0001"), ("event_rsvp", "run_0002"), ("lf_conf_interest", "run_0002")})
+            self.assertEqual(matrix.completed_pairs(root / "missing", "m"), set())
+            settings = _settings(DATASET_ROOT=tmp)
+            forms, runs = ["conf_interest", "event_rsvp", "bug_report"], [1, 2, 3]
+            everything = [(f, r) for f in forms for r in runs]
+            cases = {
+                ("experiment", "google"): {("conf_interest", 1)},
+                ("any", "google"): {("conf_interest", 1), ("event_rsvp", 2)},
+                ("none", "google"): set(),
+                ("experiment", "localforms"): {("conf_interest", 2)},
+                ("any", "localforms"): {("conf_interest", 2)},
+            }
+            for (mode, platform), skipped in cases.items():
+                cohort = matrix.Cohort(name="c", experiment_id="e1", models=["m"], forms=forms, run_indexes=runs, skip_completed=mode, platform=platform)
+                runner = matrix.MatrixRunner.__new__(matrix.MatrixRunner)
+                runner.settings, runner.skipped = settings, 0
+                self.assertEqual(runner.pending(cohort, "m"), [p for p in everything if p not in skipped], (mode, platform))
+                self.assertEqual(runner.skipped, len(skipped))
+                for f, r in everything:
+                    self.assertEqual(matrix.trial_completed(settings, cohort, "m", f, r), (f, r) in skipped)
+
     def test_every_manifest_loads(self):
         settings = _settings()
         names = [name for name, _ in matrix.list_experiments(settings)]
